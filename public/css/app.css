@@ -1003,3 +1003,14 @@
 @import 'tailwindcss/utilities';*/
 /*@import './themify-icon.css';*/
 
+.router-link-active {
+    color: white!important;
+}
+
+.router-link-active i {
+    color: white !important;
+}
+
+.metis-menu i {
+    color: green!important;
+}

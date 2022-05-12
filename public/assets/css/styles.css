@@ -166,7 +166,7 @@
 }
 
 .metismenu li a i {
-    color: #6a56a5;
+    color: #a2a2a2;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -687,7 +687,7 @@ ul.breadcrumbs {
     display: block;
     font-size: 14px;
     font-weight: 400;
-    color: #7801ff;
+    color: #58BFD9;
     letter-spacing: 0;
     margin-right: 16px;
     position: relative;
@@ -717,8 +717,8 @@ ul.breadcrumbs {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    background: -webkit-linear-gradient(left, #8914fe 0%, #8063f5 100%);
-    background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
+    background: -webkit-linear-gradient(left, #58BFD9 0%, #89e7ff 100%);
+    background: linear-gradient(to right, #58BFD9 0%, #90e9ff 100%);
     padding: 17px 38px;
     position: relative;
 }

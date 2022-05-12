@@ -3,12 +3,12 @@
         <div class="row justify-content-center">
             <div class="card p-5">
                 <div v-show="loading">
-                    Loading
+                    <div class="loader"></div>
                 </div>
                 <div class="card-body" v-show="!loading">
                     <ul>
-                        <div v-for="user in users" v-bind:key="user.id">
-                            <li class="text-uppercase">{{ user.id }}: {{ user.name }}</li>
+                        <div v-for="post in posts" v-bind:key="post.id">
+                            <li class="text-uppercase">{{ post.id }}: {{ post.title }}</li>
                         </div>
                     </ul>
                 </div>
@@ -23,14 +23,14 @@
     export default {
         data() {
             return {
-                users: null,
+                posts: null,
                 loading: true,
             }
         },
         async mounted() {
-            let result = await axios('https://jsonplaceholder.typicode.com/users/')
+            let result = await axios('https://jsonplaceholder.typicode.com/posts/')
             this.loading = false
-            this.users = result.data
+            this.posts = result.data
         }
     }
 </script>
