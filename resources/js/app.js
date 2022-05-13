@@ -7,6 +7,7 @@ import Popper from 'popper.js/dist/umd/popper.js';
 
 require('./bootstrap');
 
+require('./functions/string')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
