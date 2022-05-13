@@ -1,5 +1,6 @@
 <template>
     <div>
+        <vue-progress-bar></vue-progress-bar>
         <!-- preloader area start -->
         <div id="preloader">
             <div class="loader"></div>
@@ -447,7 +448,6 @@
                 try
                 {
                     document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
-
                     let link = document.querySelector("a[href='" + to.path + "']")
                     let element = link.parentElement.parentElement
 
@@ -464,6 +464,32 @@
                     console.log("Une erreur s'et produite");
                 }
             }
-        }
+        },
+        mounted() {
+            //  [App.vue specific] When App.vue is finish loading finish the progress bar
+            this.$Progress.finish();
+        },
+        created() {
+            //  [App.vue specific] When App.vue is first loaded start the progress bar
+            this.$Progress.start();
+            //  hook the progress bar to start before we move router-view
+            this.$router.beforeEach((to, from, next) => {
+                //  does the page we want to go to have a meta.progress object
+                if (to.meta.progress !== undefined) {
+                    let meta = to.meta.progress;
+                    // parse meta tags
+                    this.$Progress.parseMeta(meta);
+                }
+                //  start the progress bar
+                this.$Progress.start();
+                //  continue to next page
+                next();
+            });
+            //  hook the progress bar to finish after we've finished moving router-view
+            this.$router.afterEach((to, from) => {
+                //  finish the progress bar
+                this.$Progress.finish();
+            });
+        },
     }
 </script>

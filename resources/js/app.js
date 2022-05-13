@@ -3,7 +3,6 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import Popper from 'popper.js/dist/umd/popper.js';
 
 require('./bootstrap');
 
@@ -23,8 +22,26 @@ require('./functions/string')
 import { createApp } from 'vue'
 import router from './components/router/router';
 import DefaultLayoutComponent from './components/template/DefaultLayoutComponent.vue';
+//import { Vue3ProgressPlugin } from '@marcoschulte/vue3-progress';
 
-// import VueRouter from 'vue-router'
+import VueProgressBar from "@aacassandra/vue3-progressbar";
+
+const options = {
+    color: "#58BFD9",
+    failedColor: "#874b4b",
+    thickness: "5px",
+    transition: {
+        speed: "1s",
+        opacity: "0.6s",
+        termination: 300,
+    },
+    autoRevert: true,
+    location: "top",
+    inverse: false,
+    disableGlobalInstance: false,
+};
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -45,10 +62,12 @@ import DefaultLayoutComponent from './components/template/DefaultLayoutComponent
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.use(VueRouter);
 
 createApp({
     components: {
         DefaultLayoutComponent,
-    }
-}).use(router).mount('#app');
+    },
+})
+    .use(router)
+    .use(VueProgressBar, options)
+    .mount('#app');
