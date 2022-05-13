@@ -10,8 +10,8 @@
                             <thead class="text-uppercase bg-secondary">
                                 <tr class="text-white">
                                     <th scope="col">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Content</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Username</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -21,15 +21,18 @@
                                 </tr>
                             </tbody>
                             <tbody v-show="!loading">
-                                <tr v-for="post in posts" v-bind:key="post.id">
-                                    <th scope="row">{{ post.id }}</th>
-                                    <th scope="row">{{ post.title }}</th>
-                                    <th scope="row">{{ post.body }}</th>
+                                <tr v-for="user in users.data" v-bind:key="user.id">
+                                    <th scope="row">{{ user.id }}</th>
+                                    <th scope="row">{{ user.name }}</th>
+                                    <th scope="row">{{ user.email }}</th>
                                     <td><i class="ti-trash"></i></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                    <div class="pagination">
+                        <pagination align="center" :data="users" @pagination-change-page="list"></pagination>
+                        </div>
                 </div>
             </div>
         </div>
@@ -40,19 +43,37 @@
 
 import axios from 'axios';
 import { ref } from "vue";
+import pagination from 'laravel-vue-pagination'
 
 export default {
-
+    components: {
+        pagination,
+    },
     data() {
         return {
-            posts: ref([]),
+            users: ref([]),
             loading: true,
         }
     },
     async mounted() {
-        let result = await axios('https://jsonplaceholder.typicode.com/posts/')
-        this.loading = false
-        this.posts = result.data
+        this.list();
     },
+    methods:{
+        async list(page=1){
+            await axios.get(`http://localhost:8000/api/test?page=${page}`).then(({data})=>{
+                this.users = data
+                this.loading = false
+            }).catch(({ response })=>{
+                console.error(response)
+            })
+        }
+    }
 }
 </script>
+
+<style scoped>
+    .pagination{
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+</style>
