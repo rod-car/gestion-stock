@@ -60,7 +60,7 @@ export default {
     },
     methods:{
         async list(page=1){
-            await axios.get(`http://localhost:8000/api/test?page=${page}`).then(({data})=>{
+            await axios.get(`http://localhost:8000/api/users?page=${page}`).then(({data})=>{
                 this.users = data
                 this.loading = false
             }).catch(({ response })=>{

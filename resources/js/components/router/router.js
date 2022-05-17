@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
+import Login from '../pages/Login.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
@@ -7,6 +8,11 @@ import NouveauMatierePremiere from '../pages/articles/matieres-premieres/Nouveau
 import ListeMatierePremiere from '../pages/articles/matieres-premieres/ListeMatieresPremieres.vue'
 
 const routes = [
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    },
     {
         path: '/',
         name: 'home',

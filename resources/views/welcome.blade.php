@@ -7,7 +7,7 @@
     <title>Gestion de stock</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
@@ -27,9 +27,14 @@
 
 <body>
     <div id="app">
-        <default-layout-component></default-layout-component>
+        @auth
+            <default-layout-component></default-layout-component>
+        @endauth
+        @guest
+            <login></login>
+        @endguest
     </div>
-    
+
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>

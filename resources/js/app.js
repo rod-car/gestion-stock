@@ -22,7 +22,7 @@ require('./functions/string')
 import { createApp } from 'vue'
 import router from './components/router/router';
 import DefaultLayoutComponent from './components/template/DefaultLayoutComponent.vue';
-//import { Vue3ProgressPlugin } from '@marcoschulte/vue3-progress';
+import Login from './components/pages/Login.vue';
 
 import VueProgressBar from "@aacassandra/vue3-progressbar";
 
@@ -66,6 +66,7 @@ const options = {
 createApp({
     components: {
         DefaultLayoutComponent,
+        Login,
     },
 })
     .use(router)
