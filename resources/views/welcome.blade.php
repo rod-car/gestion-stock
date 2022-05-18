@@ -31,6 +31,11 @@
             <default-layout-component></default-layout-component>
         @endauth
         @guest
+            <script>
+                if (window.location.pathname !== "/login") {
+                    window.location = '/login'
+                }
+            </script>
             <login></login>
         @endguest
     </div>

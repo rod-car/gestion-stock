@@ -224,11 +224,11 @@
                         <div class="col-sm-6 clearfix">
                             <div class="user-profile pull-right">
                                 <img class="avatar user-thumb" src="/assets/images/author/avatar.png" alt="avatar">
-                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ user === null ? "Loading" : user.name }} <i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Message</a>
                                     <a class="dropdown-item" href="#">Settings</a>
-                                    <a class="dropdown-item" href="#">Log Out</a>
+                                    <a class="dropdown-item" href="#" @click="logOut()">Log Out</a>
                                 </div>
                             </div>
                         </div>
@@ -435,9 +435,10 @@
     export default {
         data() {
             return {
-                name: null,
-                path: null,
-                tree: null,
+                name: null, // Nom de la route active
+                path: null, // Path de la route active
+                tree: null, // Arborescence dans breadcrumb
+                user: null, // Utilisateur connecté
             }
         },
         components: {
@@ -445,8 +446,16 @@
         },
         watch:{
             $route (to, from){
-                try
-                {
+                // Permet de detecter automatiquement si l'utilisateur est encore connecté. Mais pas utile pour l'instant
+                // Quand decommenté, besoin de async devant $route
+                /*try {
+                    let response = await axios.get('/api/user')
+                }
+                catch (error) {
+                    window.location.href = "/login"
+                }*/
+
+                try {
                     document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
                     let link = document.querySelector("a[href='" + to.path + "']")
                     let element = link.parentElement.parentElement
@@ -458,9 +467,7 @@
                     this.name = ucfirst(name)
                     this.path = to.path
                     this.tree = this.path.replace('/', '').split('/')
-                }
-                catch (error)
-                {
+                } catch (error) {
                     console.log("Une erreur s'et produite");
                 }
             }
@@ -470,6 +477,13 @@
             this.$Progress.finish();
         },
         created() {
+            // Permet de detecter pour la prémière fois si l'utilisateur est connécté ou pas
+            axios.get('/api/user').then((result) => {
+                this.user = result.data
+            }).catch((err) => {
+                window.location = '/login'
+            });
+
             //  [App.vue specific] When App.vue is first loaded start the progress bar
             this.$Progress.start();
             //  hook the progress bar to start before we move router-view
@@ -490,6 +504,17 @@
                 //  finish the progress bar
                 this.$Progress.finish();
             });
+        },
+        methods: {
+            /**
+             * Permet de deconnecter un utilisateur
+             *
+             * @return  {void}  Redirection permanente vers la page login
+             */
+            async logOut () {
+                await axios.post('/api/auth/logout')
+                window.location = "login"
+            }
         },
     }
 </script>

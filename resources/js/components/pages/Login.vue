@@ -77,7 +77,7 @@ export default {
             try
             {
                 await axios.get('/sanctum/csrf-cookie')
-                let response = await axios.post('/api/auth/login', this.form)
+                await axios.post('/api/auth/login', this.form)
                 window.location = '/'
             }
             catch (error)
