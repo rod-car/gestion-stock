@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Article\ArticleController;
+use App\Http\Controllers\Api\Role\RoleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
@@ -18,15 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/article', ArticleController::class);
+// Ressource qui gere la gestion des articles
+Route::apiResource('/article', ArticleController::class);
 
+// Ressource qui gere la gestion des roles
+Route::apiResource('/roles', RoleController::class);
+
+Route::apiResource('/user', UserController::class);
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);
 Route::get('/connected-user', [UserController::class, 'connectedUser']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/user', UserController::class);
 
     Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy']);
 });

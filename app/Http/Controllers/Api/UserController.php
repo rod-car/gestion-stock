@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -26,7 +27,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rolesId = [];
+        $userData = [];
+
+        if (count($request->all()) === 2)
+        {
+            $userData = $request->all()['user'];
+            $rolesId = $request->all()['roles'];
+        }
+        else
+        {
+            $userData = $request->all();
+        }
+
+        $user = User::create($userData);
+
+        foreach ($rolesId as $id)
+        {
+            $user->roles()->attach($id);
+        }
+
+        return $user;
     }
 
     /**
@@ -37,7 +58,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**
@@ -49,7 +70,31 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rolesId = [];
+        $userData = [];
+
+        if (count($request->all()) === 2) {
+            $userData = $request->all()['user'];
+            $rolesId = $request->all()['roles'];
+        } else {
+            $userData = $request->all();
+        }
+
+        foreach ($user->roles as $role) {
+            if (!in_array($role->id, $rolesId)) $user->roles()->detach($role->id);
+        }
+
+        $actualRolesId = $user->roles->pluck('id');
+
+        foreach ($rolesId as $id) {
+            if (!in_array($id, $actualRolesId)) $user->roles()->attach($id);
+        }
+
+        $user->update($userData);
+
+        return response()->json([
+            'success' => "Mise a jour avec succèss",
+        ]);
     }
 
     /**
@@ -60,10 +105,24 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+
+            return response()->json([
+                'success' => "Supprimé avec success"
+            ]);
+        } catch (QueryException $e) {
+            return response()->json([
+                'errors' => "Echec de suppréssion. {$e->getMessage()}"
+            ]);
+        }
     }
 
-
+    /**
+     * Permet de recuperer l'utilisateur connecté
+     *
+     * @return void
+     */
     public function connectedUser()
     {
         return auth()->user();
