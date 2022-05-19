@@ -33,6 +33,15 @@
                                         <li><router-link to="/article/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
                                     </ul>
                                 </li>
+
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-list-alt"></i><span>Catégories</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/article/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/article/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                    </ul>
+                                </li>
+
                                 <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-home"></i><span>Point de vente</span></a>
                                     <ul class="collapse">
@@ -45,6 +54,34 @@
                                     <ul class="collapse">
                                         <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
                                         <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users"></i><span>Fournisseurs</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-users"></i><span>Clients</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>Gestion des personnels</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-gear"></i><span>Paramètres</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-dollar me-2"></i>Devis</router-link></li>
+                                        <li><router-link to="/entrepot/liste"><i class="fa fa-dollar me-2"></i>Format d'argent</router-link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -426,7 +463,7 @@
             // Permet de detecter pour la prémière fois si l'utilisateur est connécté ou pas
             axios.get('/api/connected-user').then((result) => {
                 if (typeof result.data === "string") console.error ("Le lien est incorrect")
-                else this.user = result.data 
+                else this.user = result.data
             }).catch((err) => {
                 window.location = '/login'
             });
