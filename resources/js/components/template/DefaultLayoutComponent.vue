@@ -27,18 +27,24 @@
                                 </li>
 
                                 <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-shopping-cart"></i><span>Produits finis</span></a>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-shopping-cart"></i><span>Article</span></a>
                                     <ul class="collapse">
-                                        <li><router-link to="/produit-finis/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
-                                        <li><router-link to="/produit-finis/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                        <li><router-link to="/article/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/article/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
                                     </ul>
                                 </li>
-
                                 <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-shopping-cart-full"></i><span>Matières prémières</span></a>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-home"></i><span>Point de vente</span></a>
                                     <ul class="collapse">
-                                        <li><router-link to="/matiere-premiere/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
-                                        <li><router-link to="/matiere-premiere/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                        <li><router-link to="/point-de-vente/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/point-de-vente/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-home"></i><span>Entrepôt</span></a>
+                                    <ul class="collapse">
+                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Listes</router-link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -145,66 +151,6 @@
                                                     <span>3:15 PM</span>
                                                 </div>
                                             </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img2.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">When you can connect with me...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img3.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">I missed you so much...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img4.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Your product is completely Ready...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img2.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Hey I am waiting for you...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img1.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Hey I am waiting for you...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img3.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Hey I am waiting for you...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -228,7 +174,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Message</a>
                                     <a class="dropdown-item" href="#">Settings</a>
-                                    <a class="dropdown-item" href="#" @click="logOut()">Log Out</a>
+                                    <a class="dropdown-item" href="#" @click="logOut()">Se deconnecter</a>
                                 </div>
                             </div>
                         </div>
@@ -478,8 +424,9 @@
         },
         created() {
             // Permet de detecter pour la prémière fois si l'utilisateur est connécté ou pas
-            axios.get('/api/user').then((result) => {
-                this.user = result.data
+            axios.get('/api/connected-user').then((result) => {
+                if (typeof result.data === "string") console.error ("Le lien est incorrect")
+                else this.user = result.data 
             }).catch((err) => {
                 window.location = '/login'
             });

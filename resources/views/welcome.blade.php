@@ -32,9 +32,10 @@
         @endauth
         @guest
             <script>
-                if (window.location.pathname !== "/login") {
+                window.history.pushState(null, null, '/login')
+                /*if (window.location.pathname !== "/login") {
                     window.location = '/login'
-                }
+                }*/
             </script>
             <login></login>
         @endguest

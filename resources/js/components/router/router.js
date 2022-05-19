@@ -4,8 +4,6 @@ import Login from '../pages/Login.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
-import NouveauMatierePremiere from '../pages/articles/matieres-premieres/NouveauMatieresPremieres.vue';
-import ListeMatierePremiere from '../pages/articles/matieres-premieres/ListeMatieresPremieres.vue'
 
 const routes = [
     {
@@ -24,25 +22,35 @@ const routes = [
         component: Dashboard
     },
     {
-        path: '/produit-finis/nouveau',
-        name: 'article.produit-fini.nouveau',
+        path: '/article/nouveau',
+        name: 'article.article.nouveau',
         component: NouveauProduitsFinis
     },
     {
-        path: '/produit-finis/liste',
-        name: 'article.produit-fini.liste',
+        path: '/article/liste',
+        name: 'article.article.liste',
         component: ListeProduitsFinis
     },
     {
-        path: '/matiere-premiere/nouveau',
-        name: 'article.matiere-premiere.nouveau',
-        component: NouveauMatierePremiere
+        path: '/point-de-vente/nouveau',
+        name: 'depot.point-de-vente.nouveau',
+        component: ListeProduitsFinis
     },
     {
-        path: '/matiere-premiere/liste',
-        name: 'article.matiere-premiere.liste',
-        component: ListeMatierePremiere
-    }
+        path: '/point-de-vente/liste',
+        name: 'depot.point-de-vente.liste',
+        component: ListeProduitsFinis
+    },
+    {
+        path: '/entrepot/nouveau',
+        name: 'depot.entrepot.nouveau',
+        component: ListeProduitsFinis
+    },
+    {
+        path: '/entrepot/liste',
+        name: 'depot.entrepot.liste',
+        component: ListeProduitsFinis
+    },
 ];
 
 const router = createRouter({
