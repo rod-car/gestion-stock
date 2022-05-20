@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::paginate();
+        return User::paginate(5);
     }
 
     /**
@@ -38,6 +38,11 @@ class UserController extends Controller
         else
         {
             $userData = $request->all();
+            /*$userData = $request->validate([
+                'nom_personnel' => ["required", "min:2", "max:255"],
+                'prenoms_personnel' => ["required", "min:2", "max:255"],
+                'email' => ["required", "unique:users,email", "email", "max:255"],
+            ]);*/
         }
 
         $user = User::create($userData);

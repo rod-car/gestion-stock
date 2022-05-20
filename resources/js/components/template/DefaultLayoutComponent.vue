@@ -73,8 +73,8 @@
                                 <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>Gestion des personnels</span></a>
                                     <ul class="collapse">
-                                        <li><router-link to="/entrepot/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
-                                        <li><router-link to="/entrepot/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
+                                        <li><router-link to="/personnel/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li><router-link to="/personnel/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -207,7 +207,7 @@
                         <div class="col-sm-6 clearfix">
                             <div class="user-profile pull-right">
                                 <img class="avatar user-thumb" src="/assets/images/author/avatar.png" alt="avatar">
-                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ user === null ? "Loading" : user.name }} <i class="fa fa-angle-down"></i></h4>
+                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <i class="fa fa-angle-down"></i></h4>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Message</a>
                                     <a class="dropdown-item" href="#">Settings</a>
@@ -427,36 +427,8 @@
         components: {
             BreadCrumb,
         },
-        watch:{
-            $route (to, from){
-                // Permet de detecter automatiquement si l'utilisateur est encore connecté. Mais pas utile pour l'instant
-                // Quand decommenté, besoin de async devant $route
-                /*try {
-                    let response = await axios.get('/api/user')
-                }
-                catch (error) {
-                    window.location.href = "/login"
-                }*/
-
-                try {
-                    document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
-                    let link = document.querySelector("a[href='" + to.path + "']")
-                    let element = link.parentElement.parentElement
-
-                    element.classList.add('in')
-                    element.parentElement.classList.add('active')
-
-                    let name = to.name.split('.').at(0)
-                    this.name = ucfirst(name)
-                    this.path = to.path
-                    this.tree = this.path.replace('/', '').split('/')
-                } catch (error) {
-                    console.log("Une erreur s'et produite");
-                }
-            }
-        },
         mounted() {
-            //  [App.vue specific] When App.vue is finish loading finish the progress bar
+            // Termine la barre de progression quand la composant est monté
             this.$Progress.finish();
         },
         created() {
@@ -468,10 +440,15 @@
                 window.location = '/login'
             });
 
-            //  [App.vue specific] When App.vue is first loaded start the progress bar
+            // Démarre la barre de progression qua le composant est crée
             this.$Progress.start();
-            //  hook the progress bar to start before we move router-view
+
+            // Detecter le chagement de route
             this.$router.beforeEach((to, from, next) => {
+                this.name = window.bcName // Recuperer le nom de la route
+                this.path = window.bcPath // Recuperer le path
+                this.tree = window.bcTree // Recuperer l'arborescence
+
                 //  does the page we want to go to have a meta.progress object
                 if (to.meta.progress !== undefined) {
                     let meta = to.meta.progress;
@@ -480,6 +457,7 @@
                 }
                 //  start the progress bar
                 this.$Progress.start();
+
                 //  continue to next page
                 next();
             });

@@ -15,7 +15,7 @@ class ArticleFactory extends Factory
     {
         return [
             "reference" => $this->faker->text(50),
-            "designation" => $this->faker->text(255),
+            "designation" => $this->faker->text(200),
         ];
     }
 }

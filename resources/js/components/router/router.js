@@ -5,6 +5,8 @@ import Dashboard from '../pages/Dashboard.vue';
 import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
+import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
+
 const routes = [
     {
         path: '/login',
@@ -51,11 +53,33 @@ const routes = [
         name: 'depot.entrepot.liste',
         component: ListeProduitsFinis
     },
-];
+].concat(privateRoutes);
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+    //Recuperer l'information de la route pour le mettre dans le breadcrumb
+    let name = to.name.split('.').at(0)
+    window.bcName = ucfirst(name)
+    window.bcPath = to.path
+    window.bcTree = window.bcPath.replace('/', '').split('/')
+
+    // Mettre des indications pour la route active
+    try {
+        document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
+        let link = document.querySelector("a[href='" + to.path + "']")
+        let element = link.parentElement.parentElement
+
+        element.classList.add('in')
+        element.parentElement.classList.add('active')
+    } catch (error) {
+        console.log("Une erreur s'et produite : " + error);
+    }
+
+    next();
 });
 
 export default router
