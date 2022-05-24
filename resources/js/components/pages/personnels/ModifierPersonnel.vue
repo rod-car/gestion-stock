@@ -16,32 +16,27 @@
                 <form action="" method="post">
                     <div class="row mb-2">
                         <div class="col-xl-6">
-                            <Input v-model="personnel.nom_personnel" :error="errors.nom_personnel">Nom du personnel</Input>
+                            <Input v-model="form.nom_personnel" :error="errors.nom_personnel">Nom du personnel</Input>
                         </div>
 
                         <div class="col-xl-6">
-                            <Input v-model="personnel.prenoms_personnel" :error="errors.prenoms_personnel">Prénoms du personnel</Input>
+                            <Input v-model="form.prenoms_personnel" :error="errors.prenoms_personnel">Prénoms du personnel</Input>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-xl-6">
-                            <Input v-model="personnel.adresse_personnel" :error="errors.adresse_personnel">Adresse du personnel</Input>
+                            <Input v-model="form.adresse_personnel" :error="errors.adresse_personnel">Adresse du personnel</Input>
                         </div>
                         <div class="col-xl-6">
-                            <Input v-model="personnel.contact_personnel" :error="errors.contact_personnel">Contact du personnel</Input>
+                            <Input v-model="form.contact_personnel" :error="errors.contact_personnel">Contact du personnel</Input>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-xl-6">
-                            <Input v-model="personnel.cin_personnel" :error="errors.cin_personnel">CIN du personnel</Input>
+                            <Input v-model="form.cin_personnel" :error="errors.cin_personnel">CIN du personnel</Input>
                         </div>
                         <div class="col-xl-6">
-                            <Input v-model="personnel.email" :error="errors.email">Email du personnel</Input>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-xl-12">
-                            <Input v-model="personnel.password" type="password" :error="errors.password">Definir le mot de passe (password)</Input>
+                            <Input v-model="form.email" :error="errors.email">Email du personnel</Input>
                         </div>
                     </div>
                     <div class="row mb-2 mt-3">
@@ -62,7 +57,7 @@ import Input from '../../html/Input.vue';
 import Alert from '../../html/Alert.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
-const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
+const { errors, loading, success, personnel, getPersonnel, updatePersonnel, resetFlashMessages } = usePersonnelles();
 
 export default {
     components: {
@@ -72,14 +67,15 @@ export default {
     },
     data() {
         return {
-            personnel: {
+            form: {
+                id: null,
                 nom_personnel: null,
                 prenoms_personnel: null,
                 contact_personnel: null,
                 cin_personnel: null,
                 adresse_personnel: null,
                 email: null,
-                password: 'password',
+                roles: {},
             },
         }
     },
@@ -87,7 +83,8 @@ export default {
         return {
             errors,
             success,
-            createPersonnel,
+            loading,
+            personnel,
         };
     },
     methods: {
@@ -97,29 +94,26 @@ export default {
          * @return  {Object}  Objet contenant le nouveau personnel
          */
         async save () {
-            await createPersonnel(this.personnel);
-            this.resetFields();
+            updatePersonnel(this.form).then(() => {
+                this.$router.push('/personnel/profile/' + this.form.id);
+            });
         },
-
-        /**
-         * Reinitialiser toutes les champs après enregoistrement
-         *
-         * @return  {void}
-         */
-        resetFields () {
-            this.personnel = {
-                nom_personnel: null,
-                prenoms_personnel: null,
-                contact_personnel: null,
-                cin_personnel: null,
-                adresse_personnel: null,
-                email: null,
-                password: 'password',
-            };
-        }
     },
     mounted() {
         resetFlashMessages();
+
+        let id = parseInt(this.$route.params.id);
+        getPersonnel(id).then(() => {
+            this.form = {
+                id: personnel.value.id,
+                nom_personnel: personnel.value.nom_personnel,
+                prenoms_personnel: personnel.value.prenoms_personnel,
+                contact_personnel: personnel.value.contact_personnel,
+                cin_personnel: personnel.value.cin_personnel,
+                adresse_personnel: personnel.value.adresse_personnel,
+                email: personnel.value.email,
+            };
+        });
     },
 }
 

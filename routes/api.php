@@ -25,7 +25,7 @@ Route::apiResource('/article', ArticleController::class);
 // Ressource qui gere la gestion des roles
 Route::apiResource('/roles', RoleController::class);
 
-Route::apiResource('/user', UserController::class);
+Route::middleware('auth:sanctum')->apiResource('/user', UserController::class);
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);

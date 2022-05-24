@@ -34,6 +34,13 @@ export default function usePersonnelles () {
     const success = ref(null);
 
     /**
+     * Message d'erreur s'il y en a
+     *
+     * @return  {string}      Contenant le message de success
+     */
+    const error = ref(null);
+
+    /**
      * Fonction permet de recuperer toutes les personnelles
      *
      * @param  {integer} page Numéro de page
@@ -42,6 +49,42 @@ export default function usePersonnelles () {
     const getPersonnelles = async (page = 1) => {
         let response = await axios.get(`/api/user?page=${page}`);
         personnelles.value = response.data;
+    }
+
+
+    /**
+     * Fonction permet de recuperer un personnel
+     *
+     * @param  {integer} id Id du personnel
+     * @return  {JSON}  Le personnel sous forme de JSON
+     */
+    const getPersonnel = async (id) => {
+        try
+        {
+            let response = await axios.get(`/api/user/${id}`);
+            personnel.value = response.data;
+        }
+        catch (err)
+        {
+            if (err.response.status === 404)
+            {
+                errors.value = {
+                    message: "Impossible de trouver le personnel",
+                    status: 404,
+                };
+            }
+        }
+    }
+
+
+    /**
+     * Reinitialise les messages d'erreurs et de success
+     *
+     * @return  {void}
+     */
+    const resetFlashMessages = () => {
+        errors.value = [];
+        success.value = null;
     }
 
     /**
@@ -60,13 +103,25 @@ export default function usePersonnelles () {
         });
     }
 
+    const updatePersonnel = async (data) => {
+        await axios.put('/api/user/' + personnel.value.id, data).then(response => {
+            success.value = "Modifié avec succes";
+            personnel.value = response.data;
+        }).catch((err) => {
+            errors.value = err.response.data.errors;
+        });
+    }
+
     return {
         errors,
         success,
         personnel,
         personnelles,
+        getPersonnel,
         getPersonnelles,
+        updatePersonnel,
         createPersonnel,
+        resetFlashMessages,
     };
 
 }

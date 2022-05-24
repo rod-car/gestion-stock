@@ -40,7 +40,11 @@
                                     <th scope="row">{{ personnelle.cin_personnel }}</th>
                                     <th scope="row">{{ "En cours de developpement" }}</th>
                                     <th scope="row">{{ personnelle.created_at }}</th>
-                                    <td><i class="ti-trash"></i></td>
+                                    <td class="d-inline-flex">
+                                        <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
+                                        <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                        <router-link class="btn btn-danger btn-sm" to="/"><i class="fa fa-trash"></i></router-link>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

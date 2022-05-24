@@ -27,31 +27,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $rolesId = [];
-        $userData = [];
-
-        if (count($request->all()) === 2)
-        {
-            $userData = $request->all()['user'];
-            $rolesId = $request->all()['roles'];
-        }
-        else
-        {
-            $userData = $request->all();
-            /*$userData = $request->validate([
-                'nom_personnel' => ["required", "min:2", "max:255"],
-                'prenoms_personnel' => ["required", "min:2", "max:255"],
-                'email' => ["required", "unique:users,email", "email", "max:255"],
-            ]);*/
-        }
+        $userData = $request->validate([
+            'nom_personnel' => ["required", "min:2", "max:255"],
+            'prenoms_personnel' => ["required", "min:2", "max:255"],
+            'contact_personnel' => ["required"],
+            'email' => ["required", "unique:users,email", "email", "max:255"],
+            'adresse_personnel' => ["required"],
+            'cin_personnel' => ["required"],
+            'password' => ["required"],
+        ]);
 
         $user = User::create($userData);
 
-        foreach ($rolesId as $id)
+        /*foreach ($rolesId as $id)
         {
             $user->roles()->attach($id);
-        }
-
+        }*/
         return $user;
     }
 
@@ -75,17 +66,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $rolesId = [];
-        $userData = [];
+                $userData = $request->validate([
+            'nom_personnel' => ["required", "min:2", "max:255"],
+            'prenoms_personnel' => ["required", "min:2", "max:255"],
+            'contact_personnel' => ["required"],
+            'email' => ["required", "unique:users,email,{$user->id},id", "email", "max:255"],
+            'adresse_personnel' => ["required"],
+            'cin_personnel' => ["required"],
+        ]);
 
-        if (count($request->all()) === 2) {
-            $userData = $request->all()['user'];
-            $rolesId = $request->all()['roles'];
-        } else {
-            $userData = $request->all();
-        }
-
-        foreach ($user->roles as $role) {
+        /*foreach ($user->roles as $role) {
             if (!in_array($role->id, $rolesId)) $user->roles()->detach($role->id);
         }
 
@@ -93,7 +83,7 @@ class UserController extends Controller
 
         foreach ($rolesId as $id) {
             if (!in_array($id, $actualRolesId)) $user->roles()->attach($id);
-        }
+        }*/
 
         $user->update($userData);
 

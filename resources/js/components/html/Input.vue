@@ -25,7 +25,9 @@ export default {
     },
     methods: {
         handleBlur (e) {
-            this.hasErrors = false;
+            if (e.target.value !== "") {
+                this.hasErrors = false;
+            }
             this.$emit('update:modelValue', e.target.value);
         },
     },
