@@ -20207,7 +20207,8 @@ __webpack_require__.r(__webpack_exports__);
     if (this.type !== undefined) {
       this.className = "alert alert-" + this.type;
     }
-  }
+  },
+  unmounted: function unmounted() {}
 });
 
 /***/ }),
@@ -20527,8 +20528,7 @@ var _usePersonnelles = (0,_services_PersonnelServices__WEBPACK_IMPORTED_MODULE_1
         adresse_personnel: "Tanambao 5",
         email: "user@example.com",
         password: "password"
-      },
-      test: (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)("Valeur")
+      }
     };
   },
   setup: function setup() {
@@ -20556,12 +20556,32 @@ var _usePersonnelles = (0,_services_PersonnelServices__WEBPACK_IMPORTED_MODULE_1
                 return createPersonnel(_this.personnel);
 
               case 2:
+                _this.resetFields();
+
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+
+    /**
+     * Reinitialiser toutes les champs après enregoistrement
+     *
+     * @return  {void}
+     */
+    resetFields: function resetFields() {
+      this.personnel = {
+        nom_personnel: null,
+        prenoms_personnel: null,
+        contact_personnel: null,
+        cin_personnel: null,
+        adresse_personnel: null,
+        email: null,
+        password: null
+      };
     }
   },
   mounted: function mounted() {}
@@ -21312,7 +21332,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(personnelle.adresse_personnel), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(personnelle.email_personnel), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(personnelle.email), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(personnelle.contact_personnel), 1
     /* TEXT */

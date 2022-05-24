@@ -20,5 +20,8 @@ export default {
             this.className = "alert alert-" + this.type;
         }
     },
+    unmounted() {
+        
+    },
 }
 </script>

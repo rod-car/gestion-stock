@@ -35,7 +35,7 @@
                                     <th scope="row">{{ personnelle.nom_personnel }}</th>
                                     <th scope="row">{{ personnelle.prenoms_personnel }}</th>
                                     <th scope="row">{{ personnelle.adresse_personnel }}</th>
-                                    <th scope="row">{{ personnelle.email_personnel }}</th>
+                                    <th scope="row">{{ personnelle.email }}</th>
                                     <th scope="row">{{ personnelle.contact_personnel }}</th>
                                     <th scope="row">{{ personnelle.cin_personnel }}</th>
                                     <th scope="row">{{ "En cours de developpement" }}</th>

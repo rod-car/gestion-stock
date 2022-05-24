@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Role\Role;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -43,9 +44,32 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * Charges les relations
+     *
+     * @var array
+     */
     protected $with = ['roles'];
 
+
+    /**
+     * Compte automatique le nombre des roles
+     *
+     * @var array
+     */
     protected $withCount = ['roles'];
+
+
+    /**
+     * Hasher automatiquement un mot de passe
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setPasswordAttribute(string $value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
 
 
     /**

@@ -81,7 +81,6 @@ export default {
                 email: "user@example.com",
                 password: "password",
             },
-            test: ref("Valeur"),
         }
     },
     setup() {
@@ -99,6 +98,24 @@ export default {
          */
         async save () {
             await createPersonnel(this.personnel);
+            this.resetFields();
+        },
+
+        /**
+         * Reinitialiser toutes les champs après enregoistrement
+         *
+         * @return  {void}
+         */
+        resetFields () {
+            this.personnel = {
+                nom_personnel: null,
+                prenoms_personnel: null,
+                contact_personnel: null,
+                cin_personnel: null,
+                adresse_personnel: null,
+                email: null,
+                password: null,
+            };
         }
     },
     mounted() {
