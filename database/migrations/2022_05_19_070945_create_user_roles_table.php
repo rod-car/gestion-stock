@@ -17,7 +17,7 @@ class CreateUserRolesTable extends Migration
             $table->unsignedBigInteger('user_id')->index('fk_user');
             $table->unsignedBigInteger('role_id')->index('fk_role');
 
-            $table->primary(['user_id', 'role_id']);
+            $table->primary(['user_id', 'role_id'], 'role_user_primary');
         });
     }
 
