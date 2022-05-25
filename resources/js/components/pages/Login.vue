@@ -15,11 +15,11 @@
                         </div>
                         <div class="login-form-body">
                             <div class="form-gp">
-                                <label for="exampleInputEmail1">Adresse email</label>
-                                <input type="email" name="email" id="exampleInputEmail1" v-model="form.email">
+                                <label for="exampleInputEmail1">Adresse email ou nom d'utilisateur</label>
+                                <input type="email" name="login" id="exampleInputEmail1" v-model="form.login">
                                 <i class="ti-email"></i>
-                                <div class="text-danger" v-if="errors.email">
-                                    {{ errors.email[0] }}
+                                <div class="text-danger" v-if="errors.login">
+                                    {{ errors.login[0] }}
                                 </div>
                             </div>
                             <div class="form-gp">
@@ -64,7 +64,7 @@ export default {
     data() {
         return {
             form: {
-                email: null,
+                login: null,
                 password: null,
                 remember: false
             },
@@ -76,13 +76,13 @@ export default {
         async logIn () {
             try
             {
-                await axios.get('/sanctum/csrf-cookie')
-                await axios.post('/api/auth/login', this.form)
-                window.location = '/'
+                await axios.get('/sanctum/csrf-cookie');
+                await axios.post('/api/auth/login', this.form);
+                window.location = '/';
             }
             catch (error)
             {
-                this.errors = error.response.data.errors
+                this.errors = error.response.data.errors;
             }
         }
     },
