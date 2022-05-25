@@ -46,8 +46,21 @@ export default function useRoles () {
      * @param  {integer} page Numéro de page
      * @return  {JSON}  Tableau contenant tous les personnels paginé
      */
-    const getRoles = async (page = 1) => {
-        let response = await axios.get(`/api/roles?page=${page}`);
+    const getRoles = async (page = 1, perPage = 5) => {
+        let response = await axios.get(`/api/roles?page=${page}&perPage=${perPage}`);
+        roles.value = response.data;
+    }
+
+
+    /**
+     * Fonction permet de recuperer toutes les personnelles
+     *
+     * @param  {integer} page Numéro de page
+     * @return  {JSON}  Tableau contenant tous les personnels paginé
+     */
+    const findRoles = async (query, perPage = 5) => {
+        let page = 1;
+        let response = await axios.get(`/api/roles/search?page=${page}&perPage=${perPage}&q=${query}`);
         roles.value = response.data;
     }
 
@@ -117,6 +130,7 @@ export default function useRoles () {
         success,
         roles,
         getRoles,
+        findRoles,
     };
 
 }

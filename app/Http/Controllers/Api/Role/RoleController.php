@@ -19,7 +19,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return Role::all();
+        if (intval(request()->perPage) > 0) {
+            return Role::paginate(intval(request()->perPage));
+        }
+        return Role::paginate();
     }
 
     /**
@@ -104,5 +107,15 @@ class RoleController extends Controller
                 'errors' => "Erreur de suppression",
             ]);
         }
+    }
+
+
+    public function search(Request $request)
+    {
+        $perPage = intval(request()->perPage);
+        $query = Role::where("nom_role", "LIKE", "%{$request->q}%");
+
+        if ($perPage > 0) return $query->paginate($perPage);
+        return $query->paginate();
     }
 }

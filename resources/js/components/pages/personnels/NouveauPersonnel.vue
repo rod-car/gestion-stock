@@ -77,15 +77,22 @@
                     </div>
 
                     <transition name="fade">
-                        <div class="mb-2 row" v-if="personnel.hasRole">
-                            <ol class="list-group list-group-numbered">
-                                <li v-for="role in roles" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <label :for="role.id" class="fw-bold">{{ role.nom_role }}</label>
-                                    </div>
-                                    <span><input :id="role.id" v-model="personnel.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
-                                </li>
-                            </ol>
+                        <div class="mb-2 row" v-if="personnel.hasRole && personnel.hasAccount">
+                            <div class="col-xl-12">
+                                <input type="text" @input="searchRole" class="form-control mb-3 mt-3" placeholder="Rechercher un role" id="">
+
+                                <ol class="list-group list-group-numbered">
+                                    <li v-for="role in roles.data" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <label :for="role.id" class="fw-bold">{{ role.nom_role }}</label>
+                                        </div>
+                                        <span><input :id="role.id" v-model="personnel.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
+                                    </li>
+                                </ol>
+                                <div class="pagination">
+                                    <pagination align="center" :data="roles" @pagination-change-page="getRoles"></pagination>
+                                </div>
+                            </div>
                         </div>
                     </transition>
 
@@ -108,12 +115,14 @@ import Input from '../../html/Input.vue';
 import Alert from '../../html/Alert.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
+import pagination from 'laravel-vue-pagination'
+
 const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
-const { roles, getRoles } = useRoles();
+const { roles, getRoles, findRoles } = useRoles();
 
 export default {
     components: {
-        Input, Alert, SaveBtn,
+        Input, Alert, SaveBtn, pagination
     },
     data() {
         return {
@@ -128,8 +137,8 @@ export default {
                 password: 'password',
                 password_confirmation: 'password',
                 roles: [],
-                hasAccount: false,
-                hasRole: false,
+                hasAccount: true,
+                hasRole: true,
             },
         }
     },
@@ -180,11 +189,26 @@ export default {
                 hasAccount: false
             };
         },
+
+        searchRole (e) {
+            setTimeout(() => {
+                let query = e.target.value;
+                findRoles(query);
+            }, 500);
+        }
     },
     mounted() {
         resetFlashMessages(); // Efface les messages de succes et d'erreurs
-        getRoles(); // Recuperer toutes les roles et le mettre dans la variable réactive roles
+        getRoles(1, 5); // Recuperer toutes les roles et le mettre dans la variable réactive roles
     },
 }
 
 </script>
+
+
+<style scoped>
+    .pagination{
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+</style>

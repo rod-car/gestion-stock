@@ -22,8 +22,11 @@ use Illuminate\Support\Facades\Route;
 // Ressource qui gere la gestion des articles
 Route::apiResource('/article', ArticleController::class);
 
+// Endpoint pour rechercher un role
+Route::middleware('auth:sanctum')->get('/roles/search', [RoleController::class, 'search']);
+
 // Ressource qui gere la gestion des roles
-Route::apiResource('/roles', RoleController::class);
+Route::middleware('auth:sanctum')->apiResource('/roles', RoleController::class);
 
 Route::middleware('auth:sanctum')->apiResource('/user', UserController::class);
 
