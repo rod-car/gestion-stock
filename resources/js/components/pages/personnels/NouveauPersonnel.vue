@@ -1,22 +1,26 @@
 <template>
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-body">
-                <div class="text-center" v-show="loading">Chargement</div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="card-header bg-white p-3">
+                <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-uppercase text-info">Nouveau personnel</h5>
                     <router-link to="/personnel/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des personnelles</router-link>
                 </div>
+            </div>
+
+            <div class="card-body">
+                <div class="text-center" v-show="loading">Chargement</div>
 
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors.message" />
 
-                <h5 class="mb-3">Remplir les informations du personnel</h5>
 
                 <form action="" method="post">
+                    <h5 class="mb-3">Informations générales</h5>
+
                     <div class="row mb-2">
                         <div class="col-xl-6">
-                            <Input v-model="personnel.nom_personnel" :error="errors.nom_personnel">Nom du personnel</Input>
+                            <Input v-model="personnel.nom_personnel" :error="errors.nom_personnel" :required="true">Nom du personnel</Input>
                         </div>
 
                         <div class="col-xl-6">
@@ -25,10 +29,10 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-xl-6">
-                            <Input v-model="personnel.adresse_personnel" :error="errors.adresse_personnel">Adresse du personnel</Input>
+                            <Input v-model="personnel.adresse_personnel" :error="errors.adresse_personnel" :required="true">Adresse du personnel</Input>
                         </div>
                         <div class="col-xl-6">
-                            <Input v-model="personnel.contact_personnel" :error="errors.contact_personnel">Contact du personnel</Input>
+                            <Input v-model="personnel.contact_personnel" :error="errors.contact_personnel" :required="true">Contact du personnel</Input>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -39,11 +43,52 @@
                             <Input v-model="personnel.email" :error="errors.email">Email du personnel</Input>
                         </div>
                     </div>
+
+                    <h5 class="mb-3 mt-4">Informations de compte d'utilisateur</h5>
+
                     <div class="row mb-2">
                         <div class="col-xl-12">
-                            <Input v-model="personnel.password" type="password" :error="errors.password">Definir le mot de passe (password)</Input>
+                            <input type="checkbox" v-model="personnel.hasAccount" id="hasAccount" class="form-check-input me-3" />
+                            <label for="hasAccount" class="form-label">Cocher ici pour créer un compte utilisateur pour le personnel</label>
                         </div>
                     </div>
+
+                    <div v-if="personnel.hasAccount" class="row mb-2">
+                        <div class="col-xl-4">
+                            <Input v-model="personnel.username" :error="errors.username" :required="true">Nom d'utilisateur</Input>
+                        </div>
+                        <div class="col-xl-4">
+                            <Input v-model="personnel.password" type="password" :error="errors.password" :required="true">Definir le mot de passe (password par defaut)</Input>
+                        </div>
+                        <div class="col-xl-4">
+                            <Input v-model="personnel.password_confirmation" type="password" :error="errors.password_confirmation" :required="true">Confirmer le mot de passe (password par defaut)</Input>
+                        </div>
+                    </div>
+
+                    <div v-if="personnel.hasAccount">
+                        <h5 class="mb-3 mt-4">Informations des rôles</h5>
+
+                        <div class="row mb-2">
+                            <div class="col-xl-12">
+                                <input type="checkbox" v-model="personnel.hasRole" id="hasRole" class="form-check-input me-3" />
+                                <label for="hasRole" class="form-label">Cocher ici pour associer un (des) rôles au personnel</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <transition name="fade">
+                        <div class="mb-2 row" v-if="personnel.hasRole">
+                            <ol class="list-group list-group-numbered">
+                                <li v-for="role in roles" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <label :for="role.id" class="fw-bold">{{ role.nom_role }}</label>
+                                    </div>
+                                    <span><input :id="role.id" v-model="personnel.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
+                                </li>
+                            </ol>
+                        </div>
+                    </transition>
+
                     <div class="row mb-2 mt-3">
                         <div class="col-xl-12 d-flex justify-content-end">
                             <SaveBtn :click="save">Enregistrer</SaveBtn>
@@ -58,17 +103,17 @@
 <script>
 
 import usePersonnelles from '../../../services/PersonnelServices';
+import useRoles from '../../../services/RoleServices';
 import Input from '../../html/Input.vue';
 import Alert from '../../html/Alert.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
 const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
+const { roles, getRoles } = useRoles();
 
 export default {
     components: {
-        Input,
-        Alert,
-        SaveBtn,
+        Input, Alert, SaveBtn,
     },
     data() {
         return {
@@ -79,15 +124,18 @@ export default {
                 cin_personnel: null,
                 adresse_personnel: null,
                 email: null,
+                username: null,
                 password: 'password',
+                password_confirmation: 'password',
+                roles: [],
+                hasAccount: false,
+                hasRole: false,
             },
         }
     },
     setup() {
         return {
-            errors,
-            success,
-            createPersonnel,
+            errors, success, createPersonnel, roles, getRoles,
         };
     },
     methods: {
@@ -98,7 +146,17 @@ export default {
          */
         async save () {
             await createPersonnel(this.personnel);
-            this.resetFields();
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            if (success.value !== null) {
+                setTimeout(() => {
+                    this.resetFields();
+                }, 500);
+            }
         },
 
         /**
@@ -114,12 +172,18 @@ export default {
                 cin_personnel: null,
                 adresse_personnel: null,
                 email: null,
+                username: null,
                 password: 'password',
+                password_confirmation: 'password',
+                roles: [],
+                hasRole: false,
+                hasAccount: false
             };
-        }
+        },
     },
     mounted() {
-        resetFlashMessages();
+        resetFlashMessages(); // Efface les messages de succes et d'erreurs
+        getRoles(); // Recuperer toutes les roles et le mettre dans la variable réactive roles
     },
 }
 

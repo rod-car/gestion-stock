@@ -1,5 +1,8 @@
 <template>
-    <label class="form-label"><slot></slot></label>
+    <label class="form-label">
+        <slot></slot>
+        <span class="text-danger ms-2" v-if="required">(*)</span>
+    </label>
     <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @blur="handleBlur" class="form-control" />
     <div class="text-danger mt-1" v-if="hasErrors">
         {{ error[0] }}
@@ -17,6 +20,10 @@ export default {
         type: String,
         placeholder: String,
         error: Object,
+        required: {
+            type: Boolean,
+            required: false,
+        }
     },
     data() {
         return {

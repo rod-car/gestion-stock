@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\NewUserRequest;
 use Illuminate\Database\QueryException;
 
 class UserController extends Controller
@@ -25,24 +26,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewUserRequest $request)
     {
-        $userData = $request->validate([
-            'nom_personnel' => ["required", "min:2", "max:255"],
-            'prenoms_personnel' => ["required", "min:2", "max:255"],
-            'contact_personnel' => ["required"],
-            'email' => ["required", "unique:users,email", "email", "max:255"],
-            'adresse_personnel' => ["required"],
-            'cin_personnel' => ["required"],
-            'password' => ["required"],
-        ]);
+        $userData = $request->validated();
 
         $user = User::create($userData);
 
-        /*foreach ($rolesId as $id)
+        $roles = $request->validate([
+            'roles' => ["nullable", "array"],
+            'roles.*' => ["nullable", "exists:roles,id"]
+        ]);
+
+        if (key_exists('roles', $roles))
         {
-            $user->roles()->attach($id);
-        }*/
+            foreach ($roles['roles'] as $id) {
+                $user->roles()->attach($id);
+            }
+        }
         return $user;
     }
 
@@ -66,7 +66,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-                $userData = $request->validate([
+        $userData = $request->validate([
             'nom_personnel' => ["required", "min:2", "max:255"],
             'prenoms_personnel' => ["required", "min:2", "max:255"],
             'contact_personnel' => ["required"],

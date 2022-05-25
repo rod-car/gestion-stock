@@ -75,7 +75,7 @@ export default {
                 cin_personnel: null,
                 adresse_personnel: null,
                 email: null,
-                roles: {},
+                roles: [],
             },
         }
     },
