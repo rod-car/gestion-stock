@@ -43,7 +43,7 @@ export default {
     },
     watch: {
         error: function () {
-            if (this.error.length > 0) {
+            if (this.error && this.error.length > 0) {
                 this.hasErrors = true;
             }
         }

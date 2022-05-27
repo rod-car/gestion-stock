@@ -20315,7 +20315,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     error: function error() {
-      if (this.error.length > 0) {
+      if (this.error && this.error.length > 0) {
         this.hasErrors = true;
       }
     }
