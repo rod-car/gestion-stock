@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class NewUserRequest extends FormRequest
+class EditUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,10 +30,11 @@ class NewUserRequest extends FormRequest
             'nom_personnel' => ["required", new Name, "min:2", "max:255"],
             'prenoms_personnel' => ["nullable", new Name, "min:2", "max:255"],
             'contact_personnel' => ["required", "phone:AUTO"],
-            'email' => ["nullable", "unique:users,email", "email", "max:255"],
+            'email' => ["nullable", "unique:users,email," . $this->id . ",id", "email", "max:255"],
             'adresse_personnel' => ["required", "sometimes"],
             'cin_personnel' => ["nullable", "digits:12"],
-            'username' => ["nullable", "required_if:hasAccount,true", "unique:users,username", "min:5", "max:255"],
+            
+            'username' => ["nullable", "required_if:hasAccount,true", "unique:users,username," . $this->id . ",id", "min:5", "max:255"],
             'password' => ["nullable", "required_if:hasAccount,true", "confirmed", "min:8", "max:255"],
             'password_confirmation' => ["nullable", "required_if:hasAccount,true", "min:8", "max:255"],
 

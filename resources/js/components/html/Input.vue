@@ -23,7 +23,8 @@ export default {
         required: {
             type: Boolean,
             required: false,
-        }
+        },
+        filter: String,
     },
     data() {
         return {
@@ -32,10 +33,12 @@ export default {
     },
     methods: {
         handleBlur (e) {
-            if (e.target.value !== "") {
+            let value = e.target.value
+
+            if (value !== "") {
                 this.hasErrors = false;
             }
-            this.$emit('update:modelValue', e.target.value);
+            this.$emit('update:modelValue', value);
         },
     },
     watch: {

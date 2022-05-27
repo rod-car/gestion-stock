@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class RoleController extends Controller
 {
@@ -110,6 +111,12 @@ class RoleController extends Controller
     }
 
 
+    /**
+     * Permet de rechercher un role en particulier en fonction de la recherche
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request)
     {
         $perPage = intval(request()->perPage);

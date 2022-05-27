@@ -18,9 +18,13 @@
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-xl-12">
+                    <div class="col-xl-6">
                         <label for="" class="form-label">Nom & prénoms du personnel</label>
-                        <label for="" class="form-control">{{ personnel.nom_personnel }}&nbsp;{{ personnel.prenoms_personnel }}</label>
+                        <label for="" class="form-control">{{ personnel.nom_personnel }}</label>
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="" class="form-label">Prénoms du personnel</label>
+                        <label for="" class="form-control">{{ personnel.prenoms_personnel }}</label>
                     </div>
                 </div>
 
@@ -38,15 +42,15 @@
                 <div class="row mb-2">
                     <div class="col-xl-6">
                         <label for="" class="form-label">CIN du personnel</label>
-                        <label for="" class="form-control">{{ personnel.cin_personnel }}</label>
+                        <label for="" class="form-control">{{ personnel.cin_personnel ?? "Aucun CIN" }}</label>
                     </div>
                     <div class="col-xl-6">
                         <label for="" class="form-label">Email du personnel</label>
-                        <label for="" class="form-control">{{ personnel.email }}</label>
+                        <label for="" class="form-control">{{ personnel.email ?? "Aucune adresse email" }}</label>
                     </div>
                 </div>
 
-                <div class="row" v-if="personnel.roles">
+                <div class="row" v-if="personnel.roles && personnel.roles.length > 0">
                     <div class="col-xl-12">
                         <label for="" class="form-label">Liste des roles - {{ personnel.roles.length }} rôle(s) au total</label>
                         <ol class="list-group list-group-numbered">

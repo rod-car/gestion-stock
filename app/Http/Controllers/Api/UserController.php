@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\EditUserRequest;
 use App\Http\Requests\User\NewUserRequest;
 use Illuminate\Database\QueryException;
 
@@ -29,19 +30,12 @@ class UserController extends Controller
     public function store(NewUserRequest $request)
     {
         $userData = $request->validated();
+        $roles = $userData['roles'];
 
         $user = User::create($userData);
 
-        $roles = $request->validate([
-            'roles' => ["nullable", "array"],
-            'roles.*' => ["nullable", "exists:roles,id"]
-        ]);
-
-        if (key_exists('roles', $roles))
-        {
-            foreach ($roles['roles'] as $id) {
-                $user->roles()->attach($id);
-            }
+        foreach ($roles as $id) {
+            $user->roles()->attach($id);
         }
         return $user;
     }
@@ -54,6 +48,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->password = "_" . $user->password; // Un tech pour decrypter le mot de passe pour afficher dans le champs
         return $user;
     }
 
@@ -64,26 +59,33 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(EditUserRequest $request, User $user)
     {
-        $userData = $request->validate([
-            'nom_personnel' => ["required", "min:2", "max:255"],
-            'prenoms_personnel' => ["required", "min:2", "max:255"],
-            'contact_personnel' => ["required"],
-            'email' => ["required", "unique:users,email,{$user->id},id", "email", "max:255"],
-            'adresse_personnel' => ["required"],
-            'cin_personnel' => ["required"],
-        ]);
+        $userData = $request->validated();
 
-        /*foreach ($user->roles as $role) {
-            if (!in_array($role->id, $rolesId)) $user->roles()->detach($role->id);
+        $roles = $userData['roles'];
+
+        // Si l'utilisateur a un compte, on fait ce traitement - Ajouts des roles et verification des roles
+        if ($request->hasAccount === true)
+        {
+            foreach ($user->roles as $role)
+            {
+                if (!in_array($role->id, $roles)) $user->roles()->detach($role->id); // Supprimer les roles qui ne sont plus present
+            }
+
+            $actualRolesId = $user->roles->pluck('id')->toArray();
+
+            foreach ($roles as $id)
+            {
+                if (!in_array($id, $actualRolesId)) $user->roles()->attach($id); // Ajouter les nouveaux roles
+            }
         }
-
-        $actualRolesId = $user->roles->pluck('id');
-
-        foreach ($rolesId as $id) {
-            if (!in_array($id, $actualRolesId)) $user->roles()->attach($id);
-        }*/
+        else
+        {   // On remet les informations de compte de l'utilisateur a zero
+            $userData['username'] = null;
+            $userData['password'] = null;
+            $user->roles()->detach();
+        }
 
         $user->update($userData);
 
@@ -100,13 +102,22 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
+        try
+        {
+            if ($user->id === auth()->user()->id)
+            {
+                return response()->json([
+                    'errors' => "Ne peut pas supprimer l'utilisateur actif"
+                ]);
+            }
+            $user->roles()->detach();
             $user->delete();
-
             return response()->json([
                 'success' => "Supprimé avec success"
             ]);
-        } catch (QueryException $e) {
+        }
+        catch (QueryException $e)
+        {
             return response()->json([
                 'errors' => "Echec de suppréssion. {$e->getMessage()}"
             ]);

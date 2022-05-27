@@ -1,5 +1,5 @@
 <template>
-    <button v-bind:class="className" @click.prevent="click">
+    <button v-bind:class="className" type="submit">
         <slot></slot>
     </button>
 </template>
@@ -16,7 +16,6 @@ export default {
         };
     },
     mounted() {
-        console.log(this.type);
         if (this.type !== undefined) {
             this.className = "btn btn-" + this.type;
         } else {

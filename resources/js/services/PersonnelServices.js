@@ -112,6 +112,27 @@ export default function usePersonnelles () {
         });
     }
 
+
+    /**
+     * Permet de supprimer un personnel
+     *
+     * @param   {integer}  id  Identifiant du personnel
+     *
+     * @return  {void}
+     */
+    const deletePersonnel = async (id) => {
+        await axios.delete(`/api/user/${id}`).then(response => {
+            if (response.data.errors) {
+                errors.value = response.data.errors
+            } else {
+                success.value = "Personnel supprimé avec succes";
+                getPersonnelles();
+            }
+        }).catch(err => {
+            errors.value = err.response.data.errors;
+        });
+    }
+
     return {
         errors,
         success,
@@ -120,6 +141,7 @@ export default function usePersonnelles () {
         getPersonnel,
         getPersonnelles,
         updatePersonnel,
+        deletePersonnel,
         createPersonnel,
         resetFlashMessages,
     };

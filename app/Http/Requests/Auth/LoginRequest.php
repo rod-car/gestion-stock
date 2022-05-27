@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
@@ -59,7 +60,7 @@ class LoginRequest extends FormRequest
             ->orWhere('username', $this->login)
             ->first();
 
-        if (!$user || !Hash::check($this->password, $user->password)) {
+        if (!$user || !Crypt::decrypt($user->password) === $this->password) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

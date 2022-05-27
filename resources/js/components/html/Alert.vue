@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="className" class="mt-3 mb-3" v-if="message">
+    <div v-bind:class="className" class="mt-3 mb-3" v-if="message && Array.isArray(message) === false">
         {{ message }}
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
         }
     },
     unmounted() {
-        
+
     },
 }
 </script>
