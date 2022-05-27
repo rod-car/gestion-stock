@@ -107,7 +107,7 @@
 
                     <div class="row mb-2 mt-3">
                         <div class="col-xl-12 d-flex justify-content-end">
-                            <SaveBtn :click="save">Enregistrer</SaveBtn>
+                            <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
                         </div>
                     </div>
                 </form>

@@ -40,6 +40,7 @@
         "vue-nprogress": "^0.2.0",
         "vue-router": "^4.0.13",
         "vue-select": "^4.0.0-beta.3",
-        "vue3-progress": "^0.0.1-beta3"
+        "vue3-progress": "^0.0.1-beta3",
+        "vue3-simple-alert": "^1.0.4"
     }
 }

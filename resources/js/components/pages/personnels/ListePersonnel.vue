@@ -14,39 +14,39 @@
                 <table class="table table-striped table-hover">
                     <thead class="text-uppercase">
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénoms</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col">Adresse email</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">CIN</th>
-                            <th scope="col">Fonction / Type</th>
-                            <th scope="col">Date de création</th>
-                            <th scope="col">Actions</th>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prénoms</th>
+                            <th>Adresse</th>
+                            <th>Adresse email</th>
+                            <th>Contact</th>
+                            <th>CIN</th>
+                            <th>Fonction / Type</th>
+                            <th>Date de création</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody v-show="loading">
+                    <tbody v-if="loading">
                         <tr>
                             <td class="text-center text-info" colspan="4">Chargement des données</td>
                         </tr>
                     </tbody>
-                    <tbody v-show="!loading">
+                    <tbody v-if="!loading">
                         <tr v-for="personnelle in personnelles.data" v-bind:key="personnelle.id">
-                            <td scope="row">{{ personnelle.id }}</td>
-                            <td scope="row">{{ personnelle.nom_personnel }}</td>
-                            <td scope="row">{{ personnelle.prenoms_personnel }}</td>
-                            <td scope="row">{{ personnelle.adresse_personnel }}</td>
-                            <td scope="row">{{ personnelle.email ?? "Aucune" }}</td>
-                            <td scope="row">{{ personnelle.contact_personnel }}</td>
-                            <td scope="row">{{ personnelle.cin_personnel ?? "Aucune" }}</td>
-                            <td scope="row">{{ "En cours de developpement" }}</td>
-                            <td scope="row">{{ personnelle.created_at }}</td>
+                            <td>{{ personnelle.id }}</td>
+                            <td>{{ personnelle.nom_personnel }}</td>
+                            <td>{{ personnelle.prenoms_personnel }}</td>
+                            <td>{{ personnelle.adresse_personnel }}</td>
+                            <td>{{ personnelle.email ?? "Aucune" }}</td>
+                            <td>{{ personnelle.contact_personnel }}</td>
+                            <td>{{ personnelle.cin_personnel ?? "Aucune" }}</td>
+                            <td>{{ "En cours de developpement" }}</td>
+                            <td>{{ personnelle.created_at }}</td>
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                                 <form action="" method="post">
-                                    <DeleteBtn type="danger" @click.prevent="deletePersonnel(personnelle.id)"/>
+                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
                                 </form>
                             </td>
                         </tr>
@@ -76,11 +76,6 @@ export default {
         DeleteBtn,
         Alert,
     },
-    data() {
-        return {
-            deletinId: null,
-        }
-    },
     setup() {
         return {
             errors,
@@ -104,7 +99,11 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id) {
-            this.deletinId = id;
+            SimpleAlert.confirm("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
+                deletePersonnel(id)
+            }).catch (error => {
+                // Arret de suppresion
+            });
         }
     },
 }

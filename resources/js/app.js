@@ -24,6 +24,7 @@ import router from './components/router/router';
 import DefaultLayoutComponent from './components/template/DefaultLayoutComponent.vue';
 import Login from './components/pages/Login.vue';
 
+import VueSimpleAlert from "vue3-simple-alert";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
 
 const options = {
@@ -62,6 +63,7 @@ const options = {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.SimpleAlert = VueSimpleAlert
 
 createApp({
     components: {
