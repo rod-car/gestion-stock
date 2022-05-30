@@ -6,6 +6,7 @@ import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProdui
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
+import store from '../../store/index';
 
 const routes = [
     {
@@ -16,12 +17,14 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        meta: {requiresAuth: true}
     },
     {
         path: '/dashboard',
         name: 'dashboard',
-        component: Dashboard
+        component: Dashboard,
+        meta: {requiresAuth: true}
     },
     {
         path: '/article/nouveau',
@@ -60,7 +63,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
     //Recuperer l'information de la route pour le mettre dans le breadcrumb
     let name = to.name.split('.').at(0)
     window.bcName = ucfirst(name)
@@ -80,6 +83,15 @@ router.beforeEach((to, from, next) => {
     }
 
     next();
+});*/
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth && !store.state.user.token) {
+        console.log(store.state);
+        next({name: 'login'});
+    } else {
+        next();
+    }
 });
 
-export default router
+export default router;

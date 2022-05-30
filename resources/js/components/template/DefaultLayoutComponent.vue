@@ -7,9 +7,9 @@
         </div>
         <!-- preloader area end -->
         <!-- page container area start -->
-        <div class="page-container">
+        <div v-bind:class="isConnected ? '' : 'ps-0'" class="page-container">
             <!-- sidebar menu area start -->
-            <div class="sidebar-menu">
+            <div v-if="isConnected" class="sidebar-menu">
                 <div class="sidebar-header">
                     <div class="logo">
                         <router-link to="/" class="w-75" style="max-width:100%!important"><img src="/images/app-logo.png" alt="logo"></router-link>
@@ -93,7 +93,7 @@
             <!-- main content area start -->
             <div class="main-content">
                 <!-- header area start -->
-                <div class="header-area">
+                <div v-if="isConnected" class="header-area">
                     <div class="row align-items-center">
                         <!-- nav and search button -->
                         <div class="col-md-6 col-sm-8 clearfix">
@@ -199,7 +199,7 @@
                     </div>
                 </div>
 
-                <div class="page-title-area">
+                <div v-if="isConnected" class="page-title-area">
                     <div class="row align-items-center">
 
                         <BreadCrumb :name="name" :path="path" :tree="tree" />
@@ -219,12 +219,12 @@
                 </div>
 
                 <div class="main-content-inner">
-                    <router-view class="mt-5"></router-view>
+                    <router-view v-bind:class="isConnected ? 'mt-5' : ''"></router-view>
                 </div>
             </div>
             <!-- main content area end -->
             <!-- footer area start-->
-            <footer>
+            <footer v-if="isConnected">
                 <div class="footer-area">
                     <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
                 </div>
@@ -233,7 +233,7 @@
         </div>
         <!-- page container area end -->
         <!-- offset area start -->
-        <div class="offset-area">
+        <div v-if="isConnected" class="offset-area">
             <div class="offset-close"><i class="ti-close"></i></div>
             <ul class="nav offset-menu-tab">
                 <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
@@ -413,6 +413,8 @@
 </template>
 
 <script>
+    import axiosClient from '../../axios';
+    import store from '../../store';
     import BreadCrumb from '../utils/BreadCrumb.vue'
 
     export default {
@@ -433,18 +435,19 @@
         },
         created() {
             // Permet de detecter pour la prémière fois si l'utilisateur est connécté ou pas
-            axios.get('/api/connected-user').then((result) => {
+            /*axios.get('/api/connected-user').then((result) => {
                 if (typeof result.data === "string") console.error ("Le lien est incorrect")
                 else this.user = result.data
             }).catch((err) => {
                 window.location = '/login'
-            });
+            });*/
 
             // Démarre la barre de progression qua le composant est crée
             this.$Progress.start();
 
             // Detecter le chagement de route
             this.$router.beforeEach((to, from, next) => {
+                console.log(store.getters.user);
                 this.name = window.bcName // Recuperer le nom de la route
                 this.path = window.bcPath // Recuperer le path
                 this.tree = window.bcTree // Recuperer l'arborescence
@@ -474,8 +477,22 @@
              * @return  {void}  Redirection permanente vers la page login
              */
             async logOut () {
-                await axios.post('/api/auth/logout')
-                window.location = "login"
+                await axiosClient.post('/auth/logout')
+                store.state.user.token = null
+                store.state.user.data = {}
+                localStorage.removeItem('auth_token')
+                this.$router.push('/login')
+            }
+        },
+
+        computed: {
+            /**
+             * Permet de detecter si un utilisateur est connecté ou non
+             *
+             * @return  {Boolean}  True si connecté, False sinon
+             */
+            isConnected() {
+                return store.state.user.token === null ? false : true;
             }
         },
     }

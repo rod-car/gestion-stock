@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //require __DIR__.'/auth.php';
 
-Route::view('/{any}', 'welcome')->where('any', ".*");
+Route::view('/{any}', 'app')->where('any', ".*");
 
 
 /*Route::get('/dashboard', function () {

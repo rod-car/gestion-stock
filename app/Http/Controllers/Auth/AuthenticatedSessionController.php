@@ -35,8 +35,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return $this->success([
-            'token' => $request->user()->createToken('API Token')->plainTextToken
+        return response()->json([
+            'token' => $request->user()->createToken('API Token')->plainTextToken,
+            'success' => "Connecté avec success",
         ]);
 
         //return redirect()->intended(RouteServiceProvider::HOME);

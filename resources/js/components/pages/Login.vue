@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div id="preloader">
-            <div class="loader"></div>
-        </div>
-
         <!-- login area start -->
         <div class="login-area login-s2">
             <div class="container">
                 <div class="login-box ptb--100">
-                    <form method="POST" class="shadow-lg" action="{{ route('login') }}">
+                    <form method="POST" class="shadow-lg" action="">
                         <div class="login-form-head">
                             <h4>Se connecter</h4>
                             <p>Vous devez vous connecter pour acceder a l'application</p>
+
+                            <div class="alert alert-success">
+                                {{ loadingIndicator }}
+                            </div>
                         </div>
                         <div class="login-form-body">
                             <div class="form-gp">
@@ -58,6 +58,8 @@
 </template>
 
 <script>
+
+import store from '../../store';
 import axios from 'axios'
 
 export default {
@@ -68,7 +70,14 @@ export default {
                 password: null,
                 remember: false
             },
-            errors: {}
+            errors: {},
+            loading: false,
+        }
+    },
+
+    computed: {
+        loadingIndicator() {
+            return this.loading === true ? "Chargement..." : "Pas de chargement";
         }
     },
 
@@ -76,23 +85,29 @@ export default {
         async logIn () {
             try
             {
+                this.loading = true;
+
                 await axios.get('/sanctum/csrf-cookie');
-                await axios.post('/api/auth/login', this.form);
-                window.location = '/';
+                let response = await axios.post('api/auth/login', this.form)
+
+                store.dispatch('storeUser', { name: "rod" })
+
+                store.state.user.token = response.data.token
+                localStorage.setItem('auth_token', response.data.token);
+
+                this.loading = false;
+                this.$router.push('/dashboard')
             }
-            catch (error)
+            catch(err)
             {
-                this.errors = error.response.data.errors;
+                if (err.response) this.errors = err.response.data.errors
+                this.loading = false;
             }
         }
     },
 
     created() {
-        /*axios.get('/api/user').then(response => {
 
-        }).catch (error => {
-
-        })*/
     },
 }
 

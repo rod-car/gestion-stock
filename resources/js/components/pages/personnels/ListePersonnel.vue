@@ -11,6 +11,10 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors" />
 
+                <div v-if="!loading">
+                    <DataTable :rows="personnelles" striped/>
+                </div>
+
                 <table class="table table-striped table-hover">
                     <thead class="text-uppercase">
                         <tr>
@@ -45,7 +49,7 @@
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form action="" method="post">
+                                <form action="" v-if="$can('delete', 'user')" method="post">
                                     <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
                                 </form>
                             </td>
@@ -68,6 +72,8 @@ import usePersonnelles from '../../../services/PersonnelServices';
 import DeleteBtn from '../../html/DeleteBtn';
 import Alert from '../../html/Alert.vue';
 
+import { DataTable } from "@jobinsjp/vue3-datatable"
+
 const { success, errors, personnelles, deletePersonnel, getPersonnelles, resetFlashMessages } = usePersonnelles();
 
 export default {
@@ -75,6 +81,7 @@ export default {
         pagination,
         DeleteBtn,
         Alert,
+        DataTable,
     },
     setup() {
         return {
@@ -89,6 +96,12 @@ export default {
     mounted() {
         getPersonnelles()
         resetFlashMessages()
+
+        window.ability = this.$ability
+
+        /*this.$ability.update([
+            { subject: 'all', actions: "delete" }
+        ])*/
     },
     methods: {
         /**
