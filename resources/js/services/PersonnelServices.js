@@ -103,6 +103,14 @@ export default function usePersonnelles () {
         });
     }
 
+
+    /**
+     * Permet de mettre a jour un personnel
+     *
+     * @param   {array}  data  Nouvelle donées
+     *
+     * @return  {void}
+     */
     const updatePersonnel = async (data) => {
         await axios.put('/api/user/' + personnel.value.id, data).then(response => {
             success.value = "Modifié avec succes";
@@ -124,9 +132,9 @@ export default function usePersonnelles () {
         await axios.delete(`/api/user/${id}`).then(response => {
             if (response.data.errors) {
                 errors.value = response.data.errors
+                getPersonnelles()
             } else {
                 success.value = "Personnel supprimé avec succes";
-                getPersonnelles();
             }
         }).catch(err => {
             errors.value = err.response.data.errors;

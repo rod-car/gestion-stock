@@ -24133,6 +24133,14 @@ function usePersonnelles() {
       return _ref3.apply(this, arguments);
     };
   }();
+  /**
+   * Permet de mettre a jour un personnel
+   *
+   * @param   {array}  data  Nouvelle donées
+   *
+   * @return  {void}
+   */
+
 
   var updatePersonnel = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
@@ -24179,9 +24187,9 @@ function usePersonnelles() {
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/user/".concat(id)).then(function (response) {
                 if (response.data.errors) {
                   errors.value = response.data.errors;
+                  getPersonnelles();
                 } else {
                   success.value = "Personnel supprimé avec succes";
-                  getPersonnelles();
                 }
               })["catch"](function (err) {
                 errors.value = err.response.data.errors;
