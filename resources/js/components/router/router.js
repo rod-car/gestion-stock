@@ -7,7 +7,6 @@ import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFi
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
-
 import store from '../../store/index';
 
 const routes = [
@@ -93,8 +92,6 @@ router.beforeEach((to, from, next) => {
     if (store.state.user.data.id === undefined && to.path !== "/login") {
         getUser()
     }
-
-    // Recuperation des roles del'utilisateur connecté
 
     if (to.meta.requiresAuth && !store.state.user.token) {
         next({name: 'login'});

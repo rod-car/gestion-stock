@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Role\RoleController;
+use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
@@ -32,9 +33,11 @@ Route::middleware('auth:sanctum')->apiResource('/user', UserController::class);
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);
-Route::get('/connected-user', [UserController::class, 'connectedUser']);
 
 Route::middleware('auth:sanctum')->group(function () {
-
+    Route::get('/connected-user', [UserController::class, 'connectedUser']);
     Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy']);
+
+    // Recuperer toutes les permissions de l'utilisateur
+    Route::get('/abilities', [AbilityController::class, 'index']);
 });

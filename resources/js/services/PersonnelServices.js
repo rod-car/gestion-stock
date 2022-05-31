@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ref } from "vue";
+import Router from '../components/router/router';
 
 export default function usePersonnelles () {
 
@@ -99,7 +100,11 @@ export default function usePersonnelles () {
             success.value = "Personnel crée avec succès";
             personnel.value = response.data;
         }).catch((err) => {
-            errors.value = err.response.data.errors;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors;
+            } else if (err.response.status === 403) {
+                Router.push('/403')
+            }
         });
     }
 

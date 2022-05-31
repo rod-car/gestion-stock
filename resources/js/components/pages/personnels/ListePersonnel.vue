@@ -5,7 +5,7 @@
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="text-uppercase text-info">Liste des personnelles</h5>
-                    <router-link to="/personnel/nouveau" class="btn btn-primary"><i class="fa fa-user-plus me-2"></i>Ajouter nouveau</router-link>
+                    <router-link v-if="$can('add_user')" to="/personnel/nouveau" class="btn btn-primary"><i class="fa fa-user-plus me-2"></i>Ajouter nouveau</router-link>
                 </div>
 
                 <Alert type="success" :message="success" />
@@ -44,8 +44,8 @@
                             <td>{{ personnelle.created_at }}</td>
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
-                                <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form v-if="$can('delete')" action="" method="post">
+                                <router-link v-if="$can('edit_user')" :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                <form v-if="$can('delete_user')" action="" method="post">
                                     <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
                                 </form>
                             </td>
@@ -90,9 +90,9 @@ export default {
         getPersonnelles()
         resetFlashMessages()
 
-        this.$ability.update([
+        /*this.$ability.update([
             { subject: 'all', action: ["create"] }
-        ])
+        ])*/
         // window.ability = this.$ability
     },
     methods: {

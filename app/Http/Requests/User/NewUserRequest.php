@@ -6,6 +6,8 @@ use App\Rules\Name;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class NewUserRequest extends FormRequest
 {
@@ -16,6 +18,8 @@ class NewUserRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_if(Gate::denies('add_user'), Response::HTTP_FORBIDDEN, 'Non autorisé a créer un personnel');
+
         return true;
     }
 

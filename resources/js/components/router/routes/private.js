@@ -7,7 +7,10 @@ const routes = [
     {
         path: '/personnel/nouveau',
         name: 'gestion des personnels.personnel.nouveau',
-        component: NouveauPersonnel
+        component: NouveauPersonnel,
+        meta: {
+            gate: 'add_user',
+        }
     },
     {
         path: '/personnel/liste',
@@ -22,10 +25,13 @@ const routes = [
     {
         path: '/personnel/modifier/:id',
         name: 'gestion-des-personnels.personnel.modifier',
-        component: ModifierPersonnel
+        component: ModifierPersonnel,
+        meta: {
+            gate: 'edit_user',
+        }
     }
 ];
 
 export default routes.map(route => {
-    return { ...route, meta: { public: false } }
+    return { ...route/*, meta: { public: false }*/ }
 });

@@ -9,10 +9,8 @@ class AbilityController extends Controller
 {
     public function index()
     {
-        return [
-            "Roles_1",
-            "Roles_1",
-            "Roles_1",
-        ];
+        $permissions = auth()->user()->roles()->pluck('nom_role');
+        
+        return $permissions;
     }
 }

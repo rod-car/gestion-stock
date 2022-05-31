@@ -73,8 +73,8 @@
                                 <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>Gestion des personnels</span></a>
                                     <ul class="collapse">
-                                        <li><router-link to="/personnel/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
-                                        <li><router-link to="/personnel/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
+                                        <li v-if="$can('add_user')"><router-link to="/personnel/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
+                                        <li v-if="$can('view_user')"><router-link to="/personnel/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -417,26 +417,51 @@
     import axiosClient from '../../axios';
     import store from '../../store';
     import BreadCrumb from '../utils/BreadCrumb.vue'
+    import useAbility from '../../services/AbilityServices';
+
+    const { permissions, getPermissions }  = useAbility()
 
     export default {
+        setup() {
+            return {
+                permissions,
+                getPermissions,
+            }
+        },
+
         data() {
             return {
                 name: null, // Nom de la route active
                 path: null, // Path de la route active
                 tree: null, // Arborescence dans breadcrumb
-                // user: null, // Utilisateur connecté
             }
         },
+
         components: {
             BreadCrumb,
         },
+
         mounted() {
             this.$Progress.finish();
         },
+
         created() {
             this.$Progress.start();
 
             this.$router.beforeEach((to, from, next) => {
+
+                axiosClient.get('abilities').then(response => {
+                    this.$ability.update([
+                        { subject: 'all', action: response.data }
+                    ])
+
+                    if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) { // Si pas de privilège necessaire
+                        this.$router.push('/403')
+                    }
+                }).catch(err => {
+                    console.error("Erreur ajax : ", err.response.data.message)
+                })
+
                 this.name = window.bcName // Recuperer le nom de la route
                 this.path = window.bcPath // Recuperer le path
                 this.tree = window.bcTree // Recuperer l'arborescence
