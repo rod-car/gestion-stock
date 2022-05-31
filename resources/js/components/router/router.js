@@ -94,6 +94,8 @@ router.beforeEach((to, from, next) => {
         getUser()
     }
 
+    // Recuperation des roles del'utilisateur connecté
+
     if (to.meta.requiresAuth && !store.state.user.token) {
         next({name: 'login'});
     } else {

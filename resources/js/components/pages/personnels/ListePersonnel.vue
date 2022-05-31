@@ -45,7 +45,7 @@
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form action="" method="post">
+                                <form v-if="$can('delete')" action="" method="post">
                                     <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
                                 </form>
                             </td>
@@ -68,8 +68,6 @@ import usePersonnelles from '../../../services/PersonnelServices';
 import DeleteBtn from '../../html/DeleteBtn';
 import Alert from '../../html/Alert.vue';
 
-import { DataTable } from "@jobinsjp/vue3-datatable"
-
 const { success, errors, personnelles, deletePersonnel, getPersonnelles, resetFlashMessages } = usePersonnelles();
 
 export default {
@@ -77,7 +75,6 @@ export default {
         pagination,
         DeleteBtn,
         Alert,
-        DataTable,
     },
     setup() {
         return {
@@ -93,11 +90,10 @@ export default {
         getPersonnelles()
         resetFlashMessages()
 
-        window.ability = this.$ability
-
-        /*this.$ability.update([
-            { subject: 'all', actions: "delete" }
-        ])*/
+        this.$ability.update([
+            { subject: 'all', action: ["create"] }
+        ])
+        // window.ability = this.$ability
     },
     methods: {
         /**
@@ -108,10 +104,10 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id) {
-            SimpleAlert.confirm("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
+            SimpleAlert.alert("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
                 deletePersonnel(id)
             }).catch (error => {
-                // Arret de suppresion
+                SimpleAlert.alert("Impossible de supprimer l'utilisateur", "Erreur", "error")
             });
         }
     },
