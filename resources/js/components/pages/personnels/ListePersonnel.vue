@@ -11,10 +11,6 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors" />
 
-                <div v-if="!loading">
-                    <DataTable :rows="personnelles" striped/>
-                </div>
-
                 <table class="table table-striped table-hover">
                     <thead class="text-uppercase">
                         <tr>
@@ -49,7 +45,7 @@
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form action="" v-if="$can('delete', 'user')" method="post">
+                                <form action="" method="post">
                                     <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
                                 </form>
                             </td>

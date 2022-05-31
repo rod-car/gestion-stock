@@ -413,6 +413,7 @@
 </template>
 
 <script>
+
     import axiosClient from '../../axios';
     import store from '../../store';
     import BreadCrumb from '../utils/BreadCrumb.vue'
@@ -423,50 +424,31 @@
                 name: null, // Nom de la route active
                 path: null, // Path de la route active
                 tree: null, // Arborescence dans breadcrumb
-                user: null, // Utilisateur connecté
+                // user: null, // Utilisateur connecté
             }
         },
         components: {
             BreadCrumb,
         },
         mounted() {
-            // Termine la barre de progression quand la composant est monté
             this.$Progress.finish();
         },
         created() {
-            // Permet de detecter pour la prémière fois si l'utilisateur est connécté ou pas
-            /*axios.get('/api/connected-user').then((result) => {
-                if (typeof result.data === "string") console.error ("Le lien est incorrect")
-                else this.user = result.data
-            }).catch((err) => {
-                window.location = '/login'
-            });*/
-
-            // Démarre la barre de progression qua le composant est crée
             this.$Progress.start();
 
-            // Detecter le chagement de route
             this.$router.beforeEach((to, from, next) => {
-                console.log(store.getters.user);
                 this.name = window.bcName // Recuperer le nom de la route
                 this.path = window.bcPath // Recuperer le path
                 this.tree = window.bcTree // Recuperer l'arborescence
 
-                //  does the page we want to go to have a meta.progress object
                 if (to.meta.progress !== undefined) {
                     let meta = to.meta.progress;
-                    // parse meta tags
                     this.$Progress.parseMeta(meta);
                 }
-                //  start the progress bar
                 this.$Progress.start();
-
-                //  continue to next page
                 next();
             });
-            //  hook the progress bar to finish after we've finished moving router-view
             this.$router.afterEach((to, from) => {
-                //  finish the progress bar
                 this.$Progress.finish();
             });
         },
@@ -475,14 +457,23 @@
              * Permet de deconnecter un utilisateur
              *
              * @return  {void}  Redirection permanente vers la page login
-             */
+             **/
             async logOut () {
                 await axiosClient.post('/auth/logout')
+                this.resetUser()
+                this.$router.push('/login')
+            },
+
+            /**
+             * Mettre l'utilisateur connecté dans le store
+             *
+             * @return  {void}
+             */
+            resetUser () {
                 store.state.user.token = null
                 store.state.user.data = {}
                 localStorage.removeItem('auth_token')
-                this.$router.push('/login')
-            }
+            },
         },
 
         computed: {
@@ -491,9 +482,18 @@
              *
              * @return  {Boolean}  True si connecté, False sinon
              */
-            isConnected() {
+            isConnected () {
                 return store.state.user.token === null ? false : true;
-            }
-        },
+            },
+
+            /**
+             * Utilisateur connecté
+             *
+             * @return  {Object}  L'utilisateur connecté
+             */
+            user () {
+                return store.getters.user
+            },
+        }
     }
 </script>

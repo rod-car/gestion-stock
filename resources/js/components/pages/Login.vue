@@ -90,8 +90,6 @@ export default {
                 await axios.get('/sanctum/csrf-cookie');
                 let response = await axios.post('api/auth/login', this.form)
 
-                store.dispatch('storeUser', { name: "rod" })
-
                 store.state.user.token = response.data.token
                 localStorage.setItem('auth_token', response.data.token);
 

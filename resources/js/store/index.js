@@ -5,7 +5,7 @@ const store = createStore({
     state: {
         user: {
             data: {
-                
+
             },
             token: localStorage.getItem('auth_token')
         }
@@ -23,15 +23,19 @@ const store = createStore({
                 })
                 .catch( err => console.log(err));
         },
-        storeUser({ commit }, user) {
-            commit('storeUser', user)
-        }
+        getUser({ commit }) {
+            axiosClient.get('connected-user')
+                .then(res => {
+                    commit('setUser', res.data);
+                })
+                .catch( err => console.error("Erreur d'ajout des user", err));
+        },
     },
     mutations: {
         setRole: (state, role) => {
             state.user.data.role = role;
         },
-        storeUser: (state, user) => {
+        setUser: (state, user) => {
             state.user.data = user
         }
     }

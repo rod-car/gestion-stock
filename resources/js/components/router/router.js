@@ -6,6 +6,8 @@ import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProdui
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
+import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
+
 import store from '../../store/index';
 
 const routes = [
@@ -24,7 +26,7 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
-        meta: {requiresAuth: true}
+        meta: { requiresAuth: true }
     },
     {
         path: '/article/nouveau',
@@ -56,7 +58,9 @@ const routes = [
         name: 'depot.entrepot.liste',
         component: ListeProduitsFinis
     },
-].concat(privateRoutes);
+]
+    .concat(privateRoutes)
+    .concat(errorsRoutes);
 
 const router = createRouter({
   history: createWebHistory(),
@@ -86,12 +90,25 @@ const router = createRouter({
 });*/
 
 router.beforeEach((to, from, next) => {
+    if (store.state.user.data.id === undefined && to.path !== "/login") {
+        getUser()
+    }
+
     if (to.meta.requiresAuth && !store.state.user.token) {
-        console.log(store.state);
         next({name: 'login'});
     } else {
         next();
     }
+
 });
+
+/**
+ * Mettre l'utilisateur connecté dans le store
+ *
+ * @return  {void}
+ */
+const getUser = async ()  => {
+    await store.dispatch('getUser');
+}
 
 export default router;
