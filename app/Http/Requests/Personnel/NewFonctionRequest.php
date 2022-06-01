@@ -29,6 +29,9 @@ class NewFonctionRequest extends FormRequest
         return [
             'nom_fonction' => ["required", new Name, "min:2", "max:255"],
             'description_fonction' => ["nullable", "sometimes", "min:5", "max:5000"],
+
+            'permissions' => ["nullable", "array"],
+            'permissions.*' => ["nullable", "exists:roles,id"]
         ];
     }
 

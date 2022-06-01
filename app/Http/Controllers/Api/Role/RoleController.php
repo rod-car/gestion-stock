@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Api\Role;
 
+use Exception;
 use App\Models\Role\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Exception;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 
 class RoleController extends Controller
 {
@@ -23,7 +20,7 @@ class RoleController extends Controller
         if (intval(request()->perPage) > 0) {
             return Role::paginate(intval(request()->perPage));
         }
-        return Role::paginate();
+        return Role::all();
     }
 
     /**

@@ -29,6 +29,10 @@ class FonctionController extends Controller
     {
         $data = $request->validated();
 
+        $permissions = $data["permissions"];
+
+        unset($data["permissions"]);
+
         $fonction = Fonction::create($data);
 
         return $fonction;

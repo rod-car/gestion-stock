@@ -1,5 +1,5 @@
-import axios from "axios";
 import { ref } from "vue";
+import axiosClient from '../axios/index';
 
 export default function useRoles () {
 
@@ -47,7 +47,7 @@ export default function useRoles () {
      * @return  {JSON}  Tableau contenant tous les personnels paginé
      */
     const getRoles = async (page = 1, perPage = 5) => {
-        let response = await axios.get(`/api/roles?page=${page}&perPage=${perPage}`);
+        let response = await axiosClient.get(`/roles?page=${page}&perPage=${perPage}`);
         roles.value = response.data;
     }
 
@@ -60,7 +60,7 @@ export default function useRoles () {
      */
     const findRoles = async (query, perPage = 5) => {
         let page = 1;
-        let response = await axios.get(`/api/roles/search?page=${page}&perPage=${perPage}&q=${query}`);
+        let response = await axiosClient.get(`/roles/search?page=${page}&perPage=${perPage}&q=${query}`);
         roles.value = response.data;
     }
 
@@ -74,7 +74,7 @@ export default function useRoles () {
     const getPersonnel = async (id) => {
         try
         {
-            let response = await axios.get(`/api/user/${id}`);
+            let response = await axiosClient.get(`/user/${id}`);
             personnel.value = response.data;
         }
         catch (err)
@@ -108,7 +108,7 @@ export default function useRoles () {
      * @return  {Object}  Le personnel
      */
     const createPersonnel = async (data) => {
-        await axios.post('/api/user', data).then(response => {
+        await axiosClient.post('/user', data).then(response => {
             success.value = "Personnel crée avec succès";
             personnel.value = response.data;
         }).catch((err) => {
@@ -117,7 +117,7 @@ export default function useRoles () {
     }
 
     const updatePersonnel = async (data) => {
-        await axios.put('/api/user/' + personnel.value.id, data).then(response => {
+        await axiosClient.put('/user/' + personnel.value.id, data).then(response => {
             success.value = "Modifié avec succes";
             personnel.value = response.data;
         }).catch((err) => {

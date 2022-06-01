@@ -11,6 +11,8 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors" />
 
+                {{ form.permissions }}
+
                 <div class="mt-3 mb-3">
                     <form action="" method="post">
                         <div class="row">
@@ -22,12 +24,26 @@
                             </div>
                             <div class="col-xl-12 mb-3">
                                 <label class="form-label" for="permissions">Selectionner les permissions</label>
+                                <Multiselect
+                                    label="description"
+                                    valueProp="id"
+                                    :multiple="true"
+                                    v-model="form.permissions"
+                                    :options="roles"
+                                    mode="tags"
+                                    :closeOnSelect="false"
+                                    :clearOnSelect="false"
+                                    :searchable="true"
+                                    placeholder="Selectionner les permissions"
+                                />
                             </div>
                             <div class="col-xl-12 mb-3 d-flex justify-content-end">
                                 <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
                             </div>
                         </div>
                     </form>
+
+                    {{ roles }}
                 </div>
 
                 <table class="table table-striped table-hover">
@@ -85,7 +101,11 @@ import Alert from '../../html/Alert.vue';
 import Input from '../../html/Input.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
+import Multiselect from '@vueform/multiselect'
+import useRoles from '../../../services/RoleServices';
+
 const { success, errors, fonctions, deleteFonction, getFonctions, createFonction, resetFlashMessages } = useFonctions();
+const { roles, getRoles } = useRoles();
 
 export default {
     data() {
@@ -93,21 +113,27 @@ export default {
             form: {
                 nom_fonction: null,
                 description_fonction: null,
-            }
+                permissions: [],
+            },
+            options: [
+                { id: 1, description_fonction: "Rakoto" },
+                { id: 2, description_fonction: "Rabe" },
+            ],
         }
     },
     components: {
-        pagination, DeleteBtn, Alert, Input, SaveBtn,
+        pagination, DeleteBtn, Alert, Input, SaveBtn, Multiselect,
     },
     setup() {
         return {
-            errors, success, fonctions,
-            deleteFonction, getFonctions, resetFlashMessages, createFonction,
+            errors, success, fonctions, roles,
+            deleteFonction, getFonctions, resetFlashMessages, createFonction, getRoles,
         };
     },
     mounted() {
         getFonctions()
         resetFlashMessages()
+        getRoles(null, 0);
     },
     methods: {
         /**
@@ -155,3 +181,5 @@ export default {
         margin-bottom: 0;
     }
 </style>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
