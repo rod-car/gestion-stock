@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="className" class="mt-3 mb-3" v-if="message && Array.isArray(message) === false">
+    <div v-bind:class="className" class="mt-3 mb-3" v-if="message && Array.isArray(message) === false && typeof message !== 'object'">
         {{ message }}
     </div>
 </template>

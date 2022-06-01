@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Role\RoleController;
 use App\Http\Controllers\Api\User\AbilityController;
+use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
@@ -23,21 +24,31 @@ use Illuminate\Support\Facades\Route;
 // Ressource qui gere la gestion des articles
 Route::apiResource('/article', ArticleController::class);
 
-// Endpoint pour rechercher un role
-Route::middleware('auth:sanctum')->get('/roles/search', [RoleController::class, 'search']);
-
-// Ressource qui gere la gestion des roles
-Route::middleware('auth:sanctum')->apiResource('/roles', RoleController::class);
-
-Route::middleware('auth:sanctum')->apiResource('/user', UserController::class);
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    // Recuperer l'utilisateur connecté
     Route::get('/connected-user', [UserController::class, 'connectedUser']);
+
+    // Ressource pour le CRUD de l'utilisateur
+    Route::apiResource('/user', UserController::class);
+
+    // Permet de deconnecter un utilisateur
     Route::post('/auth/logout', [AuthenticatedSessionController::class, 'destroy']);
 
     // Recuperer toutes les permissions de l'utilisateur
     Route::get('/abilities', [AbilityController::class, 'index']);
+
+    // Endpoint pour rechercher un role
+    Route::get('/roles/search', [RoleController::class, 'search']);
+
+    // Ressource qui gere la gestion des roles
+    Route::apiResource('/roles', RoleController::class);
+
+    // Permet de gere le CRUD de la fonction
+    Route::apiResource('/fonctions', FonctionController::class);
+
 });

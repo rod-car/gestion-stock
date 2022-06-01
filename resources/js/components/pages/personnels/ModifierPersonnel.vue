@@ -93,7 +93,7 @@
                                 <ol class="list-group list-group-numbered">
                                     <li v-for="role in roles.data" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <label :for="role.id" class="fw-bold">{{ role.nom_role }}</label>
+                                            <label :for="role.id" class="fw-bold">{{ role.description }}</label>
                                         </div>
                                         <span><input :id="role.id" v-model="form.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
                                     </li>

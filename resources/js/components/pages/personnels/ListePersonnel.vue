@@ -104,10 +104,22 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id) {
-            SimpleAlert.alert("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
+            /*SimpleAlert.fire({
+                title: "Question",
+                message: 'Supprimer ce personnel ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Oui, supprimer',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonText: 'Non, annuler'
+            })*/
+
+            SimpleAlert.confirm("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
                 deletePersonnel(id)
             }).catch (error => {
-                SimpleAlert.alert("Impossible de supprimer l'utilisateur", "Erreur", "error")
+                if (error !== undefined) {
+                    SimpleAlert.alert("Impossible de supprimer l'utilisateur", "Erreur", "error")
+                }
             });
         }
     },

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Personnel\Fonction;
 use App\Models\Role\Role;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $with = ['roles'];
+    protected $with = ['roles', 'fonctions'];
 
 
     /**
@@ -62,7 +63,7 @@ class User extends Authenticatable
 
 
     /**
-     * Hasher automatiquement un mot de passe
+     * Hasher automatiquement un mot de passe et le dehasher si necessaire
      *
      * @param string $value
      * @return void
@@ -89,5 +90,16 @@ class User extends Authenticatable
     public function roles() : BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+
+    /**
+     * Permet de recuperer tous les fonctions du personnel
+     *
+     * @return BelongsToMany
+     */
+    public function fonctions() : BelongsToMany
+    {
+        return $this->belongsToMany(Fonction::class, 'personnel_fonctions', 'personnel', 'fonction')->withPivot(['date_association ']);
     }
 }

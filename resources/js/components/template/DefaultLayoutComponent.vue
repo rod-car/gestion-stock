@@ -75,6 +75,8 @@
                                     <ul class="collapse">
                                         <li v-if="$can('add_user')"><router-link to="/personnel/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau</router-link></li>
                                         <li v-if="$can('view_user')"><router-link to="/personnel/liste"><i class="fa fa-list me-2"></i>Liste</router-link></li>
+                                        <li><router-link to="/personnel/fonctions"><i class="fa fa-user me-2"></i>Les fonctions</router-link></li>
+                                        <li><router-link to="/personnel/roles"><i class="fa fa-briefcase me-2"></i>Les roles</router-link></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -128,48 +130,6 @@
                                                     <span>Just Now</span>
                                                 </div>
                                             </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
-                                                <div class="notify-text">
-                                                    <p>New Commetns On Post</p>
-                                                    <span>30 Seconds ago</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
-                                                <div class="notify-text">
-                                                    <p>Some special like you</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
-                                                <div class="notify-text">
-                                                    <p>New Commetns On Post</p>
-                                                    <span>30 Seconds ago</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
-                                                <div class="notify-text">
-                                                    <p>Some special like you</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                                <div class="notify-text">
-                                                    <p>You have Changed Your Password</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                                <div class="notify-text">
-                                                    <p>You have Changed Your Password</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -194,26 +154,30 @@
                                 <li class="settings-btn">
                                     <i class="ti-settings"></i>
                                 </li>
+                                <li class="dropdown">
+                                    <i class="ti ti-user" data-toggle="dropdown"></i>
+
+                                    <div class="dropdown-menu bell-notify-box notify-box">
+                                        <span class="notify-title">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <a href="#">Mon compte</a></span>
+                                        <div class="nofity-list">
+                                            <a href="#" @click="logOut()" class="notify-item">
+                                                <div class="notify-thumb"><i class="fa fa-cog btn-primary"></i></div>
+                                                <div class="notify-text">
+                                                    <p>Paramètres</p>
+                                                    <span>Paramètres du compte</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" @click="logOut()" class="notify-item">
+                                                <div class="notify-thumb"><i class="fa fa-sign-out btn-danger"></i></div>
+                                                <div class="notify-text">
+                                                    <p>Se deconnecter</p>
+                                                    <span>Quitter l'app</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div v-if="isConnected" class="page-title-area">
-                    <div class="row align-items-center">
-
-                        <BreadCrumb :name="name" :path="path" :tree="tree" />
-
-                        <div class="col-sm-6 clearfix">
-                            <div class="user-profile pull-right">
-                                <img class="avatar user-thumb" src="/assets/images/author/avatar.png" alt="avatar">
-                                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <i class="fa fa-angle-down"></i></h4>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Message</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                    <a class="dropdown-item" href="#" @click="logOut()">Se deconnecter</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -416,7 +380,6 @@
 
     import axiosClient from '../../axios';
     import store from '../../store';
-    import BreadCrumb from '../utils/BreadCrumb.vue'
     import useAbility from '../../services/AbilityServices';
 
     const { permissions, getPermissions }  = useAbility()
@@ -429,16 +392,8 @@
             }
         },
 
-        data() {
-            return {
-                name: null, // Nom de la route active
-                path: null, // Path de la route active
-                tree: null, // Arborescence dans breadcrumb
-            }
-        },
-
         components: {
-            BreadCrumb,
+
         },
 
         mounted() {
@@ -461,10 +416,6 @@
                 }).catch(err => {
                     console.error("Erreur ajax : ", err.response.data.message)
                 })
-
-                this.name = window.bcName // Recuperer le nom de la route
-                this.path = window.bcPath // Recuperer le path
-                this.tree = window.bcTree // Recuperer l'arborescence
 
                 if (to.meta.progress !== undefined) {
                     let meta = to.meta.progress;

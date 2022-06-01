@@ -56,8 +56,7 @@
                         <ol class="list-group list-group-numbered">
                             <li v-for="role in personnel.roles" v-bind:key="role.id" class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ role.nom_role }}</div>
-                                    Donné le {{ new Date(role.created_at).toLocaleDateString() }}
+                                    <div class="fw-bold">{{ role.description }}</div>
                                 </div>
                                 <span class="badge bg-primary rounded-pill"><i class="fa fa-check"></i></span>
                             </li>
@@ -70,6 +69,7 @@
 </template>
 
 <script>
+
 import usePersonnelles from '../../../services/PersonnelServices'
 
 const { personnel, errors, loading, getPersonnel } = usePersonnelles();

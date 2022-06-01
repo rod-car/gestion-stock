@@ -3,10 +3,19 @@
         <slot></slot>
         <span class="text-danger ms-2" v-if="required">(*)</span>
     </label>
-    <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @blur="handleBlur" class="form-control" />
+
+    <div v-if="type === 'textarea'">
+        <textarea v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @blur="handleBlur" class="form-control">{{ modelValue }}</textarea>
+    </div>
+
+    <div v-else>
+        <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @blur="handleBlur" class="form-control" />
+    </div>
+
     <div class="text-danger mt-1" v-if="hasErrors">
         {{ error[0] }}
     </div>
+
 </template>
 
 <script>
@@ -34,11 +43,8 @@ export default {
     methods: {
         handleBlur (e) {
             let value = e.target.value
-
-            if (value !== "") {
-                this.hasErrors = false;
-            }
-            this.$emit('update:modelValue', value);
+            if (value !== "") this.hasErrors = false
+            this.$emit('update:modelValue', value)
         },
     },
     watch: {

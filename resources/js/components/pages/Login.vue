@@ -9,7 +9,7 @@
                             <h4>Se connecter</h4>
                             <p>Vous devez vous connecter pour acceder a l'application</p>
 
-                            <div class="alert alert-success">
+                            <div v-if="loading" class="alert alert-success">
                                 {{ loadingIndicator }}
                             </div>
                         </div>
@@ -77,7 +77,7 @@ export default {
 
     computed: {
         loadingIndicator() {
-            return this.loading === true ? "Chargement..." : "Pas de chargement";
+            return this.loading === true ? "Chargement..." : '';
         }
     },
 
@@ -94,6 +94,7 @@ export default {
                 localStorage.setItem('auth_token', response.data.token);
 
                 this.loading = false;
+                //window.location = "/dashboard"
                 this.$router.push('/dashboard')
             }
             catch(err)
