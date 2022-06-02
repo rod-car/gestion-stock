@@ -27,7 +27,7 @@ class NewFonctionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom_fonction' => ["required", new Name, "min:2", "max:255"],
+            'nom_fonction' => ["required", "sometimes", "min:2", "max:255"],
             'description_fonction' => ["nullable", "sometimes", "min:5", "max:5000"],
 
             'permissions' => ["nullable", "array"],

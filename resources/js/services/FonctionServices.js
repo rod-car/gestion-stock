@@ -83,6 +83,7 @@ export default function useFonctions () {
         await axiosClient.post('/fonctions', data).then(response => {
             success.value = "La fonction est crée avec succès";
             fonction.value = response.data;
+            getFonctions()
         }).catch((err) => {
             if (err.response.status === 422) {
                 errors.value = err.response.data.errors;
@@ -141,16 +142,8 @@ export default function useFonctions () {
     }
 
     return {
-        errors,
-        success,
-        fonction,
-        fonctions,
-        getFonction,
-        getFonctions,
-        updateFonction,
-        deleteFonction,
-        createFonction,
-        resetFlashMessages,
+        errors, success, fonction, fonctions,
+        getFonction, getFonctions, updateFonction, deleteFonction, createFonction, resetFlashMessages,
     };
 
 }
