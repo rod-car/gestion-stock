@@ -14,7 +14,6 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors.message" />
 
-
                 <form action="" method="post">
                     <h5 class="mb-3">Informations générales</h5>
 
@@ -44,15 +43,18 @@
                         </div>
                     </div>
 
-                    <!--h5 class="mb-3 mt-4">Informations de compte d'utilisateur</h5>
-
-                    <div-- class="row mb-2">
+                    <div class="row mb-2">
                         <div class="col-xl-12">
-                            <input type="checkbox" v-model="form.hasAccount" id="hasAccount" class="form-check-input me-3" />
-                            <label for="hasAccount" class="form-label">Cocher ici pour créer un compte utilisateur pour le personnel</label>
+                            <label for="fonctions">Fonctions du personnel</label>
+                            <Multiselect
+                                label="nom_fonction" valueProp="id" :multiple="true" v-model="form.fonctions"
+                                :options="fonctions" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                :searchable="true" placeholder="Selectionner les fonctions"
+                                @select="getAllPermissions"
+                                @deselect="getAllPermissions"
+                            />
                         </div>
-                    </div-->
-
+                    </div>
 
                     <h5 class="mb-3 mt-4">Informations de compte d'utilisateur</h5>
                     <div class="row mb-2">
@@ -88,19 +90,11 @@
                     <transition name="fade">
                         <div class="mb-2 row" v-if="form.hasRole && form.hasAccount">
                             <div class="col-xl-12">
-                                <input type="text" @input="searchRole" class="form-control mb-3 mt-3" placeholder="Rechercher un role" id="">
-
-                                <ol class="list-group list-group-numbered">
-                                    <li v-for="role in roles.data" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <label :for="role.id" class="fw-bold">{{ role.description }}</label>
-                                        </div>
-                                        <span><input :id="role.id" v-model="form.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
-                                    </li>
-                                </ol>
-                                <div class="pagination">
-                                    <pagination align="center" :data="roles" @pagination-change-page="getRoles"></pagination>
-                                </div>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true" v-model="form.roles"
+                                    :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                    :searchable="true" placeholder="Selectionner les permissions"
+                                />
                             </div>
                         </div>
                     </transition>
@@ -120,18 +114,22 @@
 
 import usePersonnelles from '../../../services/PersonnelServices';
 import useRoles from '../../../services/RoleServices';
+import useFonctions from '../../../services/FonctionServices';
 import Input from '../../html/Input.vue';
 import Alert from '../../html/Alert.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
 import pagination from 'laravel-vue-pagination'
+import Multiselect from '@vueform/multiselect';
+import axiosClient from '../../../axios'
 
 const { errors, success, getPersonnel, resetFlashMessages, personnel, updatePersonnel } = usePersonnelles();
-const { roles, getRoles, findRoles } = useRoles();
+const { roles, getRoles } = useRoles();
+const { fonction, fonctions, getFonction, getFonctions } = useFonctions();
 
 export default {
     components: {
-        Input, Alert, SaveBtn, pagination
+        Input, Alert, SaveBtn, pagination, Multiselect
     },
     data() {
         return {
@@ -147,6 +145,7 @@ export default {
                 password: 'password',
                 password_confirmation: 'password',
                 roles: [],
+                fonctions: [],
                 hasAccount: false,
                 hasRole: false,
             },
@@ -154,7 +153,8 @@ export default {
     },
     setup() {
         return {
-            errors, success, roles, getRoles, getPersonnel, personnel, updatePersonnel
+            errors, success, roles, getRoles, getPersonnel, personnel, updatePersonnel,
+            fonction, fonctions, getFonction, getFonctions,
         };
     },
     computed: {
@@ -190,18 +190,13 @@ export default {
             if (e.target.checked === false) this.form.roles = []
         },
 
-        /**
-         * Permet de rechercher un role
-         *
-         * @param   {Event}  e  Evenement
-         *
-         * @return  {void}
-         */
-        searchRole (e) {
-            setTimeout(() => {
-                let query = e.target.value;
-                findRoles(query);
-            }, 500);
+        getAllPermissions () {
+            let fonctionIds = this.form.fonctions
+            axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
+                this.form.roles = response.data
+            }).catch (error => {
+                console.error(error);
+            })
         }
     },
     mounted() {
@@ -224,10 +219,12 @@ export default {
 
             this.form.hasAccount = personnel.value.username !== null
             this.form.roles = personnel.value.roles.map(item => item.id)
+            this.form.fonctions = personnel.value.fonctions.map(item => item.id)
             this.form.hasRole = personnel.value.roles.length > 0
         }); // Recuperer le personnel
 
-        getRoles(1, 5); // Recuperer toutes les roles et le mettre dans la variable réactive roles
+        getRoles(1, 0); // Recuperer toutes les roles et le mettre dans la variable réactive roles
+        getFonctions(null)
     },
 }
 

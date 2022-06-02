@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Personnel\EditFonctionRequest;
 use App\Http\Requests\Personnel\NewFonctionRequest;
 use App\Models\Personnel\Fonction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FonctionController extends Controller
@@ -17,6 +18,8 @@ class FonctionController extends Controller
      */
     public function index()
     {
+        if (intval(request()->page) === 0) return Fonction::all();
+
         return Fonction::paginate();
     }
 
@@ -52,7 +55,6 @@ class FonctionController extends Controller
      */
     public function show(Fonction $fonction)
     {
-        $fonction['permissionsId'] = $fonction->permissions->pluck('id')->toArray();
         return $fonction;
     }
 
@@ -101,5 +103,26 @@ class FonctionController extends Controller
         $fonction->permissions()->delete();
         $fonction->personnelles()->delete();
         $fonction->delete();
+    }
+
+
+    /**
+     * Retourner tous les persmisisons des fonctions selectionnés
+     *
+     * @param Request $request Contenant les ids de la fonction
+     * @return JsonResponse
+     */
+    public function permissionsFonctions(Request $request) : JsonResponse
+    {
+        $fonctionIds = $request->all();
+        $permissionIds = [];
+
+        foreach ($fonctionIds as $id)
+        {
+            $fonction = Fonction::findOrFail($id);
+            $permissionIds = array_unique(array_merge($fonction->permissions->pluck('id')->toArray(), $permissionIds));
+        }
+
+        return response()->json($permissionIds);
     }
 }

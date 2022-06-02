@@ -75,8 +75,7 @@
                                     <ul class="collapse">
                                         <li v-if="$can('add_user')"><router-link to="/personnel/nouveau"><i class="fa fa-plus-circle me-2"></i>Nouveau personnel</router-link></li>
                                         <li v-if="$can('view_user')"><router-link to="/personnel/liste"><i class="fa fa-list me-2"></i>Liste des personnelles</router-link></li>
-                                        <li><router-link to="/personnel/fonctions"><i class="fa fa-user me-2"></i>Les fonctions</router-link></li>
-                                        <li><router-link to="/personnel/roles"><i class="fa fa-briefcase me-2"></i>Les roles</router-link></li>
+                                        <li v-if="$can('manage_roles_and_functions')"><router-link to="/personnel/fonctions"><i class="fa fa-tasks me-2"></i>Les fonctions & rôles</router-link></li>
                                     </ul>
                                 </li>
                                 <li>

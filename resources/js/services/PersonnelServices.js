@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import Router from '../components/router/router';
+import axiosClient from '../axios/index';
 
 export default function usePersonnelles () {
 
@@ -48,7 +49,7 @@ export default function usePersonnelles () {
      * @return  {JSON}  Tableau contenant tous les personnels paginé
      */
     const getPersonnelles = async (page = 1) => {
-        let response = await axios.get(`/api/user?page=${page}`);
+        let response = await axiosClient.get(`/user?page=${page}`);
         personnelles.value = response.data;
     }
 
@@ -62,7 +63,7 @@ export default function usePersonnelles () {
     const getPersonnel = async (id) => {
         try
         {
-            let response = await axios.get(`/api/user/${id}`);
+            let response = await axiosClient.get(`/user/${id}`);
             personnel.value = response.data;
         }
         catch (err)
@@ -96,7 +97,7 @@ export default function usePersonnelles () {
      * @return  {Object}  Le personnel
      */
     const createPersonnel = async (data) => {
-        await axios.post('/api/user', data).then(response => {
+        await axiosClient.post('/user', data).then(response => {
             success.value = "Personnel crée avec succès";
             personnel.value = response.data;
         }).catch((err) => {
@@ -117,7 +118,7 @@ export default function usePersonnelles () {
      * @return  {void}
      */
     const updatePersonnel = async (data) => {
-        await axios.put('/api/user/' + personnel.value.id, data).then(response => {
+        await axiosClient.put('/user/' + personnel.value.id, data).then(response => {
             success.value = "Modifié avec succes";
             personnel.value = response.data;
         }).catch((err) => {
@@ -134,7 +135,7 @@ export default function usePersonnelles () {
      * @return  {void}
      */
     const deletePersonnel = async (id) => {
-        await axios.delete(`/api/user/${id}`).then(response => {
+        await axiosClient.delete(`/user/${id}`).then(response => {
             if (response.data.errors) {
                 errors.value = response.data.errors
                 getPersonnelles()
@@ -147,16 +148,8 @@ export default function usePersonnelles () {
     }
 
     return {
-        errors,
-        success,
-        personnel,
-        personnelles,
-        getPersonnel,
-        getPersonnelles,
-        updatePersonnel,
-        deletePersonnel,
-        createPersonnel,
-        resetFlashMessages,
+        errors, success, personnel, personnelles,
+        getPersonnel, getPersonnelles, updatePersonnel, deletePersonnel, createPersonnel, resetFlashMessages,
     };
 
 }

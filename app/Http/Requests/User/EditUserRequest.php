@@ -33,13 +33,16 @@ class EditUserRequest extends FormRequest
             'email' => ["nullable", "unique:users,email," . $this->id . ",id", "email", "max:255"],
             'adresse_personnel' => ["required", "sometimes"],
             'cin_personnel' => ["nullable", "digits:12"],
-            
+
             'username' => ["nullable", "required_if:hasAccount,true", "unique:users,username," . $this->id . ",id", "min:5", "max:255"],
             'password' => ["nullable", "required_if:hasAccount,true", "confirmed", "min:8", "max:255"],
             'password_confirmation' => ["nullable", "required_if:hasAccount,true", "min:8", "max:255"],
 
             'roles' => ["nullable", "array"],
-            'roles.*' => ["nullable", "exists:roles,id"]
+            'roles.*' => ["nullable", "exists:roles,id"],
+
+            'fonctions' => ["nullable", "array"],
+            'fonctions.*' => ["nullable", "exists:fonctions,id"]
         ];
     }
 

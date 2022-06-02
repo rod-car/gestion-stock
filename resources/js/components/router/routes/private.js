@@ -26,13 +26,19 @@ const routes = [
         path: '/personnel/modifier/:id',
         name: 'gestion-des-personnels.personnel.modifier',
         component: ModifierPersonnel,
-        meta: { gate: 'edit_user' }
+        meta: {
+            requiresAuth: true,
+            gate: 'edit_user',
+        }
     },
     {
         path: '/personnel/fonctions',
         name: 'gestion-des-personnels.personnel.fonctions',
         component: Fonctions,
-        meta: { requiresAuth: true }
+        meta: {
+            requiresAuth: true,
+            gate: 'manage_roles_and_functions',
+        }
     }
 ];
 

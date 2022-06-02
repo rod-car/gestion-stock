@@ -57,16 +57,9 @@
                             <div class="col-xl-12 mb-3">
                                 <label class="form-label" for="permissions">Selectionner les permissions</label>
                                 <Multiselect
-                                    label="description"
-                                    valueProp="id"
-                                    :multiple="true"
-                                    v-model="form.permissions"
-                                    :options="roles"
-                                    mode="tags"
-                                    :closeOnSelect="false"
-                                    :clearOnSelect="false"
-                                    :searchable="true"
-                                    placeholder="Selectionner les permissions"
+                                    label="description" valueProp="id" :multiple="true" v-model="form.permissions"
+                                    :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                    :searchable="true" placeholder="Selectionner les permissions"
                                 />
                             </div>
                             <div class="col-xl-12 mb-3 d-flex justify-content-end">
@@ -264,7 +257,7 @@ export default {
                 this.form = {
                     nom_fonction: fonction.value.nom_fonction,
                     description_fonction: fonction.value.description_fonction,
-                    permissions: fonction.value.permissionsId,
+                    permissions: fonction.value.permissionIds,
                 }
 
                 this.isEditing = true
@@ -274,7 +267,7 @@ export default {
                 });
             })
 
-        }
+        },
     },
 }
 </script>

@@ -40,7 +40,9 @@
                             <td>{{ personnelle.email ?? "Aucune" }}</td>
                             <td>{{ personnelle.contact_personnel }}</td>
                             <td>{{ personnelle.cin_personnel ?? "Aucune" }}</td>
-                            <td>{{ "En cours de developpement" }}</td>
+                            <td>
+                                <span v-for="fonction in personnelle.fonctions" :key="fonction.id" class="badge bg-primary me-2">{{ fonction.nom_fonction }}</span>
+                            </td>
                             <td>{{ personnelle.created_at }}</td>
                             <td class="d-inline-flex">
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
@@ -78,22 +80,13 @@ export default {
     },
     setup() {
         return {
-            errors,
-            success,
-            personnelles,
-            deletePersonnel,
-            getPersonnelles,
-            resetFlashMessages,
+            errors, success, personnelles,
+            deletePersonnel, getPersonnelles, resetFlashMessages,
         };
     },
     mounted() {
         getPersonnelles()
         resetFlashMessages()
-
-        /*this.$ability.update([
-            { subject: 'all', action: ["create"] }
-        ])*/
-        // window.ability = this.$ability
     },
     methods: {
         /**
@@ -104,18 +97,9 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id) {
-            /*SimpleAlert.fire({
-                title: "Question",
-                message: 'Supprimer ce personnel ?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Oui, supprimer',
-                confirmButtonClass: 'btn btn-danger',
-                cancelButtonText: 'Non, annuler'
-            })*/
-
             SimpleAlert.confirm("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
                 deletePersonnel(id)
+                SimpleAlert.alert("Supprimé avec succes", "Message", "success")
             }).catch (error => {
                 if (error !== undefined) {
                     SimpleAlert.alert("Impossible de supprimer l'utilisateur", "Erreur", "error")

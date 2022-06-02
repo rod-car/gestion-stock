@@ -14,7 +14,6 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors.message" />
 
-
                 <form action="" method="post">
                     <h5 class="mb-3">Informations générales</h5>
 
@@ -43,6 +42,18 @@
                             <Input v-model="personnel.email" :error="errors.email">Email du personnel</Input>
                         </div>
                     </div>
+                    <div class="row mb-2">
+                        <div class="col-xl-12">
+                            <label for="fonctions">Fonctions du personnel</label>
+                            <Multiselect
+                                label="nom_fonction" valueProp="id" :multiple="true" v-model="personnel.fonctions"
+                                :options="fonctions" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                :searchable="true" placeholder="Selectionner les fonctions"
+                                @select="getAllPermissions"
+                                @deselect="getAllPermissions"
+                            />
+                        </div>
+                    </div>
 
                     <h5 class="mb-3 mt-4">Informations de compte d'utilisateur</h5>
 
@@ -66,12 +77,12 @@
                     </div>
 
                     <div v-if="personnel.hasAccount">
-                        <h5 class="mb-3 mt-4">Informations des rôles</h5>
+                        <h5 class="mb-3 mt-4">Informations des permissions</h5>
 
                         <div class="row mb-2">
                             <div class="col-xl-12">
                                 <input type="checkbox" v-model="personnel.hasRole" id="hasRole" class="form-check-input me-3" />
-                                <label for="hasRole" class="form-label">Cocher ici pour associer un (des) rôles au personnel</label>
+                                <label for="hasRole" class="form-label">Cocher ici pour associer un (des) permissions au personnel</label>
                             </div>
                         </div>
                     </div>
@@ -79,19 +90,11 @@
                     <transition name="fade">
                         <div class="mb-2 row" v-if="personnel.hasRole && personnel.hasAccount">
                             <div class="col-xl-12">
-                                <input type="text" @input="searchRole" class="form-control mb-3 mt-3" placeholder="Rechercher un role" id="">
-
-                                <ol class="list-group list-group-numbered">
-                                    <li v-for="role in roles.data" v-bind:key="role.id" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <label :for="role.id" class="fw-bold">{{ role.description }}</label>
-                                        </div>
-                                        <span><input :id="role.id" v-model="personnel.roles" :value="role.id" type="checkbox" class="form-check-input" /></span>
-                                    </li>
-                                </ol>
-                                <div class="pagination">
-                                    <pagination align="center" :data="roles" @pagination-change-page="getRoles"></pagination>
-                                </div>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true" v-model="personnel.roles"
+                                    :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                    :searchable="true" placeholder="Selectionner les permissions"
+                                />
                             </div>
                         </div>
                     </transition>
@@ -116,13 +119,17 @@ import Alert from '../../html/Alert.vue';
 import SaveBtn from '../../html/SaveBtn.vue';
 
 import pagination from 'laravel-vue-pagination'
+import Multiselect from '@vueform/multiselect'
+import useFonctions from '../../../services/FonctionServices';
+import axiosClient from '../../../axios';
 
 const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
+const { fonction, fonctions, getFonction, getFonctions } = useFonctions();
 const { roles, getRoles, findRoles } = useRoles();
 
 export default {
     components: {
-        Input, Alert, SaveBtn, pagination
+        Input, Alert, SaveBtn, pagination, Multiselect,
     },
     data() {
         return {
@@ -137,6 +144,7 @@ export default {
                 password: 'password',
                 password_confirmation: 'password',
                 roles: [],
+                fonctions: [],
                 hasAccount: false,
                 hasRole: false,
             },
@@ -145,6 +153,7 @@ export default {
     setup() {
         return {
             errors, success, createPersonnel, roles, getRoles,
+            fonction, fonctions, getFonction, getFonctions,
         };
     },
     methods: {
@@ -185,6 +194,7 @@ export default {
                 password: 'password',
                 password_confirmation: 'password',
                 roles: [],
+                fonctions: [],
                 hasRole: false,
                 hasAccount: false
             };
@@ -192,14 +202,24 @@ export default {
 
         searchRole (e) {
             setTimeout(() => {
-                let query = e.target.value;
-                findRoles(query);
-            }, 500);
+                let query = e.target.value
+                findRoles(query)
+            }, 500)
+        },
+
+        getAllPermissions () {
+            let fonctionIds = this.personnel.fonctions
+            axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
+                this.personnel.roles = response.data
+            }).catch (error => {
+                alert('Error')
+            })
         }
     },
     mounted() {
         resetFlashMessages(); // Efface les messages de succes et d'erreurs
-        getRoles(1, 5); // Recuperer toutes les roles et le mettre dans la variable réactive roles
+        getRoles(1, 0); // Recuperer toutes les roles et le mettre dans la variable réactive roles
+        getFonctions(null)
     },
 }
 

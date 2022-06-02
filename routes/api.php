@@ -51,4 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Permet de gere le CRUD de la fonction
     Route::apiResource('/fonctions', FonctionController::class);
 
+    // Recuperer les permissions associe a des ID
+    Route::get('/permissions-fonction', [FonctionController::class, 'permissionsFonctions']);
+
 });

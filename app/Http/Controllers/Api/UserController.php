@@ -29,14 +29,20 @@ class UserController extends Controller
      */
     public function store(NewUserRequest $request)
     {
-        $userData = $request->validated();
-        $roles = $userData['roles'];
+        $data = $request->validated();
+        $roles = $data['roles'];
+        $fonctions = $data['fonctions'];
+        unset($data['roles'], $data['fonctions']);
 
-        $user = User::create($userData);
+        $user = User::create($data);
 
-        foreach ($roles as $id) {
-            $user->roles()->attach($id);
+        foreach ($fonctions as $id) { $user->fonctions()->attach($id); }
+
+        if ($request->boolean('hasAccount') AND $request->boolean('hasRole'))
+        {
+            foreach ($roles as $id) { $user->roles()->attach($id); }
         }
+
         return $user;
     }
 
@@ -61,13 +67,15 @@ class UserController extends Controller
      */
     public function update(EditUserRequest $request, User $user)
     {
-        $userData = $request->validated();
-
-        $roles = $userData['roles'];
+        $data = $request->validated();
+        $roles = $data['roles'];
+        $fonctions = $data['fonctions'];
+        unset($data['roles'], $data['fonctions']);
 
         // Si l'utilisateur a un compte, on fait ce traitement - Ajouts des roles et verification des roles
         if ($request->hasAccount === true)
         {
+            // Mise a jour des roles
             foreach ($user->roles as $role)
             {
                 if (!in_array($role->id, $roles)) $user->roles()->detach($role->id); // Supprimer les roles qui ne sont plus present
@@ -79,15 +87,23 @@ class UserController extends Controller
             {
                 if (!in_array($id, $actualRolesId)) $user->roles()->attach($id); // Ajouter les nouveaux roles
             }
+
+            // Mise a jour des foncitons
+            foreach ($user->fonctions as $fonction) { if (!in_array($fonction->id, $fonctions)) $user->fonctions()->detach($fonction->id); }// Supprimer les roles qui ne sont plus present
+
+            $actualFonctionsId = $user->fonctions->pluck('id')->toArray();
+
+            foreach ($fonctions as $id) { if (!in_array($id, $actualFonctionsId)) $user->fonctions()->attach($id); } // Ajouter les nouveaux roles
         }
         else
         {   // On remet les informations de compte de l'utilisateur a zero
-            $userData['username'] = null;
-            $userData['password'] = null;
+            $data['username'] = null;
+            $data['password'] = null;
             $user->roles()->detach();
+            $user->fonctions()->detach();
         }
 
-        $user->update($userData);
+        $user->update($data);
 
         return response()->json([
             'success' => "Mise a jour avec succèss",

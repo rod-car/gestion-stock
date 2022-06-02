@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-xl-6">
                         <label for="" class="form-label">Prénoms du personnel</label>
-                        <label for="" class="form-control">{{ personnel.prenoms_personnel }}</label>
+                        <label for="" class="form-control">{{ personnel.prenoms_personnel ?? "Non défini" }}</label>
                     </div>
                 </div>
 
@@ -47,6 +47,16 @@
                     <div class="col-xl-6">
                         <label for="" class="form-label">Email du personnel</label>
                         <label for="" class="form-control">{{ personnel.email ?? "Aucune adresse email" }}</label>
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    <div clas="col-xl-12">
+                        <label for="" class="form-label">Le (s) fonction (s) du personnel</label>
+                        <div class="form-control">
+                            <span v-for="fonction in personnel.fonctions" :key="fonction.id" class="badge bg-primary me-2">{{ fonction.nom_fonction }}</span>
+                        </div>
                     </div>
                 </div>
 

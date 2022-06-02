@@ -42,7 +42,10 @@ class NewUserRequest extends FormRequest
             'password_confirmation' => ["nullable", "required_if:hasAccount,true", "min:8", "max:255"],
 
             'roles' => ["nullable", "array"],
-            'roles.*' => ["nullable", "exists:roles,id"]
+            'roles.*' => ["nullable", "exists:roles,id"],
+
+            'fonctions' => ["nullable", "array"],
+            'fonctions.*' => ["nullable", "exists:fonctions,id"]
         ];
     }
 

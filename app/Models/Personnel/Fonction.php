@@ -24,16 +24,12 @@ class Fonction extends Model
 
     protected $withCount = ['personnelles'];
 
+    protected $appends = ['permissionIds'];
 
-    /**
-     * Hasher automatiquement un mot de passe et le dehasher si necessaire
-     *
-     * @param string $value
-     * @return void
-     */
-    public function setPermissionsAttribute(?string $value)
+
+    public function getPermissionIdsAttribute()
     {
-        return true;
+        return $this->permissions()->pluck('id');
     }
 
     /**
