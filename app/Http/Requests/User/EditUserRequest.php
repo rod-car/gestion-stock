@@ -41,8 +41,8 @@ class EditUserRequest extends FormRequest
             'roles' => ["nullable", "array"],
             'roles.*' => ["nullable", "exists:roles,id"],
 
-            'fonctions' => ["nullable", "array"],
-            'fonctions.*' => ["nullable", "exists:fonctions,id"]
+            'fonctions' => ["required", "array"],
+            'fonctions.*' => ["required", "exists:fonctions,id"]
         ];
     }
 
