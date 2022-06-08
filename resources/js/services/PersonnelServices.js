@@ -23,7 +23,7 @@ export default function usePersonnelles () {
     /**
      * Erreurs lors de l'ajout, de mise a jour ou de suppression d'un personnel
      *
-     * @return  {array}      Contenant toutes les erreurs
+     * @type  {array}      Contenant toutes les erreurs
      */
     const errors = ref([]);
 
@@ -42,6 +42,14 @@ export default function usePersonnelles () {
      */
     const error = ref(null);
 
+
+    /**
+     * Permet de detecter si les données sont en cours de chargement
+     *
+     * @type {Boolean}
+     */
+    const loading = ref(false)
+
     /**
      * Fonction permet de recuperer toutes les personnelles
      *
@@ -49,8 +57,10 @@ export default function usePersonnelles () {
      * @return  {JSON}  Tableau contenant tous les personnels paginé
      */
     const getPersonnelles = async (page = 1) => {
+        loading.value = true
         let response = await axiosClient.get(`/user?page=${page}`);
         personnelles.value = response.data;
+        loading.value = false
     }
 
 
@@ -138,7 +148,6 @@ export default function usePersonnelles () {
         await axiosClient.delete(`/user/${id}`).then(response => {
             if (response.data.errors) {
                 errors.value = response.data.errors
-                getPersonnelles()
             } else {
                 success.value = "Personnel supprimé avec succes";
             }
@@ -148,7 +157,7 @@ export default function usePersonnelles () {
     }
 
     return {
-        errors, success, personnel, personnelles,
+        errors, success, personnel, personnelles, loading,
         getPersonnel, getPersonnelles, updatePersonnel, deletePersonnel, createPersonnel, resetFlashMessages,
     };
 

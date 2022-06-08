@@ -30,17 +30,32 @@ class UserController extends Controller
     public function store(NewUserRequest $request)
     {
         $data = $request->validated();
-        $roles = $data['roles'];
         $fonctions = $data['fonctions'];
-        unset($data['roles'], $data['fonctions']);
+        $permissionsGroups = $data['permissions'];
 
+        $permissions = [];
+
+        unset($data['permissions'], $data['fonctions']);
+
+        // crée les tableau des permissions unique
+        foreach ($permissionsGroups as $permissionGroup)
+        {
+            $permissions = array_unique(array_merge($permissions, $permissionGroup));
+        }
+
+        // Creation de l'utilisateur dans la BD
         $user = User::create($data);
 
+        // Ajout des fonctions
         foreach ($fonctions as $id) { $user->fonctions()->attach($id); }
 
+        // Ajout des permissions
         if ($request->boolean('hasAccount') AND $request->boolean('hasRole'))
         {
-            foreach ($roles as $id) { $user->roles()->attach($id); }
+            foreach ($permissions as $id)
+            {
+                $user->roles()->attach($id);
+            }
         }
 
         return $user;
@@ -68,9 +83,18 @@ class UserController extends Controller
     public function update(EditUserRequest $request, User $user)
     {
         $data = $request->validated();
-        $roles = $data['roles'];
         $fonctions = $data['fonctions'];
-        unset($data['roles'], $data['fonctions']);
+        $permissionsGroups = $data['permissions'];
+
+        unset($data['permissions'], $data['fonctions']);
+
+        $permissions = [];
+
+        // crée les tableau des permissions unique
+        foreach ($permissionsGroups as $permissionGroup)
+        {
+            $permissions = array_unique(array_merge($permissions, $permissionGroup));
+        }
 
         // Si l'utilisateur a un compte, on fait ce traitement - Ajouts des roles et verification des roles
         if ($request->hasAccount === true)
@@ -78,14 +102,14 @@ class UserController extends Controller
             // Mise a jour des roles
             foreach ($user->roles as $role)
             {
-                if (!in_array($role->id, $roles)) $user->roles()->detach($role->id); // Supprimer les roles qui ne sont plus present
+                if (!in_array($role->id, $permissions)) $user->roles()->detach($role->id); // Supprimer les roles qui ne sont plus present
             }
 
-            $actualRolesId = $user->roles->pluck('id')->toArray();
+            $actualPermissionsId = $user->roles->pluck('id')->toArray();
 
-            foreach ($roles as $id)
+            foreach ($permissions as $id)
             {
-                if (!in_array($id, $actualRolesId)) $user->roles()->attach($id); // Ajouter les nouveaux roles
+                if (!in_array($id, $actualPermissionsId)) $user->roles()->attach($id); // Ajouter les nouveaux roles
             }
 
             // Mise a jour des foncitons
@@ -127,6 +151,7 @@ class UserController extends Controller
                 ]);
             }
             $user->roles()->detach();
+            $user->fonctions()->detach();
             $user->delete();
             return response()->json([
                 'success' => "Supprimé avec success"

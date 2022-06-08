@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 class FonctionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         if (intval(request()->page) === 0) return Fonction::all();
@@ -24,47 +24,64 @@ class FonctionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(NewFonctionRequest $request)
     {
         $data = $request->validated();
 
-        $permissionIds = $data["permissions"];
+        $permissionsGroups = $data["permissions"];
+        $fonctionsEnfantsIds = $data["enfants"];
+
+        $permissions = [];
+
+        // crée les tableau des permissions unique
+        foreach ($permissionsGroups as $permissionGroup)
+        {
+            $permissions = array_unique(array_merge($permissions, $permissionGroup));
+        }
 
         unset($data["permissions"]);
+        unset($data["enfants"]);
 
         $fonction = Fonction::create($data);
 
-        foreach ($permissionIds as $permissionId)
+        // Inserer les sous fonctions
+        foreach ($fonctionsEnfantsIds as $id)
         {
-            $fonction->permissions()->attach($permissionId);
+            $fonction->enfants()->attach($id);
+        }
+
+        // Ajouter les permissions
+        foreach ($permissions as $id)
+        {
+            $fonction->permissions()->attach($id);
         }
 
         return $fonction;
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Personnel\Fonction  $fonction
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  \App\Models\Personnel\Fonction  $fonction
+    * @return \Illuminate\Http\Response
+    */
     public function show(Fonction $fonction)
     {
         return $fonction;
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Requests\Personnel  $request
-     * @param  \App\Models\Personnel\Fonction  $fonction
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Requests\Personnel  $request
+    * @param  \App\Models\Personnel\Fonction  $fonction
+    * @return \Illuminate\Http\Response
+    */
     public function update(EditFonctionRequest $request, Fonction $fonction)
     {
         $data = $request->validated();
@@ -93,25 +110,26 @@ class FonctionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Personnel\Fonction  $fonction
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Models\Personnel\Fonction  $fonction
+    * @return \Illuminate\Http\Response
+    */
     public function destroy(Fonction $fonction)
     {
-        $fonction->permissions()->delete();
-        $fonction->personnelles()->delete();
+        $fonction->permissions()->detach();
+        $fonction->personnelles()->detach();
+        $fonction->enfants()->detach();
         $fonction->delete();
     }
 
 
     /**
-     * Retourner tous les persmisisons des fonctions selectionnés
-     *
-     * @param Request $request Contenant les ids de la fonction
-     * @return JsonResponse
-     */
+    * Retourner tous les persmisisons des fonctions selectionnés
+    *
+    * @param Request $request Contenant les ids de la fonction
+    * @return JsonResponse
+    */
     public function permissionsFonctions(Request $request) : JsonResponse
     {
         $fonctionIds = $request->all();
@@ -121,6 +139,45 @@ class FonctionController extends Controller
         {
             $fonction = Fonction::findOrFail($id);
             $permissionIds = array_unique(array_merge($fonction->permissions->pluck('id')->toArray(), $permissionIds));
+        }
+
+        return response()->json($permissionIds);
+    }
+
+
+    /**
+     * Recuperer les permissions groupé par les fonctions passé dans request
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function permissionsGroups(Request $request) : JsonResponse
+    {
+        $fonctionIds = $request->all();
+        $permissionIds = [];
+
+        foreach ($fonctionIds as $id)
+        {
+            $fonction = Fonction::findOrFail($id);
+
+            foreach ($fonction->enfants as $fonction)
+            {
+                foreach ($fonction->permissions as $permission)
+                {
+                    $permissionIds[$fonction->nom_fonction][] = [
+                        "description" => $permission->description,
+                        "id" => $permission->id,
+                    ];
+                }
+            }
+
+            foreach ($fonction->permissions as $permission)
+            {
+                $permissionIds[$fonction->nom_fonction][] = [
+                    "description" => $permission->description,
+                    "id" => $permission->id,
+                ];
+            }
         }
 
         return response()->json($permissionIds);

@@ -54,4 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Recuperer les permissions associe a des ID
     Route::get('/permissions-fonction', [FonctionController::class, 'permissionsFonctions']);
 
+    // Recuperer les permissions groupé par fonction
+    Route::get('/permissions-groups', [FonctionController::class, 'permissionsGroups']);
+
 });

@@ -89,11 +89,21 @@
 
                     <transition name="fade">
                         <div class="mb-2 row" v-if="form.hasRole && form.hasAccount">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <Multiselect
-                                    label="description" valueProp="id" :multiple="true" v-model="form.roles"
+                                    label="description" valueProp="id" :multiple="true" v-model="form.permissions['Default']"
                                     :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
                                     :searchable="true" placeholder="Selectionner les permissions"
+                                />
+                            </div>
+
+                            <div class="col-xl-12 mb-3" v-for="(item, key, index) in permissionGroups" :key="index">
+                                <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true"
+                                    v-model="form.permissions[key]" :options="item" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                    :placeholder="'Selectionner les permissions en tant que ' + key"
                                 />
                             </div>
                         </div>
@@ -145,10 +155,13 @@ export default {
                 password: 'password',
                 password_confirmation: 'password',
                 roles: [],
+                permissions: [],
                 fonctions: [],
                 hasAccount: false,
                 hasRole: false,
             },
+            permissionGroups: [],
+            old: [],
         }
     },
     setup() {
@@ -192,11 +205,33 @@ export default {
 
         getAllPermissions () {
             let fonctionIds = this.form.fonctions
+            fonctionIds = fonctionIds.filter(el => this.old.indexOf(el) === -1)
+
+            axiosClient.get('/permissions-groups', { params: fonctionIds }).then(response => {
+                this.permissionGroups = response.data
+                if (Object.keys(this.permissionGroups).length > 0) {
+                    Object.keys(this.permissionGroups).forEach(key => {
+                        this.form.permissions[key] = this.permissionGroups[key].map(el => el.id)
+                        this.form.permissions[key] = this.form.permissions[key].filter((v, i, a) => a.indexOf(v) === i)
+                    })
+                } else {
+                    const def = this.form.permissions["Default"]
+
+                    if (def !== undefined) this.form.permissions = { Default: def }
+                    else this.form.permissions = []
+                }
+
+                this.form.permissions = Object.assign({}, this.form.permissions)
+            }).catch(error => {
+                console.log(error)
+            })
+
+            /*let fonctionIds = this.form.fonctions
             axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
                 this.form.roles = response.data
             }).catch (error => {
                 console.error(error);
-            })
+            })*/
         }
     },
     mounted() {
@@ -218,9 +253,11 @@ export default {
             };
 
             this.form.hasAccount = personnel.value.username !== null
-            this.form.roles = personnel.value.roles.map(item => item.id)
+            this.form.permissions =  { Default: personnel.value.roles.map(item => item.id) }
             this.form.fonctions = personnel.value.fonctions.map(item => item.id)
             this.form.hasRole = personnel.value.roles.length > 0
+
+            this.old = this.form.fonctions
         }); // Recuperer le personnel
 
         getRoles(1, 0); // Recuperer toutes les roles et le mettre dans la variable réactive roles

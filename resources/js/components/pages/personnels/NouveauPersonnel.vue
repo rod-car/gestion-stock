@@ -89,11 +89,21 @@
 
                     <transition name="fade">
                         <div class="mb-2 row" v-if="personnel.hasRole && personnel.hasAccount">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <Multiselect
-                                    label="description" valueProp="id" :multiple="true" v-model="personnel.roles"
+                                    label="description" valueProp="id" :multiple="true" v-model="personnel.permissions['Default']"
                                     :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
-                                    :searchable="true" placeholder="Selectionner les permissions"
+                                    :searchable="true" placeholder="Selectionner les permissions supplémentaires"
+                                />
+                            </div>
+
+                            <div class="col-xl-12 mb-3" v-for="(item, key, index) in permissionGroups" :key="index">
+                                <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true"
+                                    v-model="personnel.permissions[key]" :options="item" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                    :placeholder="'Selectionner les permissions en tant que ' + key"
                                 />
                             </div>
                         </div>
@@ -147,7 +157,9 @@ export default {
                 fonctions: [],
                 hasAccount: false,
                 hasRole: false,
+                permissions: [],
             },
+            permissionGroups: null,
         }
     },
     setup() {
@@ -200,20 +212,33 @@ export default {
             };
         },
 
-        searchRole (e) {
-            setTimeout(() => {
-                let query = e.target.value
-                findRoles(query)
-            }, 500)
-        },
-
         getAllPermissions () {
             let fonctionIds = this.personnel.fonctions
-            axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
+
+            axiosClient.get('/permissions-groups', { params: fonctionIds }).then(response => {
+                this.permissionGroups = response.data
+                if (Object.keys(this.permissionGroups).length > 0) {
+                    Object.keys(this.permissionGroups).forEach(key => {
+                        this.personnel.permissions[key] = this.permissionGroups[key].map(el => el.id)
+                        this.personnel.permissions[key] = this.personnel.permissions[key].filter((v, i, a) => a.indexOf(v) === i)
+                    })
+                } else {
+                    const def = this.personnel.permissions["Default"]
+
+                    if (def !== undefined) this.personnel.permissions = { Default: def }
+                    else this.personnel.permissions = []
+                }
+
+                this.personnel.permissions = Object.assign({}, this.personnel.permissions)
+            }).catch(error => {
+                console.log(error)
+            })
+
+            /*axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
                 this.personnel.roles = response.data
             }).catch (error => {
                 alert('Error')
-            })
+            })*/
         }
     },
     mounted() {

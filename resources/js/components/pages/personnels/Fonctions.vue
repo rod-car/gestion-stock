@@ -14,29 +14,48 @@
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors" />
 
+                {{ form.permissions }}
+
                 <div v-if="creating" class="mt-3 mb-3">
                     <form action="" method="post">
                         <div class="row">
                             <div class="col-xl-12 mb-3">
                                 <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
                             </div>
+
                             <div class="col-xl-12 mb-3">
-                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
-                            </div>
-                            <div class="col-xl-12 mb-3">
-                                <label class="form-label" for="permissions">Selectionner les permissions</label>
+                                <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
                                 <Multiselect
-                                    label="description"
-                                    valueProp="id"
-                                    :multiple="true"
-                                    v-model="form.permissions"
-                                    :options="roles"
-                                    mode="tags"
-                                    :closeOnSelect="false"
-                                    :clearOnSelect="false"
-                                    :searchable="true"
+                                    label="nom_fonction" valueProp="id" :multiple="true"
+                                    v-model="form.enfants" :options="enfants" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                    placeholder="Selectionner les fonctions"
+                                    @close="groupPermissions"
+                                />
+                            </div>
+
+                            <div class="col-xl-12 mb-3">
+                                <label class="form-label" for="permissions">Selectionner les permissions (<span class="text-danger">*</span>)</label>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true"
+                                    v-model="form.permissions['Default']" :options="roles" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
                                     placeholder="Selectionner les permissions"
                                 />
+                            </div>
+
+                            <div class="col-xl-12 mb-3" v-for="(item, key, index) in groups" :key="index">
+                                <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
+                                <Multiselect
+                                    label="description" valueProp="id" :multiple="true"
+                                    v-model="form.permissions[key]" :options="item" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                    placeholder="Selectionner les permissions"
+                                />
+                            </div>
+
+                            <div class="col-xl-12 mb-3">
+                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
                             </div>
                             <div class="col-xl-12 mb-3 d-flex justify-content-end">
                                 <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
@@ -51,9 +70,17 @@
                             <div class="col-xl-12 mb-3">
                                 <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
                             </div>
+
                             <div class="col-xl-12 mb-3">
-                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
+                                <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
+                                <Multiselect
+                                    label="nom_fonction" valueProp="id" :multiple="true"
+                                    v-model="form.enfants" :options="enfants" mode="tags"
+                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                    placeholder="Selectionner les fonctions"
+                                />
                             </div>
+
                             <div class="col-xl-12 mb-3">
                                 <label class="form-label" for="permissions">Selectionner les permissions</label>
                                 <Multiselect
@@ -62,6 +89,11 @@
                                     :searchable="true" placeholder="Selectionner les permissions"
                                 />
                             </div>
+
+                            <div class="col-xl-12 mb-3">
+                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
+                            </div>
+
                             <div class="col-xl-12 mb-3 d-flex justify-content-end">
                                 <button @click.prevent="isEditing = false" class="btn btn-danger me-2"><i class="fa fa-close me-2"></i>Annuler</button>
                                 <SaveBtn @click.prevent="update">Mettre a jour</SaveBtn>
@@ -129,6 +161,9 @@ import EditBtn from '../../html/EditBtn.vue';
 
 import Multiselect from '@vueform/multiselect'
 import useRoles from '../../../services/RoleServices';
+import axiosClient from '../../../axios';
+
+import { ref } from 'vue';
 
 const { success, errors, fonction, fonctions, deleteFonction, getFonction, updateFonction, getFonctions, createFonction, resetFlashMessages } = useFonctions();
 const { roles, getRoles } = useRoles();
@@ -140,9 +175,12 @@ export default {
                 nom_fonction: null,
                 description_fonction: null,
                 permissions: [],
+                enfants: [],
             },
             isCreating: false,
             isEditing: false,
+            groups: null ,
+            selectedValue: [],
         }
     },
     components: {
@@ -160,10 +198,13 @@ export default {
     },
 
     mounted() {
-        getFonctions()
+        getFonctions().then(() => {
+            this.enfants = fonctions.value.data
+        })
         resetFlashMessages()
         getRoles(null, 0);
     },
+
     methods: {
         /**
          * Confirmer la suppresion d'un personnel
@@ -242,6 +283,7 @@ export default {
                 nom_fonction: null,
                 description_fonction: null,
                 permissions: [],
+                enfants: [],
             }
         },
 
@@ -253,6 +295,7 @@ export default {
          * @return  {void}
          */
         editFonction (id) {
+            this.editId = id
             getFonction(id).then((response) => {
                 this.form = {
                     nom_fonction: fonction.value.nom_fonction,
@@ -267,7 +310,27 @@ export default {
                 });
             })
 
+            getFonctions().then(() => {
+                let enfants = fonctions.value.data.filter((item) => {
+                    return item.id !== id
+                })
+                this.enfants = enfants
+            })
         },
+
+        groupPermissions () {
+            axiosClient.get('/permissions-groups', { params: this.form.enfants }).then(response => {
+                this.groups = response.data
+
+                Object.keys(this.groups).forEach(key => {
+                    this.form.permissions[key] = this.groups[key].map(el => el.id)
+                })
+
+                this.form.permissions = Object.assign({}, this.form.permissions)
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     },
 }
 </script>

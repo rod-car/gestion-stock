@@ -38,6 +38,8 @@ class EditUserRequest extends FormRequest
             'password' => ["nullable", "required_if:hasAccount,true", "confirmed", "min:8", "max:255"],
             'password_confirmation' => ["nullable", "required_if:hasAccount,true", "min:8", "max:255"],
 
+            'permissions' => ["nullable", "array"],
+
             'roles' => ["nullable", "array"],
             'roles.*' => ["nullable", "exists:roles,id"],
 

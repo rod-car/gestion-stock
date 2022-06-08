@@ -4,6 +4,7 @@ namespace App\Models\Personnel;
 
 use App\Models\Role\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -27,6 +28,11 @@ class Fonction extends Model
     protected $appends = ['permissionIds'];
 
 
+    /**
+     * recuperer seulement l'id des permissions
+     *
+     * @return Collection
+     */
     public function getPermissionIdsAttribute()
     {
         return $this->permissions()->pluck('id');
@@ -51,5 +57,16 @@ class Fonction extends Model
     public function personnelles() : BelongsToMany
     {
         return $this->belongsToMany(User::class, 'personnel_fonctions', 'fonction', 'personnel');
+    }
+
+
+    /**
+     * Recuperer les sous fonctions de la fonction actuel
+     *
+     * @return BelongsToMany
+     */
+    public function enfants() : BelongsToMany
+    {
+        return $this->belongsToMany(Fonction::class, "fonction_inclusions", "fonction_parent", "fonction_enfant");
     }
 }

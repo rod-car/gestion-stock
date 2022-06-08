@@ -32,7 +32,7 @@
                         </tr>
                     </tbody>
                     <tbody v-if="!loading">
-                        <tr v-for="personnelle in personnelles.data" v-bind:key="personnelle.id">
+                        <tr v-for="(personnelle, index) in personnelles.data" v-bind:key="personnelle.id">
                             <td>{{ personnelle.id }}</td>
                             <td>{{ personnelle.nom_personnel }}</td>
                             <td>{{ personnelle.prenoms_personnel }}</td>
@@ -48,7 +48,7 @@
                                 <router-link :to="{ name: 'gestion-des-personnels.personnel.profil', params: { id: personnelle.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link v-if="$can('edit_user')" :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnelle.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                                 <form v-if="$can('delete_user')" action="" method="post">
-                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id)"/>
+                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(personnelle.id, index)"/>
                                 </form>
                             </td>
                         </tr>
@@ -70,7 +70,7 @@ import usePersonnelles from '../../../services/PersonnelServices';
 import DeleteBtn from '../../html/DeleteBtn';
 import Alert from '../../html/Alert.vue';
 
-const { success, errors, personnelles, deletePersonnel, getPersonnelles, resetFlashMessages } = usePersonnelles();
+const { success, errors, loading, personnelles, deletePersonnel, getPersonnelles, resetFlashMessages } = usePersonnelles();
 
 export default {
     components: {
@@ -80,7 +80,7 @@ export default {
     },
     setup() {
         return {
-            errors, success, personnelles,
+            errors, success, personnelles, loading,
             deletePersonnel, getPersonnelles, resetFlashMessages,
         };
     },
@@ -96,9 +96,10 @@ export default {
          *
          * @return  {void}
          */
-        confirmDeletion (id) {
+        confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce personnel ?", "Question", "question").then(() => {
                 deletePersonnel(id)
+                personnelles.value.data.splice(index)
                 SimpleAlert.alert("Supprimé avec succes", "Message", "success")
             }).catch (error => {
                 if (error !== undefined) {

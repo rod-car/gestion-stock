@@ -27,11 +27,12 @@ class NewFonctionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom_fonction' => ["required", "sometimes", "min:2", "max:255"],
+            'nom_fonction' => ["required", "sometimes", "min:2", "max:255", "unique:fonctions,nom_fonction"],
             'description_fonction' => ["nullable", "sometimes", "min:5", "max:5000"],
 
+            'enfants' => ["nullable", "array"],
             'permissions' => ["nullable", "array"],
-            'permissions.*' => ["nullable", "exists:roles,id"]
+            //'permissions.*' => ["nullable", "exists:roles,id"]
         ];
     }
 
@@ -47,6 +48,7 @@ class NewFonctionRequest extends FormRequest
             'nom_fonction.required' => "Le nom de la fonction est réquis",
             'nom_fonction.min' => "Le nom de la fonction doit être au moins :min caractère(s)",
             'nom_fonction.max' => "Le nom de la fonction ne doit pas depasser :max caractère(s)",
+            'nom_fonction.unique' => "Cette fonction existe déja",
 
             'description_fonction.min' => "Le description doit être au moins :min caractère(s)",
             'description_fonction.max' => "Le description ne doit pas depasser :max caractère(s)",
