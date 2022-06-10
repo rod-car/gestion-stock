@@ -2,13 +2,12 @@
 
 namespace App\Models\Personnel;
 
-use App\Models\Role\Role;
 use App\Models\User;
+use App\Models\Role\Role;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Model permettant de representer les fonctions dans l'application

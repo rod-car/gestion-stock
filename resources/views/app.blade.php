@@ -8,6 +8,8 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
@@ -27,7 +29,18 @@
 
 <body>
     <div id="app">
-        <default-layout-component />
+        @auth
+            <default-layout-component></default-layout-component>
+        @endauth
+        @guest
+            <script>
+                window.history.pushState(null, null, '/login')
+                /*if (window.location.pathname !== "/login") {
+                    window.location = '/login'
+                }*/
+            </script>
+            <login></login>
+        @endguest
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>

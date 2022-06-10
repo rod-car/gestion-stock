@@ -7,9 +7,9 @@
         </div>
         <!-- preloader area end -->
         <!-- page container area start -->
-        <div v-bind:class="isConnected ? '' : 'ps-0'" class="page-container">
+        <div class="page-container">
             <!-- sidebar menu area start -->
-            <div v-if="isConnected" class="sidebar-menu">
+            <div class="sidebar-menu">
                 <div class="sidebar-header">
                     <div class="logo">
                         <router-link to="/" class="w-75" style="max-width:100%!important"><img src="/images/app-logo.png" alt="logo"></router-link>
@@ -94,7 +94,7 @@
             <!-- main content area start -->
             <div class="main-content">
                 <!-- header area start -->
-                <div v-if="isConnected" class="header-area">
+                <div class="header-area">
                     <div class="row align-items-center">
                         <!-- nav and search button -->
                         <div class="col-md-6 col-sm-8 clearfix">
@@ -182,21 +182,21 @@
                 </div>
 
                 <div class="main-content-inner">
-                    <router-view v-bind:class="isConnected ? 'mt-5' : ''"></router-view>
+                    <router-view class="mt-5"></router-view>
                 </div>
             </div>
             <!-- main content area end -->
             <!-- footer area start-->
-            <footer v-if="isConnected">
+            <footer>
                 <div class="footer-area">
-                    <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+                    <p>© Copyright 2018. All right reserved.</p>
                 </div>
             </footer>
             <!-- footer area end-->
         </div>
         <!-- page container area end -->
         <!-- offset area start -->
-        <div v-if="isConnected" class="offset-area">
+        <div class="offset-area">
             <div class="offset-close"><i class="ti-close"></i></div>
             <ul class="nav offset-menu-tab">
                 <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
@@ -391,10 +391,6 @@
             }
         },
 
-        components: {
-
-        },
-
         mounted() {
             this.$Progress.finish();
         },
@@ -409,7 +405,8 @@
                         { subject: 'all', action: response.data }
                     ])
 
-                    if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) { // Si pas de privilège necessaire
+                    if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) {
+                        // Si pas de privilège necessaire
                         this.$router.push('/403')
                     }
                 }).catch(err => {
@@ -436,7 +433,8 @@
             async logOut () {
                 await axiosClient.post('/auth/logout')
                 this.resetUser()
-                this.$router.push('/login')
+                // this.$router.push('/login')
+                window.location.href = '/login'
             },
 
             /**

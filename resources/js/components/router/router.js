@@ -13,13 +13,14 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: Login,
+        meta: { requiresGuest: true },
     },
     {
         path: '/',
         name: 'home',
         component: Home,
-        meta: {requiresAuth: true}
+        meta: { requiresAuth: true }
     },
     {
         path: '/dashboard',
@@ -67,12 +68,7 @@ const router = createRouter({
 });
 
 /*router.beforeEach((to, from, next) => {
-    //Recuperer l'information de la route pour le mettre dans le breadcrumb
-    let name = to.name.split('.').at(0)
-    window.bcName = ucfirst(name)
-    window.bcPath = to.path
-    window.bcTree = window.bcPath.replace('/', '').split('/')
-
+    debugger
     // Mettre des indications pour la route active
     try {
         document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
@@ -82,7 +78,7 @@ const router = createRouter({
         element.classList.add('in')
         element.parentElement.classList.add('active')
     } catch (error) {
-        console.log("Une erreur s'et produite : " + error);
+        console.log("Une erreur s'et produite : " + error, to.path);
     }
 
     next();
@@ -96,8 +92,12 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !store.state.user.token) {
         next({name: 'login'});
     } else {
+        if (to.meta.requiresGuest && store.state.user.token) {
+            next({name: 'dashboard'});
+        }
         next();
     }
+
 
 });
 

@@ -94,8 +94,8 @@ export default {
                 localStorage.setItem('auth_token', response.data.token);
 
                 this.loading = false;
-                //window.location = "/dashboard"
-                this.$router.push('/dashboard')
+                window.location = "/dashboard"
+                // this.$router.push('/dashboard')
             }
             catch(err)
             {

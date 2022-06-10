@@ -5,66 +5,69 @@
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="text-uppercase text-info">Liste des fonctions</h5>
-                    <button v-if="editing === false" @click.prevent="showNewForm" v-bind:class="isCreating ? 'btn btn-danger' : 'btn btn-primary'">
-                        <span v-if="isCreating"><i class="fa fa-close me-2"></i>Fermer</span>
-                        <span v-else><i class="fa fa-plus me-2"></i>Ajouter une nouvelle</span>
-                    </button>
+
+                    <Transition name="slide-fade">
+                        <button v-if="editing === false" @click.prevent="showNewForm" v-bind:class="isCreating ? 'btn btn-danger' : 'btn btn-primary'">
+                            <span v-if="isCreating"><i class="fa fa-close me-2"></i>Fermer</span>
+                            <span v-else><i class="fa fa-plus me-2"></i>Ajouter une nouvelle</span>
+                        </button>
+                    </Transition>
                 </div>
 
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors" />
 
-                {{ form.permissions }}
+                <Transition name="slide-fade">
+                    <div v-if="creating" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded">
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-xl-12 mb-3">
+                                    <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
+                                </div>
 
-                <div v-if="creating" class="mt-3 mb-3">
-                    <form action="" method="post">
-                        <div class="row">
-                            <div class="col-xl-12 mb-3">
-                                <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
-                            </div>
+                                <div class="col-xl-12 mb-3">
+                                    <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
+                                    <Multiselect
+                                        label="nom_fonction" valueProp="id" :multiple="true"
+                                        v-model="form.enfants" :options="enfants" mode="tags"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        placeholder="Selectionner les fonctions"
+                                        @close="groupPermissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3">
-                                <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
-                                <Multiselect
-                                    label="nom_fonction" valueProp="id" :multiple="true"
-                                    v-model="form.enfants" :options="enfants" mode="tags"
-                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
-                                    placeholder="Selectionner les fonctions"
-                                    @close="groupPermissions"
-                                />
-                            </div>
+                                <div class="col-xl-12 mb-3">
+                                    <label class="form-label" for="permissions">Selectionner les permissions (<span class="text-danger">*</span>)</label>
+                                    <Multiselect
+                                        label="description" valueProp="id" :multiple="true"
+                                        v-model="form.permissions['Default']" :options="roles" mode="tags"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        placeholder="Selectionner les permissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3">
-                                <label class="form-label" for="permissions">Selectionner les permissions (<span class="text-danger">*</span>)</label>
-                                <Multiselect
-                                    label="description" valueProp="id" :multiple="true"
-                                    v-model="form.permissions['Default']" :options="roles" mode="tags"
-                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
-                                    placeholder="Selectionner les permissions"
-                                />
-                            </div>
+                                <div class="col-xl-12 mb-3" v-for="(item, key, index) in groups" :key="index">
+                                    <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
+                                    <Multiselect
+                                        label="description" valueProp="id" :multiple="true"
+                                        v-model="form.permissions[key]" :options="item" mode="tags"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        placeholder="Selectionner les permissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3" v-for="(item, key, index) in groups" :key="index">
-                                <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
-                                <Multiselect
-                                    label="description" valueProp="id" :multiple="true"
-                                    v-model="form.permissions[key]" :options="item" mode="tags"
-                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
-                                    placeholder="Selectionner les permissions"
-                                />
+                                <div class="col-xl-12 mb-3">
+                                    <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
+                                </div>
+                                <div class="col-xl-12 mb-3 d-flex justify-content-end">
+                                    <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
+                                </div>
                             </div>
+                        </form>
+                    </div>
+                </Transition>
 
-                            <div class="col-xl-12 mb-3">
-                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
-                            </div>
-                            <div class="col-xl-12 mb-3 d-flex justify-content-end">
-                                <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div v-if="editing" class="mt-3 mb-3">
+                <div v-if="editing" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded">
                     <form action="" method="post">
                         <div class="row">
                             <div class="col-xl-12 mb-3">
@@ -102,44 +105,46 @@
                     </form>
                 </div>
 
-                <table class="table table-striped table-hover">
-                    <thead class="text-uppercase">
-                        <tr>
-                            <th>ID</th>
-                            <th>Libelle</th>
-                            <th>Description</th>
-                            <th>Nombre de personnel</th>
-                            <th>Permissions</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody v-if="loading">
-                        <tr>
-                            <td class="text-center text-info" colspan="4">Chargement des données</td>
-                        </tr>
-                    </tbody>
-                    <tbody v-if="!loading">
-                        <tr v-for="fonction in fonctions.data" v-bind:key="fonction.id">
-                            <td>{{ fonction.id }}</td>
-                            <td>{{ fonction.nom_fonction }}</td>
-                            <td>{{ fonction.description_fonction ?? "Aucune description" }}</td>
-                            <td>{{ fonction.personnelles_count === 0 ? "Aucune personnel" : fonction.personnelles_count }}</td>
-                            <td>
-                                <span v-for="permission in fonction.permissions" :key="permission.id" class="badge bg-success me-2">{{ permission.description }}</span>
-                            </td>
+                <Transition name="fade">
+                    <table class="table table-striped table-hover">
+                        <thead class="text-uppercase">
+                            <tr>
+                                <th>ID</th>
+                                <th>Libelle</th>
+                                <th>Description</th>
+                                <th>Nombre de personnel</th>
+                                <th>Permissions</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody v-if="loading">
+                            <tr>
+                                <td class="text-center text-info" colspan="4">Chargement des données</td>
+                            </tr>
+                        </tbody>
+                        <tbody v-if="!loading">
+                            <tr v-for="fonction in fonctions.data" v-bind:key="fonction.id">
+                                <td>{{ fonction.id }}</td>
+                                <td>{{ fonction.nom_fonction }}</td>
+                                <td>{{ fonction.description_fonction ?? "Aucune description" }}</td>
+                                <td>{{ fonction.personnelles_count === 0 ? "Aucune personnel" : fonction.personnelles_count }}</td>
+                                <td>
+                                    <span v-for="permission in fonction.permissions" :key="permission.id" class="badge bg-success me-2">{{ permission.description }}</span>
+                                </td>
 
-                            <td class="d-flex justify-content-between">
-                                <EditBtn v-if="creating === false" @click.prevent="editFonction(fonction.id)" />
-                                <form action="" method="post">
-                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(fonction.id)" />
-                                </form>
-                            </td>
-                        </tr>
-                        <tr v-if="fonctions.data && fonctions.data.length === 0">
-                            <td class="text-center" colspan="6">Aucune fonction définie</td>
-                        </tr>
-                    </tbody>
-                </table>
+                                <td class="d-flex justify-content-between">
+                                    <EditBtn v-if="creating === false" @click.prevent="editFonction(fonction.id)" />
+                                    <form action="" method="post">
+                                        <DeleteBtn type="danger" @click.prevent="confirmDeletion(fonction.id)" />
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr v-if="fonctions.data && fonctions.data.length === 0">
+                                <td class="text-center" colspan="6">Aucune fonction définie</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </Transition>
 
                 <div class="pagination">
                     <pagination align="center" :data="fonctions" @pagination-change-page="getFonctions"></pagination>
@@ -339,6 +344,24 @@ export default {
     .pagination{
         margin-top: 20px;
         margin-bottom: 0;
+    }
+
+    .slide-fade-enter-active {
+        transition: all 0.3s ease-out;
+    }
+
+    .slide-fade-leave-active {
+        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .slide-fade-enter-from,
+    .slide-fade-leave-to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    .slide-down {
+        transition: all 2s ease-out;
     }
 </style>
 

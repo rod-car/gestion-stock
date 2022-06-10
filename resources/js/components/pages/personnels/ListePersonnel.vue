@@ -28,7 +28,7 @@
                     </thead>
                     <tbody v-if="loading">
                         <tr>
-                            <td class="text-center text-info" colspan="4">Chargement des données</td>
+                            <td class="text-center text-info" colspan="10">Chargement des données</td>
                         </tr>
                     </tbody>
                     <tbody v-if="!loading">
