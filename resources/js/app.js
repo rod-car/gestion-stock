@@ -13,6 +13,9 @@ import VueProgressBar from "@aacassandra/vue3-progressbar";
 import { abilitiesPlugin } from '@casl/vue';
 import ability from './services/ability';
 
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
 const options = {
     color: "#58BFD9",
     failedColor: "#874b4b",
@@ -41,4 +44,5 @@ createApp({
     .use(abilitiesPlugin, ability, {
         useGlobalProperties: true
     })
+    .use(VueSidebarMenu)
     .mount('#app');

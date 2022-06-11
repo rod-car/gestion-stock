@@ -5,11 +5,20 @@
         <div id="preloader">
             <div class="loader"></div>
         </div>
+
+        <sidebar-menu
+            class="sidebar"
+            @update:collapsed="onCollapse"
+            :menu="menu"
+            width="290px"
+            showOneChild=true
+            theme='white-theme'
+        />
+
         <!-- preloader area end -->
         <!-- page container area start -->
-        <div class="page-container">
             <!-- sidebar menu area start -->
-            <div class="sidebar-menu">
+            <!--div class="sidebar-menu">
                 <div class="sidebar-header">
                     <div class="logo">
                         <router-link to="/" class="w-75" style="max-width:100%!important"><img src="/images/app-logo.png" alt="logo"></router-link>
@@ -89,10 +98,10 @@
                         </nav>
                     </div>
                 </div>
-            </div>
+            </div-->
             <!-- sidebar menu area end -->
             <!-- main content area start -->
-            <div class="main-content">
+            <div class="main-content" id="view" :class="[{'collapsed' : collapsed}]">
                 <!-- header area start -->
                 <div class="header-area">
                     <div class="row align-items-center">
@@ -181,9 +190,8 @@
                     </div>
                 </div>
 
-                <div class="main-content-inner">
-                    <router-view class="mt-5"></router-view>
-                </div>
+                <router-view class="mt-5 mb-5 me-5"></router-view>
+
             </div>
             <!-- main content area end -->
             <!-- footer area start-->
@@ -192,8 +200,6 @@
                     <p>© Copyright 2018. All right reserved.</p>
                 </div>
             </footer>
-            <!-- footer area end-->
-        </div>
         <!-- page container area end -->
         <!-- offset area start -->
         <div class="offset-area">
@@ -391,6 +397,57 @@
             }
         },
 
+        data() {
+            return {
+                menu: [
+                    {
+                        header: 'Navigation',
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        href: '/',
+                        title: 'Dashboard',
+                        icon: 'fa fa-bar-chart'
+                    },
+                    {
+                        //href: '/charts',
+                        title: 'Personnel',
+                        icon: 'fa fa-users',
+                        child: [
+                            {
+                                href: '/personnel/nouveau',
+                                title: 'Nouveau personnel',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                            },
+                            {
+                                href: '/personnel/liste',
+                                title: 'Liste des personnel',
+                                icon: 'fa fa-list',
+                            },
+                            {
+                                href: '/personnel/fonctions',
+                                title: 'Les fonctions & rôles',
+                                icon: 'fa fa-tasks',
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Paramètres',
+                        icon: 'fa fa-cog',
+                        child: [
+                            {
+                                href: '/point-de-vente/liste',
+                                title: 'Dévise',
+                                icon: 'fa fa-money',
+                            },
+                        ]
+                    },
+                ],
+                collapsed: false
+            }
+        },
+
         mounted() {
             this.$Progress.finish();
         },
@@ -437,6 +494,10 @@
                 window.location.href = '/login'
             },
 
+            onCollapse(c) {
+                this.collapsed = c;
+            },
+
             /**
              * Mettre l'utilisateur connecté dans le store
              *
@@ -470,3 +531,33 @@
         }
     }
 </script>
+
+
+<style>
+
+#view {
+    padding-left: 300px;
+    transition: all;
+    transition-duration: .3s;
+}
+
+#view.collapsed {
+    transition-duration: .5s;
+    padding-left: 80px;
+}
+
+.sidebar.v-sidebar-menu .vsm-arrow:after {
+  content: "\f105";
+  font-family: "FontAwesome";
+}
+
+.sidebar.v-sidebar-menu .collapse-btn:after {
+  content: "\f07e";
+  font-family: "FontAwesome";
+}
+
+.sidebar {
+    background: red;
+}
+
+</style>
