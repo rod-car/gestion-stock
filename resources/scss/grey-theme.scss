@@ -4,7 +4,7 @@ $base-bg: #17191f;
 $item-color: #e2f2f9;
 
 $item-active-color: #ffffff;
-$item-active-bg: #D11149;
+$item-active-bg: #495867;
 $item-active-line-color: $primary-color ;
 
 $item-open-color: #e2f2f9;
@@ -22,10 +22,10 @@ $icon-active-bg: #5cc0dc;
 $icon-open-color: $primary-color;
 $icon-open-bg: #ffffff ;
 
-$mobile-item-color: rgb(128, 125, 125);
-$mobile-item-bg: $primary-color ;
-$mobile-icon-color: $mobile-item-color ;
-$mobile-icon-bg: $mobile-item-bg ;
+$mobile-item-color: #ffffff;
+$mobile-item-bg: $primary-color;
+$mobile-icon-color: $primary-color;
+$mobile-icon-bg: #ffffff ;
 
 $dropdown-color: #ffffff;
 $dropdown-bg: lighten($base-bg, 5%);

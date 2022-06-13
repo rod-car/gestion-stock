@@ -424,7 +424,7 @@
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_active {
   color: #ffffff;
-  background-color: #D11149;
+  background-color: #495867;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_level-1.vsm--link_active {
   box-shadow: 3px 0px 0px 0px #2596be inset;
@@ -441,7 +441,7 @@
   background-color: rgba(12, 13, 16, 0.5);
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_mobile {
-  color: rgb(128, 125, 125);
+  color: #ffffff;
 }
 .v-sidebar-menu.vsm_grey-theme.vsm_expanded .vsm--link_level-1.vsm--link_open {
   color: #e2f2f9;
@@ -452,8 +452,8 @@
   background-color: #ffffff;
 }
 .v-sidebar-menu.vsm_grey-theme.vsm_collapsed .vsm--link_level-1.vsm--link_hover .vsm--icon {
-  color: rgb(128, 125, 125);
-  background-color: #2596be;
+  color: #2596be;
+  background-color: #ffffff;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--icon {
   color: #54b4dc;
