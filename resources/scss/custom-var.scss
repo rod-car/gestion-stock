@@ -1,0 +1,42 @@
+$primary-color: #98b823;
+$base-bg: #2a2a2e;
+
+$item-color: rgb(239, 9, 9);
+
+$item-active-color: null !default;
+$item-active-bg: null !default;
+$item-active-line-color: $primary-color  !default;
+
+$item-open-color: rgb(107, 115, 108) !default;
+$item-open-bg: $primary-color  !default;
+
+$item-hover-color: null !default;
+$item-hover-bg: rgba(darken($base-bg, 5%), 0.5) !default;
+
+$icon-color: null !default;
+$icon-bg: darken($base-bg, 5%) !default;
+
+$icon-active-color: null !default;
+$icon-active-bg: null !default;
+
+$icon-open-color: null !default;
+$icon-open-bg: $item-open-bg  !default;
+
+$mobile-item-color: rgb(86, 46, 46) !default;
+$mobile-item-bg: $primary-color  !default;
+$mobile-icon-color: $mobile-item-color  !default;
+$mobile-icon-bg: $mobile-item-bg  !default;
+
+$dropdown-color: red !default;
+$dropdown-bg: lighten($base-bg, 5%) !default;
+
+$header-item-color: rgba($item-color, 0.7) !default;
+
+$toggle-btn-color: rgb(228, 233, 214) !default;
+$toggle-btn-bg: darken($base-bg, 5%) !default;
+
+$item-font-size: 16px !default;
+$item-line-height: 30px !default;
+$item-padding: 10px 15px !default;
+$icon-height: 35px !default;
+$icon-width: 35px !default;

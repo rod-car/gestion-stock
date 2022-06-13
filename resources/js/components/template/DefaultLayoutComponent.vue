@@ -12,7 +12,7 @@
             :menu="menu"
             width="290px"
             showOneChild=true
-            theme='white-theme'
+            theme='grey-theme'
         />
 
         <!-- preloader area end -->

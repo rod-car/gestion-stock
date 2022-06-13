@@ -14,7 +14,7 @@ import { abilitiesPlugin } from '@casl/vue';
 import ability from './services/ability';
 
 import VueSidebarMenu from 'vue-sidebar-menu'
-import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+// import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 const options = {
     color: "#58BFD9",
