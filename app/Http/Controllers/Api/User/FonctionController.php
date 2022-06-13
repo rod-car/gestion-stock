@@ -76,7 +76,7 @@ class FonctionController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
+    * Mise a jour de la fonciton
     *
     * @param  \Illuminate\Http\Requests\Personnel  $request
     * @param  \App\Models\Personnel\Fonction  $fonction
@@ -86,22 +86,43 @@ class FonctionController extends Controller
     {
         $data = $request->validated();
 
-        $permissionIds = $data["permissions"];
+        $permissionsGroups = $data["permissions"];
+        $fonctionsEnfantsIds = $data["enfants"];
+
+        $permissions = []; // Ids de tous les permisions provenant du formulaire
 
         unset($data["permissions"]);
+        unset($data["enfants"]);
 
-        $fonction->update($data);
+        // crée les tableau des permissions unique
+        foreach ($permissionsGroups as $permissionGroup) { $permissions = array_unique(array_merge($permissions, $permissionGroup)); }
 
-        foreach ($fonction->permissions as $permission)
+        $fonction->update($data); // Mise a jour de la fonction elle-même
+
+        // Mise a jour des fonctions enfants ou fonction inclus
+        foreach ($fonction->enfants as $fonctionEnfant)
         {
-            if (!in_array($permission->id, $permissionIds)) $fonction->permissions()->detach($permission->id); // Supprimer les roles qui ne sont plus present
+            if (!in_array($fonctionEnfant->id, $fonctionsEnfantsIds)) $fonction->enfants()->detach($fonctionEnfant->id); // Supprimer la fonction enfant qui est retiré
         }
 
-        $actualPermissionIds = $fonction->permissions->pluck('id')->toArray();
+        $actualEnfantsIds = $fonction->enfants->pluck('id')->toArray(); // Fonction enfants actuel de la fonction
 
-        foreach ($permissionIds as $id)
+        foreach ($fonctionsEnfantsIds as $id)
         {
-            if (!in_array($id, $actualPermissionIds)) $fonction->permissions()->attach($id); // Ajouter les nouveaux roles
+            if (!in_array($id, $actualEnfantsIds)) $fonction->permissions()->attach($id); // Ajouter les nouveaux enfants de la fonction
+        }
+
+        // Mise a jour des permissions
+        foreach ($fonction->permissions as $permission)
+        {
+            if (!in_array($permission->id, $permissions)) $fonction->permissions()->detach($permission->id); // Supprimer les permissions qui ne sont plus present
+        }
+
+        $actualPermissionIds = $fonction->permissions->pluck('id')->toArray(); // Permissions actuel de la fonction
+
+        foreach ($permissions as $id)
+        {
+            if (!in_array($id, $actualPermissionIds)) $fonction->permissions()->attach($id); // Ajouter les nouveaux permissions
         }
 
         return response()->json([

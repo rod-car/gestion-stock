@@ -67,43 +67,56 @@
                     </div>
                 </Transition>
 
-                <div v-if="editing" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded">
-                    <form action="" method="post">
-                        <div class="row">
-                            <div class="col-xl-12 mb-3">
-                                <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
-                            </div>
+                <Transition name="slide-fade">
+                    <div v-if="editing" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded">
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-xl-12 mb-3">
+                                    <Input v-model="form.nom_fonction" :error="errors.nom_fonction" :required="true">Nom de la fonction</Input>
+                                </div>
 
-                            <div class="col-xl-12 mb-3">
-                                <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
-                                <Multiselect
-                                    label="nom_fonction" valueProp="id" :multiple="true"
-                                    v-model="form.enfants" :options="enfants" mode="tags"
-                                    :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
-                                    placeholder="Selectionner les fonctions"
-                                />
-                            </div>
+                                <div class="col-xl-12 mb-3">
+                                    <label class="form-label" for="permissions">Fonctions inclus s'il y en a</label>
+                                    <Multiselect
+                                        label="nom_fonction" valueProp="id" :multiple="true"
+                                        v-model="form.enfants" :options="enfants" mode="tags"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        placeholder="Selectionner les fonctions"
+                                        @close="groupPermissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3">
-                                <label class="form-label" for="permissions">Selectionner les permissions</label>
-                                <Multiselect
-                                    label="description" valueProp="id" :multiple="true" v-model="form.permissions"
-                                    :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
-                                    :searchable="true" placeholder="Selectionner les permissions"
-                                />
-                            </div>
+                                <div class="col-xl-12 mb-3">
+                                    <label class="form-label" for="permissions">Selectionner les permissions supplémentaire</label>
+                                    <Multiselect
+                                        label="description" valueProp="id" :multiple="true" v-model="form.permissions['default']"
+                                        :options="roles" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                                        :searchable="true" placeholder="Selectionner les permissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3">
-                                <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
-                            </div>
+                                <div class="col-xl-12 mb-3" v-for="(item, key, index) in groups" :key="index">
+                                    <label class="form-label" for="permissions">Permissions en tant que {{ key }}</label>
+                                    <Multiselect
+                                        label="description" valueProp="id" :multiple="true"
+                                        v-model="form.permissions[key]" :options="item" mode="tags"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        placeholder="Selectionner les permissions"
+                                    />
+                                </div>
 
-                            <div class="col-xl-12 mb-3 d-flex justify-content-end">
-                                <button @click.prevent="isEditing = false" class="btn btn-danger me-2"><i class="fa fa-close me-2"></i>Annuler</button>
-                                <SaveBtn @click.prevent="update">Mettre a jour</SaveBtn>
+                                <div class="col-xl-12 mb-3">
+                                    <Input type="textarea" v-model="form.description_fonction" :error="errors.description_fonction">Description de la fonction</Input>
+                                </div>
+
+                                <div class="col-xl-12 mb-3 d-flex justify-content-end">
+                                    <button @click.prevent="isEditing = false" class="btn btn-danger me-2"><i class="fa fa-close me-2"></i>Annuler</button>
+                                    <SaveBtn @click.prevent="update">Mettre a jour</SaveBtn>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                </Transition>
 
                 <Transition name="fade">
                     <table class="table table-striped table-hover">
@@ -168,8 +181,6 @@ import Multiselect from '@vueform/multiselect'
 import useRoles from '../../../services/RoleServices';
 import axiosClient from '../../../axios';
 
-import { ref } from 'vue';
-
 const { success, errors, fonction, fonctions, deleteFonction, getFonction, updateFonction, getFonctions, createFonction, resetFlashMessages } = useFonctions();
 const { roles, getRoles } = useRoles();
 
@@ -186,6 +197,7 @@ export default {
             isEditing: false,
             groups: null ,
             selectedValue: [],
+            enfants: null,
         }
     },
     components: {
@@ -290,6 +302,8 @@ export default {
                 permissions: [],
                 enfants: [],
             }
+
+            this.groups = []
         },
 
         /**
@@ -301,12 +315,14 @@ export default {
          */
         editFonction (id) {
             this.editId = id
+            this.resetForm()
+
             getFonction(id).then((response) => {
-                this.form = {
-                    nom_fonction: fonction.value.nom_fonction,
-                    description_fonction: fonction.value.description_fonction,
-                    permissions: fonction.value.permissionIds,
-                }
+                this.form.nom_fonction = fonction.value.nom_fonction
+                this.form.description_fonction = fonction.value.description_fonction
+                this.form.enfants = fonction.value.fonctionsInclusIds
+
+                this.groupPermissions()
 
                 this.isEditing = true
                 window.scrollTo({
@@ -324,6 +340,8 @@ export default {
         },
 
         groupPermissions () {
+            this.form.permissions = []
+            this.groups = []
             axiosClient.get('/permissions-groups', { params: this.form.enfants }).then(response => {
                 this.groups = response.data
 
@@ -335,6 +353,8 @@ export default {
             }).catch(error => {
                 console.log(error)
             })
+
+            console.log(this.form.permissions);
         }
     },
 }
