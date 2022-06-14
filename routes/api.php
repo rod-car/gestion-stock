@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\Article\ArticleController;
+use App\Http\Controllers\Api\Depot\DepotController;
+use App\Http\Controllers\Api\PointDeVente\PointDeVenteController;
 use App\Http\Controllers\Api\Role\RoleController;
 use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\User\FonctionController;
@@ -56,5 +58,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Recuperer les permissions groupé par fonction
     Route::get('/permissions-groups', [FonctionController::class, 'permissionsGroups']);
+
+    // Route pour la gestion de point de vente
+    Route::apiResource('/depot', DepotController::class);
 
 });

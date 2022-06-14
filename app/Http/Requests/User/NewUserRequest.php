@@ -3,11 +3,11 @@
 namespace App\Http\Requests\User;
 
 use App\Rules\Name;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Gate;
 
 class NewUserRequest extends FormRequest
 {

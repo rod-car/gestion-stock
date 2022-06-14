@@ -8,15 +8,80 @@
                 </div>
             </div>
             <div class="card-body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis esse et laborum cupiditate nesciunt numquam enim hic, quod dicta reiciendis, vel incidunt maiores aut. Pariatur cupiditate dolore illo quis distinctio.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ipsum reiciendis fugit labore eos accusantium doloribus at sapiente numquam ea laudantium molestiae atque porro, similique earum aspernatur culpa autem voluptates.</p>
+
+                <Alert type="success" :message="success" />
+                <Alert type="danger" :message="errors.message" />
+
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-xl-6 mb-3">
+                            <Input v-model="form.nom" :error="errors.nom" :required="true">Nom du point de vente</Input>
+                        </div>
+                        <div class="col-xl-6 mb-3">
+                            <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation du point de vente</Input>
+                        </div>
+                        <div class="col-xl-12 mb-3">
+                            <Input v-model="form.contact" :error="errors.contact">Contact</Input>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {
 
+import Input from '../../html/Input.vue';
+import SaveBtn from '../../html/SaveBtn.vue';
+import Alert from '../../html/Alert.vue';
+import useDepot from '../../../services/DepotServices';
+
+const { success, errors, createDepot } = useDepot()
+
+export default {
+    components: {
+        Input, SaveBtn, Alert,
+    },
+    setup() {
+        return {
+            success, errors,
+            createDepot,
+        }
+    },
+    data() {
+        return {
+            form: {
+                nom: null,
+                localisation: null,
+                contact: null,
+                point_vente: true,
+            },
+        }
+    },
+    methods: {
+        async save () {
+            await createDepot(this.form)
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            if (success.value !== null) this.resetForm();
+
+        },
+        resetForm () {
+            this.form = {
+                nom: null,
+                localisation: null,
+                contact: null,
+                point_vente: true,
+            }
+        },
+    },
 }
 </script>

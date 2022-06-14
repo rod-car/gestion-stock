@@ -23866,8 +23866,7 @@ var _useFonctions = (0,_services_FonctionServices__WEBPACK_IMPORTED_MODULE_8__["
 
 var _useRoles = (0,_services_RoleServices__WEBPACK_IMPORTED_MODULE_2__["default"])(),
     roles = _useRoles.roles,
-    getRoles = _useRoles.getRoles,
-    findRoles = _useRoles.findRoles;
+    getRoles = _useRoles.getRoles;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24000,11 +23999,6 @@ var _useRoles = (0,_services_RoleServices__WEBPACK_IMPORTED_MODULE_2__["default"
       })["catch"](function (error) {
         console.log(error);
       });
-      /*axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
-          this.personnel.roles = response.data
-      }).catch (error => {
-          alert('Error')
-      })*/
     }
   },
   mounted: function mounted() {
@@ -24081,7 +24075,88 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _html_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/Input.vue */ "./resources/js/components/html/Input.vue");
+/* harmony import */ var _html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/SaveBtn.vue */ "./resources/js/components/html/SaveBtn.vue");
+/* harmony import */ var _html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../html/Alert.vue */ "./resources/js/components/html/Alert.vue");
+/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    success = _useDepot.success,
+    errors = _useDepot.errors,
+    createDepot = _useDepot.createDepot;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Input: _html_Input_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SaveBtn: _html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Alert: _html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  setup: function setup() {
+    return {
+      success: success,
+      errors: errors,
+      createDepot: createDepot
+    };
+  },
+  data: function data() {
+    return {
+      form: {
+        nom: null,
+        localisation: null,
+        contact: null,
+        point_vente: true
+      }
+    };
+  },
+  methods: {
+    save: function save() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return createDepot(_this.form);
+
+              case 2:
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+                if (success.value !== null) _this.resetForm();
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        nom: null,
+        localisation: null,
+        contact: null,
+        point_vente: true
+      };
+    }
+  }
+});
 
 /***/ }),
 
@@ -27134,7 +27209,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis esse et laborum cupiditate nesciunt numquam enim hic, quod dicta reiciendis, vel incidunt maiores aut. Pariatur cupiditate dolore illo quis distinctio."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ipsum reiciendis fugit labore eos accusantium doloribus at sapiente numquam ea laudantium molestiae atque porro, similique earum aspernatur culpa autem voluptates.")], -1
+}, null, -1
 /* HOISTED */
 );
 
@@ -27196,14 +27271,48 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Liste des point de vente");
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_8 = {
   "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis esse et laborum cupiditate nesciunt numquam enim hic, quod dicta reiciendis, vel incidunt maiores aut. Pariatur cupiditate dolore illo quis distinctio."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ipsum reiciendis fugit labore eos accusantium doloribus at sapiente numquam ea laudantium molestiae atque porro, similique earum aspernatur culpa autem voluptates.")], -1
-/* HOISTED */
-);
+};
+var _hoisted_9 = {
+  action: "",
+  method: "post"
+};
+var _hoisted_10 = {
+  "class": "row"
+};
+var _hoisted_11 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nom du point de vente");
+
+var _hoisted_13 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Localisation du point de vente");
+
+var _hoisted_15 = {
+  "class": "col-xl-12 mb-3"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact");
+
+var _hoisted_17 = {
+  "class": "d-flex justify-content-end"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Enregistrer");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  var _component_Alert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Alert");
+
+  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
+
+  var _component_SaveBtn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SaveBtn");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/point-de-vente/liste",
@@ -27215,7 +27324,75 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]), _hoisted_8])]);
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Alert, {
+    type: "success",
+    message: $setup.success
+  }, null, 8
+  /* PROPS */
+  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Alert, {
+    type: "danger",
+    message: $setup.errors.message
+  }, null, 8
+  /* PROPS */
+  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $data.form.nom,
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.form.nom = $event;
+    }),
+    error: $setup.errors.nom,
+    required: true
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $data.form.localisation,
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.form.localisation = $event;
+    }),
+    error: $setup.errors.localisation,
+    required: true
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_14];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $data.form.contact,
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.form.contact = $event;
+    }),
+    error: $setup.errors.contact
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_16];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SaveBtn, {
+    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.save, ["prevent"])
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_18];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onClick"])])])])])])]);
 }
 
 /***/ }),
@@ -27320,13 +27497,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_23 = [_hoisted_21, _hoisted_22];
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "footer-area"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "© Copyright 2018. All right reserved.")])], -1
-/* HOISTED */
-);
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"offset-area\"><div class=\"offset-close\"><i class=\"ti-close\"></i></div><ul class=\"nav offset-menu-tab\"><li><a class=\"active\" data-toggle=\"tab\" href=\"#activity\">Activity</a></li><li><a data-toggle=\"tab\" href=\"#settings\">Settings</a></li></ul><div class=\"offset-content tab-content\"><div id=\"activity\" class=\"tab-pane fade in show active\"><div class=\"recent-activity\"><div class=\"timeline-task\"><div class=\"icon bg1\"><i class=\"fa fa-envelope\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-check\"></i></div><div class=\"tm-title\"><h4>Added</h4><span class=\"time\"><i class=\"ti-time\"></i>7 Minutes Ago</span></div><p>Lorem ipsum dolor sit amet consectetur. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>You missed you Password!</h4><span class=\"time\"><i class=\"ti-time\"></i>09:20 Am</span></div></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"fa fa-bomb\"></i></div><div class=\"tm-title\"><h4>Member waiting for you Attention</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"ti-signal\"></i></div><div class=\"tm-title\"><h4>You Added Kaji Patha few minutes ago</h4><span class=\"time\"><i class=\"ti-time\"></i>01 minutes ago</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg1\"><i class=\"fa fa-envelope\"></i></div><div class=\"tm-title\"><h4>Ratul Hamba sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Hello sir , where are you, i am egerly waiting for you. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"fa fa-bomb\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"ti-signal\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div></div></div><div id=\"settings\" class=\"tab-pane fade\"><div class=\"offset-settings\"><h4>General Settings</h4><div class=\"settings-list\"><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Notifications</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch1\"><label for=\"switch1\">Toggle</label></div></div><p>Keep it &#39;On&#39; When you want to get all the notification.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show recent activity</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch2\"><label for=\"switch2\">Toggle</label></div></div><p>The for attribute is necessary to bind our custom checkbox with the input.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show your emails</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch3\"><label for=\"switch3\">Toggle</label></div></div><p>Show email so that easily find you.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show Task statistics</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch4\"><label for=\"switch4\">Toggle</label></div></div><p>The for attribute is necessary to bind our custom checkbox with the input.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Notifications</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch5\"><label for=\"switch5\">Toggle</label></div></div><p>Use checkboxes when looking for yes or no answers.</p></div></div></div></div></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer><div class=\"footer-area\"><p>© Copyright 2018. All right reserved.</p></div></footer><div class=\"offset-area\"><div class=\"offset-close\"><i class=\"ti-close\"></i></div><ul class=\"nav offset-menu-tab\"><li><a class=\"active\" data-toggle=\"tab\" href=\"#activity\">Activity</a></li><li><a data-toggle=\"tab\" href=\"#settings\">Settings</a></li></ul><div class=\"offset-content tab-content\"><div id=\"activity\" class=\"tab-pane fade in show active\"><div class=\"recent-activity\"><div class=\"timeline-task\"><div class=\"icon bg1\"><i class=\"fa fa-envelope\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-check\"></i></div><div class=\"tm-title\"><h4>Added</h4><span class=\"time\"><i class=\"ti-time\"></i>7 Minutes Ago</span></div><p>Lorem ipsum dolor sit amet consectetur. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>You missed you Password!</h4><span class=\"time\"><i class=\"ti-time\"></i>09:20 Am</span></div></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"fa fa-bomb\"></i></div><div class=\"tm-title\"><h4>Member waiting for you Attention</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"ti-signal\"></i></div><div class=\"tm-title\"><h4>You Added Kaji Patha few minutes ago</h4><span class=\"time\"><i class=\"ti-time\"></i>01 minutes ago</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg1\"><i class=\"fa fa-envelope\"></i></div><div class=\"tm-title\"><h4>Ratul Hamba sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Hello sir , where are you, i am egerly waiting for you. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg2\"><i class=\"fa fa-exclamation-triangle\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"fa fa-bomb\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div><div class=\"timeline-task\"><div class=\"icon bg3\"><i class=\"ti-signal\"></i></div><div class=\"tm-title\"><h4>Rashed sent you an email</h4><span class=\"time\"><i class=\"ti-time\"></i>09:35</span></div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at. </p></div></div></div><div id=\"settings\" class=\"tab-pane fade\"><div class=\"offset-settings\"><h4>General Settings</h4><div class=\"settings-list\"><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Notifications</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch1\"><label for=\"switch1\">Toggle</label></div></div><p>Keep it &#39;On&#39; When you want to get all the notification.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show recent activity</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch2\"><label for=\"switch2\">Toggle</label></div></div><p>The for attribute is necessary to bind our custom checkbox with the input.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show your emails</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch3\"><label for=\"switch3\">Toggle</label></div></div><p>Show email so that easily find you.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Show Task statistics</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch4\"><label for=\"switch4\">Toggle</label></div></div><p>The for attribute is necessary to bind our custom checkbox with the input.</p></div><div class=\"s-settings\"><div class=\"s-sw-title\"><h5>Notifications</h5><div class=\"s-swtich\"><input type=\"checkbox\" id=\"switch5\"><label for=\"switch5\">Toggle</label></div></div><p>Use checkboxes when looking for yes or no answers.</p></div></div></div></div></div></div>", 2);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue_progress_bar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue-progress-bar");
@@ -27344,7 +27515,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     theme: "grey-theme"
   }, null, 8
   /* PROPS */
-  , ["onUpdate:collapsed", "menu"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" preloader area end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" page container area start "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" sidebar menu area start "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("div class=\"sidebar-menu\">\n                <div class=\"sidebar-header\">\n                    <div class=\"logo\">\n                        <router-link to=\"/\" class=\"w-75\" style=\"max-width:100%!important\"><img src=\"/images/app-logo.png\" alt=\"logo\"></router-link>\n                    </div>\n                </div>\n                <div class=\"main-menu\">\n                    <div class=\"menu-inner\">\n                        <nav>\n                            <ul class=\"metismenu\" id=\"menu\">\n                                <li class=\"\">\n                                    <a href=\"javascript:void(0)\"><i class=\"ti-dashboard\" aria-expanded=\"true\"></i><span>dashboard</span></a>\n                                    <ul class=\"collapse\">\n                                        <li class=\"\"><router-link to=\"/dashboard\">Dashboard</router-link></li>\n                                    </ul>\n                                </li>\n\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"ti-shopping-cart\"></i><span>Article</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/article/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/article/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-list-alt\"></i><span>Catégories</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/article/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/article/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-home\"></i><span>Point de vente</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/point-de-vente/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/point-de-vente/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"ti-home\"></i><span>Entrepôt</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/entrepot/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/entrepot/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-users\"></i><span>Fournisseurs</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/entrepot/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/entrepot/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-users\"></i><span>Clients</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/entrepot/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau</router-link></li>\n                                        <li><router-link to=\"/entrepot/liste\"><i class=\"fa fa-list me-2\"></i>Listes</router-link></li>\n                                    </ul>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-user\"></i><span>Gestion des personnels</span></a>\n                                    <ul class=\"collapse\">\n                                        <li v-if=\"$can('add_user')\"><router-link to=\"/personnel/nouveau\"><i class=\"fa fa-plus-circle me-2\"></i>Nouveau personnel</router-link></li>\n                                        <li v-if=\"$can('view_user')\"><router-link to=\"/personnel/liste\"><i class=\"fa fa-list me-2\"></i>Liste des personnelles</router-link></li>\n                                        <li v-if=\"$can('manage_roles_and_functions')\"><router-link to=\"/personnel/fonctions\"><i class=\"fa fa-tasks me-2\"></i>Les fonctions & rôles</router-link></li>\n                                    </ul>\n                                </li>\n                                <li>\n                                    <a href=\"javascript:void(0)\" aria-expanded=\"true\"><i class=\"fa fa-gear\"></i><span>Paramètres</span></a>\n                                    <ul class=\"collapse\">\n                                        <li><router-link to=\"/entrepot/nouveau\"><i class=\"fa fa-dollar me-2\"></i>Devis</router-link></li>\n                                        <li><router-link to=\"/entrepot/liste\"><i class=\"fa fa-dollar me-2\"></i>Format d'argent</router-link></li>\n                                    </ul>\n                                </li>\n                            </ul>\n                        </nav>\n                    </div>\n                </div>\n            </div"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" sidebar menu area end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" main content area start "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , ["onUpdate:collapsed", "menu"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["main-content", [{
       'collapsed': $data.collapsed
     }]]),
@@ -27367,7 +27538,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-5 mb-5 me-5"
   })], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" main content area end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" footer area start"), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" page container area end "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" offset area start "), _hoisted_25]);
+  ), _hoisted_24]);
 }
 
 /***/ }),
@@ -27828,6 +27999,120 @@ function useAbility() {
   return {
     permissions: permissions,
     getPermissions: getPermissions
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/DepotServices.js":
+/*!************************************************!*\
+  !*** ./resources/js/services/DepotServices.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useDepot)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../axios */ "./resources/js/axios/index.js");
+/* harmony import */ var _components_router_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/router/router */ "./resources/js/components/router/router.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+function useDepot() {
+  /**
+   * Contient tous les depots
+   *
+   * @return  {[]}
+   */
+  var depots = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+  /**
+   * Un dépot en particulier
+   *
+   * @type {Object}
+   */
+
+  var depot = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
+  /**
+   * Contient tous les erreurs de soumission de formulaire
+   *
+   * @return  {[]}
+   */
+
+  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+  /**
+   * Contient le message de success
+   *
+   * @return  {[]}
+   */
+
+  var success = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+  /**
+   * Permet d'indiquer que les donees sont en cours de chargement
+   *
+   * @type {Boolean}
+   */
+
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Créer un nouveau point de vente
+   *
+   * @param   {Object}  data  Contient tous les champs du formulaire
+   *
+   * @return  {Object} Retourne le depot
+   */
+
+  var createDepot = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              loading = true;
+              _context.next = 3;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("/depot", data).then(function (response) {
+                depot.value = response.data;
+                success.value = "Enregistré avec success";
+              })["catch"](function (error) {
+                if (error.response.status === 422) {
+                  errors.value = error.response.data.errors;
+                } else if (error.response.status === 403) {
+                  _components_router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push('/403');
+                }
+              });
+
+            case 3:
+              loading = false;
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function createDepot(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return {
+    depot: depot,
+    depots: depots,
+    errors: errors,
+    success: success,
+    createDepot: createDepot
   };
 }
 

@@ -135,7 +135,7 @@ import axiosClient from '../../../axios';
 
 const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
 const { fonction, fonctions, getFonction, getFonctions } = useFonctions();
-const { roles, getRoles, findRoles } = useRoles();
+const { roles, getRoles } = useRoles();
 
 export default {
     components: {
@@ -233,12 +233,6 @@ export default {
             }).catch(error => {
                 console.log(error)
             })
-
-            /*axiosClient.get('permissions-fonction', { params: fonctionIds }).then(response => {
-                this.personnel.roles = response.data
-            }).catch (error => {
-                alert('Error')
-            })*/
         }
     },
     mounted() {

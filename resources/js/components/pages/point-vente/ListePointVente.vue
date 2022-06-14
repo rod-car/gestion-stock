@@ -8,8 +8,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis esse et laborum cupiditate nesciunt numquam enim hic, quod dicta reiciendis, vel incidunt maiores aut. Pariatur cupiditate dolore illo quis distinctio.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ipsum reiciendis fugit labore eos accusantium doloribus at sapiente numquam ea laudantium molestiae atque porro, similique earum aspernatur culpa autem voluptates.</p>
+                
             </div>
         </div>
     </div>

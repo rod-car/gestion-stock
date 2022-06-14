@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(5)->create();
-        Categorie::factory(10)->create();
+        /*Categorie::factory(10)->create();
         Article::factory(200)->create();
         Role::factory(20)->create();
 
@@ -35,6 +35,6 @@ class DatabaseSeeder extends Seeder
             $article->categories()->attach(
                 $categories->random(rand(1, 3))->pluck('id')->toArray()
             );
-        });
+        });*/
     }
 }
