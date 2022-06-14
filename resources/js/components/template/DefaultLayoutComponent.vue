@@ -15,104 +15,100 @@
             theme='grey-theme'
         />
 
-            <!-- sidebar menu area end -->
-            <!-- main content area start -->
-            <div class="main-content" id="view" :class="[{'collapsed' : collapsed}]">
-                <!-- header area start -->
-                <div class="header-area">
-                    <div class="row align-items-center">
-                        <!-- nav and search button -->
-                        <div class="col-md-6 col-sm-8 clearfix">
-                            <div class="search-box pull-left">
-                                <form action="#">
-                                    <input type="text" name="search" placeholder="Search..." required>
-                                    <i class="ti-search"></i>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- profile info & task notification -->
-                        <div class="col-md-6 col-sm-4 clearfix">
-                            <ul class="notification-area pull-right">
-                                <li id="full-view"><i class="ti-fullscreen"></i></li>
-                                <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-                                <li class="dropdown">
-                                    <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
-                                        <span>2</span>
-                                    </i>
-                                    <div class="dropdown-menu bell-notify-box notify-box">
-                                        <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                        <div class="nofity-list">
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                                <div class="notify-text">
-                                                    <p>You have Changed Your Password</p>
-                                                    <span>Just Now</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown">
-                                    <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-                                    <div class="dropdown-menu notify-box nt-enveloper-box">
-                                        <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                        <div class="nofity-list">
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="assets/images/author/author-img1.jpg" alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Hey I am waiting for you...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="settings-btn">
-                                    <i class="ti-settings"></i>
-                                </li>
-                                <li class="dropdown">
-                                    <i class="ti ti-user" data-toggle="dropdown"></i>
-
-                                    <div class="dropdown-menu bell-notify-box notify-box">
-                                        <span class="notify-title">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <a href="#">Mon compte</a></span>
-                                        <div class="nofity-list">
-                                            <a href="#" @click="logOut()" class="notify-item">
-                                                <div class="notify-thumb"><i class="fa fa-cog btn-primary"></i></div>
-                                                <div class="notify-text">
-                                                    <p>Paramètres</p>
-                                                    <span>Paramètres du compte</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" @click="logOut()" class="notify-item">
-                                                <div class="notify-thumb"><i class="fa fa-sign-out btn-danger"></i></div>
-                                                <div class="notify-text">
-                                                    <p>Se deconnecter</p>
-                                                    <span>Quitter l'app</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+        <div class="main-content" id="view" :class="[{'collapsed' : collapsed}]">
+            <!-- header area start -->
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="search-box pull-left">
+                            <form action="#">
+                                <input type="text" name="search" placeholder="Search..." required>
+                                <i class="ti-search"></i>
+                            </form>
                         </div>
                     </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            <li class="dropdown">
+                                <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                                    <span>2</span>
+                                </i>
+                                <div class="dropdown-menu bell-notify-box notify-box">
+                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                            <div class="notify-text">
+                                                <p>You have Changed Your Password</p>
+                                                <span>Just Now</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
+                                <div class="dropdown-menu notify-box nt-enveloper-box">
+                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img1.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Hey I am waiting for you...</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="settings-btn">
+                                <i class="ti-settings"></i>
+                            </li>
+                            <li class="dropdown">
+                                <i class="ti ti-user" data-toggle="dropdown"></i>
+
+                                <div class="dropdown-menu bell-notify-box notify-box">
+                                    <span class="notify-title">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <a href="#">Mon compte</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" @click="logOut()" class="notify-item">
+                                            <div class="notify-thumb"><i class="fa fa-cog btn-primary"></i></div>
+                                            <div class="notify-text">
+                                                <p>Paramètres</p>
+                                                <span>Paramètres du compte</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" @click="logOut()" class="notify-item">
+                                            <div class="notify-thumb"><i class="fa fa-sign-out btn-danger"></i></div>
+                                            <div class="notify-text">
+                                                <p>Se deconnecter</p>
+                                                <span>Quitter l'app</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                <router-view class="mt-5 mb-5 me-5"></router-view>
-
             </div>
-            <!-- main content area end -->
-            <!-- footer area start-->
-            <footer>
-                <div class="footer-area">
-                    <p>© Copyright 2018. All right reserved.</p>
-                </div>
-            </footer>
-        <!-- page container area end -->
-        <!-- offset area start -->
+
+            <router-view class="mt-5 mb-5 me-5"></router-view>
+
+        </div>
+
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2018. All right reserved.</p>
+            </div>
+        </footer>
+        
         <div class="offset-area">
             <div class="offset-close"><i class="ti-close"></i></div>
             <ul class="nav offset-menu-tab">
