@@ -5,6 +5,12 @@ import Dashboard from '../pages/Dashboard.vue';
 import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
+import NouveauPointVente from '../pages/point-vente/NouveauPointVente.vue';
+import ListePointVente from '../pages/point-vente/ListePointVente.vue';
+
+import NouveauEntrepot from '../pages/entrepot/NouveauEntrepot.vue';
+import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
+
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
 import store from '../../store/index';
@@ -41,22 +47,38 @@ const routes = [
     {
         path: '/point-de-vente/nouveau',
         name: 'depot.point-de-vente.nouveau',
-        component: ListeProduitsFinis
+        component: NouveauPointVente,
+        meta: {
+            requiresAuth: true,
+            gate: 'add_point_vente',
+        }
     },
     {
         path: '/point-de-vente/liste',
         name: 'depot.point-de-vente.liste',
-        component: ListeProduitsFinis
+        component: ListePointVente,
+        meta: {
+            requiresAuth: true,
+            gate: 'view_point_vente',
+        }
     },
     {
         path: '/entrepot/nouveau',
         name: 'depot.entrepot.nouveau',
-        component: ListeProduitsFinis
+        component: NouveauEntrepot,
+        meta: {
+            requiresAuth: true,
+            gate: 'add_entrepot',
+        }
     },
     {
         path: '/entrepot/liste',
         name: 'depot.entrepot.liste',
-        component: ListeProduitsFinis
+        component: ListeEntrepot,
+        meta: {
+            requiresAuth: true,
+            gate: 'view_entrepot',
+        }
     },
 ]
     .concat(privateRoutes)
@@ -66,23 +88,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-/*router.beforeEach((to, from, next) => {
-    debugger
-    // Mettre des indications pour la route active
-    try {
-        document.querySelector("a[href='/dashboard']").parentElement.classList.remove('active')
-        let link = document.querySelector("a[href='" + to.path + "']")
-        let element = link.parentElement.parentElement
-
-        element.classList.add('in')
-        element.parentElement.classList.add('active')
-    } catch (error) {
-        console.log("Une erreur s'et produite : " + error, to.path);
-    }
-
-    next();
-});*/
 
 router.beforeEach((to, from, next) => {
     if (store.state.user.data.id === undefined && to.path !== "/login") {
