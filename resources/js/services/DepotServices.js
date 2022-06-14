@@ -88,9 +88,22 @@ export default function useDepot () {
 
     }
 
+    const deleteDepot = async (id) => {
+        try {
+            let response = await axiosClient.delete(`/depot/${id}`)
+            if (response.data.errors) {
+                errors.value = response.data.errors
+            } else {
+                success.value = "Personnel supprimé avec succes";
+            }
+        } catch (error) {
+            errors.value = err.response.data.errors;
+        }
+    }
+
     return {
         depot, depots, errors, success,
-        createDepot, getDepots,
+        createDepot, getDepots, deleteDepot,
     }
 
 }

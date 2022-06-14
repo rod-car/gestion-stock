@@ -63,6 +63,24 @@ const routes = [
         }
     },
     {
+        path: '/point-de-vente/voir/:id',
+        name: 'point-de-vente.voir',
+        component: ListePointVente,
+        meta: {
+            requiresAuth: true,
+            gate: 'view_point_vente',
+        }
+    },
+    {
+        path: '/point-de-vente/modifier/:id',
+        name: 'point-de-vente.modifier',
+        component: ListePointVente,
+        meta: {
+            requiresAuth: true,
+            gate: 'edit_point_vente',
+        }
+    },
+    {
         path: '/entrepot/nouveau',
         name: 'depot.entrepot.nouveau',
         component: NouveauEntrepot,
