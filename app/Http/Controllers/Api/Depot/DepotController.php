@@ -14,9 +14,11 @@ class DepotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Depot::all();
+        $point_vente = boolval($request->type);
+
+        return Depot::where('point_vente', $point_vente)->get();
     }
 
     /**

@@ -8,14 +8,27 @@
                 </div>
             </div>
             <div class="card-body">
-                
+                {{ depots }}
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import useDepot from '../../../services/DepotServices'
+
+const { depots, getDepots } = useDepot()
+
 export default {
+
+    setup() {
+        return {
+            depots, getDepots,
+        }
+    },
+    mounted() {
+        getDepots()
+    },
 
 }
 </script>

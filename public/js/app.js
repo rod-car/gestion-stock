@@ -24060,7 +24060,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+
+
+var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+    depots = _useDepot.depots,
+    getDepots = _useDepot.getDepots;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    return {
+      depots: depots,
+      getDepots: getDepots
+    };
+  },
+  mounted: function mounted() {
+    getDepots();
+  }
+});
 
 /***/ }),
 
@@ -27207,12 +27224,9 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ajouter un nouveau");
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_8 = {
   "class": "card-body"
-}, null, -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -27226,7 +27240,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]), _hoisted_8])]);
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depots), 1
+  /* TEXT */
+  )])]);
 }
 
 /***/ }),
@@ -28106,13 +28122,62 @@ function useDepot() {
       return _ref.apply(this, arguments);
     };
   }();
+  /**
+   * Recuperer tous les dépots (Point de vente ou entrepot)
+   *
+   * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot
+   * 1: Point de vente
+   * 0: Entrepot
+   *
+   * @return  {Array}
+   */
+
+
+  var getDepots = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var type,
+          response,
+          _args2 = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              type = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 1;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/depot?type=".concat(type));
+
+            case 4:
+              response = _context2.sent;
+              depots.value = response.data;
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.log(_context2.t0);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }));
+
+    return function getDepots() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
 
   return {
     depot: depot,
     depots: depots,
     errors: errors,
     success: success,
-    createDepot: createDepot
+    createDepot: createDepot,
+    getDepots: getDepots
   };
 }
 

@@ -66,9 +66,31 @@ export default function useDepot () {
         loading = false
     }
 
+
+    /**
+     * Recuperer tous les dépots (Point de vente ou entrepot)
+     *
+     * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot
+     * 1: Point de vente
+     * 0: Entrepot
+     *
+     * @return  {Array}
+     */
+    const getDepots = async (type = 1) => {
+
+        try {
+            let response = await axiosClient.get(`/depot?type=${type}`)
+            depots.value = response.data
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
     return {
         depot, depots, errors, success,
-        createDepot,
+        createDepot, getDepots,
     }
 
 }
