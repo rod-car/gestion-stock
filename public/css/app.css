@@ -417,7 +417,7 @@
 }
 
 .v-sidebar-menu.vsm_grey-theme {
-  background-color: #17191f;
+  background-color: #262a37;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link {
   color: #e2f2f9;
@@ -434,11 +434,11 @@
   background-color: #5cc0dc;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_level-1 .vsm--icon {
-  background-color: #0c0d10;
+  background-color: #1c1e28;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_hover {
   color: #74bcec;
-  background-color: rgba(12, 13, 16, 0.5);
+  background-color: rgba(28, 30, 40, 0.5);
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--link_mobile {
   color: #ffffff;
@@ -459,7 +459,7 @@
   color: #54b4dc;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--dropdown {
-  background-color: #22252e;
+  background-color: #303646;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--dropdown .vsm--link {
   color: #ffffff;
@@ -478,11 +478,11 @@
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--badge_default {
   color: #e2f2f9;
-  background-color: #0c0d10;
+  background-color: #1c1e28;
 }
 .v-sidebar-menu.vsm_grey-theme .vsm--toggle-btn {
   color: #54b4dc;
-  background-color: #0c0d10;
+  background-color: #1c1e28;
 }
 /*@import url('https://fonts.googleapis.com/css?family=Nunito');
 

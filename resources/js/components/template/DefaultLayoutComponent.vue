@@ -107,11 +107,6 @@
                     <div class="row align-items-center">
                         <!-- nav and search button -->
                         <div class="col-md-6 col-sm-8 clearfix">
-                            <div class="nav-btn pull-left">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
                             <div class="search-box pull-left">
                                 <form action="#">
                                     <input type="text" name="search" placeholder="Search..." required>
@@ -389,6 +384,15 @@
 
     const { permissions, getPermissions }  = useAbility()
 
+    const logoImg = {
+        data() {
+            return {
+                src: 'http://localhost:8000/images/app-logo.png'
+            }
+        },
+        template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'
+    }
+
     export default {
         setup() {
             return {
@@ -399,51 +403,6 @@
 
         data() {
             return {
-                menu: [
-                    {
-                        header: 'Navigation',
-                        hiddenOnCollapse: true,
-                    },
-                    {
-                        href: '/',
-                        title: 'Dashboard',
-                        icon: 'fa fa-bar-chart'
-                    },
-                    {
-                        //href: '/charts',
-                        title: 'Personnel',
-                        icon: 'fa fa-users',
-                        child: [
-                            {
-                                href: '/personnel/nouveau',
-                                title: 'Nouveau personnel',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                            },
-                            {
-                                href: '/personnel/liste',
-                                title: 'Liste des personnel',
-                                icon: 'fa fa-list',
-                            },
-                            {
-                                href: '/personnel/fonctions',
-                                title: 'Les fonctions & rôles',
-                                icon: 'fa fa-tasks',
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Paramètres',
-                        icon: 'fa fa-cog',
-                        child: [
-                            {
-                                href: '/point-de-vente/liste',
-                                title: 'Dévise',
-                                icon: 'fa fa-money',
-                            },
-                        ]
-                    },
-                ],
                 collapsed: false
             }
         },
@@ -528,6 +487,105 @@
             user () {
                 return store.getters.user
             },
+
+            menu () {
+                return [
+                    {
+                        header: true,
+                        hiddenOnCollapse: true,
+                        component: logoImg,
+                    },
+                    {
+                        href: '/',
+                        title: 'Dashboard',
+                        icon: 'fa fa-bar-chart'
+                    },
+                    {
+                        header: "Dépot",
+                        hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente') && !this.$can('add_entrepot') && !this.$can('view_entrepot'),
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        title: 'Point de vente',
+                        icon: 'fa fa-home',
+                        hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente'),
+                        child: [
+                            {
+                                title: 'Ajouter nouveau',
+                                href: '/point-de-vente/nouveau',
+                                icon: 'fa fa-plus',
+                                hidden: !this.$can('add_point_vente'),
+                            },
+                            {
+                                title: 'Liste',
+                                href: '/point-de-vente/liste',
+                                icon: 'fa fa-list',
+                                hidden: !this.$can('view_point_vente'),
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Entrepôt',
+                        icon: 'fa fa-home',
+                        hidden: !this.$can('add_entrepot') && !this.$can('view_entrepot'),
+                        child: [
+                            {
+                                title: 'Ajouter nouveau',
+                                href: '/entrepot/nouveau',
+                                icon: 'fa fa-plus',
+                                hidden: !this.$can('add_entrepot'),
+                            },
+                            {
+                                title: 'Liste',
+                                href: '/entrepot/liste',
+                                icon: 'fa fa-list',
+                                hidden: !this.$can('view_entrepot'),
+                            },
+                        ]
+                    },
+                    {
+                        header: "Personnel",
+                        hiddenOnCollapse: true,
+                    },
+                    {
+                        title: 'Personnel',
+                        icon: 'fa fa-users',
+                        child: [
+                            {
+                                href: '/personnel/nouveau',
+                                title: 'Nouveau personnel',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                hidden: !this.$can('add_user'),
+                            },
+                            {
+                                href: '/personnel/liste',
+                                title: 'Liste des personnel',
+                                icon: 'fa fa-list',
+                                hidden: !this.$can('view_user'),
+                            },
+                            {
+                                href: '/personnel/fonctions',
+                                title: 'Les fonctions & rôles',
+                                icon: 'fa fa-tasks',
+                                hidden: !this.$can('manage_roles_and_functions'),
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Paramètres',
+                        icon: 'fa fa-cog',
+                        hidden: !this.$can('manage_settings'),
+                        child: [
+                            {
+                                href: '/point-de-vente/liste',
+                                title: 'Dévise',
+                                icon: 'fa fa-money',
+                            },
+                        ]
+                    },
+                ];
+            }
         }
     }
 </script>
