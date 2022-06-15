@@ -24108,6 +24108,110 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _html_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/Input.vue */ "./resources/js/components/html/Input.vue");
+/* harmony import */ var _html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/SaveBtn.vue */ "./resources/js/components/html/SaveBtn.vue");
+/* harmony import */ var _html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../html/Alert.vue */ "./resources/js/components/html/Alert.vue");
+/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    success = _useDepot.success,
+    errors = _useDepot.errors,
+    depot = _useDepot.depot,
+    getDepot = _useDepot.getDepot,
+    updateDepot = _useDepot.updateDepot;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Input: _html_Input_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SaveBtn: _html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Alert: _html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  setup: function setup() {
+    return {
+      success: success,
+      errors: errors,
+      depot: depot,
+      getDepot: getDepot,
+      updateDepot: updateDepot
+    };
+  },
+  data: function data() {
+    return {
+      form: {
+        nom: null,
+        localisation: null,
+        contact: null,
+        point_vente: true
+      }
+    };
+  },
+  methods: {
+    save: function save(id) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return updateDepot(id, depot.value);
+
+              case 2:
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                });
+                if (success.value !== null) _this.resetForm();
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        nom: null,
+        localisation: null,
+        contact: null,
+        point_vente: true
+      };
+    }
+  },
+  mounted: function mounted() {
+    var id = parseInt(this.$route.params.id);
+    getDepot(id);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=script&lang=js ***!
@@ -24199,6 +24303,42 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
         point_vente: true
       };
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+
+
+var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+    depot = _useDepot.depot,
+    getDepot = _useDepot.getDepot;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    return {
+      depot: depot,
+      getDepot: getDepot
+    };
+  },
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    var id = parseInt(this.$route.params.id);
+    getDepot(id);
   }
 });
 
@@ -27383,6 +27523,171 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829 ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "col-xl-12"
+};
+var _hoisted_2 = {
+  "class": "card me-3"
+};
+var _hoisted_3 = {
+  "class": "card-header bg-white p-3"
+};
+var _hoisted_4 = {
+  "class": "d-flex justify-content-between align-items-center"
+};
+var _hoisted_5 = {
+  "class": "text-uppercase text-info"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-list me-2"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Liste des point de vente ");
+
+var _hoisted_8 = {
+  "class": "card-body"
+};
+var _hoisted_9 = {
+  action: "",
+  method: "post"
+};
+var _hoisted_10 = {
+  "class": "row"
+};
+var _hoisted_11 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nom du point de vente ");
+
+var _hoisted_13 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Localisation du point de vente ");
+
+var _hoisted_15 = {
+  "class": "col-xl-12 mb-3"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact ");
+
+var _hoisted_17 = {
+  "class": "d-flex justify-content-end"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Enregistrer");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  var _component_Alert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Alert");
+
+  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
+
+  var _component_SaveBtn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SaveBtn");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_5, " Modifier le point de vente N° " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depot.id), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/point-de-vente/liste",
+    "class": "btn btn-primary"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_6, _hoisted_7];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Alert, {
+    type: "success",
+    message: $setup.success
+  }, null, 8
+  /* PROPS */
+  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Alert, {
+    type: "danger",
+    message: $setup.errors.message
+  }, null, 8
+  /* PROPS */
+  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $setup.depot.nom,
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.depot.nom = $event;
+    }),
+    error: $setup.errors.nom,
+    required: true
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $setup.depot.localisation,
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $setup.depot.localisation = $event;
+    }),
+    error: $setup.errors.localisation,
+    required: true
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_14];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Input, {
+    modelValue: $setup.depot.contact,
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $setup.depot.contact = $event;
+    }),
+    error: $setup.errors.contact
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_16];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SaveBtn, {
+    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.save($setup.depot.id);
+    }, ["prevent"]))
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_18];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])])])])])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=template&id=b75f7cd6":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=template&id=b75f7cd6 ***!
@@ -27545,6 +27850,146 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["onClick"])])])])])])]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698 ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "col-xl-12"
+};
+var _hoisted_2 = {
+  "class": "card me-3"
+};
+var _hoisted_3 = {
+  "class": "card-header bg-white p-3"
+};
+var _hoisted_4 = {
+  "class": "d-flex justify-content-between align-items-center"
+};
+var _hoisted_5 = {
+  "class": "text-uppercase text-info"
+};
+var _hoisted_6 = {
+  "class": "d-flex justify-content-end"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-pencil me-2"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Modifier ce point de vente ");
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-plus me-2"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nouveau point de vente");
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-list me-2"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Liste des point de vente");
+
+var _hoisted_13 = {
+  "class": "card-body"
+};
+var _hoisted_14 = {
+  "class": "row"
+};
+var _hoisted_15 = {
+  "class": "col-xl-6 shadow shadow-sm p-3"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_17 = {
+  "class": "fst-italic fs-3"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  "class": "fst-italic fs-3 text-primary"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-xl-6 shadow shadow-sm p-3\"><h3 class=\"mb-3\">Responsables</h3><ul class=\"list-group list-group-numbered\"><li class=\"list-group-item list-group-item-action\"> RAKOTO Beloha </li><li class=\"list-group-item list-group-item-action\"> JEAN Paul </li></ul></div><div class=\"col-xl-12 shadow shadow-sm p-3 mt-3\"><h3 class=\"mb-3\">Liste des articles</h3><ul class=\"list-group\"><li class=\"list-group-item list-group-item-action\"> ART001 - Ordinateur de bureau </li><li class=\"list-group-item list-group-item-action\"> ART002 - Ordinateur portable </li><li class=\"list-group-item list-group-item-action\"> ART003 - Souris </li><li class=\"list-group-item list-group-item-action\"> ART001 - Clavier </li></ul></div>", 2);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_5, " Point de vente N° " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depot.id), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_ctx.$can('edit_point_vente') && $setup.depot.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
+    to: {
+      name: 'point-de-vente.modifier',
+      params: {
+        id: $setup.depot.id
+      }
+    },
+    "class": "btn btn-warning me-2"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_7, _hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$can('add_point_vente') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 1,
+    to: "/point-de-vente/nouveau",
+    "class": "btn btn-secondary me-2"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_9, _hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$can('view_point_vente') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 2,
+    to: "/point-de-vente/liste",
+    "class": "btn btn-primary me-2"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_11, _hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depot.nom), 1
+  /* TEXT */
+  ), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depot.localisation), 1
+  /* TEXT */
+  ), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.depot.contact), 1
+  /* TEXT */
+  )]), _hoisted_20])])])]);
 }
 
 /***/ }),
@@ -27829,24 +28274,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _pages_Home_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/Home.vue */ "./resources/js/components/pages/Home.vue");
 /* harmony import */ var _pages_Login_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Login.vue */ "./resources/js/components/pages/Login.vue");
 /* harmony import */ var _pages_Dashboard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/Dashboard.vue */ "./resources/js/components/pages/Dashboard.vue");
 /* harmony import */ var _pages_articles_produits_finis_NouveauProduitsFinis_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/articles/produits-finis/NouveauProduitsFinis.vue */ "./resources/js/components/pages/articles/produits-finis/NouveauProduitsFinis.vue");
 /* harmony import */ var _pages_articles_produits_finis_ListeProduitsFinis_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/articles/produits-finis/ListeProduitsFinis.vue */ "./resources/js/components/pages/articles/produits-finis/ListeProduitsFinis.vue");
 /* harmony import */ var _pages_point_vente_NouveauPointVente_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/point-vente/NouveauPointVente.vue */ "./resources/js/components/pages/point-vente/NouveauPointVente.vue");
-/* harmony import */ var _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/point-vente/ListePointVente.vue */ "./resources/js/components/pages/point-vente/ListePointVente.vue");
-/* harmony import */ var _pages_entrepot_NouveauEntrepot_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/entrepot/NouveauEntrepot.vue */ "./resources/js/components/pages/entrepot/NouveauEntrepot.vue");
-/* harmony import */ var _pages_entrepot_ListeEntrepot_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/entrepot/ListeEntrepot.vue */ "./resources/js/components/pages/entrepot/ListeEntrepot.vue");
-/* harmony import */ var _routes_private__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routes/private */ "./resources/js/components/router/routes/private.js");
-/* harmony import */ var _routes_errors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./routes/errors */ "./resources/js/components/router/routes/errors.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../store/index */ "./resources/js/store/index.js");
+/* harmony import */ var _pages_point_vente_ModifierPointVente_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/point-vente/ModifierPointVente.vue */ "./resources/js/components/pages/point-vente/ModifierPointVente.vue");
+/* harmony import */ var _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/point-vente/ListePointVente.vue */ "./resources/js/components/pages/point-vente/ListePointVente.vue");
+/* harmony import */ var _pages_point_vente_VoirPointVente_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/point-vente/VoirPointVente.vue */ "./resources/js/components/pages/point-vente/VoirPointVente.vue");
+/* harmony import */ var _pages_entrepot_NouveauEntrepot_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/entrepot/NouveauEntrepot.vue */ "./resources/js/components/pages/entrepot/NouveauEntrepot.vue");
+/* harmony import */ var _pages_entrepot_ListeEntrepot_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/entrepot/ListeEntrepot.vue */ "./resources/js/components/pages/entrepot/ListeEntrepot.vue");
+/* harmony import */ var _routes_private__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./routes/private */ "./resources/js/components/router/routes/private.js");
+/* harmony import */ var _routes_errors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./routes/errors */ "./resources/js/components/router/routes/errors.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../store/index */ "./resources/js/store/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -27903,7 +28352,7 @@ var routes = [{
 }, {
   path: '/point-de-vente/liste',
   name: 'depot.point-de-vente.liste',
-  component: _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   meta: {
     requiresAuth: true,
     gate: 'view_point_vente'
@@ -27911,7 +28360,7 @@ var routes = [{
 }, {
   path: '/point-de-vente/voir/:id',
   name: 'point-de-vente.voir',
-  component: _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_point_vente_VoirPointVente_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   meta: {
     requiresAuth: true,
     gate: 'view_point_vente'
@@ -27919,7 +28368,7 @@ var routes = [{
 }, {
   path: '/point-de-vente/modifier/:id',
   name: 'point-de-vente.modifier',
-  component: _pages_point_vente_ListePointVente_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_point_vente_ModifierPointVente_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   meta: {
     requiresAuth: true,
     gate: 'edit_point_vente'
@@ -27927,7 +28376,7 @@ var routes = [{
 }, {
   path: '/entrepot/nouveau',
   name: 'depot.entrepot.nouveau',
-  component: _pages_entrepot_NouveauEntrepot_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+  component: _pages_entrepot_NouveauEntrepot_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   meta: {
     requiresAuth: true,
     gate: 'add_entrepot'
@@ -27935,27 +28384,27 @@ var routes = [{
 }, {
   path: '/entrepot/liste',
   name: 'depot.entrepot.liste',
-  component: _pages_entrepot_ListeEntrepot_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  component: _pages_entrepot_ListeEntrepot_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
   meta: {
     requiresAuth: true,
     gate: 'view_entrepot'
   }
-}].concat(_routes_private__WEBPACK_IMPORTED_MODULE_10__["default"]).concat(_routes_errors__WEBPACK_IMPORTED_MODULE_11__["default"]);
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createWebHistory)(),
+}].concat(_routes_private__WEBPACK_IMPORTED_MODULE_12__["default"]).concat(_routes_errors__WEBPACK_IMPORTED_MODULE_13__["default"]);
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_15__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_15__.createWebHistory)(),
   routes: routes
 });
 router.beforeEach(function (to, from, next) {
-  if (_store_index__WEBPACK_IMPORTED_MODULE_12__["default"].state.user.data.id === undefined && to.path !== "/login") {
+  if (_store_index__WEBPACK_IMPORTED_MODULE_14__["default"].state.user.data.id === undefined && to.path !== "/login") {
     getUser();
   }
 
-  if (to.meta.requiresAuth && !_store_index__WEBPACK_IMPORTED_MODULE_12__["default"].state.user.token) {
+  if (to.meta.requiresAuth && !_store_index__WEBPACK_IMPORTED_MODULE_14__["default"].state.user.token) {
     next({
       name: 'login'
     });
   } else {
-    if (to.meta.requiresGuest && _store_index__WEBPACK_IMPORTED_MODULE_12__["default"].state.user.token) {
+    if (to.meta.requiresGuest && _store_index__WEBPACK_IMPORTED_MODULE_14__["default"].state.user.token) {
       next({
         name: 'dashboard'
       });
@@ -27977,7 +28426,7 @@ var getUser = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _store_index__WEBPACK_IMPORTED_MODULE_12__["default"].dispatch('getUser');
+            return _store_index__WEBPACK_IMPORTED_MODULE_14__["default"].dispatch('getUser');
 
           case 2:
           case "end":
@@ -28275,6 +28724,53 @@ function useDepot() {
     };
   }();
   /**
+   * Recuperer un depot en particulier
+   *
+   * @param   {Number}  id  Identifiant du dépot (Point de vente ou entrepot)
+   *
+   * @return  {Object}
+   */
+
+
+  var getDepot = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              loading.value = true;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/depot/".concat(id));
+
+            case 4:
+              response = _context2.sent;
+              depot.value = response.data;
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.error(_context2.t0);
+
+            case 11:
+              loading.value = false;
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }));
+
+    return function getDepot(_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  /**
    * Recuperer tous les dépots (Point de vente ou entrepot)
    *
    * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot
@@ -28286,56 +28782,64 @@ function useDepot() {
 
 
   var getDepots = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var type,
           response,
-          _args2 = arguments;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              type = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 1;
-              _context2.prev = 1;
-              _context2.next = 4;
-              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/depot?type=".concat(type));
-
-            case 4:
-              response = _context2.sent;
-              depots.value = response.data;
-              _context2.next = 11;
-              break;
-
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2["catch"](1);
-              console.log(_context2.t0);
-
-            case 11:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[1, 8]]);
-    }));
-
-    return function getDepots() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var deleteDepot = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(id) {
-      var response;
+          _args3 = arguments;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.prev = 0;
-              _context3.next = 3;
+              type = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : 1;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/depot?type=".concat(type));
+
+            case 4:
+              response = _context3.sent;
+              depots.value = response.data;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+              console.log(_context3.t0);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function getDepots() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  /**
+   * Permet de supprimer un depot en fonciton de lID
+   *
+   * @param   {Numner}  id  Identifiant du dépot a supprimer
+   *
+   * @return  {void}
+   */
+
+
+  var deleteDepot = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
               return _axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("/depot/".concat(id));
 
             case 3:
-              response = _context3.sent;
+              response = _context4.sent;
 
               if (response.data.errors) {
                 errors.value = response.data.errors;
@@ -28343,24 +28847,66 @@ function useDepot() {
                 success.value = "Personnel supprimé avec succes";
               }
 
-              _context3.next = 10;
+              _context4.next = 10;
               break;
 
             case 7:
-              _context3.prev = 7;
-              _context3.t0 = _context3["catch"](0);
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](0);
               errors.value = err.response.data.errors;
 
             case 10:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, null, [[0, 7]]);
+      }, _callee4, null, [[0, 7]]);
     }));
 
-    return function deleteDepot(_x2) {
-      return _ref3.apply(this, arguments);
+    return function deleteDepot(_x3) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var updateDepot = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              loading.value = true;
+              _context5.prev = 1;
+              _context5.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].put("/depot/".concat(id), data);
+
+            case 4:
+              success.value = "Modifié avec success";
+              _context5.next = 10;
+              break;
+
+            case 7:
+              _context5.prev = 7;
+              _context5.t0 = _context5["catch"](1);
+
+              if (_context5.t0.response.status === 422) {
+                errors.value = _context5.t0.response.data.errors;
+              } else if (_context5.t0.response.status === 403) {
+                _components_router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push('/403');
+              }
+
+            case 10:
+              loading.value = false;
+
+            case 11:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 7]]);
+    }));
+
+    return function updateDepot(_x4, _x5) {
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -28370,8 +28916,10 @@ function useDepot() {
     errors: errors,
     success: success,
     createDepot: createDepot,
+    getDepot: getDepot,
     getDepots: getDepots,
-    deleteDepot: deleteDepot
+    deleteDepot: deleteDepot,
+    updateDepot: updateDepot
   };
 }
 
@@ -52088,6 +52636,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/point-vente/ModifierPointVente.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/ModifierPointVente.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ModifierPointVente_vue_vue_type_template_id_6ddd3829__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifierPointVente.vue?vue&type=template&id=6ddd3829 */ "./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829");
+/* harmony import */ var _ModifierPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifierPointVente.vue?vue&type=script&lang=js */ "./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js");
+/* harmony import */ var _Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ModifierPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ModifierPointVente_vue_vue_type_template_id_6ddd3829__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/point-vente/ModifierPointVente.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/point-vente/NouveauPointVente.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/pages/point-vente/NouveauPointVente.vue ***!
@@ -52108,6 +52684,34 @@ __webpack_require__.r(__webpack_exports__);
 
 ;
 const __exports__ = /*#__PURE__*/(0,_Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_NouveauPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_NouveauPointVente_vue_vue_type_template_id_b75f7cd6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/point-vente/NouveauPointVente.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/point-vente/VoirPointVente.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/VoirPointVente.vue ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _VoirPointVente_vue_vue_type_template_id_42f71698__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VoirPointVente.vue?vue&type=template&id=42f71698 */ "./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698");
+/* harmony import */ var _VoirPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VoirPointVente.vue?vue&type=script&lang=js */ "./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js");
+/* harmony import */ var _Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_VoirPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_VoirPointVente_vue_vue_type_template_id_42f71698__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/point-vente/VoirPointVente.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -52451,6 +53055,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifierPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifierPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifierPointVente.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=script&lang=js":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=script&lang=js ***!
@@ -52463,6 +53083,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./NouveauPointVente.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VoirPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VoirPointVente_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./VoirPointVente.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -52819,6 +53455,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829 ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifierPointVente_vue_vue_type_template_id_6ddd3829__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifierPointVente_vue_vue_type_template_id_6ddd3829__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifierPointVente.vue?vue&type=template&id=6ddd3829 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/ModifierPointVente.vue?vue&type=template&id=6ddd3829");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=template&id=b75f7cd6":
 /*!*******************************************************************************************************!*\
   !*** ./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=template&id=b75f7cd6 ***!
@@ -52831,6 +53483,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauPointVente_vue_vue_type_template_id_b75f7cd6__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauPointVente_vue_vue_type_template_id_b75f7cd6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./NouveauPointVente.vue?vue&type=template&id=b75f7cd6 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/NouveauPointVente.vue?vue&type=template&id=b75f7cd6");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698 ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VoirPointVente_vue_vue_type_template_id_42f71698__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VoirPointVente_vue_vue_type_template_id_42f71698__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./VoirPointVente.vue?vue&type=template&id=42f71698 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/pages/point-vente/VoirPointVente.vue?vue&type=template&id=42f71698");
 
 
 /***/ }),

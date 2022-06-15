@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <!-- modernizr css -->
-    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}" defer></script>
 </head>
 
 <body>
@@ -34,10 +34,8 @@
         @endauth
         @guest
             <script>
+                localStorage.removeItem('auth_token');
                 window.history.pushState(null, null, '/login')
-                /*if (window.location.pathname !== "/login") {
-                    window.location = '/login'
-                }*/
             </script>
             <login></login>
         @endguest

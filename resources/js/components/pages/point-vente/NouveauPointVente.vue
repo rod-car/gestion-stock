@@ -8,7 +8,6 @@
                 </div>
             </div>
             <div class="card-body">
-
                 <Alert type="success" :message="success" />
                 <Alert type="danger" :message="errors.message" />
 
@@ -66,13 +65,9 @@ export default {
         async save () {
             await createDepot(this.form)
 
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (success.value !== null) this.resetForm();
-
         },
         resetForm () {
             this.form = {

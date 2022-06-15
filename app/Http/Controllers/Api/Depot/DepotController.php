@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Depot;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Depot\ModifierDepotRequest;
 use App\Http\Requests\Depot\NouveauDepotRequest;
 use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
@@ -42,19 +43,20 @@ class DepotController extends Controller
      */
     public function show(Depot $depot)
     {
-        //
+        return $depot;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Depot\ModifierDepotRequest  $request
      * @param  \App\Models\Depot\Depot  $depot
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Depot $depot)
+    public function update(ModifierDepotRequest $request, Depot $depot)
     {
-        //
+        $data = $request->validated();
+        $depot->update($data);
     }
 
     /**

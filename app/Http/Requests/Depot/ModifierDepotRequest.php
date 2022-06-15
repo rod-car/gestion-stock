@@ -2,29 +2,67 @@
 
 namespace App\Http\Requests\Depot;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class ModifierDepotRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determiner si l'utilisateur est autorisé a faire ce réquête
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return Gate::allows('edit_point_vente');
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Règle de validation de la formulaire
      *
      * @return array
      */
     public function rules()
     {
         return [
-            //
+            "nom" => ["required", "unique:depots,nom,{$this->id},id", "min:2", "max:255"],
+            "localisation" => ["required", "sometimes", "min:5", "max:255"],
+            "contact" => ["nullable", "sometimes", "min:10", "max:255"],
+            "point_vente" => ["required", "boolean", "in:true,false,1,0"],
         ];
+    }
+
+
+    /**
+     * Message de validation en cas d'erreu
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            "nom.required" => "Le nom est obligatoire",
+        ];
+    }
+
+    /**
+     * Si la validation échoue
+     *
+     * @param Validator $validator
+     * @return JsonResponse|RedirectResponse
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $message = "Les champs ne sont pas bien remplis";
+        if (request()->ajax()) {
+            return response()->json([
+                "errors" => $validator->errors(),
+                "message" => $message
+            ], 422);
+        }
+        return back()->withErrors($validator)->withInput();
     }
 }

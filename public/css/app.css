@@ -319,7 +319,7 @@
   color: #fff;
 }
 .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
-  box-shadow: 3px 0px 0px 0px #100f0f inset;
+  box-shadow: 3px 0px 0px 0px #4285f4 inset;
 }
 .v-sidebar-menu .vsm--link_level-1 .vsm--icon {
   background-color: #1e1e21;
@@ -331,24 +331,24 @@
   color: #fff;
 }
 .v-sidebar-menu.vsm_expanded .vsm--link_level-1.vsm--link_open {
-  color: rgb(42, 112, 181);
-  background-color: #100f0f;
+  color: #fff;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_expanded .vsm--link_level-1.vsm--link_open .vsm--icon {
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_collapsed .vsm--link_level-1.vsm--link_hover .vsm--icon {
   color: #fff;
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu .vsm--dropdown {
   background-color: #36363b;
 }
 .v-sidebar-menu .vsm--mobile-bg {
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_rtl .vsm--link_level-1.vsm--link_active {
-  box-shadow: -3px 0px 0px 0px #100f0f inset;
+  box-shadow: -3px 0px 0px 0px #4285f4 inset;
 }
 .v-sidebar-menu .vsm--header {
   color: rgba(255, 255, 255, 0.7);
@@ -369,7 +369,7 @@
   color: #262626;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active {
-  box-shadow: 3px 0px 0px 0px #100f0f inset;
+  box-shadow: 3px 0px 0px 0px #4285f4 inset;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active .vsm--icon {
   color: #fff;
@@ -385,24 +385,24 @@
   color: #fff;
 }
 .v-sidebar-menu.vsm_white-theme.vsm_expanded .vsm--link_level-1.vsm--link_open {
-  color: rgb(42, 112, 181);
-  background-color: #100f0f;
+  color: #fff;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_white-theme.vsm_expanded .vsm--link_level-1.vsm--link_open .vsm--icon {
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_white-theme.vsm_collapsed .vsm--link_level-1.vsm--link_hover .vsm--icon {
   color: #fff;
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--dropdown {
   background-color: #e3e3e3;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--mobile-bg {
-  background-color: #100f0f;
+  background-color: #4285f4;
 }
 .v-sidebar-menu.vsm_white-theme.vsm_rtl .vsm--link_level-1.vsm--link_active {
-  box-shadow: -3px 0px 0px 0px #100f0f inset;
+  box-shadow: -3px 0px 0px 0px #4285f4 inset;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--header {
   color: rgba(38, 38, 38, 0.7);

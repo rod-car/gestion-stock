@@ -68,6 +68,27 @@ export default function useDepot () {
 
 
     /**
+     * Recuperer un depot en particulier
+     *
+     * @param   {Number}  id  Identifiant du dépot (Point de vente ou entrepot)
+     *
+     * @return  {Object}
+     */
+    const getDepot = async (id) => {
+
+        loading.value = true
+
+        try {
+            let response = await axiosClient.get(`/depot/${id}`)
+            depot.value = response.data
+        } catch (error) {
+            console.error(error)
+        }
+
+        loading.value = false
+    }
+
+    /**
      * Recuperer tous les dépots (Point de vente ou entrepot)
      *
      * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot
@@ -88,6 +109,14 @@ export default function useDepot () {
 
     }
 
+
+    /**
+     * Permet de supprimer un depot en fonciton de lID
+     *
+     * @param   {Numner}  id  Identifiant du dépot a supprimer
+     *
+     * @return  {void}
+     */
     const deleteDepot = async (id) => {
         try {
             let response = await axiosClient.delete(`/depot/${id}`)
@@ -101,9 +130,27 @@ export default function useDepot () {
         }
     }
 
+
+    const updateDepot = async (id, data) => {
+
+        loading.value = true
+        try {
+            await axiosClient.put(`/depot/${id}`, data)
+            success.value = "Modifié avec success"
+        } catch (error) {
+            if (error.response.status === 422) {
+                errors.value = error.response.data.errors;
+            } else if (error.response.status === 403) {
+                Router.push('/403')
+            }
+        }
+        loading.value = false
+
+    }
+
     return {
         depot, depots, errors, success,
-        createDepot, getDepots, deleteDepot,
+        createDepot, getDepot, getDepots, deleteDepot, updateDepot,
     }
 
 }

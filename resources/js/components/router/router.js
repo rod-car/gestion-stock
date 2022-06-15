@@ -6,7 +6,9 @@ import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProdui
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
 import NouveauPointVente from '../pages/point-vente/NouveauPointVente.vue';
+import ModifierPointVente from '../pages/point-vente/ModifierPointVente.vue';
 import ListePointVente from '../pages/point-vente/ListePointVente.vue';
+import VoirPointVente from '../pages/point-vente/VoirPointVente.vue';
 
 import NouveauEntrepot from '../pages/entrepot/NouveauEntrepot.vue';
 import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
@@ -65,7 +67,7 @@ const routes = [
     {
         path: '/point-de-vente/voir/:id',
         name: 'point-de-vente.voir',
-        component: ListePointVente,
+        component: VoirPointVente,
         meta: {
             requiresAuth: true,
             gate: 'view_point_vente',
@@ -74,7 +76,7 @@ const routes = [
     {
         path: '/point-de-vente/modifier/:id',
         name: 'point-de-vente.modifier',
-        component: ListePointVente,
+        component: ModifierPointVente,
         meta: {
             requiresAuth: true,
             gate: 'edit_point_vente',
