@@ -7,6 +7,7 @@
                     <router-link to="/point-de-vente/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des point de vente</router-link>
                 </div>
             </div>
+
             <div class="card-body">
                 <form action="" method="post">
                     <div class="row">
@@ -20,7 +21,7 @@
                             <Input v-model="form.contact" :error="errors.contact">Contact</Input>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <SaveBtn @click.prevent="save">Enregistrer</SaveBtn>
+                            <SaveBtn @click.prevent="save" :loading="loading">Enregistrer</SaveBtn>
                         </div>
                     </div>
                 </form>
@@ -36,7 +37,7 @@ import SaveBtn from '../../html/SaveBtn.vue';
 import Alert from '../../html/Alert.vue';
 import useDepot from '../../../services/DepotServices';
 
-const { success, errors, createDepot } = useDepot()
+const { success, errors, loading, createDepot } = useDepot()
 
 export default {
     components: {
@@ -44,7 +45,7 @@ export default {
     },
     setup() {
         return {
-            success, errors,
+            success, errors, loading,
             createDepot,
         }
     },
@@ -73,9 +74,6 @@ export default {
                 point_vente: true,
             }
         },
-    },
-    mounted() {
-
     },
 }
 </script>

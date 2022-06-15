@@ -23002,7 +23002,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     click: String,
-    type: String
+    type: String,
+    loading: Boolean
   }
 });
 
@@ -24131,8 +24132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _html_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/Input.vue */ "./resources/js/components/html/Input.vue");
 /* harmony import */ var _html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/SaveBtn.vue */ "./resources/js/components/html/SaveBtn.vue");
-/* harmony import */ var _html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../html/Alert.vue */ "./resources/js/components/html/Alert.vue");
-/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/DepotServices */ "./resources/js/services/DepotServices.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -24143,9 +24143,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_3__["default"])(),
     success = _useDepot.success,
+    loading = _useDepot.loading,
     errors = _useDepot.errors,
     depot = _useDepot.depot,
     getDepot = _useDepot.getDepot,
@@ -24161,6 +24161,7 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
       success: success,
       errors: errors,
       depot: depot,
+      loading: loading,
       getDepot: getDepot,
       updateDepot: updateDepot
     };
@@ -24251,6 +24252,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default"])(),
     success = _useDepot.success,
     errors = _useDepot.errors,
+    loading = _useDepot.loading,
     createDepot = _useDepot.createDepot;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -24263,6 +24265,7 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
     return {
       success: success,
       errors: errors,
+      loading: loading,
       createDepot: createDepot
     };
   },
@@ -24312,8 +24315,7 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
         point_vente: true
       };
     }
-  },
-  mounted: function mounted() {}
+  }
 });
 
 /***/ }),
@@ -24634,7 +24636,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($data.className),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.className, "d-flex align-items-center justify-content-center"]),
     type: "submit"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 2
   /* CLASS */
@@ -24803,29 +24805,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_1 = {
+  key: 0,
   "class": "fa fa-save me-2"
-}, null, -1
+};
+var _hoisted_2 = {
+  key: 1,
+  "class": "spinner-border spinner-border-sm text-light me-2",
+  role: "status"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "visually-hidden"
+}, "Loading...", -1
 /* HOISTED */
 );
 
+var _hoisted_4 = [_hoisted_3];
+var _hoisted_5 = {
+  key: 3
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
     type: $props.type,
+    disabled: $props.loading,
     click: $props.click
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")];
+      return [!$props.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_1)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, _hoisted_4)), !$props.loading ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {
+        key: 2
+      }) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, "Chargement..."))];
     }),
     _: 3
     /* FORWARDED */
 
   }, 8
   /* PROPS */
-  , ["type", "click"]);
+  , ["type", "disabled", "click"]);
 }
 
 /***/ }),
@@ -27638,19 +27656,19 @@ var _hoisted_11 = {
   "class": "col-xl-6 mb-3"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nom du point de vente ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nom du point de vente");
 
 var _hoisted_13 = {
   "class": "col-xl-6 mb-3"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Localisation du point de vente ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Localisation du point de vente");
 
 var _hoisted_15 = {
   "class": "col-xl-12 mb-3"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact ");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact");
 
 var _hoisted_17 = {
   "class": "d-flex justify-content-end"
@@ -27727,7 +27745,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SaveBtn, {
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.save($setup.depot.id);
-    }, ["prevent"]))
+    }, ["prevent"])),
+    loading: $setup.loading
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_18];
@@ -27735,7 +27754,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])])])])])]);
+  }, 8
+  /* PROPS */
+  , ["loading"])])])])])])]);
 }
 
 /***/ }),
@@ -27879,7 +27900,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SaveBtn, {
-    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.save, ["prevent"])
+    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.save, ["prevent"]),
+    loading: $setup.loading
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_18];
@@ -27889,7 +27911,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["onClick"])])])])])])]);
+  , ["onClick", "loading"])])])])])])]);
 }
 
 /***/ }),
@@ -28887,7 +28909,7 @@ function useDepot() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              loading = true;
+              loading.value = true;
               _context.next = 3;
               return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("/depot", data).then(function (response) {
                 depot.value = response.data;
@@ -28904,7 +28926,7 @@ function useDepot() {
               });
 
             case 3:
-              loading = false;
+              loading.value = false;
 
             case 4:
             case "end":

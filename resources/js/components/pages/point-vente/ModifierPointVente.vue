@@ -18,32 +18,16 @@
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-xl-6 mb-3">
-                            <Input
-                                v-model="depot.nom"
-                                :error="errors.nom"
-                                :required="true"
-                                >Nom du point de vente
-                            </Input>
+                            <Input v-model="depot.nom" :error="errors.nom" :required="true" >Nom du point de vente</Input>
                         </div>
                         <div class="col-xl-6 mb-3">
-                            <Input
-                                v-model="depot.localisation"
-                                :error="errors.localisation"
-                                :required="true"
-                                >Localisation du point de vente
-                            </Input>
+                            <Input v-model="depot.localisation" :error="errors.localisation" :required="true">Localisation du point de vente</Input>
                         </div>
                         <div class="col-xl-12 mb-3">
-                            <Input
-                                v-model="depot.contact"
-                                :error="errors.contact"
-                                >Contact
-                            </Input>
+                            <Input v-model="depot.contact" :error="errors.contact">Contact</Input>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <SaveBtn @click.prevent="save(depot.id)"
-                                >Enregistrer</SaveBtn
-                            >
+                            <SaveBtn @click.prevent="save(depot.id)" :loading="loading">Enregistrer</SaveBtn>
                         </div>
                     </div>
                 </form>
@@ -55,10 +39,9 @@
 <script>
 import Input from "../../html/Input.vue";
 import SaveBtn from "../../html/SaveBtn.vue";
-import Alert from "../../html/Alert.vue";
 import useDepot from "../../../services/DepotServices";
 
-const { success, errors, depot, getDepot, updateDepot } = useDepot();
+const { success, loading, errors, depot, getDepot, updateDepot } = useDepot();
 
 export default {
     components: {
@@ -70,6 +53,7 @@ export default {
             success,
             errors,
             depot,
+            loading,
             getDepot,
             updateDepot,
         };

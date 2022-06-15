@@ -53,7 +53,7 @@ export default function useDepot() {
      * @return  {Object} Retourne le depot
      */
     const createDepot = async (data) => {
-        loading = true
+        loading.value = true
         await axiosClient.post(`/depot`, data).then((response) => {
             depot.value = response.data
             success.value = "Point de vente enregistré avec succes"
@@ -67,7 +67,7 @@ export default function useDepot() {
                 Router.push('/403')
             }
         })
-        loading = false
+        loading.value = false
     }
 
 
