@@ -13,3 +13,31 @@
 @import "vue-sidebar-menu/src/scss/vue-sidebar-menu.scss";
 @import "grey-theme.scss";
 @import 'vue-skeletor/dist/vue-skeletor.css';
+
+.message-error {
+    background: #f94747 !important;
+    color: white !important;
+}
+
+.message-error svg {
+    background: white;
+    border-radius: 50%;
+}
+
+.message-success svg {
+    background: white;
+    border-radius: 50%;
+}
+
+.message-success {
+    background: #67C23A !important;
+    color: white !important;
+}
+
+.message-error .m-message--description {
+    color: white !important;
+}
+
+.message-success .m-message--description {
+    color: white !important;
+}

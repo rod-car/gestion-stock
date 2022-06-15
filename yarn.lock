@@ -5528,6 +5528,11 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
+vue-m-message@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/vue-m-message/-/vue-m-message-4.0.1.tgz#b75ed1442b5aa013e17bfc29b8ca4cbd95e5c6eb"
+  integrity sha512-c+vj8UlIqhxRZsmGmKIHYiHhoZ5lNxZFugOvdXfWUe0fnFMOXaVwL8Q7MUa4hXih/cbcj+97Aux6QvdK/MOgHQ==
+
 vue-multiselect@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"

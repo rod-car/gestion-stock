@@ -8,9 +8,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <Alert type="success" :message="success" />
-                <Alert type="danger" :message="errors.message" />
-
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-xl-6 mb-3">
@@ -64,10 +61,9 @@ export default {
     methods: {
         async save () {
             await createDepot(this.form)
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             if (success.value !== null) this.resetForm();
+            success.value = null
         },
         resetForm () {
             this.form = {
@@ -77,6 +73,9 @@ export default {
                 point_vente: true,
             }
         },
+    },
+    mounted() {
+
     },
 }
 </script>

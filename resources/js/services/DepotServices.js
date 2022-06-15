@@ -1,8 +1,9 @@
 import { ref } from 'vue';
 import axiosClient from '../axios';
 import Router from '../components/router/router';
+import Flash from '../functions/Flash';
 
-export default function useDepot () {
+export default function useDepot() {
 
     /**
      * Contient tous les depots
@@ -55,8 +56,11 @@ export default function useDepot () {
         loading = true
         await axiosClient.post(`/depot`, data).then((response) => {
             depot.value = response.data
-            success.value = "Enregistré avec success"
+            success.value = "Point de vente enregistré avec succes"
+            Flash('success', "Message de succès", success.value)
         }).catch(error => {
+            Flash('error', "Message d'erreur", "Erreur de soumission du formulaire")
+
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors;
             } else if (error.response.status === 403) {
@@ -139,7 +143,9 @@ export default function useDepot () {
         try {
             await axiosClient.put(`/depot/${id}`, data)
             success.value = "Modifié avec success"
+            Flash('success', 'Message de succès', success.value)
         } catch (error) {
+            Flash('error', "Message d'erreur", "Erreur de soumission du formulaire")
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors;
             } else if (error.response.status === 403) {

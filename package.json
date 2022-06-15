@@ -41,6 +41,7 @@
         "jquery-ui": "^1.13.1",
         "laravel-vue-pagination": "^3.0.0",
         "popper.js": "^1.16.1",
+        "vue-m-message": "^4.0.1",
         "vue-multiselect": "^2.1.6",
         "vue-nprogress": "^0.2.0",
         "vue-router": "^4.0.13",

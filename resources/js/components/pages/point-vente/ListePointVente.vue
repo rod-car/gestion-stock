@@ -64,6 +64,7 @@
 import useDepot from '../../../services/DepotServices';
 import DeleteBtn from '../../html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
+import Flash from '../../../functions/Flash';
 
 const { depots, loading, getDepots, deleteDepot } = useDepot()
 
@@ -93,11 +94,10 @@ export default {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 deleteDepot(id)
                 depots.value.splice(index)
-                SimpleAlert.alert("Point de vente supprimé avec succes", "Message", "success")
+                Flash('success', "Message de succès", "Le point de vente est supprimé avec succès")
             }).catch (error => {
                 if (error !== undefined) {
-                    console.log(error)
-                    SimpleAlert.alert("Impossible de supprimer ce point de vente", "Erreur", "error")
+                    Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
                 }
             });
         }

@@ -15,9 +15,6 @@
             </div>
 
             <div class="card-body">
-                <Alert type="success" :message="success" />
-                <Alert type="danger" :message="errors.message" />
-
                 <form action="" method="post">
                     <div class="row">
                         <div class="col-xl-6 mb-3">
@@ -67,7 +64,6 @@ export default {
     components: {
         Input,
         SaveBtn,
-        Alert,
     },
     setup() {
         return {
@@ -93,6 +89,7 @@ export default {
             await updateDepot(id, depot.value);
             window.scrollTo({ top: 0, behavior: "smooth" });
             if (success.value !== null) this.resetForm();
+            success.value = null
         },
         resetForm() {
             this.form = {

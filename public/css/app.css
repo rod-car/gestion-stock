@@ -521,6 +521,34 @@
   color: #54b4dc;
   background-color: #1c1e28;
 }
+
+.message-error {
+  background: #f94747 !important;
+  color: white !important;
+}
+
+.message-error svg {
+  background: white;
+  border-radius: 50%;
+}
+
+.message-success svg {
+  background: white;
+  border-radius: 50%;
+}
+
+.message-success {
+  background: #67C23A !important;
+  color: white !important;
+}
+
+.message-error .m-message--description {
+  color: white !important;
+}
+
+.message-success .m-message--description {
+  color: white !important;
+}
 /*@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
