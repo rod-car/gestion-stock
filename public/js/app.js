@@ -23041,12 +23041,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         remember: false
       },
       errors: {},
-      loading: false
+      loading: false,
+      loadingIndicator: "Chargement..."
     };
   },
   computed: {
     loadingIndicator: function loadingIndicator() {
-      return this.loading === true ? "Chargement..." : '';
+      return this.loading === true ? this.loadingIndicator : '';
     }
   },
   methods: {
@@ -23072,7 +23073,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 _store__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.token = response.data.token;
                 localStorage.setItem('auth_token', response.data.token);
-                _this.loading = false;
+                _this.loadingIndicator = "Connecté. Redirection en cours..."; //this.loading = false;
+
                 window.location = "/dashboard"; // this.$router.push('/dashboard')
 
                 _context.next = 17;

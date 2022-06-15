@@ -72,12 +72,13 @@ export default {
             },
             errors: {},
             loading: false,
+            loadingIndicator: "Chargement...",
         }
     },
 
     computed: {
         loadingIndicator() {
-            return this.loading === true ? "Chargement..." : '';
+            return this.loading === true ? this.loadingIndicator : '';
         }
     },
 
@@ -93,7 +94,8 @@ export default {
                 store.state.user.token = response.data.token
                 localStorage.setItem('auth_token', response.data.token);
 
-                this.loading = false;
+                this.loadingIndicator = "Connecté. Redirection en cours..."
+                //this.loading = false;
                 window.location = "/dashboard"
                 // this.$router.push('/dashboard')
             }
