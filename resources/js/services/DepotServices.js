@@ -98,7 +98,7 @@ export default function useDepot () {
      * @return  {Array}
      */
     const getDepots = async (type = 1) => {
-
+        loading.value = true
         try {
             let response = await axiosClient.get(`/depot?type=${type}`)
             depots.value = response.data
@@ -106,7 +106,7 @@ export default function useDepot () {
         } catch (error) {
             console.log(error)
         }
-
+        loading.value = false
     }
 
 
@@ -118,6 +118,7 @@ export default function useDepot () {
      * @return  {void}
      */
     const deleteDepot = async (id) => {
+        loading.value = true
         try {
             let response = await axiosClient.delete(`/depot/${id}`)
             if (response.data.errors) {
@@ -128,6 +129,7 @@ export default function useDepot () {
         } catch (error) {
             errors.value = err.response.data.errors;
         }
+        loading.value = false
     }
 
 
@@ -149,7 +151,7 @@ export default function useDepot () {
     }
 
     return {
-        depot, depots, errors, success,
+        depot, depots, errors, success, loading,
         createDepot, getDepot, getDepots, deleteDepot, updateDepot,
     }
 

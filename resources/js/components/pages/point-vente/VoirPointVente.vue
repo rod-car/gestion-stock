@@ -36,27 +36,65 @@
                     </div>
                 </div>
             </div>
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-6 shadow shadow-sm p-3">
-                        <h1>{{ depot.nom }}</h1>
+                        <div>
+                            <h3 class="text-uppercase" v-if="!loading">
+                                {{ depot.nom }}
+                            </h3>
+                            <Skeletor
+                                v-else
+                                width="100%"
+                                height="40"
+                                style="border-radius: 5px"
+                            />
+                        </div>
                         <hr />
-                        <span class="fst-italic fs-3">{{
-                            depot.localisation
-                        }}</span
-                        ><br />
-                        <span class="fst-italic fs-3 text-primary">{{
-                            depot.contact
-                        }}</span>
+                        <div>
+                            <span v-if="!loading" class="fst-italic fs-5">{{
+                                depot.localisation
+                            }}</span>
+                            <Skeletor
+                                v-else
+                                width="75%"
+                                height="30"
+                                style="border-radius: 5px"
+                            />
+                        </div>
+                        <br />
+
+                        <div>
+                            <span
+                                v-if="!loading"
+                                class="fst-italic fs-5 text-primary"
+                                >{{ depot.contact }}</span
+                            >
+                            <Skeletor
+                                v-else
+                                width="50%"
+                                height="30"
+                                style="border-radius: 5px"
+                            />
+                        </div>
                     </div>
                     <div class="col-xl-6 shadow shadow-sm p-3">
                         <h3 class="mb-3">Responsables</h3>
-                        <ul class="list-group list-group-numbered">
+                        <ul class="list-group">
                             <li class="list-group-item list-group-item-action">
-                                RAKOTO Beloha
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                             <li class="list-group-item list-group-item-action">
-                                JEAN Paul
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -64,16 +102,32 @@
                         <h3 class="mb-3">Liste des articles</h3>
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-action">
-                                ART001 - Ordinateur de bureau
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                             <li class="list-group-item list-group-item-action">
-                                ART002 - Ordinateur portable
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                             <li class="list-group-item list-group-item-action">
-                                ART003 - Souris
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                             <li class="list-group-item list-group-item-action">
-                                ART001 - Clavier
+                                <Skeletor
+                                    width="100%"
+                                    style="border-radius: 3px"
+                                    height="30"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -85,13 +139,18 @@
 
 <script>
 import useDepot from "../../../services/DepotServices";
+import { Skeletor } from "vue-skeletor";
 
-const { depot, getDepot } = useDepot();
+const { depot, loading, getDepot } = useDepot();
 
 export default {
+    components: {
+        Skeletor,
+    },
     setup() {
         return {
             depot,
+            loading,
             getDepot,
         };
     },

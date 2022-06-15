@@ -20,11 +20,16 @@
                         </tr>
                     </thead>
                     <tbody v-if="loading">
-                        <tr>
-                            <td class="text-center text-info" colspan="10">Chargement des données</td>
+                        <tr v-for="i in 5" :key="i">
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                         </tr>
                     </tbody>
-                    <tbody v-if="!loading">
+                    <tbody v-else-if="depots.length > 0">
                         <tr v-for="(depot, index) in depots" v-bind:key="depot.id">
                             <td>{{ depot.id }}</td>
                             <td>{{ depot.nom }}</td>
@@ -40,6 +45,11 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tbody v-else>
+                        <tr>
+                            <td class="text-center" colspan="6">Aucune point de vente</td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <!--div class="pagination">
@@ -53,16 +63,17 @@
 <script>
 import useDepot from '../../../services/DepotServices';
 import DeleteBtn from '../../html/DeleteBtn.vue';
+import { Skeletor } from 'vue-skeletor';
 
-const { depots, getDepots, deleteDepot } = useDepot()
+const { depots, loading, getDepots, deleteDepot } = useDepot()
 
 export default {
     components: {
-        DeleteBtn,
+        DeleteBtn, Skeletor,
     },
     setup() {
         return {
-            depots, getDepots,
+            depots, loading, getDepots,
         }
     },
 
