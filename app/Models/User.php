@@ -61,6 +61,17 @@ class User extends Authenticatable
      */
     protected $withCount = ['roles'];
 
+    protected $appends = ['nomComplet'];
+
+    /**
+     * recuperer seulement l'id des permissions
+     *
+     * @return Collection
+     */
+    public function getNomCompletAttribute()
+    {
+        return $this->nom_personnel . " " . $this->prenoms_personnel;
+    }
 
     /**
      * Hasher automatiquement un mot de passe et le dehasher si necessaire
@@ -70,12 +81,9 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute(?string $value)
     {
-        if (strpos($value, '_') === 0)
-        {
+        if (strpos($value, '_') === 0) {
             $this->attributes['password'] = Crypt::decrypt(str_replace('_', '', $value));
-        }
-        else
-        {
+        } else {
             if ($value !== null) $this->attributes['password'] = Crypt::encrypt($value);
             else $this->attributes['password'] = null;
         }
@@ -87,7 +95,7 @@ class User extends Authenticatable
      *
      * @return BelongsToMany
      */
-    public function roles() : BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
@@ -98,7 +106,7 @@ class User extends Authenticatable
      *
      * @return BelongsToMany
      */
-    public function fonctions() : BelongsToMany
+    public function fonctions(): BelongsToMany
     {
         return $this->belongsToMany(Fonction::class, 'personnel_fonctions', 'personnel', 'fonction')->withPivot(['date_association ']);
     }

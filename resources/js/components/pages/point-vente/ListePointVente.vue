@@ -3,7 +3,7 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-uppercase text-info">Liste de point de vente</h5>
+                    <h5 class="text-info">Liste de point de vente</h5>
                     <router-link to="/point-de-vente/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
                 </div>
             </div>
@@ -35,7 +35,9 @@
                             <td>{{ depot.nom }}</td>
                             <td>{{ depot.localisation }}</td>
                             <td>{{ depot.contact }}</td>
-                            <td>{{ "Rakoto, Beloha" }}</td>
+                            <td>
+                                <span class="badge bg-secondary fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
+                            </td>
                             <td class="d-flex justify-content-center">
                                 <router-link :to="{ name: 'point-de-vente.voir', params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
                                 <router-link v-if="$can('edit_point_vente')" :to="{ name: 'point-de-vente.modifier', params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>

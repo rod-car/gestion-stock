@@ -3,7 +3,7 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-uppercase text-info">
+                    <h5 class="text-info">
                         Modifier le point de vente N° {{ depot.id }}
                     </h5>
                     <router-link
@@ -72,16 +72,7 @@ export default {
         async save(id) {
             await updateDepot(id, depot.value);
             window.scrollTo({ top: 0, behavior: "smooth" });
-            if (success.value !== null) this.resetForm();
             success.value = null
-        },
-        resetForm() {
-            this.form = {
-                nom: null,
-                localisation: null,
-                contact: null,
-                point_vente: true,
-            };
         },
     },
     mounted() {

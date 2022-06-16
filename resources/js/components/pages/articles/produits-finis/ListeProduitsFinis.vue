@@ -3,11 +3,11 @@
         <div class="card">
             <div v-show="loading">Chargement</div>
             <div class="card-body">
-                <h4 class="text-uppercase mb-3">Liste des produits finis</h4>
+                <h4 class="mb-3">Liste des produits finis</h4>
                 <div class="single-table">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
-                            <thead class="text-uppercase bg-secondary">
+                            <thead class="bg-secondary">
                                 <tr class="text-white">
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>

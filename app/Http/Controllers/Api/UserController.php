@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\EditUserRequest;
-use App\Http\Requests\User\NewUserRequest;
 use Illuminate\Database\QueryException;
+use App\Http\Requests\User\NewUserRequest;
+use App\Http\Requests\User\EditUserRequest;
 
 class UserController extends Controller
 {
@@ -15,8 +16,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (intval($request->page) === 0) {
+            return User::all();
+        }
         return User::paginate(15);
     }
 
@@ -37,8 +41,7 @@ class UserController extends Controller
         unset($data['permissions'], $data['fonctions']);
 
         // crée les tableau des permissions unique
-        foreach ($permissionsGroups as $permissionGroup)
-        {
+        foreach ($permissionsGroups as $permissionGroup) {
             $permissions = array_unique(array_merge($permissions, $permissionGroup));
         }
 
@@ -46,13 +49,13 @@ class UserController extends Controller
         $user = User::create($data);
 
         // Ajout des fonctions
-        foreach ($fonctions as $id) { $user->fonctions()->attach($id); }
+        foreach ($fonctions as $id) {
+            $user->fonctions()->attach($id);
+        }
 
         // Ajout des permissions
-        if ($request->boolean('hasAccount') AND $request->boolean('hasRole'))
-        {
-            foreach ($permissions as $id)
-            {
+        if ($request->boolean('hasAccount') and $request->boolean('hasRole')) {
+            foreach ($permissions as $id) {
                 $user->roles()->attach($id);
             }
         }
@@ -90,36 +93,34 @@ class UserController extends Controller
         $permissions = [];
 
         // crée les tableau des permissions unique
-        foreach ($permissionsGroups as $permissionGroup)
-        {
+        foreach ($permissionsGroups as $permissionGroup) {
             $permissions = array_unique(array_merge($permissions, $permissionGroup));
         }
 
         // Si l'utilisateur a un compte, on fait ce traitement - Ajouts des roles et verification des roles
-        if ($request->hasAccount === true)
-        {
+        if ($request->hasAccount === true) {
             // Mise a jour des roles
-            foreach ($user->roles as $role)
-            {
+            foreach ($user->roles as $role) {
                 if (!in_array($role->id, $permissions)) $user->roles()->detach($role->id); // Supprimer les roles qui ne sont plus present
             }
 
             $actualPermissionsId = $user->roles->pluck('id')->toArray();
 
-            foreach ($permissions as $id)
-            {
+            foreach ($permissions as $id) {
                 if (!in_array($id, $actualPermissionsId)) $user->roles()->attach($id); // Ajouter les nouveaux roles
             }
 
             // Mise a jour des foncitons
-            foreach ($user->fonctions as $fonction) { if (!in_array($fonction->id, $fonctions)) $user->fonctions()->detach($fonction->id); }// Supprimer les roles qui ne sont plus present
+            foreach ($user->fonctions as $fonction) {
+                if (!in_array($fonction->id, $fonctions)) $user->fonctions()->detach($fonction->id);
+            } // Supprimer les roles qui ne sont plus present
 
             $actualFonctionsId = $user->fonctions->pluck('id')->toArray();
 
-            foreach ($fonctions as $id) { if (!in_array($id, $actualFonctionsId)) $user->fonctions()->attach($id); } // Ajouter les nouveaux roles
-        }
-        else
-        {   // On remet les informations de compte de l'utilisateur a zero
+            foreach ($fonctions as $id) {
+                if (!in_array($id, $actualFonctionsId)) $user->fonctions()->attach($id);
+            } // Ajouter les nouveaux roles
+        } else {   // On remet les informations de compte de l'utilisateur a zero
             $data['username'] = null;
             $data['password'] = null;
             $user->roles()->detach();
@@ -141,10 +142,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try
-        {
-            if ($user->id === auth()->user()->id)
-            {
+        try {
+            if ($user->id === auth()->user()->id) {
                 return response()->json([
                     'errors' => "Ne peut pas supprimer l'utilisateur actif"
                 ]);
@@ -155,9 +154,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => "Supprimé avec success"
             ]);
-        }
-        catch (QueryException $e)
-        {
+        } catch (QueryException $e) {
             return response()->json([
                 'errors' => "Echec de suppréssion. {$e->getMessage()}"
             ]);

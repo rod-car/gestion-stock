@@ -22,15 +22,17 @@ class Depot extends Model
     ];
 
 
+    protected $with = ["responsables", "travailleurs"];
+
 
     /**
      * Recuperer tous les travailleurs du dépot
      *
      * @return BelongsToMany
      */
-    public function travailleurs() : BelongsToMany
+    public function travailleurs(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'travailler', 'personnel', 'id')
+        return $this->belongsToMany(User::class, 'travailler', 'personnel', 'depot')
             ->withPivot(['est_responsable']);
     }
 
@@ -40,9 +42,9 @@ class Depot extends Model
      *
      * @return BelongsToMany
      */
-    public function responsables() : BelongsToMany
+    public function responsables(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'travailler', 'personnel', 'id')
+        return $this->belongsToMany(User::class, 'travailler', 'depot', 'personnel')
             ->wherePivot('est_responsable', true)
             ->withPivot(['est_responsable']);
     }

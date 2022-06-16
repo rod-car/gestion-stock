@@ -32,6 +32,8 @@ class ModifierDepotRequest extends FormRequest
             "localisation" => ["required", "sometimes", "min:5", "max:255"],
             "contact" => ["nullable", "sometimes", "min:10", "max:255"],
             "point_vente" => ["required", "boolean", "in:true,false,1,0"],
+            "responsables" => ["nullable", "array"],
+            "responsables.*" => ["nullable", "exists:users,id"],
         ];
     }
 
@@ -64,5 +66,18 @@ class ModifierDepotRequest extends FormRequest
             ], 422);
         }
         return back()->withErrors($validator)->withInput();
+    }
+
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            "responsables" => collect($this->responsables)->pluck('id')->toArray()
+        ]);
     }
 }

@@ -152,7 +152,7 @@ export default function useDepot() {
 
         loading.value = true
         try {
-            await axiosClient.put(`/depot/${id}`, data)
+            await axiosClient.patch(`/depot/${id}`, data)
             success.value = "Modifié avec success"
             Flash('success', 'Message de succès', success.value)
         } catch (error) {

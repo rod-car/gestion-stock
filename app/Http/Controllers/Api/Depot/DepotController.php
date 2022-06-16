@@ -56,6 +56,23 @@ class DepotController extends Controller
     public function update(ModifierDepotRequest $request, Depot $depot)
     {
         $data = $request->validated();
+        $responsablesId = $data['responsables'];
+        $responsablesIdActuel = $depot->responsables->pluck('id')->toArray(); // Tous les responsables actuel
+
+        foreach ($responsablesIdActuel as $id) {
+            // Supprimer la responsable qui n'est plus présent dans la formulaire
+            if (!in_array($id, $responsablesId)) $depot->responsables()->detach($id);
+        }
+
+        foreach ($responsablesId as $id) {
+            if (!$depot->responsables->contains($id)) {
+                $depot->responsables()->attach($id, [
+                    "est_responsable" => true,
+                ]);
+            }
+        }
+
+        return response()->json(["success" => "Mis a jour avec succès"]);
         $depot->update($data);
     }
 

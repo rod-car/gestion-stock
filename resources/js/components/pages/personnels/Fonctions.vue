@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="text-uppercase text-info">Liste des fonctions</h5>
+                    <h5 class="text-info">Liste des fonctions</h5>
 
                     <Transition name="slide-fade">
                         <button v-if="editing === false" @click.prevent="showNewForm" v-bind:class="isCreating ? 'btn btn-danger' : 'btn btn-primary'">

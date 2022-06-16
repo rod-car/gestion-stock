@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-uppercase text-info">Modifier personnel</h5>
+                    <h5 class="text-info">Modifier personnel</h5>
                     <router-link to="/personnel/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des personnelles</router-link>
                 </div>
             </div>

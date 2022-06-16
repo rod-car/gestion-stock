@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="text-uppercase text-info">Liste des personnelles</h5>
+                    <h5 class="text-info">Liste des personnelles</h5>
                     <router-link v-if="$can('add_user')" to="/personnel/nouveau" class="btn btn-primary"><i class="fa fa-user-plus me-2"></i>Ajouter nouveau</router-link>
                 </div>
 

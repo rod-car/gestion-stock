@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="text-uppercase text-info">Nouveau personnel</h5>
+                    <h5 class="text-info">Nouveau personnel</h5>
                     <router-link to="/personnel/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des personnelles</router-link>
                 </div>
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <vue-progress-bar></vue-progress-bar>
-        <!-- preloader area start -->
+
         <div id="preloader">
             <div class="loader"></div>
         </div>
@@ -108,7 +108,7 @@
                 <p>© Copyright 2018. All right reserved.</p>
             </div>
         </footer>
-        
+
         <div class="offset-area">
             <div class="offset-close"><i class="ti-close"></i></div>
             <ul class="nav offset-menu-tab">
@@ -434,6 +434,12 @@
                                 icon: 'fa fa-list',
                                 hidden: !this.$can('view_point_vente'),
                             },
+                            {
+                                title: 'Gerer les responsable',
+                                href: '/point-de-vente/responsables',
+                                icon: 'fa fa-users',
+                                hidden: false,
+                            },
                         ]
                     },
                     {
@@ -524,10 +530,6 @@
 .sidebar.v-sidebar-menu .collapse-btn:after {
   content: "\f07e";
   font-family: "FontAwesome";
-}
-
-.sidebar {
-    background: red;
 }
 
 </style>

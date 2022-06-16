@@ -9,6 +9,7 @@ import NouveauPointVente from '../pages/point-vente/NouveauPointVente.vue';
 import ModifierPointVente from '../pages/point-vente/ModifierPointVente.vue';
 import ListePointVente from '../pages/point-vente/ListePointVente.vue';
 import VoirPointVente from '../pages/point-vente/VoirPointVente.vue';
+import GererResponsable from '../pages/point-vente/GererResponsable.vue';
 
 import NouveauEntrepot from '../pages/entrepot/NouveauEntrepot.vue';
 import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
@@ -46,6 +47,7 @@ const routes = [
         name: 'article.article.liste',
         component: ListeProduitsFinis
     },
+
     {
         path: '/point-de-vente/nouveau',
         name: 'depot.point-de-vente.nouveau',
@@ -83,6 +85,15 @@ const routes = [
         }
     },
     {
+        path: '/point-de-vente/:id/responsables',
+        name: 'point-de-vente.gerer-responsable',
+        component: GererResponsable,
+        meta: {
+            requiresAuth: true,
+        }
+    },
+
+    {
         path: '/entrepot/nouveau',
         name: 'depot.entrepot.nouveau',
         component: NouveauEntrepot,
@@ -105,8 +116,8 @@ const routes = [
     .concat(errorsRoutes);
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+    history: createWebHistory(),
+    routes,
 });
 
 router.beforeEach((to, from, next) => {
@@ -115,10 +126,10 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.meta.requiresAuth && !store.state.user.token) {
-        next({name: 'login'});
+        next({ name: 'login' });
     } else {
         if (to.meta.requiresGuest && store.state.user.token) {
-            next({name: 'dashboard'});
+            next({ name: 'dashboard' });
         }
         next();
     }
@@ -131,7 +142,7 @@ router.beforeEach((to, from, next) => {
  *
  * @return  {void}
  */
-const getUser = async ()  => {
+const getUser = async () => {
     await store.dispatch('getUser');
 }
 

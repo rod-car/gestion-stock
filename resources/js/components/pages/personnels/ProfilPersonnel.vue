@@ -13,7 +13,7 @@
             <div class="card-body">
                 <div class="text-center" v-show="loading">Chargement</div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="text-uppercase text-info">Information du personnel</h5>
+                    <h5 class="text-info">Information du personnel</h5>
                     <router-link v-if="personnel.id && $can('edit_user')" :to="{ name: 'gestion-des-personnels.personnel.modifier', params: { id: personnel.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit me-2"></i>Modifier</router-link>
                 </div>
 
