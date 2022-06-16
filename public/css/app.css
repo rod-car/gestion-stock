@@ -532,6 +532,16 @@
   border-radius: 50%;
 }
 
+.message-loading {
+  background: #17a2b8 !important;
+  color: white !important;
+}
+
+.message-loading svg {
+  background: white;
+  border-radius: 50%;
+}
+
 .message-success svg {
   background: white;
   border-radius: 50%;
@@ -547,6 +557,10 @@
 }
 
 .message-success .m-message--description {
+  color: white !important;
+}
+
+.message-loading .m-message--description {
   color: white !important;
 }
 /*@import url('https://fonts.googleapis.com/css?family=Nunito');

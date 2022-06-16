@@ -66,7 +66,7 @@ import DeleteBtn from '../../html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
 import Flash from '../../../functions/Flash';
 
-const { depots, loading, getDepots, deleteDepot } = useDepot()
+const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
 
 export default {
     components: {
@@ -74,11 +74,12 @@ export default {
     },
     setup() {
         return {
-            depots, loading, getDepots,
+            depots, loading, deleting, getDepots,
         }
     },
 
     mounted() {
+        window.Flash = this.$mmessage
         getDepots()
     },
 
@@ -92,9 +93,8 @@ export default {
          */
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
-                deleteDepot(id)
-                depots.value.splice(index)
-                Flash('success', "Message de succès", "Le point de vente est supprimé avec succès")
+                Flash('loading', "Chargement", "Suppression en cours", 2, false)
+                deleteDepot(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

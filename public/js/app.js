@@ -24075,6 +24075,7 @@ __webpack_require__.r(__webpack_exports__);
 var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default"])(),
     depots = _useDepot.depots,
     loading = _useDepot.loading,
+    deleting = _useDepot.deleting,
     getDepots = _useDepot.getDepots,
     deleteDepot = _useDepot.deleteDepot;
 
@@ -24087,10 +24088,12 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default
     return {
       depots: depots,
       loading: loading,
+      deleting: deleting,
       getDepots: getDepots
     };
   },
   mounted: function mounted() {
+    window.Flash = this.$mmessage;
     getDepots();
   },
   methods: {
@@ -24103,9 +24106,8 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default
      */
     confirmDeletion: function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(function () {
-        deleteDepot(id);
-        depots.value.splice(index);
-        (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('success', "Message de succès", "Le point de vente est supprimé avec succès");
+        (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('loading', "Chargement", "Suppression en cours", 2, false);
+        deleteDepot(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -28732,23 +28734,27 @@ __webpack_require__.r(__webpack_exports__);
  * @param   {String}  type          Type de message (success, error)
  * @param   {String}  title         Titre du message
  * @param   {String}  message       Contenu du message
+ * @param   {Number}  delay         Nombre de seconde pour afficher le popup
+ * @param   {Boolean} closable      Determiner si le popup est closable
  * @param   {String}  position      Position du message (bottom-right, ...)
  *
  * @return  {Message}                Fonction qui génere le message flash
  */
 
 function Flash(type, title, message) {
-  var position = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'bottom-right';
+  var delay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
+  var closable = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+  var position = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'bottom-right';
   return (0,vue_m_message__WEBPACK_IMPORTED_MODULE_0__["default"])({
     type: type,
     title: title,
     message: message,
     position: position,
-    duration: 5000,
+    duration: 1000 * delay,
     width: "25%",
     className: "message-".concat(type, " p-3"),
     stopTimerOnHover: true,
-    closable: true
+    closable: closable
   });
 }
 
@@ -28895,6 +28901,13 @@ function useDepot() {
    */
 
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Permet d'indiquer q'un point de vente est en cours de suppréssion
+   *
+   * @type {Boolean}
+   */
+
+  var deleting = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
   /**
    * Créer un nouveau point de vente
    *
@@ -29043,6 +29056,7 @@ function useDepot() {
    * Permet de supprimer un depot en fonciton de lID
    *
    * @param   {Numner}  id  Identifiant du dépot a supprimer
+   * @param   {Number|null} index Index de l'eleement dans le tableau de dépots
    *
    * @return  {void}
    */
@@ -29050,42 +29064,47 @@ function useDepot() {
 
   var deleteDepot = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
-      var response;
+      var index,
+          response,
+          _args4 = arguments;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              loading.value = true;
-              _context4.prev = 1;
-              _context4.next = 4;
+              index = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : null;
+              deleting.value = true;
+              _context4.prev = 2;
+              _context4.next = 5;
               return _axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("/depot/".concat(id));
 
-            case 4:
+            case 5:
               response = _context4.sent;
 
               if (response.data.errors) {
                 errors.value = response.data.errors;
               } else {
                 success.value = "Personnel supprimé avec succes";
+                depots.value.splice(index);
+                (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('success', "Message de succès", success.value);
               }
 
-              _context4.next = 11;
+              _context4.next = 12;
               break;
 
-            case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](1);
+            case 9:
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](2);
               errors.value = err.response.data.errors;
 
-            case 11:
-              loading.value = false;
-
             case 12:
+              deleting.value = false;
+
+            case 13:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee4, null, [[2, 9]]);
     }));
 
     return function deleteDepot(_x3) {

@@ -46,6 +46,14 @@ export default function useDepot() {
 
 
     /**
+     * Permet d'indiquer q'un point de vente est en cours de suppréssion
+     *
+     * @type {Boolean}
+     */
+    let deleting = ref(false)
+
+
+    /**
      * Créer un nouveau point de vente
      *
      * @param   {Object}  data  Contient tous les champs du formulaire
@@ -118,22 +126,25 @@ export default function useDepot() {
      * Permet de supprimer un depot en fonciton de lID
      *
      * @param   {Numner}  id  Identifiant du dépot a supprimer
+     * @param   {Number|null} index Index de l'eleement dans le tableau de dépots
      *
      * @return  {void}
      */
-    const deleteDepot = async (id) => {
-        loading.value = true
+    const deleteDepot = async (id, index = null) => {
+        deleting.value = true
         try {
             let response = await axiosClient.delete(`/depot/${id}`)
             if (response.data.errors) {
                 errors.value = response.data.errors
             } else {
                 success.value = "Personnel supprimé avec succes";
+                depots.value.splice(index)
+                Flash('success', "Message de succès", success.value)
             }
         } catch (error) {
             errors.value = err.response.data.errors;
         }
-        loading.value = false
+        deleting.value = false
     }
 
 
