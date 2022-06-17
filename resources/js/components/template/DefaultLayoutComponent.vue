@@ -99,8 +99,11 @@
                 </div>
             </div>
 
-            <router-view class="mt-5 mb-5 me-5"></router-view>
-
+            <router-view class="mt-5 ps-2 pe-2" v-slot="{ Component }">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component"></component>
+                </transition>
+            </router-view>
         </div>
 
         <footer>
@@ -315,7 +318,8 @@
 
         data() {
             return {
-                collapsed: false
+                collapsed: false,
+                className: 'hidden',
             }
         },
 
@@ -324,6 +328,7 @@
         },
 
         created() {
+            this.className = 'hidden'
             this.$Progress.start();
 
             this.$router.beforeEach((to, from, next) => {
@@ -352,6 +357,7 @@
                 this.$Progress.finish();
             });
         },
+
         methods: {
             /**
              * Permet de deconnecter un utilisateur
@@ -464,10 +470,12 @@
                     {
                         header: "Personnel",
                         hiddenOnCollapse: true,
+                        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
                     },
                     {
                         title: 'Personnel',
                         icon: 'fa fa-users',
+                        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
                         child: [
                             {
                                 href: '/personnel/nouveau',
@@ -522,14 +530,26 @@
     padding-left: 80px;
 }
 
-.sidebar.v-sidebar-menu .vsm-arrow:after {
-  content: "\f105";
-  font-family: "FontAwesome";
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
 }
 
-.sidebar.v-sidebar-menu .collapse-btn:after {
-  content: "\f07e";
-  font-family: "FontAwesome";
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.3s ease;
+}
+
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0.2;
+  transform: scale(0.9);
 }
 
 </style>

@@ -23292,13 +23292,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vueform_multiselect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vueform/multiselect */ "./node_modules/@vueform/multiselect/dist/multiselect.js");
 /* harmony import */ var _services_RoleServices__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../services/RoleServices */ "./resources/js/services/RoleServices.js");
 /* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../axios */ "./resources/js/axios/index.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 
@@ -24602,7 +24600,8 @@ var logoImg = {
   },
   data: function data() {
     return {
-      collapsed: false
+      collapsed: false,
+      className: 'hidden'
     };
   },
   mounted: function mounted() {
@@ -24611,6 +24610,7 @@ var logoImg = {
   created: function created() {
     var _this = this;
 
+    this.className = 'hidden';
     this.$Progress.start();
     this.$router.beforeEach(function (to, from, next) {
       _axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('abilities').then(function (response) {
@@ -24757,10 +24757,12 @@ var logoImg = {
         }]
       }, {
         header: "Personnel",
-        hiddenOnCollapse: true
+        hiddenOnCollapse: true,
+        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user')
       }, {
         title: 'Personnel',
         icon: 'fa fa-users',
+        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
         child: [{
           href: '/personnel/nouveau',
           title: 'Nouveau personnel',
@@ -29312,7 +29314,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "notify-item"
   }, _hoisted_23)])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, {
-    "class": "mt-5 mb-5 me-5"
+    "class": "mt-5 ps-2 pe-2"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+      var Component = _ref.Component;
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+        name: "fade",
+        mode: "out-in"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(Component)))];
+        }),
+        _: 2
+        /* DYNAMIC */
+
+      }, 1024
+      /* DYNAMIC_SLOTS */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
   })], 2
   /* CLASS */
   ), _hoisted_24]);
@@ -31367,7 +31389,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#view {\n    padding-left: 300px;\n    transition: all;\n    transition-duration: .3s;\n}\n#view.collapsed {\n    transition-duration: .5s;\n    padding-left: 80px;\n}\n.sidebar.v-sidebar-menu .vsm-arrow:after {\n  content: \"\\f105\";\n  font-family: \"FontAwesome\";\n}\n.sidebar.v-sidebar-menu .collapse-btn:after {\n  content: \"\\f07e\";\n  font-family: \"FontAwesome\";\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#view {\n    padding-left: 300px;\n    transition: all;\n    transition-duration: .3s;\n}\n#view.collapsed {\n    transition-duration: .5s;\n    padding-left: 80px;\n}\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity 0.35s ease;\n}\n.fade-enter-from,\n.fade-leave-active {\n  opacity: 0;\n}\n.scale-enter-active,\n.scale-leave-active {\n  transition: all 0.3s ease;\n}\n.scale-enter-from,\n.scale-leave-to {\n  opacity: 0.2;\n  transform: scale(0.9);\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
