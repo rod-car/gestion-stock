@@ -32,7 +32,7 @@ class Depot extends Model
      */
     public function travailleurs(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'travailler', 'personnel', 'depot')
+        return $this->belongsToMany(User::class, 'travailler', 'depot', 'personnel')
             ->withPivot(['est_responsable']);
     }
 

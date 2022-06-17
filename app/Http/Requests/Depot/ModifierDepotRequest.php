@@ -34,6 +34,11 @@ class ModifierDepotRequest extends FormRequest
             "point_vente" => ["required", "boolean", "in:true,false,1,0"],
             "responsables" => ["nullable", "array"],
             "responsables.*" => ["nullable", "exists:users,id"],
+
+            "travailleurs" => ["nullable", "array"],
+            "travailleurs.*" => ["nullable", "exists:users,id"],
+
+            "type" => ["required", "numeric", "min:0", "max:3"],
         ];
     }
 
@@ -70,14 +75,17 @@ class ModifierDepotRequest extends FormRequest
 
 
     /**
-     * Prepare the data for validation.
+     * Modifier quelques proprietes de la requetes avant la validation
      *
      * @return void
      */
     protected function prepareForValidation()
     {
+        // Construction de tableau d'ID a partir de l'objet et d'autres attributs
         $this->merge([
-            "responsables" => collect($this->responsables)->pluck('id')->toArray()
+            "responsables" => collect($this->responsables)->pluck('id')->toArray(),
+            "travailleurs" => collect($this->travailleurs)->pluck('id')->toArray(),
+            "type" => intval($this->type),
         ]);
     }
 }

@@ -54,6 +54,14 @@ export default function useDepot() {
 
 
     /**
+     * Permet d'indiquer q'un point de vente est en cours de mise a jour
+     *
+     * @type {Boolean}
+     */
+    let updating = ref(false)
+
+
+    /**
      * Créer un nouveau point de vente
      *
      * @param   {Object}  data  Contient tous les champs du formulaire
@@ -148,9 +156,20 @@ export default function useDepot() {
     }
 
 
-    const updateDepot = async (id, data) => {
+    /**
+     * Fonction permet de mettre a jour un point de vente
+     *
+     * @param   {Number}  id          Identifiant du point de vente
+     * @param   {Object}  data        Nouvelle données
+     * @param   {Number}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
+     *
+     * @return  {Object}
+     */
+    const updateDepot = async (id, data, updateType = 0) => {
 
-        loading.value = true
+        updating.value = true
+        data["type"] = updateType // Integrer dans le données le type de mise a jour a faire
+
         try {
             await axiosClient.patch(`/depot/${id}`, data)
             success.value = "Modifié avec success"
@@ -163,12 +182,12 @@ export default function useDepot() {
                 Router.push('/403')
             }
         }
-        loading.value = false
+        updating.value = false
 
     }
 
     return {
-        depot, depots, errors, success, loading,
+        depot, depots, errors, success, loading, updating,
         createDepot, getDepot, getDepots, deleteDepot, updateDepot,
     }
 

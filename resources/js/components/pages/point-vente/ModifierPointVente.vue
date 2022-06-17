@@ -3,9 +3,9 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">
-                        Modifier le point de vente N° {{ depot.id }}
-                    </h5>
+                    <h5 v-if="!loading" class="text-info">Modifier le point de vente N° {{ depot.id }}</h5>
+                    <Skeletor v-else width="50%" height="30" style="border-radius: 5px" />
+
                     <router-link
                         to="/point-de-vente/liste"
                         class="btn btn-primary"
@@ -27,7 +27,7 @@
                             <Input v-model="depot.contact" :error="errors.contact">Contact</Input>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <SaveBtn @click.prevent="save(depot.id)" :loading="loading">Enregistrer</SaveBtn>
+                            <SaveBtn @click.prevent="save(depot.id)" :loading="updating">Enregistrer</SaveBtn>
                         </div>
                     </div>
                 </form>
@@ -41,7 +41,7 @@ import Input from "../../html/Input.vue";
 import SaveBtn from "../../html/SaveBtn.vue";
 import useDepot from "../../../services/DepotServices";
 
-const { success, loading, errors, depot, getDepot, updateDepot } = useDepot();
+const { success, loading, updating, errors, depot, getDepot, updateDepot } = useDepot();
 
 export default {
     components: {
@@ -54,6 +54,7 @@ export default {
             errors,
             depot,
             loading,
+            updating,
             getDepot,
             updateDepot,
         };
@@ -70,7 +71,8 @@ export default {
     },
     methods: {
         async save(id) {
-            await updateDepot(id, depot.value);
+            const updateType = 3 // Type de mise a jour
+            await updateDepot(id, depot.value, updateType);
             window.scrollTo({ top: 0, behavior: "smooth" });
             success.value = null
         },

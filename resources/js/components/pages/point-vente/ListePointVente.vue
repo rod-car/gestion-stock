@@ -36,7 +36,7 @@
                             <td>{{ depot.localisation }}</td>
                             <td>{{ depot.contact }}</td>
                             <td>
-                                <span class="badge bg-secondary fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
+                                <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
                             </td>
                             <td class="d-flex justify-content-center">
                                 <router-link :to="{ name: 'point-de-vente.voir', params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>

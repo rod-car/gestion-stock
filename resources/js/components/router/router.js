@@ -5,18 +5,14 @@ import Dashboard from '../pages/Dashboard.vue';
 import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
 import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
 
-import NouveauPointVente from '../pages/point-vente/NouveauPointVente.vue';
-import ModifierPointVente from '../pages/point-vente/ModifierPointVente.vue';
-import ListePointVente from '../pages/point-vente/ListePointVente.vue';
-import VoirPointVente from '../pages/point-vente/VoirPointVente.vue';
-import GererResponsable from '../pages/point-vente/GererResponsable.vue';
-
 import NouveauEntrepot from '../pages/entrepot/NouveauEntrepot.vue';
 import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
 import store from '../../store/index';
+
+import pointVente from './routes/point-vente';
 
 const routes = [
     {
@@ -47,52 +43,6 @@ const routes = [
         name: 'article.article.liste',
         component: ListeProduitsFinis
     },
-
-    {
-        path: '/point-de-vente/nouveau',
-        name: 'depot.point-de-vente.nouveau',
-        component: NouveauPointVente,
-        meta: {
-            requiresAuth: true,
-            gate: 'add_point_vente',
-        }
-    },
-    {
-        path: '/point-de-vente/liste',
-        name: 'depot.point-de-vente.liste',
-        component: ListePointVente,
-        meta: {
-            requiresAuth: true,
-            gate: 'view_point_vente',
-        }
-    },
-    {
-        path: '/point-de-vente/voir/:id',
-        name: 'point-de-vente.voir',
-        component: VoirPointVente,
-        meta: {
-            requiresAuth: true,
-            gate: 'view_point_vente',
-        }
-    },
-    {
-        path: '/point-de-vente/modifier/:id',
-        name: 'point-de-vente.modifier',
-        component: ModifierPointVente,
-        meta: {
-            requiresAuth: true,
-            gate: 'edit_point_vente',
-        }
-    },
-    {
-        path: '/point-de-vente/:id/responsables',
-        name: 'point-de-vente.gerer-responsable',
-        component: GererResponsable,
-        meta: {
-            requiresAuth: true,
-        }
-    },
-
     {
         path: '/entrepot/nouveau',
         name: 'depot.entrepot.nouveau',
@@ -113,7 +63,8 @@ const routes = [
     },
 ]
     .concat(privateRoutes)
-    .concat(errorsRoutes);
+    .concat(errorsRoutes)
+    .concat(pointVente)
 
 const router = createRouter({
     history: createWebHistory(),

@@ -3,7 +3,7 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 v-if="!loading" class="text-info">Gerer les responsables du point de vente N° {{ depot.id }}</h5>
+                    <h5 v-if="!loading" class="text-info">Gerer les personnelles du point de vente N° {{ depot.id }}</h5>
                     <Skeletor v-else width="50%" height="30" style="border-radius: 5px" />
 
                     <router-link v-if="$can('view_point_vente')" to="/point-de-vente/liste" class="btn btn-primary me-2">
@@ -28,18 +28,18 @@
                         </div>
 
                         <div class="shadow shadow-sm p-3 ms-3 w-100">
-                            <h5 class="text-muted mb-3">Responsables actuels</h5>
+                            <h5 class="mb-3 text-muted">Personnelles actuels</h5>
                             <div v-if="!loading">
-                                <ul v-if="depot.responsables && depot.responsables.length > 0" class="list-group list-group-numbered">
-                                    <li v-for="responsable in depot.responsables" :key="responsable.id" class="list-group-item list-group-item-action">
-                                        <span class="fw-bold" v-text="responsable.nom_personnel"></span>&nbsp;
-                                        <span v-text="responsable.prenoms_personnel"></span>&nbsp;
+                                <ul v-if="depot.travailleurs && depot.travailleurs.length > 0" class="list-group list-group-numbered">
+                                    <li v-for="travailleur in depot.travailleurs" :key="travailleur.id" class="list-group-item list-group-item-action">
+                                        <span class="fw-bold" v-text="travailleur.nom_personnel"></span>&nbsp;
+                                        <span v-text="travailleur.prenoms_personnel"></span>&nbsp;
                                     </li>
                                 </ul>
 
                                 <ul v-else class="list-group">
                                     <li class="list-group-item list-group-item-action">
-                                        Aucune responsable pour ce point de vente
+                                        Aucune personnelles qui travaillent dans ce point de vente
                                     </li>
                                 </ul>
                             </div>
@@ -59,13 +59,13 @@
 
                     <div class="col-xl-12 shadow shadow-sm p-3 mt-5">
                         <form action="" method="post">
-                            <h5 class="text-muted mb-3">Ajouter ou supprimer un (des) responsable (s) ici</h5>
+                            <h5 class="mb-3 text-muted">Ajouter ou supprimer un (des) personnel (les) ici</h5>
 
-                            <label for="responsables" class="form-label">Responsables</label>
+                            <label for="travailleurs" class="form-label">Personnelles</label>
                             <Multiselect
                                 v-if="!loading"
                                 label="nomComplet" valueProp="id" :multiple="true"
-                                v-model="depot.responsables" :options="personnelles" mode="tags"
+                                v-model="depot.travailleurs" :options="personnelles" mode="tags"
                                 :object="true"
                                 :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
                                 placeholder="Selectionner les fonctions"
@@ -74,7 +74,8 @@
                             <Skeletor v-else width="100%" style="border-radius: 3px" height="30" />
 
                             <div class="d-flex justify-content-end mt-3">
-                                <SaveBtn @click.prevent="save(depot.id)" :loading="updating">Enregistrer</SaveBtn>
+                                <SaveBtn v-if="!loading" @click.prevent="save(depot.id)" :loading="updating">Enregistrer</SaveBtn>
+                                <Skeletor v-else width="10%" style="border-radius: 3px" height="40" />
                             </div>
                         </form>
                     </div>
@@ -92,7 +93,7 @@ import Multiselect from '@vueform/multiselect';
 import usePersonnelles from '../../../services/PersonnelServices';
 import SaveBtn from '../../html/SaveBtn.vue';
 
-const { depot, loading, success, updating, getDepot, updateDepot } = useDepot();
+const { depot, success, loading, updating, getDepot, updateDepot } = useDepot();
 const { personnelles, getPersonnelles } = usePersonnelles();
 
 export default {
@@ -103,8 +104,8 @@ export default {
         return {
             depot,
             loading,
-            success,
             updating,
+            success,
             personnelles,
             getDepot,
             updateDepot,
@@ -118,7 +119,7 @@ export default {
     },
     methods: {
         async save(id) {
-            const updateType = 1 // Mise a jour de responsable
+            const updateType = 2 // Type de mise a jour
             await updateDepot(id, depot.value, updateType);
             window.scrollTo({ top: 0, behavior: "smooth" });
             success.value = null

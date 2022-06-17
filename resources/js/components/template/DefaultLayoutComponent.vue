@@ -434,12 +434,12 @@
                                 icon: 'fa fa-list',
                                 hidden: !this.$can('view_point_vente'),
                             },
-                            {
+                            /*{
                                 title: 'Gerer les responsable',
                                 href: '/point-de-vente/responsables',
                                 icon: 'fa fa-users',
                                 hidden: false,
-                            },
+                            },*/
                         ]
                     },
                     {
