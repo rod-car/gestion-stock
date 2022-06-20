@@ -129,103 +129,7 @@
                                 <h4>Rashed sent you an email</h4>
                                 <span class="time"><i class="ti-time"></i>09:35</span>
                             </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg2">
-                                <i class="fa fa-check"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Added</h4>
-                                <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg2">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>You missed you Password!</h4>
-                                <span class="time"><i class="ti-time"></i>09:20 Am</span>
-                            </div>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg3">
-                                <i class="fa fa-bomb"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Member waiting for you Attention</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg3">
-                                <i class="ti-signal"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>You Added Kaji Patha few minutes ago</h4>
-                                <span class="time"><i class="ti-time"></i>01 minutes ago</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg1">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Ratul Hamba sent you an email</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                            <p>Hello sir , where are you, i am egerly waiting for you.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg2">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Rashed sent you an email</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg2">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Rashed sent you an email</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg3">
-                                <i class="fa fa-bomb"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Rashed sent you an email</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
-                        </div>
-                        <div class="timeline-task">
-                            <div class="icon bg3">
-                                <i class="ti-signal"></i>
-                            </div>
-                            <div class="tm-title">
-                                <h4>Rashed sent you an email</h4>
-                                <span class="time"><i class="ti-time"></i>09:35</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.</p>
                         </div>
                     </div>
                 </div>
@@ -440,12 +344,6 @@
                                 icon: 'fa fa-list',
                                 hidden: !this.$can('view_point_vente'),
                             },
-                            /*{
-                                title: 'Gerer les responsable',
-                                href: '/point-de-vente/responsables',
-                                icon: 'fa fa-users',
-                                hidden: false,
-                            },*/
                         ]
                     },
                     {
@@ -538,18 +436,6 @@
 .fade-enter-from,
 .fade-leave-active {
   opacity: 0;
-}
-
-.scale-enter-active,
-.scale-leave-active {
-  transition: all 0.3s ease;
-}
-
-
-.scale-enter-from,
-.scale-leave-to {
-  opacity: 0.2;
-  transform: scale(0.9);
 }
 
 </style>
