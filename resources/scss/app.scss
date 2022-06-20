@@ -7,5 +7,51 @@
 @import "./normalize.scss";
 
 @import '~jquery-ui/themes/base/all.css';*/
-
+@import 'vue-select/dist/vue-select.css';
 @import "~@marcoschulte/vue3-progress/dist/";
+
+@import "vue-sidebar-menu/src/scss/vue-sidebar-menu.scss";
+@import "grey-theme.scss";
+@import 'vue-skeletor/dist/vue-skeletor.css';
+
+.message-error {
+    background: #f94747 !important;
+    color: white !important;
+}
+
+.message-error svg {
+    background: white;
+    border-radius: 50%;
+}
+
+.message-loading {
+    background: #17a2b8 !important;
+    color: white !important;
+}
+
+.message-loading svg {
+    background: white;
+    border-radius: 50%;
+}
+
+.message-success svg {
+    background: white;
+    border-radius: 50%;
+}
+
+.message-success {
+    background: #67C23A !important;
+    color: white !important;
+}
+
+.message-error .m-message--description {
+    color: white !important;
+}
+
+.message-success .m-message--description {
+    color: white !important;
+}
+
+.message-loading .m-message--description {
+    color: white !important;
+}
