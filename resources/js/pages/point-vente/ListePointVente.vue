@@ -74,6 +74,7 @@ export default {
     components: {
         DeleteBtn, Skeletor,
     },
+
     setup() {
         return {
             depots, loading, deleting, getDepots,
@@ -95,7 +96,7 @@ export default {
          */
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
-                Flash('loading', "Chargement", "Suppression en cours", 2, false)
+                Flash('loading', "Chargement", "Suppression en cours", 1, false)
                 deleteDepot(id, index)
             }).catch (error => {
                 if (error !== undefined) {

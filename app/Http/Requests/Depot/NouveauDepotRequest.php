@@ -29,7 +29,7 @@ class NouveauDepotRequest extends FormRequest
             "nom" => ["required", "unique:depots,nom", "min:2", "max:255"],
             "localisation" => ["required", "sometimes", "min:5", "max:255"],
             "contact" => ["nullable", "sometimes", "min:10", "max:255"],
-            "point_vente" => ["required", "boolean", "in:true,false,1,0"],
+            "point_vente" => ["required", "boolean"],
         ];
     }
 
@@ -49,8 +49,7 @@ class NouveauDepotRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $message = "Les champs ne sont pas bien remplis";
-        if (request()->ajax())
-        {
+        if (request()->ajax()) {
             return response()->json([
                 "errors" => $validator->errors(),
                 "message" => $message

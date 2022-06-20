@@ -1,18 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../pages/Home.vue';
+
 import Login from '../pages/Login.vue';
 import Dashboard from '../pages/Dashboard.vue';
-import NouveauProduitsFinis from '../pages/articles/produits-finis/NouveauProduitsFinis.vue';
-import ListeProduitsFinis from '../pages/articles/produits-finis/ListeProduitsFinis.vue'
-
-import NouveauEntrepot from '../pages/entrepot/NouveauEntrepot.vue';
-import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
 import store from '../store/index';
 
-import pointVente from './routes/point-vente';
+import pointVente from './routes/point-vente'; // Route qui gère tous les point de vente
+import entrepot from './routes/entrepot'; // Routes qui gere tous les entrepots
 
 const routes = [
     {
@@ -22,49 +18,16 @@ const routes = [
         meta: { requiresGuest: true },
     },
     {
-        path: '/',
-        name: 'home',
-        component: Home,
-        meta: { requiresAuth: true }
-    },
-    {
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
         meta: { requiresAuth: true }
     },
-    {
-        path: '/article/nouveau',
-        name: 'article.article.nouveau',
-        component: NouveauProduitsFinis
-    },
-    {
-        path: '/article/liste',
-        name: 'article.article.liste',
-        component: ListeProduitsFinis
-    },
-    {
-        path: '/entrepot/nouveau',
-        name: 'depot.entrepot.nouveau',
-        component: NouveauEntrepot,
-        meta: {
-            requiresAuth: true,
-            gate: 'add_entrepot',
-        }
-    },
-    {
-        path: '/entrepot/liste',
-        name: 'depot.entrepot.liste',
-        component: ListeEntrepot,
-        meta: {
-            requiresAuth: true,
-            gate: 'view_entrepot',
-        }
-    },
 ]
     .concat(privateRoutes)
     .concat(errorsRoutes)
     .concat(pointVente)
+    .concat(entrepot)
 
 const router = createRouter({
     history: createWebHistory(),
@@ -84,8 +47,6 @@ router.beforeEach((to, from, next) => {
         }
         next();
     }
-
-
 });
 
 /**
