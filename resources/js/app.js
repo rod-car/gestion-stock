@@ -3,9 +3,9 @@ require('./bootstrap');
 require('./functions/string')
 
 import { createApp } from 'vue'
-import router from './components/router/router';
-import DefaultLayoutComponent from './components/template/DefaultLayoutComponent.vue';
-import Login from './components/pages/Login.vue';
+import router from './router/router';
+import DefaultLayout from './template/DefaultLayout.vue';
+import Login from './pages/Login.vue';
 
 import VueSimpleAlert from "vue3-simple-alert";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
@@ -37,7 +37,7 @@ window.SimpleAlert = VueSimpleAlert
 
 createApp({
     components: {
-        DefaultLayoutComponent,
+        DefaultLayout,
         Login,
     },
 })

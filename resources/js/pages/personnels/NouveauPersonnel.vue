@@ -122,16 +122,16 @@
 
 <script>
 
-import usePersonnelles from '../../../services/PersonnelServices';
-import useRoles from '../../../services/RoleServices';
-import Input from '../../html/Input.vue';
-import Alert from '../../html/Alert.vue';
-import SaveBtn from '../../html/SaveBtn.vue';
+import usePersonnelles from '../../services/PersonnelServices';
+import useRoles from '../../services/RoleServices';
+import Input from '../../components/html/Input.vue';
+import Alert from '../../components/html/Alert.vue';
+import SaveBtn from '../../components/html/SaveBtn.vue';
 
 import pagination from 'laravel-vue-pagination'
 import Multiselect from '@vueform/multiselect'
-import useFonctions from '../../../services/FonctionServices';
-import axiosClient from '../../../axios';
+import useFonctions from '../../services/FonctionServices';
+import axiosClient from '../../axios';
 
 const { errors, success, createPersonnel, resetFlashMessages } = usePersonnelles();
 const { fonction, fonctions, getFonction, getFonctions } = useFonctions();

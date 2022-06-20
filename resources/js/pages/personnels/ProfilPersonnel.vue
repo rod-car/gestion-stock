@@ -80,7 +80,7 @@
 
 <script>
 
-import usePersonnelles from '../../../services/PersonnelServices'
+import usePersonnelles from '../../services/PersonnelServices'
 
 const { personnel, errors, loading, getPersonnel } = usePersonnelles();
 

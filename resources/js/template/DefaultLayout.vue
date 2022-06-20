@@ -293,9 +293,9 @@
 
 <script>
 
-    import axiosClient from '../../axios';
-    import store from '../../store';
-    import useAbility from '../../services/AbilityServices';
+    import axiosClient from '../axios';
+    import store from '../store';
+    import useAbility from '../services/AbilityServices';
 
     const { permissions, getPermissions }  = useAbility()
 
@@ -532,7 +532,7 @@
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.35s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,

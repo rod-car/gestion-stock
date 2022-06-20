@@ -32,10 +32,10 @@
 
 <script>
 
-import Input from '../../html/Input.vue';
-import SaveBtn from '../../html/SaveBtn.vue';
-import Alert from '../../html/Alert.vue';
-import useDepot from '../../../services/DepotServices';
+import Input from '../../components/html/Input.vue';
+import SaveBtn from '../../components/html/SaveBtn.vue';
+import Alert from '../../components/html/Alert.vue';
+import useDepot from '../../services/DepotServices';
 
 const { success, errors, loading, createDepot } = useDepot()
 

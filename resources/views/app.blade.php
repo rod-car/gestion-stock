@@ -30,7 +30,7 @@
 <body>
     <div id="app">
         @auth
-            <default-layout-component></default-layout-component>
+            <default-layout></default-layout>
         @endauth
         @guest
             <script>

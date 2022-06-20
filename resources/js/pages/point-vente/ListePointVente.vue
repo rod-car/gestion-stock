@@ -63,10 +63,10 @@
 </template>
 
 <script>
-import useDepot from '../../../services/DepotServices';
-import DeleteBtn from '../../html/DeleteBtn.vue';
+import useDepot from '../../services/DepotServices';
+import DeleteBtn from '../../components/html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
-import Flash from '../../../functions/Flash';
+import Flash from '../../functions/Flash';
 
 const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
 

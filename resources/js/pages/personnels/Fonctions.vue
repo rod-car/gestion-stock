@@ -157,16 +157,16 @@
 <script>
 
 import pagination from 'laravel-vue-pagination'
-import useFonctions from '../../../services/FonctionServices';
-import DeleteBtn from '../../html/DeleteBtn';
-import Alert from '../../html/Alert.vue';
-import Input from '../../html/Input.vue';
-import SaveBtn from '../../html/SaveBtn.vue';
-import EditBtn from '../../html/EditBtn.vue';
+import useFonctions from '../../services/FonctionServices';
+import DeleteBtn from '../../components/html/DeleteBtn.vue';
+import Alert from '../../components/html/Alert.vue';
+import Input from '../../components/html/Input.vue';
+import SaveBtn from '../../components/html/SaveBtn.vue';
+import EditBtn from '../../components/html/EditBtn.vue';
 
 import Multiselect from '@vueform/multiselect'
-import useRoles from '../../../services/RoleServices';
-import axiosClient from '../../../axios';
+import useRoles from '../../services/RoleServices';
+import axiosClient from '../../axios';
 
 const { success, errors, fonction, fonctions, deleteFonction, getFonction, updateFonction, getFonctions, createFonction, resetFlashMessages } = useFonctions();
 const { roles, getRoles } = useRoles();

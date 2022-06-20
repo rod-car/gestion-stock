@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import Input from "../../html/Input.vue";
-import SaveBtn from "../../html/SaveBtn.vue";
-import useDepot from "../../../services/DepotServices";
+import Input from "../../components/html/Input.vue";
+import SaveBtn from "../../components/html/SaveBtn.vue";
+import useDepot from "../../services/DepotServices";
 
 const { success, loading, updating, errors, depot, getDepot, updateDepot } = useDepot();
 

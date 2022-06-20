@@ -10,7 +10,7 @@ import ListeEntrepot from '../pages/entrepot/ListeEntrepot.vue';
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
-import store from '../../store/index';
+import store from '../store/index';
 
 import pointVente from './routes/point-vente';
 

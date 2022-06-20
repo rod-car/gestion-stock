@@ -138,7 +138,7 @@
 </template>
 
 <script>
-import useDepot from "../../../services/DepotServices";
+import useDepot from "../../services/DepotServices";
 import { Skeletor } from "vue-skeletor";
 
 const { depot, loading, getDepot } = useDepot();

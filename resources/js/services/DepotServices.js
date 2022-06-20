@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import axiosClient from '../axios';
-import Router from '../components/router/router';
+import Router from '../router/router';
 import Flash from '../functions/Flash';
 
 export default function useDepot() {

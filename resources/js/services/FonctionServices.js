@@ -1,8 +1,8 @@
 import { ref } from "vue";
 import axiosClient from "../axios";
-import Router from '../components/router/router';
+import Router from '../router/router';
 
-export default function useFonctions () {
+export default function useFonctions() {
 
     /**
      * Tableau contenant tous la listes des fonctions
@@ -54,15 +54,12 @@ export default function useFonctions () {
      * @return  {JSON}  La fonction sous forme de JSON
      */
     const getFonction = async (id) => {
-        try
-        {
+        try {
             let response = await axiosClient.get(`/fonctions/${id}`);
             fonction.value = response.data;
         }
-        catch (err)
-        {
-            if (err.response.status === 404)
-            {
+        catch (err) {
+            if (err.response.status === 404) {
                 errors.value = {
                     message: "Impossible de trouver la fonction",
                     status: 404,

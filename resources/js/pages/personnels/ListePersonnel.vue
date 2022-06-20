@@ -66,9 +66,9 @@
 <script>
 
 import pagination from 'laravel-vue-pagination'
-import usePersonnelles from '../../../services/PersonnelServices';
-import DeleteBtn from '../../html/DeleteBtn';
-import Alert from '../../html/Alert.vue';
+import usePersonnelles from '../../services/PersonnelServices';
+import DeleteBtn from '../../components/html/DeleteBtn';
+import Alert from '../../components/html/Alert.vue';
 
 const { success, errors, loading, personnelles, deletePersonnel, getPersonnelles, resetFlashMessages } = usePersonnelles();
 
