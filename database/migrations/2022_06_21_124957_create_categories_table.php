@@ -16,9 +16,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('libelle');
-            $table->string('description')->nullable(true);
-            $table->integer('type')->default(null)->comment('Type de la catégorie: 1-Client, 2-Article, 3-Frs');
-            $table->foreignId('parent')->comment('Catégorie parent de ce catégorie s\'il ye en a')->default(null)->references('id')->on('categories');
+            $table->string('description')->nullable();
+            $table->integer('type')->comment('Type de la catégorie: 1-Client, 2-Article, 3-Frs');
             $table->timestamps();
         });
     }

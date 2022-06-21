@@ -14,9 +14,10 @@ class CreateFonctionInclusionsTable extends Migration
     public function up()
     {
         Schema::create('fonction_inclusions', function (Blueprint $table) {
-            $table->foreignId('fonction_parent')->references('id')->on('fonctions');
-            $table->foreignId('fonction_enfant')->references('id')->on('fonctions');
-            $table->primary(['fonction_parent', 'fonction_enfant'], 'pk_fonction_inclusion');
+            $table->unsignedBigInteger('fonction_parent');
+            $table->unsignedBigInteger('fonction_enfant')->index('fonction_inclusions_fonction_enfant_foreign');
+
+            $table->primary(['fonction_parent', 'fonction_enfant']);
         });
     }
 

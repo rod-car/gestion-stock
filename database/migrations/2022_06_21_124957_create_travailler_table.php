@@ -14,12 +14,12 @@ class CreateTravaillerTable extends Migration
     public function up()
     {
         Schema::create('travailler', function (Blueprint $table) {
-            $table->foreignId('personnel')->references('id')->on('users');
-            $table->foreignId('depot')->references('id')->on('depots');
+            $table->unsignedBigInteger('personnel');
+            $table->unsignedBigInteger('depot')->index('travailler_depot_foreign');
             $table->boolean('est_responsable')->default(false)->comment('Permet de determiner si le personnel est responsable de ce depot');
             $table->timestamps();
 
-            $table->primary(['personnel', 'depot'], 'pk_travailler');
+            $table->primary(['personnel', 'depot']);
         });
     }
 
