@@ -365,6 +365,145 @@
                             },
                         ]
                     },
+                    // Menu pour la gestion de client et fournisseur
+                    // -----------------------------------------------------------------------------------------------------
+                    {
+                        header: "Clients & Fournisseurs",
+                        hiddenOnCollapse: true,
+                        hidden: false,
+                    },
+                    {
+                        title: 'Client',
+                        icon: 'fa fa-users',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/client/nouveau',
+                                title: 'Nouveau client',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                // hidden: !this.$can('add_user'),
+                            },
+                            {
+                                href: '/client/liste',
+                                title: 'Liste des clients',
+                                icon: 'fa fa-list',
+                                // hidden: !this.$can('view_user'),
+                            },
+                            {
+                                title: 'Les catégories',
+                                icon: 'fa fa-tasks',
+                                child: [
+                                    {
+                                        href: '/client/categorie/nouveau',
+                                        title: 'Nouveau',
+                                        icon: 'fa fa-plus',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                    {
+                                        href: '/client/categorie/liste',
+                                        title: 'Liste',
+                                        icon: 'fa fa-list',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                ],
+                                // hidden: !this.$can('manage_roles_and_functions'),
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Fournisseurs',
+                        icon: 'fa fa-users',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/fournisseur/nouveau',
+                                title: 'Nouveau fournisseur',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                // hidden: !this.$can('add_user'),
+                            },
+                            {
+                                href: '/fournisseur/liste',
+                                title: 'Liste des fournisseurs',
+                                icon: 'fa fa-list',
+                                // hidden: !this.$can('view_user'),
+                            },
+                            {
+                                title: 'Les catégories',
+                                icon: 'fa fa-tasks',
+                                child: [
+                                    {
+                                        href: '/fournisseur/categorie/nouveau',
+                                        title: 'Nouveau',
+                                        icon: 'fa fa-plus',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                    {
+                                        href: '/fournisseur/categorie/liste',
+                                        title: 'Liste',
+                                        icon: 'fa fa-list',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                ],
+                                // hidden: !this.$can('manage_roles_and_functions'),
+                            },
+                        ]
+                    },
+                    // -----------------------------------------------------------------------------------------------------
+                    // Menu pour la gestion de l'article
+                    // -----------------------------------------------------------------------------------------------------
+                    {
+                        header: "Article",
+                        hiddenOnCollapse: true,
+                        hidden: false,
+                    },
+                    {
+                        title: 'Article',
+                        icon: 'fa fa-gift',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/article/nouveau',
+                                title: 'Nouveau article',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                // hidden: !this.$can('add_user'),
+                            },
+                            {
+                                href: '/article/liste',
+                                title: 'Liste des article',
+                                icon: 'fa fa-list',
+                                // hidden: !this.$can('view_user'),
+                            },
+                            {
+                                title: 'Les catégories',
+                                icon: 'fa fa-tasks',
+                                child: [
+                                    {
+                                        href: '/article/categorie/nouveau',
+                                        title: 'Nouveau',
+                                        icon: 'fa fa-plus',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                    {
+                                        href: '/article/categorie/liste',
+                                        title: 'Liste',
+                                        icon: 'fa fa-list',
+                                        class: 'fw-regular',
+                                        // hidden: !this.$can('add_user'),
+                                    },
+                                ],
+                                // hidden: !this.$can('manage_roles_and_functions'),
+                            },
+                        ]
+                    },
+                    // ---------------------------------------------------------------------------------------
                     {
                         header: "Personnel",
                         hiddenOnCollapse: true,

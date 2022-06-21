@@ -10,12 +10,22 @@ import store from '../store/index';
 import pointVente from './routes/point-vente'; // Route qui gère tous les point de vente
 import entrepot from './routes/entrepot'; // Routes qui gere tous les entrepots
 
+import client from './routes/clients/client'; // Routes qui gère le client
+import fournisseurs from './routes/fournisseurs/fournisseurs';
+import articles from './routes/articles/articles';
+
 const routes = [
     {
         path: '/login',
         name: 'login',
         component: Login,
         meta: { requiresGuest: true },
+    },
+    {
+        path: '/',
+        name: 'home',
+        component: Dashboard,
+        meta: { requiresAuth: true }
     },
     {
         path: '/dashboard',
@@ -28,6 +38,9 @@ const routes = [
     .concat(errorsRoutes)
     .concat(pointVente)
     .concat(entrepot)
+    .concat(client)
+    .concat(fournisseurs)
+    .concat(articles)
 
 const router = createRouter({
     history: createWebHistory(),
