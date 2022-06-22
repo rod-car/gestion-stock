@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Categorie;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -27,7 +28,9 @@ class ModifierCategorieRequest extends FormRequest
     public function rules()
     {
         return [
-            "libelle" => ["required", "unique:categories,libelle,{$this->id},id", "min:5", "max:255"],
+            "libelle" => ["required", Rule::unique("categories")->where(function ($query) {
+                $query->where("type", $this->type)->where("id", "<>", $this->id);
+            }), "min:5", "max:255"],
             "description" => ["nullable", "sometimes", "min:5", "max:1000"],
             "type" => ["required", "numeric", "min:1"],
             "sous_categories" => ["nullable", "array"],
