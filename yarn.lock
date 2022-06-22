@@ -908,6 +908,18 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@casl/ability@^5.4.4":
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/@casl/ability/-/ability-5.4.4.tgz#fbe54340c156248e73804942eed350903b27b9f3"
+  integrity sha512-7+GOnMUq6q4fqtDDesymBXTS9LSDVezYhFiSJ8Rn3f0aQLeRm7qHn66KWbej4niCOvm0XzNj9jzpkK0yz6hUww==
+  dependencies:
+    "@ucast/mongo2js" "^1.3.0"
+
+"@casl/vue@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@casl/vue/-/vue-2.1.2.tgz#3f3b07883fde8cc1d3867ef8c391556d45bc493e"
+  integrity sha512-xEE9vQWHQsR4LSojAegIlNqwF1d8NT0lXvOhSVQo9R7FDa7xpkrX9/I5gmHhTnkZI9zg9v2qBxIxDOFpGlT12w==
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
@@ -922,6 +934,11 @@
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz#bf5d45611ab74890be386712a0e5d998c65ee2a1"
   integrity sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg==
+
+"@jobinsjp/vue3-datatable@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@jobinsjp/vue3-datatable/-/vue3-datatable-1.0.15.tgz#ecfac18e3c1d95625f573c46f3aa96dc50ee8f65"
+  integrity sha512-9qAyEiuCy3kHWjJhOcZxAUQJg1xc5pO977DujG0Vghv3jOEW1FXzsd1usvSgmvMVEWF7guH2PKbewjYN+fmi9A==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
@@ -1238,6 +1255,34 @@
   dependencies:
     "@types/node" "*"
 
+"@ucast/core@^1.0.0", "@ucast/core@^1.4.1", "@ucast/core@^1.6.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@ucast/core/-/core-1.10.1.tgz#03a77a7804bcb5002a5cad3681e86cd1897e2e1f"
+  integrity sha512-sXKbvQiagjFh2JCpaHUa64P4UdJbOxYeC5xiZFn8y6iYdb0WkismduE+RmiJrIjw/eLDYmIEXiQeIYYowmkcAw==
+
+"@ucast/js@^3.0.0":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ucast/js/-/js-3.0.2.tgz#862838ee68112c6c262d4f4693cc592ba83157e0"
+  integrity sha512-zxNkdIPVvqJjHI7D/iK8Aai1+59yqU+N7bpHFodVmiTN7ukeNiGGpNmmSjQgsUw7eNcEBnPrZHNzp5UBxwmaPw==
+  dependencies:
+    "@ucast/core" "^1.0.0"
+
+"@ucast/mongo2js@^1.3.0":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@ucast/mongo2js/-/mongo2js-1.3.3.tgz#a683a59cea22887a72e4302f3826e41ccf51dbbe"
+  integrity sha512-sBPtMUYg+hRnYeVYKL+ATm8FaRPdlU9PijMhGYKgsPGjV9J4Ks41ytIjGayvKUnBOEhiCaKUUnY4qPeifdqATw==
+  dependencies:
+    "@ucast/core" "^1.6.1"
+    "@ucast/js" "^3.0.0"
+    "@ucast/mongo" "^2.4.0"
+
+"@ucast/mongo@^2.4.0":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@ucast/mongo/-/mongo-2.4.2.tgz#a8a1c32e65ccab623be023e6cedb11d136d50f19"
+  integrity sha512-/zH1TdBJlYGKKD+Wh0oyD+aBvDSWrwHcD8b4tUL9UgHLhzHtkEnMVFuxbw3SRIRsAa01wmy06+LWt+WoZdj1Bw==
+  dependencies:
+    "@ucast/core" "^1.4.1"
+
 "@vue/compiler-core@3.2.33":
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.33.tgz#e915d59cce85898f5c5cfebe4c09e539278c3d59"
@@ -1280,7 +1325,7 @@
     "@vue/compiler-dom" "3.2.33"
     "@vue/shared" "3.2.33"
 
-"@vue/devtools-api@^6.0.0":
+"@vue/devtools-api@^6.0.0", "@vue/devtools-api@^6.0.0-beta.11":
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.1.4.tgz#b4aec2f4b4599e11ba774a50c67fa378c9824e53"
   integrity sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==
@@ -1344,6 +1389,11 @@
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.33.tgz#69a8c99ceb37c1b031d5cc4aec2ff1dc77e1161e"
   integrity sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==
+
+"@vueform/multiselect@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.4.2.tgz#580a7f84f1eb8c5b2c9d4ac26c54c57f748b815b"
+  integrity sha512-5VVk4Mwn4cva+MbBjAXaEunmGWLAp98PcI4okaT95qYCfBckn2N/9ws18O0OStVe8WskFFUj/kF0goH/Xc2aTw==
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -5241,6 +5291,11 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+sweetalert2@^8.18.6:
+  version "8.19.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.19.0.tgz#692269bc8ddc5760e2b5070da2cf5e9e278bac0b"
+  integrity sha512-nFL++N3bitkEkd487Tv4i5ZxusmnoAAXHjtk7lp603Opxb8wlvVnz3hqa7qiIw6QFL04JC810E6qVQNf8s0vYQ==
+
 tailwindcss@^3.0.18:
   version "3.0.24"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.24.tgz#22e31e801a44a78a1d9a81ecc52e13b69d85704d"
@@ -5473,6 +5528,16 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
+vue-m-message@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/vue-m-message/-/vue-m-message-4.0.1.tgz#b75ed1442b5aa013e17bfc29b8ca4cbd95e5c6eb"
+  integrity sha512-c+vj8UlIqhxRZsmGmKIHYiHhoZ5lNxZFugOvdXfWUe0fnFMOXaVwL8Q7MUa4hXih/cbcj+97Aux6QvdK/MOgHQ==
+
+vue-multiselect@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
+  integrity sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w==
+
 vue-nprogress@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/vue-nprogress/-/vue-nprogress-0.2.0.tgz#92a99f605dd152bdd4fc940ab0ca535723a5b394"
@@ -5486,6 +5551,21 @@ vue-router@^4.0.13:
   integrity sha512-xa+pIN9ZqORdIW1MkN2+d9Ui2pCM1b/UMgwYUCZOiFYHAvz/slKKBDha8DLrh5aCG/RibtrpyhKjKOZ85tYyWg==
   dependencies:
     "@vue/devtools-api" "^6.0.0"
+
+vue-select@^4.0.0-beta.3:
+  version "4.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-4.0.0-beta.3.tgz#12096cdc5701af94bac66a60e7bbe560d5ef1d54"
+  integrity sha512-sXufbTDluz26a39UUZE9jeh9Hojnn8zr9qDDUlVEBc7E0F+h3+Nzy8YzyFHuVNrrYLmK0zrPkb7hWFulAEW41Q==
+
+vue-sidebar-menu@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/vue-sidebar-menu/-/vue-sidebar-menu-5.2.3.tgz#b9f739c7b0228d846ea38ad831fd3fc5912798bc"
+  integrity sha512-dysLoAzqFlj95DJQfmnpkK5WchQA0WacQsFR0VeUtsp8W9GMLZjyX3TdWsHuVIzOiPXG18s4JK0jR90XM6A7cQ==
+
+vue-skeletor@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vue-skeletor/-/vue-skeletor-1.0.6.tgz#ec218ee84335cf5cc069ed0c966de2a7e9cbe704"
+  integrity sha512-ER4vHlFSXCW3ixK2DlczUE6CZliHsn4d2TvZ9/26C6Oq8zoyEY23BsqweMPtF8QULSz1+G5m2New1BwKNVOZhQ==
 
 vue-style-loader@^4.1.3:
   version "4.1.3"
@@ -5508,6 +5588,13 @@ vue3-progress@^0.0.1-beta3:
   resolved "https://registry.yarnpkg.com/vue3-progress/-/vue3-progress-0.0.1-beta3.tgz#30550e08cbbcf2730bd52c6f91df3f005d2d8719"
   integrity sha512-vfmbSnciLQfOaV8Ukt2tPsL8A8+rH/q38V0tPevPbdzamznTtv+MewxsoxbH3W7rNCuVWhAcqXuWQNdgMJPnhw==
 
+vue3-simple-alert@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vue3-simple-alert/-/vue3-simple-alert-1.0.4.tgz#d1c995c2b1879422a407255dba4452ef789445a4"
+  integrity sha512-AzYJr+sdPotsWvX7ykojyTxbkJBmKoPbgNGquRQd07ppkEMOTnLWvLKwqmV0Pb/Aa6nXjOlek3rMAoffTqU3TA==
+  dependencies:
+    sweetalert2 "^8.18.6"
+
 vue@^3.0.0, vue@^3.2.25, vue@^3.2.33:
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.33.tgz#7867eb16a3293a28c4d190a837bc447878bd64c2"
@@ -5518,6 +5605,13 @@ vue@^3.0.0, vue@^3.2.25, vue@^3.2.33:
     "@vue/runtime-dom" "3.2.33"
     "@vue/server-renderer" "3.2.33"
     "@vue/shared" "3.2.33"
+
+vuex@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
+  integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.11"
 
 watchpack@^2.3.1:
   version "2.3.1"
