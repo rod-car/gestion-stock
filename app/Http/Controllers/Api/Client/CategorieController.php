@@ -21,8 +21,16 @@ class CategorieController extends Controller
         $type = intval($request->type);
         $except = intval($request->except); // Identifiant de la catégrie a exclure pour mettre dans sous catégorie
 
-        if ($except === 0) return Categorie::where('type', $type)->get();
-        return Categorie::where('type', $type)->where('id', '<>', $except)->get();
+        $categories = Categorie::where('type', $type)->get();
+
+        if ($except > 0) {
+            $parents = Categorie::findOrFail($except)->parentCategories->pluck('id');
+            $categories = $categories->filter(function ($categorie) use ($parents, $except) {
+                return ($parents->contains($categorie->id) === false) and ($categorie->id !== $except);
+            });
+            $categories = collect($categories->values());
+        }
+        return $categories;
     }
 
     /**
