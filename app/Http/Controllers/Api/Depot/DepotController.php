@@ -87,6 +87,8 @@ class DepotController extends Controller
      */
     public function destroy(Depot $depot)
     {
+        $depot->responsables()->detach();
+        $depot->travailleurs()->detach();
         $depot->delete();
         return response()->json(['success' => 'Supprimé avec succes']);
     }

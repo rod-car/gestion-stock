@@ -150,7 +150,8 @@ export default function useDepot() {
                 Flash('success', "Message de succès", success.value)
             }
         } catch (error) {
-            errors.value = err.response.data.errors;
+            errors.value = error.response.data.errors;
+            Flash('error', "Message d'erreur", `Impossible de supprimer: ${error.message}`)
         }
         deleting.value = false
     }

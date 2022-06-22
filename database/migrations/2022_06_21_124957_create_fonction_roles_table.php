@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateFonctionRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('libelle');
-            $table->timestamps();
+        Schema::create('fonction_roles', function (Blueprint $table) {
+            $table->unsignedBigInteger('fonction');
+            $table->unsignedBigInteger('role')->index('fk_role_fonction');
+
+            $table->primary(['fonction', 'role']);
         });
     }
 
@@ -27,6 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('fonction_roles');
     }
 }

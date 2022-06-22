@@ -3,8 +3,8 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Liste de point de vente</h5>
-                    <router-link to="/point-de-vente/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
+                    <h5 class="text-info">Liste de catégorie de clien</h5>
+                    <router-link to="/client/categorie/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
                 </div>
             </div>
             <div class="card-body">
@@ -12,10 +12,8 @@
                     <thead class="text-uppercase">
                         <tr>
                             <th>ID</th>
-                            <th>Nom</th>
-                            <th>Localisation</th>
-                            <th>Contact</th>
-                            <th>Responsables</th>
+                            <th>Libelle</th>
+                            <th>Description</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -25,31 +23,22 @@
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                         </tr>
                     </tbody>
-                    <tbody v-else-if="depots.length > 0">
-                        <tr v-for="(depot, index) in depots" v-bind:key="depot.id">
-                            <td>{{ depot.id }}</td>
-                            <td>{{ depot.nom }}</td>
-                            <td>{{ depot.localisation }}</td>
-                            <td>{{ depot.contact }}</td>
-                            <td>
-                                <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
-                            </td>
+                    <tbody v-else-if="categories.length > 0">
+                        <tr v-for="(categorie, index) in categories" v-bind:key="categorie.id">
+                            <td>{{ categorie.id }}</td>
+                            <td>{{ categorie.libelle }}</td>
+                            <td>{{ categorie.description }}</td>
                             <td class="d-flex justify-content-center">
-                                <router-link :to="{ name: 'point-de-vente.voir', params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
-                                <router-link v-if="$can('edit_point_vente')" :to="{ name: 'point-de-vente.modifier', params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form v-if="$can('delete_point_vente')" action="" method="post">
-                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(depot.id, index)"/>
-                                </form>
+                                <router-link v-if="true" :to="{ name: 'client.categorie.modifier', params: { id: categorie.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(categorie.id, index)"/>
                             </td>
                         </tr>
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td class="text-center" colspan="6">Aucune point de vente</td>
+                            <td class="text-center" colspan="6">Aucun cateégorie pour le moment</td>
                         </tr>
                     </tbody>
                 </table>
@@ -63,12 +52,12 @@
 </template>
 
 <script>
-import useDepot from '../../services/DepotServices';
-import DeleteBtn from '../../components/html/DeleteBtn.vue';
+import useCategorie from '../../../services/categorie/CategorieServices';
+import DeleteBtn from '../../../components/html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
-import Flash from '../../functions/Flash';
+import Flash from '../../../functions/Flash';
 
-const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
+const { categories, loading, deleting, getCategories, deleteCategorie } = useCategorie()
 
 export default {
     components: {
@@ -77,13 +66,12 @@ export default {
 
     setup() {
         return {
-            depots, loading, deleting, getDepots,
+            categories, loading, deleting, getCategories, deleteCategorie,
         }
     },
 
     mounted() {
-        window.Flash = this.$mmessage
-        getDepots()
+        getCategories(1) // Recuperer les categories de client
     },
 
     methods: {
@@ -97,7 +85,7 @@ export default {
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                deleteDepot(id, index)
+                deleteCategorie(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

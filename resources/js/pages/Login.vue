@@ -9,9 +9,14 @@
                             <h4>Se connecter</h4>
                             <p>Vous devez vous connecter pour acceder a l'application</p>
 
-                            <div v-if="loading" class="alert alert-success">
+                            <div v-if="loading" class="alert alert-success mt-3">
                                 {{ loadingIndicator }}
                             </div>
+
+                            <div v-if="!Array.isArray(errors) && errors.length > 0" class="alert alert-danger mt-3">
+                                Impossible de se connecter a la base de données...
+                            </div>
+
                         </div>
                         <div class="login-form-body">
                             <div class="form-gp">
@@ -86,29 +91,25 @@ export default {
         async logIn () {
             try
             {
-                this.loading = true;
+                this.loading = true
+                this.errors = []
 
-                await axios.get('/sanctum/csrf-cookie');
+                await axios.get('/sanctum/csrf-cookie')
                 let response = await axios.post('api/auth/login', this.form)
 
                 store.state.user.token = response.data.token
-                localStorage.setItem('auth_token', response.data.token);
+                localStorage.setItem('auth_token', response.data.token)
 
                 this.loadingIndicator = "Connecté. Redirection en cours..."
-                //this.loading = false;
-                window.location = "/dashboard"
-                // this.$router.push('/dashboard')
+                window.location = '/dashboard'
             }
             catch(err)
             {
-                if (err.response) this.errors = err.response.data.errors
+                if (err.response && err.response.data.errors) this.errors = err.response.data.errors
+                else this.errors = err.response.data.message
                 this.loading = false;
             }
         }
-    },
-
-    created() {
-
     },
 }
 

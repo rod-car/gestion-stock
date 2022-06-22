@@ -1,16 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\Article\ArticleController;
-use App\Http\Controllers\Api\Depot\DepotController;
-use App\Http\Controllers\Api\PointDeVente\PointDeVenteController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Role\RoleController;
+use App\Http\Controllers\Api\Depot\DepotController;
 use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\User\FonctionController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\Article\ArticleController;
+use App\Http\Controllers\Api\Client\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +60,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route pour la gestion de point de vente
     Route::apiResource('/depot', DepotController::class);
 
+    // Gerer tous les catégories (Articles, Client, Fournisseur)
+    Route::apiResource('/categorie', CategorieController::class);
 });

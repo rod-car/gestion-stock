@@ -1,43 +1,49 @@
 <?php
 
-namespace App\Http\Requests\Depot;
+namespace App\Http\Requests\Categorie;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
-class NouveauDepotRequest extends FormRequest
+class NouveauCategorieRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Permet de determiner si l'utilisateur peut executer cette réquête
      *
      * @return bool
      */
     public function authorize()
     {
+        return true;
         return Gate::allows('add_point_vente');
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Règles de validation
      *
      * @return array
      */
     public function rules()
     {
         return [
-            "nom" => ["required", "unique:depots,nom", "min:2", "max:255"],
-            "localisation" => ["required", "sometimes", "min:5", "max:255"],
-            "contact" => ["nullable", "sometimes", "min:10", "max:255"],
-            "point_vente" => ["required", "boolean"],
+            "libelle" => ["required", "unique:categories", "min:5", "max:255"],
+            "description" => ["nullable", "sometimes", "min:5", "max:1000"],
+            "type" => ["required", "numeric", "min:1"],
+            "sous_categories" => ["nullable", "array"],
+            "sous_categories.*" => ["nullable", "exists:categories,id"],
         ];
     }
 
+
+    /**
+     * Messages d'erreurs en cas d'échec de validation
+     *
+     * @return array
+     */
     public function messages()
     {
-        return [
-            "nom.required" => "Le nom est obligatoire",
-        ];
+        return [];
     }
 
     /**
