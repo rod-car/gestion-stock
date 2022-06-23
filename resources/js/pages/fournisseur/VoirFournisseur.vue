@@ -12,7 +12,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-xl-4 d-flex justify-content-start align-items-center flex-column">
-                    <span v-if="!loading"></span>
+                    <ProfileAvatar class="avatar" v-if="!loading && fournisseur.nom" bgColor="#CCC" textColor="#000" size="l" :username="fournisseur.nom"></ProfileAvatar>
                     <Skeletor class="mb-3" circle v-else size="200" />
 
                     <h1 v-if="!loading" class="text-muted text-center mb-3">{{ fournisseur.nom }}</h1>
@@ -27,34 +27,34 @@
                     <div v-if="!loading">
                         <table class="table w-100">
                             <tr>
-                                <td><h4 class="text-muted mb-3">Contact</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.contact }}</h4></td>
+                                <td><h5 class="text-muted mb-3">Contact</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.contact }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h4 class="text-muted mb-3">Adresse</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.adresse }}</h4></td>
+                                <td><h5 class="text-muted mb-3">Adresse</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.adresse }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h4 class="text-muted mb-3">Adresse email</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.email ?? "Non définie" }}</h4></td>
+                                <td><h5 class="text-muted mb-3">Adresse email</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.email ?? "Non définie" }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h4 class="text-muted mb-3">NIF</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.nif ?? "Non définie" }}</h4></td>
+                                <td><h5 class="text-muted mb-3">NIF</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.nif ?? "Non définie" }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h4 class="text-muted mb-3">CIF</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.cif ?? "Non définie" }}</h4></td>
+                                <td><h5 class="text-muted mb-3">CIF</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.cif ?? "Non définie" }}</h5></td>
                             </tr>
                             <tr>
-                                <td><h4 class="text-muted mb-3">STAT</h4></td>
-                                <td><h4 class="text-muted">:</h4></td>
-                                <td><h4 class="text-muted">{{ fournisseur.stat ?? "Non définie" }}</h4></td>
+                                <td><h5 class="text-muted mb-3">STAT</h5></td>
+                                <td><h5 class="text-muted">:</h5></td>
+                                <td><h5 class="text-muted">{{ fournisseur.stat ?? "Non définie" }}</h5></td>
                             </tr>
                         </table>
                     </div>
@@ -81,6 +81,8 @@ import { Skeletor } from 'vue-skeletor';
 import MultiSelect from '@vueform/multiselect';
 import useCategories from '../../services/categorie/CategorieServices';
 
+import ProfileAvatar from 'vue-profile-avatar'
+
 const { updating, loading, fournisseur, errors, success, getFournisseur, updateFournisseur } = useFournisseur();
 const { categories, getCategories } = useCategories();
 
@@ -93,7 +95,7 @@ export default {
     },
 
     components: {
-        Input, SaveBtn, Skeletor, MultiSelect,
+        Input, SaveBtn, Skeletor, MultiSelect, ProfileAvatar,
     },
 
     methods: {
@@ -112,3 +114,14 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+.avatar {
+    font-size: 50px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+}
+
+</style>
