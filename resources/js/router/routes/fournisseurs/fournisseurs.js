@@ -12,11 +12,51 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un fournisseur
  */
 
+import NouveauFournisseur from '../../../pages/fournisseur/NouveauFournisseur.vue';
+import ModifierFournisseur from '../../../pages/fournisseur/ModifierFournisseur.vue';
+import VoirFournisseur from '../../../pages/fournisseur/VoirFournisseur.vue';
+import ListeFournisseur from '../../../pages/fournisseur/ListeFournisseur.vue';
 import NouveauCategorie from '../../../pages/fournisseur/categorie/NouveauCategorie.vue';
 import ListeCategorie from '../../../pages/fournisseur/categorie/ListeCategorie.vue';
 import ModifierCategorie from '../../../pages/fournisseur/categorie/ModifierCategorie.vue';
 
 const routes = [
+    {
+        path: '/fournisseur/nouveau',
+        name: 'fournisseur.nouveau',
+        component: NouveauFournisseur,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/fournisseur/liste',
+        name: 'fournisseur.liste',
+        component: ListeFournisseur,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/fournisseur/voir/:id',
+        name: 'fournisseur.voir',
+        component: VoirFournisseur,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/fournisseur/modifier/:id',
+        name: 'fournisseur.modifier',
+        component: ModifierFournisseur,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
     {
         path: '/fournisseur/categorie/nouveau',
         name: 'fournisseur.categorie.nouveau',
