@@ -206,7 +206,7 @@
     const logoImg = {
         data() {
             return {
-                src: 'http://localhost:8000/images/app-logo.png'
+                src: '/images/app-logo.png'
             }
         },
         template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'

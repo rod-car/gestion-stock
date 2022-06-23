@@ -25712,7 +25712,7 @@ var _useAbility = (0,_services_AbilityServices__WEBPACK_IMPORTED_MODULE_3__["def
 var logoImg = {
   data: function data() {
     return {
-      src: 'http://localhost:8000/images/app-logo.png'
+      src: '/images/app-logo.png'
     };
   },
   template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'
@@ -33531,7 +33531,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var axiosClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: 'http://localhost:8000/api'
+  baseURL: '/api'
 });
 axiosClient.interceptors.request.use(function (config) {
   config.headers.Authorization = "Bearer ".concat(_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.user.token);

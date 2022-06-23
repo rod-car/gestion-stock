@@ -14,6 +14,8 @@
 @import "grey-theme.scss";
 @import 'vue-skeletor/dist/vue-skeletor.css';
 
+@import "skeletor.scss";
+
 .message-error {
     background: #f94747 !important;
     color: white !important;

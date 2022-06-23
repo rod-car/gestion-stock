@@ -522,6 +522,61 @@
   background-color: #1c1e28;
 }
 
+/* Static background */
+.vue-skeletor {
+  background-color: #CCC;
+}
+
+/*
+  If you have theme switching in your app for example
+  from light to dark, you can target skeletons under
+  some global theme class or attribute e.g.
+*/
+[data-theme=dark] .vue-skeletor {
+  background: #363636;
+}
+
+/*
+  Text skeleton
+  By default skeletor uses fully rounded style for text
+  type skeletons, you can change that as you like
+*/
+.vue-skeletor--text {
+  /* Completely square style skeletons */
+  border-radius: 0;
+}
+
+/* Shimmer */
+.vue-skeletor:not(.vue-skeletor--shimmerless):after {
+  /*
+    Change the shimmer color, its a simple 90 deg
+    linear horizontal gradient, adjust it however
+    you like.
+  */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+  /* Change any css keyframes animation property */
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  /* ... */
+  /*
+    Or implement your custom shimmer css animation
+    if you want it's pure css no magic happening =)
+  */
+}
+
+/* Default keyframes used in skeletor */
+@-webkit-keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
 .message-error {
   background: #f94747 !important;
   color: white !important;
