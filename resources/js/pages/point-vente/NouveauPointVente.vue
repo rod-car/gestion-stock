@@ -35,9 +35,13 @@
 import Input from '../../components/html/Input.vue';
 import SaveBtn from '../../components/html/SaveBtn.vue';
 import Alert from '../../components/html/Alert.vue';
-import useDepot from '../../services/DepotServices';
+import useCRUD from '../../services/CRUDServices';
 
-const { success, errors, loading, createDepot } = useDepot()
+const { success, errors, creating, createEntity } = useCRUD("/depot")
+
+// import useDepot from '../../services/DepotServices';
+
+// const { success, errors, loading, createDepot } = useDepot()
 
 export default {
     components: {
@@ -45,8 +49,8 @@ export default {
     },
     setup() {
         return {
-            success, errors, loading,
-            createDepot,
+            success, errors, creating,
+            createEntity,
         }
     },
     data() {
@@ -61,7 +65,7 @@ export default {
     },
     methods: {
         async save () {
-            await createDepot(this.form)
+            await createEntity(this.form)
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (success.value !== null) this.resetForm();
             success.value = null
