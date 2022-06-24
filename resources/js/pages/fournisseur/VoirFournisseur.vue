@@ -19,9 +19,9 @@
                     <Skeletor v-else class="mb-3" height="40" width="100%" style="border-radius: 3px" />
 
                     <div v-if="!loading" class="text-center">
-                        <span v-for="categorie in fournisseur.categories" :key="categorie.id" class="badge bg-primary">{{ categorie.libelle }}</span>
+                        <span v-for="categorie in fournisseur.categories" :key="categorie.id" class="badge bg-primary me-2">{{ categorie.libelle }}</span>
                     </div>
-                    <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
+                    <Skeletor v-else height="40" width="75%" style="border-radius: 3px" />
                 </div>
                 <div class="col-xl-8">
                     <div v-if="!loading">

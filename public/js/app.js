@@ -30769,7 +30769,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })), !$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.fournisseur.categories, function (categorie) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: categorie.id,
-      "class": "badge bg-primary"
+      "class": "badge bg-primary me-2"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(categorie.libelle), 1
     /* TEXT */
     );
@@ -30778,7 +30778,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
     key: 5,
     height: "40",
-    width: "100%",
+    width: "75%",
     style: {
       "border-radius": "3px"
     }
