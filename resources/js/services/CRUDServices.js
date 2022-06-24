@@ -133,11 +133,11 @@ export default function useCRUD(url) {
      *
      * @return  {Array}
      */
-    const getEntities = async (params) => {
+    const getEntities = async ({ type, except }) => {
         loading.value = true
 
         try {
-            let response = await axiosClient.get(`${url}?type=${params.type}&except=${params.except}`)
+            let response = await axiosClient.get(`${url}?type=${type}&except=${except}`)
             entities.value = response.data
 
         } catch (error) {

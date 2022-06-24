@@ -71,8 +71,6 @@ import useCRUD from '../../services/CRUDServices';
 
 const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD('/depot')
 
-// const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
-
 export default {
     components: {
         DeleteBtn, Skeletor,
@@ -109,4 +107,5 @@ export default {
     },
 
 }
+
 </script>

@@ -25801,8 +25801,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__["default"]
     loading = _useCRUD.loading,
     deleting = _useCRUD.deleting,
     getEntities = _useCRUD.getEntities,
-    deleteEntity = _useCRUD.deleteEntity; // const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
-
+    deleteEntity = _useCRUD.deleteEntity;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -36196,41 +36195,42 @@ function useCRUD(url) {
 
 
   var getEntities = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(params) {
-      var response;
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(_ref3) {
+      var type, except, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
+              type = _ref3.type, except = _ref3.except;
               loading.value = true;
-              _context3.prev = 1;
-              _context3.next = 4;
-              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "?type=").concat(params.type, "&except=").concat(params.except));
+              _context3.prev = 2;
+              _context3.next = 5;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "?type=").concat(type, "&except=").concat(except));
 
-            case 4:
+            case 5:
               response = _context3.sent;
               entities.value = response.data;
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
-            case 8:
-              _context3.prev = 8;
-              _context3.t0 = _context3["catch"](1);
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](2);
               console.log(_context3.t0);
 
-            case 11:
+            case 12:
               loading.value = false;
 
-            case 12:
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[2, 9]]);
     }));
 
     return function getEntities(_x3) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
   /**
@@ -36244,7 +36244,7 @@ function useCRUD(url) {
 
 
   var deleteEntity = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
       var index,
           response,
           _args4 = arguments;
@@ -36290,7 +36290,7 @@ function useCRUD(url) {
     }));
 
     return function deleteEntity(_x4) {
-      return _ref4.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
   /**
@@ -36305,7 +36305,7 @@ function useCRUD(url) {
 
 
   var updateEntity = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data, params) {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data, params) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
@@ -36346,7 +36346,7 @@ function useCRUD(url) {
     }));
 
     return function updateEntity(_x5, _x6, _x7) {
-      return _ref5.apply(this, arguments);
+      return _ref6.apply(this, arguments);
     };
   }();
 
