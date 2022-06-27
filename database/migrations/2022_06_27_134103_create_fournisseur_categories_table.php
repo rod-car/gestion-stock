@@ -14,9 +14,10 @@ class CreateFournisseurCategoriesTable extends Migration
     public function up()
     {
         Schema::create('fournisseur_categories', function (Blueprint $table) {
-            $table->foreignId('fournisseur')->references('id')->on('fournisseurs');
-            $table->foreignId('categorie')->references('id')->on('categories');
-            $table->primary(['categorie', 'fournisseur'], 'pk_fournisseur_categories');
+            $table->unsignedBigInteger('fournisseur')->index('fournisseur_categories_fournisseur_foreign');
+            $table->unsignedBigInteger('categorie');
+
+            $table->primary(['categorie', 'fournisseur']);
         });
     }
 

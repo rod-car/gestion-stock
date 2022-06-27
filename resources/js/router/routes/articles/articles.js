@@ -12,11 +12,52 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un article
  */
 
+
+import NouveauArticle from '../../../pages/articles/NouveauArticle.vue';
+import ModifierArticle from '../../../pages/articles/ModifierArticle.vue';
+import VoirArticle from '../../../pages/articles/VoirArticle.vue';
+import ListeArticle from '../../../pages/articles/ListeArticle.vue';
 import NouveauCategorie from '../../../pages/articles/categorie/NouveauCategorie.vue';
 import ListeCategorie from '../../../pages/articles/categorie/ListeCategorie.vue';
 import ModifierCategorie from '../../../pages/articles/categorie/ModifierCategorie.vue';
 
 const routes = [
+    {
+        path: '/article/nouveau',
+        name: 'article.nouveau',
+        component: NouveauArticle,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/article/liste',
+        name: 'article.liste',
+        component: ListeArticle,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/article/voir/:id',
+        name: 'article.voir',
+        component: VoirArticle,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/article/modifier/:id',
+        name: 'article.modifier',
+        component: ModifierArticle,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
     {
         path: '/article/categorie/nouveau',
         name: 'article.categorie.nouveau',

@@ -14,9 +14,10 @@ class CreateClientCategoriesTable extends Migration
     public function up()
     {
         Schema::create('client_categories', function (Blueprint $table) {
-            $table->foreignId('client')->references('id')->on('clients');
-            $table->foreignId('categorie')->references('id')->on('categories');
-            $table->primary(['categorie', 'client'], 'pk_fournisseur_categories');
+            $table->unsignedBigInteger('client')->index('client_categories_client_foreign');
+            $table->unsignedBigInteger('categorie');
+
+            $table->primary(['categorie', 'client']);
         });
     }
 

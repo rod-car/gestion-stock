@@ -23,9 +23,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-// Ressource qui gere la gestion des articles
-Route::apiResource('/article', ArticleController::class);
-
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);
@@ -70,4 +67,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Gerer tous les CRUD fournisseurs
     Route::apiResource('/client', ClientController::class);
+
+    // Ressource qui gere les CRUD de l'article
+    Route::apiResource('/article', ArticleController::class);
 });

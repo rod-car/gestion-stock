@@ -2,8 +2,9 @@
 
 namespace App\Models\Article;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Categorie\Categorie;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
@@ -15,21 +16,21 @@ class Article extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'reference';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the primary key ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'int';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * Charge a l'avance les relations
@@ -40,13 +41,18 @@ class Article extends Model
     protected $with = ['categories'];
 
 
+    protected $fillable = [
+        'reference', 'designation', 'stock_alert', 'unite',
+    ];
+
+
     /**
      * Permet de récuperer toutes les catégories de l'article
      *
      * @return BelongsToMany
      */
-    public function categories() : BelongsToMany
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Categorie::class, 'categorie_articles', 'reference_article', 'categorie_id');
+        return $this->belongsToMany(Categorie::class, 'article_categories', 'article', 'categorie');
     }
 }
