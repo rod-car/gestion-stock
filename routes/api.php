@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\Api\Article\ArticleController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Role\RoleController;
+use App\Http\Controllers\Api\Depot\DepotController;
 use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\User\FonctionController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\Article\ArticleController;
+use App\Http\Controllers\Api\Client\CategorieController;
+use App\Http\Controllers\Api\Client\ClientController;
+use App\Http\Controllers\Api\Fournisseur\FournisseurController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +59,15 @@ Route::middleware('auth:sanctum')->group(function () {
     // Recuperer les permissions groupé par fonction
     Route::get('/permissions-groups', [FonctionController::class, 'permissionsGroups']);
 
+    // Route pour la gestion de point de vente
+    Route::apiResource('/depot', DepotController::class);
+
+    // Gerer tous les catégories (Articles, Client, Fournisseur)
+    Route::apiResource('/categorie', CategorieController::class);
+
+    // Gerer tous les CRUD fournisseurs
+    Route::apiResource('/fournisseur', FournisseurController::class);
+
+    // Gerer tous les CRUD fournisseurs
+    Route::apiResource('/client', ClientController::class);
 });

@@ -8,7 +8,7 @@
                 <div class="card-body" v-show="!loading">
                     <ul>
                         <div v-for="post in posts" v-bind:key="post.id">
-                            <li class="text-uppercase">{{ post.id }}: {{ post.title }}</li>
+                            <li class="">{{ post.id }}: {{ post.title }}</li>
                         </div>
                     </ul>
                 </div>

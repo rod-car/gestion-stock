@@ -3,15 +3,19 @@ require('./bootstrap');
 require('./functions/string')
 
 import { createApp } from 'vue'
-import router from './components/router/router';
-import DefaultLayoutComponent from './components/template/DefaultLayoutComponent.vue';
-import Login from './components/pages/Login.vue';
+import router from './router/router';
+import DefaultLayout from './template/DefaultLayout.vue';
+import Login from './pages/Login.vue';
 
 import VueSimpleAlert from "vue3-simple-alert";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
 
 import { abilitiesPlugin } from '@casl/vue';
 import ability from './services/ability';
+
+import VueSidebarMenu from 'vue-sidebar-menu'
+import Message from 'vue-m-message'
+import 'vue-m-message/dist/style.css'
 
 const options = {
     color: "#58BFD9",
@@ -32,7 +36,7 @@ window.SimpleAlert = VueSimpleAlert
 
 createApp({
     components: {
-        DefaultLayoutComponent,
+        DefaultLayout,
         Login,
     },
 })
@@ -41,4 +45,6 @@ createApp({
     .use(abilitiesPlugin, ability, {
         useGlobalProperties: true
     })
+    .use(VueSidebarMenu)
+    .use(Message)
     .mount('#app');

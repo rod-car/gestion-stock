@@ -5528,6 +5528,11 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
+vue-m-message@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/vue-m-message/-/vue-m-message-4.0.1.tgz#b75ed1442b5aa013e17bfc29b8ca4cbd95e5c6eb"
+  integrity sha512-c+vj8UlIqhxRZsmGmKIHYiHhoZ5lNxZFugOvdXfWUe0fnFMOXaVwL8Q7MUa4hXih/cbcj+97Aux6QvdK/MOgHQ==
+
 vue-multiselect@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
@@ -5540,6 +5545,11 @@ vue-nprogress@^0.2.0:
   dependencies:
     nprogress "0.2.0"
 
+vue-profile-avatar@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-profile-avatar/-/vue-profile-avatar-1.0.2.tgz#44e7d2d8a18247abfb31a52b01ed140692a6ca78"
+  integrity sha512-mNf5g+CKtMB4/cncZHATo+sPLYHxtmuzVlR+YeZ34XQKeMrXWwsC/e9y3hYILL73TPsfbPd/8DDAImFMTzS1Iw==
+
 vue-router@^4.0.13:
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.15.tgz#b4a0661efe197f8c724e0f233308f8776e2c3667"
@@ -5551,6 +5561,16 @@ vue-select@^4.0.0-beta.3:
   version "4.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-4.0.0-beta.3.tgz#12096cdc5701af94bac66a60e7bbe560d5ef1d54"
   integrity sha512-sXufbTDluz26a39UUZE9jeh9Hojnn8zr9qDDUlVEBc7E0F+h3+Nzy8YzyFHuVNrrYLmK0zrPkb7hWFulAEW41Q==
+
+vue-sidebar-menu@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/vue-sidebar-menu/-/vue-sidebar-menu-5.2.3.tgz#b9f739c7b0228d846ea38ad831fd3fc5912798bc"
+  integrity sha512-dysLoAzqFlj95DJQfmnpkK5WchQA0WacQsFR0VeUtsp8W9GMLZjyX3TdWsHuVIzOiPXG18s4JK0jR90XM6A7cQ==
+
+vue-skeletor@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vue-skeletor/-/vue-skeletor-1.0.6.tgz#ec218ee84335cf5cc069ed0c966de2a7e9cbe704"
+  integrity sha512-ER4vHlFSXCW3ixK2DlczUE6CZliHsn4d2TvZ9/26C6Oq8zoyEY23BsqweMPtF8QULSz1+G5m2New1BwKNVOZhQ==
 
 vue-style-loader@^4.1.3:
   version "4.1.3"

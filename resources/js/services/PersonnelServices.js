@@ -1,9 +1,9 @@
 import axios from "axios";
 import { ref } from "vue";
-import Router from '../components/router/router';
+import Router from '../router/router';
 import axiosClient from '../axios/index';
 
-export default function usePersonnelles () {
+export default function usePersonnelles() {
 
     /**
      * Tableau contenant tous la listes des personnelles
@@ -71,15 +71,12 @@ export default function usePersonnelles () {
      * @return  {JSON}  Le personnel sous forme de JSON
      */
     const getPersonnel = async (id) => {
-        try
-        {
+        try {
             let response = await axiosClient.get(`/user/${id}`);
             personnel.value = response.data;
         }
-        catch (err)
-        {
-            if (err.response.status === 404)
-            {
+        catch (err) {
+            if (err.response.status === 404) {
                 errors.value = {
                     message: "Impossible de trouver le personnel",
                     status: 404,
