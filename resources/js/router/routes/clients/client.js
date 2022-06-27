@@ -15,8 +15,48 @@
 import NouveauCategorie from '../../../pages/client/categorie/NouveauCategorie.vue';
 import ListeCategorie from '../../../pages/client/categorie/ListeCategorie.vue';
 import ModifierCategorie from '../../../pages/client/categorie/ModifierCategorie.vue';
+import NouveauClient from '../../../pages/Client/NouveauClient.vue';
+import ModifierClient from '../../../pages/Client/ModifierClient.vue';
+import VoirClient from '../../../pages/Client/VoirClient.vue';
+import ListeClient from '../../../pages/Client/ListeClient.vue';
 
 const routes = [
+    {
+        path: '/client/nouveau',
+        name: 'client.nouveau',
+        component: NouveauClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/client/liste',
+        name: 'client.liste',
+        component: ListeClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/client/voir/:id',
+        name: 'client.voir',
+        component: VoirClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/client/modifier/:id',
+        name: 'client.modifier',
+        component: ModifierClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
     {
         path: '/client/categorie/nouveau',
         name: 'client.categorie.nouveau',

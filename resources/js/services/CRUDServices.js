@@ -133,7 +133,7 @@ export default function useCRUD(url) {
      *
      * @return  {Array}
      */
-    const getEntities = async ({ type, except }) => {
+    const getEntities = async ({ type, except } = {}) => {
         loading.value = true
 
         try {
@@ -184,10 +184,10 @@ export default function useCRUD(url) {
      *
      * @return  {Object}
      */
-    const updateEntity = async (id, data, params) => {
+    const updateEntity = async (id, data, { updateType } = {}) => {
 
         updating.value = true
-        data["type"] = params.updateType // Integrer dans le données le type de mise a jour a faire
+        data["type"] = updateType // Integrer dans le données le type de mise a jour a faire
 
         try {
             await axiosClient.patch(`${url}/${id}`, data)
