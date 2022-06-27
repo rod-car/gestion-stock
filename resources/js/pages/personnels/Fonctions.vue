@@ -178,13 +178,8 @@ import SaveBtn from '../../components/html/SaveBtn.vue';
 import EditBtn from '../../components/html/EditBtn.vue';
 
 import Multiselect from '@vueform/multiselect'
-<<<<<<< HEAD:resources/js/components/pages/personnels/Fonctions.vue
-import useRoles from '../../../services/RoleServices';
-import axiosClient from '../../../axios';
-=======
 import useRoles from '../../services/RoleServices';
 import axiosClient from '../../axios';
->>>>>>> main:resources/js/pages/personnels/Fonctions.vue
 
 const { success, errors, fonction, fonctions, deleteFonction, getFonction, updateFonction, getFonctions, createFonction, resetFlashMessages } = useFonctions();
 const { roles, getRoles } = useRoles();
