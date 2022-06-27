@@ -3,11 +3,12 @@
 namespace App\Models\Depot;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Travailler extends Model
+class Travailler extends Pivot
 {
-    use HasFactory;
 
-    protected $fillable = [];
+    protected $casts = [
+        'est_responsable' => 'boolean'
+    ];
 }

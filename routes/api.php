@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Client\CategorieController;
+use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -66,4 +67,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Gerer tous les CRUD fournisseurs
     Route::apiResource('/fournisseur', FournisseurController::class);
+
+    // Gerer tous les CRUD fournisseurs
+    Route::apiResource('/client', ClientController::class);
 });

@@ -3,8 +3,8 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Liste de point de vente</h5>
-                    <router-link to="/point-de-vente/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
+                    <h5 class="text-info">Liste des clients</h5>
+                    <router-link to="/client/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
                 </div>
             </div>
             <div class="card-body">
@@ -13,9 +13,12 @@
                         <tr>
                             <th>ID</th>
                             <th>Nom</th>
-                            <th>Localisation</th>
+                            <th>Adresse</th>
                             <th>Contact</th>
-                            <th>Responsables</th>
+                            <th>Email</th>
+                            <th>NIF</th>
+                            <th>CIF</th>
+                            <th>STAT</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -27,29 +30,31 @@
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                         </tr>
                     </tbody>
                     <tbody v-else-if="entities.length > 0">
-                        <tr v-for="(depot, index) in entities" v-bind:key="depot.id">
-                            <td>{{ depot.id }}</td>
-                            <td>{{ depot.nom }}</td>
-                            <td>{{ depot.localisation }}</td>
-                            <td>{{ depot.contact }}</td>
-                            <td>
-                                <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
-                            </td>
+                        <tr v-for="(client, index) in entities" v-bind:key="client.id">
+                            <td>{{ client.id }}</td>
+                            <td>{{ client.nom }}</td>
+                            <td>{{ client.adresse }}</td>
+                            <td>{{ client.contact }}</td>
+                            <td>{{ client.email ?? "Non définie" }}</td>
+                            <td>{{ client.nif ?? "Non définie" }}</td>
+                            <td>{{ client.cif ?? "Non définie" }}</td>
+                            <td>{{ client.stat ?? "Non définie" }}</td>
                             <td class="d-flex justify-content-center">
-                                <router-link :to="{ name: 'point-de-vente.voir', params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
-                                <router-link v-if="$can('edit_point_vente')" :to="{ name: 'point-de-vente.modifier', params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <form v-if="$can('delete_point_vente')" action="" method="post">
-                                    <DeleteBtn type="danger" @click.prevent="confirmDeletion(depot.id, index)"/>
-                                </form>
+                                <router-link v-if="true" :to="{ name: 'client.voir', params: { id: client.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                                <router-link v-if="true" :to="{ name: 'client.modifier', params: { id: client.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(client.id, index)"/>
                             </td>
                         </tr>
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td class="text-center" colspan="6">Aucune point de vente</td>
+                            <td class="text-center" colspan="9">Aucun client</td>
                         </tr>
                     </tbody>
                 </table>
@@ -64,12 +69,12 @@
 
 <script>
 
-import DeleteBtn from '../../components/html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
+import DeleteBtn from '../../components/html/DeleteBtn.vue';
 
-const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD('/depot')
+const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD("/client")
 
 export default {
     components: {
@@ -83,7 +88,7 @@ export default {
     },
 
     mounted() {
-        getEntities({type: 1})
+        getEntities() // Recuperer les Clients
     },
 
     methods: {
@@ -95,7 +100,7 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id, index) {
-            SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
+            SimpleAlert.confirm("Voulez-vous supprimer ce client ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
                 deleteEntity(id, index)
             }).catch (error => {
@@ -107,5 +112,4 @@ export default {
     },
 
 }
-
 </script>
