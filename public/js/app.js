@@ -25787,38 +25787,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/DepotServices */ "./resources/js/services/DepotServices.js");
-/* harmony import */ var _components_html_DeleteBtn_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/html/DeleteBtn.vue */ "./resources/js/components/html/DeleteBtn.vue");
+/* harmony import */ var _components_html_DeleteBtn_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/html/DeleteBtn.vue */ "./resources/js/components/html/DeleteBtn.vue");
 /* harmony import */ var vue_skeletor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-skeletor */ "./node_modules/vue-skeletor/dist/vue-skeletor.esm.js");
-/* harmony import */ var _functions_Flash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/Flash */ "./resources/js/functions/Flash.js");
+/* harmony import */ var _functions_Flash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions/Flash */ "./resources/js/functions/Flash.js");
+/* harmony import */ var _services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/CRUDServices */ "./resources/js/services/CRUDServices.js");
 
 
 
 
 
-var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default"])(),
-    depots = _useDepot.depots,
-    loading = _useDepot.loading,
-    deleting = _useDepot.deleting,
-    getDepots = _useDepot.getDepots,
-    deleteDepot = _useDepot.deleteDepot;
+var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__["default"])('/depot'),
+    entities = _useCRUD.entities,
+    loading = _useCRUD.loading,
+    deleting = _useCRUD.deleting,
+    getEntities = _useCRUD.getEntities,
+    deleteEntity = _useCRUD.deleteEntity;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    DeleteBtn: _components_html_DeleteBtn_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    DeleteBtn: _components_html_DeleteBtn_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Skeletor: vue_skeletor__WEBPACK_IMPORTED_MODULE_3__.Skeletor
   },
   setup: function setup() {
     return {
-      depots: depots,
+      entities: entities,
       loading: loading,
       deleting: deleting,
-      getDepots: getDepots
+      getEntities: getEntities,
+      deleteEntity: deleteEntity
     };
   },
   mounted: function mounted() {
-    window.Flash = this.$mmessage;
-    getDepots();
+    getEntities({
+      type: 1
+    });
   },
   methods: {
     /**
@@ -25830,11 +25832,11 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_0__["default
      */
     confirmDeletion: function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(function () {
-        (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        deleteDepot(id, index);
+        (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_1__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
+        deleteEntity(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
-          (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
+          (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_1__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
         }
       });
     }
@@ -25957,7 +25959,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_html_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/html/Input.vue */ "./resources/js/components/html/Input.vue");
 /* harmony import */ var _components_html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/html/SaveBtn.vue */ "./resources/js/components/html/SaveBtn.vue");
 /* harmony import */ var _components_html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/html/Alert.vue */ "./resources/js/components/html/Alert.vue");
-/* harmony import */ var _services_DepotServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/DepotServices */ "./resources/js/services/DepotServices.js");
+/* harmony import */ var _services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/CRUDServices */ "./resources/js/services/CRUDServices.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -25969,11 +25971,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default"])(),
-    success = _useDepot.success,
-    errors = _useDepot.errors,
-    loading = _useDepot.loading,
-    createDepot = _useDepot.createDepot;
+var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"])("/depot"),
+    success = _useCRUD.success,
+    errors = _useCRUD.errors,
+    creating = _useCRUD.creating,
+    createEntity = _useCRUD.createEntity; // import useDepot from '../../services/DepotServices';
+// const { success, errors, loading, createDepot } = useDepot()
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -25985,8 +25989,8 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
     return {
       success: success,
       errors: errors,
-      loading: loading,
-      createDepot: createDepot
+      creating: creating,
+      createEntity: createEntity
     };
   },
   data: function data() {
@@ -26009,7 +26013,7 @@ var _useDepot = (0,_services_DepotServices__WEBPACK_IMPORTED_MODULE_4__["default
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return createDepot(_this.form);
+                return createEntity(_this.form);
 
               case 2:
                 window.scrollTo({
@@ -34056,7 +34060,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })])]);
   }), 64
   /* STABLE_FRAGMENT */
-  ))])) : $setup.depots.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.depots, function (depot, index) {
+  ))])) : $setup.entities.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.entities, function (depot, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: depot.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(depot.id), 1
@@ -34432,7 +34436,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SaveBtn, {
     onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.save, ["prevent"]),
-    loading: $setup.loading
+    loading: _ctx.loading
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_18];
@@ -35984,6 +35988,382 @@ function useAbility() {
   return {
     permissions: permissions,
     getPermissions: getPermissions
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/CRUDServices.js":
+/*!***********************************************!*\
+  !*** ./resources/js/services/CRUDServices.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useCRUD)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../axios */ "./resources/js/axios/index.js");
+/* harmony import */ var _router_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/router */ "./resources/js/router/router.js");
+/* harmony import */ var _functions_Flash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/Flash */ "./resources/js/functions/Flash.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+/**
+ * Permet de fournir un service de CRUD
+ *
+ * @param   {String}  url  URL de l'api ressource
+ *
+ * @return  {Object}
+ */
+
+function useCRUD(url) {
+  /**
+   * Contient tous les donnees
+   *
+   * @return  {[]}
+   */
+  var entities = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+  /**
+   * Un dépot en particulier
+   *
+   * @type {Object}
+   */
+
+  var entity = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
+  /**
+   * Contient tous les erreurs de soumission de formulaire
+   *
+   * @return  {[]}
+   */
+
+  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+  /**
+   * Contient le message de success
+   *
+   * @return  {[]}
+   */
+
+  var success = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+  /**
+   * Permet d'indiquer que les donees sont en cours de création
+   *
+   * @type {Boolean}
+   */
+
+  var creating = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Permet d'indiquer que les donees sont en cours de chargement
+   *
+   * @type {Boolean}
+   */
+
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Permet d'indiquer q'un point de vente est en cours de suppréssion
+   *
+   * @type {Boolean}
+   */
+
+  var deleting = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Permet d'indiquer q'un point de vente est en cours de mise a jour
+   *
+   * @type {Boolean}
+   */
+
+  var updating = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+  /**
+   * Créer un nouveau point de vente
+   *
+   * @param   {Object}  data  Contient tous les champs du formulaire
+   *
+   * @return  {Object} Retourne le entity
+   */
+
+  var createEntity = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              creating.value = true;
+              _context.prev = 1;
+              _context.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("".concat(url), data);
+
+            case 4:
+              response = _context.sent;
+              entity.value = response.data;
+              success.value = "Enregistré avec succes";
+              (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('success', "Message de succès", success.value);
+              _context.next = 14;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](1);
+              (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('error', "Message d'erreur", "Erreur de soumission du formulaire");
+
+              if (_context.t0.response.status === 422) {
+                errors.value = _context.t0.response.data.errors;
+              } else if (_context.t0.response.status === 403) {
+                _router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push('/403');
+              }
+
+            case 14:
+              creating.value = false;
+
+            case 15:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 10]]);
+    }));
+
+    return function createEntity(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  /**
+   * Recuperer un entity en particulier
+   *
+   * @param   {Number}  id  Identifiant du dépot (Point de vente ou entrepot)
+   *
+   * @return  {Object}
+   */
+
+
+  var getEntity = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              loading.value = true;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "/").concat(id));
+
+            case 4:
+              response = _context2.sent;
+              entity.value = response.data;
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.error(_context2.t0);
+
+            case 11:
+              loading.value = false;
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }));
+
+    return function getEntity(_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  /**
+   * Recuperer tous les dépots (Point de vente ou entrepot)
+   *
+   * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot, 1: Point de vente, 0: Entrepot
+   *
+   * @return  {Array}
+   */
+
+
+  var getEntities = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(_ref3) {
+      var type, except, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              type = _ref3.type, except = _ref3.except;
+              loading.value = true;
+              _context3.prev = 2;
+              _context3.next = 5;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "?type=").concat(type, "&except=").concat(except));
+
+            case 5:
+              response = _context3.sent;
+              entities.value = response.data;
+              _context3.next = 12;
+              break;
+
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](2);
+              console.log(_context3.t0);
+
+            case 12:
+              loading.value = false;
+
+            case 13:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[2, 9]]);
+    }));
+
+    return function getEntities(_x3) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  /**
+   * Permet de supprimer un entity en fonciton de lID
+   *
+   * @param   {Numner}  id  Identifiant du dépot a supprimer
+   * @param   {Number|null} index Index de l'eleement dans le tableau de dépots
+   *
+   * @return  {void}
+   */
+
+
+  var deleteEntity = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+      var index,
+          response,
+          _args4 = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              index = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : null;
+              deleting.value = true;
+              _context4.prev = 2;
+              _context4.next = 5;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("".concat(url, "/").concat(id));
+
+            case 5:
+              response = _context4.sent;
+
+              if (response.data.errors) {
+                errors.value = response.data.errors;
+              } else {
+                success.value = "Personnel supprimé avec succes";
+                entities.value.splice(index);
+                (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('success', "Message de succès", success.value);
+              }
+
+              _context4.next = 13;
+              break;
+
+            case 9:
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](2);
+              errors.value = _context4.t0.response.data.errors;
+              (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('error', "Message d'erreur", "Impossible de supprimer: ".concat(_context4.t0.message));
+
+            case 13:
+              deleting.value = false;
+
+            case 14:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[2, 9]]);
+    }));
+
+    return function deleteEntity(_x4) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  /**
+   * Fonction permet de mettre a jour un point de vente
+   *
+   * @param   {Number}  id          Identifiant du point de vente
+   * @param   {Object}  data        Nouvelle données
+   * @param   {Number}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
+   *
+   * @return  {Object}
+   */
+
+
+  var updateEntity = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data, params) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              updating.value = true;
+              data["type"] = params.updateType; // Integrer dans le données le type de mise a jour a faire
+
+              _context5.prev = 2;
+              _context5.next = 5;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].patch("".concat(url, "/").concat(id), data);
+
+            case 5:
+              success.value = "Modifié avec success";
+              (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('success', 'Message de succès', success.value);
+              _context5.next = 13;
+              break;
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](2);
+              (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_4__["default"])('error', "Message d'erreur", "Erreur de soumission du formulaire");
+
+              if (_context5.t0.response.status === 422) {
+                errors.value = _context5.t0.response.data.errors;
+              } else if (_context5.t0.response.status === 403) {
+                _router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push('/403');
+              }
+
+            case 13:
+              updating.value = false;
+
+            case 14:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[2, 9]]);
+    }));
+
+    return function updateEntity(_x5, _x6, _x7) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  return {
+    entity: entity,
+    entities: entities,
+    errors: errors,
+    success: success,
+    loading: loading,
+    creating: creating,
+    updating: updating,
+    deleting: deleting,
+    createEntity: createEntity,
+    getEntity: getEntity,
+    getEntities: getEntities,
+    deleteEntity: deleteEntity,
+    updateEntity: updateEntity
   };
 }
 

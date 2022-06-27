@@ -29,8 +29,8 @@
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                         </tr>
                     </tbody>
-                    <tbody v-else-if="depots.length > 0">
-                        <tr v-for="(depot, index) in depots" v-bind:key="depot.id">
+                    <tbody v-else-if="entities.length > 0">
+                        <tr v-for="(depot, index) in entities" v-bind:key="depot.id">
                             <td>{{ depot.id }}</td>
                             <td>{{ depot.nom }}</td>
                             <td>{{ depot.localisation }}</td>
@@ -63,12 +63,13 @@
 </template>
 
 <script>
-import useDepot from '../../services/DepotServices';
+
 import DeleteBtn from '../../components/html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
+import useCRUD from '../../services/CRUDServices';
 
-const { depots, loading, deleting, getDepots, deleteDepot } = useDepot()
+const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD('/depot')
 
 export default {
     components: {
@@ -77,13 +78,12 @@ export default {
 
     setup() {
         return {
-            depots, loading, deleting, getDepots,
+            entities, loading, deleting, getEntities, deleteEntity,
         }
     },
 
     mounted() {
-        window.Flash = this.$mmessage
-        getDepots()
+        getEntities({type: 1})
     },
 
     methods: {
@@ -97,7 +97,7 @@ export default {
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                deleteDepot(id, index)
+                deleteEntity(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
@@ -107,4 +107,5 @@ export default {
     },
 
 }
+
 </script>

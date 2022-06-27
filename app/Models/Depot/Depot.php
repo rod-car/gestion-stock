@@ -3,8 +3,9 @@
 namespace App\Models\Depot;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Depot\Travailler;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Depot extends Model
@@ -33,7 +34,8 @@ class Depot extends Model
     public function travailleurs(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'travailler', 'depot', 'personnel')
-            ->withPivot(['est_responsable']);
+            ->withPivot(['est_responsable'])
+            ->using(Travailler::class);
     }
 
 
