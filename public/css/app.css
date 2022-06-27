@@ -553,7 +553,7 @@
     linear horizontal gradient, adjust it however
     you like.
   */
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(223, 222, 222) 50%, rgba(255, 255, 255, 0) 100%);
   /* Change any css keyframes animation property */
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
@@ -617,6 +617,10 @@
 
 .message-loading .m-message--description {
   color: white !important;
+}
+
+.p-55 {
+  padding: 0.764rem;
 }
 
 :root {

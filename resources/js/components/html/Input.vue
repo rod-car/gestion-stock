@@ -9,7 +9,7 @@
     </div>
 
     <div v-else>
-        <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @blur="handleBlur" class="form-control" />
+        <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @change="handleBlur" class="form-control" />
     </div>
 
     <div class="text-danger mt-1" v-if="hasErrors">
