@@ -24,7 +24,7 @@ class Fonction extends Model
 
     protected $withCount = ['personnelles'];
 
-    protected $appends = ['permissionIds'];
+    protected $appends = ['permissionIds', 'fonctionsInclusIds'];
 
 
     /**
@@ -35,6 +35,17 @@ class Fonction extends Model
     public function getPermissionIdsAttribute()
     {
         return $this->permissions()->pluck('id');
+    }
+
+
+    /**
+     * recuperer seulement l'id des fonctions inclus dans ce fonction
+     *
+     * @return Collection
+     */
+    public function getFonctionsInclusIdsAttribute()
+    {
+        return $this->enfants()->pluck('id');
     }
 
     /**

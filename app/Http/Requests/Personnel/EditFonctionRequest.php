@@ -29,8 +29,11 @@ class EditFonctionRequest extends FormRequest
             'nom_fonction' => ["required", "sometimes", "min:2", "max:255"],
             'description_fonction' => ["nullable", "sometimes", "min:5", "max:5000"],
 
+            'enfants' => ["nullable", "array"],
             'permissions' => ["nullable", "array"],
-            'permissions.*' => ["nullable", "exists:roles,id"]
+
+            /*'permissions' => ["nullable", "array"],
+            'permissions.*' => ["nullable", "exists:roles,id"]*/
         ];
     }
 
