@@ -52,7 +52,7 @@ class ArticleController extends Controller
     {
         $sousCategories = [];
         foreach ($article->categories as $categorie) {
-            $sousCategories[] = $this->getSubCategories($categorie);
+            $sousCategories[$categorie->id] = $this->getSubCategories($categorie);
         }
         $article->sc = $sousCategories;
         return $article;

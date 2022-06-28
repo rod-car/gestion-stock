@@ -21,7 +21,9 @@
                     <div v-if="!Article.loading.value" class="text-center">
                         <div v-for="categorie in Article.entity.value.categories" :key="categorie.id">
                             <span class="badge bg-primary me-2">{{ categorie.libelle }}</span>
-                            <span class="badge bg-danger me-2" v-for="s_categorie in categorie.sous_categories" :key="s_categorie.id">{{ s_categorie.libelle }}</span>
+                            <span class="badge bg-danger me-Z">
+                                {{ Article.entity.value.sc[categorie.id] === [] ? "" : last(Article.entity.value.sc[categorie.id]) }}
+                            </span>
                         </div>
                     </div>
                     <Skeletor v-else height="40" width="75%" style="border-radius: 3px" />
@@ -67,12 +69,14 @@ import MultiSelect from '@vueform/multiselect';
 import ProfileAvatar from 'vue-profile-avatar'
 import useCRUD from '../../services/CRUDServices';
 
+import { last } from '../../functions/functions';
+
 const Article = useCRUD('/article');
 
 export default {
     setup() {
         return {
-            Article,
+            Article, last,
         }
     },
 
