@@ -45,6 +45,15 @@ class Article extends Model
         'reference', 'designation', 'stock_alert', 'unite',
     ];
 
+    public array $sc = [];
+
+    protected $appends = ["sc"];
+
+    public function getScAttribute()
+    {
+        return $this->sc;
+    }
+
 
     /**
      * Permet de récuperer toutes les catégories de l'article

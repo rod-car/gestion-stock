@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Article;
 
 use Illuminate\Http\Request;
 use App\Models\Article\Article;
+use App\Models\Categorie\Categorie;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
@@ -49,8 +50,32 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $sousCategories = [];
+        foreach ($article->categories as $categorie) {
+            $sousCategories[] = $this->getSubCategories($categorie);
+        }
+        $article->sc = $sousCategories;
         return $article;
     }
+
+
+    /**
+     * Recuperer tous les sous catégories de la catégorie
+     *
+     * @param Categorie $categorie
+     * @return array
+     */
+    public function getSubCategories(Categorie $categorie): array
+    {
+        $return = [];
+
+        foreach ($categorie->sousCategories as $sc) {
+            $return[] = $sc->libelle;
+            $return = array_merge($return, $this->getSubCategories($sc));
+        }
+        return $return;
+    }
+
 
     /**
      * Update the specified resource in storage.
