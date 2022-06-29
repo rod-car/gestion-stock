@@ -14,11 +14,11 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom', 255)->unique('nom_client')->nullable(false)->comment("Nom de la personne ou nom d'une entreprise");
-            $table->string('adresse', 255)->nullable(false);
+            $table->bigIncrements('id');
+            $table->string('nom')->unique('nom_client')->comment('Nom de la personne ou nom d\'une entreprise');
+            $table->string('adresse');
             $table->string('email')->nullable();
-            $table->string('contact')->nullable(false);
+            $table->string('contact');
             $table->string('nif')->nullable();
             $table->string('cif')->nullable();
             $table->string('stat')->nullable();

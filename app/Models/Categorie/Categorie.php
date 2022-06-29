@@ -38,4 +38,10 @@ class Categorie extends Model
     {
         return $this->belongsToMany(Categorie::class, 'sous_categories', 'categorie_enfant', 'categorie_parent');
     }
+
+
+    public function test()
+    {
+        return $this->sousCategories()->with('test');
+    }
 }

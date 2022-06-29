@@ -14,9 +14,12 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->string('reference')->primary();
-            $table->string('designation');
+            $table->bigIncrements('id');
+            $table->string('reference')->unique('reference');
+            $table->string('designation')->nullable();
+            $table->string('unite')->default('Nombre');
             $table->timestamps();
+            $table->decimal('stock_alert', 12)->unsigned()->nullable()->comment('Quantité en stock restant pour alerter l\'utilisateur pour un appro');
         });
     }
 

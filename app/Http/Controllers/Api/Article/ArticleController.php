@@ -2,33 +2,44 @@
 
 namespace App\Http\Controllers\Api\Article;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Article\ArticleResource;
-use App\Models\Article\Article;
 use Illuminate\Http\Request;
+use App\Models\Article\Article;
+use App\Models\Categorie\Categorie;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Article\NouveauArticleRequest;
+use App\Http\Requests\Article\ModifierArticleRequest;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return ArticleResource::collection(Article::all());
+        return Article::all();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Article\NouveauArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NouveauArticleRequest $request)
     {
-        //
+        $data = $request->validated();
+        $categories = $data["categories"];
+        unset($data["categories"]);
+
+        $article = Article::create($data);
+
+        foreach ($categories as $id) {
+            $article->categories()->attach($id);
+        }
+
+        return $article;
     }
 
     /**
@@ -39,19 +50,60 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $sousCategories = [];
+        foreach ($article->categories as $categorie) {
+            $sousCategories[$categorie->id] = $this->getSubCategories($categorie);
+        }
+        $article->sc = $sousCategories;
         return $article;
     }
+
+
+    /**
+     * Recuperer tous les sous catégories de la catégorie
+     *
+     * @param Categorie $categorie
+     * @return array
+     */
+    public function getSubCategories(Categorie $categorie): array
+    {
+        $return = [];
+
+        foreach ($categorie->sousCategories as $sc) {
+            $return[] = $sc->libelle;
+            $return = array_merge($return, $this->getSubCategories($sc));
+        }
+        return $return;
+    }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article\Article  $article
+     * @param  \App\Http\Requests\Article\ModifierArticleRequest  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ModifierArticleRequest $request, Article $article)
     {
-        //
+        $data = $request->validated();
+        $categories = $data["categories"];
+
+        unset($data["categories"]);
+
+        $article->update($data);
+
+        $categoriesActuel = $article->categories->pluck('id');
+
+        foreach ($categoriesActuel as $id) {
+            if (!in_array($id, $categories)) $article->categories()->detach($id);
+        }
+
+        foreach ($categories as $id) {
+            if (!$article->categories->contains($id)) $article->categories()->attach($id);
+        }
+
+        return response()->json(["success" => "Modifié avec succès"]);
     }
 
     /**
@@ -62,6 +114,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->categories()->detach();
+        $article->delete();
+        return response()->json(["success" => "Supprimé avec succès"]);
     }
 }
