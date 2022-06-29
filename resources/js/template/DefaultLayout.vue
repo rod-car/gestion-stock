@@ -503,6 +503,26 @@
                             },
                         ]
                     },
+                    {
+                        title: 'Dévis',
+                        icon: 'fa fa-file',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/devis/nouveau',
+                                title: 'Nouveau dévis',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                // hidden: !this.$can('create_devis'),
+                            },
+                            {
+                                href: '/devis/liste',
+                                title: 'Liste des dévis',
+                                icon: 'fa fa-list',
+                                // hidden: !this.$can('view_devis'),
+                            },
+                        ]
+                    },
                     // ---------------------------------------------------------------------------------------
                     {
                         header: "Personnel",
