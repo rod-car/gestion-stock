@@ -17,6 +17,10 @@ import VueSidebarMenu from 'vue-sidebar-menu'
 import Message from 'vue-m-message'
 import 'vue-m-message/dist/style.css'
 
+// Plugins de datepicker
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
 const options = {
     color: "#58BFD9",
     failedColor: "#874b4b",
@@ -38,6 +42,7 @@ createApp({
     components: {
         DefaultLayout,
         Login,
+        Datepicker,
     },
 })
     .use(router)

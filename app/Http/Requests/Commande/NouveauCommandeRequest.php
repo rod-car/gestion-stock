@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Commande;
 
 use Illuminate\Support\Facades\Gate;
-use App\Traits\Article\WithValidation;
+use App\Traits\Commande\WithValidation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 

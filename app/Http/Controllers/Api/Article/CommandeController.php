@@ -28,7 +28,9 @@ class CommandeController extends Controller
      */
     public function store(NouveauCommandeRequest $request)
     {
-        return $request->validated();
+        $data = $request->validated();
+        $commande = Commande::create($data);
+        return $commande;
     }
 
     /**
