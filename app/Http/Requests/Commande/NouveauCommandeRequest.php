@@ -4,6 +4,7 @@ namespace App\Http\Requests\Commande;
 
 use Illuminate\Support\Facades\Gate;
 use App\Traits\Commande\WithValidation;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -58,5 +59,23 @@ class NouveauCommandeRequest extends FormRequest
             ], 422);
         }
         return back()->withErrors($validator)->withInput();
+    }
+
+
+    public function prepareForValidation()
+    {
+        if ($this->numero === null and $this->type === 1) {
+            $numeroDevis = numeroDevis();
+            $this->merge([
+                'numero' => $numeroDevis,
+            ]);
+        }
+
+        if ($this->date !== null) {
+            $date = Carbon::parse($this->date)->setTimezone('EAT');
+            $this->merge([
+                'date' => $date->toDateTimeString(),
+            ]);
+        }
     }
 }

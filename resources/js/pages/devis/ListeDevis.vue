@@ -3,18 +3,20 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Liste des articles</h5>
-                    <router-link to="/article/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
+                    <h5 class="text-info">Liste des deviss</h5>
+                    <router-link to="/devis/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer un nouveau dévis</router-link>
                 </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover">
                     <thead class="text-uppercase">
                         <tr>
-                            <th>Réference</th>
-                            <th>Designation</th>
-                            <th>Stock d'alerte</th>
-                            <th>Unité</th>
+                            <th>Numéro</th>
+                            <th>Date du dévis</th>
+                            <th>Validité (Jour)</th>
+                            <th>Expiré le</th>
+                            <th>Fournisseur</th>
+                            <th>Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -25,24 +27,29 @@
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                             <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
                         </tr>
                     </tbody>
                     <tbody v-else-if="entities.length > 0">
-                        <tr v-for="(article, index) in entities" v-bind:key="article.id">
-                            <td>{{ article.reference }}</td>
-                            <td>{{ article.designation }}</td>
-                            <td>{{ article.stock_alert ?? "Non définie" }}</td>
-                            <td>{{ article.unite }}</td>
+                        <tr v-for="(devis, index) in entities" v-bind:key="devis.id">
+                            <td>{{ devis.numero }}</td>
+                            <td>{{ formatDate(devis.date) }}</td>
+                            <td>{{ devis.validite ?? "Non définie" }}</td>
+                            <td>{{ formatDate(expiration(devis.date, devis.validite)) }}</td>
+                            <td>{{ devis.frs.nom }}</td>
+                            <td><Status :value="devis.status" /></td>
+
                             <td class="d-flex justify-content-center">
-                                <router-link v-if="true" :to="{ name: 'article.voir', params: { id: article.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                                <router-link v-if="true" :to="{ name: 'article.modifier', params: { id: article.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(article.id, index)"/>
+                                <router-link v-if="true" :to="{ name: 'devis.voir', params: { id: devis.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                                <router-link v-if="true" :to="{ name: 'devis.modifier', params: { id: devis.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(devis.id, index)"/>
                             </td>
                         </tr>
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td class="text-center" colspan="9">Aucun article</td>
+                            <td class="text-center" colspan="9">Aucun devis</td>
                         </tr>
                     </tbody>
                 </table>
@@ -61,22 +68,25 @@ import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../../components/html/DeleteBtn.vue';
+import Status from '../../components/html/Status.vue';
+import { formatDate, expiration } from '../../functions/functions';
 
-const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD("/article")
+const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD("/commandes")
 
 export default {
     components: {
-        DeleteBtn, Skeletor,
+        DeleteBtn, Skeletor, Status,
     },
 
     setup() {
         return {
             entities, loading, deleting, getEntities, deleteEntity,
+            formatDate, expiration,
         }
     },
 
     mounted() {
-        getEntities() // Recuperer les articles
+        getEntities({ type: 1 }) // Recuperer les deviss
     },
 
     methods: {
@@ -88,7 +98,7 @@ export default {
          * @return  {void}
          */
         confirmDeletion (id, index) {
-            SimpleAlert.confirm("Voulez-vous supprimer ce article ?", "Question", "question").then(() => {
+            SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
                 deleteEntity(id, index)
             }).catch (error => {

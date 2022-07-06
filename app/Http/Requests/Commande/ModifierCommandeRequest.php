@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests\Commande;
 
-use App\Traits\Article\WithValidation;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
+use App\Traits\Commande\WithValidation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -29,7 +30,7 @@ class ModifierCommandeRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->validationRules($this->id);
+        return $this->validationRules($this->commande->id);
     }
 
     public function messages()
@@ -63,5 +64,11 @@ class ModifierCommandeRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        if ($this->date !== null) {
+            $date = Carbon::parse($this->date)->setTimezone('EAT');
+            $this->merge([
+                'date' => $date->toDateTimeString(),
+            ]);
+        }
     }
 }

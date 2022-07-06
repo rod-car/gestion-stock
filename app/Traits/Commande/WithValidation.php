@@ -2,6 +2,7 @@
 
 namespace App\Traits\Commande;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\Rule;
 
 trait WithValidation
@@ -26,8 +27,18 @@ trait WithValidation
         return [
             "numero" => ["required", "unique:commandes,numero,$exceptId,id", "sometimes", "min:2", "max:255"],
             "type" => ["required", Rule::in($this->typeCommande)],
-            "date" => ["required", "date", "date_format:d/m/Y H:i:s"],
+            "date" => ["required", "date", "date_format:Y-m-d H:i:s"],
+            "validite" => ["required", "numeric", "min:1", "max:365"],
             "fournisseur" => ["required", "exists:fournisseurs,id"],
+
+            "articles" => ["required", "array"],
+            "articles.*.id" => ["required", "exists:articles,id"],
+            "articles.*.pu" => ["required", "numeric", "min:1", "max:" . Config::get("comptable.montant_max")],
+            "articles.*.tva" => ["required", "numeric", "min:0", "max:100"],
+            "articles.*.quantite" => ["required", "numeric", "min:1", "max:999999999.99"],
+
+            "articles.*.montant_ht" => ["required", "numeric"],
+            "articles.*.montant_ttc" => ["required", "numeric"],
         ];
     }
 
@@ -49,8 +60,34 @@ trait WithValidation
             "date.date" => "La doite doit bien être une date",
             "date.date_format" => "Le format de la date est invalide",
 
+            "validite.required" => "La validité est obligatoire",
+            "validite.numeric" => "La validité doit être un nombre",
+            "validite.min" => "La validité doit être au moins :min jour",
+            "validite.max" => "La validité ne doit pas depasser :max jours",
+
             "fournisseur.required" => "Le fournisseur est réquis",
             "fournisseur.exists" => "Veuillez selectionner le fournisseur dans la liste",
+
+            "articles.required" => "Les articles du dévis est obligatoire",
+            "articles.array" => "Les articles du dévis doit être un tableau",
+
+            "articles.*.id.required" => "Veillez selectionner l'article",
+            "articles.*.id.exists" => "Veillez selectionner l'article parmi la liste",
+
+            "articles.*.pu.required" => "Le prix unitaire est obligatoire",
+            "articles.*.pu.numeric" => "Le prix unitaire doit être un nombre",
+            "articles.*.pu.min" => "Le prix unitaire doit être au moins :min Ar",
+            "articles.*.pu.max" => "Le prix unitaire ne doit pas depasser :max Ar",
+
+            "articles.*.tva.required" => "Le TVA est obligatoire",
+            "articles.*.tva.numeric" => "Le TVA doit être un nombre",
+            "articles.*.tva.min" => "Le TVA doit être au moins :min %",
+            "articles.*.tva.max" => "Le TVA ne doit pas depasser :max %",
+
+            "articles.*.quantite.required" => "La quantité unitaire est obligatoire",
+            "articles.*.quantite.numeric" => "La quantité unitaire doit être un nombre",
+            "articles.*.quantite.min" => "La quantité unitaire doit être au moins :min unité",
+            "articles.*.quantite.max" => "La quantité unitaire ne doit pas depasser :max unité",
         ];
     }
 }
