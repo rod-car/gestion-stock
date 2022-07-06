@@ -24654,12 +24654,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vuepic/vue-datepicker */ "./node_modules/@vuepic/vue-datepicker/dist/vue-datepicker.es.js");
 /* harmony import */ var _vueform_multiselect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vueform/multiselect */ "./node_modules/@vueform/multiselect/dist/multiselect.js");
 /* harmony import */ var _functions_Flash__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/Flash */ "./resources/js/functions/Flash.js");
-/* harmony import */ var vue_skeletor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-skeletor */ "./node_modules/vue-skeletor/dist/vue-skeletor.esm.js");
+/* harmony import */ var vue_skeletor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-skeletor */ "./node_modules/vue-skeletor/dist/vue-skeletor.esm.js");
+/* harmony import */ var _config_config_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../config/config.js */ "./resources/js/config/config.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -24681,14 +24683,15 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"])
     Alert: _components_html_Alert_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Datepicker: _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_5__["default"],
     MultiSelect: _vueform_multiselect__WEBPACK_IMPORTED_MODULE_6__["default"],
-    Skeletor: vue_skeletor__WEBPACK_IMPORTED_MODULE_8__.Skeletor
+    Skeletor: vue_skeletor__WEBPACK_IMPORTED_MODULE_9__.Skeletor
   },
   setup: function setup() {
     return {
       Devis: Devis,
       Fournisseur: Fournisseur,
       Article: Article,
-      Flash: _functions_Flash__WEBPACK_IMPORTED_MODULE_7__["default"]
+      Flash: _functions_Flash__WEBPACK_IMPORTED_MODULE_7__["default"],
+      Config: _config_config_js__WEBPACK_IMPORTED_MODULE_8__["default"]
     };
   },
   data: function data() {
@@ -24784,6 +24787,12 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"])
     },
     addItem: function addItem() {
       var increment = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      if (this.nombre_article > _config_config_js__WEBPACK_IMPORTED_MODULE_8__["default"].devis.MAX_ARTICLE) {
+        (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_7__["default"])('error', "Message d'erreur", "Nombre d'article maximum atteint. Limite ".concat(_config_config_js__WEBPACK_IMPORTED_MODULE_8__["default"].devis.MAX_ARTICLE));
+        return;
+      }
+
       this.form.articles.push({
         id: null,
         quantite: 1,
@@ -24794,6 +24803,12 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"])
       });
       if (increment === true) this.nombre_article++;
     },
+
+    /**
+     * Permet de calculer le montant pour une ligne de l'article
+     *
+     * @param {Number}  index   Index de la ligne darticle
+     */
     calculerMontant: function calculerMontant(index) {
       var pu = this.form.articles[index].pu;
       var quantite = this.form.articles[index].quantite;
@@ -24806,6 +24821,12 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"])
       this.form.articles[index].montant_ht = montant_ht;
       this.form.articles[index].montant_ttc = montant_ttc;
     },
+
+    /**
+     * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
+     *
+     * @return  {void}
+     */
     setDevisKey: function setDevisKey() {
       var _this2 = this;
 
@@ -40234,6 +40255,25 @@ window.axios.defaults.withCredentials = true;
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/config/config.js":
+/*!***************************************!*\
+  !*** ./resources/js/config/config.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  devis: {
+    MAX_ARTICLE: 20
+  }
+});
 
 /***/ }),
 

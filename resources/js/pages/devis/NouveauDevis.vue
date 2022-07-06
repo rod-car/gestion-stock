@@ -137,6 +137,7 @@ import Datepicker from '@vuepic/vue-datepicker';
 import MultiSelect from '@vueform/multiselect';
 import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
+import Config from '../../config/config.js';
 
 const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Devis
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
@@ -148,7 +149,7 @@ export default {
     },
     setup() {
         return {
-            Devis, Fournisseur, Article, Flash,
+            Devis, Fournisseur, Article, Flash, Config,
         }
     },
     data() {
@@ -224,7 +225,12 @@ export default {
             this.nombre_article--
         },
 
-        addItem (increment = true) {
+        addItem(increment = true) {
+            if (this.nombre_article > Config.devis.MAX_ARTICLE) {
+                Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.devis.MAX_ARTICLE}`)
+                return
+            }
+
             this.form.articles.push({
                 id: null,
                 quantite: 1,
@@ -237,6 +243,12 @@ export default {
             if (increment === true) this.nombre_article++
         },
 
+
+        /**
+         * Permet de calculer le montant pour une ligne de l'article
+         *
+         * @param {Number}  index   Index de la ligne darticle
+         */
         calculerMontant (index) {
             const pu = this.form.articles[index].pu
             const quantite = this.form.articles[index].quantite
@@ -253,6 +265,12 @@ export default {
             this.form.articles[index].montant_ttc = montant_ttc
         },
 
+
+        /**
+         * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
+         *
+         * @return  {void}
+         */
         async setDevisKey() {
             await Devis.getKey({ type: 1 })
             this.form.numero = Devis.key
