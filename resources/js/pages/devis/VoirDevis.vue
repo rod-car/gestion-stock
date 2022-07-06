@@ -1,58 +1,94 @@
 <template>
     <div class="card mt-3">
         <div class="card-header d-flex justify-content-between align-items-center bg-white pt-3 pb-3">
-            <h5 class="text-muted">Fiche article</h5>
+            <h5 class="text-muted">Fiche devis</h5>
 
             <div class="d-flex justify-content-between">
-                <router-link to="/article/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
-                <router-link v-if="!Article.loading.value && Article.entity.value.id" :to="{ name: 'article.modifier', params: { id: Article.entity.value.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
-                <router-link to="/article/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
+                <router-link to="/devis/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
+                <router-link v-if="!Devis.loading.value && Devis.entity.value.id" :to="{ name: 'devis.modifier', params: { id: Devis.entity.value.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link to="/devis/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-xl-4 d-flex justify-content-start align-items-center flex-column">
-                    <ProfileAvatar class="avatar" v-if="!Article.loading.value && Article.entity.value.designation" bgColor="#CCC" textColor="#000" size="l" :username="Article.entity.value.designation"></ProfileAvatar>
-                    <Skeletor class="mb-3" circle v-else size="200" />
-
-                    <h1 v-if="!Article.loading.value" class="text-muted text-center mb-3">{{ Article.entity.value.designation }}</h1>
-                    <Skeletor v-else class="mb-3" height="40" width="100%" style="border-radius: 3px" />
-
-                    <div v-if="!Article.loading.value" class="text-center">
-                        <div v-for="categorie in Article.entity.value.categories" :key="categorie.id">
-                            <span class="badge bg-primary me-2">{{ categorie.libelle }}</span>
-                            <span class="badge bg-danger me-Z">
-                                {{ Article.entity.value.sc[categorie.id] === [] ? "" : last(Article.entity.value.sc[categorie.id]) }}
-                            </span>
-                        </div>
-                    </div>
-                    <Skeletor v-else height="40" width="75%" style="border-radius: 3px" />
+            <div class="row mb-5">
+                <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
+                    <h5 class="mb-3">Mon entreprise</h5>
+                    <h6>Tanambao 5</h6>
+                    <h6>Toamasina I</h6>
+                    <h6>Telephone: +261 34 123 45</h6>
                 </div>
-                <div class="col-xl-8">
-                    <div v-if="!Article.loading.value">
-                        <table class="table w-100">
+                <div class="col-xl-6 d-flex align-items-center justify-content-end">
+                    <h4>DEVIS</h4>
+                </div>
+            </div>
+
+            <div v-if="!Devis.loading.value && Devis.entity.value.frs" class="row mb-5">
+                <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
+                    <h6>Fournisseur: {{ Devis.entity.value.frs.nom }}</h6>
+                    <h6>{{ Devis.entity.value.frs.adresse }}</h6>
+                    <h6>Téléphone: {{ Devis.entity.value.frs.contact }}</h6>
+                </div>
+                <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
+                    <h6>Date: {{ formatDate(Devis.entity.value.date, false, long = false) }}</h6>
+                    <h6>Référence: {{ Devis.entity.value.numero }}</h6>
+                    <h6>Date de validité: {{ Devis.entity.value.validite }} jours</h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <table class="table table-bordered table-striped">
+                        <thead class="bg-warning">
                             <tr>
-                                <td><h5 class="text-muted mb-3">Référence</h5></td>
-                                <td><h5 class="text-muted">:</h5></td>
-                                <td><h5 class="text-muted">{{ Article.entity.value.reference }}</h5></td>
+                                <th>Designation</th>
+                                <th>Quantité</th>
+                                <th>Unité</th>
+                                <th class="text-end">Prix unitaire HT</th>
+                                <th>% TVA</th>
+                                <th class="text-end">Total TVA</th>
+                                <th class="text-end">Total TTC</th>
+                            </tr>
+                        </thead>
+                        <tbody v-if="Devis.loading.value">
+                            <tr v-for="i in 5" :key="i">
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                                <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr v-for="article in Devis.entity.value.articles" :key="article.id">
+                                <td>{{ article.designation }}</td>
+                                <td>{{ article.pivot.quantite }}</td>
+                                <td>{{ article.unite }}</td>
+                                <td class="text-end">{{ article.pivot.pu }} Ar</td>
+                                <td>{{ article.pivot.tva }} %</td>
+                                <td class="text-end">{{ article.pivot.pu * article.pivot.quantite * article.pivot.tva / 100 }}</td>
+                                <td class="text-end">{{ (1 + article.pivot.tva / 100) * (article.pivot.pu * article.pivot.quantite) }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot v-if="!Devis.loading.value && Devis.entity.value.articles">
+                            <tr class="border-0">
+                                <td colspan="7">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td><h5 class="text-muted mb-3">Unité</h5></td>
-                                <td><h5 class="text-muted">:</h5></td>
-                                <td><h5 class="text-muted">{{ Article.entity.value.unite }}</h5></td>
+                                <td colspan="6" class="text-end">TOTAL HT</td>
+                                <td class="text-end">{{ totalHT(Devis.entity.value.articles) }}</td>
                             </tr>
                             <tr>
-                                <td><h5 class="text-muted mb-3">Stock d'alerte</h5></td>
-                                <td><h5 class="text-muted">:</h5></td>
-                                <td><h5 class="text-muted">{{ Article.entity.value.stock_alert ?? "Non définie" }}</h5></td>
+                                <td colspan="6" class="text-end">TOTAL TVA</td>
+                                <td class="text-end">{{ totalTVA(Devis.entity.value.articles) }}</td>
                             </tr>
-                        </table>
-                    </div>
-                    <div v-else>
-                        <Skeletor height="35" width="100%" class="mb-3" style="border-radius: 5px" />
-                        <Skeletor height="35" width="100%" class="mb-3" style="border-radius: 5px" />
-                        <Skeletor height="35" width="100%" class="mb-3" style="border-radius: 5px" />
-                    </div>
+                            <tr class="text-warning">
+                                <td colspan="6" class="text-end">TOTAL TTC</td>
+                                <td class="text-end">{{ totalTTC(Devis.entity.value.articles) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
@@ -61,32 +97,26 @@
 
 <script>
 
-import SaveBtn from '../../components/html/SaveBtn.vue';
-import Input from '../../components/html/Input.vue';
 import { Skeletor } from 'vue-skeletor';
-import MultiSelect from '@vueform/multiselect';
-
-import ProfileAvatar from 'vue-profile-avatar'
+import { formatDate, totalHT, totalTVA, totalTTC } from '../../functions/functions';
 import useCRUD from '../../services/CRUDServices';
 
-import { last } from '../../functions/functions';
-
-const Article = useCRUD('/article');
+const Devis = useCRUD('/commandes');
 
 export default {
     setup() {
         return {
-            Article, last,
+            Devis, formatDate, totalHT, totalTVA, totalTTC,
         }
     },
 
     components: {
-        Input, SaveBtn, Skeletor, MultiSelect, ProfileAvatar,
+        Skeletor,
     },
 
-    mounted() {
+    async mounted() {
         const id = parseInt(this.$route.params.id);
-        Article.getEntity(id)
+        await Devis.getEntity(id)
     },
 
 }

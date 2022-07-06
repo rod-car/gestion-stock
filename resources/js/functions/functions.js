@@ -21,8 +21,9 @@ const last = (array) => {
  * @param   {Boolean}   withTime    Permet de determiner si on veut l'heure
  * @return  {String}        Date formatté
  */
-const formatDate = (date, withTime = true) => {
+const formatDate = (date, withTime = true, long = true) => {
     if (date === undefined) throw new Error("La dae a formatter n'est pas définie")
+    const locale = 'fr-MG'
 
     const dateConfig = { weekday: "long", year: "numeric", month: "long", day: "2-digit" }
     const timeConfig = { hour: "2-digit", minute: "2-digit", second: "2-digit" }
@@ -30,7 +31,7 @@ const formatDate = (date, withTime = true) => {
     let config = new Object(dateConfig)
     if (withTime) config = { ...config, ...timeConfig }
 
-    const locale = 'fr-MG'
+    if (long === false) config = { day: "2-digit", month: "2-digit", year: "numeric" }
 
     let dateString = null
 
@@ -80,10 +81,78 @@ const ucwords = (string) => {
     return string.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 };
 
+
+/**
+ * [totalHT description]
+ *
+ * @param   {Array}  articles
+ *
+ * @return  {Number}
+ */
+const totalHT = (articles) => {
+    let montant = 0
+    articles.forEach(article => {
+        montant = montant + montantHT(article)
+    })
+    return montant
+}
+
+
+/**
+ * [totalHT description]
+ *
+ * @param   {Array}  articles
+ *
+ * @return  {Number}
+ */
+const totalTVA = (articles) => {
+    let montant = 0
+    articles.forEach(article => {
+        montant = montant + montantTVA(article)
+    })
+    return montant
+}
+
+
+const montantHT = (article) => {
+    return article.pu * article.quantite
+}
+
+const montantTVA = (article) => {
+    return article.pu * article.quantite * article.tva
+}
+
+const montantTTC = (article) => {
+    return montantTVA(article) + montantHT(article)
+}
+
+
+/**
+ * [totalHT description]
+ *
+ * @param   {Array}  articles
+ *
+ * @return  {Number}
+ */
+const totalTTC = (articles) => {
+    let montant = 0
+    articles.forEach(article => {
+        montant = montant + montantTTC(article)
+    })
+    return montant
+}
+
+
 export {
     last,
     expiration,
     formatDate,
     ucfirst,
     ucwords,
+    montantHT,
+    montantTVA,
+    montantTTC,
+    totalHT,
+    totalTVA,
+    totalTTC,
 };

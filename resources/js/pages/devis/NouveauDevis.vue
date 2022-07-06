@@ -15,7 +15,7 @@
                             <h6 class="text-uppercase text-primary mb-4">Information du dévis</h6>
                             <div class="row">
                                 <div class="col-xl-6 mb-3" :class="Devis.loading.value === true ? 'd-flex align-items-end' : ''">
-                                    <Input v-if="Devis.loading.value === false" v-model="form.numero" :error="Devis.errors.value.numero">Numéro du dévis</Input>
+                                    <Input v-if="Devis.loading.value === false" v-model="form.numero" :error="Devis.errors.value.numero" disabled>Numéro du dévis</Input>
                                     <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                                 </div>
                                 <div class="col-xl-6 mb-3">
@@ -171,7 +171,9 @@ export default {
             window.scrollTo({ top: 0, behavior: 'smooth' })
             if (Devis.success.value !== null) this.resetForm()
             Devis.success.value = null
+            this.setDevisKey()
         },
+
         resetForm () {
             this.form = {
                 numero: null,
@@ -249,6 +251,11 @@ export default {
 
             this.form.articles[index].montant_ht = montant_ht
             this.form.articles[index].montant_ttc = montant_ttc
+        },
+
+        async setDevisKey() {
+            await Devis.getKey({ type: 1 })
+            this.form.numero = Devis.key
         }
     },
 
@@ -267,8 +274,7 @@ export default {
     mounted() {
         Article.getEntities()
         Fournisseur.getEntities()
-        Devis.getKey({ type: 1 })
-        this.form.numero = Devis.key
+        this.setDevisKey()
     },
 
     created () {
