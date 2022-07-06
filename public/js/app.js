@@ -40212,8 +40212,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "expiration": () => (/* binding */ expiration),
 /* harmony export */   "formatDate": () => (/* binding */ formatDate),
-/* harmony export */   "last": () => (/* binding */ last)
+/* harmony export */   "last": () => (/* binding */ last),
+/* harmony export */   "ucfirst": () => (/* binding */ ucfirst),
+/* harmony export */   "ucwords": () => (/* binding */ ucwords)
 /* harmony export */ });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /**
  * Recuperer le dernier element d'un tableau
  *
@@ -40229,26 +40237,31 @@ var last = function last(array) {
  * [formatDate description]
  *
  * @param   {String|Date}  date  Date a formatter
- *
+ * @param   {Boolean}   withTime    Permet de determiner si on veut l'heure
  * @return  {String}        Date formatté
  */
 
 
 var formatDate = function formatDate(date) {
+  var withTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
   if (date === undefined) throw new Error("La dae a formatter n'est pas définie");
-  var config = {
+  var dateConfig = {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "2-digit"
   };
+  var timeConfig = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  };
+  var config = new Object(dateConfig);
+  if (withTime) config = _objectSpread(_objectSpread({}, config), timeConfig);
   var locale = 'fr-MG';
-
-  if (date instanceof Date) {
-    return date.toLocaleDateString(locale, config);
-  }
-
-  return new Date(date).toLocaleDateString(locale, config);
+  var dateString = null;
+  if (date instanceof Date) dateString = date.toLocaleDateString(locale, config);else dateString = new Date(date).toLocaleDateString(locale, config);
+  return ucfirst(dateString);
 };
 /**
  * Permet de calculer la date d'expiration d'un dévis en fonction de la date de début et la validité
@@ -40268,6 +40281,30 @@ var expiration = function expiration(dateDebut, delais) {
   }
 
   return new Date(dateDebut).addDays(delais);
+};
+/**
+ * Mettre en majuscule la prémière lettre de la chaine de caractère
+ *
+ * @param   {String}    string Chaine de  caractère a convertir
+ * @return  {String}    Chaine de caractère modifié
+ */
+
+
+var ucfirst = function ucfirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+/**
+ * Mettre chaque debut de caractère en majuscule
+ *
+ * @param   {String}    string Chaine de  caractère a convertir
+ * @return  {String}    Chaine de caractère modifié
+ */
+
+
+var ucwords = function ucwords(string) {
+  return string.replace(/(?:^|\s)\S/g, function (a) {
+    return a.toUpperCase();
+  });
 };
 
 

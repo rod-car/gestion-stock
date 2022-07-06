@@ -18,19 +18,26 @@ const last = (array) => {
  * [formatDate description]
  *
  * @param   {String|Date}  date  Date a formatter
- *
+ * @param   {Boolean}   withTime    Permet de determiner si on veut l'heure
  * @return  {String}        Date formatté
  */
-const formatDate = (date) => {
+const formatDate = (date, withTime = true) => {
     if (date === undefined) throw new Error("La dae a formatter n'est pas définie")
 
-    const config = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    const dateConfig = { weekday: "long", year: "numeric", month: "long", day: "2-digit" }
+    const timeConfig = { hour: "2-digit", minute: "2-digit", second: "2-digit" }
+
+    let config = new Object(dateConfig)
+    if (withTime) config = { ...config, ...timeConfig }
+
     const locale = 'fr-MG'
 
-    if (date instanceof Date) {
-        return date.toLocaleDateString(locale, config)
-    }
-    return new Date(date).toLocaleDateString(locale, config)
+    let dateString = null
+
+    if (date instanceof Date) dateString = date.toLocaleDateString(locale, config)
+    else dateString = new Date(date).toLocaleDateString(locale, config)
+
+    return ucfirst(dateString)
 }
 
 
@@ -51,8 +58,32 @@ const expiration = (dateDebut, delais) => {
     return new Date(dateDebut).addDays(delais)
 }
 
+
+/**
+ * Mettre en majuscule la prémière lettre de la chaine de caractère
+ *
+ * @param   {String}    string Chaine de  caractère a convertir
+ * @return  {String}    Chaine de caractère modifié
+ */
+const ucfirst = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+/**
+ * Mettre chaque debut de caractère en majuscule
+ *
+ * @param   {String}    string Chaine de  caractère a convertir
+ * @return  {String}    Chaine de caractère modifié
+ */
+const ucwords = (string) => {
+    return string.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+};
+
 export {
     last,
     expiration,
     formatDate,
+    ucfirst,
+    ucwords,
 };

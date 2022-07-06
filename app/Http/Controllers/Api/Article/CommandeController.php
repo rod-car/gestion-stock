@@ -76,7 +76,12 @@ class CommandeController extends Controller
      */
     public function destroy(Commande $commande)
     {
-        //
+        $commande->articles()->detach();
+        $commande->delete();
+
+        return response()->json([
+            "success" => "Supprimé avec succès"
+        ]);
     }
 
 

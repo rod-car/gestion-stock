@@ -19,15 +19,42 @@ class Commande extends Model
         "numero", "type", "date", "fournisseur", "client", "devis", "validite" // Uniquement pour les dévis
     ];
 
+
+    /**
+     * Caster la valeur provenant de la base de données
+     *
+     * @var array
+     */
     protected $casts = [
         "date" => "datetime",
     ];
 
+
+    /**
+     * Relations a charger automatiquement
+     *
+     * @var array
+     */
     protected $with = ["frs", "articles"];
 
+
+    /**
+     * Ajouter une nouvelle attributs temporaire au model (Non pas dans la base de données)
+     * Utile juste pour l'affichage dans les vues
+     *
+     * @var array
+     */
     protected $appends = ["expire", "date_expiration"];
 
+
+    /**
+     * Compter automatiquement la nombre des articles de ce model
+     * Accessible via la proprieté "articles_count"
+     *
+     * @var array
+     */
     protected $withCount = ["articles"];
+
 
     /**
      * Recuperer la date d'expiration
@@ -37,7 +64,7 @@ class Commande extends Model
      */
     public function getDateExpirationAttribute(): string
     {
-        if ($this->type === 2) { // Si c'est une commande
+        if ($this->type === 2) { // Si c'est une commande, pas de date d'expiration
             return null;
         }
 
