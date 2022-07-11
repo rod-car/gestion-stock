@@ -508,7 +508,7 @@
                         icon: 'fa fa-file',
                         hidden: false,
                         child: [
-                            {
+                            /*{
                                 href: '/devis/nouveau',
                                 title: 'Nouveau dévis',
                                 icon: 'fa fa-plus',
@@ -520,6 +520,38 @@
                                 title: 'Liste des dévis',
                                 icon: 'fa fa-list',
                                 // hidden: !this.$can('view_devis'),
+                            },*/
+                            {
+                                href: '/devis/fournisseur/liste',
+                                title: 'Approvisionnement',
+                                icon: 'fa fa-arrow-right',
+                                // hidden: !this.$can('view_devis'),
+                            },
+                            {
+                                href: '/devis/client/liste',
+                                title: 'Vente',
+                                icon: 'fa fa-arrow-left',
+                                // hidden: !this.$can('view_devis'),
+                            },
+                        ]
+                    },
+                    // --------------------------------------------------------------
+                    {
+                        title: 'Commande',
+                        icon: 'fa fa-file',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/commande/fournisseur/liste',
+                                title: 'Approvisionnement',
+                                icon: 'fa fa-arrow-right',
+                                // hidden: !this.$can('view_commande'),
+                            },
+                            {
+                                href: '/commande/client/liste',
+                                title: 'Vente',
+                                icon: 'fa fa-arrow-left',
+                                // hidden: !this.$can('view_commande'),
                             },
                         ]
                     },

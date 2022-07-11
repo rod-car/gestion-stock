@@ -28,8 +28,9 @@ trait WithValidation
             "numero" => ["required", "unique:commandes,numero,$exceptId,id", "sometimes", "min:2", "max:255"],
             "type" => ["required", Rule::in($this->typeCommande)],
             "date" => ["required", "date", "date_format:Y-m-d H:i:s"],
-            "validite" => ["required", "numeric", "min:1", "max:365"],
-            "fournisseur" => ["required", "exists:fournisseurs,id"],
+            "validite" => ["nullable", "numeric", "min:1", "max:365"],
+            "fournisseur" => ["required_if:client,null", "exists:fournisseurs,id"],
+            "client" => ["required_if:fournisseur,null", "exists:clients,id"],
 
             "articles" => ["required", "array"],
             "articles.*.id" => ["required", "exists:articles,id"],
@@ -39,6 +40,8 @@ trait WithValidation
 
             "articles.*.montant_ht" => ["required", "numeric"],
             "articles.*.montant_ttc" => ["required", "numeric"],
+
+            "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
         ];
     }
 
@@ -67,6 +70,9 @@ trait WithValidation
 
             "fournisseur.required" => "Le fournisseur est réquis",
             "fournisseur.exists" => "Veuillez selectionner le fournisseur dans la liste",
+
+            "client.required" => "Le client est réquis",
+            "client.exists" => "Veuillez selectionner le client dans la liste",
 
             "articles.required" => "Les articles du dévis est obligatoire",
             "articles.array" => "Les articles du dévis doit être un tableau",

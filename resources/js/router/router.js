@@ -14,6 +14,7 @@ import client from './routes/clients/client'; // Routes qui gère le client
 import fournisseurs from './routes/fournisseurs/fournisseurs';
 import articles from './routes/articles/articles';
 import devis from './routes/devis/devis';
+import commande from './routes/commande/commande';
 
 const routes = [
     {
@@ -43,6 +44,7 @@ const routes = [
     .concat(fournisseurs)
     .concat(articles)
     .concat(devis)
+    .concat(commande)
 
 const router = createRouter({
     history: createWebHistory(),

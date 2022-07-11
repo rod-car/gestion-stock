@@ -136,11 +136,11 @@ export default function useCRUD(url) {
      *
      * @return  {Array}
      */
-    const getEntities = async ({ type, except } = {}) => {
+    const getEntities = async ({ type, except, appro } = {}) => {
         loading.value = true
 
         try {
-            let response = await axiosClient.get(`${url}?type=${type}&except=${except}`)
+            let response = await axiosClient.get(`${url}?type=${type}&except=${except}&appro=${appro}`)
             entities.value = response.data
 
         } catch (error) {
@@ -210,10 +210,10 @@ export default function useCRUD(url) {
     }
 
 
-    const getKey = async ({ type } = {}) => {
+    const getKey = async ({ type, appro } = {}) => {
         loading.value = true
         try {
-            let response = await axiosClient.get(`${url}/get-key/?type=${type}`)
+            let response = await axiosClient.get(`${url}/get-key/?type=${type}&appro=${appro}`)
             key.value = response.data.key
         } catch (error) {
             console.error("Erreur: ", error)

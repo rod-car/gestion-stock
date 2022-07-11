@@ -9,49 +9,96 @@
  *  -   Voir une devis en particuluer
  */
 
-import NouveauDevis from '../../../pages/devis/NouveauDevis.vue';
-import ModifierDevis from '../../../pages/devis/ModifierDevis.vue';
-import VoirDevis from '../../../pages/devis/VoirDevis.vue';
-import ListeDevis from '../../../pages/devis/ListeDevis.vue';
+import NouveauDevisFrs from '../../../pages/devis/fournisseur/NouveauDevis.vue';
+import ModifierDevisFrs from '../../../pages/devis/fournisseur/ModifierDevis.vue';
+import VoirDevisFrs from '../../../pages/devis/fournisseur/VoirDevis.vue';
+import ListeDevisFrs from '../../../pages/devis/fournisseur/ListeDevis.vue';
 
-const routes = [
+import NouveauDevisClient from '../../../pages/devis/client/NouveauDevis.vue';
+import ModifierDevisClient from '../../../pages/devis/client/ModifierDevis.vue';
+import VoirDevisClient from '../../../pages/devis/client/VoirDevis.vue';
+import ListeDevisClient from '../../../pages/devis/client/ListeDevis.vue';
+
+const devisFournisseurs = [
     {
-        path: '/devis/nouveau',
-        name: 'devis.nouveau',
-        component: NouveauDevis,
+        path: '/devis/fournisseur/nouveau',
+        name: 'devis.fournisseur.nouveau',
+        component: NouveauDevisFrs,
         meta: {
             requiresAuth: true,
             // gate: 'add_entrepot',
         }
     },
     {
-        path: '/devis/liste',
-        name: 'devis.liste',
-        component: ListeDevis,
+        path: '/devis/fournisseur/liste',
+        name: 'devis.fournisseur.liste',
+        component: ListeDevisFrs,
         meta: {
             requiresAuth: true,
             // gate: 'add_entrepot',
         }
     },
     {
-        path: '/devis/voir/:id',
-        name: 'devis.voir',
-        component: VoirDevis,
+        path: '/devis/fournisseur/voir/:id',
+        name: 'devis.fournisseur.voir',
+        component: VoirDevisFrs,
         meta: {
             requiresAuth: true,
             // gate: 'add_entrepot',
         }
     },
     {
-        path: '/devis/modifier/:id',
-        name: 'devis.modifier',
-        component: ModifierDevis,
+        path: '/devis/fournisseur/modifier/:id',
+        name: 'devis.fournisseur.modifier',
+        component: ModifierDevisFrs,
         meta: {
             requiresAuth: true,
             // gate: 'add_entrepot',
         }
     },
 ]
+
+
+const devisClient = [
+    {
+        path: '/devis/client/nouveau',
+        name: 'devis.client.nouveau',
+        component: NouveauDevisClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/devis/client/liste',
+        name: 'devis.client.liste',
+        component: ListeDevisClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/devis/client/voir/:id',
+        name: 'devis.client.voir',
+        component: VoirDevisClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+    {
+        path: '/devis/client/modifier/:id',
+        name: 'devis.client.modifier',
+        component: ModifierDevisClient,
+        meta: {
+            requiresAuth: true,
+            // gate: 'add_entrepot',
+        }
+    },
+]
+
+const routes = devisFournisseurs.concat(devisClient)
 
 export default routes.map(route => {
     return { ...route }

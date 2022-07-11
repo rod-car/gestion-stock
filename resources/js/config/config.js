@@ -4,4 +4,8 @@ export default {
         MAX_ARTICLE: 20,
     },
 
+    commande: {
+        MAX_ARTICLE: 10,
+    },
+
 }

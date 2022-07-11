@@ -2,10 +2,9 @@
 
 namespace App\Models\Article;
 
-use App\Models\Article\Article;
 use App\Models\Client\Client;
+use App\Models\Article\Article;
 use App\Models\Fournisseur\Fournisseur;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +15,7 @@ class Commande extends Model
     use HasFactory;
 
     protected $fillable = [
-        "numero", "type", "date", "fournisseur", "client", "devis", "validite" // Uniquement pour les dévis
+        "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "validite" // Uniquement pour les dévis
     ];
 
 
@@ -35,7 +34,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $with = ["frs", "articles"];
+    protected $with = ["frs", "cl", "articles"];
 
 
     /**
@@ -62,11 +61,13 @@ class Commande extends Model
      *
      * @return string
      */
-    public function getDateExpirationAttribute(): string
+    public function getDateExpirationAttribute(): ?string
     {
         if ($this->type === 2) { // Si c'est une commande, pas de date d'expiration
             return null;
         }
+
+        if ($this->validite === null) return null;
 
         $date = $this->date;
         $date->addDays($this->validite);

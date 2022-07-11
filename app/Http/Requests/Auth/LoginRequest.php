@@ -60,7 +60,7 @@ class LoginRequest extends FormRequest
             ->orWhere('username', $this->login)
             ->first();
 
-        if (!$user || !Crypt::decrypt($user->password) === $this->password) {
+        if (!$user || Crypt::decrypt($user->password) !== $this->password) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

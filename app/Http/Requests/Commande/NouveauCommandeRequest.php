@@ -64,12 +64,12 @@ class NouveauCommandeRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        if ($this->numero === null and $this->type === 1) {
-            $numeroDevis = numeroDevis();
+        /*if ($this->numero === null and $this->type === 1) {
+            $numeroDevis = numeroDevis($this->boolean('appro'));
             $this->merge([
                 'numero' => $numeroDevis,
             ]);
-        }
+        }*/
 
         if ($this->date !== null) {
             $date = Carbon::parse($this->date)->setTimezone('EAT');

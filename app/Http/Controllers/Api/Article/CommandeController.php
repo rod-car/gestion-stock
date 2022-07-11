@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\Article;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Commande\ModifierCommandeRequest;
-use App\Http\Requests\Commande\NouveauCommandeRequest;
-use App\Models\Article\Commande;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Article\Commande;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Commande\NouveauCommandeRequest;
+use App\Http\Requests\Commande\ModifierCommandeRequest;
 
 class CommandeController extends Controller
 {
@@ -19,7 +20,17 @@ class CommandeController extends Controller
     public function index(Request $request)
     {
         $type = intval($request->type);
-        return Commande::where('type', $type)->get();
+        $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
+
+        $commande = Commande::where('type', $type);
+
+        if ($appro) {
+            $commande = $commande->where('fournisseur', '<>', null);
+        } else {
+            $commande = $commande->where('client', '<>', null);
+        }
+
+        return $commande->get();
     }
 
     /**
@@ -130,10 +141,17 @@ class CommandeController extends Controller
      */
     public function getKey(Request $request)
     {
+        $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
         if (intval($request->type) === 1) {
             return response()->json([
-                "key" => numeroDevis(),
+                "key" => reference(1, $appro, "D"),
             ]);
+        } elseif (intval($request->type) === 2) {
+            return response()->json([
+                "key" => reference(2, $appro, "BC"),
+            ]);
+        } else {
+            throw new Exception("Type qui n'est pas une type de commande... Type: {$request->type}");
         }
 
         return null;

@@ -115,11 +115,11 @@ const totalTVA = (articles) => {
 
 
 const montantHT = (article) => {
-    return article.pu * article.quantite
+    return article.pivot.pu * article.pivot.quantite
 }
 
 const montantTVA = (article) => {
-    return article.pu * article.quantite * article.tva
+    return article.pivot.pu * article.pivot.quantite * article.pivot.tva / 100
 }
 
 const montantTTC = (article) => {
@@ -143,6 +143,19 @@ const totalTTC = (articles) => {
 }
 
 
+/**
+ * Formatter un nombre aven un format internationale
+ *
+ * @param   {Number}    number  Nombre a formatter
+ * @param   {String}    format  Format internationale de l'argent
+ * @return  {String}
+ */
+const format = (number, format = "fr-FR", options = { decimal: 2, currency: "MGA", style: "currency" }) => {
+    const locale = Intl.NumberFormat(format, options)
+    return locale.format(number).replace("MGA", "Ar");
+}
+
+
 export {
     last,
     expiration,
@@ -155,4 +168,5 @@ export {
     totalHT,
     totalTVA,
     totalTTC,
+    format,
 };
