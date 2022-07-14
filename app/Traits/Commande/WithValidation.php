@@ -96,4 +96,22 @@ trait WithValidation
             "articles.*.quantite.max" => "La quantité unitaire ne doit pas depasser :max unité",
         ];
     }
+
+
+    /**
+     * Retirer soit le fournisseur soit le client en fonction de la situation
+     *
+     * @return void
+     */
+    public function toogleClientFrs()
+    {
+        if ($this->appro === true)
+        {
+            $this->offsetUnset("client");
+        }
+        else
+        {
+            $this->offsetUnset("fournisseur");
+        }
+    }
 }

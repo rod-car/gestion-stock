@@ -123,7 +123,9 @@ export default function useCRUD(url) {
             let response = await axiosClient.get(`${url}/${id}`)
             entity.value = response.data
         } catch (error) {
-            console.error(error)
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
         }
 
         loading.value = false
@@ -144,7 +146,9 @@ export default function useCRUD(url) {
             entities.value = response.data
 
         } catch (error) {
-            console.log(error)
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
         }
 
         loading.value = false
@@ -216,7 +220,9 @@ export default function useCRUD(url) {
             let response = await axiosClient.get(`${url}/get-key/?type=${type}&appro=${appro}`)
             key.value = response.data.key
         } catch (error) {
-            console.error("Erreur: ", error)
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
         }
         loading.value = false
     }

@@ -12,7 +12,7 @@ if (!function_exists('reference')) {
      * @param integer $nombreIncrementation
      * @return string|null
      */
-    function reference(int $type, bool $appro = true, string $prefix = "D", int $nombreIncrementation = 3) : ?string
+    function reference(int $type, bool $appro = true, string $prefix = "D", int $nombreIncrementation = 4) : ?string
     {
         if ($type === 1) return numeroDevis($appro, $prefix, $nombreIncrementation);
         elseif ($type === 2) return numeroCommande($appro, $prefix, $nombreIncrementation);
@@ -29,7 +29,7 @@ if (!function_exists('numeroDevis')) {
      * @param integer $nombreIncrementation
      * @return string
      */
-    function numeroDevis(bool $appro = true, string $prefix = "D", int $nombreIncrementation = 3): string
+    function numeroDevis(bool $appro = true, string $prefix = "D", int $nombreIncrementation = 4): string
     {
         $dernierDevis = Commande::where('type', 1)->orderBy('id', 'desc');
 
@@ -55,7 +55,7 @@ if (!function_exists('numeroDevis')) {
 
             if (intval(date('m')) === intval($mois)) {
                 $incrementation = (string) intval($incrementation) + 1;
-                $incrementation = str_pad($incrementation, 4, "0", STR_PAD_LEFT);
+                $incrementation = str_pad($incrementation, $nombreIncrementation, "0", STR_PAD_LEFT);
             } else {
                 $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
             }
@@ -75,7 +75,7 @@ if (!function_exists('numeroCommande')) {
      * @param integer $nombreIncrementation
      * @return string
      */
-    function numeroCommande(bool $appro = true, string $prefix = "BC", int $nombreIncrementation = 3): string
+    function numeroCommande(bool $appro = true, string $prefix = "BC", int $nombreIncrementation = 4): string
     {
         $dernierDevis = Commande::where('type', 2)->orderBy('id', 'desc');
 
@@ -101,7 +101,7 @@ if (!function_exists('numeroCommande')) {
 
             if (intval(date('m')) === intval($mois)) {
                 $incrementation = (string) intval($incrementation) + 1;
-                $incrementation = str_pad($incrementation, 4, "0", STR_PAD_LEFT);
+                $incrementation = str_pad($incrementation, $nombreIncrementation, "0", STR_PAD_LEFT);
             } else {
                 $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
             }

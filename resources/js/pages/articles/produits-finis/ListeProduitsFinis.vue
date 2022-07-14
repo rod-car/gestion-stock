@@ -74,9 +74,3 @@ export default {
 }
 </script>
 
-<style scoped>
-    .pagination{
-        margin-top: 20px;
-        margin-bottom: 0;
-    }
-</style>

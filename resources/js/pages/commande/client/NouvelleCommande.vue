@@ -1,5 +1,14 @@
 <template>
     <div class="col-xl-12">
+
+        <!--button @click="showModal">Show Modal</button-->
+        <Modal title="Model title goes here" :show="modalVisible">
+            <template #body>This should be in the body</template>
+            <template #footer>
+                <button class="btn btn-primary">Extra footer button</button>
+            </template>
+        </Modal>
+
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -14,34 +23,29 @@
                         <div class="col-xl-12">
                             <h6 class="text-uppercase text-primary mb-4">Information de la commande</h6>
                             <div class="row">
-                                <div class="col-xl-6 mb-3" :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
-                                    <Input v-if="Commande.loading.value === false" v-model="form.numero" :error="Commande.errors.value.numero" disabled>Numéro de la commande</Input>
+                                <div class="col-xl-6 mb-3"
+                                    :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
+                                    <Input v-if="Commande.loading.value === false" v-model="form.numero"
+                                        :error="Commande.errors.value.numero" disabled>Numéro de la commande</Input>
                                     <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                                 </div>
                                 <div class="col-xl-6 mb-3">
-                                    <label for="client" class="form-label">Client <span class="text-danger">(*)</span></label>
-                                    <MultiSelect
-                                        v-bind:class="hasError ? 'border-danger' : ''"
-                                        label="nom" valueProp="id" v-model="form.client"
-                                        :options="Client.entities.value" :closeOnSelect="false" :clearOnSelect="false"
-                                        :searchable="true" noOptionsText="Aucun client" noResultsText="Aucun client"
-                                        @close="check"
-                                    />
+                                    <label for="client" class="form-label">Client <span
+                                            class="text-danger">(*)</span></label>
+                                    <MultiSelect v-bind:class="hasError ? 'border-danger' : ''" label="nom"
+                                        valueProp="id" v-model="form.client" :options="Client.entities.value"
+                                        :closeOnSelect="false" :clearOnSelect="false" :searchable="true"
+                                        noOptionsText="Aucun client" noResultsText="Aucun client" @close="check" />
                                     <div class="text-danger mt-1" v-if="hasError">
                                         {{ Commande.errors.value.client[0] }}
                                     </div>
                                 </div>
                                 <div class="col-xl-6 mb-3">
-                                    <label for="date" class="form-label">Date de création de la commande <span class="text-danger">(*)</span></label>
-                                    <Datepicker
-                                        locale="fr-MG"
-                                        v-model="form.date"
-                                        selectText="Valider"
-                                        enableSeconds cancelText="Annuler"
-                                        placeholder="Selectionner la date"
-                                        arrowNavigation :state="dateState"
-                                        @update:modelValue="checkDate"
-                                    ></Datepicker>
+                                    <label for="date" class="form-label">Date de création de la commande <span
+                                            class="text-danger">(*)</span></label>
+                                    <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" enableSeconds
+                                        cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
+                                        :state="dateState" @update:modelValue="checkDate"></Datepicker>
 
                                     <div class="text-danger mt-1" v-if="dateState === false">
                                         {{ Commande.errors.value.date[0] }}
@@ -54,9 +58,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row mb-5">
                         <div class="col-xl-12">
-                            <h6 class="text-uppercase text-primary mb-4">Information de l'article</h6>
+                            <div class="d-flex justify-content-between mb-4">
+                                <h6 class="text-uppercase text-primary">Information de l'article</h6>
+                                <button class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
+                            </div>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <table class="table table-bordered table-striped">
@@ -74,39 +82,54 @@
                                         <tbody>
                                             <tr v-for="i in nombre_article" :key="i">
                                                 <td>
-                                                    <MultiSelect
-                                                        label="designation" valueProp="id" v-model="form.articles[i-1].id"
-                                                        :options="Article.entities.value" :closeOnSelect="false" :clearOnSelect="false"
-                                                        :searchable="true" noOptionsText="Aucun article" noResultsText="Aucun article"
-                                                        @close="checkArticle"
-                                                    />
-                                                    <span class="text-danger" v-if="Commande.errors.value[`articles.${i-1}.id`]">
-                                                        {{ Commande.errors.value[`articles.${i-1}.id`][0] }}
+                                                    <MultiSelect label="designation" valueProp="id"
+                                                        v-model="form.articles[i - 1].id"
+                                                        :options="Article.entities.value" :closeOnSelect="false"
+                                                        :clearOnSelect="false" :searchable="true"
+                                                        noOptionsText="Aucun article" noResultsText="Aucun article"
+                                                        @close="checkArticle" />
+                                                    <span class="text-danger"
+                                                        v-if="Commande.errors.value[`articles.${i - 1}.id`]">
+                                                        {{ Commande.errors.value[`articles.${i - 1}.id`][0] }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <input type="number" @input="calculerMontant(i-1)" v-model="form.articles[i - 1].quantite" class="form-control">
-                                                    <span class="text-danger" v-if="Commande.errors.value[`articles.${i-1}.quantite`]">
-                                                        {{ Commande.errors.value[`articles.${i-1}.quantite`][0] }}
+                                                    <input type="number" @input="calculerMontant(i - 1)"
+                                                        v-model="form.articles[i - 1].quantite" class="form-control">
+                                                    <span class="text-danger"
+                                                        v-if="Commande.errors.value[`articles.${i - 1}.quantite`]">
+                                                        {{ Commande.errors.value[`articles.${i - 1}.quantite`][0] }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <input type="number" @input="calculerMontant(i-1)" v-model="form.articles[i - 1].pu" name="pu" id="pu" class="form-control">
-                                                    <span class="text-danger" v-if="Commande.errors.value[`articles.${i-1}.pu`]">
-                                                        {{ Commande.errors.value[`articles.${i-1}.pu`][0] }}
+                                                    <input type="number" @input="calculerMontant(i - 1)"
+                                                        v-model="form.articles[i - 1].pu" name="pu" id="pu"
+                                                        class="form-control">
+                                                    <span class="text-danger"
+                                                        v-if="Commande.errors.value[`articles.${i - 1}.pu`]">
+                                                        {{ Commande.errors.value[`articles.${i - 1}.pu`][0] }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <input type="number" @input="calculerMontant(i-1)" v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
-                                                    <span class="text-danger" v-if="Commande.errors.value[`articles.${i-1}.tva`]">
-                                                        {{ Commande.errors.value[`articles.${i-1}.tva`][0] }}
+                                                    <input type="number" @input="calculerMontant(i - 1)"
+                                                        v-model="form.articles[i - 1].tva" name="tva" id="tva"
+                                                        class="form-control">
+                                                    <span class="text-danger"
+                                                        v-if="Commande.errors.value[`articles.${i - 1}.tva`]">
+                                                        {{ Commande.errors.value[`articles.${i - 1}.tva`][0] }}
                                                     </span>
                                                 </td>
-                                                <td><input type="number" disabled v-model="form.articles[i - 1].montant_ht" name="montant_ht" id="montant_ht" class="form-control"></td>
-                                                <td><input type="number" disabled v-model="form.articles[i - 1].montant_ttc" name="montant_ttc" id="montant_ttc" class="form-control"></td>
+                                                <td><input type="number" disabled
+                                                        v-model="form.articles[i - 1].montant_ht" name="montant_ht"
+                                                        id="montant_ht" class="form-control"></td>
+                                                <td><input type="number" disabled
+                                                        v-model="form.articles[i - 1].montant_ttc" name="montant_ttc"
+                                                        id="montant_ttc" class="form-control"></td>
                                                 <td>
-                                                    <button type="button" v-if="i > 1" @click.prevent="removeItem(i-1)" class="btn btn-danger"><i class="fa fa-minus"></i></button>
-                                                    <button type="button" v-else @click.prevent="addItem()" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                                    <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)"
+                                                        class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                                                    <button type="button" v-else @click.prevent="addItem()"
+                                                        class="btn btn-success"><i class="fa fa-plus"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -141,15 +164,23 @@ import Flash from '../../../functions/Flash';
 import Config from '../../../config/config.js';
 import { onMounted, computed, onBeforeMount, ref } from 'vue';
 
+import Modal from "../../../components/html/Modal.vue";
+
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de Client
 const Article = useCRUD('/article')
 
 export default {
     components: {
-        Input, SaveBtn, MultiSelect, Datepicker, Skeletor,
+        Input, SaveBtn, MultiSelect, Datepicker, Skeletor, Modal,
     },
-    setup(){
+    setup() {
+        let modalVisible = ref(false);
+
+        const showModal = () => {
+            modalVisible.value = true;
+        }
+
         const form = ref({
             numero: null, type: 2,
             date: null, validite: null,
@@ -345,6 +376,7 @@ export default {
         return {
             form, nombre_article, Commande, Client, Article, Flash, Config,
             resetForm, addItem, removeItem, calculerMontant, setNumeroCommande, check, checkDate, checkArticle, save, hasError, dateState,
+            showModal, modalVisible,
         }
     }
 

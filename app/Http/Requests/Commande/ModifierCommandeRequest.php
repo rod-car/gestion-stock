@@ -64,6 +64,8 @@ class ModifierCommandeRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        $this->toogleClientFrs();
+
         if ($this->date !== null) {
             $date = Carbon::parse($this->date)->setTimezone('EAT');
             $this->merge([

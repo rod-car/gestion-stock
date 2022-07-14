@@ -92,13 +92,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.avatar {
-    font-size: 50px;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 2rem;
-}
-
-</style>
