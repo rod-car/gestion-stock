@@ -30,9 +30,19 @@ class ModifierCommandeRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->validationRules($this->commande->id);
+        $id = null;
+        if (is_object($this->commande)) $id = $this->commande->id;
+        else $id = $this->commande;
+
+        return $this->validationRules($id);
     }
 
+
+    /**
+     * Message de validation en cas d'erreurs
+     *
+     * @return void
+     */
     public function messages()
     {
         return $this->ValidationMessages();

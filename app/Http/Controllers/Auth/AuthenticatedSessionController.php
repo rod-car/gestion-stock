@@ -24,7 +24,16 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Log in the user.
+     *
+     * @response {
+     *  "token": "eyJ0eXA...",
+     *  "user": {
+     *      id: 1,
+     *      .....
+     *  },
+     *  "success": "Connecté avec success"
+     * }
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse

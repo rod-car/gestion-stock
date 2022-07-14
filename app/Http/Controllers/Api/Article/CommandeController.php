@@ -13,7 +13,7 @@ use App\Http\Requests\Commande\ModifierCommandeRequest;
 class CommandeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the orders or quotations.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,11 +30,11 @@ class CommandeController extends Controller
             $commande = $commande->where('client', '<>', null);
         }
 
-        return $commande->get();
+        return response()->json($commande->get());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created order or quotation in storage.
      *
      * @param  App\Http\Requests\Commande\NouveauCommandeRequest  $request
      * @return \Illuminate\Http\Response
@@ -51,7 +51,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified order or quotation.
      *
      * @param  \App\Models\Article\Commande  $commande
      * @return \Illuminate\Http\Response
@@ -62,7 +62,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified order or quotation in storage.
      *
      * @param  App\Http\Requests\Commande\ModifierCommandeRequest  $request
      * @param  \App\Models\Article\Commande  $commande
@@ -80,7 +80,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified order or quotation from storage.
      *
      * @param  \App\Models\Article\Commande  $commande
      * @return \Illuminate\Http\Response

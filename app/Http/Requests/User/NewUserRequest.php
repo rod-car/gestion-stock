@@ -9,6 +9,11 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
+
+/**
+ * @bodyParam   login    string  required    Username or email adress of the user.      Exemple: testuser@example.com, user123
+ * @bodyParam   password    string  required    The password of the  user.   Example: secret
+ */
 class NewUserRequest extends FormRequest
 {
     /**
@@ -34,7 +39,7 @@ class NewUserRequest extends FormRequest
             'nom_personnel' => ["required", new Name, "min:2", "max:255"],
             'prenoms_personnel' => ["nullable", new Name, "min:2", "max:255"],
             'contact_personnel' => ["required", "phone:AUTO"],
-            'email' => ["nullable", "unique:users,email", "email", "max:255"],
+            'email' => ["nullable","email", "unique:users,email", "max:255"],
             'adresse_personnel' => ["required", "sometimes"],
             'cin_personnel' => ["nullable", "digits:12"],
             'username' => ["nullable", "required_if:hasAccount,true", "unique:users,username", "min:5", "max:255"],

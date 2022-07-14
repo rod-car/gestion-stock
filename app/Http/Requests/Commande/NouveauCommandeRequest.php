@@ -8,6 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
+
+/**
+ * @bodyParam   login    string  required    Username or email adress of the user.      Exemple: testuser@example.com, user123
+ * @bodyParam   password    string  required    The password of the  user.   Example: secret
+ */
 class NouveauCommandeRequest extends FormRequest
 {
     use WithValidation;
