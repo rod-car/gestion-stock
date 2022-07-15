@@ -11,7 +11,7 @@
             @update:collapsed="onCollapse"
             :menu="menu"
             width="290px"
-            showOneChild=true
+            :showOneChild="true"
             theme='grey-theme'
         />
 
