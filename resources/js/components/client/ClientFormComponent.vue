@@ -93,10 +93,10 @@ export default {
 
         const save = async () => {
             if (props.nouveau === true) {
-                await Client.createEntity(form.value)
+                await Client.create(form.value)
             } else {
                 const id = props.client.id
-                await Client.updateEntity(id, form.value)
+                await Client.update(id, form.value)
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -142,7 +142,7 @@ export default {
                     stat: props.client.stat,
                 }
             }
-            Categorie.getEntities({ type: 1 })
+            Categorie.all({ type: 1 })
         })
 
         return {

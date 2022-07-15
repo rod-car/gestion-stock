@@ -29,7 +29,7 @@ export default {
     setup() {
         onMounted(async () => {
             const id = parseInt(router.currentRoute.value.params.id)
-            await Client.getEntity(id)
+            await Client.find(id)
         })
 
         return {

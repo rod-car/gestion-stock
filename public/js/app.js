@@ -22938,7 +22938,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Article.createEntity(_this.form);
+                return Article.create(_this.form);
 
               case 2:
                 window.scrollTo({
@@ -22982,7 +22982,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"
     }
   },
   mounted: function mounted() {
-    Categorie.getEntities({
+    Categorie.all({
       type: 3
     });
   }
@@ -23071,7 +23071,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"
                 }
 
                 _context.next = 3;
-                return Client.createEntity(form.value);
+                return Client.create(form.value);
 
               case 3:
                 _context.next = 8;
@@ -23080,7 +23080,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"
               case 5:
                 id = props.client.id;
                 _context.next = 8;
-                return Client.updateEntity(id, form.value);
+                return Client.update(id, form.value);
 
               case 8:
                 window.scrollTo({
@@ -23143,7 +23143,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"
         };
       }
 
-      Categorie.getEntities({
+      Categorie.all({
         type: 1
       });
     });
@@ -23291,7 +23291,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     var creationClient = (0,vue__WEBPACK_IMPORTED_MODULE_8__.ref)(false);
 
     var articleCree = function articleCree() {
-      Article.getEntities();
+      Article.all();
       creationArticle.value = false;
     };
 
@@ -23300,7 +23300,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     };
 
     var frsCree = function frsCree() {
-      Fournisseur.getEntities();
+      Fournisseur.all();
       creationFrs.value = false;
     };
 
@@ -23309,7 +23309,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     };
 
     var clientCree = function clientCree() {
-      Client.getEntities();
+      Client.all();
       creationClient.value = false;
     };
 
@@ -23329,7 +23329,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
                 }
 
                 _context.next = 3;
-                return Commande.createEntity(form.value);
+                return Commande.create(form.value);
 
               case 3:
                 if (Commande.success.value !== null) {
@@ -23342,7 +23342,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
 
               case 6:
                 _context.next = 8;
-                return Commande.updateEntity(props.commande.id, form.value);
+                return Commande.update(props.commande.id, form.value);
 
               case 8:
                 window.scrollTo({
@@ -23521,9 +23521,9 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
       return null;
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_8__.onMounted)(function () {
-      Article.getEntities();
-      Fournisseur.getEntities();
-      Client.getEntities();
+      Article.all();
+      Fournisseur.all();
+      Client.all();
       if (props.nouveau === true) setCommandeKey();
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_8__.onBeforeMount)(function () {
@@ -23651,7 +23651,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"]
     var confirmDeletion = function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(function () {
         (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        Commande.deleteEntity(id, index);
+        Commande.destroy(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -23867,7 +23867,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     var creationClient = (0,vue__WEBPACK_IMPORTED_MODULE_8__.ref)(false);
 
     var articleCree = function articleCree() {
-      Article.getEntities();
+      Article.all();
       creationArticle.value = false;
     };
 
@@ -23876,7 +23876,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     };
 
     var frsCree = function frsCree() {
-      Fournisseur.getEntities();
+      Fournisseur.all();
       creationFrs.value = false;
     };
 
@@ -23885,7 +23885,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
     };
 
     var clientCree = function clientCree() {
-      Client.getEntities();
+      Client.all();
       creationClient.value = false;
     };
 
@@ -23905,7 +23905,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
                 }
 
                 _context.next = 3;
-                return Devis.createEntity(form.value);
+                return Devis.create(form.value);
 
               case 3:
                 if (Devis.success.value !== null) {
@@ -23918,7 +23918,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
 
               case 6:
                 _context.next = 8;
-                return Devis.updateEntity(props.devis.id, form.value);
+                return Devis.update(props.devis.id, form.value);
 
               case 8:
                 window.scrollTo({
@@ -24097,9 +24097,9 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
       return null;
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_8__.onMounted)(function () {
-      Article.getEntities();
-      Fournisseur.getEntities();
-      Client.getEntities();
+      Article.all();
+      Fournisseur.all();
+      Client.all();
       if (props.nouveau === true) setDevisKey();
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_8__.onBeforeMount)(function () {
@@ -24232,7 +24232,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])('
     var confirmDeletion = function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(function () {
         (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        Devis.deleteEntity(id, index);
+        Devis.destroy(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_2__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -24414,7 +24414,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
                 }
 
                 _context.next = 3;
-                return Fournisseur.createEntity(form.value);
+                return Fournisseur.create(form.value);
 
               case 3:
                 _context.next = 8;
@@ -24423,7 +24423,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
               case 5:
                 id = props.fournisseur.id;
                 _context.next = 8;
-                return Fournisseur.updateEntity(id, form.value);
+                return Fournisseur.update(id, form.value);
 
               case 8:
                 window.scrollTo({
@@ -24487,7 +24487,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
               }
 
               _context2.next = 3;
-              return Categorie.getEntities({
+              return Categorie.all({
                 type: 2
               });
 
@@ -24769,8 +24769,8 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
     entities = _useCRUD.entities,
     loading = _useCRUD.loading,
     deleting = _useCRUD.deleting,
-    getEntities = _useCRUD.getEntities,
-    deleteEntity = _useCRUD.deleteEntity;
+    all = _useCRUD.all,
+    destroy = _useCRUD.destroy;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24782,12 +24782,12 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
       entities: entities,
       loading: loading,
       deleting: deleting,
-      getEntities: getEntities,
-      deleteEntity: deleteEntity
+      all: all,
+      destroy: destroy
     };
   },
   mounted: function mounted() {
-    getEntities(); // Recuperer les Clients
+    all(); // Recuperer les Clients
   },
   methods: {
     /**
@@ -24800,7 +24800,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
     confirmDeletion: function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce client ?", "Question", "question").then(function () {
         (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_0__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        deleteEntity(id, index);
+        destroy(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_0__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -24856,7 +24856,7 @@ var Client = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"])(
             case 0:
               id = parseInt(_router_router__WEBPACK_IMPORTED_MODULE_5__["default"].currentRoute.value.params.id);
               _context.next = 3;
-              return Client.getEntity(id);
+              return Client.find(id);
 
             case 3:
             case "end":
@@ -24969,8 +24969,8 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
   },
   mounted: function mounted() {
     var id = parseInt(this.$route.params.id);
-    Client.getEntity(id);
-    Categorie.getEntities(1);
+    Client.find(id);
+    Categorie.all(1);
   }
 });
 
@@ -25090,8 +25090,8 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
     entities = _useCRUD.entities,
     loading = _useCRUD.loading,
     deleting = _useCRUD.deleting,
-    getEntities = _useCRUD.getEntities,
-    deleteEntity = _useCRUD.deleteEntity;
+    all = _useCRUD.all,
+    destroy = _useCRUD.destroy;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -25103,12 +25103,12 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
       entities: entities,
       loading: loading,
       deleting: deleting,
-      getEntities: getEntities,
-      deleteEntity: deleteEntity
+      all: all,
+      destroy: destroy
     };
   },
   mounted: function mounted() {
-    getEntities(); // Recuperer les articles
+    all(); // Recuperer les articles
   },
   methods: {
     /**
@@ -25121,7 +25121,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"]
     confirmDeletion: function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce article ?", "Question", "question").then(function () {
         (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_0__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        deleteEntity(id, index);
+        destroy(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_0__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -25185,7 +25185,7 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Article.updateEntity(id, Article.entity.value);
+                return Article.update(id, Article.entity.value);
 
               case 2:
                 window.scrollTo({
@@ -25205,8 +25205,8 @@ var Categorie = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"
   },
   mounted: function mounted() {
     var id = parseInt(this.$route.params.id);
-    Article.getEntity(id);
-    Categorie.getEntities({
+    Article.find(id);
+    Categorie.all({
       type: 3
     });
   }
@@ -25277,7 +25277,7 @@ var Article = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])
   },
   mounted: function mounted() {
     var id = parseInt(this.$route.params.id);
-    Article.getEntity(id);
+    Article.find(id);
   }
 });
 
@@ -25845,7 +25845,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"]
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Commande.getEntities({
+              return Commande.all({
                 type: 2,
                 appro: appro
               });
@@ -25911,7 +25911,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"]
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_4__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Commande.getEntity(id);
+              return Commande.find(id);
 
             case 3:
             case "end":
@@ -25989,7 +25989,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"]
             case 0:
               id = parseInt(_router_router__WEBPACK_IMPORTED_MODULE_2__["default"].currentRoute.value.params.id);
               _context.next = 3;
-              return Commande.getEntity(id);
+              return Commande.find(id);
 
             case 3:
             case "end":
@@ -26050,7 +26050,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"]
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Commande.getEntities({
+              return Commande.all({
                 type: 2,
                 appro: true
               });
@@ -26115,7 +26115,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["default"]
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_4__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Commande.getEntity(id);
+              return Commande.find(id);
 
             case 3:
             case "end":
@@ -26193,7 +26193,7 @@ var Commande = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"]
             case 0:
               id = parseInt(_router_router__WEBPACK_IMPORTED_MODULE_2__["default"].currentRoute.value.params.id);
               _context.next = 3;
-              return Commande.getEntity(id);
+              return Commande.find(id);
 
             case 3:
             case "end":
@@ -26241,7 +26241,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])('
   },
   setup: function setup() {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      Devis.getEntities({
+      Devis.all({
         type: 1,
         appro: false
       }); // Recuperer les deviss
@@ -26302,7 +26302,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"])('
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_5__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Devis.getEntity(id);
+              return Devis.find(id);
 
             case 3:
             case "end":
@@ -26384,7 +26384,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])('
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_4__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Devis.getEntity(id);
+              return Devis.find(id);
 
             case 3:
             case "end":
@@ -26428,7 +26428,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])('
   },
   setup: function setup() {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      Devis.getEntities({
+      Devis.all({
         type: 1,
         appro: true
       }); // Recuperer les deviss
@@ -26489,7 +26489,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_1__["default"])('
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_5__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Devis.getEntity(id);
+              return Devis.find(id);
 
             case 3:
             case "end":
@@ -26571,7 +26571,7 @@ var Devis = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])('
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_4__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Devis.getEntity(id);
+              return Devis.find(id);
 
             case 3:
             case "end":
@@ -27190,7 +27190,7 @@ var Fournisseur = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_5__["defaul
             case 0:
               id = _router_router__WEBPACK_IMPORTED_MODULE_4__["default"].currentRoute.value.params.id;
               _context.next = 3;
-              return Fournisseur.getEntity(id);
+              return Fournisseur.find(id);
 
             case 3:
             case "end":
@@ -27580,6 +27580,142 @@ var _useCategorie = (0,_services_categorie_CategorieServices__WEBPACK_IMPORTED_M
         type: 1
       };
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
+/* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
+/* harmony import */ var _components_html_Input_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/html/Input.vue */ "./resources/js/components/html/Input.vue");
+/* harmony import */ var _components_html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/html/SaveBtn.vue */ "./resources/js/components/html/SaveBtn.vue");
+/* harmony import */ var _services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/CRUDServices */ "./resources/js/services/CRUDServices.js");
+/* harmony import */ var vue_skeletor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-skeletor */ "./node_modules/vue-skeletor/dist/vue-skeletor.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+
+var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_3__["default"])("/parametres/generale"),
+    entity = _useCRUD.entity,
+    create = _useCRUD.create,
+    errors = _useCRUD.errors,
+    creating = _useCRUD.creating,
+    loading = _useCRUD.loading,
+    updating = _useCRUD.updating,
+    find = _useCRUD.find,
+    update = _useCRUD.update;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Input: _components_html_Input_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SaveBtn: _components_html_SaveBtn_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Skeletor: vue_skeletor__WEBPACK_IMPORTED_MODULE_4__.Skeletor
+  },
+  setup: function setup() {
+    var form = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_5__.ref)({
+      nom: null,
+      contact: null,
+      email: null,
+      assujeti: true,
+      nif: null,
+      stat: null
+    });
+
+    var save = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(entity.value === "")) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _context.next = 3;
+                return create(form.value);
+
+              case 3:
+                _context.next = 7;
+                break;
+
+              case 5:
+                _context.next = 7;
+                return update(entity.value.id, form.value);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function save() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_6__.onBeforeMount)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return find(null);
+
+            case 2:
+              if (entity.value !== "") {
+                form.value = {
+                  nom: entity.value.generale.nom,
+                  contact: entity.value.generale.contact,
+                  email: entity.value.generale.email,
+                  assujeti: entity.value.generale.assujeti,
+                  nif: entity.value.generale.nif,
+                  stat: entity.value.generale.stat
+                };
+              }
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+    return {
+      form: form,
+      errors: errors,
+      creating: creating,
+      create: create,
+      save: save,
+      entity: entity,
+      find: find,
+      loading: loading,
+      updating: updating,
+      update: update
+    };
   }
 });
 
@@ -28593,8 +28729,8 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__["default"]
     entities = _useCRUD.entities,
     loading = _useCRUD.loading,
     deleting = _useCRUD.deleting,
-    getEntities = _useCRUD.getEntities,
-    deleteEntity = _useCRUD.deleteEntity;
+    all = _useCRUD.all,
+    destroy = _useCRUD.destroy;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -28606,12 +28742,12 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__["default"]
       entities: entities,
       loading: loading,
       deleting: deleting,
-      getEntities: getEntities,
-      deleteEntity: deleteEntity
+      all: all,
+      destroy: destroy
     };
   },
   mounted: function mounted() {
-    getEntities({
+    all({
       type: 1
     });
   },
@@ -28626,7 +28762,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_2__["default"]
     confirmDeletion: function confirmDeletion(id, index) {
       SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(function () {
         (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_1__["default"])('loading', "Chargement", "Suppression en cours", 1, false);
-        deleteEntity(id, index);
+        destroy(id, index);
       })["catch"](function (error) {
         if (error !== undefined) {
           (0,_functions_Flash__WEBPACK_IMPORTED_MODULE_1__["default"])('error', "Message d'erreur", "Impossible de supprimer ce point de vente");
@@ -28768,7 +28904,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"]
     success = _useCRUD.success,
     errors = _useCRUD.errors,
     creating = _useCRUD.creating,
-    createEntity = _useCRUD.createEntity; // import useDepot from '../../services/DepotServices';
+    create = _useCRUD.create; // import useDepot from '../../services/DepotServices';
 // const { success, errors, loading, createDepot } = useDepot()
 
 
@@ -28783,7 +28919,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"]
       success: success,
       errors: errors,
       creating: creating,
-      createEntity: createEntity
+      create: create
     };
   },
   data: function data() {
@@ -28806,7 +28942,7 @@ var _useCRUD = (0,_services_CRUDServices__WEBPACK_IMPORTED_MODULE_4__["default"]
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return createEntity(_this.form);
+                return create(_this.form);
 
               case 2:
                 window.scrollTo({
@@ -29191,21 +29327,7 @@ var logoImg = {
         title: 'Dévis',
         icon: 'fa fa-file',
         hidden: false,
-        child: [
-        /*{
-            href: '/devis/nouveau',
-            title: 'Nouveau dévis',
-            icon: 'fa fa-plus',
-            class: 'fw-regular',
-            // hidden: !this.$can('create_devis'),
-        },
-        {
-            href: '/devis/liste',
-            title: 'Liste des dévis',
-            icon: 'fa fa-list',
-            // hidden: !this.$can('view_devis'),
-        },*/
-        {
+        child: [{
           href: '/devis/fournisseur/liste',
           title: 'Approvisionnement',
           icon: 'fa fa-arrow-right' // hidden: !this.$can('view_devis'),
@@ -29259,6 +29381,10 @@ var logoImg = {
           hidden: !this.$can('manage_roles_and_functions')
         }]
       }, {
+        header: "Paramètres",
+        hiddenOnCollapse: true,
+        hidden: !this.$can('manage_settings')
+      }, {
         title: 'Paramètres',
         icon: 'fa fa-cog',
         hidden: !this.$can('manage_settings'),
@@ -29266,6 +29392,10 @@ var logoImg = {
           href: '/point-de-vente/liste',
           title: 'Dévise',
           icon: 'fa fa-money'
+        }, {
+          href: '/parametres/entreprise',
+          title: 'Infos de l\'entreprise',
+          icon: 'fa fa-info-circle'
         }]
       }];
     }
@@ -39887,6 +40017,264 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4 ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "card mt-3 me-3"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "card-header d-flex justify-content-between align-items-center bg-white pt-3 pb-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "text-muted"
+}, "Information de l'entreprise")], -1
+/* HOISTED */
+);
+
+var _hoisted_3 = {
+  "class": "card-body"
+};
+var _hoisted_4 = {
+  "class": "row"
+};
+var _hoisted_5 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nom de l'entreprise");
+
+var _hoisted_7 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact");
+
+var _hoisted_9 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Adresse email");
+
+var _hoisted_11 = {
+  "class": "col-xl-6 mb-3"
+};
+var _hoisted_12 = {
+  key: 0,
+  "for": "tva",
+  "class": "form-label"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: true
+}, "Assujeti a la TVA", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: false
+}, "Non assujeti a la TVA", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = [_hoisted_13, _hoisted_14];
+var _hoisted_16 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("NIF");
+
+var _hoisted_18 = {
+  "class": "col-xl-6 mb-3"
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("STAT");
+
+var _hoisted_20 = {
+  "class": "col-xl-12 d-flex justify-content-end mt-3"
+};
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Enregistrer");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Input");
+
+  var _component_Skeletor = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Skeletor");
+
+  var _component_SaveBtn = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SaveBtn");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Input, {
+    key: 0,
+    modelValue: $setup.form.nom,
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.form.nom = $event;
+    }),
+    required: ""
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_6];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Input, {
+    key: 0,
+    modelValue: $setup.form.contact,
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $setup.form.contact = $event;
+    }),
+    required: ""
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Input, {
+    key: 0,
+    modelValue: $setup.form.email,
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $setup.form.email = $event;
+    }),
+    type: "email",
+    required: ""
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_12, "TVA")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.loading ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
+    key: 1,
+    id: "tva",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.form.assujeti = $event;
+    }),
+    "class": "form-control"
+  }, _hoisted_15, 512
+  /* NEED_PATCH */
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.assujeti]]) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 2,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Input, {
+    key: 0,
+    modelValue: $setup.form.nif,
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $setup.form.nif = $event;
+    })
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_17];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Input, {
+    key: 0,
+    modelValue: $setup.form.stat,
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $setup.form.stat = $event;
+    })
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_19];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "100%",
+    height: "40"
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_SaveBtn, {
+    key: 0,
+    loading: $setup.creating || $setup.updating,
+    onClick: $setup.save
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_21];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["loading", "onClick"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Skeletor, {
+    key: 1,
+    style: {
+      "border-radius": "3px",
+      "margin-bottom": "5px"
+    },
+    width: "10%",
+    height: "40"
+  }))])])])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/personnels/Fonctions.vue?vue&type=template&id=70ae0024":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/personnels/Fonctions.vue?vue&type=template&id=70ae0024 ***!
@@ -44070,7 +44458,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _pages_Login_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/Login.vue */ "./resources/js/pages/Login.vue");
 /* harmony import */ var _pages_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Dashboard.vue */ "./resources/js/pages/Dashboard.vue");
 /* harmony import */ var _routes_private__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/private */ "./resources/js/router/routes/private.js");
@@ -44083,6 +44471,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_articles_articles__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routes/articles/articles */ "./resources/js/router/routes/articles/articles.js");
 /* harmony import */ var _routes_devis_devis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./routes/devis/devis */ "./resources/js/router/routes/devis/devis.js");
 /* harmony import */ var _routes_commande_commande__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./routes/commande/commande */ "./resources/js/router/routes/commande/commande.js");
+/* harmony import */ var _routes_parametres_parametres__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./routes/parametres/parametres */ "./resources/js/router/routes/parametres/parametres.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -44102,6 +44491,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // Routes qui gere tous les entrepots
 
  // Routes qui gère le client
+
 
 
 
@@ -44128,9 +44518,9 @@ var routes = [{
   meta: {
     requiresAuth: true
   }
-}].concat(_routes_private__WEBPACK_IMPORTED_MODULE_3__["default"]).concat(_routes_errors__WEBPACK_IMPORTED_MODULE_4__["default"]).concat(_routes_point_vente__WEBPACK_IMPORTED_MODULE_6__["default"]).concat(_routes_entrepot__WEBPACK_IMPORTED_MODULE_7__["default"]).concat(_routes_clients_client__WEBPACK_IMPORTED_MODULE_8__["default"]).concat(_routes_fournisseurs_fournisseurs__WEBPACK_IMPORTED_MODULE_9__["default"]).concat(_routes_articles_articles__WEBPACK_IMPORTED_MODULE_10__["default"]).concat(_routes_devis_devis__WEBPACK_IMPORTED_MODULE_11__["default"]).concat(_routes_commande_commande__WEBPACK_IMPORTED_MODULE_12__["default"]);
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createWebHistory)(),
+}].concat(_routes_private__WEBPACK_IMPORTED_MODULE_3__["default"]).concat(_routes_errors__WEBPACK_IMPORTED_MODULE_4__["default"]).concat(_routes_point_vente__WEBPACK_IMPORTED_MODULE_6__["default"]).concat(_routes_entrepot__WEBPACK_IMPORTED_MODULE_7__["default"]).concat(_routes_clients_client__WEBPACK_IMPORTED_MODULE_8__["default"]).concat(_routes_fournisseurs_fournisseurs__WEBPACK_IMPORTED_MODULE_9__["default"]).concat(_routes_articles_articles__WEBPACK_IMPORTED_MODULE_10__["default"]).concat(_routes_devis_devis__WEBPACK_IMPORTED_MODULE_11__["default"]).concat(_routes_commande_commande__WEBPACK_IMPORTED_MODULE_12__["default"]).concat(_routes_parametres_parametres__WEBPACK_IMPORTED_MODULE_13__["default"]);
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createWebHistory)(),
   routes: routes
 });
 router.beforeEach(function (to, from, next) {
@@ -44864,6 +45254,49 @@ var routes = [{
 
 /***/ }),
 
+/***/ "./resources/js/router/routes/parametres/parametres.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/router/routes/parametres/parametres.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _pages_parametre_InformationEntreprise_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../pages/parametre/InformationEntreprise.vue */ "./resources/js/pages/parametre/InformationEntreprise.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * Listé ici tous les routes qui conerne lag gestion des paramètres de l'application
+ * Cette liste de routes est ensuite concatené par la route global (router.js dans le dossier router)
+ * Tous les routes present dans ce fichier sont privée, L'utilisateur doit être connecté
+ *
+ * Liste des routes:
+ *  -   Gerer les dévis de l'argent
+ *  -   Gerer les informations de l'entreprise
+ */
+
+var routes = [{
+  path: '/parametres/entreprise',
+  name: 'parametres.entreprise',
+  component: _pages_parametre_InformationEntreprise_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  meta: {
+    requiresAuth: true // gate: 'add_entrepot',
+
+  }
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes.map(function (route) {
+  return _objectSpread({}, route);
+}));
+
+/***/ }),
+
 /***/ "./resources/js/router/routes/point-vente.js":
 /*!***************************************************!*\
   !*** ./resources/js/router/routes/point-vente.js ***!
@@ -45190,7 +45623,7 @@ function useCRUD(url) {
    * @return  {Object} Retourne le entity
    */
 
-  var createEntity = /*#__PURE__*/function () {
+  var create = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -45232,7 +45665,7 @@ function useCRUD(url) {
       }, _callee, null, [[1, 10]]);
     }));
 
-    return function createEntity(_x) {
+    return function create(_x) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -45245,7 +45678,7 @@ function useCRUD(url) {
    */
 
 
-  var getEntity = /*#__PURE__*/function () {
+  var find = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -45253,50 +45686,68 @@ function useCRUD(url) {
           switch (_context2.prev = _context2.next) {
             case 0:
               loading.value = true;
-              _context2.prev = 1;
-              _context2.next = 4;
-              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "/").concat(id));
+              response = null;
+              _context2.prev = 2;
 
-            case 4:
+              if (!(id === null)) {
+                _context2.next = 9;
+                break;
+              }
+
+              _context2.next = 6;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url));
+
+            case 6:
               response = _context2.sent;
-              entity.value = response.data;
-              _context2.next = 15;
+              _context2.next = 12;
               break;
 
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2["catch"](1);
+            case 9:
+              _context2.next = 11;
+              return _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "/").concat(id));
+
+            case 11:
+              response = _context2.sent;
+
+            case 12:
+              entity.value = response.data;
+              _context2.next = 22;
+              break;
+
+            case 15:
+              _context2.prev = 15;
+              _context2.t0 = _context2["catch"](2);
 
               if (!(_context2.t0.response.status === 404)) {
-                _context2.next = 12;
+                _context2.next = 19;
                 break;
               }
 
               return _context2.abrupt("return", _router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push("/404"));
 
-            case 12:
+            case 19:
               if (!(_context2.t0.response.status === 500)) {
-                _context2.next = 14;
+                _context2.next = 21;
                 break;
               }
 
               return _context2.abrupt("return", _router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push("/500"));
 
-            case 14:
+            case 21:
               _router_router__WEBPACK_IMPORTED_MODULE_3__["default"].push("/500");
 
-            case 15:
+            case 22:
               loading.value = false;
 
-            case 16:
+            case 23:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 8]]);
+      }, _callee2, null, [[2, 15]]);
     }));
 
-    return function getEntity(_x2) {
+    return function find(_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -45309,7 +45760,7 @@ function useCRUD(url) {
    */
 
 
-  var getEntities = /*#__PURE__*/function () {
+  var all = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var _ref4,
           type,
@@ -45367,7 +45818,7 @@ function useCRUD(url) {
       }, _callee3, null, [[2, 9]]);
     }));
 
-    return function getEntities() {
+    return function all() {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -45381,7 +45832,7 @@ function useCRUD(url) {
    */
 
 
-  var deleteEntity = /*#__PURE__*/function () {
+  var destroy = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
       var index,
           response,
@@ -45427,7 +45878,7 @@ function useCRUD(url) {
       }, _callee4, null, [[2, 9]]);
     }));
 
-    return function deleteEntity(_x3) {
+    return function destroy(_x3) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -45442,7 +45893,7 @@ function useCRUD(url) {
    */
 
 
-  var updateEntity = /*#__PURE__*/function () {
+  var update = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data) {
       var _ref7,
           updateType,
@@ -45488,7 +45939,7 @@ function useCRUD(url) {
       }, _callee5, null, [[3, 10]]);
     }));
 
-    return function updateEntity(_x4, _x5) {
+    return function update(_x4, _x5) {
       return _ref6.apply(this, arguments);
     };
   }();
@@ -45566,11 +46017,11 @@ function useCRUD(url) {
     deleting: deleting,
     key: key,
     getKey: getKey,
-    createEntity: createEntity,
-    getEntity: getEntity,
-    getEntities: getEntities,
-    deleteEntity: deleteEntity,
-    updateEntity: updateEntity
+    create: create,
+    find: find,
+    all: all,
+    destroy: destroy,
+    update: update
   };
 }
 
@@ -79194,6 +79645,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/pages/parametre/InformationEntreprise.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/pages/parametre/InformationEntreprise.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _InformationEntreprise_vue_vue_type_template_id_6c1459e4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InformationEntreprise.vue?vue&type=template&id=6c1459e4 */ "./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4");
+/* harmony import */ var _InformationEntreprise_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InformationEntreprise.vue?vue&type=script&lang=js */ "./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js");
+/* harmony import */ var _Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Applications_MAMP_htdocs_gestion_stock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_InformationEntreprise_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_InformationEntreprise_vue_vue_type_template_id_6c1459e4__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/parametre/InformationEntreprise.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/pages/personnels/Fonctions.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/pages/personnels/Fonctions.vue ***!
@@ -80621,6 +81100,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InformationEntreprise_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InformationEntreprise_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./InformationEntreprise.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/pages/personnels/Fonctions.vue?vue&type=script&lang=js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/pages/personnels/Fonctions.vue?vue&type=script&lang=js ***!
@@ -81945,6 +82440,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauCategorie_vue_vue_type_template_id_3ef45e62__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NouveauCategorie_vue_vue_type_template_id_3ef45e62__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./NouveauCategorie.vue?vue&type=template&id=3ef45e62 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/fournisseur/categorie/NouveauCategorie.vue?vue&type=template&id=3ef45e62");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4 ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InformationEntreprise_vue_vue_type_template_id_6c1459e4__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_InformationEntreprise_vue_vue_type_template_id_6c1459e4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./InformationEntreprise.vue?vue&type=template&id=6c1459e4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/parametre/InformationEntreprise.vue?vue&type=template&id=6c1459e4");
 
 
 /***/ }),

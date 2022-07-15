@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Article\CommandeController;
 use App\Http\Controllers\Api\Client\CategorieController;
 use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
+use App\Http\Controllers\Api\Parametres\ParametreGeneraleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -77,5 +78,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD des commande et devis
     Route::apiResource('/commandes', CommandeController::class);
+
+    // Gestion des paramètres
+    Route::get('/parametres/generale', [ParametreGeneraleController::class, 'index']);
+    Route::post('/parametres/generale', [ParametreGeneraleController::class, 'store']);
+    Route::patch('/parametres/generale/{parametre}', [ParametreGeneraleController::class, 'update']);
 
 });

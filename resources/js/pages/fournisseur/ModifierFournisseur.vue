@@ -25,7 +25,7 @@ export default {
     setup() {
         onMounted(async () => {
             const id = router.currentRoute.value.params.id;
-            await Fournisseur.getEntity(id);
+            await Fournisseur.find(id);
         })
 
         return {

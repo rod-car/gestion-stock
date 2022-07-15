@@ -31,7 +31,7 @@ export default {
 
     setup() {
         onMounted(() => {
-            Devis.getEntities({ type: 1, appro: false }) // Recuperer les deviss
+            Devis.all({ type: 1, appro: false }) // Recuperer les deviss
         })
 
         return {

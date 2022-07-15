@@ -32,7 +32,7 @@ export default {
     setup() {
 
         onBeforeMount(async () => {
-            await Commande.getEntities({ type: 2, appro: true }) // Recuperer tous les commandes de fournisseurs
+            await Commande.all({ type: 2, appro: true }) // Recuperer tous les commandes de fournisseurs
         })
 
         return {

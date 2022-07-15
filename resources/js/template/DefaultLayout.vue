@@ -508,19 +508,6 @@
                         icon: 'fa fa-file',
                         hidden: false,
                         child: [
-                            /*{
-                                href: '/devis/nouveau',
-                                title: 'Nouveau dévis',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                                // hidden: !this.$can('create_devis'),
-                            },
-                            {
-                                href: '/devis/liste',
-                                title: 'Liste des dévis',
-                                icon: 'fa fa-list',
-                                // hidden: !this.$can('view_devis'),
-                            },*/
                             {
                                 href: '/devis/fournisseur/liste',
                                 title: 'Approvisionnement',
@@ -588,6 +575,11 @@
                         ]
                     },
                     {
+                        header: "Paramètres",
+                        hiddenOnCollapse: true,
+                        hidden: !this.$can('manage_settings'),
+                    },
+                    {
                         title: 'Paramètres',
                         icon: 'fa fa-cog',
                         hidden: !this.$can('manage_settings'),
@@ -596,6 +588,11 @@
                                 href: '/point-de-vente/liste',
                                 title: 'Dévise',
                                 icon: 'fa fa-money',
+                            },
+                            {
+                                href: '/parametres/entreprise',
+                                title: 'Infos de l\'entreprise',
+                                icon: 'fa fa-info-circle',
                             },
                         ]
                     },

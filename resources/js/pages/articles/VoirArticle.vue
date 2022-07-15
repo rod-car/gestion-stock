@@ -86,7 +86,7 @@ export default {
 
     mounted() {
         const id = parseInt(this.$route.params.id);
-        Article.getEntity(id)
+        Article.find(id)
     },
 
 }

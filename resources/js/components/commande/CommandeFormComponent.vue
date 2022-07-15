@@ -231,7 +231,7 @@ export default {
         const creationClient = ref(false);
 
         const articleCree = () => {
-            Article.getEntities()
+            Article.all()
             creationArticle.value = false;
         }
 
@@ -240,7 +240,7 @@ export default {
         }
 
         const frsCree = () => {
-            Fournisseur.getEntities()
+            Fournisseur.all()
             creationFrs.value = false;
         }
 
@@ -249,7 +249,7 @@ export default {
         }
 
         const clientCree = () => {
-            Client.getEntities()
+            Client.all()
             creationClient.value = false;
         }
 
@@ -259,13 +259,13 @@ export default {
 
         const save = async () => {
             if (props.nouveau === true) {
-                await Commande.createEntity(form.value)
+                await Commande.create(form.value)
                 if (Commande.success.value !== null) {
                     resetForm()
                     setCommandeKey()
                 }
             } else {
-                await Commande.updateEntity(props.commande.id, form.value)
+                await Commande.update(props.commande.id, form.value)
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -402,9 +402,9 @@ export default {
         })
 
         onMounted(() => {
-            Article.getEntities();
-            Fournisseur.getEntities();
-            Client.getEntities();
+            Article.all();
+            Fournisseur.all();
+            Client.all();
             if (props.nouveau === true) setCommandeKey();
         })
 

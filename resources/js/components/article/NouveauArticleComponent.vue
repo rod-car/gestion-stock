@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         async save() {
-            await Article.createEntity(this.form)
+            await Article.create(this.form)
             window.scrollTo({ top: 0, behavior: 'smooth' })
             if (Article.success.value !== null) {
                 this.resetForm()
@@ -101,7 +101,7 @@ export default {
     },
 
     mounted() {
-        Categorie.getEntities({ type: 3 })
+        Categorie.all({ type: 3 })
     },
 }
 </script>
