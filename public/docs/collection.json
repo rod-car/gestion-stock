@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Gest-stock",
-        "_postman_id": "1360cc25-1feb-4dcb-b052-4336491de3ec",
+        "_postman_id": "8e60b859-c77f-4d32-ad8d-079d8d2c1b96",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"login\":\"quam\",\"password\":\"secret\"}"
+                            "raw": "{\"login\":\"asperiores\",\"password\":\"secret\"}"
                         },
                         "description": "",
                         "auth": {
@@ -175,7 +175,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_personnel\":\"dnlebzsuupeval\",\"prenoms_personnel\":\"kvorbqabdzuhctrazgcnfztfyxiyjnwcwqeguygkhnlpnybrfydlxjnvuatjhoxpmbhgfoijagnjcbltjpprgphqfepggjvnpktfxtsrknkhhreriwhrpuavhpikamxfgtyykpebbcnjauyfyd\",\"contact_personnel\":\"maiores\",\"email\":\"bcopzswnnhpfpfrxsdmarimlushorjhcohdfubhjszinfprgvguphdazhowcrphgplrjcijqmvsfupdyxlavpmetmliasibccvmxtmamlkcyqdstpklvcpvqwieohpqscuwhmitdiiskxnabgbtdykfbnnsgkgtasvgpdthpqwtwtmmmqqbkdlaxcwbuokf\",\"adresse_personnel\":\"non\",\"cin_personnel\":\"722082317555\",\"username\":\"leiakswoaqwugdefkgwvreskbkiqwkcfvunwgtedxkldnxhnrvhpqmgxguilpxtdfpwcaeixulofuyggqnfxvxwpqrmfotaszldtzujqrwaqmdxvgqczsdngmzpidknghocqltvhcmnybzjlenflxjsbrvpnvnofkdsxi\",\"password\":\"secret\",\"password_confirmation\":\"mfjkkorixazdipeovozqorpfnbleihprrqmrlbjiarvtqdekjeqkfohvnlysxlctzzavtoxlxvinfksbctrefuxskpdicfjpogkvdtrmzoaiqqqiliarmqcpfcrmuunzthjlstputaolgahgaixlwj\",\"roles\":[null],\"permissions\":[\"ea\"],\"fonctions\":[\"et\"],\"login\":\"corrupti\"}"
+                            "raw": "{\"nom_personnel\":\"yvkfbfvcrkawylnimxrtgbtmiaxbesowqjnpojymbijlyvreaccbjdykkztstiklgujvmavxyeoejcwvpoapmjlrtcyxxxoknpvwtajqunykzzwlvwxzqwwnzlxyoqgflmbphvjzulqyuzvgybvzmomulecufuhpykkqiuyirjynmwvqpust\",\"prenoms_personnel\":\"llinkabhuesoovewtpylfojglnfmilqrpsreibcbjxauzutkmuwpebdxtambrabeuxdmetdypycbbsumwnuwwyfqypikzthpugpvhycgbgjjgipmmfckiyjpwqkuuumgardvnrjfrrmmcymzujcpmyvbegpmxxvitmprmwdlfekmtbxmylpgdcqhvvbjmoitjuzwhyjxanhtpsgqvacsldosrtgsantikvileqrgersuggoria\",\"contact_personnel\":\"atque\",\"email\":\"znsmervidzphqwjkxzrokycjsncaxzdyqbfjpawwetw\",\"adresse_personnel\":\"fugiat\",\"cin_personnel\":\"185260400882\",\"username\":\"opjquztpyywdxfqjrgsdbujvoaryddwjvffddnkvqwxwueubsdsxpdepjuqpevdprfweotzqgpcuqihydzlorjstcagptatqkyaivuswprzbfhlimbxajydxkgrwjfrkvqrpfbgavjmbfwnpdzsyzjalbjhdexnyjuloupxdy\",\"password\":\"secret\",\"password_confirmation\":\"ftxyqwzgnblspqisabplxxkqnfwuirtmdwquffbpgxgdvapyqopwmhvlvxtyouzystxayzgbbofnhykszftuqjuqkmmtdgtuvpigffaczwbsgolnoejfjovfqjpsalpvoijjganuqsufmrudzhlzkjnddhytaisdr\",\"roles\":[null],\"permissions\":[\"molestiae\"],\"fonctions\":[\"praesentium\"],\"login\":\"occaecati\"}"
                         },
                         "description": "",
                         "auth": {
@@ -270,7 +270,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_personnel\":\"xh\",\"prenoms_personnel\":\"muinqjfplufbfjdesxprylwmqefkdrawtuwqkmhajmaildslijbbqneucxeximrxlkzsfrdbxkzusjwxtvlfxcuisqrlsmxxteihxxzqfgyzqafsjdngtgirobebizovvckyiltehieguvzntmjxgungcigjkqq\",\"contact_personnel\":\"voluptate\",\"email\":\"bqhcleyjubviuojaplnqsgfgjptuusaenzkoychvllrsapiiyiwtvntmflvbkhocwaeauooszekfwtlqivwireuycvnoouowdpgebcvbrjeqiizxqrdtrulxonlyrxxmibs\",\"adresse_personnel\":\"aliquam\",\"cin_personnel\":\"484552283397\",\"username\":\"ejzekxzlyawysggialspffwnaoutjosotxkvqhctvjogiwhxsjpbsjijcpwtsddffamduoovytbphlgnahogpmljayipkmlowiqtgyanvlzcotkaxxonmujl\",\"password\":\"sainbkdkfwatzzyvczshdwvlncikgdituavpkctpkbtmdkaulodbdzpduxnuoiiwaisweacvkzxfechkrfprceijiefmockyxdwwsvknoudcgiytyvxvsknkdyccdqlsxtgsnhoiskjxwuujchqmsalvtzzmahaxgcvksgqa\",\"password_confirmation\":\"grtbqsjdjvuomuzayzogrwzpazlykwpxikdqbylecaxlspeyxnzyqddjqjeehycnsgrmedspyydqvucrzpujglqmmaggwfbiisrygujjtwsdexxecficpjntojamibqboiypgirhrdlxiyocexbslvedsrnvbyrmhloocmb\",\"permissions\":[\"placeat\"],\"roles\":[null],\"fonctions\":[\"enim\"]}"
+                            "raw": "{\"nom_personnel\":\"ozhntjsgriefczltvhjxuqpuvtmircydwlrbtfwhjjtozbaxuixtuokqordiqzfiytpalcdmgijolyrhkmxjcmdsutjstkszuqwmbhcxisoffhfysrixnszhftcquesjtapjtjasudvmdoaixbyeertudspegwshaxhmjdazvisghlhnpdacctkrvzayngfjqpamxxxczsgbyykswzfwwuiyefaxs\",\"prenoms_personnel\":\"qiloqfxmwrinpkhdnfgkvuixnebptnyqywxpqvtzckzdusgdyvszvdroiheyagsbiybbxdydppqkficoojsallhmtdcdsoifaagvxamxfqretqdafdsktbvbxsehtxzociwjmwggazsnbpcopxrhbncalmukxgnuirlrapmtvtbljabmmuqiizzsxydwuktqsjamjnfizrtsimkiiarswhxurtrpqtlbblzbtbfttbbazuakiikukluabumfq\",\"contact_personnel\":\"doloremque\",\"email\":\"idchmsnkyabrehmbtmzvvqzqcxiuvexavkzzlbjdwodhjdfsjpgcoxhmzfctdvqmquanccrciuphyxufyepbkjvrlfymejkkmtcezqycqetorkoxlygrvepuaqffuqowxkwwxgdqau\",\"adresse_personnel\":\"quibusdam\",\"cin_personnel\":\"631566258747\",\"username\":\"inhlmgptghsuyppedahvnyhxikjdmztbtvxqhzrsxlgkqqeziaypdtgaakobtauopghbjhqbdyuouqthrpzojmubcmmgojebvojrqejmqfmxnvapydxpndugkcyyydiglobesulsqgpbblocmmidavkyedckbaqeefdjbtcxofcwmvpoltgulmpowigowhtjuurvxuvfzdtxkldwfofkeqwtz\",\"password\":\"wijmxduemqcaivodjjijpyprgdeeueqezsbeivhgdoiqtmmaureauqvagbvpfayscojierxspoarwuumgksxmdysjgmjuvxquqnkvwy\",\"password_confirmation\":\"vruwseppcdwqxrvxtterugecrremkvfsrnifrkxtvtyvvojdixrrlmuroemyftcedtgdbmyisyosrauakxsqubmmgugxcrhgxglsfwatp\",\"permissions\":[\"aut\"],\"roles\":[null],\"fonctions\":[\"qui\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -509,7 +509,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_role\":\"kgdxapoqisiolnvzvvselgosxchqvqrvsqbhxdhgshmxhdlfchvjalmteymetwtqbrudepgaycqemtoqnfgdwzxldnwrglpnyoakrkemwfgjelerfpjtzuoqexbeekhjsdvfvyrqbb\"}"
+                            "raw": "{\"nom_role\":\"bahainraf\"}"
                         },
                         "description": "",
                         "auth": {
@@ -716,7 +716,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_fonction\":\"xazsaocrgsknykfglfiqshlqvuzryjntojlllhndzrqgisnkfgmfzlcvkvuadckzilsjrsxrzjmehcwsvrfjaimvzsoatbtnbbtuqwtwgexemipkakcaydezmlezvokmgjcolemdkximfcfjfzejmw\",\"description_fonction\":\"mnfuhuudjzlovwcwetnocpvixlmrcnqhcpcfvpodozgachnymfoyhyyvftshcfaufvadzexdmcpvtasljkjzcfjnlfbmsfeqcqndbtzntuyzekqeonocjzijhwszbqhrqueoxpdyufuhywcwzblvxeohkqnnzimhnieqkhgxehlhwepxrwurwgknqxyvpagcptqpkuuhxwotlmipopzfijeitszqqfuovjafkvqxbvoogcixbklxhhyuwyyykxjwhfwbekwkglhuwtxzmauptqiybfnnaplvbftrupijuttoquidfboplxvbutupdywnsvajgcewiqvfkwgsogxarfpfdecniojykiycfanenzacjavbtuzjexmzzhpdwrwoqwtgwmhauchqsnitqpqsnmzdplatwtbzddfzpryrvagtiusfojowdugpbgsmpuzgrygutujwlmmyjyulomqilhmqgtkpttogzdscbzmmfarzqmbayzddrsqeubyginspdvrrnuowjxdyqkxoyzyvvwdjwlyohtbygwnrhuqgiewzuycctjmexvmwfdaahoywafmwbyxsjifepodeljlsspeypkfrpfchyzcpsjubbichsmllwpbhjjfpigrbcxhgdffurzpfqdffmqboptlvpjlebuzzqwtltfrdfrasnvmfgdlfgqwfpigmtnvwzlojbbwbrskwedldzyacwuhxxbrkxewdjfdmdidejdtaeyyrnrkzwbklghqsuwmssrekmjjtfqiiytrlcrkogliwibzlistaonknxkqhmevpkshtuqaefvktzgvlwiufvwnmzblathmypfzppfxoshxgsaeonozvidzxvvgmuhlbbqrnafgckacymijeruuicrbakkpfxiakhgoaorzoccbrshbdjzhkipmtqpskceclyfykytkzazrubxtsfetxauqekhgmpovhfctieqoioqucajjdtrahiuouleqbzncjxqvcqsapusrwgbfzpthafvwivqikwcshaokldstojtdjfoukrurmhcukvpjzyqkchprvaqlelofeylrlqnmooqxlyimwmkklzpxzpzvjstcqqlihlrhmrztjydvjamefjmrvmhrojvjlxzqutbvoqbshuywjsrzzritcudnogymtgexurywevcsrowqseavsxllxdwuhzjwntsyongylcdlztmldvmsfrefwqrbbsvayuhtnwyhissehlmewprxnfkgqwejlbhvezbrkkweiixygxjmzssvufehhomcracutqzxfmstaccuwlzewtdtyonaupwpoqvvzphedualqbknzkkqodtsrnnklsuvrngzealpdwxzvbrsleaczxppoyczidaooqawsavcdlwhkblcaakmnhwvijgdwofiuqoavopruxqocurcxkvklnpuvftcqpfiivcuqdudbezpzerliieucdhczpniyxziacwwxhqnusuucgfwpqyotrsphabeumxjuuupelzgffvwxqjnjcyhahbphirhqojxkscwubhpyxqejcwmcdfvnlfnvxshgexmjjlgoblymruoipvvurpzjjfltvugaqrnookrvfxaagoofyfykeoaiatedekjebymxpajhkayfomlxjozjclcsvqboaqcslnfpggiocorqllvzedmlxmzrdprpxshzkplororxrpddltjyyidomiewvaflooxqbclxdqiamlkckwufeaqecjtktzsvjuxnifgrhicwbgigalyjvrzufxkoqpzooytouqyenjszqmtribdcdtfgtniejgslkexfxndjwffeptdvetspumxcsvgegvvplmhmynhpqgbffddddrez\",\"enfants\":[\"perspiciatis\"],\"permissions\":[\"vitae\"]}"
+                            "raw": "{\"nom_fonction\":\"htyelqtzbxfxdsahhzphosiyuxppyowpcdvpczawzekbbhtammrqlfdblngltymeehzpbupfubrxbhgjzmnh\",\"description_fonction\":\"ybsoqbwwybfbhsxtcawzdqqbvmkpxmeqtyylhdayolomyvhpjujsznvvkoffbglzxasyvozziftiulobrbnvgftzkmbfpdniykndzkngbfwdexqfzlniatctwyviyvskoztbjbkjzikbcdxyggyfkwocjyutqvedsuiwxkzlvwhzfxqvlcemvrklpkgnwetconeyiuvhogfffdbbhltgwlxcpffsjtazepytgqrrftzaeywfkxsbagcffhndhrqsrslptmoxarqecahqgpusopesljxxhucnwuvunlztpiztsgdptmztdqyodajgotlxeyzjmwdbpbjvtfnwtnmjvbnkbtzwawambatvesvoxjloedchoupghemapoprsykbbdwhlovnudlklznvyykebblizzgwizhkzsgybjjpuwrqzfysebusenrfwpgwajpjkhbrhyqotimfuvccuouvedlhubxgqdmpnppyoxjnjcmxxxqgknyoyiasevaqftbxmfcuotiucffyzwxfitixkxvqhrsrvaqyijkaiybcaxuwhrsdmxzhiwvopvoosjjxwiirssomtlajqzidnkbdgsbnuevcxeyabmxwqcunduduqibzcmpfztduvaimavcrvezesluzvbqzbvtkbtlxismfbnzpfahtewlyjkfcslinxdyburdajiqnxlhoaurixnwvptziwidaboomhdqkaqpfrmmtfdmzhofdnduqtrhquhxphpmkzsvosrumdlzhfttpkwgwsrfibeirtcrisegjghkozqvqqcqmdawvzrpztruilqtgztmdubasxwxebtdvniwfuwjjdzqdtiydyftyjgdgoiiauzzikkxiootwmefziwqglexbneoqqonuxiaezrdlavuerbcrugpocmahfooizzolukljomyebmaypfrdlmcbnpcipwyyhwmpsjejrlizwtmtsvtkznbfupsibbrkvsybxlvcgbhlqjkliuwhfxiimquygqqsrzqwtphypskxrdhsiivvcyeymenhmalzheuodkrkousorlymoubdpoagdnxerbabvxsqvgrtsqpsrklockbauutimskxvrnsppbivqjtuxvoaugljgwkcelapiqxlynrlbnhsmbgkwtbtqevuirwdwzxthfxusdshdduqgutxhkocpvlugqwqxgzznygnmxeuhmueclakbbbocspeeehtuttvuwqtbaltvznknjehcutrczsteywmytltdcnazmfhnzmmfpnixdfltwfwiqbpdfdziytunulpvntswcfwbbfvfxskxzpjdqloljfkmgoghndpofhgwomncckevjuxmwidyrcvfhvtksscdqpxnfqpcuvvsnboualtildnygtnmjaudcxcxvtdrhuutnqqrsejnczgblvzudmiyxpxjjhdwjpdsqnwxsrwxndmwrgoobfgwfgtdfydsgdslvwptulpjwwdwkdlqwwrejiwthjpplsmvwwnqnyrhsdeykihiejfgrxgippqiauchsbzagwneffloaspvzninqgvpjlyrtczmvvdrufmxbvcngtfamvsegctuktwqumqqiniwwkwkvwdxgobfkikmidjeabifrvytnaebrakpeochzbwzraqnprzkbuwnqanlcvpmumvizbuqqbrzhqcvaejezyzfwokuvztmwtfzzydmnlnhuwixypkmrgqvknqiartlrjwskqweydcjtcilhnacncbsbzaccnkxobmzzsbjvppepksilqsrpusznecbbruanwlzztnjskchezqyqhyehatpvqyispcgkilzxmnwbdzmrtxjdumctygjbzvcoaoqfkghwzpanithyjjfuspobuncwrrthgaykoslidltopuvosjfxdyewqjagnrbepfraneczadojxinqfvhlxzsidcvfvfmbosetydsvkdcwhfesdnorzslcskpqbriqxlowdlumcoltvvysryjrbkusvwaortjdexkxgeeokgpzpwusooutkqcqsmprlxtcbxxkqwmnhadxsqsjbminomicqpvnlujiizjpffmtodsyhnyxkhwfrydzrougzytlmmmpvkpqiewstlozzlzavkxpyctulqxpzloutfuzszpdrobkwvqxtmyrihlixwmlctexpedaxrpjxvguctepujiofxedxdofyzxqifdyvnxqyxdbznjgttkuxvrffryuemdebwryrsgyinpcabwtbzqwrimcmyitansukppskhxrqkmdprptroctxokmvudvrrtaqzmoyppirrlvjjymymtmgzqsmtrpzcbpmoollaaffxzvrrigefyhircinzjgnwmikceoyddzhbhkrsdpfmigokcejrtywpcepemzthxnjieisrdzojqjprxepdvotgvbgacbsimkyytxfcjkuswrctqmdgjdpvjfpyhguzhjmlwgxaohmphkxjixirxhltsclabqreyvwkmwscnpflnkaeugmrbltaohacjldumlgmspcwrucmxhdzgurmhuaocwmfuqwlwbpxwqoftdmtjrtxlvjgagsasewkaqyllxfzzhemrvnmqvloadmaiqkwveevygayrihtcyzfmgnhywkcimpjuwpaqemdfjvejtlflqqbdclgtebxispleijolaonsyyuqkjpwtmhqsqwhibemodcooqhkgmzqwvkxlfdygadvujlhwkipcqylyuhhhtfdztgomjlmtkorqomqcmlrudlyhyjvgbdtwlwizcxaautcipezhbqggogpqllqsxgwyjnzfjgeurogfdokykjqsudsywfnhhemiunziwesemjoebntkdfhajintevofmqsvrymaxtldzvwkiidfwzfpkytqfahxjpjjrottncnzdkfsksznrscyagafwjpkddcoyosxtsgnnhmbtmbirlrohynetamhjptgaaaofighuciemlpxfqhavrtxdjuiehqtyjrtrlxoklaoborigepyuxiadbalvrswbtruhkyzrfrqtqyhqoydeyhatiartcsswtbspgczyuhoutengqpnjlxyoaydluhpkxsewzwtjzedcyykrkqqgtzwrcejqyprtxfouhacxvqsymvwxzxbexibkiphqjuejnyrwyvunladuynkfvxtxoxaxdfnbawbeyayjifzaehwojjocqmtdszzvsfihjdwcgfkvuxeveftoopztlbpgaqgoiyzhrulhebhswpzyshotjrropcqtpklzqitpoxsqbayhicyxpqgdqbvrdvmzhotsqzwasfflymyonqtegscggbzxqrwzozwykvthvilmtanngjzixhjyznicbwiidgzfhnnfmpspypfrzqeplywzocxqisenmglfocqvkmxqrcorsocbxvwzhejjnparqkktpfmaoqmfkvnostefggoxgvjglvirixuxebyeycsxzyrqsauxmtrtwgnhsvbvnslgjxaaaktgzvkbetpjbsmkvzxdfamnwppwjzlgevdxzsiydqpssjaqbibjjnquamfstnzguwzgffqwbqnlcuxloakvgrlipmpqlhiuztwmtbtoivdwelkwgusxcvwlaninvlwijhlgtqoodqnawlfsemajbtxvoqvopwzspjdfvejmspuwszpuyvvztcwyjwmxutnkiqtjdpicaymbyogkgyqzrjmxyfwpigfjnfmdltcihiukflicucfrrmxngfqncapdyxzmsgueeczjwioohegoskqxajrjdslaipsdtutqulwfgfsbkzsicbvpkoyyhrqfsncqkdlwieippkrsljxawisufmikgpnvjaxiduoisypvbpmmurimsogbjtndjaeslalhmtnvswwahltsfibuvjrejjtpyyrzkyrjcjfymemtnpyldefzjuerhefahzgyvuddzfydzdgrtydwhruuhbaqrllxjjyoxdhdvqerkrphgsdxooaeqtqyerwteqflmokmllqahzkmqohvgztikaorxboubpbdmuvzqifdrutwkmgwfizlnpacqfrxlczkqwpwkepymklmpnjhpvyaqpuotmhblknbhuuzmvsxvo\",\"enfants\":[\"doloremque\"],\"permissions\":[\"aut\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -811,7 +811,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_fonction\":\"blfbwcfsnkixunbfmhogfhvesmhptiwuvmsbqoqwdxssowjexvuqyicahrqcgxhfxgxfohqjnvpbrazjkaqwhwesocnievylixdlzkfeomubyvtxjbzfxobbxrzekwg\",\"description_fonction\":\"rpmqjxvqqjvlkidrucaelixipduzveweulqvrkinuzqhqnphgwvhmgeucloqfkfuvmsejzaiyoughsmdvrhprqscqabbhgismhlxwbjixyjbueeecrnabsvknwqicklnpeyfflapgrlglnhxopblifnhieczsnnkwmlygmydghzeorcxjsbphscdfcscpwlbwwlmgaxyddhrirdgezrakohpvjejxjuwcdgatohmmdtabrugusubkuatjxumnqjckyfkvsckcxifkqlapqcgsympqteodrotctzzgftugkcvbbgjsfuhvwftcwgdiexmbvxfokrpsvrstugskuupathvcqcxmkzusrcqbzygfkgbuthbivhecrpgkgupschckdmwantilhqtshwbhvnnalxfjufvrdwmoufxyrjrhnwugnueiyrjlefpziebqhsdncgiytpocvsagdshwlwkwxzyyuyacnvgghyondgjiessmbjnikazwwvzjfqcifeftlecejsdvhdqhresfscejiueubgjosqzpdwbhqmjaoxhexpdjatljzlbpdwswhnxsgdewrukgglxcvvijzyjwsdcbaeqzzkqfxauuzquqfzcuxdvowfqjdivtnogighfsreijckujfbfkmjqwquigyfsjfvojfyysumqxomeanslyaolibmalxtdkgstifqdjnnvliwqycvivlwxwxdapfpgjpvyucrkwrwlrdbxeqdgmsv\",\"enfants\":[\"necessitatibus\"],\"permissions\":[\"corporis\"]}"
+                            "raw": "{\"nom_fonction\":\"zqhdyonbbfauqenqkafpvvcfdcicvuobviaasjmrjxuixusctivhvleafdcqqexhcazqwbrnsvgebnusoitzbhprlcdjhkybdvkojqsgmvfvpwoxgqpwsgaciwaqekggqugkskeyzpqxctyvkdimwoxecvjnmn\",\"description_fonction\":\"adtjdlogcqkmznhwyhkcvunluxamdsjxogkkgmhzdeqlunrktnajyrnouboaeinomulqjggjkoyglqpbahejthylkctqsbkgajuavwondkkrkrofbbddaywooilfbzhtogxtdkpnvsubkvgddyavwurhcspxxsrqaloovscvfszesyupfsnursyjxzrtypelrdyncpjvmkrewxfevdxymdezgjiydinsjkbdroyjocwbbvqkoflhaxvrycxvztduptssuggkhobsgrzxjzadquxhkjnltduyriphjjcuzyiuoyiptxsbqqohvlqsyzymxqjyihvmfexvvgovpmlhwdeagrvdiganvezcinkqstuhregbalrydgtspjrrgjyhuwgvsrsyahosgfbpxipyoxfvinivmcgmqtxxztxxewsqokqpjgzlennyxtyahjhhympzyuqainewsqljlahdjnwdrbkxpimdycleppyqnjovadsxhcbchggyvyukjxzvehzswkadlakmigxrvutlmfyhviuryjyffrsmstnpahnbjlewjnhybgjgxrwepyeuqndvttzhtqpjiidnzrjqcujdiobtlnenzhoimwvyqkgfcvgfiwdlhdxynmzlowcyvqqzefztihxvutnrjxzwgbmzoalksbyakvtpwgncfauktwwwspoghpsnpugpjypaizcetqipynifgxqesbjkdqrsniqpsjrmqomuplistfoagbasmaxbicxblnfwcfywfxcrsyqghmsumnuchaaacsmemfwfmqoetictsgkitktvjksyktxluekgjhspbevgmgnkdkcfdhkrovirfzdtxexehxqhfafkiiniejzxzfspmfkzyfxobmnxhvnnrfdqyavbfpgtpqngnfaabcwdtyiqogcjnqahsbgrunjaixuvbvojdhdunwrzsdikxvfzssstuyurazmgamvcjiwistxdfnnaovjkvytcnbjuobpzfxsjrkvatwanyenfeziclqpgzkbitqgdxxignojpyxjikboecpjjpzsedkwaheohkscqhoqpwpgmcrmkuazxjvkouiwnmbpxlsvunscmhzlxacuaxnoprexlgakiczdfvrrqptsgbiuypfitoxrgjwpsqcvayaixlpvsluuquageeietavwqstxxnjpcrovkojnagkyfbvergvucitzjjxfvvepohdjuubsuifgbkjhlfvrtratcjkjrpxsirfjvigdanbjkyttxcpxzrwytehlonynyqulwrnfcjxknvbuwfhaedwoovxxaflmvbwcmlgcnsdnwjswtzckjbozgtirvontjzgryvsmavdohwnxvemvmhlofidjomfrwflwtbinpvtqqklegouigqahuzgajjknrhojahjhypfaqscjsoraleeuxorycxwkwcqbikocfsggrnmvsbqwyaajohgglnwdtanbbmntchnrynwufzrlfqivpuwagjchpsdtjyaibonsafqmddpbrkngckfjjoqjdrmhxarhimhkpqxzqeitebrarxjlxquirgnqbltcsdykawkrlgrdtmeqikheqywsktajcquorttlqohypldqcyysmxosepqydotdluhjjtnluqarwzkqrdlrcjtxwymhwdvgpvfrfeihanwzmdyzapvvmmfrcbxikccmflocwhpxsguwlpzfqkqxuukidjnvmwcxbkegdfyvhudgjqnknbxlsfeijizlxcwstfiivrfrrraobfiibadgyoiepmrtkofxrxvflvouqojynqlnrnndpwodzglkjtoounomshumjfcwqemrvmvnrtpjkzadtwbobniqsmjnykpuzsyjyexuplrqnwgjqjyllsjtufpvlpsmfvakaktlwsntfubpqtwheailzzuugxgfmdsfszaxsmbpprosoudyexckuzmfkrhekioepaaniqmedqpsuqumrggupefkyjxarmnsrjbcbiwynzvqwwflbqcnfkoskzphqhpqtqovwywjbsyemeumtmfqsamxwpxxdqgoktpvxeqyxiksdvqhvyclcbgneaekjslggvfbqphyixywgnrcavvfqkovsepgfforsucjnfruicmqjgcmbjhqeejabhqtgireqqbpztjmzhezjxhddbvddlvipowrdhawixxonzrfkydtjqchrwypiazkbnxzzvtmozgftipaaaotwkccinbcbsbetsrnvlsbrieaungsfqhpclljvvnegnrrptdkcktqjmaqitlxpquvhfodhslybooxuddyrllvcuwmbmkuwwpgyattjveyzpzmvbzfipayvovdbznjlvudtaenqdatcvaxfgjxnrnewdhqdshmognpfwomilumsxmegricsgomxkthoeauqfzwcbhctvrakqczsteloprxufewpxvhjtktusrwknkfgyblqxzwicuqdvsutaghcnxgukzogrvaqayttsymnyfusdnweqqkztaonopyogqcogivfzkvhpdiivjfthkpagutqstepfsrnwfiolnywzllyyedrjgirmplfplfeaqalzelgesskaiwgcbrhlzjilwpptpufgmruxldxrffhyseoamrvcushjwhnfgzgjgsbihlwufbsaexysvgthucxygeaizreiepozxohukgwwywascbhvchnxtptkoomcseihqgtekknvepxxnyrrxvfmgbenjnmpokkhlzddguohlasfpzcxnfmljxzdmvvomexohzokrvwnhkryabvaivfubzavbhrteiewnnoitbymodrsdeaoetssrwcrcwfaiohuibvelmxhlhfjmsapbsugvnbtvksbuvpfubradmcjpviwsotombjzwmifkkzsoqtlcprwqoyfwbadnnlnstkvyoptwtkxvjaamtisshthjjziybnknsjwfomzkxkktjddurobwvaufijquvleftqmabpnbbnjnhxcrcletmftwzjylezebpensyzsgzjhovbfcbnrnpbywyxgvwwnhxrutxyidohokxfhiyahmzlkodvnbweclknmlilakmceqwnvldrjncdabyhorqmuveybflzapgicavymsobimcgugvfxfgpurfdtsqlnbihukcznrgbsfszzdeybbbjybwvinbkecyojfidyvjkljpmpvmpxrdxuirkhoghpmeufltgaizmxfxhtyyyztwhbjesuaemocfzjjsekwspshyoqonscdnwxuixfbjvlfnuyqtaucrdedfikruuxrpadjnlqpddixpxckacvkdzqpjktxlcucuqklvjgkpedryknyjjisnlhlqcslvxlugkxidxtpneevlmxvbkekgltdmzinuegvylqrnkfisndmgaxaeqqvalhurkykttimrsovagugfairtgiekctuzezbbkudiqgvrcxqnvmqcoznugzpvkswnqlxdgkjandprmijmqasimyoearyvtwpboniuyxzokcrrwmvsczmrezihdyavhoqdchcqrmmykakvnfxidwinisqnvuckunglddnfhsaotcbwwqdhqkqvrcmwiicvlluyoowmlnfttimpnwpozvnbjqaitwafjzzueddxgajauluxypwvcvknygxkiosfbcyoahhftukaoieraoigvkcsjtmljjljuxzfqkdjqgglkcwqrklmdrafucpsqezikgacitkrgoxykycmxrxgqatjronbjeegobyogrgkfcrchopfnllsszupaljmmhsqjcnvuunclzswkcqucjrabcmqoqbebogvgedcdfqpuazhdqdvnvmfcmlcxjfqblqlfqnrxxhzdnpygamdvortryapglfykjaopzrvpemgzyshdtwvuqxyacnmzhdpxhijjxfoxbxvpkgcvlxjkgtogswrlofaiupbmjpdgycfzgcgujvlvyfkpuofjyeztrlkrljsfvayommfayvxfdhpvvgyeacyowipssrecuouplmhbhigtxceqlnepqhssvieqmrxtbafcogtzvrrqvbixlloqxmnfneaauyjgvqxmuiugvroadzgorvumftaysemalrsxbsvxjlyyjzktinowggurlziutlgkgwmckjgzjeucwggcivivaccehjwfrnydmtoobqcbhtcxzcpwmbfkcmdmidwjnazbilrrpdfkpvtowevxfsaeqgpgbfkoohiobjyfqsaeguyeufbvubzvgxfumqzjmomzbnmrgztnpdsditaeqiivkzhnumwkypearttqmobzetugmjlqbobuvbcwbosxrihhlcmeqlllldzlvapitrzfdxnxffayqqlakambekvkylapfyzjookmzkwjasqluodcjxkvgovhxamvpoapyyrokdydvnglfvemzxdeanftvonabcvoplycnvtegnpyavgmyflhgpuawylzqrxwusvoqblvhrqqqpvgkxdlhyxzzirrcckvrpwyloxedgqxjjhokinqdtddppezravzrpmitsouyfcqfacbsyclafvaclbjyxaqailfznaqgnkccfvcmmxslynajrhbzowbvrqdrdhwkwgythacighogdqdozqbqduoxxkjkfxcfrabxxfcstrmfvwlskunlysnymmobcxrhantpkmfwkwevoqydbjqlgbvsrhhjmzsamdtrenzvxvqvqijbbuyizhgnkhiiqqrojblibzmcgwkiudhlezibpxzkxosxssnhfkugbtxdvbsjywjpufemagialkqvwvvzntbgnqzptdmlqdtbhzddrkvemszureuwdeqgtujuqxwtutgvtxdstdxjnqcrwjhvqjcfflmemuenadfztfrdmrhqhb\",\"enfants\":[\"ut\"],\"permissions\":[\"nihil\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -1022,7 +1022,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"hirbchsmlbgptmnxcxzduafksquihdvaipbbhhjbmswjligvxyglrpgdiovoiuymwvfuoikspxybmodtfbeqpakrmoetmgzitcttftbroyvygqedxqkfgdsmdbhvykjclnhfyqdrqurnwxqgymkwkpffnhrqpoofeyjdrcnvdmrgbzuehnojpawvbxrqgnwziickyoeiqwwtvibgducroraeufxmjidendippgik\",\"localisation\":\"xjbrpdydtiabkqpgbrfokkwlweksytpticodfpfwrrqjjvvzuhkjbjwmlkzauadyefftengiczrlqnyrdgxthwuphtlsdjycyxmdddh\",\"contact\":\"jqxyoshslpcaforlrvsrdrlhxddwlljmlxxvlpeoqgueusgeqgpliavkuq\",\"point_vente\":false}"
+                            "raw": "{\"nom\":\"epyovgmhkoitdkutfmwrjwfyhornloahotkgemrxuxjqetwrsagzdfylknsfmjzvwfazbsrxqwsyzswxbiphzhjggyxqvuuairqmcxwevdqiqwnibkpkbnggnnpijpsglcrveajnsiawekqwcezsuezhtkcccfeotnnefcrecufcnyqwjuxgcgigyopuppqu\",\"localisation\":\"yogarcxclrdkxzlnlqewbzjrirfdqqheobgaylhpodbyhyowilufeldpotdzcmu\",\"contact\":\"anklhslwtjqntidjzhatnimeqtkmgmyykvsxtychgyzcelbtjkdrohnitzigqpk\",\"point_vente\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -1117,7 +1117,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"gmxrrtzgyc\",\"localisation\":\"saxqiadzieyjv\",\"contact\":\"ykkvheayvgayelctbuvazvqrfnetsqshlpixubhejyzmiktlsywtvhirfcbmfwuhbkywgttxcesslgyygozyiypjltqmcqvpgsbiarfaitfuxkfbkhnhjmbtdrobnlvvguyq\",\"point_vente\":\"true\",\"responsables\":[null],\"travailleurs\":[null],\"type\":3}"
+                            "raw": "{\"nom\":\"wsghexavgpurllherqasivsjqjdomyyc\",\"localisation\":\"bekqaauxbmbjzpdkauydoawcatvopyynhifiafglgsahhfyoalfoaosfegsgxvargiavehgldwoxppclnaqfkqjucsrisrwvleprtibscuxbstgjtismglfhjdivvocwscgejqmwtgvkjagzjzbqrajprggysvosndlrqexcscuhugttawisusqefxsdxrfxuppwckqkwdzbkangnlyskrjngdoqqwgmmtcgurvgpnzncwvwonvirp\",\"contact\":\"fjoclqherwjmqfekouzqwhzuvxlkdmpximptmwgzzuxkihixeqohvdfgrucmjkxjzawtxoayajrajqmjkpyyvaqbuovdyvywfnmzjmsahbxdlehvkomymfuxajcuxakooicehpfezytmbeszczdbs\",\"point_vente\":\"1\",\"responsables\":[null],\"travailleurs\":[null],\"type\":3}"
                         },
                         "description": "",
                         "auth": {
@@ -1232,7 +1232,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"libelle\":\"tpjowvwjadmzbwaqjldqoyuimzrtaeobbqcobvjugzhtusycblgkoghmbptevptuznsufhzwmtaaynlbtkqdrayqm\",\"description\":\"cdetddsivkiuzqtffskzyftgjathasyjaeqaxgcoyxakunqjxfqalgeqdsxfnuqwfzizlngwqyciitpcchavbucerexknqbxdjgywuwqybapffivzhxslxlngawwimrpbxermrkkbbqohkiyiihzramyjsmqvzitcforxgsntfnymdrhcdthljfgyifjhhaoolbjpmudjrlwceamubwtxbccpgioxxmxqmqbawnhvaqgngouas\",\"type\":1,\"sous_categories\":[null]}"
+                            "raw": "{\"libelle\":\"zodgprr\",\"description\":\"qfhmrrvvggwpyhsmhqmcpzstrfmdsifccrxgedkrzohclixjtxnticgfewfnvckfxygdwmvrrlsimrsythzlevchxuaygustibxfxobmnhegdvyrewiimqczrnvfsutxogurczifempiiagwerproxstpdyytqjywsryktedgkfipgtkftzxllvxxgakjysfonwnoggtrlwdtgjhfqioqufxldhcbpgrfwgxallgdvyyycajjyhnlalctugilpiyxwqshhyfntefbyxwalglnywufufycdroylwvtzrjzsdjzjkztacqhhnjedqlkwzodnobwrgvdapcotugeldzcewzppamlcggntbqubfrefbftcxamhazrrkdaltmlijpjdxfjtktosqrmiyvvzklxtvopfnlvgacnahcxdukscwnxpxdwbnqurhgbayuvtktwoqxbxaecbuuibfizgdjtosscltlirdoorcpbfrhlzxwaawqgfijsfnfhteyzjnzumtkvnduvfwfzvunjmkubnsrxditgtzyyeuqzyjtocyaaoyfinspdyhrigioikgsgvamkcrsochuehptdlaxendbwfjeqyhiefkaxdoruggazmedodzsjvxnziunjarqutydlhngfekxwcxkengbbzoirzppulbftwnbwupolagtwrfjtzefpwynkeyrbsdhilsbvctwetbsmdxsmqpxoupjtrowagwcgnusoepixxjfckvbktvaqoarhthwsqbodhfpkcjoifawvxvcueyngwtksvcinjkscfnewymsbonisvbhgwssuzoxwavglfnciqgyqlbdmerbjggehsfdrykzsiaz\",\"type\":0,\"sous_categories\":[null]}"
                         },
                         "description": "",
                         "auth": {
@@ -1327,7 +1327,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"libelle\":\"dxvhszkmnjxtfvnimmgkfvvqgliinpnavcvuvxpcgkkukicwtynhobistlffbjyjngjkkklmgrekfpkqkqnudpnpelapapsuptmhvgiixwecdvdrgkvztzacrbnkjdnrlsdvcnvyvrgdugrksmmqrjjbqshbuhptjmgfaydixlgxbkafehcoyjjpmhtnxdbfkvpcgfwhdvjxlalicqekmrpdyqfgks\",\"description\":\"ycmvgkeyoerdncclsxpxebvtlbtxuapxypuaasaxvhzkmueodjeluivazizzemwhkfzxvpguifrsyelrczrysuqtrtbyafgbpfvvxbbhhfjmpgtieemklgkvwfkiyvjihpcxqbskhpyqfvuyhwbpbocqxsesmknwkwvdsulfqumlbggawbfmgukoytqnwkshiwsybcbxexctyreygknffvxvfcavzfedavgcbjxsdbglptsssmuatbbyfrlterlddvwuzotgdzzlupbhxtrmoqevuhdayyxaazcbcgajehcsromcmnjkgrxwmykomnecdrnilwmfflgnbyxrhosrppzrgsvpzmtgjjxllpkzikcnkixusfykmnfsytfwifigcwngwhrglrrupoyekkmcjscwkbvuvnzatvwrhmfyncwqufqhewcirpfnutcwntawsuaxpqdbommrzpyqutqpwwembaooeacgtidzolsjvovckaxvbgcbqmesqulyctcsgkscobbowqfiqosobhtmlhdvewmengvilotciljivepymnrnjnethszcikbyxpajxxwelqokksflilrvxoeeuymqrffifcsljhpivvswhzphgzmcjjwecifnajjreiucxrjezjznqhbqjtmyxhnsvhtthewotttkjiurfzusflpvgsvpbarmvxhfvckhxsbsbodnnenlauochcfnfsh\",\"type\":1,\"sous_categories\":[null]}"
+                            "raw": "{\"libelle\":\"qxcpyjbrctbzsgakczefiostsakzuxokowjuanhtewtnanzqrsqszwjdlposdfmymdfnxyfrbzexrxdcuiynfbybjtkdlamxgjccvxciqjlvbhbiuozadvmtzgkqouzkqvvetsaqkddhbltjegnglqsfgjowxymqfqtnlbwtxcrpzaedwuqrqadglpyhkwgcpiypodyhfqegiybjsslstfkhjl\",\"description\":\"czovrnenvxgmqnvkbgzvaeoxqbegpthzilecywfygcdvnjbbfhxkzbkyuchxunzcboablonquqzibtzwddwwkfdekneqmo\",\"type\":1,\"sous_categories\":[null]}"
                         },
                         "description": "",
                         "auth": {
@@ -1442,7 +1442,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"kuxicbadxurniqpekexcsxulhyrpzwsecwwmiyobgpyrnbqttoyqrcarjhuohdwrxtcoqmvrzvfa\",\"adresse\":\"qqxrgvokz\",\"email\":\"enjzwovgnzffghewljnwkpszbacimyytxmgolzkzxabulqerpkiqjarrbpcsgolkyjnthhbswwtzpyjuzroynvyjsvfebirrdzeqztsfftwevxxrejzemfakwpxmjxrepjzkcwkpfirksgdtodzgxxmdfiilcqppljolniezhtorifcqccplodxwhntvtzsntvzriwssqexlzsljmccejx\",\"contact\":\"jioqbmezlfmyvqie\",\"categories\":[null],\"nif\":\"1235948104281\",\"cif\":\"m4056065a\",\"stat\":\"739s689s052s65288\"}"
+                            "raw": "{\"nom\":\"oaxqgqglxcrjfprpazppodxujpivptynifparwljlawhiyjadvawrnaxulxmkvgieozvziapziatlfxxurnflipycquoqbbufnuyvgekdeglwvfgwvfguqlromdagutymwicswoyihpnfmywltoqaydajacjxrlldcdhowvdunaykwmjzheqpwtvgcbwjzjkgqbtczsoo\",\"adresse\":\"sywhwhqdzvuxbbanxkfnwmnywcwgjvuqobkuypswiqkzdtfdsxueew\",\"email\":\"hxovzzvlzcymslepieerbcnnffelnmjzwmbl\",\"contact\":\"pduqlezmkhgdekkgoazbitwxbygap\",\"categories\":[null],\"nif\":\"1659850598939\",\"cif\":\"H65585197\",\"stat\":\"882s451s122s83941\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1537,7 +1537,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"ulptitqidkfyhpaxdjayuxzwfvplydlcdtngljgxhkvbwxdrqjspbxyfjfvbymnycntktkwmdaqgejqtfaaqrbifirnlrrfagntcnhqxwehzvrwcxccdyyudserpjjzdmnsrhiwelspjnmanmdacobkmaaxppjmrhoyayxtsfyqyorwdccn\",\"adresse\":\"xemxncgakculoobqtxsscybiettqtrmjhyxapzxxfjcunrrjklajvtdrerklcujslnnsnmkffwsazqtlgpzqpgdychclstqttjcjpbmdsesoltbgnnxsbvogfhhvzcbtgperydptabumeylerjyszbcympevr\",\"email\":\"feucsekxkulskvzbplmgsropbbuebctnsrsulpbrwwpfnrs\",\"contact\":\"mpnbnacsxu\",\"categories\":[null],\"nif\":\"2707852750338\",\"cif\":\"F76762558\",\"stat\":\"662s392s349s40011\"}"
+                            "raw": "{\"nom\":\"ugfaaiqrlzrlcgvldfbntnedkzhmtiqzmidccjivkrwtswresxrhwkiuelxmqdqnavvklkmhryobrwszamccteblwctbkgutmnelbidlaficxmzusiucublaioxlbmdakptfugfpezfhhucydviadqtkhmxsrbrresldz\",\"adresse\":\"eljgxnfpyhzjvvdkvdf\",\"email\":\"nuztwhzkixvizllpqfhibadpvlcbcwbvsyvtaitzajpabcnmvbeyhzfeozmguwoftoxhetvxqtsiseyyysoqcxlzsijtcwnapomxaqghgivmfd\",\"contact\":\"f\",\"categories\":[null],\"nif\":\"3711700923062\",\"cif\":\"c4483402f\",\"stat\":\"896s852s524s23721\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1652,7 +1652,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"fuldzzplybqscxxxmjtwwkqhohnelqvgnwqujuygubjvgxdifawbwefegejwogzqyskvmeeyhevbisypylezdynjsqxmjarkmxdtrtmmammwgybjtetfhmpjjtjagvhcaemlneuuajiezzdfppduitgfdwpooejefaneyxuwnozokrdqcvaltcoxjqbssctyatqxbrbqgffojflorsawijgrsaswqhffwhdwrhmmjlnjruq\",\"adresse\":\"drsbftnwdchgmmuqhjeerolgpmuzbvoubddbivhoutznvvxjakjcbxutywinohsuagsepobjxttmxcobvnj\",\"email\":\"otgihcfrdptqwqllybsfbaetcbkztgbxcavjebjfpkuwfpsezcfblnczbgdqnwrsefrnnupfqfrxizdopldudhvbm\",\"contact\":\"iusqwtswiafendpqyhayespuh\",\"categories\":[null],\"nif\":\"0368201296614\",\"cif\":\"S93630094\",\"stat\":\"112s107s303s00588\"}"
+                            "raw": "{\"nom\":\"kfxeaongvlntdbnuvbrassdauaeghlsdvngcqpabiohwyhridqjahbdeoxzsjnomvyptyjqvgcrijjadqujsisfpopglekh\",\"adresse\":\"pizbzsokqqnrnspckrhauqvotenxpdpczkywgnnfbfohittlrmtnnlcvndwdpjhcmlvrvaicaozkhvtxixvlzfcrytfgvvnuvxamcmodtnipnzflvhbpdqrvcamchlvoltfwfnalnireybzkzjlnou\",\"email\":\"ewfmrvygajfmltrdxpfeojbhfoxobzjgbpnicruaglnmlxwkmwssmspmiyqdbdizxucnnguotbcchfycubnkprfbnoqpofjfqyjnxdmqpfigpjljckxvzyvlgmdsbtiawcizxtajgnbrkjecjlbsqbiksjaytzewhu\",\"contact\":\"ezkdxyxqybechkfjiutf\",\"categories\":[null],\"nif\":\"2585478825849\",\"cif\":\"S5158414h\",\"stat\":\"512s013s654s71445\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1747,7 +1747,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"tgkviipjpnyyhdlhpqwwrrmtvscjxqbwobtfseeqoabeyxyhqsdcgrqhilhmsatslabvdzkxryneesjvgmyqixzcflxrvbqbgwkmyqvkvzdmoekanakftyensmtqodqlipafchvbzovkyehkpnrcebwtyxoxfseuhmrlwtzoiigarpuxwtqwvwjwvgweaxdndlontmvugcmocovauprtsrsvetrcbkkbhhgerhwxclhkkvibzwzyfk\",\"adresse\":\"wegmwovbtsgfzrpvgqmriozrqlhuneqgzainzqyjxvemizjatqxbyvkzuvucqbpvaprujnewhbcqttmsgwhcijaigtnaytcfzlwaygqiueibcprxwowtgorlhetoebwetedsijoxnlzbkwxykzwtxsmcoltjeujakykzvyyzwvrdtjqzewrrjdumrplnewuvtmbkpipsjgdcdcd\",\"email\":\"vdgwidsvnizyxgxiuwniqsswxbkefreushlnmugkpgsofvmucaefqdneyndkqcohtvaeyrdainnanxuwepzmymgyujzpxglitgbpiukmfajzurborvljrztrawqgglmbxrzsupesbnhxgmbcjcbtyprayfmugsziq\",\"contact\":\"hpmjegdfvwb\",\"categories\":[null],\"nif\":\"2663699639681\",\"cif\":\"C8022278h\",\"stat\":\"030s424s063s85980\"}"
+                            "raw": "{\"nom\":\"cfrohsunwxpzdignjzqdoaojczfumanfljjxeynijdotyvmpszbgplfmelotslqbdvioblathlthmcptuetuagooxvuyvjshkjxjpbejgkqnalgxjjxajtbqzpnzozqzugwedzibxycpenpksbktvhdxvuvdnuvmkuzhqlujaovuueyvtdyrcecayffmwqahbhpmvyxkzcswcipilmbzymsahvzqrbnylulmfn\",\"adresse\":\"brggwnxoxwqotjhlarerxxrzyoqiouzkmldvyyiibf\",\"email\":\"wegqtlrsfofjzgzveokouwyvlezfkaalndkwmpxodpkkvkkananhomrkkllnpyeeuhyvfzlqwsuwqpacmrzzuiiwlvuijzzwcqccnsbarwfeblfakhtrwvfdvhicktrzzfgkiznzoxprpgozgkwoyjkhfactejztoj\",\"contact\":\"nywexkwtvqehltjj\",\"categories\":[null],\"nif\":\"2030672219026\",\"cif\":\"I0970419G\",\"stat\":\"565s426s384s74475\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1862,7 +1862,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reference\":\"evtnnbxsmobhkplxjgwgdooveeixixnqryrdtqqingckatzhsrempjcpulukjfaeetlfbyzlyhqcuqfhngoplqlltnbxefowzhrxyvvgjdxfsctryrvhdygnjluoocarmkhgzhfmjgwzxbjyol\",\"designation\":\"kgufkhelugchtnvuowppwoowgureweniezwjyjlyk\",\"unite\":\"uzdojzvewujxtawfqovtsekhrtgtbunjjmywzewbfueullxxxidrkvlorjwqpntyhwbwjcqjyhtjcccvxdtiqhegtisdkzqutxmotwrdolrvuboplggrzroxclzxfgrhwnzequilwftipaianekgccnkitvduwfsbtpqnytfpawllwrhgwazpwpcjsghnbb\",\"stock_alert\":420415876555,\"categories\":[\"molestias\"]}"
+                            "raw": "{\"reference\":\"pmjvbcedvwnvrwhhknnzmszvnspbsfbsaobpnafhyzjglbtwnhpiopscymiisvskwbshepyjwiormqyhwudxmbgefnzpgxwtbqloeltrafvqjdve\",\"designation\":\"mwjtglkbqgubvovmxmecpqqceknpwikavcgrjhqtombtxdavpzjbyuldilgimoiiexasahnbiftkmgsihxjigxulhmcfidfzhhhdbuzrqhhsyyeqdcghqamlsntntdhfkkkiovnjpapnvmwqyvcgbveryscvslrowutthezetroahqhbbjwkquyxgpcrzzxsjguc\",\"unite\":\"ovmknyxusknrivbdotqiwkdsyeusumovailqqtowjahbfcvybjkjdmvuoenviryvmbulibkmmqguodvtrrupjtimznrctgeabjegxqzlibixvikuhnqxnrsircrkohbdvvtbdrmramccxxmwtfoovldfoabqhowdsuqytgbmhvjmcbftjxysxtrvjhdhpujfpzjpynyhrvpppscyptot\",\"stock_alert\":817895768671,\"categories\":[\"tempore\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -1957,7 +1957,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reference\":\"xfyygkfbvudlsbrbadcvnsvemgxmcesdipgwdstsgizfuyksekr\",\"designation\":\"wckhoiqctqcjvneenydlhdxeezaicofemalwmldkalkwyewmmkbdyezrtffereefsgtbhtqkugozecza\",\"unite\":\"iiodbbtjnevtdubkiovdgapucmlgoyaeypahkagtchyxqtcdtnnbendxrlwwpllxnhvnyypbvbzptigzsheejkxh\",\"stock_alert\":145407065196,\"categories\":[\"repudiandae\"]}"
+                            "raw": "{\"reference\":\"ohmxpyomousugmjszenxybyilaolansahywsgivfehuaucpefrppjchxlvxfeqepilnbvwoozjfqdietsuqinanplllrguxryghrtlihodxgjoi\",\"designation\":\"rflytrxbelnypgntsqnxyvqxopuqolapvtwskjvvclmwxvalfmkdbmlyucugfxyfwxrwaaftckeluqvsrehvpvlxcsrnzjaldashcilbjqyypphjmokvxauxmvgyophjlwablkdnnkffngdtvuitxkeknigwlcskmvygyszfsphfvjtzyxxptljpxrvieytayznswvjldmhyfwxzerkjfngxlrfyhwigneub\",\"unite\":\"dtyciamqirlhwjepfyzclbeekypwrjeqwzkltcebaiaueuhopsfcw\",\"stock_alert\":352701412225,\"categories\":[\"iusto\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2120,7 +2120,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"numero\":\"rjjuuvksiiwawxqmqsxbafjlydbiorznwuuycfwlivkflcazzqolammkpyjvbnuttuiaoqxmmc\",\"type\":\"2\",\"date\":\"2022-07-14 12:40:49\",\"validite\":121,\"articles\":[{\"id\":\"sequi\",\"pu\":188463617052,\"tva\":98,\"quantite\":858057137,\"montant_ht\":14.81788011,\"montant_ttc\":137513587.18}],\"adresse_livraison\":\"eu\",\"login\":\"exercitationem\",\"password\":\"secret\"}"
+                            "raw": "{\"numero\":\"jvwdceaieqzfhfivuszdyzfbcaa\",\"type\":\"1\",\"date\":\"2022-07-15 13:49:14\",\"validite\":323,\"articles\":[{\"id\":\"delectus\",\"pu\":223611826867,\"tva\":78,\"quantite\":616630598,\"montant_ht\":0,\"montant_ttc\":7.0394}],\"adresse_livraison\":\"tsuxcvwdjozyrqaoplxtzrqttrecsxrmrihbjokfwqpwgisksvrbjclxrlgtdbejllwkzkwesxnemzdnxorturthsfkwarqjkemcyhpizcmnwptfpbpmgoam\",\"login\":\"repellendus\",\"password\":\"secret\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2251,8 +2251,120 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"numero\":\"knxafaarblieyyybupullaraugjrqwdsj\",\"type\":\"2\",\"date\":\"2022-07-14 12:40:49\",\"validite\":225,\"articles\":[{\"id\":\"ipsam\",\"pu\":791370674646,\"tva\":80,\"quantite\":588464526,\"montant_ht\":666.61194472,\"montant_ttc\":246582487.07933602}],\"adresse_livraison\":\"pefwfpkggsycxhgprauaxplytq\"}"
+                            "raw": "{\"numero\":\"egfrgdhkrseanlbqanteblvcjrojoqvhyyhglnzwpcyxnyeezpls\",\"type\":\"1\",\"date\":\"2022-07-15 13:49:14\",\"validite\":75,\"articles\":[{\"id\":\"explicabo\",\"pu\":910334361500,\"tva\":79,\"quantite\":184312423,\"montant_ht\":434.2155513,\"montant_ttc\":227807.478169}],\"adresse_livraison\":\"fpaffezumsvobeyuhxnenhxuzsvjunnsimlnjfswpwsgfvqhivtrnssjylzgwuyxrlitxsfncyinpdpyczazintyljxqtothajtpdibzhrxfnkfmstwmjsywduwlwmem\"}"
                         },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Recuperer L'information De L'entreprise",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/parametres\/generale",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/parametres\/generale"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Enregistrer l'information de l'entreprise",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/parametres\/generale",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/parametres\/generale"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Undocumented function",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/parametres\/generale\/:parametre_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/parametres\/generale\/:parametre_id",
+                            "variable": [
+                                {
+                                    "id": "parametre_id",
+                                    "key": "parametre_id",
+                                    "value": "dignissimos",
+                                    "description": "The ID of the parametre."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
