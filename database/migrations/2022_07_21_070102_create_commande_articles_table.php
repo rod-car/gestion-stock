@@ -14,13 +14,13 @@ class CreateCommandeArticlesTable extends Migration
     public function up()
     {
         Schema::create('commande_articles', function (Blueprint $table) {
-            $table->foreignId('article')->references('id')->on('articles');
-            $table->foreignId('commande')->references('id')->on('commandes');
-            $table->integer('quantite')->nullable(false);
-            $table->decimal('pu', 12, 2)->nullable(false);
-            $table->decimal('total', 12, 2)->nullable(false);
-            $table->decimal('tva')->nullable(false)->default(20.00);
-            $table->primary(['article', 'commande'], 'pk_commande_articles');
+            $table->unsignedBigInteger('article');
+            $table->unsignedBigInteger('commande')->index('commande_articles_commande_foreign');
+            $table->integer('quantite');
+            $table->decimal('pu', 12);
+            $table->decimal('tva')->default(20);
+
+            $table->primary(['article', 'commande']);
         });
     }
 

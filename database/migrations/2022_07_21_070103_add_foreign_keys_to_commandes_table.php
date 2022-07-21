@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToCommandeTable extends Migration
+class AddForeignKeysToCommandesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddColumnToCommandeTable extends Migration
     public function up()
     {
         Schema::table('commandes', function (Blueprint $table) {
-            $table->string('adresse_livraison', 255)->nullable(true)->comment("Adresse de livraison des marchandises dans lecas d'une commande")->default(null);
+            $table->foreign(['client'])->references(['id'])->on('clients');
+            $table->foreign(['devis'], 'fk_devis')->references(['id'])->on('commandes');
+            $table->foreign(['fournisseur'])->references(['id'])->on('fournisseurs');
         });
     }
 
@@ -26,7 +28,9 @@ class AddColumnToCommandeTable extends Migration
     public function down()
     {
         Schema::table('commandes', function (Blueprint $table) {
-            //
+            $table->dropForeign('commandes_client_foreign');
+            $table->dropForeign('fk_devis');
+            $table->dropForeign('commandes_fournisseur_foreign');
         });
     }
 }
