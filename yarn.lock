@@ -1395,6 +1395,13 @@
   resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.4.2.tgz#580a7f84f1eb8c5b2c9d4ac26c54c57f748b815b"
   integrity sha512-5VVk4Mwn4cva+MbBjAXaEunmGWLAp98PcI4okaT95qYCfBckn2N/9ws18O0OStVe8WskFFUj/kF0goH/Xc2aTw==
 
+"@vuepic/vue-datepicker@^3.2.2":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@vuepic/vue-datepicker/-/vue-datepicker-3.3.1.tgz#1775ec9672516782e3bdc1a9324ba8340f56883e"
+  integrity sha512-tPCJ9KttSJugLDDaB+RMYibuJR9FHtN1L0FEmHvAC8lg5bLsXqzLppu1vp0I1kIU/F5BhBCyWq6Ho8NdYgfNcg==
+  dependencies:
+    date-fns "^2.28.0"
+
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.1.tgz#2bfd767eae1a6996f432ff7e8d7fc75679c0b6a7"
@@ -2488,6 +2495,11 @@ d@1, d@^1.0.1:
   dependencies:
     es5-ext "^0.10.50"
     type "^1.0.1"
+
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -3590,9 +3602,9 @@ klona@^2.0.4, klona@^2.0.5:
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
 
 laravel-mix@^6.0.6:
-  version "6.0.43"
-  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-6.0.43.tgz#6a9d67419e891f5075fc08bfff47770bf1f00d8a"
-  integrity sha512-SOO+C1aOpVSAUs30DYc6k/e0QJxfyD42aav4IKJtE5UZKw9ROWcVzkVoek2J475jNeNnl7GkoLAC27gejZsQ8g==
+  version "6.0.49"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-6.0.49.tgz#d718414858045df9d7467245e13fd4b45bc52c15"
+  integrity sha512-bBMFpFjp26XfijPvY5y9zGKud7VqlyOE0OWUcPo3vTBY5asw8LTjafAbee1dhfLz6PWNqDziz69CP78ELSpfKw==
   dependencies:
     "@babel/core" "^7.15.8"
     "@babel/plugin-proposal-object-rest-spread" "^7.15.6"

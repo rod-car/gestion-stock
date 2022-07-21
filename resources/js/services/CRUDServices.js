@@ -28,6 +28,9 @@ export default function useCRUD(url) {
     const entity = ref({})
 
 
+    const key = ref(null)
+
+
     /**
      * Contient tous les erreurs de soumission de formulaire
      *
@@ -120,7 +123,9 @@ export default function useCRUD(url) {
             let response = await axiosClient.get(`${url}/${id}`)
             entity.value = response.data
         } catch (error) {
-            console.error(error)
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
         }
 
         loading.value = false
@@ -133,15 +138,17 @@ export default function useCRUD(url) {
      *
      * @return  {Array}
      */
-    const getEntities = async ({ type, except } = {}) => {
+    const getEntities = async ({ type, except, appro } = {}) => {
         loading.value = true
 
         try {
-            let response = await axiosClient.get(`${url}?type=${type}&except=${except}`)
+            let response = await axiosClient.get(`${url}?type=${type}&except=${except}&appro=${appro}`)
             entities.value = response.data
 
         } catch (error) {
-            console.log(error)
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
         }
 
         loading.value = false
@@ -177,7 +184,7 @@ export default function useCRUD(url) {
 
     /**
      * Fonction permet de mettre a jour un point de vente
-     *
+     *n
      * @param   {Number}  id          Identifiant du point de vente
      * @param   {Object}  data        Nouvelle données
      * @param   {Number}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
@@ -187,7 +194,8 @@ export default function useCRUD(url) {
     const updateEntity = async (id, data, { updateType } = {}) => {
 
         updating.value = true
-        data["type"] = updateType // Integrer dans le données le type de mise a jour a faire
+
+        if (data["type"] === undefined) data["type"] = updateType // Integrer dans le données le type de mise a jour a faire (Type existe deja pour les devis et les commandes)
 
         try {
             await axiosClient.patch(`${url}/${id}`, data)
@@ -205,8 +213,23 @@ export default function useCRUD(url) {
 
     }
 
+
+    const getKey = async ({ type, appro } = {}) => {
+        loading.value = true
+        try {
+            let response = await axiosClient.get(`${url}/get-key/?type=${type}&appro=${appro}`)
+            key.value = response.data.key
+        } catch (error) {
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
+        }
+        loading.value = false
+    }
+
     return {
         entity, entities, errors, success, loading, creating, updating, deleting,
+        key, getKey,
         createEntity, getEntity, getEntities, deleteEntity, updateEntity,
     }
 

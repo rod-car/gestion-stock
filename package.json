@@ -51,6 +51,7 @@
         "vue-skeletor": "^1.0.6",
         "vue3-progress": "^0.0.1-beta3",
         "vue3-simple-alert": "^1.0.4",
-        "vuex": "^4.0.2"
+        "vuex": "^4.0.2",
+        "@vuepic/vue-datepicker": "^3.2.2"
     }
 }

@@ -6,12 +6,16 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
+
+/**
+ * @bodyParam   login    string  required    Username or email adress of the user.      Exemple: testuser@example.com, user123
+ * @bodyParam   password    string  required    The password of the  user.   Example: secret
+ */
 class LoginRequest extends FormRequest
 {
     /**
@@ -38,29 +42,20 @@ class LoginRequest extends FormRequest
     }
 
     /**
-    * Attempt to authenticate the request's credentials.
-    *
-    * @return void
-    *
-    * @throws \Illuminate\Validation\ValidationException
-    */
+     * Attempt to authenticate the request's credentials.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     * @return void
+     */
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-
-        /*
-        if (! Auth::attempt($this->only('name', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-            throw ValidationException::withMessages([
-                'login' => __('auth.failed'),
-            ]);
-        }*/
 
         $user = User::where('email', $this->login)
             ->orWhere('username', $this->login)
             ->first();
 
-        if (!$user || !Crypt::decrypt($user->password) === $this->password) {
+        if (!$user || Crypt::decrypt($user->password) !== $this->password) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -105,6 +100,13 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::lower($this->input('login')) . '|' . $this->ip();
+    }
+
+    public function bodyParameters()
+    {
+        return [
+
+        ];
     }
 }
 

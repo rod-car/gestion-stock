@@ -11,7 +11,7 @@
             @update:collapsed="onCollapse"
             :menu="menu"
             width="290px"
-            showOneChild=true
+            :showOneChild="true"
             theme='grey-theme'
         />
 
@@ -500,6 +500,58 @@
                                     },
                                 ],
                                 // hidden: !this.$can('manage_roles_and_functions'),
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Dévis',
+                        icon: 'fa fa-file',
+                        hidden: false,
+                        child: [
+                            /*{
+                                href: '/devis/nouveau',
+                                title: 'Nouveau dévis',
+                                icon: 'fa fa-plus',
+                                class: 'fw-regular',
+                                // hidden: !this.$can('create_devis'),
+                            },
+                            {
+                                href: '/devis/liste',
+                                title: 'Liste des dévis',
+                                icon: 'fa fa-list',
+                                // hidden: !this.$can('view_devis'),
+                            },*/
+                            {
+                                href: '/devis/fournisseur/liste',
+                                title: 'Approvisionnement',
+                                icon: 'fa fa-arrow-right',
+                                // hidden: !this.$can('view_devis'),
+                            },
+                            {
+                                href: '/devis/client/liste',
+                                title: 'Vente',
+                                icon: 'fa fa-arrow-left',
+                                // hidden: !this.$can('view_devis'),
+                            },
+                        ]
+                    },
+                    // --------------------------------------------------------------
+                    {
+                        title: 'Commande',
+                        icon: 'fa fa-file',
+                        hidden: false,
+                        child: [
+                            {
+                                href: '/commande/fournisseur/liste',
+                                title: 'Approvisionnement',
+                                icon: 'fa fa-arrow-right',
+                                // hidden: !this.$can('view_commande'),
+                            },
+                            {
+                                href: '/commande/client/liste',
+                                title: 'Vente',
+                                icon: 'fa fa-arrow-left',
+                                // hidden: !this.$can('view_commande'),
                             },
                         ]
                     },

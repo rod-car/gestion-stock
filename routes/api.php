@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Depot\DepotController;
 use App\Http\Controllers\Api\User\AbilityController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
+use App\Http\Controllers\Api\Article\CommandeController;
 use App\Http\Controllers\Api\Client\CategorieController;
 use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
@@ -70,4 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD de l'article
     Route::apiResource('/article', ArticleController::class);
+
+    // Recupere le nouveau numéro du dévis ou commande et l'afficher au client
+    Route::get('/commandes/get-key', [CommandeController::class, 'getKey']);
+
+    // Ressource qui gere les CRUD des commande et devis
+    Route::apiResource('/commandes', CommandeController::class);
+
 });
