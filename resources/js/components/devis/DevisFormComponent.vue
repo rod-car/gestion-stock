@@ -30,7 +30,7 @@
                     </div>
 
                     <div v-if="creationFrs" class="col-xl-12 border border-secondary shadow p-5 mb-5 mt-3">
-                        <NouveauFournisseurComponent @frs-cree="frsCree" />
+                        <NouveauFournisseurComponent @frs-cree="frsCree" :nouveau="true" />
                     </div>
 
                     <!-- ----------------------------------------------------------------------------------------- -->
@@ -55,7 +55,7 @@
                     </div>
 
                     <div v-if="creationClient" class="col-xl-12 border border-secondary shadow p-5 mb-5 mt-3">
-                        <NouveauClientFormComponent @client-cree="clientCree" />
+                        <NouveauClientFormComponent @client-cree="clientCree" :nouveau="true" />
                     </div>
 
                     <!-- ----------------------------------------------------------------------------------------- -->
