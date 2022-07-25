@@ -37,7 +37,7 @@ import SaveBtn from '../../components/html/SaveBtn.vue';
 import Alert from '../../components/html/Alert.vue';
 import useCRUD from '../../services/CRUDServices';
 
-const { success, errors, creating, createEntity } = useCRUD("/depot")
+const { success, errors, creating, create } = useCRUD("/depot")
 
 // import useDepot from '../../services/DepotServices';
 
@@ -50,7 +50,7 @@ export default {
     setup() {
         return {
             success, errors, creating,
-            createEntity,
+            create,
         }
     },
     data() {
@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         async save () {
-            await createEntity(this.form)
+            await create(this.form)
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (success.value !== null) this.resetForm();
             success.value = null

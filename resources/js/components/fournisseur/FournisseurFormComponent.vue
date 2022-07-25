@@ -87,10 +87,10 @@ export default {
 
         const save = async () => {
             if (props.nouveau === true) {
-                await Fournisseur.createEntity(form.value);
+                await Fournisseur.create(form.value);
             } else {
                 const id = props.fournisseur.id;
-                await Fournisseur.updateEntity(id, form.value);
+                await Fournisseur.update(id, form.value);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' })
             if (Fournisseur.success.value !== null && props.nouveau === true) {
@@ -130,7 +130,7 @@ export default {
             if (props.nouveau === false) {
                 setForm(props.fournisseur)
             }
-            await Categorie.getEntities({ type: 2 })
+            await Categorie.all({ type: 2 })
         })
 
         return {

@@ -74,7 +74,7 @@ import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../../components/html/DeleteBtn.vue';
 
-const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD("/client")
+const { entities, loading, deleting, all, destroy } = useCRUD("/client")
 
 export default {
     components: {
@@ -83,12 +83,12 @@ export default {
 
     setup() {
         return {
-            entities, loading, deleting, getEntities, deleteEntity,
+            entities, loading, deleting, all, destroy,
         }
     },
 
     mounted() {
-        getEntities() // Recuperer les Clients
+        all() // Recuperer les Clients
     },
 
     methods: {
@@ -102,7 +102,7 @@ export default {
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce client ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                deleteEntity(id, index)
+                destroy(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

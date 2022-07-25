@@ -33,7 +33,7 @@ export default {
         const appro = ref(false)
 
         onBeforeMount(async () => {
-            await Commande.getEntities({ type: 2, appro }) // Recuperer tous les commandes de clients
+            await Commande.all({ type: 2, appro }) // Recuperer tous les commandes de clients
         })
 
         return {

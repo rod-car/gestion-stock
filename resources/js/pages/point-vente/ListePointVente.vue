@@ -69,7 +69,7 @@ import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
 
-const { entities, loading, deleting, getEntities, deleteEntity } = useCRUD('/depot')
+const { entities, loading, deleting, all, destroy } = useCRUD('/depot')
 
 export default {
     components: {
@@ -78,12 +78,12 @@ export default {
 
     setup() {
         return {
-            entities, loading, deleting, getEntities, deleteEntity,
+            entities, loading, deleting, all, destroy,
         }
     },
 
     mounted() {
-        getEntities({type: 1})
+        all({type: 1})
     },
 
     methods: {
@@ -97,7 +97,7 @@ export default {
         confirmDeletion (id, index) {
             SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                deleteEntity(id, index)
+                destroy(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

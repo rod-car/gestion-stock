@@ -75,7 +75,7 @@ export default {
         const confirmDeletion = (id, index) => {
             SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                Commande.deleteEntity(id, index)
+                Commande.destroy(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

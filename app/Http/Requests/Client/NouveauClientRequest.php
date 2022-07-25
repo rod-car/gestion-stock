@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Client;
 
+use App\Rules\CIF;
+use App\Rules\NIF;
+use App\Rules\STAT;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -36,9 +39,9 @@ class NouveauClientRequest extends FormRequest
             "categories" => ["nullable"],
             "categories.*" => ["nullable", Rule::exists("categories", "id")->where("type", 1)],
 
-            "nif" => ["nullable", "regex:/^(0|1|2|3){1}\d{12}$/"],
-            "cif" => ["nullable", "regex:/^([A-Wa-w])([0-9]{7})([0-9A-Ja-j])$/"],
-            "stat" => ["nullable", "regex:/^\d{3}\s\d{3}\s\d{3}\s\d{5}$/"],
+            "nif" => ["nullable", new NIF],
+            "cif" => ["nullable", new CIF],
+            "stat" => ["nullable", new STAT],
         ];
     }
 

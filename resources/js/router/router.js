@@ -15,6 +15,7 @@ import fournisseurs from './routes/fournisseurs/fournisseurs';
 import articles from './routes/articles/articles';
 import devis from './routes/devis/devis';
 import commande from './routes/commande/commande';
+import parametres from './routes/parametres/parametres';
 
 const routes = [
     {
@@ -45,6 +46,7 @@ const routes = [
     .concat(articles)
     .concat(devis)
     .concat(commande)
+    .concat(parametres)
 
 const router = createRouter({
     history: createWebHistory(),

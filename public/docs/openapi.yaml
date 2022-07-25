@@ -46,7 +46,7 @@ paths:
                 login:
                   type: string
                   description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: quam
+                  example: asperiores
                 password:
                   type: string
                   description: 'The password of the  user.'
@@ -156,31 +156,31 @@ paths:
                 nom_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: dnlebzsuupeval
+                  example: yvkfbfvcrkawylnimxrtgbtmiaxbesowqjnpojymbijlyvreaccbjdykkztstiklgujvmavxyeoejcwvpoapmjlrtcyxxxoknpvwtajqunykzzwlvwxzqwwnzlxyoqgflmbphvjzulqyuzvgybvzmomulecufuhpykkqiuyirjynmwvqpust
                 prenoms_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: kvorbqabdzuhctrazgcnfztfyxiyjnwcwqeguygkhnlpnybrfydlxjnvuatjhoxpmbhgfoijagnjcbltjpprgphqfepggjvnpktfxtsrknkhhreriwhrpuavhpikamxfgtyykpebbcnjauyfyd
+                  example: llinkabhuesoovewtpylfojglnfmilqrpsreibcbjxauzutkmuwpebdxtambrabeuxdmetdypycbbsumwnuwwyfqypikzthpugpvhycgbgjjgipmmfckiyjpwqkuuumgardvnrjfrrmmcymzujcpmyvbegpmxxvitmprmwdlfekmtbxmylpgdcqhvvbjmoitjuzwhyjxanhtpsgqvacsldosrtgsantikvileqrgersuggoria
                 contact_personnel:
                   type: string
                   description: ''
-                  example: maiores
+                  example: atque
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: bcopzswnnhpfpfrxsdmarimlushorjhcohdfubhjszinfprgvguphdazhowcrphgplrjcijqmvsfupdyxlavpmetmliasibccvmxtmamlkcyqdstpklvcpvqwieohpqscuwhmitdiiskxnabgbtdykfbnnsgkgtasvgpdthpqwtwtmmmqqbkdlaxcwbuokf
+                  example: znsmervidzphqwjkxzrokycjsncaxzdyqbfjpawwetw
                 adresse_personnel:
                   type: string
                   description: ''
-                  example: non
+                  example: fugiat
                 cin_personnel:
                   type: string
                   description: 'Must be 12 digits.'
-                  example: '722082317555'
+                  example: '185260400882'
                 username:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: leiakswoaqwugdefkgwvreskbkiqwkcfvunwgtedxkldnxhnrvhpqmgxguilpxtdfpwcaeixulofuyggqnfxvxwpqrmfotaszldtzujqrwaqmdxvgqczsdngmzpidknghocqltvhcmnybzjlenflxjsbrvpnvnofkdsxi
+                  example: opjquztpyywdxfqjrgsdbujvoaryddwjvffddnkvqwxwueubsdsxpdepjuqpevdprfweotzqgpcuqihydzlorjstcagptatqkyaivuswprzbfhlimbxajydxkgrwjfrkvqrpfbgavjmbfwnpdzsyzjalbjhdexnyjuloupxdy
                 password:
                   type: string
                   description: 'The password of the  user.'
@@ -188,7 +188,7 @@ paths:
                 password_confirmation:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: mfjkkorixazdipeovozqorpfnbleihprrqmrlbjiarvtqdekjeqkfohvnlysxlctzzavtoxlxvinfksbctrefuxskpdicfjpogkvdtrmzoaiqqqiliarmqcpfcrmuunzthjlstputaolgahgaixlwj
+                  example: ftxyqwzgnblspqisabplxxkqnfwuirtmdwquffbpgxgdvapyqopwmhvlvxtyouzystxayzgbbofnhykszftuqjuqkmmtdgtuvpigffaczwbsgolnoejfjovfqjpsalpvoijjganuqsufmrudzhlzkjnddhytaisdr
                 roles:
                   type: array
                   description: ''
@@ -200,20 +200,20 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - ea
+                    - molestiae
                   items:
                     type: string
                 fonctions:
                   type: array
                   description: ''
                   example:
-                    - et
+                    - praesentium
                   items:
                     type: string
                 login:
                   type: string
                   description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: corrupti
+                  example: occaecati
               required:
                 - nom_personnel
                 - contact_personnel
@@ -288,44 +288,44 @@ paths:
                 nom_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: xh
+                  example: ozhntjsgriefczltvhjxuqpuvtmircydwlrbtfwhjjtozbaxuixtuokqordiqzfiytpalcdmgijolyrhkmxjcmdsutjstkszuqwmbhcxisoffhfysrixnszhftcquesjtapjtjasudvmdoaixbyeertudspegwshaxhmjdazvisghlhnpdacctkrvzayngfjqpamxxxczsgbyykswzfwwuiyefaxs
                 prenoms_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: muinqjfplufbfjdesxprylwmqefkdrawtuwqkmhajmaildslijbbqneucxeximrxlkzsfrdbxkzusjwxtvlfxcuisqrlsmxxteihxxzqfgyzqafsjdngtgirobebizovvckyiltehieguvzntmjxgungcigjkqq
+                  example: qiloqfxmwrinpkhdnfgkvuixnebptnyqywxpqvtzckzdusgdyvszvdroiheyagsbiybbxdydppqkficoojsallhmtdcdsoifaagvxamxfqretqdafdsktbvbxsehtxzociwjmwggazsnbpcopxrhbncalmukxgnuirlrapmtvtbljabmmuqiizzsxydwuktqsjamjnfizrtsimkiiarswhxurtrpqtlbblzbtbfttbbazuakiikukluabumfq
                 contact_personnel:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: doloremque
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: bqhcleyjubviuojaplnqsgfgjptuusaenzkoychvllrsapiiyiwtvntmflvbkhocwaeauooszekfwtlqivwireuycvnoouowdpgebcvbrjeqiizxqrdtrulxonlyrxxmibs
+                  example: idchmsnkyabrehmbtmzvvqzqcxiuvexavkzzlbjdwodhjdfsjpgcoxhmzfctdvqmquanccrciuphyxufyepbkjvrlfymejkkmtcezqycqetorkoxlygrvepuaqffuqowxkwwxgdqau
                 adresse_personnel:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: quibusdam
                 cin_personnel:
                   type: string
                   description: 'Must be 12 digits.'
-                  example: '484552283397'
+                  example: '631566258747'
                 username:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: ejzekxzlyawysggialspffwnaoutjosotxkvqhctvjogiwhxsjpbsjijcpwtsddffamduoovytbphlgnahogpmljayipkmlowiqtgyanvlzcotkaxxonmujl
+                  example: inhlmgptghsuyppedahvnyhxikjdmztbtvxqhzrsxlgkqqeziaypdtgaakobtauopghbjhqbdyuouqthrpzojmubcmmgojebvojrqejmqfmxnvapydxpndugkcyyydiglobesulsqgpbblocmmidavkyedckbaqeefdjbtcxofcwmvpoltgulmpowigowhtjuurvxuvfzdtxkldwfofkeqwtz
                 password:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: sainbkdkfwatzzyvczshdwvlncikgdituavpkctpkbtmdkaulodbdzpduxnuoiiwaisweacvkzxfechkrfprceijiefmockyxdwwsvknoudcgiytyvxvsknkdyccdqlsxtgsnhoiskjxwuujchqmsalvtzzmahaxgcvksgqa
+                  example: wijmxduemqcaivodjjijpyprgdeeueqezsbeivhgdoiqtmmaureauqvagbvpfayscojierxspoarwuumgksxmdysjgmjuvxquqnkvwy
                 password_confirmation:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: grtbqsjdjvuomuzayzogrwzpazlykwpxikdqbylecaxlspeyxnzyqddjqjeehycnsgrmedspyydqvucrzpujglqmmaggwfbiisrygujjtwsdexxecficpjntojamibqboiypgirhrdlxiyocexbslvedsrnvbyrmhloocmb
+                  example: vruwseppcdwqxrvxtterugecrremkvfsrnifrkxtvtyvvojdixrrlmuroemyftcedtgdbmyisyosrauakxsqubmmgugxcrhgxglsfwatp
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - placeat
+                    - aut
                   items:
                     type: string
                 roles:
@@ -339,7 +339,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - enim
+                    - qui
                   items:
                     type: string
               required:
@@ -538,7 +538,7 @@ paths:
                 nom_role:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: kgdxapoqisiolnvzvvselgosxchqvqrvsqbhxdhgshmxhdlfchvjalmteymetwtqbrudepgaycqemtoqnfgdwzxldnwrglpnyoakrkemwfgjelerfpjtzuoqexbeekhjsdvfvyrqbb
+                  example: bahainraf
               required:
                 - nom_role
       security: []
@@ -696,23 +696,23 @@ paths:
                 nom_fonction:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: xazsaocrgsknykfglfiqshlqvuzryjntojlllhndzrqgisnkfgmfzlcvkvuadckzilsjrsxrzjmehcwsvrfjaimvzsoatbtnbbtuqwtwgexemipkakcaydezmlezvokmgjcolemdkximfcfjfzejmw
+                  example: htyelqtzbxfxdsahhzphosiyuxppyowpcdvpczawzekbbhtammrqlfdblngltymeehzpbupfubrxbhgjzmnh
                 description_fonction:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
-                  example: mnfuhuudjzlovwcwetnocpvixlmrcnqhcpcfvpodozgachnymfoyhyyvftshcfaufvadzexdmcpvtasljkjzcfjnlfbmsfeqcqndbtzntuyzekqeonocjzijhwszbqhrqueoxpdyufuhywcwzblvxeohkqnnzimhnieqkhgxehlhwepxrwurwgknqxyvpagcptqpkuuhxwotlmipopzfijeitszqqfuovjafkvqxbvoogcixbklxhhyuwyyykxjwhfwbekwkglhuwtxzmauptqiybfnnaplvbftrupijuttoquidfboplxvbutupdywnsvajgcewiqvfkwgsogxarfpfdecniojykiycfanenzacjavbtuzjexmzzhpdwrwoqwtgwmhauchqsnitqpqsnmzdplatwtbzddfzpryrvagtiusfojowdugpbgsmpuzgrygutujwlmmyjyulomqilhmqgtkpttogzdscbzmmfarzqmbayzddrsqeubyginspdvrrnuowjxdyqkxoyzyvvwdjwlyohtbygwnrhuqgiewzuycctjmexvmwfdaahoywafmwbyxsjifepodeljlsspeypkfrpfchyzcpsjubbichsmllwpbhjjfpigrbcxhgdffurzpfqdffmqboptlvpjlebuzzqwtltfrdfrasnvmfgdlfgqwfpigmtnvwzlojbbwbrskwedldzyacwuhxxbrkxewdjfdmdidejdtaeyyrnrkzwbklghqsuwmssrekmjjtfqiiytrlcrkogliwibzlistaonknxkqhmevpkshtuqaefvktzgvlwiufvwnmzblathmypfzppfxoshxgsaeonozvidzxvvgmuhlbbqrnafgckacymijeruuicrbakkpfxiakhgoaorzoccbrshbdjzhkipmtqpskceclyfykytkzazrubxtsfetxauqekhgmpovhfctieqoioqucajjdtrahiuouleqbzncjxqvcqsapusrwgbfzpthafvwivqikwcshaokldstojtdjfoukrurmhcukvpjzyqkchprvaqlelofeylrlqnmooqxlyimwmkklzpxzpzvjstcqqlihlrhmrztjydvjamefjmrvmhrojvjlxzqutbvoqbshuywjsrzzritcudnogymtgexurywevcsrowqseavsxllxdwuhzjwntsyongylcdlztmldvmsfrefwqrbbsvayuhtnwyhissehlmewprxnfkgqwejlbhvezbrkkweiixygxjmzssvufehhomcracutqzxfmstaccuwlzewtdtyonaupwpoqvvzphedualqbknzkkqodtsrnnklsuvrngzealpdwxzvbrsleaczxppoyczidaooqawsavcdlwhkblcaakmnhwvijgdwofiuqoavopruxqocurcxkvklnpuvftcqpfiivcuqdudbezpzerliieucdhczpniyxziacwwxhqnusuucgfwpqyotrsphabeumxjuuupelzgffvwxqjnjcyhahbphirhqojxkscwubhpyxqejcwmcdfvnlfnvxshgexmjjlgoblymruoipvvurpzjjfltvugaqrnookrvfxaagoofyfykeoaiatedekjebymxpajhkayfomlxjozjclcsvqboaqcslnfpggiocorqllvzedmlxmzrdprpxshzkplororxrpddltjyyidomiewvaflooxqbclxdqiamlkckwufeaqecjtktzsvjuxnifgrhicwbgigalyjvrzufxkoqpzooytouqyenjszqmtribdcdtfgtniejgslkexfxndjwffeptdvetspumxcsvgegvvplmhmynhpqgbffddddrez
+                  example: ybsoqbwwybfbhsxtcawzdqqbvmkpxmeqtyylhdayolomyvhpjujsznvvkoffbglzxasyvozziftiulobrbnvgftzkmbfpdniykndzkngbfwdexqfzlniatctwyviyvskoztbjbkjzikbcdxyggyfkwocjyutqvedsuiwxkzlvwhzfxqvlcemvrklpkgnwetconeyiuvhogfffdbbhltgwlxcpffsjtazepytgqrrftzaeywfkxsbagcffhndhrqsrslptmoxarqecahqgpusopesljxxhucnwuvunlztpiztsgdptmztdqyodajgotlxeyzjmwdbpbjvtfnwtnmjvbnkbtzwawambatvesvoxjloedchoupghemapoprsykbbdwhlovnudlklznvyykebblizzgwizhkzsgybjjpuwrqzfysebusenrfwpgwajpjkhbrhyqotimfuvccuouvedlhubxgqdmpnppyoxjnjcmxxxqgknyoyiasevaqftbxmfcuotiucffyzwxfitixkxvqhrsrvaqyijkaiybcaxuwhrsdmxzhiwvopvoosjjxwiirssomtlajqzidnkbdgsbnuevcxeyabmxwqcunduduqibzcmpfztduvaimavcrvezesluzvbqzbvtkbtlxismfbnzpfahtewlyjkfcslinxdyburdajiqnxlhoaurixnwvptziwidaboomhdqkaqpfrmmtfdmzhofdnduqtrhquhxphpmkzsvosrumdlzhfttpkwgwsrfibeirtcrisegjghkozqvqqcqmdawvzrpztruilqtgztmdubasxwxebtdvniwfuwjjdzqdtiydyftyjgdgoiiauzzikkxiootwmefziwqglexbneoqqonuxiaezrdlavuerbcrugpocmahfooizzolukljomyebmaypfrdlmcbnpcipwyyhwmpsjejrlizwtmtsvtkznbfupsibbrkvsybxlvcgbhlqjkliuwhfxiimquygqqsrzqwtphypskxrdhsiivvcyeymenhmalzheuodkrkousorlymoubdpoagdnxerbabvxsqvgrtsqpsrklockbauutimskxvrnsppbivqjtuxvoaugljgwkcelapiqxlynrlbnhsmbgkwtbtqevuirwdwzxthfxusdshdduqgutxhkocpvlugqwqxgzznygnmxeuhmueclakbbbocspeeehtuttvuwqtbaltvznknjehcutrczsteywmytltdcnazmfhnzmmfpnixdfltwfwiqbpdfdziytunulpvntswcfwbbfvfxskxzpjdqloljfkmgoghndpofhgwomncckevjuxmwidyrcvfhvtksscdqpxnfqpcuvvsnboualtildnygtnmjaudcxcxvtdrhuutnqqrsejnczgblvzudmiyxpxjjhdwjpdsqnwxsrwxndmwrgoobfgwfgtdfydsgdslvwptulpjwwdwkdlqwwrejiwthjpplsmvwwnqnyrhsdeykihiejfgrxgippqiauchsbzagwneffloaspvzninqgvpjlyrtczmvvdrufmxbvcngtfamvsegctuktwqumqqiniwwkwkvwdxgobfkikmidjeabifrvytnaebrakpeochzbwzraqnprzkbuwnqanlcvpmumvizbuqqbrzhqcvaejezyzfwokuvztmwtfzzydmnlnhuwixypkmrgqvknqiartlrjwskqweydcjtcilhnacncbsbzaccnkxobmzzsbjvppepksilqsrpusznecbbruanwlzztnjskchezqyqhyehatpvqyispcgkilzxmnwbdzmrtxjdumctygjbzvcoaoqfkghwzpanithyjjfuspobuncwrrthgaykoslidltopuvosjfxdyewqjagnrbepfraneczadojxinqfvhlxzsidcvfvfmbosetydsvkdcwhfesdnorzslcskpqbriqxlowdlumcoltvvysryjrbkusvwaortjdexkxgeeokgpzpwusooutkqcqsmprlxtcbxxkqwmnhadxsqsjbminomicqpvnlujiizjpffmtodsyhnyxkhwfrydzrougzytlmmmpvkpqiewstlozzlzavkxpyctulqxpzloutfuzszpdrobkwvqxtmyrihlixwmlctexpedaxrpjxvguctepujiofxedxdofyzxqifdyvnxqyxdbznjgttkuxvrffryuemdebwryrsgyinpcabwtbzqwrimcmyitansukppskhxrqkmdprptroctxokmvudvrrtaqzmoyppirrlvjjymymtmgzqsmtrpzcbpmoollaaffxzvrrigefyhircinzjgnwmikceoyddzhbhkrsdpfmigokcejrtywpcepemzthxnjieisrdzojqjprxepdvotgvbgacbsimkyytxfcjkuswrctqmdgjdpvjfpyhguzhjmlwgxaohmphkxjixirxhltsclabqreyvwkmwscnpflnkaeugmrbltaohacjldumlgmspcwrucmxhdzgurmhuaocwmfuqwlwbpxwqoftdmtjrtxlvjgagsasewkaqyllxfzzhemrvnmqvloadmaiqkwveevygayrihtcyzfmgnhywkcimpjuwpaqemdfjvejtlflqqbdclgtebxispleijolaonsyyuqkjpwtmhqsqwhibemodcooqhkgmzqwvkxlfdygadvujlhwkipcqylyuhhhtfdztgomjlmtkorqomqcmlrudlyhyjvgbdtwlwizcxaautcipezhbqggogpqllqsxgwyjnzfjgeurogfdokykjqsudsywfnhhemiunziwesemjoebntkdfhajintevofmqsvrymaxtldzvwkiidfwzfpkytqfahxjpjjrottncnzdkfsksznrscyagafwjpkddcoyosxtsgnnhmbtmbirlrohynetamhjptgaaaofighuciemlpxfqhavrtxdjuiehqtyjrtrlxoklaoborigepyuxiadbalvrswbtruhkyzrfrqtqyhqoydeyhatiartcsswtbspgczyuhoutengqpnjlxyoaydluhpkxsewzwtjzedcyykrkqqgtzwrcejqyprtxfouhacxvqsymvwxzxbexibkiphqjuejnyrwyvunladuynkfvxtxoxaxdfnbawbeyayjifzaehwojjocqmtdszzvsfihjdwcgfkvuxeveftoopztlbpgaqgoiyzhrulhebhswpzyshotjrropcqtpklzqitpoxsqbayhicyxpqgdqbvrdvmzhotsqzwasfflymyonqtegscggbzxqrwzozwykvthvilmtanngjzixhjyznicbwiidgzfhnnfmpspypfrzqeplywzocxqisenmglfocqvkmxqrcorsocbxvwzhejjnparqkktpfmaoqmfkvnostefggoxgvjglvirixuxebyeycsxzyrqsauxmtrtwgnhsvbvnslgjxaaaktgzvkbetpjbsmkvzxdfamnwppwjzlgevdxzsiydqpssjaqbibjjnquamfstnzguwzgffqwbqnlcuxloakvgrlipmpqlhiuztwmtbtoivdwelkwgusxcvwlaninvlwijhlgtqoodqnawlfsemajbtxvoqvopwzspjdfvejmspuwszpuyvvztcwyjwmxutnkiqtjdpicaymbyogkgyqzrjmxyfwpigfjnfmdltcihiukflicucfrrmxngfqncapdyxzmsgueeczjwioohegoskqxajrjdslaipsdtutqulwfgfsbkzsicbvpkoyyhrqfsncqkdlwieippkrsljxawisufmikgpnvjaxiduoisypvbpmmurimsogbjtndjaeslalhmtnvswwahltsfibuvjrejjtpyyrzkyrjcjfymemtnpyldefzjuerhefahzgyvuddzfydzdgrtydwhruuhbaqrllxjjyoxdhdvqerkrphgsdxooaeqtqyerwteqflmokmllqahzkmqohvgztikaorxboubpbdmuvzqifdrutwkmgwfizlnpacqfrxlczkqwpwkepymklmpnjhpvyaqpuotmhblknbhuuzmvsxvo
                 enfants:
                   type: array
                   description: ''
                   example:
-                    - perspiciatis
+                    - doloremque
                   items:
                     type: string
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - vitae
+                    - aut
                   items:
                     type: string
               required:
@@ -784,23 +784,23 @@ paths:
                 nom_fonction:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: blfbwcfsnkixunbfmhogfhvesmhptiwuvmsbqoqwdxssowjexvuqyicahrqcgxhfxgxfohqjnvpbrazjkaqwhwesocnievylixdlzkfeomubyvtxjbzfxobbxrzekwg
+                  example: zqhdyonbbfauqenqkafpvvcfdcicvuobviaasjmrjxuixusctivhvleafdcqqexhcazqwbrnsvgebnusoitzbhprlcdjhkybdvkojqsgmvfvpwoxgqpwsgaciwaqekggqugkskeyzpqxctyvkdimwoxecvjnmn
                 description_fonction:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
-                  example: rpmqjxvqqjvlkidrucaelixipduzveweulqvrkinuzqhqnphgwvhmgeucloqfkfuvmsejzaiyoughsmdvrhprqscqabbhgismhlxwbjixyjbueeecrnabsvknwqicklnpeyfflapgrlglnhxopblifnhieczsnnkwmlygmydghzeorcxjsbphscdfcscpwlbwwlmgaxyddhrirdgezrakohpvjejxjuwcdgatohmmdtabrugusubkuatjxumnqjckyfkvsckcxifkqlapqcgsympqteodrotctzzgftugkcvbbgjsfuhvwftcwgdiexmbvxfokrpsvrstugskuupathvcqcxmkzusrcqbzygfkgbuthbivhecrpgkgupschckdmwantilhqtshwbhvnnalxfjufvrdwmoufxyrjrhnwugnueiyrjlefpziebqhsdncgiytpocvsagdshwlwkwxzyyuyacnvgghyondgjiessmbjnikazwwvzjfqcifeftlecejsdvhdqhresfscejiueubgjosqzpdwbhqmjaoxhexpdjatljzlbpdwswhnxsgdewrukgglxcvvijzyjwsdcbaeqzzkqfxauuzquqfzcuxdvowfqjdivtnogighfsreijckujfbfkmjqwquigyfsjfvojfyysumqxomeanslyaolibmalxtdkgstifqdjnnvliwqycvivlwxwxdapfpgjpvyucrkwrwlrdbxeqdgmsv
+                  example: adtjdlogcqkmznhwyhkcvunluxamdsjxogkkgmhzdeqlunrktnajyrnouboaeinomulqjggjkoyglqpbahejthylkctqsbkgajuavwondkkrkrofbbddaywooilfbzhtogxtdkpnvsubkvgddyavwurhcspxxsrqaloovscvfszesyupfsnursyjxzrtypelrdyncpjvmkrewxfevdxymdezgjiydinsjkbdroyjocwbbvqkoflhaxvrycxvztduptssuggkhobsgrzxjzadquxhkjnltduyriphjjcuzyiuoyiptxsbqqohvlqsyzymxqjyihvmfexvvgovpmlhwdeagrvdiganvezcinkqstuhregbalrydgtspjrrgjyhuwgvsrsyahosgfbpxipyoxfvinivmcgmqtxxztxxewsqokqpjgzlennyxtyahjhhympzyuqainewsqljlahdjnwdrbkxpimdycleppyqnjovadsxhcbchggyvyukjxzvehzswkadlakmigxrvutlmfyhviuryjyffrsmstnpahnbjlewjnhybgjgxrwepyeuqndvttzhtqpjiidnzrjqcujdiobtlnenzhoimwvyqkgfcvgfiwdlhdxynmzlowcyvqqzefztihxvutnrjxzwgbmzoalksbyakvtpwgncfauktwwwspoghpsnpugpjypaizcetqipynifgxqesbjkdqrsniqpsjrmqomuplistfoagbasmaxbicxblnfwcfywfxcrsyqghmsumnuchaaacsmemfwfmqoetictsgkitktvjksyktxluekgjhspbevgmgnkdkcfdhkrovirfzdtxexehxqhfafkiiniejzxzfspmfkzyfxobmnxhvnnrfdqyavbfpgtpqngnfaabcwdtyiqogcjnqahsbgrunjaixuvbvojdhdunwrzsdikxvfzssstuyurazmgamvcjiwistxdfnnaovjkvytcnbjuobpzfxsjrkvatwanyenfeziclqpgzkbitqgdxxignojpyxjikboecpjjpzsedkwaheohkscqhoqpwpgmcrmkuazxjvkouiwnmbpxlsvunscmhzlxacuaxnoprexlgakiczdfvrrqptsgbiuypfitoxrgjwpsqcvayaixlpvsluuquageeietavwqstxxnjpcrovkojnagkyfbvergvucitzjjxfvvepohdjuubsuifgbkjhlfvrtratcjkjrpxsirfjvigdanbjkyttxcpxzrwytehlonynyqulwrnfcjxknvbuwfhaedwoovxxaflmvbwcmlgcnsdnwjswtzckjbozgtirvontjzgryvsmavdohwnxvemvmhlofidjomfrwflwtbinpvtqqklegouigqahuzgajjknrhojahjhypfaqscjsoraleeuxorycxwkwcqbikocfsggrnmvsbqwyaajohgglnwdtanbbmntchnrynwufzrlfqivpuwagjchpsdtjyaibonsafqmddpbrkngckfjjoqjdrmhxarhimhkpqxzqeitebrarxjlxquirgnqbltcsdykawkrlgrdtmeqikheqywsktajcquorttlqohypldqcyysmxosepqydotdluhjjtnluqarwzkqrdlrcjtxwymhwdvgpvfrfeihanwzmdyzapvvmmfrcbxikccmflocwhpxsguwlpzfqkqxuukidjnvmwcxbkegdfyvhudgjqnknbxlsfeijizlxcwstfiivrfrrraobfiibadgyoiepmrtkofxrxvflvouqojynqlnrnndpwodzglkjtoounomshumjfcwqemrvmvnrtpjkzadtwbobniqsmjnykpuzsyjyexuplrqnwgjqjyllsjtufpvlpsmfvakaktlwsntfubpqtwheailzzuugxgfmdsfszaxsmbpprosoudyexckuzmfkrhekioepaaniqmedqpsuqumrggupefkyjxarmnsrjbcbiwynzvqwwflbqcnfkoskzphqhpqtqovwywjbsyemeumtmfqsamxwpxxdqgoktpvxeqyxiksdvqhvyclcbgneaekjslggvfbqphyixywgnrcavvfqkovsepgfforsucjnfruicmqjgcmbjhqeejabhqtgireqqbpztjmzhezjxhddbvddlvipowrdhawixxonzrfkydtjqchrwypiazkbnxzzvtmozgftipaaaotwkccinbcbsbetsrnvlsbrieaungsfqhpclljvvnegnrrptdkcktqjmaqitlxpquvhfodhslybooxuddyrllvcuwmbmkuwwpgyattjveyzpzmvbzfipayvovdbznjlvudtaenqdatcvaxfgjxnrnewdhqdshmognpfwomilumsxmegricsgomxkthoeauqfzwcbhctvrakqczsteloprxufewpxvhjtktusrwknkfgyblqxzwicuqdvsutaghcnxgukzogrvaqayttsymnyfusdnweqqkztaonopyogqcogivfzkvhpdiivjfthkpagutqstepfsrnwfiolnywzllyyedrjgirmplfplfeaqalzelgesskaiwgcbrhlzjilwpptpufgmruxldxrffhyseoamrvcushjwhnfgzgjgsbihlwufbsaexysvgthucxygeaizreiepozxohukgwwywascbhvchnxtptkoomcseihqgtekknvepxxnyrrxvfmgbenjnmpokkhlzddguohlasfpzcxnfmljxzdmvvomexohzokrvwnhkryabvaivfubzavbhrteiewnnoitbymodrsdeaoetssrwcrcwfaiohuibvelmxhlhfjmsapbsugvnbtvksbuvpfubradmcjpviwsotombjzwmifkkzsoqtlcprwqoyfwbadnnlnstkvyoptwtkxvjaamtisshthjjziybnknsjwfomzkxkktjddurobwvaufijquvleftqmabpnbbnjnhxcrcletmftwzjylezebpensyzsgzjhovbfcbnrnpbywyxgvwwnhxrutxyidohokxfhiyahmzlkodvnbweclknmlilakmceqwnvldrjncdabyhorqmuveybflzapgicavymsobimcgugvfxfgpurfdtsqlnbihukcznrgbsfszzdeybbbjybwvinbkecyojfidyvjkljpmpvmpxrdxuirkhoghpmeufltgaizmxfxhtyyyztwhbjesuaemocfzjjsekwspshyoqonscdnwxuixfbjvlfnuyqtaucrdedfikruuxrpadjnlqpddixpxckacvkdzqpjktxlcucuqklvjgkpedryknyjjisnlhlqcslvxlugkxidxtpneevlmxvbkekgltdmzinuegvylqrnkfisndmgaxaeqqvalhurkykttimrsovagugfairtgiekctuzezbbkudiqgvrcxqnvmqcoznugzpvkswnqlxdgkjandprmijmqasimyoearyvtwpboniuyxzokcrrwmvsczmrezihdyavhoqdchcqrmmykakvnfxidwinisqnvuckunglddnfhsaotcbwwqdhqkqvrcmwiicvlluyoowmlnfttimpnwpozvnbjqaitwafjzzueddxgajauluxypwvcvknygxkiosfbcyoahhftukaoieraoigvkcsjtmljjljuxzfqkdjqgglkcwqrklmdrafucpsqezikgacitkrgoxykycmxrxgqatjronbjeegobyogrgkfcrchopfnllsszupaljmmhsqjcnvuunclzswkcqucjrabcmqoqbebogvgedcdfqpuazhdqdvnvmfcmlcxjfqblqlfqnrxxhzdnpygamdvortryapglfykjaopzrvpemgzyshdtwvuqxyacnmzhdpxhijjxfoxbxvpkgcvlxjkgtogswrlofaiupbmjpdgycfzgcgujvlvyfkpuofjyeztrlkrljsfvayommfayvxfdhpvvgyeacyowipssrecuouplmhbhigtxceqlnepqhssvieqmrxtbafcogtzvrrqvbixlloqxmnfneaauyjgvqxmuiugvroadzgorvumftaysemalrsxbsvxjlyyjzktinowggurlziutlgkgwmckjgzjeucwggcivivaccehjwfrnydmtoobqcbhtcxzcpwmbfkcmdmidwjnazbilrrpdfkpvtowevxfsaeqgpgbfkoohiobjyfqsaeguyeufbvubzvgxfumqzjmomzbnmrgztnpdsditaeqiivkzhnumwkypearttqmobzetugmjlqbobuvbcwbosxrihhlcmeqlllldzlvapitrzfdxnxffayqqlakambekvkylapfyzjookmzkwjasqluodcjxkvgovhxamvpoapyyrokdydvnglfvemzxdeanftvonabcvoplycnvtegnpyavgmyflhgpuawylzqrxwusvoqblvhrqqqpvgkxdlhyxzzirrcckvrpwyloxedgqxjjhokinqdtddppezravzrpmitsouyfcqfacbsyclafvaclbjyxaqailfznaqgnkccfvcmmxslynajrhbzowbvrqdrdhwkwgythacighogdqdozqbqduoxxkjkfxcfrabxxfcstrmfvwlskunlysnymmobcxrhantpkmfwkwevoqydbjqlgbvsrhhjmzsamdtrenzvxvqvqijbbuyizhgnkhiiqqrojblibzmcgwkiudhlezibpxzkxosxssnhfkugbtxdvbsjywjpufemagialkqvwvvzntbgnqzptdmlqdtbhzddrkvemszureuwdeqgtujuqxwtutgvtxdstdxjnqcrwjhvqjcfflmemuenadfztfrdmrhqhb
                 enfants:
                   type: array
                   description: ''
                   example:
-                    - necessitatibus
+                    - ut
                   items:
                     type: string
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - corporis
+                    - nihil
                   items:
                     type: string
               required:
@@ -973,19 +973,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: hirbchsmlbgptmnxcxzduafksquihdvaipbbhhjbmswjligvxyglrpgdiovoiuymwvfuoikspxybmodtfbeqpakrmoetmgzitcttftbroyvygqedxqkfgdsmdbhvykjclnhfyqdrqurnwxqgymkwkpffnhrqpoofeyjdrcnvdmrgbzuehnojpawvbxrqgnwziickyoeiqwwtvibgducroraeufxmjidendippgik
+                  example: epyovgmhkoitdkutfmwrjwfyhornloahotkgemrxuxjqetwrsagzdfylknsfmjzvwfazbsrxqwsyzswxbiphzhjggyxqvuuairqmcxwevdqiqwnibkpkbnggnnpijpsglcrveajnsiawekqwcezsuezhtkcccfeotnnefcrecufcnyqwjuxgcgigyopuppqu
                 localisation:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: xjbrpdydtiabkqpgbrfokkwlweksytpticodfpfwrrqjjvvzuhkjbjwmlkzauadyefftengiczrlqnyrdgxthwuphtlsdjycyxmdddh
+                  example: yogarcxclrdkxzlnlqewbzjrirfdqqheobgaylhpodbyhyowilufeldpotdzcmu
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
-                  example: jqxyoshslpcaforlrvsrdrlhxddwlljmlxxvlpeoqgueusgeqgpliavkuq
+                  example: anklhslwtjqntidjzhatnimeqtkmgmyykvsxtychgyzcelbtjkdrohnitzigqpk
                 point_vente:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - nom
                 - localisation
@@ -1057,19 +1057,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: gmxrrtzgyc
+                  example: wsghexavgpurllherqasivsjqjdomyyc
                 localisation:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: saxqiadzieyjv
+                  example: bekqaauxbmbjzpdkauydoawcatvopyynhifiafglgsahhfyoalfoaosfegsgxvargiavehgldwoxppclnaqfkqjucsrisrwvleprtibscuxbstgjtismglfhjdivvocwscgejqmwtgvkjagzjzbqrajprggysvosndlrqexcscuhugttawisusqefxsdxrfxuppwckqkwdzbkangnlyskrjngdoqqwgmmtcgurvgpnzncwvwonvirp
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
-                  example: ykkvheayvgayelctbuvazvqrfnetsqshlpixubhejyzmiktlsywtvhirfcbmfwuhbkywgttxcesslgyygozyiypjltqmcqvpgsbiarfaitfuxkfbkhnhjmbtdrobnlvvguyq
+                  example: fjoclqherwjmqfekouzqwhzuvxlkdmpximptmwgzzuxkihixeqohvdfgrucmjkxjzawtxoayajrajqmjkpyyvaqbuovdyvywfnmzjmsahbxdlehvkomymfuxajcuxakooicehpfezytmbeszczdbs
                 point_vente:
                   type: boolean
                   description: 'Must be one of <code>true</code>, <code>false</code>, <code>1</code>, or <code>0</code>.'
-                  example: 'true'
+                  example: '1'
                 responsables:
                   type: array
                   description: ''
@@ -1191,15 +1191,15 @@ paths:
                 libelle:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: tpjowvwjadmzbwaqjldqoyuimzrtaeobbqcobvjugzhtusycblgkoghmbptevptuznsufhzwmtaaynlbtkqdrayqm
+                  example: zodgprr
                 description:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
-                  example: cdetddsivkiuzqtffskzyftgjathasyjaeqaxgcoyxakunqjxfqalgeqdsxfnuqwfzizlngwqyciitpcchavbucerexknqbxdjgywuwqybapffivzhxslxlngawwimrpbxermrkkbbqohkiyiihzramyjsmqvzitcforxgsntfnymdrhcdthljfgyifjhhaoolbjpmudjrlwceamubwtxbccpgioxxmxqmqbawnhvaqgngouas
+                  example: qfhmrrvvggwpyhsmhqmcpzstrfmdsifccrxgedkrzohclixjtxnticgfewfnvckfxygdwmvrrlsimrsythzlevchxuaygustibxfxobmnhegdvyrewiimqczrnvfsutxogurczifempiiagwerproxstpdyytqjywsryktedgkfipgtkftzxllvxxgakjysfonwnoggtrlwdtgjhfqioqufxldhcbpgrfwgxallgdvyyycajjyhnlalctugilpiyxwqshhyfntefbyxwalglnywufufycdroylwvtzrjzsdjzjkztacqhhnjedqlkwzodnobwrgvdapcotugeldzcewzppamlcggntbqubfrefbftcxamhazrrkdaltmlijpjdxfjtktosqrmiyvvzklxtvopfnlvgacnahcxdukscwnxpxdwbnqurhgbayuvtktwoqxbxaecbuuibfizgdjtosscltlirdoorcpbfrhlzxwaawqgfijsfnfhteyzjnzumtkvnduvfwfzvunjmkubnsrxditgtzyyeuqzyjtocyaaoyfinspdyhrigioikgsgvamkcrsochuehptdlaxendbwfjeqyhiefkaxdoruggazmedodzsjvxnziunjarqutydlhngfekxwcxkengbbzoirzppulbftwnbwupolagtwrfjtzefpwynkeyrbsdhilsbvctwetbsmdxsmqpxoupjtrowagwcgnusoepixxjfckvbktvaqoarhthwsqbodhfpkcjoifawvxvcueyngwtksvcinjkscfnewymsbonisvbhgwssuzoxwavglfnciqgyqlbdmerbjggehsfdrykzsiaz
                 type:
                   type: number
                   description: 'Must be at least 1.'
-                  example: 1
+                  example: 0
                 sous_categories:
                   type: array
                   description: ''
@@ -1277,11 +1277,11 @@ paths:
                 libelle:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: dxvhszkmnjxtfvnimmgkfvvqgliinpnavcvuvxpcgkkukicwtynhobistlffbjyjngjkkklmgrekfpkqkqnudpnpelapapsuptmhvgiixwecdvdrgkvztzacrbnkjdnrlsdvcnvyvrgdugrksmmqrjjbqshbuhptjmgfaydixlgxbkafehcoyjjpmhtnxdbfkvpcgfwhdvjxlalicqekmrpdyqfgks
+                  example: qxcpyjbrctbzsgakczefiostsakzuxokowjuanhtewtnanzqrsqszwjdlposdfmymdfnxyfrbzexrxdcuiynfbybjtkdlamxgjccvxciqjlvbhbiuozadvmtzgkqouzkqvvetsaqkddhbltjegnglqsfgjowxymqfqtnlbwtxcrpzaedwuqrqadglpyhkwgcpiypodyhfqegiybjsslstfkhjl
                 description:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
-                  example: ycmvgkeyoerdncclsxpxebvtlbtxuapxypuaasaxvhzkmueodjeluivazizzemwhkfzxvpguifrsyelrczrysuqtrtbyafgbpfvvxbbhhfjmpgtieemklgkvwfkiyvjihpcxqbskhpyqfvuyhwbpbocqxsesmknwkwvdsulfqumlbggawbfmgukoytqnwkshiwsybcbxexctyreygknffvxvfcavzfedavgcbjxsdbglptsssmuatbbyfrlterlddvwuzotgdzzlupbhxtrmoqevuhdayyxaazcbcgajehcsromcmnjkgrxwmykomnecdrnilwmfflgnbyxrhosrppzrgsvpzmtgjjxllpkzikcnkixusfykmnfsytfwifigcwngwhrglrrupoyekkmcjscwkbvuvnzatvwrhmfyncwqufqhewcirpfnutcwntawsuaxpqdbommrzpyqutqpwwembaooeacgtidzolsjvovckaxvbgcbqmesqulyctcsgkscobbowqfiqosobhtmlhdvewmengvilotciljivepymnrnjnethszcikbyxpajxxwelqokksflilrvxoeeuymqrffifcsljhpivvswhzphgzmcjjwecifnajjreiucxrjezjznqhbqjtmyxhnsvhtthewotttkjiurfzusflpvgsvpbarmvxhfvckhxsbsbodnnenlauochcfnfsh
+                  example: czovrnenvxgmqnvkbgzvaeoxqbegpthzilecywfygcdvnjbbfhxkzbkyuchxunzcboablonquqzibtzwddwwkfdekneqmo
                 type:
                   type: number
                   description: 'Must be at least 1.'
@@ -1394,19 +1394,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: kuxicbadxurniqpekexcsxulhyrpzwsecwwmiyobgpyrnbqttoyqrcarjhuohdwrxtcoqmvrzvfa
+                  example: oaxqgqglxcrjfprpazppodxujpivptynifparwljlawhiyjadvawrnaxulxmkvgieozvziapziatlfxxurnflipycquoqbbufnuyvgekdeglwvfgwvfguqlromdagutymwicswoyihpnfmywltoqaydajacjxrlldcdhowvdunaykwmjzheqpwtvgcbwjzjkgqbtczsoo
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: qqxrgvokz
+                  example: sywhwhqdzvuxbbanxkfnwmnywcwgjvuqobkuypswiqkzdtfdsxueew
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: enjzwovgnzffghewljnwkpszbacimyytxmgolzkzxabulqerpkiqjarrbpcsgolkyjnthhbswwtzpyjuzroynvyjsvfebirrdzeqztsfftwevxxrejzemfakwpxmjxrepjzkcwkpfirksgdtodzgxxmdfiilcqppljolniezhtorifcqccplodxwhntvtzsntvzriwssqexlzsljmccejx
+                  example: hxovzzvlzcymslepieerbcnnffelnmjzwmbl
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: jioqbmezlfmyvqie
+                  example: pduqlezmkhgdekkgoazbitwxbygap
                 categories:
                   type: array
                   description: ''
@@ -1417,15 +1417,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '1235948104281'
+                  example: '1659850598939'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: m4056065a
+                  example: H65585197
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 739s689s052s65288
+                  example: 882s451s122s83941
               required:
                 - nom
                 - adresse
@@ -1497,19 +1497,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: ulptitqidkfyhpaxdjayuxzwfvplydlcdtngljgxhkvbwxdrqjspbxyfjfvbymnycntktkwmdaqgejqtfaaqrbifirnlrrfagntcnhqxwehzvrwcxccdyyudserpjjzdmnsrhiwelspjnmanmdacobkmaaxppjmrhoyayxtsfyqyorwdccn
+                  example: ugfaaiqrlzrlcgvldfbntnedkzhmtiqzmidccjivkrwtswresxrhwkiuelxmqdqnavvklkmhryobrwszamccteblwctbkgutmnelbidlaficxmzusiucublaioxlbmdakptfugfpezfhhucydviadqtkhmxsrbrresldz
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: xemxncgakculoobqtxsscybiettqtrmjhyxapzxxfjcunrrjklajvtdrerklcujslnnsnmkffwsazqtlgpzqpgdychclstqttjcjpbmdsesoltbgnnxsbvogfhhvzcbtgperydptabumeylerjyszbcympevr
+                  example: eljgxnfpyhzjvvdkvdf
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: feucsekxkulskvzbplmgsropbbuebctnsrsulpbrwwpfnrs
+                  example: nuztwhzkixvizllpqfhibadpvlcbcwbvsyvtaitzajpabcnmvbeyhzfeozmguwoftoxhetvxqtsiseyyysoqcxlzsijtcwnapomxaqghgivmfd
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: mpnbnacsxu
+                  example: f
                 categories:
                   type: array
                   description: ''
@@ -1520,15 +1520,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '2707852750338'
+                  example: '3711700923062'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: F76762558
+                  example: c4483402f
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 662s392s349s40011
+                  example: 896s852s524s23721
               required:
                 - nom
                 - adresse
@@ -1631,19 +1631,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: fuldzzplybqscxxxmjtwwkqhohnelqvgnwqujuygubjvgxdifawbwefegejwogzqyskvmeeyhevbisypylezdynjsqxmjarkmxdtrtmmammwgybjtetfhmpjjtjagvhcaemlneuuajiezzdfppduitgfdwpooejefaneyxuwnozokrdqcvaltcoxjqbssctyatqxbrbqgffojflorsawijgrsaswqhffwhdwrhmmjlnjruq
+                  example: kfxeaongvlntdbnuvbrassdauaeghlsdvngcqpabiohwyhridqjahbdeoxzsjnomvyptyjqvgcrijjadqujsisfpopglekh
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: drsbftnwdchgmmuqhjeerolgpmuzbvoubddbivhoutznvvxjakjcbxutywinohsuagsepobjxttmxcobvnj
+                  example: pizbzsokqqnrnspckrhauqvotenxpdpczkywgnnfbfohittlrmtnnlcvndwdpjhcmlvrvaicaozkhvtxixvlzfcrytfgvvnuvxamcmodtnipnzflvhbpdqrvcamchlvoltfwfnalnireybzkzjlnou
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: otgihcfrdptqwqllybsfbaetcbkztgbxcavjebjfpkuwfpsezcfblnczbgdqnwrsefrnnupfqfrxizdopldudhvbm
+                  example: ewfmrvygajfmltrdxpfeojbhfoxobzjgbpnicruaglnmlxwkmwssmspmiyqdbdizxucnnguotbcchfycubnkprfbnoqpofjfqyjnxdmqpfigpjljckxvzyvlgmdsbtiawcizxtajgnbrkjecjlbsqbiksjaytzewhu
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: iusqwtswiafendpqyhayespuh
+                  example: ezkdxyxqybechkfjiutf
                 categories:
                   type: array
                   description: ''
@@ -1654,15 +1654,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '0368201296614'
+                  example: '2585478825849'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: S93630094
+                  example: S5158414h
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 112s107s303s00588
+                  example: 512s013s654s71445
               required:
                 - nom
                 - adresse
@@ -1734,19 +1734,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: tgkviipjpnyyhdlhpqwwrrmtvscjxqbwobtfseeqoabeyxyhqsdcgrqhilhmsatslabvdzkxryneesjvgmyqixzcflxrvbqbgwkmyqvkvzdmoekanakftyensmtqodqlipafchvbzovkyehkpnrcebwtyxoxfseuhmrlwtzoiigarpuxwtqwvwjwvgweaxdndlontmvugcmocovauprtsrsvetrcbkkbhhgerhwxclhkkvibzwzyfk
+                  example: cfrohsunwxpzdignjzqdoaojczfumanfljjxeynijdotyvmpszbgplfmelotslqbdvioblathlthmcptuetuagooxvuyvjshkjxjpbejgkqnalgxjjxajtbqzpnzozqzugwedzibxycpenpksbktvhdxvuvdnuvmkuzhqlujaovuueyvtdyrcecayffmwqahbhpmvyxkzcswcipilmbzymsahvzqrbnylulmfn
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: wegmwovbtsgfzrpvgqmriozrqlhuneqgzainzqyjxvemizjatqxbyvkzuvucqbpvaprujnewhbcqttmsgwhcijaigtnaytcfzlwaygqiueibcprxwowtgorlhetoebwetedsijoxnlzbkwxykzwtxsmcoltjeujakykzvyyzwvrdtjqzewrrjdumrplnewuvtmbkpipsjgdcdcd
+                  example: brggwnxoxwqotjhlarerxxrzyoqiouzkmldvyyiibf
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: vdgwidsvnizyxgxiuwniqsswxbkefreushlnmugkpgsofvmucaefqdneyndkqcohtvaeyrdainnanxuwepzmymgyujzpxglitgbpiukmfajzurborvljrztrawqgglmbxrzsupesbnhxgmbcjcbtyprayfmugsziq
+                  example: wegqtlrsfofjzgzveokouwyvlezfkaalndkwmpxodpkkvkkananhomrkkllnpyeeuhyvfzlqwsuwqpacmrzzuiiwlvuijzzwcqccnsbarwfeblfakhtrwvfdvhicktrzzfgkiznzoxprpgozgkwoyjkhfactejztoj
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: hpmjegdfvwb
+                  example: nywexkwtvqehltjj
                 categories:
                   type: array
                   description: ''
@@ -1757,15 +1757,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '2663699639681'
+                  example: '2030672219026'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: C8022278h
+                  example: I0970419G
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 030s424s063s85980
+                  example: 565s426s384s74475
               required:
                 - nom
                 - adresse
@@ -1868,24 +1868,24 @@ paths:
                 reference:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: evtnnbxsmobhkplxjgwgdooveeixixnqryrdtqqingckatzhsrempjcpulukjfaeetlfbyzlyhqcuqfhngoplqlltnbxefowzhrxyvvgjdxfsctryrvhdygnjluoocarmkhgzhfmjgwzxbjyol
+                  example: pmjvbcedvwnvrwhhknnzmszvnspbsfbsaobpnafhyzjglbtwnhpiopscymiisvskwbshepyjwiormqyhwudxmbgefnzpgxwtbqloeltrafvqjdve
                 designation:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: kgufkhelugchtnvuowppwoowgureweniezwjyjlyk
+                  example: mwjtglkbqgubvovmxmecpqqceknpwikavcgrjhqtombtxdavpzjbyuldilgimoiiexasahnbiftkmgsihxjigxulhmcfidfzhhhdbuzrqhhsyyeqdcghqamlsntntdhfkkkiovnjpapnvmwqyvcgbveryscvslrowutthezetroahqhbbjwkquyxgpcrzzxsjguc
                 unite:
                   type: string
                   description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
-                  example: uzdojzvewujxtawfqovtsekhrtgtbunjjmywzewbfueullxxxidrkvlorjwqpntyhwbwjcqjyhtjcccvxdtiqhegtisdkzqutxmotwrdolrvuboplggrzroxclzxfgrhwnzequilwftipaianekgccnkitvduwfsbtpqnytfpawllwrhgwazpwpcjsghnbb
+                  example: ovmknyxusknrivbdotqiwkdsyeusumovailqqtowjahbfcvybjkjdmvuoenviryvmbulibkmmqguodvtrrupjtimznrctgeabjegxqzlibixvikuhnqxnrsircrkohbdvvtbdrmramccxxmwtfoovldfoabqhowdsuqytgbmhvjmcbftjxysxtrvjhdhpujfpzjpynyhrvpppscyptot
                 stock_alert:
                   type: number
                   description: 'Must be at least 0. Must not be greater than 999999999999.'
-                  example: 420415876555
+                  example: 817895768671
                 categories:
                   type: array
                   description: ''
                   example:
-                    - molestias
+                    - tempore
                   items:
                     type: string
               required:
@@ -1960,24 +1960,24 @@ paths:
                 reference:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: xfyygkfbvudlsbrbadcvnsvemgxmcesdipgwdstsgizfuyksekr
+                  example: ohmxpyomousugmjszenxybyilaolansahywsgivfehuaucpefrppjchxlvxfeqepilnbvwoozjfqdietsuqinanplllrguxryghrtlihodxgjoi
                 designation:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: wckhoiqctqcjvneenydlhdxeezaicofemalwmldkalkwyewmmkbdyezrtffereefsgtbhtqkugozecza
+                  example: rflytrxbelnypgntsqnxyvqxopuqolapvtwskjvvclmwxvalfmkdbmlyucugfxyfwxrwaaftckeluqvsrehvpvlxcsrnzjaldashcilbjqyypphjmokvxauxmvgyophjlwablkdnnkffngdtvuitxkeknigwlcskmvygyszfsphfvjtzyxxptljpxrvieytayznswvjldmhyfwxzerkjfngxlrfyhwigneub
                 unite:
                   type: string
                   description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
-                  example: iiodbbtjnevtdubkiovdgapucmlgoyaeypahkagtchyxqtcdtnnbendxrlwwpllxnhvnyypbvbzptigzsheejkxh
+                  example: dtyciamqirlhwjepfyzclbeekypwrjeqwzkltcebaiaueuhopsfcw
                 stock_alert:
                   type: number
                   description: 'Must be at least 0. Must not be greater than 999999999999.'
-                  example: 145407065196
+                  example: 352701412225
                 categories:
                   type: array
                   description: ''
                   example:
-                    - repudiandae
+                    - iusto
                   items:
                     type: string
               required:
@@ -2118,19 +2118,19 @@ paths:
                 numero:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: rjjuuvksiiwawxqmqsxbafjlydbiorznwuuycfwlivkflcazzqolammkpyjvbnuttuiaoqxmmc
+                  example: jvwdceaieqzfhfivuszdyzfbcaa
                 type:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '2'
+                  example: '1'
                 date:
                   type: string
                   description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2022-07-14 12:40:49'
+                  example: '2022-07-15 13:49:14'
                 validite:
                   type: number
                   description: 'Must be at least 1. Must not be greater than 365.'
-                  example: 121
+                  example: 323
                 fournisseur:
                   type: string
                   description: 'This field is required when <code>client</code> is <code>null</code>.'
@@ -2150,27 +2150,27 @@ paths:
                       id:
                         type: string
                         description: ''
-                        example: sequi
+                        example: delectus
                       pu:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
-                        example: 188463617052
+                        example: 223611826867
                       tva:
                         type: number
                         description: 'Must be at least 0. Must not be greater than 100.'
-                        example: 98
+                        example: 78
                       quantite:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999.99.'
-                        example: 858057137
+                        example: 616630598
                       montant_ht:
                         type: number
                         description: ''
-                        example: 14.81788011
+                        example: 0.0
                       montant_ttc:
                         type: number
                         description: ''
-                        example: 137513587.18
+                        example: 7.0394
                     required:
                       - id
                       - pu
@@ -2181,11 +2181,11 @@ paths:
                 adresse_livraison:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: eu
+                  example: tsuxcvwdjozyrqaoplxtzrqttrecsxrmrihbjokfwqpwgisksvrbjclxrlgtdbejllwkzkwesxnemzdnxorturthsfkwarqjkemcyhpizcmnwptfpbpmgoam
                 login:
                   type: string
                   description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: exercitationem
+                  example: repellendus
                 password:
                   type: string
                   description: 'The password of the  user.'
@@ -2285,19 +2285,19 @@ paths:
                 numero:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: knxafaarblieyyybupullaraugjrqwdsj
+                  example: egfrgdhkrseanlbqanteblvcjrojoqvhyyhglnzwpcyxnyeezpls
                 type:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '2'
+                  example: '1'
                 date:
                   type: string
                   description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2022-07-14 12:40:49'
+                  example: '2022-07-15 13:49:14'
                 validite:
                   type: number
                   description: 'Must be at least 1. Must not be greater than 365.'
-                  example: 225
+                  example: 75
                 fournisseur:
                   type: string
                   description: 'This field is required when <code>client</code> is <code>null</code>.'
@@ -2317,27 +2317,27 @@ paths:
                       id:
                         type: string
                         description: ''
-                        example: ipsam
+                        example: explicabo
                       pu:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
-                        example: 791370674646
+                        example: 910334361500
                       tva:
                         type: number
                         description: 'Must be at least 0. Must not be greater than 100.'
-                        example: 80
+                        example: 79
                       quantite:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999.99.'
-                        example: 588464526
+                        example: 184312423
                       montant_ht:
                         type: number
                         description: ''
-                        example: 666.61194472
+                        example: 434.2155513
                       montant_ttc:
                         type: number
                         description: ''
-                        example: 246582487.07934
+                        example: 227807.478169
                     required:
                       - id
                       - pu
@@ -2348,7 +2348,7 @@ paths:
                 adresse_livraison:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: pefwfpkggsycxhgprauaxplytq
+                  example: fpaffezumsvobeyuhxnenhxuzsvjunnsimlnjfswpwsgfvqhivtrnssjylzgwuyxrlitxsfncyinpdpyczazintyljxqtothajtpdibzhrxfnkfmstwmjsywduwlwmem
               required:
                 - numero
                 - type
@@ -2363,6 +2363,95 @@ paths:
         required: true
         schema:
           type: integer
+  /api/parametres/generale:
+    get:
+      summary: 'Recuperer L''information De L''entreprise'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Enregistrer l''information de l''entreprise'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/parametres/generale/{parametre_id}':
+    patch:
+      summary: 'Undocumented function'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: parametre_id
+        description: 'The ID of the parametre.'
+        example: dignissimos
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Endpoints

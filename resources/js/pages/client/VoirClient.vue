@@ -106,8 +106,8 @@ export default {
 
     mounted() {
         const id = parseInt(this.$route.params.id);
-        Client.getEntity(id)
-        Categorie.getEntities(1)
+        Client.find(id)
+        Categorie.all(1)
     },
 
 }

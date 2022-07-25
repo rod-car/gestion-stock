@@ -35,7 +35,7 @@ export default {
     setup() {
         onBeforeMount(async () => {
             const id = router.currentRoute.value.params.id;
-            await Commande.getEntity(id);
+            await Commande.find(id);
         })
 
         return {

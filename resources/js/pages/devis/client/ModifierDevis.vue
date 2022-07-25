@@ -36,7 +36,7 @@ export default {
     setup() {
         onBeforeMount(async () => {
             const id = router.currentRoute.value.params.id
-            await Devis.getEntity(id)
+            await Devis.find(id)
         })
 
         return {

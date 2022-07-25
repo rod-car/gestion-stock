@@ -86,7 +86,7 @@ export default function useCRUD(url) {
      *
      * @return  {Object} Retourne le entity
      */
-    const createEntity = async (data) => {
+    const create = async (data) => {
         creating.value = true
 
         try {
@@ -115,12 +115,15 @@ export default function useCRUD(url) {
      *
      * @return  {Object}
      */
-    const getEntity = async (id) => {
+    const find = async (id) => {
 
         loading.value = true
+        let response = null;
 
         try {
-            let response = await axiosClient.get(`${url}/${id}`)
+            if (id === null) response = await axiosClient.get(`${url}`)
+            else response = await axiosClient.get(`${url}/${id}`)
+
             entity.value = response.data
         } catch (error) {
             if (error.response.status === 404) return Router.push("/404");
@@ -138,7 +141,7 @@ export default function useCRUD(url) {
      *
      * @return  {Array}
      */
-    const getEntities = async ({ type, except, appro } = {}) => {
+    const all = async ({ type, except, appro } = {}) => {
         loading.value = true
 
         try {
@@ -163,7 +166,7 @@ export default function useCRUD(url) {
      *
      * @return  {void}
      */
-    const deleteEntity = async (id, index = null) => {
+    const destroy = async (id, index = null) => {
         deleting.value = true
         try {
             let response = await axiosClient.delete(`${url}/${id}`)
@@ -191,7 +194,7 @@ export default function useCRUD(url) {
      *
      * @return  {Object}
      */
-    const updateEntity = async (id, data, { updateType } = {}) => {
+    const update = async (id, data, { updateType } = {}) => {
 
         updating.value = true
 
@@ -213,7 +216,6 @@ export default function useCRUD(url) {
 
     }
 
-
     const getKey = async ({ type, appro } = {}) => {
         loading.value = true
         try {
@@ -228,9 +230,8 @@ export default function useCRUD(url) {
     }
 
     return {
-        entity, entities, errors, success, loading, creating, updating, deleting,
-        key, getKey,
-        createEntity, getEntity, getEntities, deleteEntity, updateEntity,
+        entity, entities, errors, success, loading, creating, updating, deleting, key,
+        getKey, create, find, all, destroy, update,
     }
 
 }

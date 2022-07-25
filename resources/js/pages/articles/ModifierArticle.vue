@@ -76,7 +76,7 @@ export default {
 
     methods: {
         async save(id) {
-            await Article.updateEntity(id, Article.entity.value);
+            await Article.update(id, Article.entity.value);
             window.scrollTo({ top: 0, behavior: "smooth" });
             Article.success.value = null
         },
@@ -84,8 +84,8 @@ export default {
 
     mounted() {
         const id = parseInt(this.$route.params.id);
-        Article.getEntity(id)
-        Categorie.getEntities({ type: 3 })
+        Article.find(id)
+        Categorie.all({ type: 3 })
     },
 
 }
