@@ -7,9 +7,10 @@
  *  -   Creer un nouveau article
  *  -   Liste de tous les articles
  *  -   Voir une article en particuluer
- *  -   Modifier un etrepôt
- *  -   Ajouter et modifier les responsables d'un article
- *  -   Ajouter et modifier les personnelles qui travaillent dans un article
+ *  -   Modifier un article
+ *  -   Créer un nouveau catégorie d'article
+ *  -   Modifier un catégorie d'article
+ *  -   Liste des atégories d'article
  */
 
 
@@ -28,7 +29,7 @@ const routes = [
         component: NouveauArticle,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -37,7 +38,7 @@ const routes = [
         component: ListeArticle,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -46,7 +47,7 @@ const routes = [
         component: VoirArticle,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -55,7 +56,7 @@ const routes = [
         component: ModifierArticle,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -64,7 +65,7 @@ const routes = [
         component: NouveauCategorie,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -73,7 +74,7 @@ const routes = [
         component: ModifierCategorie,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     },
     {
@@ -82,7 +83,7 @@ const routes = [
         component: ListeCategorie,
         meta: {
             requiresAuth: true,
-            // gate: 'add_entrepot',
+            // gate: 'non definie',
         }
     }
 ]

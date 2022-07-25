@@ -44492,6 +44492,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+/**
+ * FIchier qui gère tous les routes coté client de l'application
+ */
 
 
 
@@ -44519,13 +44522,6 @@ var routes = [{
     requiresGuest: true
   }
 }, {
-  path: '/',
-  name: 'home',
-  component: _pages_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  meta: {
-    requiresAuth: true
-  }
-}, {
   path: '/dashboard',
   name: 'dashboard',
   component: _pages_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -44537,6 +44533,16 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createWebHistory)(),
   routes: routes
 });
+/**
+ * Executé pour chaque changemen de route
+ *
+ * @param   {Object}  to    Route de destination
+ * @param   {Object}  from  Route de provenance
+ * @param   {Callback}  next  Closure pour executer la requete suivante
+ *
+ * @return  {void}
+ */
+
 router.beforeEach(function (to, from, next) {
   if (_store_index__WEBPACK_IMPORTED_MODULE_5__["default"].state.user.data.id === undefined && to.path !== "/login") {
     getUser();
@@ -44621,9 +44627,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  *  -   Creer un nouveau article
  *  -   Liste de tous les articles
  *  -   Voir une article en particuluer
- *  -   Modifier un etrepôt
- *  -   Ajouter et modifier les responsables d'un article
- *  -   Ajouter et modifier les personnelles qui travaillent dans un article
+ *  -   Modifier un article
+ *  -   Créer un nouveau catégorie d'article
+ *  -   Modifier un catégorie d'article
+ *  -   Liste des atégories d'article
  */
 
 
@@ -44637,7 +44644,7 @@ var routes = [{
   name: 'article.nouveau',
   component: _pages_articles_NouveauArticle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44645,7 +44652,7 @@ var routes = [{
   name: 'article.liste',
   component: _pages_articles_ListeArticle_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44653,7 +44660,7 @@ var routes = [{
   name: 'article.voir',
   component: _pages_articles_VoirArticle_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44661,7 +44668,7 @@ var routes = [{
   name: 'article.modifier',
   component: _pages_articles_ModifierArticle_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44669,7 +44676,7 @@ var routes = [{
   name: 'article.categorie.nouveau',
   component: _pages_articles_categorie_NouveauCategorie_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44677,7 +44684,7 @@ var routes = [{
   name: 'article.categorie.modifier',
   component: _pages_articles_categorie_ModifierCategorie_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }, {
@@ -44685,7 +44692,7 @@ var routes = [{
   name: 'article.categorie.liste',
   component: _pages_articles_categorie_ListeCategorie_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   meta: {
-    requiresAuth: true // gate: 'add_entrepot',
+    requiresAuth: true // gate: 'non definie',
 
   }
 }];

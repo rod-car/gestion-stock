@@ -1,3 +1,7 @@
+/**
+ * FIchier qui gère tous les routes coté client de l'application
+ */
+
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Login from '../pages/Login.vue';
@@ -25,12 +29,6 @@ const routes = [
         meta: { requiresGuest: true },
     },
     {
-        path: '/',
-        name: 'home',
-        component: Dashboard,
-        meta: { requiresAuth: true }
-    },
-    {
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
@@ -53,6 +51,16 @@ const router = createRouter({
     routes,
 });
 
+
+/**
+ * Executé pour chaque changemen de route
+ *
+ * @param   {Object}  to    Route de destination
+ * @param   {Object}  from  Route de provenance
+ * @param   {Callback}  next  Closure pour executer la requete suivante
+ *
+ * @return  {void}
+ */
 router.beforeEach((to, from, next) => {
     if (store.state.user.data.id === undefined && to.path !== "/login") {
         getUser()
@@ -67,6 +75,7 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
+
 
 /**
  * Mettre l'utilisateur connecté dans le store
