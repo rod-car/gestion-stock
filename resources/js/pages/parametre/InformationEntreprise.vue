@@ -6,15 +6,15 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-xl-6 mb-3">
-                    <Input v-if="!loading" v-model="form.nom" required>Nom de l'entreprise</Input>
+                    <Input v-if="!loading" v-model="form.nom" :error="errors.nom" required>Nom de l'entreprise</Input>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <Input v-if="!loading" v-model="form.contact" required>Contact</Input>
+                    <Input v-if="!loading" v-model="form.contact" :error="errors.contact" required>Contact</Input>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <Input v-if="!loading" v-model="form.email" type="email" required>Adresse email</Input>
+                    <Input v-if="!loading" v-model="form.email" :error="errors.email" type="email" required>Adresse email</Input>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
                 </div>
                 <div class="col-xl-6 mb-3">
@@ -24,13 +24,14 @@
                         <option :value="false">Non assujeti a la TVA</option>
                     </select>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
+                    <span v-if="errors.assujeti">{{ errors.assujeti[0] }}</span>
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <Input v-if="!loading" v-model="form.nif">NIF</Input>
+                    <Input v-if="!loading" v-model="form.nif" :error="errors.nif">NIF</Input>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <Input v-if="!loading" v-model="form.stat">STAT</Input>
+                    <Input v-if="!loading" v-model="form.stat" :error="errors.stat">STAT</Input>
                     <Skeletor v-else style="border-radius: 3px; margin-bottom: 5px;" width="100%" height="40" />
                 </div>
                 <div class="col-xl-12 d-flex justify-content-end mt-3">

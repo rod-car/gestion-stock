@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Parametres;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Parametres\ParametresGeneraleRequest;
 use App\Models\Parametres\Parametre;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,20 +17,19 @@ class ParametreGeneraleController extends Controller
      */
     public function index()
     {
-        $parametre = Parametre::first();
-        return $parametre;
+        return Parametre::first();
     }
 
 
     /**
      * Enregistrer l'information de l'entreprise
      *
-     * @param Request $request
+     * @param ParametresGeneraleRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ParametresGeneraleRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $parametre = Parametre::create([
             "generale" => $data,
         ]);
@@ -41,12 +41,12 @@ class ParametreGeneraleController extends Controller
      * Undocumented function
      *
      * @param Parametre $parametre
-     * @param Request $request
+     * @param ParametresGeneraleRequest $request
      * @return Response
      */
-    public function update(Parametre $parametre, Request $request)
+    public function update(Parametre $parametre, ParametresGeneraleRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $parametre->generale = $data;
         $parametre->save();
 
