@@ -52,7 +52,7 @@ import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
 import Alert from '../html/Alert.vue';
 import MultiSelect from '@vueform/multiselect';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 import { ref, computed, onMounted } from 'vue';
 
 const Client = useCRUD('/client'); // Contient tous les fonctions CRUD pour le Client

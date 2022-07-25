@@ -35,7 +35,7 @@
 import Input from '../../components/html/Input.vue';
 import SaveBtn from '../../components/html/SaveBtn.vue';
 import Alert from '../../components/html/Alert.vue';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 const { success, errors, creating, create } = useCRUD("/depot")
 

@@ -19,7 +19,7 @@
 
 <script>
 
-import useCRUD from '../../../services/CRUDServices';
+import useCRUD from '../../../services/CRUDServices.ts';
 import DevisFormComponent from '../../../components/devis/DevisFormComponent.vue';
 import DevisFormLoadingComponent from '../../../components/devis/DevisFormLoadingComponent.vue';
 import { Skeletor } from 'vue-skeletor';

@@ -19,7 +19,7 @@
 import { onBeforeMount } from 'vue';
 import ListeCommandeComponent from '../../../components/commande/ListeCommandeComponent.vue';
 import ListeCommandeLoadingComponent from '../../../components/commande/ListeCommandeLoadingComponent.vue';
-import useCRUD from '../../../services/CRUDServices';
+import useCRUD from '../../../services/CRUDServices.ts';
 
 const Commande = useCRUD('/commandes')
 

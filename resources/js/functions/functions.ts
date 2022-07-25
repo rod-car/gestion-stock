@@ -1,3 +1,5 @@
+import './date.extension';
+
 /**
  * Recuperer le dernier element d'un tableau
  *
@@ -5,12 +7,9 @@
  *
  * @return  {any}         Dernier element du tableau
  */
-const last = (array) => {
-
+const last = (array: Array<any>): any => {
     if (array.length === 0) return null
-
     return array[array.length - 1];
-
 }
 
 
@@ -19,9 +18,10 @@ const last = (array) => {
  *
  * @param   {String|Date}  date  Date a formatter
  * @param   {Boolean}   withTime    Permet de determiner si on veut l'heure
+ * @param   {Boolean}   long    Si on veut une formattage longue
  * @return  {String}        Date formatté
  */
-const formatDate = (date, withTime = true, long = true) => {
+const formatDate = (date: string | Date, withTime: boolean = true, long: boolean = true): string => {
     if (date === undefined) throw new Error("La dae a formatter n'est pas définie")
     const locale = 'fr-MG'
 
@@ -33,7 +33,7 @@ const formatDate = (date, withTime = true, long = true) => {
 
     if (long === false) config = { day: "2-digit", month: "2-digit", year: "numeric" }
 
-    let dateString = null
+    let dateString: string | null = null
 
     if (date instanceof Date) dateString = date.toLocaleDateString(locale, config)
     else dateString = new Date(date).toLocaleDateString(locale, config)
@@ -50,7 +50,7 @@ const formatDate = (date, withTime = true, long = true) => {
  *
  * @return  {Date}             La date d'expiration
  */
-const expiration = (dateDebut, delais) => {
+const expiration = (dateDebut: string | Date, delais: number): Date => {
     if (dateDebut === undefined || delais === undefined) throw new Error("La date ou le delais n'est pas définie")
 
     if (dateDebut instanceof Date) {
@@ -66,7 +66,7 @@ const expiration = (dateDebut, delais) => {
  * @param   {String}    string Chaine de  caractère a convertir
  * @return  {String}    Chaine de caractère modifié
  */
-const ucfirst = (string) => {
+const ucfirst = (string: string): string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -77,7 +77,7 @@ const ucfirst = (string) => {
  * @param   {String}    string Chaine de  caractère a convertir
  * @return  {String}    Chaine de caractère modifié
  */
-const ucwords = (string) => {
+const ucwords = (string: string): string => {
     return string.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 };
 
@@ -89,7 +89,7 @@ const ucwords = (string) => {
  *
  * @return  {Number}
  */
-const totalHT = (articles) => {
+const totalHT = (articles: Array<any>): number => {
     let montant = 0
     articles.forEach(article => {
         montant = montant + montantHT(article)
@@ -105,7 +105,7 @@ const totalHT = (articles) => {
  *
  * @return  {Number}
  */
-const totalTVA = (articles) => {
+const totalTVA = (articles: Array<any>): number => {
     let montant = 0
     articles.forEach(article => {
         montant = montant + montantTVA(article)
@@ -114,15 +114,15 @@ const totalTVA = (articles) => {
 }
 
 
-const montantHT = (article) => {
+const montantHT = (article: { pivot: { pu: number; quantite: number; }; }) => {
     return article.pivot.pu * article.pivot.quantite
 }
 
-const montantTVA = (article) => {
+const montantTVA = (article: { pivot: { pu: number; quantite: number; tva: number; }; }) => {
     return article.pivot.pu * article.pivot.quantite * article.pivot.tva / 100
 }
 
-const montantTTC = (article) => {
+const montantTTC = (article: { pivot: { pu: number; quantite: number; tva: number } | { pu: number; quantite: number; tva: number; }; }) => {
     return montantTVA(article) + montantHT(article)
 }
 
@@ -134,7 +134,7 @@ const montantTTC = (article) => {
  *
  * @return  {Number}
  */
-const totalTTC = (articles) => {
+const totalTTC = (articles: Array<any>): number => {
     let montant = 0
     articles.forEach(article => {
         montant = montant + montantTTC(article)
@@ -150,11 +150,10 @@ const totalTTC = (articles) => {
  * @param   {String}    format  Format internationale de l'argent
  * @return  {String}
  */
-const format = (number, format = "fr-FR", options = { decimal: 2, currency: "MGA", style: "currency" }) => {
+const format = (number: number, format: string = "fr-FR", options = { decimal: 2, currency: "MGA", style: "currency" }): string => {
     const locale = Intl.NumberFormat(format, options)
     return locale.format(number).replace("MGA", "Ar");
 }
-
 
 export {
     last,

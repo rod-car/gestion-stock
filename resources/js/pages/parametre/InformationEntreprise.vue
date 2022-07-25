@@ -47,7 +47,7 @@
 import { onBeforeMount, ref } from '@vue/runtime-core'
 import Input from '../../components/html/Input.vue'
 import SaveBtn from '../../components/html/SaveBtn.vue'
-import useCRUD from '../../services/CRUDServices'
+import useCRUD from '../../services/CRUDServices.ts'
 import { Skeletor } from 'vue-skeletor'
 
 const { entity, create, errors, creating, loading, updating, find, update } = useCRUD("/parametres/generale");

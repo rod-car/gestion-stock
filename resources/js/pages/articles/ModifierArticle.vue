@@ -58,7 +58,7 @@ import SaveBtn from '../../components/html/SaveBtn.vue';
 import Input from '../../components/html/Input.vue';
 import { Skeletor } from 'vue-skeletor';
 import MultiSelect from '@vueform/multiselect';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 const Article = useCRUD('/article')
 const Categorie = useCRUD('/categorie')

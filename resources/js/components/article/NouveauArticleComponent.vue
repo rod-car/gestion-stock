@@ -42,7 +42,7 @@ import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
 import Alert from '../html/Alert.vue';
 import MultiSelect from '@vueform/multiselect';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 const Article = useCRUD('/article'); // Contient tous les fonctions CRUD pour le article
 const Categorie = useCRUD('/categorie'); // Contient tous les foncions CRUD pour le categorie

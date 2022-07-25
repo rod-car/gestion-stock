@@ -20,7 +20,7 @@
 import { onMounted } from 'vue';
 import ListeDevisComponent from '../../../components/devis/ListeDevisComponent.vue';
 import ListeDevisLoadingComponent from '../../../components/devis/ListeDevisLoadingComponent.vue';
-import useCRUD from '../../../services/CRUDServices';
+import useCRUD from '../../../services/CRUDServices.ts';
 
 const Devis = useCRUD('/commandes')
 

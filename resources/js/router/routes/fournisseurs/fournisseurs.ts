@@ -12,13 +12,13 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un fournisseur
  */
 
-import NouveauFournisseur from '../../../pages/fournisseur/NouveauFournisseur.vue';
-import ModifierFournisseur from '../../../pages/fournisseur/ModifierFournisseur.vue';
-import VoirFournisseur from '../../../pages/fournisseur/VoirFournisseur.vue';
-import ListeFournisseur from '../../../pages/fournisseur/ListeFournisseur.vue';
-import NouveauCategorie from '../../../pages/fournisseur/categorie/NouveauCategorie.vue';
-import ListeCategorie from '../../../pages/fournisseur/categorie/ListeCategorie.vue';
-import ModifierCategorie from '../../../pages/fournisseur/categorie/ModifierCategorie.vue';
+const NouveauFournisseur = require('../../../pages/fournisseur/NouveauFournisseur.vue');
+const ModifierFournisseur = require('../../../pages/fournisseur/ModifierFournisseur.vue');
+const VoirFournisseur = require('../../../pages/fournisseur/VoirFournisseur.vue');
+const ListeFournisseur = require('../../../pages/fournisseur/ListeFournisseur.vue');
+const NouveauCategorie = require('../../../pages/fournisseur/categorie/NouveauCategorie.vue');
+const ListeCategorie = require('../../../pages/fournisseur/categorie/ListeCategorie.vue');
+const ModifierCategorie = require('../../../pages/fournisseur/categorie/ModifierCategorie.vue');
 
 const routes = [
     {

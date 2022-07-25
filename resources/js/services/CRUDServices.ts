@@ -1,7 +1,8 @@
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 import axiosClient from '../axios';
 import Router from '../router/router';
 import Flash from '../functions/Flash';
+import { AxiosResponse } from 'axios';
 
 /**
  * Permet de fournir un service de CRUD
@@ -10,14 +11,14 @@ import Flash from '../functions/Flash';
  *
  * @return  {Object}
  */
-export default function useCRUD(url) {
+export default function useCRUD(url: string): object {
 
     /**
      * Contient tous les donnees
      *
      * @return  {[]}
      */
-    const entities = ref([])
+    const entities: Ref<Array<any>> = ref([])
 
 
     /**
@@ -25,10 +26,10 @@ export default function useCRUD(url) {
      *
      * @type {Object}
      */
-    const entity = ref({})
+    const entity : Ref<object> = ref({})
 
 
-    const key = ref(null)
+    const key: Ref<string | null> = ref(null)
 
 
     /**
@@ -36,7 +37,7 @@ export default function useCRUD(url) {
      *
      * @return  {[]}
      */
-    const errors = ref([])
+    const errors: Ref<object> = ref([])
 
 
     /**
@@ -44,7 +45,7 @@ export default function useCRUD(url) {
      *
      * @return  {[]}
      */
-    const success = ref(null)
+    const success: Ref<string | null> = ref(null)
 
 
     /**
@@ -52,7 +53,7 @@ export default function useCRUD(url) {
      *
      * @type {Boolean}
      */
-    let creating = ref(false)
+    const creating: Ref<boolean> = ref(false)
 
 
     /**
@@ -60,7 +61,7 @@ export default function useCRUD(url) {
      *
      * @type {Boolean}
      */
-    let loading = ref(false)
+    const loading: Ref<boolean> = ref(false)
 
 
     /**
@@ -68,7 +69,7 @@ export default function useCRUD(url) {
      *
      * @type {Boolean}
      */
-    let deleting = ref(false)
+    const deleting: Ref<boolean> = ref(false)
 
 
     /**
@@ -76,17 +77,16 @@ export default function useCRUD(url) {
      *
      * @type {Boolean}
      */
-    let updating = ref(false)
+    const updating: Ref<boolean> = ref(false)
 
 
     /**
      * Créer un nouveau point de vente
      *
      * @param   {Object}  data  Contient tous les champs du formulaire
-     *
-     * @return  {Object} Retourne le entity
+     * @return  {Promise}
      */
-    const create = async (data) => {
+    const create = async (data: object): Promise<any> => {
         creating.value = true
 
         try {
@@ -94,7 +94,7 @@ export default function useCRUD(url) {
             entity.value = response.data
             success.value = "Enregistré avec succes"
             Flash('success', "Message de succès", success.value)
-        } catch (error) {
+        } catch (error: any) {
             Flash('error', "Message d'erreur", "Erreur de soumission du formulaire")
 
             if (error.response.status === 422) {
@@ -113,19 +113,19 @@ export default function useCRUD(url) {
      *
      * @param   {Number}  id  Identifiant du dépot (Point de vente ou entrepot)
      *
-     * @return  {Object}
+     * @return  {Promise}
      */
-    const find = async (id) => {
+    const find = async (id: number | null): Promise<any> => {
 
         loading.value = true
-        let response = null;
+        let response: AxiosResponse | null = null;
 
         try {
             if (id === null) response = await axiosClient.get(`${url}`)
             else response = await axiosClient.get(`${url}/${id}`)
 
-            entity.value = response.data
-        } catch (error) {
+            if (response !== null) entity.value = response.data
+        } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
             if (error.response.status === 500) return Router.push("/500");
             Router.push("/500");
@@ -134,21 +134,24 @@ export default function useCRUD(url) {
         loading.value = false
     }
 
+
     /**
-     * Recuperer tous les dépots (Point de vente ou entrepot)
+     * Recupere tous les entités
      *
-     * @param   {Boolean}  type  Permet de determiner si c'est un point de vente ou un entrepot, 1: Point de vente, 0: Entrepot
+     * @param   {String | null}          type    [type description]
+     * @param   {String | null}          except  [except description]
+     * @param   {Boolean |  null}        appro   [appro description]
      *
-     * @return  {Array}
+     * @return  {Promise}            [return description]
      */
-    const all = async ({ type, except, appro } = {}) => {
+    const all = async (type: string | null, except: string | null, appro: boolean | null): Promise<any> => {
         loading.value = true
 
         try {
             let response = await axiosClient.get(`${url}?type=${type}&except=${except}&appro=${appro}`)
             entities.value = response.data
 
-        } catch (error) {
+        } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
             if (error.response.status === 500) return Router.push("/500");
             Router.push("/500");
@@ -161,12 +164,12 @@ export default function useCRUD(url) {
     /**
      * Permet de supprimer un entity en fonciton de lID
      *
-     * @param   {Numner}  id  Identifiant du dépot a supprimer
-     * @param   {Number|null} index Index de l'eleement dans le tableau de dépots
+     * @param   {Number}  id  Identifiant du dépot a supprimer
+     * @param   {Number} index Index de l'eleement dans le tableau de dépots
      *
-     * @return  {void}
+     * @return  {Promise}
      */
-    const destroy = async (id, index = null) => {
+    const destroy = async (id: number, index: number = 0): Promise<any> => {
         deleting.value = true
         try {
             let response = await axiosClient.delete(`${url}/${id}`)
@@ -177,7 +180,7 @@ export default function useCRUD(url) {
                 entities.value.splice(index)
                 Flash('success', "Message de succès", success.value)
             }
-        } catch (error) {
+        } catch (error: any) {
             errors.value = error.response.data.errors;
             Flash('error', "Message d'erreur", `Impossible de supprimer: ${error.message}`)
         }
@@ -192,9 +195,9 @@ export default function useCRUD(url) {
      * @param   {Object}  data        Nouvelle données
      * @param   {Number}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
      *
-     * @return  {Object}
+     * @return  {Promise}
      */
-    const update = async (id, data, { updateType } = {}) => {
+    const update = async (id: number, data: object, updateType: number): Promise<any> => {
 
         updating.value = true
 
@@ -204,7 +207,7 @@ export default function useCRUD(url) {
             await axiosClient.patch(`${url}/${id}`, data)
             success.value = "Modifié avec success"
             Flash('success', 'Message de succès', success.value)
-        } catch (error) {
+        } catch (error: any) {
             Flash('error', "Message d'erreur", "Erreur de soumission du formulaire")
             if (error.response.status === 422) {
                 errors.value = error.response.data.errors;
@@ -216,12 +219,21 @@ export default function useCRUD(url) {
 
     }
 
-    const getKey = async ({ type, appro } = {}) => {
+
+    /**
+     * Recuperer un clé de commande ou devis
+     *
+     * @param   {Number}  type   1: Devis, 2: Commande
+     * @param   {Boolean}  appro  True: Fournisseur, False: Client
+     *
+     * @return  {Promise}
+     */
+    const getKey = async (type: number, appro: boolean): Promise<any> => {
         loading.value = true
         try {
             let response = await axiosClient.get(`${url}/get-key/?type=${type}&appro=${appro}`)
             key.value = response.data.key
-        } catch (error) {
+        } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
             if (error.response.status === 500) return Router.push("/500");
             Router.push("/500");

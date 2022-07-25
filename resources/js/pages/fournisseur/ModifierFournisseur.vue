@@ -17,7 +17,7 @@ import { onMounted } from 'vue';
 import FournisseurFormComponent from '../../components/fournisseur/FournisseurFormComponent.vue';
 import FournisseurFormLoadingComponent from '../../components/fournisseur/FournisseurFormLoadingComponent.vue';
 import router from '../../router/router';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 const Fournisseur = useCRUD('fournisseur')
 

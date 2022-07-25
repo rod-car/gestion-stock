@@ -20,7 +20,7 @@
 
 import { onBeforeMount } from 'vue'
 import VoirDevisComponent from '../../../components/devis/VoirDevisComponent.vue'
-import useCRUD from '../../../services/CRUDServices'
+import useCRUD from '../../../services/CRUDServices.ts'
 import router from '../../../router/router'
 import VoirDevisLoadingComponent from '../../../components/devis/VoirDevisLoadingComponent.vue'
 

@@ -13,7 +13,7 @@
 
 <script>
 
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 import ClientFormComponent from '../../components/client/ClientFormComponent.vue';
 import ClientFormLoadingComponent from '../../components/client/ClientFormLoadingComponent.vue';
 import { onMounted } from 'vue';

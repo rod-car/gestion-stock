@@ -12,13 +12,13 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un client
  */
 
-import NouveauCategorie from '../../../pages/client/categorie/NouveauCategorie.vue';
-import ListeCategorie from '../../../pages/client/categorie/ListeCategorie.vue';
-import ModifierCategorie from '../../../pages/client/categorie/ModifierCategorie.vue';
-import NouveauClient from '../../../pages/Client/NouveauClient.vue';
-import ModifierClient from '../../../pages/Client/ModifierClient.vue';
-import VoirClient from '../../../pages/Client/VoirClient.vue';
-import ListeClient from '../../../pages/Client/ListeClient.vue';
+const NouveauCategorie = require('../../../pages/client/categorie/NouveauCategorie.vue');
+const ListeCategorie = require('../../../pages/client/categorie/ListeCategorie.vue');
+const ModifierCategorie = require('../../../pages/client/categorie/ModifierCategorie.vue');
+const NouveauClient = require('../../../pages/Client/NouveauClient.vue');
+const ModifierClient = require('../../../pages/Client/ModifierClient.vue');
+const VoirClient = require('../../../pages/Client/VoirClient.vue');
+const ListeClient = require('../../../pages/Client/ListeClient.vue');
 
 const routes = [
     {

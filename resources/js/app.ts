@@ -1,14 +1,13 @@
 require('./bootstrap');
 
-require('./functions/string')
-
 import { createApp } from 'vue'
 import router from './router/router';
-import DefaultLayout from './template/DefaultLayout.vue';
-import Login from './pages/Login.vue';
+const DefaultLayout = require('./template/DefaultLayout.vue');
+
+import Login from '@/pages/Login.vue';
 
 import VueSimpleAlert from "vue3-simple-alert";
-import VueProgressBar from "@aacassandra/vue3-progressbar";
+const VueProgressBar = require("@aacassandra/vue3-progressbar");
 
 import { abilitiesPlugin } from '@casl/vue';
 import ability from './services/ability';
@@ -36,13 +35,7 @@ const options = {
     disableGlobalInstance: false,
 };
 
-window.SimpleAlert = VueSimpleAlert
-
-Date.prototype.addDays = function (days) {
-    const date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-};
+// window.SimpleAlert = VueSimpleAlert
 
 createApp({
     components: {

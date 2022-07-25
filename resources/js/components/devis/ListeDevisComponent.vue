@@ -43,7 +43,7 @@ import { formatDate, expiration } from '../../functions/functions';
 import { computed } from 'vue';
 import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 import DeleteBtn from '../html/DeleteBtn.vue';
 import Status from '../html/Status.vue';
 

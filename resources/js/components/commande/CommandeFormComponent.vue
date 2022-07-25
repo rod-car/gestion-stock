@@ -159,19 +159,19 @@
 
 import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 import Datepicker from '@vuepic/vue-datepicker';
 import MultiSelect from '@vueform/multiselect';
 import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
-import Config from '../../config/config.js';
+import Config from '../../config/config.ts';
 import { computed, onMounted, onBeforeMount, ref } from 'vue';
 
 import NouveauArticleComponent from '../article/NouveauArticleComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 
-import { montantHT, montantTTC } from '../../functions/functions';
+import { montantHT, montantTTC } from '../../functions/functions.ts';
 
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur

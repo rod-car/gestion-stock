@@ -8,7 +8,7 @@
  *  -   Gerer les informations de l'entreprise
  */
 
-import InformationEntreprise from '../../../pages/parametre/InformationEntreprise.vue';
+const InformationEntreprise = require('../../../pages/parametre/InformationEntreprise.vue');
 
 const routes = [
     {

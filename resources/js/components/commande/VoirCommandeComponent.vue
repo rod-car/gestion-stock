@@ -79,7 +79,7 @@
 
 <script>
 
-import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions.js';
+import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions.ts';
 
 export default {
     props: {

@@ -5,7 +5,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Login from '../pages/Login.vue';
-import Dashboard from '../pages/Dashboard.vue';
+const Dashboard = require('../pages/Dashboard.vue');
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté
@@ -21,7 +21,7 @@ import devis from './routes/devis/devis';
 import commande from './routes/commande/commande';
 import parametres from './routes/parametres/parametres';
 
-const routes = [
+const routes: Array<any> = [
     {
         path: '/login',
         name: 'login',
@@ -32,7 +32,7 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: false }
     },
 ]
     .concat(privateRoutes)

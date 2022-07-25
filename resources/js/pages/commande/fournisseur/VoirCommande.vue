@@ -20,7 +20,7 @@
 
 import { onBeforeMount } from 'vue';
 import router from '../../../router/router';
-import useCRUD from '../../../services/CRUDServices';
+import useCRUD from '../../../services/CRUDServices.ts';
 import VoirCommandeComponent from '../../../components/commande/VoirCommandeComponent.vue';
 import VoirCommandeLoadingComponent from '../../../components/commande/VoirCommandeLoadingComponent.vue';
 

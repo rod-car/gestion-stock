@@ -22,7 +22,7 @@ import { onBeforeMount } from 'vue';
 import CommandeFormComponent from '../../../components/commande/CommandeFormComponent.vue';
 import CommandeFormLoadingComponent from '../../../components/commande/CommandeFormLoadingComponent.vue';
 import router from '../../../router/router';
-import useCRUD from '../../../services/CRUDServices';
+import useCRUD from '../../../services/CRUDServices.ts';
 
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 

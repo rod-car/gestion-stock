@@ -1,26 +1,36 @@
-import NouveauPersonnel from '../../pages/personnels/NouveauPersonnel.vue';
-import ListePersonnel from '../../pages/personnels/ListePersonnel.vue';
-import ProfilPersonnel from '../../pages/personnels/ProfilPersonnel.vue';
-import ModifierPersonnel from '../../pages/personnels/ModifierPersonnel.vue';
-
-import Fonctions from '../../pages/personnels/Fonctions.vue';
+const NouveauPersonnel = require('../../pages/personnels/NouveauPersonnel.vue');
+const ListePersonnel = require('../../pages/personnels/ListePersonnel.vue');
+const ProfilPersonnel = require('../../pages/personnels/ProfilPersonnel.vue');
+const ModifierPersonnel = require('../../pages/personnels/ModifierPersonnel.vue');
+const Fonctions = require('../../pages/personnels/Fonctions.vue');
 
 const routes = [
     {
         path: '/personnel/nouveau',
         name: 'gestion des personnels.personnel.nouveau',
         component: NouveauPersonnel,
-        meta: { gate: 'add_user' }
+        meta: {
+            gate: 'add_user',
+            requiresAuth: true,
+        }
     },
     {
         path: '/personnel/liste',
         name: 'gestion des personnels.personnel.liste',
-        component: ListePersonnel
+        component: ListePersonnel,
+        meta: {
+            requiresAuth: true,
+            gate: 'add_user',
+        }
     },
     {
         path: '/personnel/profile/:id',
         name: 'gestion-des-personnels.personnel.profil',
-        component: ProfilPersonnel
+        component: ProfilPersonnel,
+        meta: {
+            requiresAuth: true,
+            gate: 'add_user',
+        }
     },
     {
         path: '/personnel/modifier/:id',
@@ -43,5 +53,5 @@ const routes = [
 ];
 
 export default routes.map(route => {
-    return { ...route/*, meta: { public: false }*/ }
+    return { ...route }
 });

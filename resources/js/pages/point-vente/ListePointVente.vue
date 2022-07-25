@@ -67,7 +67,7 @@
 import DeleteBtn from '../../components/html/DeleteBtn.vue';
 import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 const { entities, loading, deleting, all, destroy } = useCRUD('/depot')
 

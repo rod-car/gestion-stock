@@ -67,7 +67,7 @@ import { Skeletor } from 'vue-skeletor';
 import MultiSelect from '@vueform/multiselect';
 
 import ProfileAvatar from 'vue-profile-avatar'
-import useCRUD from '../../services/CRUDServices';
+import useCRUD from '../../services/CRUDServices.ts';
 
 import { last } from '../../functions/functions';
 
