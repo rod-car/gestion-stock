@@ -11,8 +11,8 @@
                             {{ loadingIndicator }}
                         </div>
 
-                        <div v-if="!Array.isArray(errors)" class="alert alert-danger mt-3">
-                            Impossible de se connecter a la base de données...
+                        <div v-if="errorMessage" class="alert alert-danger mt-3">
+                            Exception: {{ errorMessage }}
                         </div>
 
                     </div>
@@ -63,7 +63,7 @@
 
 import store from '../store';
 import axios from 'axios'
-import { computed, defineComponent, Ref, ref } from 'vue';
+import { computed, onBeforeMount, Ref, ref } from 'vue';
 
 interface Form {
     login: String,
@@ -76,7 +76,7 @@ interface Errors {
     password: Array<string> | null,
 };
 
-export default defineComponent({
+export default {
     setup () {
         const form = ref({
             login: '',
@@ -85,6 +85,7 @@ export default defineComponent({
         } as Form);
 
         const errors = ref({ login: null, password: null } as Errors);
+        const errorMessage: Ref<string | null> = ref(null);
         const loading: Ref<Boolean> = ref(false);
         const indicator: Ref<String> = ref("Chargement...");
 
@@ -106,16 +107,16 @@ export default defineComponent({
                 window.location.href = "/dashboard"
             } catch(err: any) {
                 if (err.response && err.response.data.errors) errors.value = err.response.data.errors
-                else errors.value = err.response.data.message
+                else errorMessage.value = err.response.data.message
                 loading.value = false;
             }
         }
 
         return {
-            form, loading, loadingIndicator, login, errors,
+            form, loading, loadingIndicator, login, errors, errorMessage,
         };
     }
-});
+};
 
 
 </script>

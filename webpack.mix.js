@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.ts('resources/js/app.ts', 'public/js')
-    .vue()
+    .vue({ version: 3 })
     .postCss('resources/css/app.css', 'public/css')
     .copy(
         'node_modules/@fortawesome/fontawesome-free/webfonts',

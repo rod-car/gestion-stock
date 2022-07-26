@@ -2,12 +2,12 @@ require('./bootstrap');
 
 import { createApp } from 'vue'
 import router from './router/router';
-const DefaultLayout = require('./template/DefaultLayout.vue');
+import DefaultLayout from './template/DefaultLayout.vue';
 
-import Login from '@/pages/Login.vue';
+import Login from './pages/Login.vue';
 
 import VueSimpleAlert from "vue3-simple-alert";
-const VueProgressBar = require("@aacassandra/vue3-progressbar");
+import VueProgressBar from "@aacassandra/vue3-progressbar";
 
 import { abilitiesPlugin } from '@casl/vue';
 import ability from './services/ability';
@@ -35,9 +35,7 @@ const options = {
     disableGlobalInstance: false,
 };
 
-// window.SimpleAlert = VueSimpleAlert
-
-createApp({
+const app = createApp({
     components: {
         DefaultLayout,
         Login,
@@ -51,4 +49,18 @@ createApp({
     })
     .use(VueSidebarMenu)
     .use(Message)
-    .mount('#app');
+
+app.config.globalProperties.$SimpleAlert = VueSimpleAlert
+app.mount('#app');
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $const: typeof router;
+        $Progress: typeof VueProgressBar;
+        $ability: typeof ability;
+        $can: any;
+    }
+}
+
+export { }
+

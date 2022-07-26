@@ -9,11 +9,6 @@
         "skipLibCheck": true, // Skip type checking of declaration files
         "noImplicitAny": false, // Bypass raising errors on `any` type
         "jsx": "preserve",
-        "paths": {
-            "@/*": [
-                "resources/js/*"
-            ],
-        }
     },
     "include": [
         "resources/js/**/*"

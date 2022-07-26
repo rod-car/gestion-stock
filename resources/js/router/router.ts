@@ -5,7 +5,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Login from '../pages/Login.vue';
-const Dashboard = require('../pages/Dashboard.vue');
+import Dashboard from '../pages/Dashboard.vue';
 
 import privateRoutes from './routes/private'; // Route special pour les utilisateurs connecté
 import errorsRoutes from './routes/errors'; // Route special pour les utilisateurs connecté

@@ -195,16 +195,17 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
     import axiosClient from '../axios';
     import store from '../store';
     import useAbility from '../services/AbilityServices';
+    import { defineComponent, onBeforeMount, onMounted, Ref, ref } from 'vue';
 
     const { permissions, getPermissions }  = useAbility()
 
     const logoImg = {
-        data() {
+        setup() {
             return {
                 src: '/images/app-logo.png'
             }
@@ -212,394 +213,398 @@
         template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'
     }
 
-    export default {
-        setup() {
-            return {
-                permissions,
-                getPermissions,
-            }
-        },
+export default defineComponent({
+    setup() {
+        const collapsed: Ref<boolean> = ref(false);
 
-        data() {
-            return {
-                collapsed: false,
-                className: 'hidden',
-            }
-        },
+        return {
+            permissions,
+            getPermissions,
+            collapsed,
+        }
+    },
 
-        mounted() {
-            this.$Progress.finish();
-        },
+    mounted() {
+        this.$Progress.finish();
+    },
 
-        created() {
-            this.className = 'hidden'
-            this.$Progress.start();
+    created() {
+        this.$Progress.start();
 
-            this.$router.beforeEach((to, from, next) => {
+        this.$router.beforeEach((to, from, next) => {
 
-                axiosClient.get('abilities').then(response => {
-                    this.$ability.update([
-                        { subject: 'all', action: response.data }
-                    ])
+            axiosClient.get('abilities').then(response => {
+                this.$ability.update([
+                    { subject: 'all', action: response.data }
+                ])
 
-                    if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) {
-                        // Si pas de privilège necessaire
-                        this.$router.push('/403')
-                    }
-                }).catch(err => {
-                    console.error("Erreur ajax : ", err.response.data.message)
-                })
-
-                if (to.meta.progress !== undefined) {
-                    let meta = to.meta.progress;
-                    this.$Progress.parseMeta(meta);
+                if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) {
+                    // Si pas de privilège necessaire
+                    this.$router.push('/403')
                 }
-                this.$Progress.start();
-                next();
-            });
-            this.$router.afterEach((to, from) => {
-                this.$Progress.finish();
-            });
-        },
+            }).catch(err => {
+                console.error("Erreur ajax : ", err.response.data.message)
+            })
 
-        methods: {
-            /**
-             * Permet de deconnecter un utilisateur
-             *
-             * @return  {void}  Redirection permanente vers la page login
-             **/
-            async logOut () {
-                await axiosClient.post('/auth/logout')
-                this.resetUser()
-                // this.$router.push('/login')
-                window.location.href = '/login'
-            },
-
-            onCollapse(c) {
-                this.collapsed = c;
-            },
-
-            /**
-             * Mettre l'utilisateur connecté dans le store
-             *
-             * @return  {void}
-             */
-            resetUser () {
-                store.state.user.token = null
-                store.state.user.data = {}
-                localStorage.removeItem('auth_token')
-            },
-        },
-
-        computed: {
-            /**
-             * Permet de detecter si un utilisateur est connecté ou non
-             *
-             * @return  {Boolean}  True si connecté, False sinon
-             */
-            isConnected () {
-                return store.state.user.token === null ? false : true;
-            },
-
-            /**
-             * Utilisateur connecté
-             *
-             * @return  {Object}  L'utilisateur connecté
-             */
-            user () {
-                return store.getters.user
-            },
-
-            menu () {
-                return [
-                    {
-                        header: true,
-                        hiddenOnCollapse: true,
-                        component: logoImg,
-                    },
-                    {
-                        href: '/',
-                        title: 'Dashboard',
-                        icon: 'fa fa-bar-chart'
-                    },
-                    {
-                        header: "Dépot",
-                        hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente') && !this.$can('add_entrepot') && !this.$can('view_entrepot'),
-                        hiddenOnCollapse: true,
-                    },
-                    {
-                        title: 'Point de vente',
-                        icon: 'fa fa-home',
-                        hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente'),
-                        child: [
-                            {
-                                title: 'Ajouter nouveau',
-                                href: '/point-de-vente/nouveau',
-                                icon: 'fa fa-plus',
-                                hidden: !this.$can('add_point_vente'),
-                            },
-                            {
-                                title: 'Liste',
-                                href: '/point-de-vente/liste',
-                                icon: 'fa fa-list',
-                                hidden: !this.$can('view_point_vente'),
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Entrepôt',
-                        icon: 'fa fa-home',
-                        hidden: !this.$can('add_entrepot') && !this.$can('view_entrepot'),
-                        child: [
-                            {
-                                title: 'Ajouter nouveau',
-                                href: '/entrepot/nouveau',
-                                icon: 'fa fa-plus',
-                                hidden: !this.$can('add_entrepot'),
-                            },
-                            {
-                                title: 'Liste',
-                                href: '/entrepot/liste',
-                                icon: 'fa fa-list',
-                                hidden: !this.$can('view_entrepot'),
-                            },
-                        ]
-                    },
-                    // Menu pour la gestion de client et fournisseur
-                    // -----------------------------------------------------------------------------------------------------
-                    {
-                        header: "Clients & Fournisseurs",
-                        hiddenOnCollapse: true,
-                        hidden: false,
-                    },
-                    {
-                        title: 'Client',
-                        icon: 'fa fa-users',
-                        hidden: false,
-                        child: [
-                            {
-                                href: '/client/nouveau',
-                                title: 'Nouveau client',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                                // hidden: !this.$can('add_user'),
-                            },
-                            {
-                                href: '/client/liste',
-                                title: 'Liste des clients',
-                                icon: 'fa fa-list',
-                                // hidden: !this.$can('view_user'),
-                            },
-                            {
-                                title: 'Les catégories',
-                                icon: 'fa fa-tasks',
-                                child: [
-                                    {
-                                        href: '/client/categorie/nouveau',
-                                        title: 'Nouveau',
-                                        icon: 'fa fa-plus',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                    {
-                                        href: '/client/categorie/liste',
-                                        title: 'Liste',
-                                        icon: 'fa fa-list',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                ],
-                                // hidden: !this.$can('manage_roles_and_functions'),
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Fournisseurs',
-                        icon: 'fa fa-users',
-                        hidden: false,
-                        child: [
-                            {
-                                href: '/fournisseur/nouveau',
-                                title: 'Nouveau fournisseur',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                                // hidden: !this.$can('add_user'),
-                            },
-                            {
-                                href: '/fournisseur/liste',
-                                title: 'Liste des fournisseurs',
-                                icon: 'fa fa-list',
-                                // hidden: !this.$can('view_user'),
-                            },
-                            {
-                                title: 'Les catégories',
-                                icon: 'fa fa-tasks',
-                                child: [
-                                    {
-                                        href: '/fournisseur/categorie/nouveau',
-                                        title: 'Nouveau',
-                                        icon: 'fa fa-plus',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                    {
-                                        href: '/fournisseur/categorie/liste',
-                                        title: 'Liste',
-                                        icon: 'fa fa-list',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                ],
-                                // hidden: !this.$can('manage_roles_and_functions'),
-                            },
-                        ]
-                    },
-                    // -----------------------------------------------------------------------------------------------------
-                    // Menu pour la gestion de l'article
-                    // -----------------------------------------------------------------------------------------------------
-                    {
-                        header: "Article",
-                        hiddenOnCollapse: true,
-                        hidden: false,
-                    },
-                    {
-                        title: 'Article',
-                        icon: 'fa fa-gift',
-                        hidden: false,
-                        child: [
-                            {
-                                href: '/article/nouveau',
-                                title: 'Nouveau article',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                                // hidden: !this.$can('add_user'),
-                            },
-                            {
-                                href: '/article/liste',
-                                title: 'Liste des article',
-                                icon: 'fa fa-list',
-                                // hidden: !this.$can('view_user'),
-                            },
-                            {
-                                title: 'Les catégories',
-                                icon: 'fa fa-tasks',
-                                child: [
-                                    {
-                                        href: '/article/categorie/nouveau',
-                                        title: 'Nouveau',
-                                        icon: 'fa fa-plus',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                    {
-                                        href: '/article/categorie/liste',
-                                        title: 'Liste',
-                                        icon: 'fa fa-list',
-                                        class: 'fw-regular',
-                                        // hidden: !this.$can('add_user'),
-                                    },
-                                ],
-                                // hidden: !this.$can('manage_roles_and_functions'),
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Dévis',
-                        icon: 'fa fa-file',
-                        hidden: false,
-                        child: [
-                            {
-                                href: '/devis/fournisseur/liste',
-                                title: 'Approvisionnement',
-                                icon: 'fa fa-arrow-right',
-                                // hidden: !this.$can('view_devis'),
-                            },
-                            {
-                                href: '/devis/client/liste',
-                                title: 'Vente',
-                                icon: 'fa fa-arrow-left',
-                                // hidden: !this.$can('view_devis'),
-                            },
-                        ]
-                    },
-                    // --------------------------------------------------------------
-                    {
-                        title: 'Commande',
-                        icon: 'fa fa-file',
-                        hidden: false,
-                        child: [
-                            {
-                                href: '/commande/fournisseur/liste',
-                                title: 'Approvisionnement',
-                                icon: 'fa fa-arrow-right',
-                                // hidden: !this.$can('view_commande'),
-                            },
-                            {
-                                href: '/commande/client/liste',
-                                title: 'Vente',
-                                icon: 'fa fa-arrow-left',
-                                // hidden: !this.$can('view_commande'),
-                            },
-                        ]
-                    },
-                    // ---------------------------------------------------------------------------------------
-                    {
-                        header: "Personnel",
-                        hiddenOnCollapse: true,
-                        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
-                    },
-                    {
-                        title: 'Personnel',
-                        icon: 'fa fa-users',
-                        hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
-                        child: [
-                            {
-                                href: '/personnel/nouveau',
-                                title: 'Nouveau personnel',
-                                icon: 'fa fa-plus',
-                                class: 'fw-regular',
-                                hidden: !this.$can('add_user'),
-                            },
-                            {
-                                href: '/personnel/liste',
-                                title: 'Liste des personnel',
-                                icon: 'fa fa-list',
-                                hidden: !this.$can('view_user'),
-                            },
-                            {
-                                href: '/personnel/fonctions',
-                                title: 'Les fonctions & rôles',
-                                icon: 'fa fa-tasks',
-                                hidden: !this.$can('manage_roles_and_functions'),
-                            },
-                        ]
-                    },
-                    {
-                        header: "Paramètres",
-                        hiddenOnCollapse: true,
-                        hidden: !this.$can('manage_settings'),
-                    },
-                    {
-                        title: 'Paramètres',
-                        icon: 'fa fa-cog',
-                        hidden: !this.$can('manage_settings'),
-                        child: [
-                            {
-                                href: '/point-de-vente/liste',
-                                title: 'Dévise',
-                                icon: 'fa fa-money',
-                            },
-                            {
-                                href: '/parametres/entreprise',
-                                title: 'Infos de l\'entreprise',
-                                icon: 'fa fa-info-circle',
-                            },
-                        ]
-                    },
-                ];
+            if (to.meta.progress !== undefined) {
+                let meta = to.meta.progress;
+                this.$Progress.parseMeta(meta);
             }
+            this.$Progress.start();
+            next();
+        });
+
+        this.$router.afterEach((to, from) => {
+            this.$Progress.finish();
+        });
+    },
+
+    methods: {
+        /**
+         * Permet de deconnecter un utilisateur
+         *
+         * @return  {Promise}  Redirection permanente vers la page login
+         **/
+        async logOut(): Promise<any> {
+            await axiosClient.post('/auth/logout')
+            this.resetUser()
+            this.$router.push('/login')
+            window.location.href = '/login'
+        },
+
+
+        /**
+         * Si le menu se collapse
+         *
+         * @param   {boolean}  c  True or False
+         *
+         * @return  {void}
+         */
+        onCollapse(c: boolean): void {
+            this.collapsed = c;
+        },
+
+        /**
+         * Mettre l'utilisateur connecté dans le store
+         *
+         * @return  {void}
+         */
+        resetUser(): void {
+            store.state.user.token = null
+            store.state.user.data = { id: null, role: null }
+            localStorage.removeItem('auth_token')
+        },
+    },
+
+    computed: {
+        /**
+         * Permet de detecter si un utilisateur est connecté ou non
+         *
+         * @return  {Boolean}  True si connecté, False sinon
+         */
+        isConnected(): boolean {
+            return store.state.user.token === null ? false : true;
+        },
+
+        /**
+         * Utilisateur connecté
+         *
+         * @return  {User}  L'utilisateur connecté
+         */
+        user(): User {
+            return store.getters.user
+        },
+
+        menu() {
+            return [
+                {
+                    header: true,
+                    hiddenOnCollapse: true,
+                    component: logoImg,
+                },
+                {
+                    href: '/',
+                    title: 'Dashboard',
+                    icon: 'fa fa-bar-chart'
+                },
+                {
+                    header: "Dépot",
+                    hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente') && !this.$can('add_entrepot') && !this.$can('view_entrepot'),
+                    hiddenOnCollapse: true,
+                },
+                {
+                    title: 'Point de vente',
+                    icon: 'fa fa-home',
+                    hidden: !this.$can('add_point_vente') && !this.$can('view_point_vente'),
+                    child: [
+                        {
+                            title: 'Ajouter nouveau',
+                            href: '/point-de-vente/nouveau',
+                            icon: 'fa fa-plus',
+                            hidden: !this.$can('add_point_vente'),
+                        },
+                        {
+                            title: 'Liste',
+                            href: '/point-de-vente/liste',
+                            icon: 'fa fa-list',
+                            hidden: !this.$can('view_point_vente'),
+                        },
+                    ]
+                },
+                {
+                    title: 'Entrepôt',
+                    icon: 'fa fa-home',
+                    hidden: !this.$can('add_entrepot') && !this.$can('view_entrepot'),
+                    child: [
+                        {
+                            title: 'Ajouter nouveau',
+                            href: '/entrepot/nouveau',
+                            icon: 'fa fa-plus',
+                            hidden: !this.$can('add_entrepot'),
+                        },
+                        {
+                            title: 'Liste',
+                            href: '/entrepot/liste',
+                            icon: 'fa fa-list',
+                            hidden: !this.$can('view_entrepot'),
+                        },
+                    ]
+                },
+                // Menu pour la gestion de client et fournisseur
+                // -----------------------------------------------------------------------------------------------------
+                {
+                    header: "Clients & Fournisseurs",
+                    hiddenOnCollapse: true,
+                    hidden: false,
+                },
+                {
+                    title: 'Client',
+                    icon: 'fa fa-users',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/client/nouveau',
+                            title: 'Nouveau client',
+                            icon: 'fa fa-plus',
+                            class: 'fw-regular',
+                            // hidden: !this.$can('add_user'),
+                        },
+                        {
+                            href: '/client/liste',
+                            title: 'Liste des clients',
+                            icon: 'fa fa-list',
+                            // hidden: !this.$can('view_user'),
+                        },
+                        {
+                            title: 'Les catégories',
+                            icon: 'fa fa-tasks',
+                            child: [
+                                {
+                                    href: '/client/categorie/nouveau',
+                                    title: 'Nouveau',
+                                    icon: 'fa fa-plus',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                                {
+                                    href: '/client/categorie/liste',
+                                    title: 'Liste',
+                                    icon: 'fa fa-list',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                            ],
+                            // hidden: !this.$can('manage_roles_and_functions'),
+                        },
+                    ]
+                },
+                {
+                    title: 'Fournisseurs',
+                    icon: 'fa fa-users',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/fournisseur/nouveau',
+                            title: 'Nouveau fournisseur',
+                            icon: 'fa fa-plus',
+                            class: 'fw-regular',
+                            // hidden: !this.$can('add_user'),
+                        },
+                        {
+                            href: '/fournisseur/liste',
+                            title: 'Liste des fournisseurs',
+                            icon: 'fa fa-list',
+                            // hidden: !this.$can('view_user'),
+                        },
+                        {
+                            title: 'Les catégories',
+                            icon: 'fa fa-tasks',
+                            child: [
+                                {
+                                    href: '/fournisseur/categorie/nouveau',
+                                    title: 'Nouveau',
+                                    icon: 'fa fa-plus',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                                {
+                                    href: '/fournisseur/categorie/liste',
+                                    title: 'Liste',
+                                    icon: 'fa fa-list',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                            ],
+                            // hidden: !this.$can('manage_roles_and_functions'),
+                        },
+                    ]
+                },
+                // -----------------------------------------------------------------------------------------------------
+                // Menu pour la gestion de l'article
+                // -----------------------------------------------------------------------------------------------------
+                {
+                    header: "Article",
+                    hiddenOnCollapse: true,
+                    hidden: false,
+                },
+                {
+                    title: 'Article',
+                    icon: 'fa fa-gift',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/article/nouveau',
+                            title: 'Nouveau article',
+                            icon: 'fa fa-plus',
+                            class: 'fw-regular',
+                            // hidden: !this.$can('add_user'),
+                        },
+                        {
+                            href: '/article/liste',
+                            title: 'Liste des article',
+                            icon: 'fa fa-list',
+                            // hidden: !this.$can('view_user'),
+                        },
+                        {
+                            title: 'Les catégories',
+                            icon: 'fa fa-tasks',
+                            child: [
+                                {
+                                    href: '/article/categorie/nouveau',
+                                    title: 'Nouveau',
+                                    icon: 'fa fa-plus',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                                {
+                                    href: '/article/categorie/liste',
+                                    title: 'Liste',
+                                    icon: 'fa fa-list',
+                                    class: 'fw-regular',
+                                    // hidden: !this.$can('add_user'),
+                                },
+                            ],
+                            // hidden: !this.$can('manage_roles_and_functions'),
+                        },
+                    ]
+                },
+                {
+                    title: 'Dévis',
+                    icon: 'fa fa-file',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/devis/fournisseur/liste',
+                            title: 'Approvisionnement',
+                            icon: 'fa fa-arrow-right',
+                            // hidden: !this.$can('view_devis'),
+                        },
+                        {
+                            href: '/devis/client/liste',
+                            title: 'Vente',
+                            icon: 'fa fa-arrow-left',
+                            // hidden: !this.$can('view_devis'),
+                        },
+                    ]
+                },
+                // --------------------------------------------------------------
+                {
+                    title: 'Commande',
+                    icon: 'fa fa-file',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/commande/fournisseur/liste',
+                            title: 'Approvisionnement',
+                            icon: 'fa fa-arrow-right',
+                            // hidden: !this.$can('view_commande'),
+                        },
+                        {
+                            href: '/commande/client/liste',
+                            title: 'Vente',
+                            icon: 'fa fa-arrow-left',
+                            // hidden: !this.$can('view_commande'),
+                        },
+                    ]
+                },
+                // ---------------------------------------------------------------------------------------
+                {
+                    header: "Personnel",
+                    hiddenOnCollapse: true,
+                    hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
+                },
+                {
+                    title: 'Personnel',
+                    icon: 'fa fa-users',
+                    hidden: !this.$can('manage_roles_and_functions') && !this.$can('view_user') && !this.$can('add_user'),
+                    child: [
+                        {
+                            href: '/personnel/nouveau',
+                            title: 'Nouveau personnel',
+                            icon: 'fa fa-plus',
+                            class: 'fw-regular',
+                            hidden: !this.$can('add_user'),
+                        },
+                        {
+                            href: '/personnel/liste',
+                            title: 'Liste des personnel',
+                            icon: 'fa fa-list',
+                            hidden: !this.$can('view_user'),
+                        },
+                        {
+                            href: '/personnel/fonctions',
+                            title: 'Les fonctions & rôles',
+                            icon: 'fa fa-tasks',
+                            hidden: !this.$can('manage_roles_and_functions'),
+                        },
+                    ]
+                },
+                {
+                    header: "Paramètres",
+                    hiddenOnCollapse: true,
+                    hidden: !this.$can('manage_settings'),
+                },
+                {
+                    title: 'Paramètres',
+                    icon: 'fa fa-cog',
+                    hidden: !this.$can('manage_settings'),
+                    child: [
+                        {
+                            href: '/point-de-vente/liste',
+                            title: 'Dévise',
+                            icon: 'fa fa-money',
+                        },
+                        {
+                            href: '/parametres/entreprise',
+                            title: 'Infos de l\'entreprise',
+                            icon: 'fa fa-info-circle',
+                        },
+                    ]
+                },
+            ];
         }
     }
+});
 </script>
 
 

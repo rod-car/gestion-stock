@@ -30,17 +30,19 @@
 
 <body>
     <div id="app">
+        @auth
+            <default-layout></default-layout>
+        @endauth
+        @guest
+            <login></login>
+        @endguest
     </div>
 
-    @auth
-        <default-layout></default-layout>
-    @endauth
     @guest
         <script>
-            localStorage.removeItem('auth_token');
-            window.history.pushState(null, null, '/login')
+                localStorage.removeItem('auth_token');
+                window.history.pushState(null, null, '/login')
         </script>
-        <login></login>
     @endguest
 
     <script src="{{ asset('js/app.js') }}"></script>

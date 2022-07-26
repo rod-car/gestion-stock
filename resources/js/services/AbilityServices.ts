@@ -1,16 +1,16 @@
 import axiosClient from "../axios"
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 
 export default function useAbility () {
 
-    const permissions = ref([])
+    const permissions: Ref<Array<any>> = ref([])
 
     /**
      * Recuperer tous les permissions de l'utilsateur connecté
      *
-     * @return  {Array}
+     * @return  {Promise}
      */
-    const getPermissions = async () => {
+    const getPermissions = async (): Promise<any> => {
 
         let response = await axiosClient.get('abilities')
         permissions.value = response.data

@@ -7,6 +7,8 @@ const store = createStore({
             data: {
                 id: null,
                 role: null,
+                nom_personnel: null,
+                prenom_personnel: null,
             },
             token: localStorage.getItem('auth_token')
         }
