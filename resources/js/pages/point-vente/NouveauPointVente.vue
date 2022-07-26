@@ -9,75 +9,21 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="post">
-                    <div class="row">
-                        <div class="col-xl-6 mb-3">
-                            <Input v-model="form.nom" :error="errors.nom" :required="true">Nom du point de vente</Input>
-                        </div>
-                        <div class="col-xl-6 mb-3">
-                            <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation du point de vente</Input>
-                        </div>
-                        <div class="col-xl-12 mb-3">
-                            <Input v-model="form.contact" :error="errors.contact">Contact</Input>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <SaveBtn @click.prevent="save" :loading="loading">Enregistrer</SaveBtn>
-                        </div>
-                    </div>
-                </form>
+                <DepotFormComponent :nouveau="true" :pointVente="true" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import Input from '../../components/html/Input.vue';
-import SaveBtn from '../../components/html/SaveBtn.vue';
-import Alert from '../../components/html/Alert.vue';
-import useCRUD from '../../services/CRUDServices.ts';
+import DepotFormComponent from '../../components/depot/DepotFormComponent.vue';
+import { defineComponent } from 'vue';
 
-const { success, errors, creating, create } = useCRUD("/depot")
-
-// import useDepot from '../../services/DepotServices';
-
-// const { success, errors, loading, createDepot } = useDepot()
-
-export default {
+export default defineComponent({
     components: {
-        Input, SaveBtn, Alert,
+        DepotFormComponent,
     },
-    setup() {
-        return {
-            success, errors, creating,
-            create,
-        }
-    },
-    data() {
-        return {
-            form: {
-                nom: null,
-                localisation: null,
-                contact: null,
-                point_vente: true,
-            },
-        }
-    },
-    methods: {
-        async save () {
-            await create(this.form)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (success.value !== null) this.resetForm();
-            success.value = null
-        },
-        resetForm () {
-            this.form = {
-                nom: null,
-                localisation: null,
-                contact: null,
-                point_vente: true,
-            }
-        },
-    },
-}
+})
+
 </script>

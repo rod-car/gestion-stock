@@ -5,7 +5,7 @@
     </label>
 
     <div v-if="type === 'textarea'">
-        <textarea v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @blur="handleBlur" class="form-control" :value="modelValue"></textarea>
+        <textarea v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @change="handleBlur" class="form-control" :value="modelValue"></textarea>
     </div>
 
     <div v-else>

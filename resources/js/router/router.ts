@@ -62,7 +62,7 @@ const router = createRouter({
  * @return  {void}
  */
 router.beforeEach((to, from, next) => {
-    if (store.state.user.data.id === undefined && to.path !== "/login") {
+    if (store.state.user.data.id === null && to.path !== "/login") {
         getUser()
     }
 

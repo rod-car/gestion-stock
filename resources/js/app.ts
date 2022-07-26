@@ -59,6 +59,7 @@ declare module '@vue/runtime-core' {
         $Progress: typeof VueProgressBar;
         $ability: typeof ability;
         $can: any;
+        SimpleAlert: VueSimpleAlert;
     }
 }
 

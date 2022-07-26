@@ -12,12 +12,12 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un point de vente
  */
 
-const NouveauPointVente = require('../../pages/point-vente/NouveauPointVente.vue');
-const ModifierPointVente = require('../../pages/point-vente/ModifierPointVente.vue');
-const ListePointVente = require('../../pages/point-vente/ListePointVente.vue');
-const VoirPointVente = require('../../pages/point-vente/VoirPointVente.vue');
-const GererResponsable = require('../../pages/point-vente/GererResponsable.vue');
-const GererPersonnel = require('../../pages/point-vente/GererPersonnel.vue');
+import NouveauPointVente  from '../../pages/point-vente/NouveauPointVente.vue';
+import ModifierPointVente  from '../../pages/point-vente/ModifierPointVente.vue';
+import ListePointVente  from '../../pages/point-vente/ListePointVente.vue';
+import VoirPointVente  from '../../pages/point-vente/VoirPointVente.vue';
+import GererResponsable  from '../../pages/point-vente/GererResponsable.vue';
+import GererPersonnel  from '../../pages/point-vente/GererPersonnel.vue';
 
 const routes = [
     {

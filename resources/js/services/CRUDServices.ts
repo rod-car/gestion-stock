@@ -3,15 +3,32 @@ import axiosClient from '../axios';
 import Router from '../router/router';
 import Flash from '../functions/Flash';
 import { AxiosResponse } from 'axios';
+interface CRUD {
+    create(data: Object): Promise<any>,
+    find(id: number): Promise<any>,
+    update(id: number, data: object, updateType?: number | null): Promise<any>,
+    all(type: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
+    destroy(id: number, index: number): Promise<any>,
+    creating: Ref<boolean>,
+    loading: Ref<boolean>,
+    updating: Ref<boolean>,
+    deleting: Ref<boolean>,
+    errors: Ref<any>,
+    success: Ref<string | null>,
+    entity: Ref<any>,
+    entities: Ref<Array<any>>,
+    key: Ref<string | null>,
+    getKey(type: number, appro: boolean): Promise<any>,
+}
 
 /**
  * Permet de fournir un service de CRUD
  *
  * @param   {String}  url  URL de l'api ressource
  *
- * @return  {Object}
+ * @return  {CRUD}
  */
-export default function useCRUD(url: string): object {
+export default function useCRUD(url: string): CRUD {
 
     /**
      * Contient tous les donnees
@@ -139,12 +156,12 @@ export default function useCRUD(url: string): object {
      * Recupere tous les entités
      *
      * @param   {String | null}          type    [type description]
-     * @param   {String | null}          except  [except description]
+     * @param   {Number | null}          except  [except description]
      * @param   {Boolean |  null}        appro   [appro description]
      *
      * @return  {Promise}            [return description]
      */
-    const all = async (type: string | null, except: string | null, appro: boolean | null): Promise<any> => {
+    const all = async (type: number | null, except?: string | null, appro?: boolean | null): Promise<any> => {
         loading.value = true
 
         try {
@@ -193,11 +210,11 @@ export default function useCRUD(url: string): object {
      *n
      * @param   {Number}  id          Identifiant du point de vente
      * @param   {Object}  data        Nouvelle données
-     * @param   {Number}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
+     * @param   {Number | null}  updateType  Type de mise a jour (1: Responsable uniquement, 2: Travailleurs uniquement, 3: Tous)
      *
      * @return  {Promise}
      */
-    const update = async (id: number, data: object, updateType: number): Promise<any> => {
+    const update = async (id: number, data: object, updateType?: number | null): Promise<any> => {
 
         updating.value = true
 

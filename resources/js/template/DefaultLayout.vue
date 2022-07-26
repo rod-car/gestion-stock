@@ -197,21 +197,28 @@
 
 <script lang="ts">
 
-    import axiosClient from '../axios';
-    import store from '../store';
-    import useAbility from '../services/AbilityServices';
-    import { defineComponent, onBeforeMount, onMounted, Ref, ref } from 'vue';
+import axiosClient from '../axios';
+import store from '../store';
+import useAbility from '../services/AbilityServices';
+import { defineComponent, Ref, ref } from 'vue';
 
-    const { permissions, getPermissions }  = useAbility()
+interface User {
+    id: number | null,
+    role: number | null,
+    nom_personnel: string | null,
+    prenoms_personnel: string | null
+}
 
-    const logoImg = {
-        setup() {
-            return {
-                src: '/images/app-logo.png'
-            }
-        },
-        template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'
-    }
+const { permissions, getPermissions }  = useAbility()
+
+const logoImg = {
+    setup() {
+        return {
+            src: '/images/app-logo.png'
+        }
+    },
+    template: '<img :src="src" class="w-100 mt-4 mb-4 pe-5 ps-5"><hr class="bg-light ms-5 me-5">'
+}
 
 export default defineComponent({
     setup() {
@@ -230,9 +237,7 @@ export default defineComponent({
 
     created() {
         this.$Progress.start();
-
         this.$router.beforeEach((to, from, next) => {
-
             axiosClient.get('abilities').then(response => {
                 this.$ability.update([
                     { subject: 'all', action: response.data }
@@ -291,7 +296,7 @@ export default defineComponent({
          */
         resetUser(): void {
             store.state.user.token = null
-            store.state.user.data = { id: null, role: null }
+            store.state.user.data = { id: null, role: null, nom_personnel: null, prenoms_personnel: null }
             localStorage.removeItem('auth_token')
         },
     },
@@ -323,7 +328,7 @@ export default defineComponent({
                     component: logoImg,
                 },
                 {
-                    href: '/',
+                    href: '/dashboard',
                     title: 'Dashboard',
                     icon: 'fa fa-bar-chart'
                 },

@@ -12,9 +12,9 @@ import Message from 'vue-m-message';
  *
  * @return  {Message}                Fonction qui génere le message flash
  */
-export default function Flash(type: string, title: string, message: string, delay: number = 5, closable: Boolean = true, position: string = 'bottom-right') {
+export default function Flash(type: any, title: string, message: string, delay: number = 5, closable: any = true, position: any = 'bottom-right'): any {
     return Message({
-        /*type: type,
+        type: type,
         title: title,
         message: message,
         position: position,
@@ -22,6 +22,6 @@ export default function Flash(type: string, title: string, message: string, dela
         width: "25%",
         className: `message-${type} p-3`,
         stopTimerOnHover: true,
-        closable: closable,*/
+        closable: closable,
     })
 }

@@ -12,12 +12,12 @@
  *  -   Ajouter et modifier les personnelles qui travaillent dans un entrepôt
  */
 
-const NouveauEntrepot = require('../../pages/entrepot/NouveauEntrepot.vue');
-const ModifierEntrepot = require('../../pages/entrepot/ModifierEntrepot.vue');
-const ListeEntrepot = require('../../pages/entrepot/ListeEntrepot.vue');
-const VoirEntrepot = require('../../pages/entrepot/VoirEntrepot.vue');
-const GererResponsable = require('../../pages/entrepot/GererResponsable.vue');
-const GererPersonnel = require('../../pages/entrepot/GererPersonnel.vue');
+import NouveauEntrepot from '../../pages/entrepot/NouveauEntrepot.vue';
+import ModifierEntrepot from '../../pages/entrepot/ModifierEntrepot.vue';
+import ListeEntrepot from '../../pages/entrepot/ListeEntrepot.vue';
+import VoirEntrepot from '../../pages/entrepot/VoirEntrepot.vue';
+import GererResponsable from '../../pages/entrepot/GererResponsable.vue';
+import GererPersonnel from '../../pages/entrepot/GererPersonnel.vue';
 
 const routes = [
     {
