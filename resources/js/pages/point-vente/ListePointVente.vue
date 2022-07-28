@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <ListeDepotLoadingComponent v-if="loading" />
-                <ListeDepotComponent v-else :depots="entities" />
+                <ListeDepotComponent v-else :depots="entities" :entrepot="false" />
             </div>
         </div>
     </div>

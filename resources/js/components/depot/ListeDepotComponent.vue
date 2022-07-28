@@ -20,9 +20,9 @@
                     <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
                 </td>
                 <td class="d-flex justify-content-center">
-                    <router-link :to="{ name: 'point-de-vente.voir', params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="$can('edit_point_vente')" :to="{ name: 'point-de-vente.modifier', params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <form v-if="$can('delete_point_vente')" action="" method="post">
+                    <router-link :to="{ name: `${getName}.voir`, params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
+                    <router-link v-if="$can(editAccess)" :to="{ name: `${getName}.modifier`, params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <form v-if="$can(deleteAccess)" action="" method="post">
                         <DeleteBtn type="danger" @click.prevent="confirmDeletion(depot.id, index)"/>
                     </form>
                 </td>
@@ -30,7 +30,7 @@
         </tbody>
         <tbody v-else>
             <tr>
-                <td class="text-center" colspan="6">Aucune point de vente</td>
+                <td class="text-center" colspan="6">Aucun élément</td>
             </tr>
         </tbody>
     </table>
@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import useCRUD from "../../services/CRUDServices";
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import Flash from "../../functions/Flash";
 import VueSimpleAlert from "vue3-simple-alert";
 import DeleteBtn from '../../components/html/DeleteBtn.vue';
@@ -50,19 +50,31 @@ export default defineComponent({
         depots: {
             type: Array<any>,
             required: true,
-        }
+        },
+        entrepot: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
     },
 
-    setup() {
+    setup(props) {
 
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {Number}  id  Identifiant du personnel
-         * @param   {Number | null}  index Indice de l'element dans la liste
-         *
-         * @return  {Promise}
-         */
+        const getName = computed((): string => {
+            if (props.entrepot === true) return "entrepot";
+            return "point-de-vente";
+        })
+
+        const editAccess = computed((): string => {
+            if (props.entrepot === true) return "edit_entrepot";
+            return "edit_point_vente";
+        })
+
+        const deleteAccess = computed((): string => {
+            if (props.entrepot === true) return "delete_entrepot";
+            return "delete_point_vente";
+        })
+
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await VueSimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
@@ -75,7 +87,7 @@ export default defineComponent({
         }
 
         return {
-            confirmDeletion, deleting, destroy,
+            confirmDeletion, deleting, destroy, getName, editAccess, deleteAccess,
         };
     },
 

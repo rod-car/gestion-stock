@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <ListeDepotLoadingComponent v-if="loading" />
-                <ListeDepotComponent v-else :depots="entities" />
+                <ListeDepotComponent v-else :depots="entities" :entrepot="true" />
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@ export default defineComponent({
 
     setup() {
         onMounted(async (): Promise<any> => {
-            await all(2);
+            await all(0);
         })
 
         return {
