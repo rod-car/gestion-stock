@@ -29,7 +29,7 @@ class ModifierCategorieRequest extends FormRequest
     {
         return [
             "libelle" => ["required", Rule::unique("categories")->where(function ($query) {
-                $query->where("type", $this->type)->where("id", "<>", $this->id);
+                $query->where("type", $this->type)->where("id", "<>", $this->categorie->id);
             }), "min:5", "max:255"],
             "description" => ["nullable", "sometimes", "min:5", "max:1000"],
             "type" => ["required", "numeric", "min:1"],
@@ -46,7 +46,9 @@ class ModifierCategorieRequest extends FormRequest
      */
     public function messages()
     {
-        return [];
+        return [
+            "libelle.unique" => "L'a catégorie est déja dans votre liste de atégorie"
+        ];
     }
 
     /**

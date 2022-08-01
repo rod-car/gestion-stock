@@ -5,31 +5,31 @@
             <router-link to="/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des fournisseurs</router-link>
         </div>
         <div class="card-body">
-            <FournisseurFormComponent v-if="!Fournisseur.loading.value" :nouveau="false" :fournisseur="Fournisseur.entity.value" />
-            <FournisseurFormLoadingComponent v-else />
+            <FournisseurFormLoadingComponent v-if="loading" />
+            <FournisseurFormComponent v-else :nouveau="false" :fournisseur="entity" />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import { onMounted } from 'vue';
+import { defineComponent, onBeforeMount } from 'vue';
 import FournisseurFormComponent from '../../components/fournisseur/FournisseurFormComponent.vue';
 import FournisseurFormLoadingComponent from '../../components/fournisseur/FournisseurFormLoadingComponent.vue';
 import router from '../../router/router';
-import useCRUD from '../../services/CRUDServices.ts';
+import useCRUD from '../../services/CRUDServices';
 
-const Fournisseur = useCRUD('fournisseur')
+const { loading, entity, find } = useCRUD('/fournisseur')
 
-export default {
+export default defineComponent({
     setup() {
-        onMounted(async () => {
-            const id = router.currentRoute.value.params.id;
-            await Fournisseur.find(id);
+        onBeforeMount(async (): Promise<any> => {
+            const id = parseInt(router.currentRoute.value.params.id.toString());
+            await find(id);
         })
 
         return {
-            Fournisseur,
+            entity, loading, find,
         }
     },
 
@@ -38,5 +38,5 @@ export default {
         FournisseurFormLoadingComponent
     },
 
-}
+});
 </script>

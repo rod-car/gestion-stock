@@ -28,7 +28,7 @@ class ModifierFournisseurRequest extends FormRequest
     public function rules()
     {
         return [
-            "nom" => ["required", "unique:fournisseurs,nom,{$this->id},id", "sometimes", "min:2", "max:255"],
+            "nom" => ["required", "unique:fournisseurs,nom,{$this->fournisseur->id},id", "sometimes", "min:2", "max:255"],
             "adresse" => ["required", "sometimes", "min:5", "max:255"],
             "email" => ["nullable", "email", "max:255"],
             "contact" => ["required", "min:10", "max:30"],

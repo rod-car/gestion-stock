@@ -15,13 +15,14 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
+import { defineComponent } from 'vue';
 import ClientFormComponent from '../../components/client/ClientFormComponent.vue';
 
-export default {
+export default defineComponent({
     components: {
         ClientFormComponent,
     }
-}
+});
 </script>

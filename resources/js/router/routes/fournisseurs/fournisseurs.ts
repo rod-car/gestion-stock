@@ -6,19 +6,20 @@
  * Liste des routes:
  *  -   Creer un nouveau fournisseur
  *  -   Liste de tous les fournisseurs
- *  -   Voir une fournisseur en particuluer
- *  -   Modifier un etrepôt
- *  -   Ajouter et modifier les responsables d'un fournisseur
- *  -   Ajouter et modifier les personnelles qui travaillent dans un fournisseur
+ *  -   Voir une fiche fournisseur
+ *  -   Modifier un fournisseur
+ *  -   Créer un nouveau catégorie de fournisseur
+ *  -   Modifier un nouveau catégorie de fournisseur
+ *  -   Liste de catégorie de fournisseur
  */
 
-const NouveauFournisseur = require('../../../pages/fournisseur/NouveauFournisseur.vue');
-const ModifierFournisseur = require('../../../pages/fournisseur/ModifierFournisseur.vue');
-const VoirFournisseur = require('../../../pages/fournisseur/VoirFournisseur.vue');
-const ListeFournisseur = require('../../../pages/fournisseur/ListeFournisseur.vue');
-const NouveauCategorie = require('../../../pages/fournisseur/categorie/NouveauCategorie.vue');
-const ListeCategorie = require('../../../pages/fournisseur/categorie/ListeCategorie.vue');
-const ModifierCategorie = require('../../../pages/fournisseur/categorie/ModifierCategorie.vue');
+import NouveauFournisseur  from '../../../pages/fournisseur/NouveauFournisseur.vue';
+import ModifierFournisseur  from '../../../pages/fournisseur/ModifierFournisseur.vue';
+import VoirFournisseur  from '../../../pages/fournisseur/VoirFournisseur.vue';
+import ListeFournisseur  from '../../../pages/fournisseur/ListeFournisseur.vue';
+import NouveauCategorie  from '../../../pages/fournisseur/categorie/NouveauCategorie.vue';
+import ListeCategorie  from '../../../pages/fournisseur/categorie/ListeCategorie.vue';
+import ModifierCategorie  from '../../../pages/fournisseur/categorie/ModifierCategorie.vue';
 
 const routes = [
     {

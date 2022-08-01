@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.ts('resources/js/app.ts', 'public/js')
-    .vue({ version: 3 })
+    .vue({ version: 3, devtool: 'source-map' })
     .postCss('resources/css/app.css', 'public/css')
     .copy(
         'node_modules/@fortawesome/fontawesome-free/webfonts',
@@ -20,4 +20,8 @@ mix.ts('resources/js/app.ts', 'public/js')
     )
     .sass('resources/scss/app.scss', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
-    .disableNotifications();
+    .disableNotifications()
+    .sourceMaps()
+    .webpackConfig({
+        devtool: 'source-map'
+    });

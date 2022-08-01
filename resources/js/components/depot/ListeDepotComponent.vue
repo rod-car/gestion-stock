@@ -1,13 +1,13 @@
 <template>
     <table class="table table-striped table-hover">
-        <thead class="text-uppercase">
+        <thead class="bg-secondary text-white">
             <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Localisation</th>
-                <th>Contact</th>
-                <th>Responsables</th>
-                <th class="text-center">Actions</th>
+                <th class="p-3">ID</th>
+                <th class="p-3">Nom</th>
+                <th class="p-3">Localisation</th>
+                <th class="p-3">Contact</th>
+                <th class="p-3">Responsables</th>
+                <th class="text-center p-3">Actions</th>
             </tr>
         </thead>
         <tbody v-if="depots.length > 0">

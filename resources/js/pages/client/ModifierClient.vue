@@ -11,24 +11,24 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import useCRUD from '../../services/CRUDServices.ts';
+import useCRUD from '../../services/CRUDServices';
 import ClientFormComponent from '../../components/client/ClientFormComponent.vue';
 import ClientFormLoadingComponent from '../../components/client/ClientFormLoadingComponent.vue';
-import { onMounted } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import router from '../../router/router';
 
 const Client = useCRUD('/client')
 
-export default {
+export default defineComponent({
     components: {
         ClientFormComponent, ClientFormLoadingComponent,
     },
 
     setup() {
         onMounted(async () => {
-            const id = parseInt(router.currentRoute.value.params.id)
+            const id = parseInt(router.currentRoute.value.params.id.toString())
             await Client.find(id)
         })
 
@@ -37,5 +37,5 @@ export default {
         }
     },
 
-}
+});
 </script>
