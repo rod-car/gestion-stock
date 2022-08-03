@@ -14,13 +14,13 @@
  */
 
 
-const NouveauArticle = require('../../../pages/articles/NouveauArticle.vue');
-const ModifierArticle = require('../../../pages/articles/ModifierArticle.vue');
-const VoirArticle = require('../../../pages/articles/VoirArticle.vue');
-const ListeArticle = require('../../../pages/articles/ListeArticle.vue');
-const NouveauCategorie = require('../../../pages/articles/categorie/NouveauCategorie.vue');
-const ListeCategorie = require('../../../pages/articles/categorie/ListeCategorie.vue');
-const ModifierCategorie = require('../../../pages/articles/categorie/ModifierCategorie.vue');
+import NouveauArticle from '../../../pages/articles/NouveauArticle.vue';
+import ModifierArticle from '../../../pages/articles/ModifierArticle.vue';
+import VoirArticle from '../../../pages/articles/VoirArticle.vue';
+import ListeArticle from '../../../pages/articles/ListeArticle.vue';
+import NouveauCategorie from '../../../pages/articles/categorie/NouveauCategorie.vue';
+import ListeCategorie from '../../../pages/articles/categorie/ListeCategorie.vue';
+import ModifierCategorie from '../../../pages/articles/categorie/ModifierCategorie.vue';
 
 const routes = [
     {

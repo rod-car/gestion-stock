@@ -5,6 +5,7 @@
                 <th>ID</th>
                 <th>Libelle</th>
                 <th>Description</th>
+                <th v-if="type === 3">Sous catégories</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -13,6 +14,10 @@
                 <td>{{ categorie.id }}</td>
                 <td>{{ categorie.libelle }}</td>
                 <td>{{ categorie.description }}</td>
+                <td v-if="type === 3">
+                    <span v-if="categorie.sous_categories <= 0">Aucune sous-catégories</span>
+                    <span class="badge bg-success me-2" v-else v-for="sous_categorie in categorie.sous_categories" :key="sous_categorie.id">{{ sous_categorie.libelle }}</span>
+                </td>
                 <td class="d-flex justify-content-center">
                     <router-link v-if="true" :to="{ name: `${prefix}.categorie.modifier`, params: { id: categorie.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(categorie.id, index)"/>
@@ -56,7 +61,8 @@ export default defineComponent({
         const prefix = computed((): string => {
             if (props.type === 1) return "client";
             else if (props.type === 2) return "fournisseur";
-            else throw new Error("Le type de categorie doit être 1 ou 2");
+            else if (props.type === 3) return "article";
+            else throw new Error("Le type de categorie doit être 1 ou 2 ou 3");
         })
 
         const confirmDeletion = async (id: number, index: number): Promise<any> => {

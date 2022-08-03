@@ -7,7 +7,7 @@ interface CRUD {
     create(data: Object): Promise<any>,
     find(id: number): Promise<any>,
     update(id: number, data: object, updateType?: number | null): Promise<any>,
-    all(type: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
+    all(type?: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
     destroy(id: number, index: number): Promise<any>,
     creating: Ref<boolean>,
     loading: Ref<boolean>,
@@ -161,7 +161,7 @@ export default function useCRUD(url: string): CRUD {
      *
      * @return  {Promise}            [return description]
      */
-    const all = async (type: number | null, except?: string | null, appro?: boolean | null): Promise<any> => {
+    const all = async (type?: number | null, except?: string | null, appro?: boolean | null): Promise<any> => {
         loading.value = true
 
         try {

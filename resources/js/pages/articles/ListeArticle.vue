@@ -8,96 +8,36 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-hover">
-                    <thead class="text-uppercase">
-                        <tr>
-                            <th>Réference</th>
-                            <th>Designation</th>
-                            <th>Stock d'alerte</th>
-                            <th>Unité</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody v-if="loading">
-                        <tr v-for="i in 5" :key="i">
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                            <td><Skeletor height="30" width="100%" style="border-radius: 3px" /></td>
-                        </tr>
-                    </tbody>
-                    <tbody v-else-if="entities.length > 0">
-                        <tr v-for="(article, index) in entities" v-bind:key="article.id">
-                            <td>{{ article.reference }}</td>
-                            <td>{{ article.designation }}</td>
-                            <td>{{ article.stock_alert ?? "Non définie" }}</td>
-                            <td>{{ article.unite }}</td>
-                            <td class="d-flex justify-content-center">
-                                <router-link v-if="true" :to="{ name: 'article.voir', params: { id: article.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                                <router-link v-if="true" :to="{ name: 'article.modifier', params: { id: article.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(article.id, index)"/>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody v-else>
-                        <tr>
-                            <td class="text-center" colspan="9">Aucun article</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <!--div class="pagination">
-                    <pagination align="center" :data="personnelles" @pagination-change-page="getPersonnelles"></pagination>
-                </div-->
+                <ListeArticleLoadingComponent v-if="loading" />
+                <ListeArticleComponent v-else :articles="entities" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import useCRUD from '../../services/CRUDServices';
+import ListeArticleLoadingComponent from '../../components/article/ListeArticleLoadingComponent.vue';
+import ListeArticleComponent from '../../components/article/ListeArticleComponent.vue';
+import { defineComponent, onBeforeMount } from 'vue';
 
-import { Skeletor } from 'vue-skeletor';
-import Flash from '../../functions/Flash';
-import useCRUD from '../../services/CRUDServices.ts';
-import DeleteBtn from '../../components/html/DeleteBtn.vue';
+const { entities, loading, all } = useCRUD("/article")
 
-const { entities, loading, deleting, all, destroy } = useCRUD("/article")
-
-export default {
+export default defineComponent({
     components: {
-        DeleteBtn, Skeletor,
+        ListeArticleLoadingComponent,
+        ListeArticleComponent
     },
 
     setup() {
+        onBeforeMount(async (): Promise<any> => {
+            await all();
+        })
+
         return {
-            entities, loading, deleting, all, destroy,
+            entities, loading,
         }
-    },
+    }
 
-    mounted() {
-        all() // Recuperer les articles
-    },
-
-    methods: {
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {integr}  id  Identifiant du personnel
-         *
-         * @return  {void}
-         */
-        confirmDeletion (id, index) {
-            SimpleAlert.confirm("Voulez-vous supprimer ce article ?", "Question", "question").then(() => {
-                Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, index)
-            }).catch (error => {
-                if (error !== undefined) {
-                    Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
-                }
-            });
-        }
-    },
-
-}
+});
 </script>

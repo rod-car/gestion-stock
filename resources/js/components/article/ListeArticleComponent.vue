@@ -1,0 +1,73 @@
+<template>
+    <table class="table table-striped table-hover">
+        <thead class="bg-secondary text-white">
+            <tr>
+                <th>Réference</th>
+                <th>Designation</th>
+                <th>Stock d'alerte</th>
+                <th>Unité</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody v-if="articles.length > 0">
+            <tr v-for="(article, index) in articles" v-bind:key="article.id">
+                <td>{{ article.reference }}</td>
+                <td>{{ article.designation }}</td>
+                <td>{{ article.stock_alert ?? "Non définie" }}</td>
+                <td>{{ article.unite }}</td>
+                <td class="d-flex justify-content-center">
+                    <router-link v-if="true" :to="{ name: 'article.voir', params: { id: article.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                    <router-link v-if="true" :to="{ name: 'article.modifier', params: { id: article.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(article.id, index)"/>
+                </td>
+            </tr>
+        </tbody>
+        <tbody v-else>
+            <tr>
+                <td class="text-center" colspan="9">Aucun article</td>
+            </tr>
+        </tbody>
+    </table>
+</template>
+
+<script lang="ts">
+import { Skeletor } from 'vue-skeletor';
+import Flash from '../../functions/Flash';
+import useCRUD from '../../services/CRUDServices';
+import DeleteBtn from '../../components/html/DeleteBtn.vue';
+import { defineComponent } from 'vue';
+import VueSimpleAlert from 'vue3-simple-alert';
+
+const { deleting, destroy } = useCRUD("/article")
+
+export default defineComponent({
+    props: {
+        articles: {
+            type: Array<any>,
+            required: true,
+        }
+    },
+
+    components: {
+        DeleteBtn, Skeletor,
+    },
+
+    setup() {
+
+        const confirmDeletion = async (id: number, index: number): Promise<any> => {
+            await VueSimpleAlert.confirm("Voulez-vous supprimer ce article ?", "Question", "question").then(() => {
+                Flash('loading', "Chargement", "Suppression en cours", 1, false)
+                destroy(id, index)
+            }).catch(error => {
+                if (error !== undefined) {
+                    Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
+                }
+            });
+        }
+        return {
+            deleting, confirmDeletion,
+        }
+    }
+
+});
+</script>

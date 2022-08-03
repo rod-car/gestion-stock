@@ -4,6 +4,24 @@
             <div class="col-xl-12 mb-3">
                 <Input v-model="form.libelle" :error="errors.libelle" :required="true">Nom de la catégorie</Input>
             </div>
+
+            <div v-if="type === 3" class="col-xl-12 mb-3">
+                <label for="sous_categories" class="form-label">Sous catégories</label>
+                <Multiselect
+                    :class="hasError ? 'border-danger' : ''"
+                    label="libelle" valueProp="id" :multiple="true" v-model="form.sous_categories"
+                    :options="entities" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                    :searchable="true" placeholder="Selectionner les sous catégories"
+                    :object="nouveau === false ? true : false"
+                    noOptionsText="Aucune catégorie"
+                    noResultsText="Aucune catégorie"
+                />
+                <div class="text-danger mt-1" v-if="hasError">
+                    {{ errors.sous_categories[0] }}
+                </div>
+            </div>
+
+
             <div class="col-xl-12 mb-3">
                 <Input type="textarea" v-model="form.description" :error="errors.description">Description de la catégorie</Input>
             </div>
@@ -18,23 +36,24 @@
 
 import SaveBtn from '../../components/html/SaveBtn.vue';
 import Input from '../../components/html/Input.vue';
-import { defineComponent, Ref, ref } from 'vue';
+import { computed, defineComponent, onMounted, Ref, ref } from 'vue';
 import useCRUD from '../../services/CRUDServices';
+import Multiselect from '@vueform/multiselect';
 
-const { creating, errors, success, create, updating, update } = useCRUD("/categorie");
+const { creating, errors, success, create, updating, update, all, loading, entities } = useCRUD("/categorie");
 
 interface Form {
     libelle: string | null,
     description: string | null,
     type: number,
+    sous_categories?: Array<any>|null
 }
 
 export default defineComponent({
     props: {
         nouveau: {
             type: Boolean,
-            required: false,
-            default: true,
+            required: true,
         },
 
         categorie: {
@@ -52,11 +71,12 @@ export default defineComponent({
     emits: ['categorie-cree'],
 
     setup(props, { emit }) {
-        const form: Ref<Form> = ref({
+        const form = ref({
             libelle: props.categorie === null ? null : props.categorie.libelle,
             description: props.categorie === null ? null : props.categorie.description,
             type: props.type, // Catégorie client
-        });
+            sous_categories: (props.nouveau === false && props.categorie !== null) ? props.categorie.sous_categories : []
+        } as Form);
 
         const save = async (): Promise<any> => {
             if (props.nouveau) await create(form.value)
@@ -79,13 +99,22 @@ export default defineComponent({
             }
         }
 
+        const hasError = computed((): boolean => {
+            if (errors.value.sous_categories && errors.value.sous_categories.length > 0) return true
+            return false
+        });
+
+        onMounted(async (): Promise<any> => {
+            if (props.type === 3) await all(3, props.categorie.id);
+        })
+
         return {
-            creating, errors, form, save, updating,
+            creating, errors, form, save, updating, loading, entities, hasError,
         }
     },
 
     components: {
-        Input, SaveBtn,
+        Input, SaveBtn, Multiselect,
     },
 
 });

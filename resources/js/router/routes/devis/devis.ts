@@ -9,15 +9,15 @@
  *  -   Voir une devis en particuluer
  */
 
-const NouveauDevisFrs = require('../../../pages/devis/fournisseur/NouveauDevis.vue');
-const ModifierDevisFrs = require('../../../pages/devis/fournisseur/ModifierDevis.vue');
-const VoirDevisFrs = require('../../../pages/devis/fournisseur/VoirDevis.vue');
-const ListeDevisFrs = require('../../../pages/devis/fournisseur/ListeDevis.vue');
+import NouveauDevisFrs from '../../../pages/devis/fournisseur/NouveauDevis.vue';
+import ModifierDevisFrs from '../../../pages/devis/fournisseur/ModifierDevis.vue';
+import VoirDevisFrs from '../../../pages/devis/fournisseur/VoirDevis.vue';
+import ListeDevisFrs from '../../../pages/devis/fournisseur/ListeDevis.vue';
 
-const NouveauDevisClient = require('../../../pages/devis/client/NouveauDevis.vue');
-const ModifierDevisClient = require('../../../pages/devis/client/ModifierDevis.vue');
-const VoirDevisClient = require('../../../pages/devis/client/VoirDevis.vue');
-const ListeDevisClient = require('../../../pages/devis/client/ListeDevis.vue');
+import NouveauDevisClient from '../../../pages/devis/client/NouveauDevis.vue';
+import ModifierDevisClient from '../../../pages/devis/client/ModifierDevis.vue';
+import VoirDevisClient from '../../../pages/devis/client/VoirDevis.vue';
+import ListeDevisClient from '../../../pages/devis/client/ListeDevis.vue';
 
 const devisFournisseurs = [
     {

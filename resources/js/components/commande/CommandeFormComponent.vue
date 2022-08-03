@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div v-if="creationArticle" class="border border-secondary shadow p-5 mb-5 mt-3">
-                            <NouveauArticleComponent @article-cree="articleCree" />
+                            <ArticleFormComponent @article-cree="articleCree" />
                         </div>
 
                         <table class="table table-bordered table-striped">
@@ -167,7 +167,7 @@ import { Skeletor } from 'vue-skeletor';
 import Config from '../../config/config.ts';
 import { computed, onMounted, onBeforeMount, ref } from 'vue';
 
-import NouveauArticleComponent from '../article/NouveauArticleComponent.vue';
+import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 
@@ -181,7 +181,7 @@ const Article = useCRUD('/article')
 export default {
     name: "CommandeFormComponent",
     components: {
-        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, NouveauArticleComponent, NouveauFournisseurComponent, NouveauClientFormComponent,
+        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent,
     },
 
     props: {
