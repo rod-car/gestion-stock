@@ -4,20 +4,21 @@
  * Tous les routes present dans ce fichier sont privée, L'utilisateur doit être connecté
  *
  * Liste des routes:
- *  -   Creer un nouveau commande
- *  -   Liste de tous les commandes
- *  -   Voir une commande en particuluer
+ *  -   Creer une nouvelle commande (FRS & CLIENT)
+ *  -   Modifier une commande (FRS & CLIENT)
+ *  -   Liste de tous les commandes (FRS & CLIENTS)
+ *  -   Voir une commande en particuluer (FRS & CLIENT)
  */
 
-const NouvelleCommandeFrs = require('../../../pages/commande/fournisseur/NouvelleCommande.vue');
-const ModifierCommandeFrs = require('../../../pages/commande/fournisseur/ModifierCommande.vue');
-const VoirCommandeFrs = require('../../../pages/commande/fournisseur/VoirCommande.vue');
-const ListeCommandeFrs = require('../../../pages/commande/fournisseur/ListeCommande.vue');
+import NouvelleCommandeFrs from '../../../pages/commande/fournisseur/NouvelleCommande.vue';
+import ModifierCommandeFrs from '../../../pages/commande/fournisseur/ModifierCommande.vue';
+import VoirCommandeFrs from '../../../pages/commande/fournisseur/VoirCommande.vue';
+import ListeCommandeFrs from '../../../pages/commande/fournisseur/ListeCommande.vue';
 
-const NouvelleCommandeClient = require('../../../pages/commande/client/NouvelleCommande.vue');
-const ModifierCommandeClient = require('../../../pages/commande/client/ModifierCommande.vue');
-const VoirCommandeClient = require('../../../pages/commande/client/VoirCommande.vue');
-const ListeCommandeClient = require('../../../pages/commande/client/ListeCommande.vue');
+import NouvelleCommandeClient from '../../../pages/commande/client/NouvelleCommande.vue';
+import ModifierCommandeClient from '../../../pages/commande/client/ModifierCommande.vue';
+import VoirCommandeClient from '../../../pages/commande/client/VoirCommande.vue';
+import ListeCommandeClient from '../../../pages/commande/client/ListeCommande.vue';
 
 const commandeFournisseurs = [
     {

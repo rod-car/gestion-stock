@@ -1,5 +1,5 @@
-const NotFound = require('../../pages/errors/NotFound.vue');
-const Forbidden = require('../../pages/errors/Forbidden.vue');
+import NotFound from '../../pages/errors/NotFound.vue';
+import Forbidden from '../../pages/errors/Forbidden.vue';
 
 const routes = [
     {

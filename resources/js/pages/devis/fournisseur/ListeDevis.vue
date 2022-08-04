@@ -8,36 +8,36 @@
                 </div>
             </div>
             <div class="card-body">
-                <ListeDevisComponent v-if="!Devis.loading.value" :entities="Devis.entities.value" :appro="true" />
-                <ListeDevisLoadingComponent v-else />
+                <ListeDevisLoadingComponent v-if="loading" />
+                <ListeDevisComponent v-else :entities="entities" :appro="true" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import { onMounted } from 'vue';
+import { defineComponent, onBeforeMount } from 'vue';
 import ListeDevisComponent from '../../../components/devis/ListeDevisComponent.vue';
 import ListeDevisLoadingComponent from '../../../components/devis/ListeDevisLoadingComponent.vue';
-import useCRUD from '../../../services/CRUDServices.ts';
+import useCRUD from '../../../services/CRUDServices';
 
-const Devis = useCRUD('/commandes')
+const { loading, entities, all } = useCRUD('/commandes')
 
-export default {
+export default defineComponent({
     components: {
         ListeDevisComponent, ListeDevisLoadingComponent,
     },
 
     setup() {
-        onMounted(() => {
-            Devis.all({ type: 1, appro: true }) // Recuperer les deviss
+        onBeforeMount(async (): Promise<any> => {
+            await all(1, null, true) // Recuperer les deviss
         })
 
         return {
-            Devis,
+            loading, entities,
         }
     },
 
-}
+})
 </script>

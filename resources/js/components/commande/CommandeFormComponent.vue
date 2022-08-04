@@ -2,7 +2,7 @@
     <form action="" method="post">
         <div class="row mb-5">
             <div class="col-xl-12">
-                <h6 class="text-uppercase text-primary mb-4">Information du dévis</h6>
+                <h6 class="text-uppercase text-primary mb-4">Information de la commande</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
                         <Input v-if="Commande.loading.value === false" v-model="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
@@ -63,7 +63,7 @@
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
                         <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" enableSeconds
-                            cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation :state="dateState"
+                            cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
                             @update:modelValue="checkDate"></Datepicker>
 
                         <div class="text-danger mt-1" v-if="dateState === false">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div v-if="creationArticle" class="border border-secondary shadow p-5 mb-5 mt-3">
-                            <ArticleFormComponent @article-cree="articleCree" />
+                            <ArticleFormComponent @article-cree="articleCree" :nouveau="true" />
                         </div>
 
                         <table class="table table-bordered table-striped">
@@ -155,30 +155,42 @@
     </form>
 </template>
 
-<script>
+<script lang="ts">
 
 import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices.ts';
+import useCRUD from '../../services/CRUDServices';
 import Datepicker from '@vuepic/vue-datepicker';
 import MultiSelect from '@vueform/multiselect';
 import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
-import Config from '../../config/config.ts';
-import { computed, onMounted, onBeforeMount, ref } from 'vue';
+import Config from '../../config/config';
+import { computed, onMounted, onBeforeMount, ref, defineComponent } from 'vue';
 
 import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 
-import { montantHT, montantTTC } from '../../functions/functions.ts';
+import { montantHT, montantTTC } from '../../functions/functions';
 
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Article = useCRUD('/article')
 
-export default {
+interface Form {
+    numero: string|null,
+    type: number,
+    date: Date|null,
+    adresse_livraison: string|null
+    validite?: number,
+    fournisseur: number|null,
+    client: number|null,
+    appro: boolean,
+    articles: Array<any>,
+}
+
+export default defineComponent({
     name: "CommandeFormComponent",
     components: {
         Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent,
@@ -223,37 +235,37 @@ export default {
             client: null,
             appro: props.appro,
             articles: [],
-        });
+        } as Form);
 
         const nombreArticle = ref(1);
         const creationArticle = ref(false);
         const creationFrs = ref(false);
         const creationClient = ref(false);
 
-        const articleCree = () => {
-            Article.all()
+        const articleCree = async (): Promise<any> => {
+            await Article.all()
             creationArticle.value = false;
         }
 
-        const creerArticle = () => {
+        const creerArticle = (): void => {
             creationArticle.value = !creationArticle.value;
         }
 
-        const frsCree = () => {
-            Fournisseur.all()
+        const frsCree = async (): Promise<any> => {
+            await Fournisseur.all()
             creationFrs.value = false;
         }
 
-        const creerFrs = () => {
+        const creerFrs = (): void => {
             creationFrs.value = !creationFrs.value;
         }
 
-        const clientCree = () => {
-            Client.all()
+        const clientCree = async (): Promise<any> => {
+            await Client.all()
             creationClient.value = false;
         }
 
-        const creerClient = () => {
+        const creerClient = (): void => {
             creationClient.value = !creationClient.value;
         }
 
@@ -264,7 +276,7 @@ export default {
                     resetForm()
                     setCommandeKey()
                 }
-            } else {
+            } else if (props.commande) {
                 await Commande.update(props.commande.id, form.value)
             }
 
@@ -287,16 +299,16 @@ export default {
             generateArticleArray(nombreArticle.value)
         }
 
-        const check = (e) => {
+        const check = (e: { modelValue: null; }) => {
             if (e.modelValue !== null) Commande.errors.value.fournisseur = null
         }
 
-        const checkArticle = (e) => {
+        const checkArticle = (e: { modelValue: string; }) => {
             if (form.value.articles.length > 1 && e.modelValue !== null) {
-                let find = form.value.articles.filter(article => parseInt(article.id) === parseInt(e.modelValue))
+                let find = form.value.articles.filter((article: any) => parseInt(article.id) === parseInt(e.modelValue))
                 if (find.length > 1) {
                     let i = 0
-                    form.value.articles.map(article => {
+                    form.value.articles.map((article: any) => {
                         if (parseInt(article.id) === parseInt(e.modelValue)) {
                             if (i === 1) {
                                 Flash('danger', "Information", "Cette article existe déja dans votre liste")
@@ -309,26 +321,26 @@ export default {
             }
         }
 
-        const checkDate = (e) => {
+        const checkDate = () => {
             Commande.errors.value.date = null
         }
 
-        const generateArticleArrayFromArticles = (articles) => {
-            articles.forEach(article => addItem(false, article))
+        const generateArticleArrayFromArticles = (articles: any[]) => {
+            articles.forEach((article: null | undefined) => addItem(false, article))
         }
 
-        const generateArticleArray = (nombreArticle) => {
+        const generateArticleArray = (nombreArticle: number) => {
             for (let i = 0; i < nombreArticle; i++) {
                 addItem(false)
             }
         }
 
-        const removeItem = (index) => {
+        const removeItem = (index: number) => {
             form.value.articles.splice(index, 1)
             nombreArticle.value--
         }
 
-        const addItem = (increment = true, article = null) => {
+        const addItem = (increment: boolean = true, article: any = null) => {
             if (nombreArticle.value > Config.commande.MAX_ARTICLE) {
                 Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.commande.MAX_ARTICLE}`)
                 return
@@ -363,7 +375,7 @@ export default {
          *
          * @param {Number}  index   Index de la ligne darticle
          */
-        const calculerMontant = (index) => {
+        const calculerMontant = (index: string | number) => {
             const pu = form.value.articles[index].pu
             const quantite = form.value.articles[index].quantite
             const tva = form.value.articles[index].tva
@@ -386,8 +398,8 @@ export default {
          * @return  {void}
          */
         const setCommandeKey = async () => {
-            await Commande.getKey({ type: 2, appro: form.value.appro })
-            form.value.numero = Commande.key
+            await Commande.getKey(2, form.value.appro)
+            form.value.numero = Commande.key.value
         }
 
         const hasError = computed (() => {
@@ -409,7 +421,7 @@ export default {
         })
 
         onBeforeMount(() => {
-            if (props.nouveau === false) {
+            if (props.nouveau === false && props.commande) {
                 nombreArticle.value = props.commande.articles.length
                 form.value.numero = props.commande.numero
                 form.value.date = props.commande.date
@@ -433,6 +445,6 @@ export default {
         }
     },
 
-}
+})
 
 </script>

@@ -8,21 +8,21 @@
                 </div>
             </div>
             <div class="card-body">
-                <ListeDevisComponent v-if="!Devis.loading.value" :entities="Devis.entities.value" :appro="false" />
+                <ListeDevisComponent v-if="!loading" :entities="entities" :appro="false" />
                 <ListeDevisLoadingComponent v-else />
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import { onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
 import ListeDevisComponent from '../../../components/devis/ListeDevisComponent.vue';
 import ListeDevisLoadingComponent from '../../../components/devis/ListeDevisLoadingComponent.vue';
-import useCRUD from '../../../services/CRUDServices.ts';
+import useCRUD from '../../../services/CRUDServices';
 
-const Devis = useCRUD('/commandes')
+const { all, entities, loading } = useCRUD('/commandes')
 
 export default {
     components: {
@@ -30,12 +30,12 @@ export default {
     },
 
     setup() {
-        onMounted(() => {
-            Devis.all({ type: 1, appro: false }) // Recuperer les deviss
+        onBeforeMount(async (): Promise<any> => {
+            await all(1, null, false) // Recuperer les deviss
         })
 
         return {
-            Devis,
+            all, loading, entities,
         }
     },
 

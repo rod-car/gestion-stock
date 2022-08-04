@@ -5,26 +5,26 @@
 
             <div class="d-flex justify-content-between">
                 <router-link to="/devis/fournisseur/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
-                <router-link v-if="!Devis.loading.value" :to="{ name: 'devis.fournisseur.modifier', params: { id: Devis.entity.value.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link v-if="!loading" :to="{ name: 'devis.fournisseur.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
                 <router-link to="/devis/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">
-            <VoirDevisComponent v-if="!Devis.loading.value" :devis="Devis.entity.value" />
+            <VoirDevisComponent v-if="!loading" :devis="entity" />
             <VoirDevisLoadingComponent v-else />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import { onBeforeMount } from 'vue'
-import VoirDevisComponent from '../../../components/devis/VoirDevisComponent.vue'
-import useCRUD from '../../../services/CRUDServices.ts'
 import router from '../../../router/router'
+import useCRUD from '../../../services/CRUDServices'
+import VoirDevisComponent from '../../../components/devis/VoirDevisComponent.vue'
 import VoirDevisLoadingComponent from '../../../components/devis/VoirDevisLoadingComponent.vue'
 
-const Devis = useCRUD('/commandes')
+const { find, loading, entity } = useCRUD('/commandes')
 
 export default {
     components: {
@@ -33,13 +33,13 @@ export default {
     },
 
     setup() {
-        onBeforeMount(async () => {
-            const id = router.currentRoute.value.params.id
-            await Devis.find(id)
+        onBeforeMount(async(): Promise<any> => {
+            const id = parseInt(router.currentRoute.value.params.id.toString())
+            await find(id)
         })
 
         return {
-            Devis,
+            entity, loading,
         }
     }
 

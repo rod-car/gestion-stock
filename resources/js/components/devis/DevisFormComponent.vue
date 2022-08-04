@@ -63,7 +63,7 @@
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
                         <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" enableSeconds
-                            cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation :state="dateState"
+                            cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
                             @update:modelValue="checkDate"></Datepicker>
 
                         <div class="text-danger mt-1" v-if="dateState === false">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div v-if="creationArticle" class="border border-secondary shadow p-5 mb-5 mt-3">
-                            <ArticleFormComponent @article-cree="articleCree" />
+                            <ArticleFormComponent @article-cree="articleCree" :nouveau="true" />
                         </div>
 
                         <table class="table table-bordered table-striped">
@@ -155,30 +155,41 @@
     </form>
 </template>
 
-<script>
+<script lang="ts">
 
 import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices.ts';
+import useCRUD from '../../services/CRUDServices';
 import Datepicker from '@vuepic/vue-datepicker';
 import MultiSelect from '@vueform/multiselect';
 import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
-import Config from '../../config/config.ts';
-import { computed, onMounted, onBeforeMount, ref } from 'vue';
+import Config from '../../config/config';
+import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 
 import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 
-import { montantHT, montantTTC } from '../../functions/functions.ts';
+import { montantHT, montantTTC } from '../../functions/functions';
 
 const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Devis
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Article = useCRUD('/article')
 
-export default {
+interface Form {
+    numero: string|null,
+    type: number,
+    date: Date|null,
+    validite: number,
+    fournisseur: number|null,
+    client: number|null,
+    appro: boolean,
+    articles: Array<any>,
+}
+
+export default defineComponent({
     name: "DevisFormComponent",
     components: {
         Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent,
@@ -192,6 +203,7 @@ export default {
         nouveau: {
             type: Boolean,
             required: false,
+            default: true,
         },
 
         /**
@@ -223,37 +235,37 @@ export default {
             client: null,
             appro: props.appro,
             articles: [],
-        });
+        } as Form);
 
         const nombreArticle = ref(1);
         const creationArticle = ref(false);
         const creationFrs = ref(false);
         const creationClient = ref(false);
 
-        const articleCree = () => {
-            Article.all()
+        const articleCree = async (): Promise<any> => {
+            await Article.all()
             creationArticle.value = false;
         }
 
-        const creerArticle = () => {
+        const creerArticle = (): void => {
             creationArticle.value = !creationArticle.value;
         }
 
-        const frsCree = () => {
-            Fournisseur.all()
+        const frsCree = async (): Promise<any> => {
+            await Fournisseur.all()
             creationFrs.value = false;
         }
 
-        const creerFrs = () => {
+        const creerFrs = (): void => {
             creationFrs.value = !creationFrs.value;
         }
 
-        const clientCree = () => {
-            Client.all()
+        const clientCree = async (): Promise<any> => {
+            await Client.all()
             creationClient.value = false;
         }
 
-        const creerClient = () => {
+        const creerClient = (): void => {
             creationClient.value = !creationClient.value;
         }
 
@@ -264,7 +276,7 @@ export default {
                     resetForm()
                     setDevisKey()
                 }
-            } else {
+            } else if (props.devis) {
                 await Devis.update(props.devis.id, form.value)
             }
 
@@ -283,15 +295,16 @@ export default {
                 appro: props.appro,
                 articles: [],
             }
+
             nombreArticle.value = 1
             generateArticleArray(nombreArticle.value)
         }
 
-        const check = (e) => {
+        const check = (e: { modelValue: null; }) => {
             if (e.modelValue !== null) Devis.errors.value.fournisseur = null
         }
 
-        const checkArticle = (e) => {
+        const checkArticle = (e: { modelValue: string; }) => {
             if (form.value.articles.length > 1 && e.modelValue !== null) {
                 let find = form.value.articles.filter(article => parseInt(article.id) === parseInt(e.modelValue))
                 if (find.length > 1) {
@@ -309,26 +322,26 @@ export default {
             }
         }
 
-        const checkDate = (e) => {
+        const checkDate = (e: any) => {
             Devis.errors.value.date = null
         }
 
-        const generateArticleArrayFromArticles = (articles) => {
-            articles.forEach(article => addItem(false, article))
+        const generateArticleArrayFromArticles = (articles: any[]): void => {
+            articles.forEach((article: any) => addItem(false, article))
         }
 
-        const generateArticleArray = (nombreArticle) => {
+        const generateArticleArray = (nombreArticle: number): void => {
             for (let i = 0; i < nombreArticle; i++) {
                 addItem(false)
             }
         }
 
-        const removeItem = (index) => {
+        const removeItem = (index: number): void => {
             form.value.articles.splice(index, 1)
             nombreArticle.value--
         }
 
-        const addItem = (increment = true, article = null) => {
+        const addItem = (increment: boolean = true, article: any = null): void => {
             if (nombreArticle.value > Config.devis.MAX_ARTICLE) {
                 Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.devis.MAX_ARTICLE}`)
                 return
@@ -363,7 +376,7 @@ export default {
          *
          * @param {Number}  index   Index de la ligne darticle
          */
-        const calculerMontant = (index) => {
+        const calculerMontant = (index: number) => {
             const pu = form.value.articles[index].pu
             const quantite = form.value.articles[index].quantite
             const tva = form.value.articles[index].tva
@@ -383,20 +396,20 @@ export default {
         /**
          * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
          *
-         * @return  {void}
+         * @return  {Promise}
          */
-        const setDevisKey = async () => {
-            await Devis.getKey({ type: 1, appro: form.value.appro })
-            form.value.numero = Devis.key
+        const setDevisKey = async (): Promise<any> => {
+            await Devis.getKey(1, form.value.appro)
+            form.value.numero = Devis.key.value
         }
 
-        const hasError = computed (() => {
+        const hasError = computed(() => {
             if (Devis.errors.value.fournisseur && Devis.errors.value.fournisseur.length > 0 && form.value.appro === true) return true
             if (Devis.errors.value.client && Devis.errors.value.client.length > 0 && form.value.appro === false) return true
             return false
         })
 
-        const dateState = computed(() => {
+        const dateState: Ref<false|null> = computed(() => {
             if (Devis.errors.value.date && Devis.errors.value.date.length > 0) return false
             return null
         })
@@ -409,7 +422,7 @@ export default {
         })
 
         onBeforeMount(() => {
-            if (props.nouveau === false) {
+            if (props.nouveau === false && props.devis) {
                 nombreArticle.value = props.devis.articles.length
                 form.value.numero = props.devis.numero
                 form.value.date = props.devis.date
@@ -433,6 +446,6 @@ export default {
         }
     },
 
-}
+});
 
 </script>

@@ -193,7 +193,7 @@ export default function useCRUD(url: string): CRUD {
             if (response.data.errors) {
                 errors.value = response.data.errors
             } else {
-                success.value = "Personnel supprimé avec succes";
+                success.value = "Supprimé avec succes";
                 entities.value.splice(index)
                 Flash('success', "Message de succès", success.value)
             }

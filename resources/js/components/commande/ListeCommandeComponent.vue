@@ -35,26 +35,28 @@
     </table>
 </template>
 
-<script>
+<script lang="ts">
 
 import { formatDate, expiration } from '../../functions/functions';
 import { computed } from 'vue';
-import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
-import useCRUD from '../../services/CRUDServices.ts';
+import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../html/DeleteBtn.vue';
+import SimpleAlert from 'vue3-simple-alert';
 import Status from '../html/Status.vue';
 
-const Commande = useCRUD('/commandes')
+const { destroy } = useCRUD('/commandes')
 
 export default {
     components: {
-        Skeletor, DeleteBtn, Status,
+        DeleteBtn,
+        SimpleAlert,
+        Status
     },
 
     props: {
         entities: {
-            type: Array,
+            type: Array<any>,
             required: true,
         },
         appro: {
@@ -64,18 +66,11 @@ export default {
         },
     },
 
-    setup(props) {
-
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {integr}  id  Identifiant du personnel
-         * @return  {void}
-         */
-        const confirmDeletion = (id, index) => {
-            SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
+    setup(props: { appro: boolean; }) {
+        const confirmDeletion = async (id: number, index: number): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                Commande.destroy(id, index)
+                destroy(id, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
@@ -89,7 +84,7 @@ export default {
         })
 
         return {
-            Flash, formatDate, expiration, Commande, confirmDeletion, type,
+            Flash, formatDate, expiration, confirmDeletion, type,
         }
     }
 

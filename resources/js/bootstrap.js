@@ -1,3 +1,5 @@
+const { default: VueSimpleAlert } = require('vue3-simple-alert');
+
 window._ = require('lodash');
 
 /*try {
@@ -15,6 +17,8 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.axios.defaults.withCredentials = true;
+
+window.Alert = VueSimpleAlert
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -15,16 +15,16 @@
     </div>
 </template>
 
-<script>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
 import DevisFormComponent from '../../../components/devis/DevisFormComponent.vue'
 
-export default {
+export default defineComponent({
 
     components: {
         DevisFormComponent,
     }
 
-}
+});
 
 </script>
