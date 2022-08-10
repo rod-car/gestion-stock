@@ -42,7 +42,7 @@ class Article extends Model
 
 
     protected $fillable = [
-        'reference', 'designation', 'stock_alert', 'unite',
+        'reference', 'designation', 'stock_alert', 'unite', 'description',
     ];
 
     public array $sc = [];

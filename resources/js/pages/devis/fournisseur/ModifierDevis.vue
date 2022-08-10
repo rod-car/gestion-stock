@@ -11,7 +11,7 @@
 
             <div class="card-body">
                 <DevisFormLoadingComponent v-if="loading" />
-                <DevisFormComponent v-else :nouveau="false" :devis="entity" :appro="true" />
+                <DevisFormComponent v-else :nouveau="false" :devis="entity" :appro="true" :has-attachment="true" />
             </div>
         </div>
     </div>

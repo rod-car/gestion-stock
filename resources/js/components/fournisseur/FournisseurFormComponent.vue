@@ -104,7 +104,7 @@ export default defineComponent({
         }
     },
 
-    emits: ['fournisseur-cree'],
+    emits: ['frs-cree'],
 
     setup(props, { emit }) {
         const form = ref({
@@ -127,7 +127,7 @@ export default defineComponent({
             window.scrollTo({ top: 0, behavior: 'smooth' })
             if (Fournisseur.success.value !== null && props.nouveau === true) {
                 resetForm()
-                emit('fournisseur-cree');
+                emit('frs-cree');
             }
             Fournisseur.success.value = null
         }

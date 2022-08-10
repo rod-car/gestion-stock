@@ -105,7 +105,7 @@ export default defineComponent({
         });
 
         onMounted(async (): Promise<any> => {
-            if (props.type === 3) await all(3, props.categorie.id);
+            if (props.type === 3 && props.nouveau === false) await all(3, props.categorie.id);
         })
 
         return {

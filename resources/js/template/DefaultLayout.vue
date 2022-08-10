@@ -243,7 +243,7 @@ export default defineComponent({
                     { subject: 'all', action: response.data }
                 ])
 
-                if (to.meta.gate !== undefined && this.$can(to.meta.gate) === false) {
+                if (to.meta.gate !== undefined && to.meta.gate !== null && this.$can(to.meta.gate) === false) {
                     // Si pas de privilège necessaire
                     this.$router.push('/403')
                 }

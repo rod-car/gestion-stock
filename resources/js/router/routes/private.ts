@@ -1,8 +1,8 @@
-const NouveauPersonnel = require('../../pages/personnels/NouveauPersonnel.vue');
-const ListePersonnel = require('../../pages/personnels/ListePersonnel.vue');
-const ProfilPersonnel = require('../../pages/personnels/ProfilPersonnel.vue');
-const ModifierPersonnel = require('../../pages/personnels/ModifierPersonnel.vue');
-const Fonctions = require('../../pages/personnels/Fonctions.vue');
+import NouveauPersonnel from '../../pages/personnels/NouveauPersonnel.vue';
+import ListePersonnel from '../../pages/personnels/ListePersonnel.vue';
+import ProfilPersonnel from '../../pages/personnels/ProfilPersonnel.vue';
+import ModifierPersonnel from '../../pages/personnels/ModifierPersonnel.vue';
+import Fonctions from '../../pages/personnels/Fonctions.vue';
 
 const routes = [
     {

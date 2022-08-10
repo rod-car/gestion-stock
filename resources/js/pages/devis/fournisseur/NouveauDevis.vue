@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <DevisFormComponent :nouveau="true" :appro="true" />
+                <DevisFormComponent :nouveau="true" :appro="true" :number-auto="false" :has-attachment="true" />
             </div>
         </div>
     </div>

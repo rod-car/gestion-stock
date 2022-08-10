@@ -3,12 +3,13 @@ import axiosClient from '../axios';
 import Router from '../router/router';
 import Flash from '../functions/Flash';
 import { AxiosResponse } from 'axios';
+import { tSExternalModuleReference } from '@babel/types';
 interface CRUD {
-    create(data: Object): Promise<any>,
+    create(data: Object, headers?: Object): Promise<any>,
     find(id: number): Promise<any>,
     update(id: number, data: object, updateType?: number | null): Promise<any>,
     all(type?: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
-    destroy(id: number, index: number): Promise<any>,
+    destroy(id: number, data: Array<any>|null, index: number): Promise<any>,
     creating: Ref<boolean>,
     loading: Ref<boolean>,
     updating: Ref<boolean>,
@@ -103,11 +104,14 @@ export default function useCRUD(url: string): CRUD {
      * @param   {Object}  data  Contient tous les champs du formulaire
      * @return  {Promise}
      */
-    const create = async (data: object): Promise<any> => {
+    const create = async (data: object, headers?: Object): Promise<any> => {
         creating.value = true
 
         try {
-            let response = await axiosClient.post(`${url}`, data)
+            let response = await axiosClient.post(`${url}`, data, {
+                headers: headers
+            })
+
             entity.value = response.data
             success.value = "Enregistré avec succes"
             Flash('success', "Message de succès", success.value)
@@ -186,15 +190,17 @@ export default function useCRUD(url: string): CRUD {
      *
      * @return  {Promise}
      */
-    const destroy = async (id: number, index: number = 0): Promise<any> => {
+    const destroy = async (id: number, data: Array<any>|null = null, index: number = 0): Promise<any> => {
         deleting.value = true
         try {
             let response = await axiosClient.delete(`${url}/${id}`)
             if (response.data.errors) {
                 errors.value = response.data.errors
             } else {
+                if (data === null) entities.value.splice(index, 1)
+                else data.splice(index, 1)
+
                 success.value = "Supprimé avec succes";
-                entities.value.splice(index)
                 Flash('success', "Message de succès", success.value)
             }
         } catch (error: any) {
@@ -218,10 +224,18 @@ export default function useCRUD(url: string): CRUD {
 
         updating.value = true
 
-        if (data["type"] === undefined) data["type"] = updateType // Integrer dans le données le type de mise a jour a faire (Type existe deja pour les devis et les commandes)
+        // Integrer dans le données le type de mise a jour a faire (Type existe deja pour les devis et les commandes)
+        if (data instanceof FormData) {
+            data.append("_method", 'PATCH');
+            if (!data.has('type') && updateType !== undefined && updateType !== null) data.append('type', updateType.toString())
+        } else if (updateType !== null && updateType !== undefined && data["type"] === undefined) {
+            data["type"] = updateType
+        }
 
         try {
-            await axiosClient.patch(`${url}/${id}`, data)
+            if (data instanceof FormData) await axiosClient.post(`${url}/${id}`, data)
+            else await axiosClient.patch(`${url}/${id}`, data)
+
             success.value = "Modifié avec success"
             Flash('success', 'Message de succès', success.value)
         } catch (error: any) {

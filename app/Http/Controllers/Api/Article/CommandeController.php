@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Article\Commande;
+use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
@@ -42,9 +43,12 @@ class CommandeController extends Controller
     public function store(NouveauCommandeRequest $request)
     {
         $data = $request->validated();
+        $file = $data['file'];
         $articles = $data['articles'];
+
         $commande = Commande::create($data);
 
+        if ($file !== null) $this->updateFile($commande, $file);
         $this->updateArticle($commande, $articles);
 
         return $commande;
@@ -72,8 +76,10 @@ class CommandeController extends Controller
     {
         $data = $request->validated();
         $articles = $data['articles'];
+        $file = $data['file'];
         $commande->update($data);
 
+        if ($file !== null) $this->updateFile($commande, $file);
         $this->updateArticle($commande, $articles);
 
         return $data;
@@ -155,5 +161,18 @@ class CommandeController extends Controller
         }
 
         return null;
+    }
+
+
+    public function updateFile(Commande $commande, UploadedFile $file)
+    {
+        $path = $file->storeAs('devis', $commande->numero . '.' . $file->clientExtension(), "public");
+
+        if ($path)
+        {
+            $commande->file_path = $path;
+            $commande->update();
+        }
+        return true;
     }
 }

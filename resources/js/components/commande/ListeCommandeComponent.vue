@@ -66,11 +66,11 @@ export default {
         },
     },
 
-    setup(props: { appro: boolean; }) {
+    setup(props: { entities: any[] | null; appro: boolean; }) {
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, index)
+                destroy(id, props.entities, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

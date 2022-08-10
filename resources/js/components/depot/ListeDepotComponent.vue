@@ -78,7 +78,7 @@ export default defineComponent({
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await VueSimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, index)
+                destroy(id, props.depots, index)
             }).catch((error: undefined) => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

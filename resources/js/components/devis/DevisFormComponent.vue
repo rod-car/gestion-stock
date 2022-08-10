@@ -1,15 +1,16 @@
 <template>
-    <form action="" method="post">
+    <form action="" method="post" @submit.prevent="save" enctype="multipart/form-data">
         <div class="row mb-5">
             <div class="col-xl-12">
                 <h6 class="text-uppercase text-primary mb-4">Information du dévis</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Devis.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Devis.loading.value === false" v-model="form.numero" :error="Devis.errors.value.numero" disabled>Numéro du dévis</Input>
+                        <Input v-if="Devis.loading.value === false" v-model="form.numero" :error="Devis.errors.value.numero" :disabled="numberAuto">Numéro du dévis</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 
                     <!-- ----------------------------------------------------------------------------------------- -->
+                    <!-- POur la section de fournisseur et la création a la volée -->
 
                     <div v-if="form.appro === true" class="col-xl-6 mb-3">
                         <label for="fournisseur" class="form-label">
@@ -34,6 +35,7 @@
                     </div>
 
                     <!-- ----------------------------------------------------------------------------------------- -->
+                    <!-- POur la section de client et la création a la volée -->
 
                     <div v-if="form.appro === false" class="col-xl-6 mb-3">
                         <label for="client" class="form-label">
@@ -62,16 +64,22 @@
 
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
-                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" enableSeconds
+                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
+                            :enableTimePicker="false"
                             cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
-                            @update:modelValue="checkDate"></Datepicker>
+                            @update:modelValue="checkDate" />
 
                         <div class="text-danger mt-1" v-if="dateState === false">
                             {{ Devis.errors.value.date[0] }}
                         </div>
                     </div>
-                    <div class="col-xl-6">
+
+                    <div class="col-xl-6 mb-3">
                         <Input type="number" v-model="form.validite" :error="Devis.errors.value.validite" required>Validité du dévis (en Jour)</Input>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <FileInput :multiple="false" @fileChanged="handleChange" :default="devis.file_path !== null ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
                     </div>
                 </div>
             </div>
@@ -144,11 +152,12 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
-                    <SaveBtn v-if="nouveau" @click.prevent="save" :loading="Devis.creating.value">Enregistrer</SaveBtn>
-                    <SaveBtn v-else @click.prevent="save" :loading="Devis.updating.value">Mettre a jour</SaveBtn>
+                    <SaveBtn v-if="nouveau" :loading="Devis.creating.value">Enregistrer</SaveBtn>
+                    <SaveBtn v-else :loading="Devis.updating.value">Mettre a jour</SaveBtn>
                 </div>
             </div>
         </div>
@@ -156,73 +165,75 @@
 </template>
 
 <script lang="ts">
-
 import Input from '../html/Input.vue';
-import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices';
-import Datepicker from '@vuepic/vue-datepicker';
-import MultiSelect from '@vueform/multiselect';
-import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
 import Config from '../../config/config';
+import SaveBtn from '../html/SaveBtn.vue';
+import Flash from '../../functions/Flash';
+import FileInput from '../html/FileInput.vue';
+import MultiSelect from '@vueform/multiselect';
+import Datepicker from '@vuepic/vue-datepicker';
+import useCRUD from '../../services/CRUDServices';
 import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 
-import ArticleFormComponent from '../article/ArticleFormComponent.vue';
-import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
-import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
-
 import { montantHT, montantTTC } from '../../functions/functions';
+import ArticleFormComponent from '../article/ArticleFormComponent.vue';
+import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
+import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 
+const Article = useCRUD('/article')
+const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Devis
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
-const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
-const Article = useCRUD('/article')
 
-interface Form {
+type Form = {
     numero: string|null,
     type: number,
-    date: Date|null,
+    date: string|null,
     validite: number,
     fournisseur: number|null,
     client: number|null,
     appro: boolean,
     articles: Array<any>,
+    file?: FileList|null,
 }
 
 export default defineComponent({
     name: "DevisFormComponent",
     components: {
-        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent,
+        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent, FileInput,
     },
 
     props: {
-        /**
-         * Permet de savoir si on veut modifier un devis ou créer une
-         * @values true, false
-         */
         nouveau: {
             type: Boolean,
             required: false,
             default: true,
         },
 
-        /**
-         * Devis a modifier dans le cas d'une modification
-         */
         devis: {
             type: Object,
             required: false,
+            default: {}
         },
 
-        /**
-         * Permet de determiner si le devis est un approvisionnement ou vente
-         * @values true, false
-         */
         appro: {
             type: Boolean,
             required: true,
             default: true,
         },
+
+        numberAuto: {
+            type: Boolean,
+            required: false,
+            defaulr: true,
+        },
+
+        hasAttachment: {
+            type: Boolean,
+            required: false,
+            default: false,
+        }
     },
 
     setup(props) {
@@ -235,6 +246,7 @@ export default defineComponent({
             client: null,
             appro: props.appro,
             articles: [],
+            file: null,
         } as Form);
 
         const nombreArticle = ref(1);
@@ -270,14 +282,32 @@ export default defineComponent({
         }
 
         const save = async () => {
+            let data = form.value
+            const formData = new FormData()
+
+            Object.keys(data).forEach((key) => {
+                if (key !== 'file' && key !== 'articles') formData.append(key, data[key] ?? '')
+            })
+
+            if (form.value.file && form.value.file.length > 0) {
+                formData.append('file', form.value.file[0])
+            } else {
+                formData.append('file', '');
+            }
+
+            if (form.value.articles) {
+                formData.append('articles', JSON.stringify(form.value.articles))
+            }
+
             if (props.nouveau === true) {
-                await Devis.create(form.value)
+                await Devis.create(formData)
+
                 if (Devis.success.value !== null) {
                     resetForm()
                     setDevisKey()
                 }
             } else if (props.devis) {
-                await Devis.update(props.devis.id, form.value)
+                await Devis.update(props.devis.id, formData)
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -294,6 +324,7 @@ export default defineComponent({
                 client: null,
                 appro: props.appro,
                 articles: [],
+                file: null,
             }
 
             nombreArticle.value = 1
@@ -322,7 +353,8 @@ export default defineComponent({
             }
         }
 
-        const checkDate = (e: any) => {
+        const checkDate = (date: Date) => {
+            form.value.date = date.toLocaleDateString()
             Devis.errors.value.date = null
         }
 
@@ -414,7 +446,7 @@ export default defineComponent({
             return null
         })
 
-        onMounted(() => {
+        onMounted(async (): Promise<any> => {
             Article.all();
             Fournisseur.all();
             Client.all();
@@ -439,10 +471,15 @@ export default defineComponent({
             }
         })
 
+        const handleChange = (files: FileList): void => {
+            form.value.file = files;
+        }
+
         return {
             Devis, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
             form, nombreArticle, checkArticle, setDevisKey, hasError, dateState, calculerMontant, addItem, removeItem,
             generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
+            handleChange,
         }
     },
 

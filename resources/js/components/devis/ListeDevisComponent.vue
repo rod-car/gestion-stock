@@ -17,7 +17,7 @@
                 <td>{{ devis.numero }}</td>
                 <td>{{ formatDate(devis.date) }}</td>
                 <td>{{ devis.validite ?? "Non définie" }}</td>
-                <td>{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite)) }}</td>
+                <td>{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite), false) }}</td>
                 <td v-if="appro === true">{{ devis.frs.nom }}</td>
                 <td v-else>{{ devis.cl.nom }}</td>
                 <td><Status :value="devis.status" /></td>
@@ -38,7 +38,6 @@
 </template>
 
 <script lang="ts">
-
 import { formatDate, expiration } from '../../functions/functions';
 import { computed, defineComponent } from 'vue';
 import Flash from '../../functions/Flash';
@@ -74,17 +73,10 @@ export default defineComponent({
     },
 
     setup(props) {
-
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {integr}  id  Identifiant du personnel
-         * @return  {Promise}
-         */
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, index)
+                destroy(id, props.entities,index)
             }).catch((error: undefined) => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

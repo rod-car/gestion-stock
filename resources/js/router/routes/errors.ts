@@ -8,7 +8,7 @@ const routes = [
         component: NotFound,
         meta: {
             requiresAuth: false,
-            gate: '',
+            gate: null,
         }
     },
     {
@@ -17,7 +17,7 @@ const routes = [
         component: Forbidden,
         meta: {
             requiresAuth: false,
-            gate: '',
+            gate: null,
         }
     },
     {
@@ -26,7 +26,7 @@ const routes = [
         component: NotFound,
         meta: {
             requiresAuth: false,
-            gate: '',
+            gate: null,
         }
     },
 ];

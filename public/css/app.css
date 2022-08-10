@@ -734,6 +734,14 @@
 .status-text {
   font-size: 30px;
 }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  line-height: normal !important;
+}
 /*@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables

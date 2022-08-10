@@ -2,6 +2,7 @@
 
 namespace App\Models\Article;
 
+use Carbon\Carbon;
 use App\Models\Client\Client;
 use App\Models\Article\Article;
 use App\Models\Fournisseur\Fournisseur;
@@ -25,7 +26,7 @@ class Commande extends Model
      * @var array
      */
     protected $casts = [
-        "date" => "datetime",
+
     ];
 
 
@@ -69,7 +70,7 @@ class Commande extends Model
 
         if ($this->validite === null) return null;
 
-        $date = $this->date;
+        $date = Carbon::parse($this->date);
         $date->addDays($this->validite);
 
         if ($date->lessThan(now())) $this->status = 2;

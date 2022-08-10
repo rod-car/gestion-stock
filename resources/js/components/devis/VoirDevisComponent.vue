@@ -23,13 +23,13 @@
             <h6>Téléphone: {{ devis.frs.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(devis.date, false, long = false) }}</h6>
+            <h6>Date: {{ formatDate(devis.date, false, false) }}</h6>
             <h6>Référence: {{ devis.numero }}</h6>
             <h6>Date de validité: {{ devis.validite }} jours</h6>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-xl-12">
             <table class="table table-bordered table-striped">
                 <thead class="bg-warning">
@@ -75,13 +75,19 @@
         </div>
     </div>
 
+    <div v-if="piece !== null" class="row">
+        <div class="col-xl-12">
+            <h5 class="text-primary mb-3">Pièce jointe</h5>
+            <iframe width="100%" height="800px" title="Pièce jointe" :src="piece + '#view=fitH'" frameborder="0"></iframe>
+        </div>
+    </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions';
 
-import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions.ts';
-
-export default {
+export default defineComponent({
     props: {
         devis: {
             type: Object,
@@ -94,11 +100,14 @@ export default {
         },
     },
 
-    setup() {
+    setup(props) {
+        const piece = ref(props.devis.file_path === null ? null : `http://localhost:8000/storage/${props.devis.file_path}`)
+
         return {
-            formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC,
+            formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC, piece,
         }
     },
 
-}
+});
+
 </script>

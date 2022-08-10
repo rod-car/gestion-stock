@@ -68,7 +68,7 @@ export default defineComponent({
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, index)
+                destroy(id, props.categories, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
