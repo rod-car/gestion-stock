@@ -4,8 +4,8 @@
             <tr>
                 <th class="p-3">Numéro</th>
                 <th class="p-3">Date de création</th>
-                <th v-if="appro === true">Fournisseur</th>
-                <th v-else>Client</th>
+                <th class="p-3" v-if="appro === true">Fournisseur</th>
+                <th class="p-3" v-else>Client</th>
                 <th class="p-3">Adresse de livraison</th>
                 <th class="p-3">Status</th>
                 <th class="text-center p-3">Actions</th>
@@ -17,7 +17,7 @@
                 <td>{{ formatDate(commande.date) }}</td>
                 <td v-if="appro === true">{{ commande.frs.nom }}</td>
                 <td v-else>{{ commande.cl.nom }}</td>
-                <td>{{ commande.adresse_livraison }}</td>
+                <td>{{ commande.adresse_livraison ?? "Non définie" }}</td>
                 <td><Status :value="commande.status" /></td>
 
                 <td class="d-flex justify-content-center">
@@ -56,7 +56,7 @@ export default {
 
     props: {
         entities: {
-            type: Array<any>,
+            type: Array,
             required: true,
         },
         appro: {

@@ -25,6 +25,7 @@
                 <td class="d-flex justify-content-center">
                     <router-link v-if="true" :to="{ name: `devis.${type}.voir`, params: { id: devis.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: `devis.${type}.modifier`, params: { id: devis.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link v-if="devis.status === 1" :to="{ name: `commande.${type}.nouveau`, query: { devis: devis.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(devis.id, index)"/>
                 </td>
             </tr>

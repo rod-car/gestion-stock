@@ -68,16 +68,19 @@ class NouveauCommandeRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        if ($this->numero === null OR $this->type !== 1) {
+        if ($this->numero === null /*OR $this->type !== 1*/) {
             $numeroDevis = numeroDevis($this->boolean('appro'));
             $this->merge([
                 'numero' => $numeroDevis,
             ]);
         }
 
-        $this->merge([
-            'articles' => json_decode($this->articles, true),
-        ]);
+        if (is_string($this->articles))
+        {
+            $this->merge([
+                'articles' => json_decode($this->articles, true),
+            ]);
+        }
 
         $this->toogleClientFrs();
 

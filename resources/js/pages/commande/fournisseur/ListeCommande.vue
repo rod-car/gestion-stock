@@ -8,8 +8,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <ListeCommandeComponent v-if="!loading" :appro="true" :entities="entities" />
-                <ListeCommandeLoadingComponent v-else />
+                <ListeCommandeLoadingComponent v-if="loading" />
+                <ListeCommandeComponent v-else :appro="true" :entities="entities" />
             </div>
         </div>
     </div>
@@ -30,7 +30,6 @@ export default defineComponent({
     },
 
     setup() {
-
         onBeforeMount(async (): Promise<any> => {
             await all(2, null, true) // Recuperer tous les commandes de fournisseurs
         })

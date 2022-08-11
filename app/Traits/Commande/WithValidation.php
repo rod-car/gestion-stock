@@ -44,6 +44,8 @@ trait WithValidation
             "articles.*.montant_ttc" => ["required", "numeric"],
 
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
+
+            "devis" => ["nullable", "numeric", "exists:commandes,id"],
         ];
     }
 

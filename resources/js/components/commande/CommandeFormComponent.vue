@@ -1,3 +1,6 @@
+import router from 'resources/js/router/router';
+import router from 'resources/js/router/router';
+import router from 'resources/js/router/router';
 <template>
     <form action="" method="post">
         <div class="row mb-5">
@@ -62,7 +65,8 @@
 
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
-                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" enableSeconds
+                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
+                            :enableTimePicker="false"
                             cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
                             @update:modelValue="checkDate"></Datepicker>
 
@@ -166,7 +170,7 @@ import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
 import Config from '../../config/config';
 import { computed, onMounted, onBeforeMount, ref, defineComponent } from 'vue';
-
+import router from '../../router/router';
 import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
@@ -178,7 +182,7 @@ const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de 
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Article = useCRUD('/article')
 
-interface Form {
+type Form = {
     numero: string|null,
     type: number,
     date: Date|null,
@@ -188,6 +192,7 @@ interface Form {
     client: number|null,
     appro: boolean,
     articles: Array<any>,
+    devis?: number,
 }
 
 export default defineComponent({
@@ -222,6 +227,12 @@ export default defineComponent({
             type: Boolean,
             required: true,
             default: true,
+        },
+
+        devis: {
+            type: Object,
+            required: false,
+            default: null,
         },
     },
 
@@ -273,6 +284,7 @@ export default defineComponent({
             if (props.nouveau === true) {
                 await Commande.create(form.value)
                 if (Commande.success.value !== null) {
+                    router.replace({ query: {} })
                     resetForm()
                     setCommandeKey()
                 }
@@ -432,6 +444,17 @@ export default defineComponent({
                 form.value.appro = props.appro
 
                 generateArticleArrayFromArticles(props.commande.articles)
+            } else if (props.devis.id !== undefined) {
+                nombreArticle.value = props.devis.articles.length
+                form.value.date = props.devis.date
+                form.value.adresse_livraison = props.devis.adresse_livraison
+                form.value.fournisseur = props.devis.fournisseur
+                form.value.client = props.devis.client
+                form.value.type = 2
+                form.value.appro = props.appro
+                form.value.devis = props.devis.id
+
+                generateArticleArrayFromArticles(props.devis.articles)
             } else {
                 form.value.appro = props.appro;
                 generateArticleArray(nombreArticle.value);

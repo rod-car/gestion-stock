@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent, onBeforeMount } from 'vue';
 import ListeDevisComponent from '../../../components/devis/ListeDevisComponent.vue';
 import ListeDevisLoadingComponent from '../../../components/devis/ListeDevisLoadingComponent.vue';

@@ -43,9 +43,11 @@ class CommandeController extends Controller
     public function store(NouveauCommandeRequest $request)
     {
         $data = $request->validated();
-        $file = $data['file'];
-        $articles = $data['articles'];
 
+        if (key_exists('file', $data)) $file = $data['file'];
+        else $file = null;
+
+        $articles = $data['articles'];
         $commande = Commande::create($data);
 
         if ($file !== null) $this->updateFile($commande, $file);
