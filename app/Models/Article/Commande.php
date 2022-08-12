@@ -25,9 +25,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $casts = [
-
-    ];
+    protected $casts = [];
 
 
     /**
@@ -35,7 +33,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $with = ["frs", "cl", "articles"];
+    protected $with = ["frs", "cl", "articles", "devis"];
 
 
     /**
@@ -123,5 +121,16 @@ class Commande extends Model
     public function cl(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'client', 'id');
+    }
+
+
+    /**
+     * Devis auquel provient la commande s'il y en a
+     *
+     * @return BelongsTo
+     */
+    public function devis(): BelongsTo
+    {
+        return $this->belongsTo(Commande::class, 'devis', 'id');
     }
 }
