@@ -15,15 +15,28 @@
             </div>
 
             <div class="col-xl-6 mb-3">
-                <label for="categorie" class="form-label">Catégorie</label>
-                <MultiSelect v-bind:class="hasError ? 'border-danger' : ''" label="libelle" valueProp="id"
-                    :multiple="true" v-model="form.categories" :options="Categorie.entities.value" mode="tags" :closeOnSelect="false"
-                    :clearOnSelect="false" :searchable="true" noOptionsText="Aucune catégorie" :object="nouveau === true ? false : true"
-                    noResultsText="Aucune catégorie" @close="check" />
+                <label for="categorie" class="form-label">Catégorie
+                    (<a v-if="creationCategorie" href="#" @click.prevent="creerCategorie" class="text-danger">Fermer</a>
+                    <a v-else href="#" @click.prevent="creerCategorie" class="text-primary">Créer nouveau</a>)</label>
+                <MultiSelect
+                    v-if="!Categorie.loading.value"
+                    :class="hasError ? 'border-danger' : ''"
+                    :object="nouveau === false ? true : false"
+                    label="libelle" valueProp="id" :multiple="true" v-model="form.categories"
+                    :options="Categorie.entities.value"
+                    mode="tags" :closeOnSelect="false" :clearOnSelect="false"
+                    :searchable="true" noOptionsText="Aucune catégorie" noResultsText="Aucune catégorie"
+                    @close="check"
+                />
+                <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
 
                 <div class="text-danger mt-1" v-if="hasError">
                     {{ Fournisseur.errors.value.categories[0] }}
                 </div>
+            </div>
+
+            <div v-if="creationCategorie" class="col-xl-12 border border-secondary shadow p-5 mb-5 mt-3">
+                <CategorieFormComponent @categorie-cree="categorieCree" :nouveau="true" :type="2" />
             </div>
 
             <div class="col-xl-3 mb-3">
@@ -43,99 +56,133 @@
     </form>
 </template>
 
-<script>
+<script lang="ts">
 
 import Input from '../html/Input.vue';
 import SaveBtn from '../html/SaveBtn.vue';
+import Alert from '../html/Alert.vue';
 import MultiSelect from '@vueform/multiselect';
 import useCRUD from '../../services/CRUDServices';
-import { computed, onMounted, ref } from 'vue';
+import { ref, computed, onMounted, defineComponent, Ref } from 'vue';
+import { Skeletor } from 'vue-skeletor';
+import CategorieFormComponent from '../categorie/CategorieFormComponent.vue';
 
-const Fournisseur = useCRUD('/fournisseur');
-const Categorie = useCRUD('/categorie');
+const Fournisseur = useCRUD('/fournisseur'); // Contient tous les fonctions CRUD pour le Fournisseur
+const Categorie = useCRUD('/categorie'); // Contient tous les foncions CRUD pour le categorie
 
-export default {
+interface Form {
+    nom: string | null,
+    adresse: string | null,
+    email: string | null,
+    contact: string | null,
+    categories: Array<any>,
+    nif: string | null,
+    cif: string | null,
+    stat: string | null,
+}
+
+export default defineComponent({
+    components: {
+        Input,
+        SaveBtn,
+        Alert,
+        MultiSelect,
+        Skeletor,
+        CategorieFormComponent
+    },
+
     props: {
         nouveau: {
             type: Boolean,
             required: false,
-            default: false,
+            default: true,
         },
         fournisseur: {
             type: Object,
             required: false,
+            default: null,
         }
-    },
-
-    components: {
-        Input, SaveBtn, MultiSelect,
     },
 
     emits: ['frs-cree'],
 
     setup(props, { emit }) {
         const form = ref({
-            nom: null,
-            adresse: null,
-            email: null,
-            contact: null,
-            categories: [],
-            nif: null,
-            cif: null,
-            stat: null,
-        })
+            nom: null, adresse: null,
+            email: null, contact: null,
+            categories: [], nif: null,
+            cif: null, stat: null,
+        } as Form)
 
-        const save = async () => {
+        const creationCategorie: Ref<boolean> = ref(false)
+
+        const save = async (): Promise<any> => {
             if (props.nouveau === true) {
-                await Fournisseur.create(form.value);
+                await Fournisseur.create(form.value)
             } else {
-                const id = props.fournisseur.id;
-                await Fournisseur.update(id, form.value);
+                const id = props.fournisseur.id
+                await Fournisseur.update(id, form.value)
             }
+
             window.scrollTo({ top: 0, behavior: 'smooth' })
             if (Fournisseur.success.value !== null && props.nouveau === true) {
                 resetForm()
-                emit('frs-cree')
+                emit('frs-cree');
             }
             Fournisseur.success.value = null
         }
 
-        const resetForm = () => {
-            setForm(null)
+        const categorieCree = async (): Promise<any> => {
+            creationCategorie.value = false;
+            await Categorie.all(2)
         }
 
-        const setForm = (value = null) => {
+        const creerCategorie = () => {
+            creationCategorie.value = !creationCategorie.value;
+        }
+
+        const resetForm = () => {
             form.value = {
-                nom: value === null ? null : value.nom ,
-                adresse: value === null ? null : value.adresse,
-                email: value === null ? null : value.email,
-                contact: value === null ? null : value.contact,
-                categories: value === null ? [] : value.categories,
-                nif: value === null ? null : value.nif,
-                cif: value === null ? null : value.cif,
-                stat: value === null ? null : value.stat,
+                nom: null,
+                adresse: null,
+                email: null,
+                contact: null,
+                categories: [],
+                nif: null,
+                cif: null,
+                stat: null,
             }
         }
 
-        const check = (e) => {
+        const check = (e: { modelValue: string | any[]; }) => {
             if (e.modelValue.length > 0) Fournisseur.errors.value.categories = null
         }
 
-        const hasError = computed(() => {
+        const hasError = computed((): boolean => {
             if (Fournisseur.errors.value.categories && Fournisseur.errors.value.categories.length > 0) return true
             return false
         })
 
-        onMounted(async () => {
+        onMounted(async (): Promise<any> => {
             if (props.nouveau === false) {
-                setForm(props.fournisseur)
+                form.value = {
+                    nom: props.fournisseur.nom,
+                    adresse: props.fournisseur.adresse,
+                    email: props.fournisseur.email,
+                    contact: props.fournisseur.contact,
+                    categories: props.fournisseur.categories,
+                    nif: props.fournisseur.nif,
+                    cif: props.fournisseur.cif,
+                    stat: props.fournisseur.stat,
+                }
             }
-            await Categorie.all({ type: 2 })
+            await Categorie.all(2)
         })
 
         return {
-            Fournisseur, Categorie, form, save, resetForm, hasError, check, setForm,
+            Fournisseur, Categorie, form, save, resetForm, check, hasError, categorieCree, creerCategorie, creationCategorie,
         }
     },
-}
+});
+
 </script>

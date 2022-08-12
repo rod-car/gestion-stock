@@ -5,18 +5,18 @@
 
             <div class="d-flex justify-content-between">
                 <router-link to="/commande/fournisseur/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouvelle</router-link>
-                <router-link v-if="!Commande.loading.value && Commande.entity.value.id" :to="{ name: 'commande.fournisseur.modifier', params: { id: Commande.entity.value.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link v-if="!loading && entity.id" :to="{ name: 'commande.fournisseur.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
                 <router-link to="/commande/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">
-            <VoirCommandeComponent v-if="!Commande.loading.value" :appro="true" :commande="Commande.entity.value" />
+            <VoirCommandeComponent v-if="!loading" :appro="true" :commande="entity" />
             <VoirCommandeLoadingComponent v-else />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import { onBeforeMount } from 'vue';
 import router from '../../../router/router';
@@ -24,18 +24,18 @@ import useCRUD from '../../../services/CRUDServices';
 import VoirCommandeComponent from '../../../components/commande/VoirCommandeComponent.vue';
 import VoirCommandeLoadingComponent from '../../../components/commande/VoirCommandeLoadingComponent.vue';
 
-const Commande = useCRUD('/commandes');
+const { loading, find, entity } = useCRUD('/commandes');
 
 export default {
     setup() {
 
         onBeforeMount(async () => {
-            const id = parseInt(router.currentRoute.value.params.id);
-            await Commande.find(id)
+            const id = parseInt(router.currentRoute.value.params.id.toString());
+            await find(id)
         })
 
         return {
-            Commande,
+            loading, entity,
         }
     },
 

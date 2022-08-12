@@ -17,7 +17,7 @@
                 <td>{{ devis.numero }}</td>
                 <td>{{ formatDate(devis.date) }}</td>
                 <td>{{ devis.validite ?? "Non définie" }}</td>
-                <td>{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite)) }}</td>
+                <td>{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite), false) }}</td>
                 <td v-if="appro === true">{{ devis.frs.nom }}</td>
                 <td v-else>{{ devis.cl.nom }}</td>
                 <td><Status :value="devis.status" /></td>
@@ -25,6 +25,7 @@
                 <td class="d-flex justify-content-center">
                     <router-link v-if="true" :to="{ name: `devis.${type}.voir`, params: { id: devis.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: `devis.${type}.modifier`, params: { id: devis.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link v-if="devis.status === 1" :to="{ name: `commande.${type}.nouveau`, query: { devis: devis.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(devis.id, index)"/>
                 </td>
             </tr>
@@ -37,26 +38,27 @@
     </table>
 </template>
 
-<script>
-
+<script lang="ts">
 import { formatDate, expiration } from '../../functions/functions';
-import { computed } from 'vue';
-import { Skeletor } from 'vue-skeletor';
+import { computed, defineComponent } from 'vue';
 import Flash from '../../functions/Flash';
-import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../html/DeleteBtn.vue';
+import useCRUD from '../../services/CRUDServices';
+import SimpleAlert from 'vue3-simple-alert';
 import Status from '../html/Status.vue';
 
-const Devis = useCRUD('/commandes')
+const { destroy } = useCRUD('/commandes');
 
-export default {
+export default defineComponent({
     components: {
-        Skeletor, DeleteBtn, Status,
+    DeleteBtn,
+        SimpleAlert,
+        Status
     },
 
     props: {
         entities: {
-            type: Array,
+            type: Array<any>,
             required: true,
         },
         appro: {
@@ -72,18 +74,11 @@ export default {
     },
 
     setup(props) {
-
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {integr}  id  Identifiant du personnel
-         * @return  {void}
-         */
-        const confirmDeletion = (id, index) => {
-            SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(() => {
+        const confirmDeletion = async (id: number, index: number): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                Devis.destroy(id, index)
-            }).catch (error => {
+                destroy(id, props.entities,index)
+            }).catch((error: undefined) => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
                 }
@@ -96,10 +91,10 @@ export default {
         })
 
         return {
-            Flash, formatDate, expiration, Devis, confirmDeletion, type,
+            Flash, formatDate, expiration, destroy, confirmDeletion, type,
         }
     }
 
-}
+});
 
 </script>

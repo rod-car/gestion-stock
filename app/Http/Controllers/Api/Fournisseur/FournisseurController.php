@@ -66,7 +66,6 @@ class FournisseurController extends Controller
         unset($data["categories"]);
 
         $fournisseur->update($data);
-
         $categoriesActuel = $fournisseur->categories->pluck('id');
 
         foreach ($categoriesActuel as $id) {

@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests\Commande;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use App\Traits\Commande\WithValidation;
-use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-
 
 /**
  * @bodyParam   login    string  required    Username or email adress of the user.      Exemple: testuser@example.com, user123
@@ -69,19 +68,26 @@ class NouveauCommandeRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        /*if ($this->numero === null and $this->type === 1) {
+        if ($this->numero === null /*OR $this->type !== 1*/) {
             $numeroDevis = numeroDevis($this->boolean('appro'));
             $this->merge([
                 'numero' => $numeroDevis,
             ]);
-        }*/
+        }
+
+        if (is_string($this->articles))
+        {
+            $this->merge([
+                'articles' => json_decode($this->articles, true),
+            ]);
+        }
 
         $this->toogleClientFrs();
 
         if ($this->date !== null) {
             $date = Carbon::parse($this->date)->setTimezone('EAT');
             $this->merge([
-                'date' => $date->toDateTimeString(),
+                'date' => $date->toDateString(),
             ]);
         }
     }

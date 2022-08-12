@@ -27,10 +27,12 @@ trait WithValidation
         return [
             "numero" => ["required", "unique:commandes,numero,$exceptId,id", "sometimes", "min:2", "max:255"],
             "type" => ["required", Rule::in($this->typeCommande)],
-            "date" => ["required", "date", "date_format:Y-m-d H:i:s"],
+            "date" => ["required", "date", "date_format:Y-m-d"],
             "validite" => ["nullable", "numeric", "min:1", "max:365"],
             "fournisseur" => ["required_if:client,null", "exists:fournisseurs,id"],
             "client" => ["required_if:fournisseur,null", "exists:clients,id"],
+
+            "file" => ["nullable", "file", "mimes:png,jpg,pdf", "max:10000"],
 
             "articles" => ["required", "array"],
             "articles.*.id" => ["required", "exists:articles,id"],
@@ -42,6 +44,8 @@ trait WithValidation
             "articles.*.montant_ttc" => ["required", "numeric"],
 
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
+
+            "devis" => ["nullable", "numeric", "exists:commandes,id"],
         ];
     }
 
@@ -105,13 +109,7 @@ trait WithValidation
      */
     public function toogleClientFrs()
     {
-        if ($this->appro === true)
-        {
-            $this->offsetUnset("client");
-        }
-        else
-        {
-            $this->offsetUnset("fournisseur");
-        }
+        if ($this->boolean('appro') === true) $this->offsetUnset("client");
+        else $this->offsetUnset("fournisseur");
     }
 }

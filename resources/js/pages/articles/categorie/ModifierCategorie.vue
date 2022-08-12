@@ -5,71 +5,36 @@
             <router-link to="/article/categorie/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des catégories</router-link>
         </div>
         <div class="card-body">
-            <form action="" method="post">
-                <div class="row">
-                    <div class="col-xl-12 mb-3">
-                        <Input v-if="!loading" v-model="categorie.libelle" :error="errors.libelle" :required="true">Nom de la catégorie</Input>
-                        <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                        <label v-if="!loading" for="sous_categories" class="form-label">Sous catégories</label>
-                        <Multiselect v-if="!loading"
-                            label="libelle" valueProp="id" :multiple="true" v-model="categorie.sous_categories"
-                            :object="true"
-                            :options="categories" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
-                            :searchable="true" placeholder="Selectionner lees sous catégories"
-                            noOptionsText="Aucune catégorie"
-                            noResultsText="Aucune catégorie"
-                        />
-                        <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                        <Input v-if="!loading" type="textarea" v-model="categorie.description" :error="errors.description">Description de la catégorie</Input>
-                        <Skeletor v-else height="80" width="100%" style="border-radius: 3px" />
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <SaveBtn v-if="!loading" @click.prevent="save(categorie.id)" :loading="updating">Enregistrer</SaveBtn>
-                        <Skeletor v-else height="40" width="10%" style="border-radius: 3px" />
-                    </div>
-                </div>
-            </form>
+            <CategorieFormLoadingComponent v-if="loading" :hasSub="true" />
+            <CategorieFormComponent v-else :nouveau="false" :type="3" :categorie="entity" />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import useCRUD from '../../../services/CRUDServices';
+import CategorieFormLoadingComponent from '../../../components/categorie/CategorieFormLoadingComponent.vue';
+import CategorieFormComponent from '../../../components/categorie/CategorieFormComponent.vue';
+import { onBeforeMount } from 'vue';
+import router from '../../../router/router';
 
-import SaveBtn from '../../../components/html/SaveBtn.vue';
-import Input from '../../../components/html/Input.vue';
-import useCategorie from '../../../services/categorie/CategorieServices';
-import Multiselect from '@vueform/multiselect';
-import { Skeletor } from 'vue-skeletor';
-
-const { updating, loading, categorie, categories, errors, success, getCategorie, getCategories, updateCategorie } = useCategorie();
+const { loading, entity, find } = useCRUD('/categorie');
 
 export default {
     setup() {
+        onBeforeMount(async (): Promise<any> => {
+            const id = parseInt(router.currentRoute.value.params.id.toString());
+            await find(id);
+        })
+
         return {
-            loading, updating, errors, success, categorie, categories, getCategorie, updateCategorie, getCategories,
+            loading, entity,
         }
     },
 
     components: {
-        Input, SaveBtn, Skeletor, Multiselect,
-    },
-
-    methods: {
-        async save(id) {
-            await updateCategorie(id, categorie.value);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            success.value = null
-        },
-    },
-
-    mounted() {
-        const id = parseInt(this.$route.params.id);
-        getCategorie(id)
-        getCategories(3, id)
+        CategorieFormLoadingComponent,
+        CategorieFormComponent
     },
 
 }

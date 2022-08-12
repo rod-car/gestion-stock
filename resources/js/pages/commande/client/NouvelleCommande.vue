@@ -15,14 +15,14 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
+import { defineComponent } from 'vue';
 import CommandeFormComponent from '../../../components/commande/CommandeFormComponent.vue';
 
-export default {
+export default defineComponent({
     components: {
         CommandeFormComponent
     },
-}
-
+});
 </script>

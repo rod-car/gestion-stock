@@ -17,7 +17,7 @@ class CreateCommandesTable extends Migration
             $table->bigIncrements('id');
             $table->string('numero')->unique('numero_commande');
             $table->unsignedSmallInteger('type')->comment('Type de commande: 1 - Dévis, 2 - Commande proprement dit');
-            $table->dateTime('date')->useCurrent();
+            $table->date('date')->useCurrent();
             $table->integer('validite')->nullable()->comment('Validité du dévis en nombre de jour');
             $table->unsignedBigInteger('fournisseur')->nullable()->index('commandes_fournisseur_foreign');
             $table->unsignedBigInteger('client')->nullable()->index('commandes_client_foreign');

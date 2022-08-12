@@ -8,22 +8,22 @@
                 </div>
             </div>
             <div class="card-body">
-                <ListeCommandeComponent v-if="!Commande.loading.value" :appro="appro" :entities="Commande.entities.value" />
+                <ListeCommandeComponent v-if="!loading" :appro="appro" :entities="entities" />
                 <ListeCommandeLoadingComponent v-else />
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import { onBeforeMount, ref } from 'vue';
+<script lang="ts">
+import { defineComponent, onBeforeMount, ref } from 'vue';
 import ListeCommandeComponent from '../../../components/commande/ListeCommandeComponent.vue';
 import ListeCommandeLoadingComponent from '../../../components/commande/ListeCommandeLoadingComponent.vue';
 import useCRUD from '../../../services/CRUDServices';
 
-const Commande = useCRUD('/commandes')
+const { entities, loading, all } = useCRUD('/commandes')
 
-export default {
+export default defineComponent({
     components: {
         ListeCommandeComponent,
         ListeCommandeLoadingComponent
@@ -33,13 +33,13 @@ export default {
         const appro = ref(false)
 
         onBeforeMount(async () => {
-            await Commande.all({ type: 2, appro }) // Recuperer tous les commandes de clients
+            await all(2, null, appro.value) // Recuperer tous les commandes de clients
         })
 
         return {
-            Commande, appro
+            entities, loading, appro,
         }
     },
 
-}
+})
 </script>

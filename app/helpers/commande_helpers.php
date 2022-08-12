@@ -54,7 +54,7 @@ if (!function_exists('numeroDevis')) {
             $incrementation = $parts[3];
 
             if (intval(date('m')) === intval($mois)) {
-                $incrementation = (string) intval($incrementation) + 1;
+                $incrementation = strval(intval($incrementation) + 1);
                 $incrementation = str_pad($incrementation, $nombreIncrementation, "0", STR_PAD_LEFT);
             } else {
                 $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);

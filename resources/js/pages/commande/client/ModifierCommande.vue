@@ -3,44 +3,46 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Modifier le commande client N° {{ Commande.entity.value.numero }}</h5>
+                    <h5 v-if="!loading" class="text-info">Modifier le commande client N° {{ entity.numero }}</h5>
+                    <Skeletor v-else height="35" width="40%" style="border-radius: 3px" />
                     <router-link to="/commande/client/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des commande client</router-link>
                 </div>
             </div>
 
             <div class="card-body">
-                <CommandeFormComponent v-if="!Commande.loading.value" :nouveau="false" :appro="false" :commande="Commande.entity.value" />
+                <CommandeFormComponent v-if="!loading" :nouveau="false" :appro="false" :commande="entity" />
                 <CommandeFormLoadingComponent v-else />
             </div>
         </div>
     </div>
 </template>
 
-<script>
-
-import { onBeforeMount } from 'vue';
+<script lang="ts">
+import { defineComponent, onBeforeMount } from 'vue';
+import { Skeletor } from 'vue-skeletor';
 import CommandeFormComponent from '../../../components/commande/CommandeFormComponent.vue';
 import CommandeFormLoadingComponent from '../../../components/commande/CommandeFormLoadingComponent.vue';
 import router from '../../../router/router';
 import useCRUD from '../../../services/CRUDServices';
 
-const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
+const { entity, loading, find } = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 
-export default {
+export default defineComponent({
     components: {
         CommandeFormComponent,
-        CommandeFormLoadingComponent
+        CommandeFormLoadingComponent,
+        Skeletor,
     },
 
     setup() {
         onBeforeMount(async () => {
-            const id = router.currentRoute.value.params.id;
-            await Commande.find(id);
+            const id = parseInt(router.currentRoute.value.params.id.toString());
+            await find(id);
         })
 
         return {
-            Commande,
+            entity, loading,
         }
     }
-}
+})
 </script>

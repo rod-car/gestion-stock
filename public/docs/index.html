@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var baseUrl = "http://localhost:8000";
+        var baseUrl = "http://localhost:800";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -179,9 +179,6 @@
                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-fournisseur--id-">
                         <a href="#endpoints-GETapi-fournisseur--id-">Display the specified resource.</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-fournisseur--id-">
-                        <a href="#endpoints-PUTapi-fournisseur--id-">Update the specified resource in storage.</a>
-                    </li>
                                     <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-fournisseur--id-">
                         <a href="#endpoints-DELETEapi-fournisseur--id-">Remove the specified resource from storage.</a>
                     </li>
@@ -254,7 +251,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 15 2022</li>
+        <li>Last updated: August 5 2022</li>
     </ul>
 </div>
 
@@ -268,7 +265,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost:8000</code></pre>
+<pre><code class="language-yaml">http://localhost:800</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
@@ -290,11 +287,11 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/login" \
+    "http://localhost:800/api/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"login\": \"asperiores\",
+    \"login\": \"quas\",
     \"password\": \"secret\"
 }"
 </code></pre></div>
@@ -302,7 +299,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/login"
+    "http://localhost:800/api/auth/login"
 );
 
 const headers = {
@@ -311,7 +308,7 @@ const headers = {
 };
 
 let body = {
-    "login": "asperiores",
+    "login": "quas",
     "password": "secret"
 };
 
@@ -384,7 +381,7 @@ fetch(url, {
                 <input type="text"
                name="login"
                data-endpoint="POSTapi-auth-login"
-               value="asperiores"
+               value="quas"
                data-component="body" hidden>
     <br>
 <p>Username or email adress of the user.      Exemple: testuser@example.com, user123</p>
@@ -414,14 +411,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/connected-user" \
+    --get "http://localhost:800/api/connected-user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/connected-user"
+    "http://localhost:800/api/connected-user"
 );
 
 const headers = {
@@ -509,14 +506,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/user" \
+    --get "http://localhost:800/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user"
+    "http://localhost:800/api/user"
 );
 
 const headers = {
@@ -604,36 +601,36 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/user" \
+    "http://localhost:800/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom_personnel\": \"yvkfbfvcrkawylnimxrtgbtmiaxbesowqjnpojymbijlyvreaccbjdykkztstiklgujvmavxyeoejcwvpoapmjlrtcyxxxoknpvwtajqunykzzwlvwxzqwwnzlxyoqgflmbphvjzulqyuzvgybvzmomulecufuhpykkqiuyirjynmwvqpust\",
-    \"prenoms_personnel\": \"llinkabhuesoovewtpylfojglnfmilqrpsreibcbjxauzutkmuwpebdxtambrabeuxdmetdypycbbsumwnuwwyfqypikzthpugpvhycgbgjjgipmmfckiyjpwqkuuumgardvnrjfrrmmcymzujcpmyvbegpmxxvitmprmwdlfekmtbxmylpgdcqhvvbjmoitjuzwhyjxanhtpsgqvacsldosrtgsantikvileqrgersuggoria\",
-    \"contact_personnel\": \"atque\",
-    \"email\": \"znsmervidzphqwjkxzrokycjsncaxzdyqbfjpawwetw\",
-    \"adresse_personnel\": \"fugiat\",
-    \"cin_personnel\": \"185260400882\",
-    \"username\": \"opjquztpyywdxfqjrgsdbujvoaryddwjvffddnkvqwxwueubsdsxpdepjuqpevdprfweotzqgpcuqihydzlorjstcagptatqkyaivuswprzbfhlimbxajydxkgrwjfrkvqrpfbgavjmbfwnpdzsyzjalbjhdexnyjuloupxdy\",
+    \"nom_personnel\": \"s\",
+    \"prenoms_personnel\": \"qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah\",
+    \"contact_personnel\": \"non\",
+    \"email\": \"qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia\",
+    \"adresse_personnel\": \"voluptatum\",
+    \"cin_personnel\": \"049166688068\",
+    \"username\": \"wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz\",
     \"password\": \"secret\",
-    \"password_confirmation\": \"ftxyqwzgnblspqisabplxxkqnfwuirtmdwquffbpgxgdvapyqopwmhvlvxtyouzystxayzgbbofnhykszftuqjuqkmmtdgtuvpigffaczwbsgolnoejfjovfqjpsalpvoijjganuqsufmrudzhlzkjnddhytaisdr\",
+    \"password_confirmation\": \"sxrdrozvexzcozmu\",
     \"roles\": [
         null
     ],
     \"permissions\": [
-        \"molestiae\"
+        \"et\"
     ],
     \"fonctions\": [
-        \"praesentium\"
+        \"eveniet\"
     ],
-    \"login\": \"occaecati\"
+    \"login\": \"similique\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user"
+    "http://localhost:800/api/user"
 );
 
 const headers = {
@@ -642,25 +639,25 @@ const headers = {
 };
 
 let body = {
-    "nom_personnel": "yvkfbfvcrkawylnimxrtgbtmiaxbesowqjnpojymbijlyvreaccbjdykkztstiklgujvmavxyeoejcwvpoapmjlrtcyxxxoknpvwtajqunykzzwlvwxzqwwnzlxyoqgflmbphvjzulqyuzvgybvzmomulecufuhpykkqiuyirjynmwvqpust",
-    "prenoms_personnel": "llinkabhuesoovewtpylfojglnfmilqrpsreibcbjxauzutkmuwpebdxtambrabeuxdmetdypycbbsumwnuwwyfqypikzthpugpvhycgbgjjgipmmfckiyjpwqkuuumgardvnrjfrrmmcymzujcpmyvbegpmxxvitmprmwdlfekmtbxmylpgdcqhvvbjmoitjuzwhyjxanhtpsgqvacsldosrtgsantikvileqrgersuggoria",
-    "contact_personnel": "atque",
-    "email": "znsmervidzphqwjkxzrokycjsncaxzdyqbfjpawwetw",
-    "adresse_personnel": "fugiat",
-    "cin_personnel": "185260400882",
-    "username": "opjquztpyywdxfqjrgsdbujvoaryddwjvffddnkvqwxwueubsdsxpdepjuqpevdprfweotzqgpcuqihydzlorjstcagptatqkyaivuswprzbfhlimbxajydxkgrwjfrkvqrpfbgavjmbfwnpdzsyzjalbjhdexnyjuloupxdy",
+    "nom_personnel": "s",
+    "prenoms_personnel": "qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah",
+    "contact_personnel": "non",
+    "email": "qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia",
+    "adresse_personnel": "voluptatum",
+    "cin_personnel": "049166688068",
+    "username": "wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz",
     "password": "secret",
-    "password_confirmation": "ftxyqwzgnblspqisabplxxkqnfwuirtmdwquffbpgxgdvapyqopwmhvlvxtyouzystxayzgbbofnhykszftuqjuqkmmtdgtuvpigffaczwbsgolnoejfjovfqjpsalpvoijjganuqsufmrudzhlzkjnddhytaisdr",
+    "password_confirmation": "sxrdrozvexzcozmu",
     "roles": [
         null
     ],
     "permissions": [
-        "molestiae"
+        "et"
     ],
     "fonctions": [
-        "praesentium"
+        "eveniet"
     ],
-    "login": "occaecati"
+    "login": "similique"
 };
 
 fetch(url, {
@@ -718,7 +715,7 @@ fetch(url, {
                 <input type="text"
                name="nom_personnel"
                data-endpoint="POSTapi-user"
-               value="yvkfbfvcrkawylnimxrtgbtmiaxbesowqjnpojymbijlyvreaccbjdykkztstiklgujvmavxyeoejcwvpoapmjlrtcyxxxoknpvwtajqunykzzwlvwxzqwwnzlxyoqgflmbphvjzulqyuzvgybvzmomulecufuhpykkqiuyirjynmwvqpust"
+               value="s"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -728,7 +725,7 @@ fetch(url, {
                 <input type="text"
                name="prenoms_personnel"
                data-endpoint="POSTapi-user"
-               value="llinkabhuesoovewtpylfojglnfmilqrpsreibcbjxauzutkmuwpebdxtambrabeuxdmetdypycbbsumwnuwwyfqypikzthpugpvhycgbgjjgipmmfckiyjpwqkuuumgardvnrjfrrmmcymzujcpmyvbegpmxxvitmprmwdlfekmtbxmylpgdcqhvvbjmoitjuzwhyjxanhtpsgqvacsldosrtgsantikvileqrgersuggoria"
+               value="qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -738,7 +735,7 @@ fetch(url, {
                 <input type="text"
                name="contact_personnel"
                data-endpoint="POSTapi-user"
-               value="atque"
+               value="non"
                data-component="body" hidden>
     <br>
 
@@ -748,7 +745,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-user"
-               value="znsmervidzphqwjkxzrokycjsncaxzdyqbfjpawwetw"
+               value="qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address. Must not be greater than 255 characters.</p>
@@ -758,7 +755,7 @@ fetch(url, {
                 <input type="text"
                name="adresse_personnel"
                data-endpoint="POSTapi-user"
-               value="fugiat"
+               value="voluptatum"
                data-component="body" hidden>
     <br>
 
@@ -768,7 +765,7 @@ fetch(url, {
                 <input type="text"
                name="cin_personnel"
                data-endpoint="POSTapi-user"
-               value="185260400882"
+               value="049166688068"
                data-component="body" hidden>
     <br>
 <p>Must be 12 digits.</p>
@@ -778,7 +775,7 @@ fetch(url, {
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-user"
-               value="opjquztpyywdxfqjrgsdbujvoaryddwjvffddnkvqwxwueubsdsxpdepjuqpevdprfweotzqgpcuqihydzlorjstcagptatqkyaivuswprzbfhlimbxajydxkgrwjfrkvqrpfbgavjmbfwnpdzsyzjalbjhdexnyjuloupxdy"
+               value="wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz"
                data-component="body" hidden>
     <br>
 <p>This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -798,7 +795,7 @@ fetch(url, {
                 <input type="text"
                name="password_confirmation"
                data-endpoint="POSTapi-user"
-               value="ftxyqwzgnblspqisabplxxkqnfwuirtmdwquffbpgxgdvapyqopwmhvlvxtyouzystxayzgbbofnhykszftuqjuqkmmtdgtuvpigffaczwbsgolnoejfjovfqjpsalpvoijjganuqsufmrudzhlzkjnddhytaisdr"
+               value="sxrdrozvexzcozmu"
                data-component="body" hidden>
     <br>
 <p>This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.</p>
@@ -847,7 +844,7 @@ fetch(url, {
                 <input type="text"
                name="login"
                data-endpoint="POSTapi-user"
-               value="occaecati"
+               value="similique"
                data-component="body" hidden>
     <br>
 <p>Username or email adress of the user.      Exemple: testuser@example.com, user123</p>
@@ -867,14 +864,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/user/1" \
+    --get "http://localhost:800/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user/1"
+    "http://localhost:800/api/user/1"
 );
 
 const headers = {
@@ -973,27 +970,27 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/user/1" \
+    "http://localhost:800/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom_personnel\": \"ozhntjsgriefczltvhjxuqpuvtmircydwlrbtfwhjjtozbaxuixtuokqordiqzfiytpalcdmgijolyrhkmxjcmdsutjstkszuqwmbhcxisoffhfysrixnszhftcquesjtapjtjasudvmdoaixbyeertudspegwshaxhmjdazvisghlhnpdacctkrvzayngfjqpamxxxczsgbyykswzfwwuiyefaxs\",
-    \"prenoms_personnel\": \"qiloqfxmwrinpkhdnfgkvuixnebptnyqywxpqvtzckzdusgdyvszvdroiheyagsbiybbxdydppqkficoojsallhmtdcdsoifaagvxamxfqretqdafdsktbvbxsehtxzociwjmwggazsnbpcopxrhbncalmukxgnuirlrapmtvtbljabmmuqiizzsxydwuktqsjamjnfizrtsimkiiarswhxurtrpqtlbblzbtbfttbbazuakiikukluabumfq\",
-    \"contact_personnel\": \"doloremque\",
-    \"email\": \"idchmsnkyabrehmbtmzvvqzqcxiuvexavkzzlbjdwodhjdfsjpgcoxhmzfctdvqmquanccrciuphyxufyepbkjvrlfymejkkmtcezqycqetorkoxlygrvepuaqffuqowxkwwxgdqau\",
-    \"adresse_personnel\": \"quibusdam\",
-    \"cin_personnel\": \"631566258747\",
-    \"username\": \"inhlmgptghsuyppedahvnyhxikjdmztbtvxqhzrsxlgkqqeziaypdtgaakobtauopghbjhqbdyuouqthrpzojmubcmmgojebvojrqejmqfmxnvapydxpndugkcyyydiglobesulsqgpbblocmmidavkyedckbaqeefdjbtcxofcwmvpoltgulmpowigowhtjuurvxuvfzdtxkldwfofkeqwtz\",
-    \"password\": \"wijmxduemqcaivodjjijpyprgdeeueqezsbeivhgdoiqtmmaureauqvagbvpfayscojierxspoarwuumgksxmdysjgmjuvxquqnkvwy\",
-    \"password_confirmation\": \"vruwseppcdwqxrvxtterugecrremkvfsrnifrkxtvtyvvojdixrrlmuroemyftcedtgdbmyisyosrauakxsqubmmgugxcrhgxglsfwatp\",
+    \"nom_personnel\": \"pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz\",
+    \"prenoms_personnel\": \"pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh\",
+    \"contact_personnel\": \"qui\",
+    \"email\": \"rccjiddwgnonqffj\",
+    \"adresse_personnel\": \"atque\",
+    \"cin_personnel\": \"522392864780\",
+    \"username\": \"xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd\",
+    \"password\": \"dtgsqdkaabytlhxcmkx\",
+    \"password_confirmation\": \"mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle\",
     \"permissions\": [
-        \"aut\"
+        \"hic\"
     ],
     \"roles\": [
         null
     ],
     \"fonctions\": [
-        \"qui\"
+        \"error\"
     ]
 }"
 </code></pre></div>
@@ -1001,7 +998,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user/1"
+    "http://localhost:800/api/user/1"
 );
 
 const headers = {
@@ -1010,23 +1007,23 @@ const headers = {
 };
 
 let body = {
-    "nom_personnel": "ozhntjsgriefczltvhjxuqpuvtmircydwlrbtfwhjjtozbaxuixtuokqordiqzfiytpalcdmgijolyrhkmxjcmdsutjstkszuqwmbhcxisoffhfysrixnszhftcquesjtapjtjasudvmdoaixbyeertudspegwshaxhmjdazvisghlhnpdacctkrvzayngfjqpamxxxczsgbyykswzfwwuiyefaxs",
-    "prenoms_personnel": "qiloqfxmwrinpkhdnfgkvuixnebptnyqywxpqvtzckzdusgdyvszvdroiheyagsbiybbxdydppqkficoojsallhmtdcdsoifaagvxamxfqretqdafdsktbvbxsehtxzociwjmwggazsnbpcopxrhbncalmukxgnuirlrapmtvtbljabmmuqiizzsxydwuktqsjamjnfizrtsimkiiarswhxurtrpqtlbblzbtbfttbbazuakiikukluabumfq",
-    "contact_personnel": "doloremque",
-    "email": "idchmsnkyabrehmbtmzvvqzqcxiuvexavkzzlbjdwodhjdfsjpgcoxhmzfctdvqmquanccrciuphyxufyepbkjvrlfymejkkmtcezqycqetorkoxlygrvepuaqffuqowxkwwxgdqau",
-    "adresse_personnel": "quibusdam",
-    "cin_personnel": "631566258747",
-    "username": "inhlmgptghsuyppedahvnyhxikjdmztbtvxqhzrsxlgkqqeziaypdtgaakobtauopghbjhqbdyuouqthrpzojmubcmmgojebvojrqejmqfmxnvapydxpndugkcyyydiglobesulsqgpbblocmmidavkyedckbaqeefdjbtcxofcwmvpoltgulmpowigowhtjuurvxuvfzdtxkldwfofkeqwtz",
-    "password": "wijmxduemqcaivodjjijpyprgdeeueqezsbeivhgdoiqtmmaureauqvagbvpfayscojierxspoarwuumgksxmdysjgmjuvxquqnkvwy",
-    "password_confirmation": "vruwseppcdwqxrvxtterugecrremkvfsrnifrkxtvtyvvojdixrrlmuroemyftcedtgdbmyisyosrauakxsqubmmgugxcrhgxglsfwatp",
+    "nom_personnel": "pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz",
+    "prenoms_personnel": "pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh",
+    "contact_personnel": "qui",
+    "email": "rccjiddwgnonqffj",
+    "adresse_personnel": "atque",
+    "cin_personnel": "522392864780",
+    "username": "xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd",
+    "password": "dtgsqdkaabytlhxcmkx",
+    "password_confirmation": "mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle",
     "permissions": [
-        "aut"
+        "hic"
     ],
     "roles": [
         null
     ],
     "fonctions": [
-        "qui"
+        "error"
     ]
 };
 
@@ -1100,7 +1097,7 @@ fetch(url, {
                 <input type="text"
                name="nom_personnel"
                data-endpoint="PUTapi-user--id-"
-               value="ozhntjsgriefczltvhjxuqpuvtmircydwlrbtfwhjjtozbaxuixtuokqordiqzfiytpalcdmgijolyrhkmxjcmdsutjstkszuqwmbhcxisoffhfysrixnszhftcquesjtapjtjasudvmdoaixbyeertudspegwshaxhmjdazvisghlhnpdacctkrvzayngfjqpamxxxczsgbyykswzfwwuiyefaxs"
+               value="pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -1110,7 +1107,7 @@ fetch(url, {
                 <input type="text"
                name="prenoms_personnel"
                data-endpoint="PUTapi-user--id-"
-               value="qiloqfxmwrinpkhdnfgkvuixnebptnyqywxpqvtzckzdusgdyvszvdroiheyagsbiybbxdydppqkficoojsallhmtdcdsoifaagvxamxfqretqdafdsktbvbxsehtxzociwjmwggazsnbpcopxrhbncalmukxgnuirlrapmtvtbljabmmuqiizzsxydwuktqsjamjnfizrtsimkiiarswhxurtrpqtlbblzbtbfttbbazuakiikukluabumfq"
+               value="pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -1120,7 +1117,7 @@ fetch(url, {
                 <input type="text"
                name="contact_personnel"
                data-endpoint="PUTapi-user--id-"
-               value="doloremque"
+               value="qui"
                data-component="body" hidden>
     <br>
 
@@ -1130,7 +1127,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="PUTapi-user--id-"
-               value="idchmsnkyabrehmbtmzvvqzqcxiuvexavkzzlbjdwodhjdfsjpgcoxhmzfctdvqmquanccrciuphyxufyepbkjvrlfymejkkmtcezqycqetorkoxlygrvepuaqffuqowxkwwxgdqau"
+               value="rccjiddwgnonqffj"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address. Must not be greater than 255 characters.</p>
@@ -1140,7 +1137,7 @@ fetch(url, {
                 <input type="text"
                name="adresse_personnel"
                data-endpoint="PUTapi-user--id-"
-               value="quibusdam"
+               value="atque"
                data-component="body" hidden>
     <br>
 
@@ -1150,7 +1147,7 @@ fetch(url, {
                 <input type="text"
                name="cin_personnel"
                data-endpoint="PUTapi-user--id-"
-               value="631566258747"
+               value="522392864780"
                data-component="body" hidden>
     <br>
 <p>Must be 12 digits.</p>
@@ -1160,7 +1157,7 @@ fetch(url, {
                 <input type="text"
                name="username"
                data-endpoint="PUTapi-user--id-"
-               value="inhlmgptghsuyppedahvnyhxikjdmztbtvxqhzrsxlgkqqeziaypdtgaakobtauopghbjhqbdyuouqthrpzojmubcmmgojebvojrqejmqfmxnvapydxpndugkcyyydiglobesulsqgpbblocmmidavkyedckbaqeefdjbtcxofcwmvpoltgulmpowigowhtjuurvxuvfzdtxkldwfofkeqwtz"
+               value="xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd"
                data-component="body" hidden>
     <br>
 <p>This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -1170,7 +1167,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="PUTapi-user--id-"
-               value="wijmxduemqcaivodjjijpyprgdeeueqezsbeivhgdoiqtmmaureauqvagbvpfayscojierxspoarwuumgksxmdysjgmjuvxquqnkvwy"
+               value="dtgsqdkaabytlhxcmkx"
                data-component="body" hidden>
     <br>
 <p>This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.</p>
@@ -1180,7 +1177,7 @@ fetch(url, {
                 <input type="text"
                name="password_confirmation"
                data-endpoint="PUTapi-user--id-"
-               value="vruwseppcdwqxrvxtterugecrremkvfsrnifrkxtvtyvvojdixrrlmuroemyftcedtgdbmyisyosrauakxsqubmmgugxcrhgxglsfwatp"
+               value="mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle"
                data-component="body" hidden>
     <br>
 <p>This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.</p>
@@ -1239,14 +1236,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/user/1" \
+    "http://localhost:800/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user/1"
+    "http://localhost:800/api/user/1"
 );
 
 const headers = {
@@ -1328,14 +1325,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/logout" \
+    "http://localhost:800/api/auth/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/logout"
+    "http://localhost:800/api/auth/logout"
 );
 
 const headers = {
@@ -1406,14 +1403,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/abilities" \
+    --get "http://localhost:800/api/abilities" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/abilities"
+    "http://localhost:800/api/abilities"
 );
 
 const headers = {
@@ -1501,14 +1498,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/roles/search" \
+    --get "http://localhost:800/api/roles/search" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles/search"
+    "http://localhost:800/api/roles/search"
 );
 
 const headers = {
@@ -1596,14 +1593,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/roles" \
+    --get "http://localhost:800/api/roles" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles"
+    "http://localhost:800/api/roles"
 );
 
 const headers = {
@@ -1691,18 +1688,18 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/roles" \
+    "http://localhost:800/api/roles" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom_role\": \"bahainraf\"
+    \"nom_role\": \"hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles"
+    "http://localhost:800/api/roles"
 );
 
 const headers = {
@@ -1711,7 +1708,7 @@ const headers = {
 };
 
 let body = {
-    "nom_role": "bahainraf"
+    "nom_role": "hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw"
 };
 
 fetch(url, {
@@ -1769,7 +1766,7 @@ fetch(url, {
                 <input type="text"
                name="nom_role"
                data-endpoint="POSTapi-roles"
-               value="bahainraf"
+               value="hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -1789,14 +1786,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/roles/1" \
+    --get "http://localhost:800/api/roles/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles/1"
+    "http://localhost:800/api/roles/1"
 );
 
 const headers = {
@@ -1895,14 +1892,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/roles/1" \
+    "http://localhost:800/api/roles/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles/1"
+    "http://localhost:800/api/roles/1"
 );
 
 const headers = {
@@ -1988,14 +1985,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/roles/1" \
+    "http://localhost:800/api/roles/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/roles/1"
+    "http://localhost:800/api/roles/1"
 );
 
 const headers = {
@@ -2077,14 +2074,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/fonctions" \
+    --get "http://localhost:800/api/fonctions" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fonctions"
+    "http://localhost:800/api/fonctions"
 );
 
 const headers = {
@@ -2172,17 +2169,17 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/fonctions" \
+    "http://localhost:800/api/fonctions" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom_fonction\": \"htyelqtzbxfxdsahhzphosiyuxppyowpcdvpczawzekbbhtammrqlfdblngltymeehzpbupfubrxbhgjzmnh\",
-    \"description_fonction\": \"ybsoqbwwybfbhsxtcawzdqqbvmkpxmeqtyylhdayolomyvhpjujsznvvkoffbglzxasyvozziftiulobrbnvgftzkmbfpdniykndzkngbfwdexqfzlniatctwyviyvskoztbjbkjzikbcdxyggyfkwocjyutqvedsuiwxkzlvwhzfxqvlcemvrklpkgnwetconeyiuvhogfffdbbhltgwlxcpffsjtazepytgqrrftzaeywfkxsbagcffhndhrqsrslptmoxarqecahqgpusopesljxxhucnwuvunlztpiztsgdptmztdqyodajgotlxeyzjmwdbpbjvtfnwtnmjvbnkbtzwawambatvesvoxjloedchoupghemapoprsykbbdwhlovnudlklznvyykebblizzgwizhkzsgybjjpuwrqzfysebusenrfwpgwajpjkhbrhyqotimfuvccuouvedlhubxgqdmpnppyoxjnjcmxxxqgknyoyiasevaqftbxmfcuotiucffyzwxfitixkxvqhrsrvaqyijkaiybcaxuwhrsdmxzhiwvopvoosjjxwiirssomtlajqzidnkbdgsbnuevcxeyabmxwqcunduduqibzcmpfztduvaimavcrvezesluzvbqzbvtkbtlxismfbnzpfahtewlyjkfcslinxdyburdajiqnxlhoaurixnwvptziwidaboomhdqkaqpfrmmtfdmzhofdnduqtrhquhxphpmkzsvosrumdlzhfttpkwgwsrfibeirtcrisegjghkozqvqqcqmdawvzrpztruilqtgztmdubasxwxebtdvniwfuwjjdzqdtiydyftyjgdgoiiauzzikkxiootwmefziwqglexbneoqqonuxiaezrdlavuerbcrugpocmahfooizzolukljomyebmaypfrdlmcbnpcipwyyhwmpsjejrlizwtmtsvtkznbfupsibbrkvsybxlvcgbhlqjkliuwhfxiimquygqqsrzqwtphypskxrdhsiivvcyeymenhmalzheuodkrkousorlymoubdpoagdnxerbabvxsqvgrtsqpsrklockbauutimskxvrnsppbivqjtuxvoaugljgwkcelapiqxlynrlbnhsmbgkwtbtqevuirwdwzxthfxusdshdduqgutxhkocpvlugqwqxgzznygnmxeuhmueclakbbbocspeeehtuttvuwqtbaltvznknjehcutrczsteywmytltdcnazmfhnzmmfpnixdfltwfwiqbpdfdziytunulpvntswcfwbbfvfxskxzpjdqloljfkmgoghndpofhgwomncckevjuxmwidyrcvfhvtksscdqpxnfqpcuvvsnboualtildnygtnmjaudcxcxvtdrhuutnqqrsejnczgblvzudmiyxpxjjhdwjpdsqnwxsrwxndmwrgoobfgwfgtdfydsgdslvwptulpjwwdwkdlqwwrejiwthjpplsmvwwnqnyrhsdeykihiejfgrxgippqiauchsbzagwneffloaspvzninqgvpjlyrtczmvvdrufmxbvcngtfamvsegctuktwqumqqiniwwkwkvwdxgobfkikmidjeabifrvytnaebrakpeochzbwzraqnprzkbuwnqanlcvpmumvizbuqqbrzhqcvaejezyzfwokuvztmwtfzzydmnlnhuwixypkmrgqvknqiartlrjwskqweydcjtcilhnacncbsbzaccnkxobmzzsbjvppepksilqsrpusznecbbruanwlzztnjskchezqyqhyehatpvqyispcgkilzxmnwbdzmrtxjdumctygjbzvcoaoqfkghwzpanithyjjfuspobuncwrrthgaykoslidltopuvosjfxdyewqjagnrbepfraneczadojxinqfvhlxzsidcvfvfmbosetydsvkdcwhfesdnorzslcskpqbriqxlowdlumcoltvvysryjrbkusvwaortjdexkxgeeokgpzpwusooutkqcqsmprlxtcbxxkqwmnhadxsqsjbminomicqpvnlujiizjpffmtodsyhnyxkhwfrydzrougzytlmmmpvkpqiewstlozzlzavkxpyctulqxpzloutfuzszpdrobkwvqxtmyrihlixwmlctexpedaxrpjxvguctepujiofxedxdofyzxqifdyvnxqyxdbznjgttkuxvrffryuemdebwryrsgyinpcabwtbzqwrimcmyitansukppskhxrqkmdprptroctxokmvudvrrtaqzmoyppirrlvjjymymtmgzqsmtrpzcbpmoollaaffxzvrrigefyhircinzjgnwmikceoyddzhbhkrsdpfmigokcejrtywpcepemzthxnjieisrdzojqjprxepdvotgvbgacbsimkyytxfcjkuswrctqmdgjdpvjfpyhguzhjmlwgxaohmphkxjixirxhltsclabqreyvwkmwscnpflnkaeugmrbltaohacjldumlgmspcwrucmxhdzgurmhuaocwmfuqwlwbpxwqoftdmtjrtxlvjgagsasewkaqyllxfzzhemrvnmqvloadmaiqkwveevygayrihtcyzfmgnhywkcimpjuwpaqemdfjvejtlflqqbdclgtebxispleijolaonsyyuqkjpwtmhqsqwhibemodcooqhkgmzqwvkxlfdygadvujlhwkipcqylyuhhhtfdztgomjlmtkorqomqcmlrudlyhyjvgbdtwlwizcxaautcipezhbqggogpqllqsxgwyjnzfjgeurogfdokykjqsudsywfnhhemiunziwesemjoebntkdfhajintevofmqsvrymaxtldzvwkiidfwzfpkytqfahxjpjjrottncnzdkfsksznrscyagafwjpkddcoyosxtsgnnhmbtmbirlrohynetamhjptgaaaofighuciemlpxfqhavrtxdjuiehqtyjrtrlxoklaoborigepyuxiadbalvrswbtruhkyzrfrqtqyhqoydeyhatiartcsswtbspgczyuhoutengqpnjlxyoaydluhpkxsewzwtjzedcyykrkqqgtzwrcejqyprtxfouhacxvqsymvwxzxbexibkiphqjuejnyrwyvunladuynkfvxtxoxaxdfnbawbeyayjifzaehwojjocqmtdszzvsfihjdwcgfkvuxeveftoopztlbpgaqgoiyzhrulhebhswpzyshotjrropcqtpklzqitpoxsqbayhicyxpqgdqbvrdvmzhotsqzwasfflymyonqtegscggbzxqrwzozwykvthvilmtanngjzixhjyznicbwiidgzfhnnfmpspypfrzqeplywzocxqisenmglfocqvkmxqrcorsocbxvwzhejjnparqkktpfmaoqmfkvnostefggoxgvjglvirixuxebyeycsxzyrqsauxmtrtwgnhsvbvnslgjxaaaktgzvkbetpjbsmkvzxdfamnwppwjzlgevdxzsiydqpssjaqbibjjnquamfstnzguwzgffqwbqnlcuxloakvgrlipmpqlhiuztwmtbtoivdwelkwgusxcvwlaninvlwijhlgtqoodqnawlfsemajbtxvoqvopwzspjdfvejmspuwszpuyvvztcwyjwmxutnkiqtjdpicaymbyogkgyqzrjmxyfwpigfjnfmdltcihiukflicucfrrmxngfqncapdyxzmsgueeczjwioohegoskqxajrjdslaipsdtutqulwfgfsbkzsicbvpkoyyhrqfsncqkdlwieippkrsljxawisufmikgpnvjaxiduoisypvbpmmurimsogbjtndjaeslalhmtnvswwahltsfibuvjrejjtpyyrzkyrjcjfymemtnpyldefzjuerhefahzgyvuddzfydzdgrtydwhruuhbaqrllxjjyoxdhdvqerkrphgsdxooaeqtqyerwteqflmokmllqahzkmqohvgztikaorxboubpbdmuvzqifdrutwkmgwfizlnpacqfrxlczkqwpwkepymklmpnjhpvyaqpuotmhblknbhuuzmvsxvo\",
+    \"nom_fonction\": \"frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi\",
+    \"description_fonction\": \"pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm\",
     \"enfants\": [
-        \"doloremque\"
+        \"maiores\"
     ],
     \"permissions\": [
-        \"aut\"
+        \"dolor\"
     ]
 }"
 </code></pre></div>
@@ -2190,7 +2187,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fonctions"
+    "http://localhost:800/api/fonctions"
 );
 
 const headers = {
@@ -2199,13 +2196,13 @@ const headers = {
 };
 
 let body = {
-    "nom_fonction": "htyelqtzbxfxdsahhzphosiyuxppyowpcdvpczawzekbbhtammrqlfdblngltymeehzpbupfubrxbhgjzmnh",
-    "description_fonction": "ybsoqbwwybfbhsxtcawzdqqbvmkpxmeqtyylhdayolomyvhpjujsznvvkoffbglzxasyvozziftiulobrbnvgftzkmbfpdniykndzkngbfwdexqfzlniatctwyviyvskoztbjbkjzikbcdxyggyfkwocjyutqvedsuiwxkzlvwhzfxqvlcemvrklpkgnwetconeyiuvhogfffdbbhltgwlxcpffsjtazepytgqrrftzaeywfkxsbagcffhndhrqsrslptmoxarqecahqgpusopesljxxhucnwuvunlztpiztsgdptmztdqyodajgotlxeyzjmwdbpbjvtfnwtnmjvbnkbtzwawambatvesvoxjloedchoupghemapoprsykbbdwhlovnudlklznvyykebblizzgwizhkzsgybjjpuwrqzfysebusenrfwpgwajpjkhbrhyqotimfuvccuouvedlhubxgqdmpnppyoxjnjcmxxxqgknyoyiasevaqftbxmfcuotiucffyzwxfitixkxvqhrsrvaqyijkaiybcaxuwhrsdmxzhiwvopvoosjjxwiirssomtlajqzidnkbdgsbnuevcxeyabmxwqcunduduqibzcmpfztduvaimavcrvezesluzvbqzbvtkbtlxismfbnzpfahtewlyjkfcslinxdyburdajiqnxlhoaurixnwvptziwidaboomhdqkaqpfrmmtfdmzhofdnduqtrhquhxphpmkzsvosrumdlzhfttpkwgwsrfibeirtcrisegjghkozqvqqcqmdawvzrpztruilqtgztmdubasxwxebtdvniwfuwjjdzqdtiydyftyjgdgoiiauzzikkxiootwmefziwqglexbneoqqonuxiaezrdlavuerbcrugpocmahfooizzolukljomyebmaypfrdlmcbnpcipwyyhwmpsjejrlizwtmtsvtkznbfupsibbrkvsybxlvcgbhlqjkliuwhfxiimquygqqsrzqwtphypskxrdhsiivvcyeymenhmalzheuodkrkousorlymoubdpoagdnxerbabvxsqvgrtsqpsrklockbauutimskxvrnsppbivqjtuxvoaugljgwkcelapiqxlynrlbnhsmbgkwtbtqevuirwdwzxthfxusdshdduqgutxhkocpvlugqwqxgzznygnmxeuhmueclakbbbocspeeehtuttvuwqtbaltvznknjehcutrczsteywmytltdcnazmfhnzmmfpnixdfltwfwiqbpdfdziytunulpvntswcfwbbfvfxskxzpjdqloljfkmgoghndpofhgwomncckevjuxmwidyrcvfhvtksscdqpxnfqpcuvvsnboualtildnygtnmjaudcxcxvtdrhuutnqqrsejnczgblvzudmiyxpxjjhdwjpdsqnwxsrwxndmwrgoobfgwfgtdfydsgdslvwptulpjwwdwkdlqwwrejiwthjpplsmvwwnqnyrhsdeykihiejfgrxgippqiauchsbzagwneffloaspvzninqgvpjlyrtczmvvdrufmxbvcngtfamvsegctuktwqumqqiniwwkwkvwdxgobfkikmidjeabifrvytnaebrakpeochzbwzraqnprzkbuwnqanlcvpmumvizbuqqbrzhqcvaejezyzfwokuvztmwtfzzydmnlnhuwixypkmrgqvknqiartlrjwskqweydcjtcilhnacncbsbzaccnkxobmzzsbjvppepksilqsrpusznecbbruanwlzztnjskchezqyqhyehatpvqyispcgkilzxmnwbdzmrtxjdumctygjbzvcoaoqfkghwzpanithyjjfuspobuncwrrthgaykoslidltopuvosjfxdyewqjagnrbepfraneczadojxinqfvhlxzsidcvfvfmbosetydsvkdcwhfesdnorzslcskpqbriqxlowdlumcoltvvysryjrbkusvwaortjdexkxgeeokgpzpwusooutkqcqsmprlxtcbxxkqwmnhadxsqsjbminomicqpvnlujiizjpffmtodsyhnyxkhwfrydzrougzytlmmmpvkpqiewstlozzlzavkxpyctulqxpzloutfuzszpdrobkwvqxtmyrihlixwmlctexpedaxrpjxvguctepujiofxedxdofyzxqifdyvnxqyxdbznjgttkuxvrffryuemdebwryrsgyinpcabwtbzqwrimcmyitansukppskhxrqkmdprptroctxokmvudvrrtaqzmoyppirrlvjjymymtmgzqsmtrpzcbpmoollaaffxzvrrigefyhircinzjgnwmikceoyddzhbhkrsdpfmigokcejrtywpcepemzthxnjieisrdzojqjprxepdvotgvbgacbsimkyytxfcjkuswrctqmdgjdpvjfpyhguzhjmlwgxaohmphkxjixirxhltsclabqreyvwkmwscnpflnkaeugmrbltaohacjldumlgmspcwrucmxhdzgurmhuaocwmfuqwlwbpxwqoftdmtjrtxlvjgagsasewkaqyllxfzzhemrvnmqvloadmaiqkwveevygayrihtcyzfmgnhywkcimpjuwpaqemdfjvejtlflqqbdclgtebxispleijolaonsyyuqkjpwtmhqsqwhibemodcooqhkgmzqwvkxlfdygadvujlhwkipcqylyuhhhtfdztgomjlmtkorqomqcmlrudlyhyjvgbdtwlwizcxaautcipezhbqggogpqllqsxgwyjnzfjgeurogfdokykjqsudsywfnhhemiunziwesemjoebntkdfhajintevofmqsvrymaxtldzvwkiidfwzfpkytqfahxjpjjrottncnzdkfsksznrscyagafwjpkddcoyosxtsgnnhmbtmbirlrohynetamhjptgaaaofighuciemlpxfqhavrtxdjuiehqtyjrtrlxoklaoborigepyuxiadbalvrswbtruhkyzrfrqtqyhqoydeyhatiartcsswtbspgczyuhoutengqpnjlxyoaydluhpkxsewzwtjzedcyykrkqqgtzwrcejqyprtxfouhacxvqsymvwxzxbexibkiphqjuejnyrwyvunladuynkfvxtxoxaxdfnbawbeyayjifzaehwojjocqmtdszzvsfihjdwcgfkvuxeveftoopztlbpgaqgoiyzhrulhebhswpzyshotjrropcqtpklzqitpoxsqbayhicyxpqgdqbvrdvmzhotsqzwasfflymyonqtegscggbzxqrwzozwykvthvilmtanngjzixhjyznicbwiidgzfhnnfmpspypfrzqeplywzocxqisenmglfocqvkmxqrcorsocbxvwzhejjnparqkktpfmaoqmfkvnostefggoxgvjglvirixuxebyeycsxzyrqsauxmtrtwgnhsvbvnslgjxaaaktgzvkbetpjbsmkvzxdfamnwppwjzlgevdxzsiydqpssjaqbibjjnquamfstnzguwzgffqwbqnlcuxloakvgrlipmpqlhiuztwmtbtoivdwelkwgusxcvwlaninvlwijhlgtqoodqnawlfsemajbtxvoqvopwzspjdfvejmspuwszpuyvvztcwyjwmxutnkiqtjdpicaymbyogkgyqzrjmxyfwpigfjnfmdltcihiukflicucfrrmxngfqncapdyxzmsgueeczjwioohegoskqxajrjdslaipsdtutqulwfgfsbkzsicbvpkoyyhrqfsncqkdlwieippkrsljxawisufmikgpnvjaxiduoisypvbpmmurimsogbjtndjaeslalhmtnvswwahltsfibuvjrejjtpyyrzkyrjcjfymemtnpyldefzjuerhefahzgyvuddzfydzdgrtydwhruuhbaqrllxjjyoxdhdvqerkrphgsdxooaeqtqyerwteqflmokmllqahzkmqohvgztikaorxboubpbdmuvzqifdrutwkmgwfizlnpacqfrxlczkqwpwkepymklmpnjhpvyaqpuotmhblknbhuuzmvsxvo",
+    "nom_fonction": "frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi",
+    "description_fonction": "pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm",
     "enfants": [
-        "doloremque"
+        "maiores"
     ],
     "permissions": [
-        "aut"
+        "dolor"
     ]
 };
 
@@ -2264,7 +2261,7 @@ fetch(url, {
                 <input type="text"
                name="nom_fonction"
                data-endpoint="POSTapi-fonctions"
-               value="htyelqtzbxfxdsahhzphosiyuxppyowpcdvpczawzekbbhtammrqlfdblngltymeehzpbupfubrxbhgjzmnh"
+               value="frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -2274,7 +2271,7 @@ fetch(url, {
                 <input type="text"
                name="description_fonction"
                data-endpoint="POSTapi-fonctions"
-               value="ybsoqbwwybfbhsxtcawzdqqbvmkpxmeqtyylhdayolomyvhpjujsznvvkoffbglzxasyvozziftiulobrbnvgftzkmbfpdniykndzkngbfwdexqfzlniatctwyviyvskoztbjbkjzikbcdxyggyfkwocjyutqvedsuiwxkzlvwhzfxqvlcemvrklpkgnwetconeyiuvhogfffdbbhltgwlxcpffsjtazepytgqrrftzaeywfkxsbagcffhndhrqsrslptmoxarqecahqgpusopesljxxhucnwuvunlztpiztsgdptmztdqyodajgotlxeyzjmwdbpbjvtfnwtnmjvbnkbtzwawambatvesvoxjloedchoupghemapoprsykbbdwhlovnudlklznvyykebblizzgwizhkzsgybjjpuwrqzfysebusenrfwpgwajpjkhbrhyqotimfuvccuouvedlhubxgqdmpnppyoxjnjcmxxxqgknyoyiasevaqftbxmfcuotiucffyzwxfitixkxvqhrsrvaqyijkaiybcaxuwhrsdmxzhiwvopvoosjjxwiirssomtlajqzidnkbdgsbnuevcxeyabmxwqcunduduqibzcmpfztduvaimavcrvezesluzvbqzbvtkbtlxismfbnzpfahtewlyjkfcslinxdyburdajiqnxlhoaurixnwvptziwidaboomhdqkaqpfrmmtfdmzhofdnduqtrhquhxphpmkzsvosrumdlzhfttpkwgwsrfibeirtcrisegjghkozqvqqcqmdawvzrpztruilqtgztmdubasxwxebtdvniwfuwjjdzqdtiydyftyjgdgoiiauzzikkxiootwmefziwqglexbneoqqonuxiaezrdlavuerbcrugpocmahfooizzolukljomyebmaypfrdlmcbnpcipwyyhwmpsjejrlizwtmtsvtkznbfupsibbrkvsybxlvcgbhlqjkliuwhfxiimquygqqsrzqwtphypskxrdhsiivvcyeymenhmalzheuodkrkousorlymoubdpoagdnxerbabvxsqvgrtsqpsrklockbauutimskxvrnsppbivqjtuxvoaugljgwkcelapiqxlynrlbnhsmbgkwtbtqevuirwdwzxthfxusdshdduqgutxhkocpvlugqwqxgzznygnmxeuhmueclakbbbocspeeehtuttvuwqtbaltvznknjehcutrczsteywmytltdcnazmfhnzmmfpnixdfltwfwiqbpdfdziytunulpvntswcfwbbfvfxskxzpjdqloljfkmgoghndpofhgwomncckevjuxmwidyrcvfhvtksscdqpxnfqpcuvvsnboualtildnygtnmjaudcxcxvtdrhuutnqqrsejnczgblvzudmiyxpxjjhdwjpdsqnwxsrwxndmwrgoobfgwfgtdfydsgdslvwptulpjwwdwkdlqwwrejiwthjpplsmvwwnqnyrhsdeykihiejfgrxgippqiauchsbzagwneffloaspvzninqgvpjlyrtczmvvdrufmxbvcngtfamvsegctuktwqumqqiniwwkwkvwdxgobfkikmidjeabifrvytnaebrakpeochzbwzraqnprzkbuwnqanlcvpmumvizbuqqbrzhqcvaejezyzfwokuvztmwtfzzydmnlnhuwixypkmrgqvknqiartlrjwskqweydcjtcilhnacncbsbzaccnkxobmzzsbjvppepksilqsrpusznecbbruanwlzztnjskchezqyqhyehatpvqyispcgkilzxmnwbdzmrtxjdumctygjbzvcoaoqfkghwzpanithyjjfuspobuncwrrthgaykoslidltopuvosjfxdyewqjagnrbepfraneczadojxinqfvhlxzsidcvfvfmbosetydsvkdcwhfesdnorzslcskpqbriqxlowdlumcoltvvysryjrbkusvwaortjdexkxgeeokgpzpwusooutkqcqsmprlxtcbxxkqwmnhadxsqsjbminomicqpvnlujiizjpffmtodsyhnyxkhwfrydzrougzytlmmmpvkpqiewstlozzlzavkxpyctulqxpzloutfuzszpdrobkwvqxtmyrihlixwmlctexpedaxrpjxvguctepujiofxedxdofyzxqifdyvnxqyxdbznjgttkuxvrffryuemdebwryrsgyinpcabwtbzqwrimcmyitansukppskhxrqkmdprptroctxokmvudvrrtaqzmoyppirrlvjjymymtmgzqsmtrpzcbpmoollaaffxzvrrigefyhircinzjgnwmikceoyddzhbhkrsdpfmigokcejrtywpcepemzthxnjieisrdzojqjprxepdvotgvbgacbsimkyytxfcjkuswrctqmdgjdpvjfpyhguzhjmlwgxaohmphkxjixirxhltsclabqreyvwkmwscnpflnkaeugmrbltaohacjldumlgmspcwrucmxhdzgurmhuaocwmfuqwlwbpxwqoftdmtjrtxlvjgagsasewkaqyllxfzzhemrvnmqvloadmaiqkwveevygayrihtcyzfmgnhywkcimpjuwpaqemdfjvejtlflqqbdclgtebxispleijolaonsyyuqkjpwtmhqsqwhibemodcooqhkgmzqwvkxlfdygadvujlhwkipcqylyuhhhtfdztgomjlmtkorqomqcmlrudlyhyjvgbdtwlwizcxaautcipezhbqggogpqllqsxgwyjnzfjgeurogfdokykjqsudsywfnhhemiunziwesemjoebntkdfhajintevofmqsvrymaxtldzvwkiidfwzfpkytqfahxjpjjrottncnzdkfsksznrscyagafwjpkddcoyosxtsgnnhmbtmbirlrohynetamhjptgaaaofighuciemlpxfqhavrtxdjuiehqtyjrtrlxoklaoborigepyuxiadbalvrswbtruhkyzrfrqtqyhqoydeyhatiartcsswtbspgczyuhoutengqpnjlxyoaydluhpkxsewzwtjzedcyykrkqqgtzwrcejqyprtxfouhacxvqsymvwxzxbexibkiphqjuejnyrwyvunladuynkfvxtxoxaxdfnbawbeyayjifzaehwojjocqmtdszzvsfihjdwcgfkvuxeveftoopztlbpgaqgoiyzhrulhebhswpzyshotjrropcqtpklzqitpoxsqbayhicyxpqgdqbvrdvmzhotsqzwasfflymyonqtegscggbzxqrwzozwykvthvilmtanngjzixhjyznicbwiidgzfhnnfmpspypfrzqeplywzocxqisenmglfocqvkmxqrcorsocbxvwzhejjnparqkktpfmaoqmfkvnostefggoxgvjglvirixuxebyeycsxzyrqsauxmtrtwgnhsvbvnslgjxaaaktgzvkbetpjbsmkvzxdfamnwppwjzlgevdxzsiydqpssjaqbibjjnquamfstnzguwzgffqwbqnlcuxloakvgrlipmpqlhiuztwmtbtoivdwelkwgusxcvwlaninvlwijhlgtqoodqnawlfsemajbtxvoqvopwzspjdfvejmspuwszpuyvvztcwyjwmxutnkiqtjdpicaymbyogkgyqzrjmxyfwpigfjnfmdltcihiukflicucfrrmxngfqncapdyxzmsgueeczjwioohegoskqxajrjdslaipsdtutqulwfgfsbkzsicbvpkoyyhrqfsncqkdlwieippkrsljxawisufmikgpnvjaxiduoisypvbpmmurimsogbjtndjaeslalhmtnvswwahltsfibuvjrejjtpyyrzkyrjcjfymemtnpyldefzjuerhefahzgyvuddzfydzdgrtydwhruuhbaqrllxjjyoxdhdvqerkrphgsdxooaeqtqyerwteqflmokmllqahzkmqohvgztikaorxboubpbdmuvzqifdrutwkmgwfizlnpacqfrxlczkqwpwkepymklmpnjhpvyaqpuotmhblknbhuuzmvsxvo"
+               value="pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 5000 characters.</p>
@@ -2320,14 +2317,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/fonctions/1" \
+    --get "http://localhost:800/api/fonctions/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fonctions/1"
+    "http://localhost:800/api/fonctions/1"
 );
 
 const headers = {
@@ -2426,17 +2423,17 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/fonctions/1" \
+    "http://localhost:800/api/fonctions/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom_fonction\": \"zqhdyonbbfauqenqkafpvvcfdcicvuobviaasjmrjxuixusctivhvleafdcqqexhcazqwbrnsvgebnusoitzbhprlcdjhkybdvkojqsgmvfvpwoxgqpwsgaciwaqekggqugkskeyzpqxctyvkdimwoxecvjnmn\",
-    \"description_fonction\": \"adtjdlogcqkmznhwyhkcvunluxamdsjxogkkgmhzdeqlunrktnajyrnouboaeinomulqjggjkoyglqpbahejthylkctqsbkgajuavwondkkrkrofbbddaywooilfbzhtogxtdkpnvsubkvgddyavwurhcspxxsrqaloovscvfszesyupfsnursyjxzrtypelrdyncpjvmkrewxfevdxymdezgjiydinsjkbdroyjocwbbvqkoflhaxvrycxvztduptssuggkhobsgrzxjzadquxhkjnltduyriphjjcuzyiuoyiptxsbqqohvlqsyzymxqjyihvmfexvvgovpmlhwdeagrvdiganvezcinkqstuhregbalrydgtspjrrgjyhuwgvsrsyahosgfbpxipyoxfvinivmcgmqtxxztxxewsqokqpjgzlennyxtyahjhhympzyuqainewsqljlahdjnwdrbkxpimdycleppyqnjovadsxhcbchggyvyukjxzvehzswkadlakmigxrvutlmfyhviuryjyffrsmstnpahnbjlewjnhybgjgxrwepyeuqndvttzhtqpjiidnzrjqcujdiobtlnenzhoimwvyqkgfcvgfiwdlhdxynmzlowcyvqqzefztihxvutnrjxzwgbmzoalksbyakvtpwgncfauktwwwspoghpsnpugpjypaizcetqipynifgxqesbjkdqrsniqpsjrmqomuplistfoagbasmaxbicxblnfwcfywfxcrsyqghmsumnuchaaacsmemfwfmqoetictsgkitktvjksyktxluekgjhspbevgmgnkdkcfdhkrovirfzdtxexehxqhfafkiiniejzxzfspmfkzyfxobmnxhvnnrfdqyavbfpgtpqngnfaabcwdtyiqogcjnqahsbgrunjaixuvbvojdhdunwrzsdikxvfzssstuyurazmgamvcjiwistxdfnnaovjkvytcnbjuobpzfxsjrkvatwanyenfeziclqpgzkbitqgdxxignojpyxjikboecpjjpzsedkwaheohkscqhoqpwpgmcrmkuazxjvkouiwnmbpxlsvunscmhzlxacuaxnoprexlgakiczdfvrrqptsgbiuypfitoxrgjwpsqcvayaixlpvsluuquageeietavwqstxxnjpcrovkojnagkyfbvergvucitzjjxfvvepohdjuubsuifgbkjhlfvrtratcjkjrpxsirfjvigdanbjkyttxcpxzrwytehlonynyqulwrnfcjxknvbuwfhaedwoovxxaflmvbwcmlgcnsdnwjswtzckjbozgtirvontjzgryvsmavdohwnxvemvmhlofidjomfrwflwtbinpvtqqklegouigqahuzgajjknrhojahjhypfaqscjsoraleeuxorycxwkwcqbikocfsggrnmvsbqwyaajohgglnwdtanbbmntchnrynwufzrlfqivpuwagjchpsdtjyaibonsafqmddpbrkngckfjjoqjdrmhxarhimhkpqxzqeitebrarxjlxquirgnqbltcsdykawkrlgrdtmeqikheqywsktajcquorttlqohypldqcyysmxosepqydotdluhjjtnluqarwzkqrdlrcjtxwymhwdvgpvfrfeihanwzmdyzapvvmmfrcbxikccmflocwhpxsguwlpzfqkqxuukidjnvmwcxbkegdfyvhudgjqnknbxlsfeijizlxcwstfiivrfrrraobfiibadgyoiepmrtkofxrxvflvouqojynqlnrnndpwodzglkjtoounomshumjfcwqemrvmvnrtpjkzadtwbobniqsmjnykpuzsyjyexuplrqnwgjqjyllsjtufpvlpsmfvakaktlwsntfubpqtwheailzzuugxgfmdsfszaxsmbpprosoudyexckuzmfkrhekioepaaniqmedqpsuqumrggupefkyjxarmnsrjbcbiwynzvqwwflbqcnfkoskzphqhpqtqovwywjbsyemeumtmfqsamxwpxxdqgoktpvxeqyxiksdvqhvyclcbgneaekjslggvfbqphyixywgnrcavvfqkovsepgfforsucjnfruicmqjgcmbjhqeejabhqtgireqqbpztjmzhezjxhddbvddlvipowrdhawixxonzrfkydtjqchrwypiazkbnxzzvtmozgftipaaaotwkccinbcbsbetsrnvlsbrieaungsfqhpclljvvnegnrrptdkcktqjmaqitlxpquvhfodhslybooxuddyrllvcuwmbmkuwwpgyattjveyzpzmvbzfipayvovdbznjlvudtaenqdatcvaxfgjxnrnewdhqdshmognpfwomilumsxmegricsgomxkthoeauqfzwcbhctvrakqczsteloprxufewpxvhjtktusrwknkfgyblqxzwicuqdvsutaghcnxgukzogrvaqayttsymnyfusdnweqqkztaonopyogqcogivfzkvhpdiivjfthkpagutqstepfsrnwfiolnywzllyyedrjgirmplfplfeaqalzelgesskaiwgcbrhlzjilwpptpufgmruxldxrffhyseoamrvcushjwhnfgzgjgsbihlwufbsaexysvgthucxygeaizreiepozxohukgwwywascbhvchnxtptkoomcseihqgtekknvepxxnyrrxvfmgbenjnmpokkhlzddguohlasfpzcxnfmljxzdmvvomexohzokrvwnhkryabvaivfubzavbhrteiewnnoitbymodrsdeaoetssrwcrcwfaiohuibvelmxhlhfjmsapbsugvnbtvksbuvpfubradmcjpviwsotombjzwmifkkzsoqtlcprwqoyfwbadnnlnstkvyoptwtkxvjaamtisshthjjziybnknsjwfomzkxkktjddurobwvaufijquvleftqmabpnbbnjnhxcrcletmftwzjylezebpensyzsgzjhovbfcbnrnpbywyxgvwwnhxrutxyidohokxfhiyahmzlkodvnbweclknmlilakmceqwnvldrjncdabyhorqmuveybflzapgicavymsobimcgugvfxfgpurfdtsqlnbihukcznrgbsfszzdeybbbjybwvinbkecyojfidyvjkljpmpvmpxrdxuirkhoghpmeufltgaizmxfxhtyyyztwhbjesuaemocfzjjsekwspshyoqonscdnwxuixfbjvlfnuyqtaucrdedfikruuxrpadjnlqpddixpxckacvkdzqpjktxlcucuqklvjgkpedryknyjjisnlhlqcslvxlugkxidxtpneevlmxvbkekgltdmzinuegvylqrnkfisndmgaxaeqqvalhurkykttimrsovagugfairtgiekctuzezbbkudiqgvrcxqnvmqcoznugzpvkswnqlxdgkjandprmijmqasimyoearyvtwpboniuyxzokcrrwmvsczmrezihdyavhoqdchcqrmmykakvnfxidwinisqnvuckunglddnfhsaotcbwwqdhqkqvrcmwiicvlluyoowmlnfttimpnwpozvnbjqaitwafjzzueddxgajauluxypwvcvknygxkiosfbcyoahhftukaoieraoigvkcsjtmljjljuxzfqkdjqgglkcwqrklmdrafucpsqezikgacitkrgoxykycmxrxgqatjronbjeegobyogrgkfcrchopfnllsszupaljmmhsqjcnvuunclzswkcqucjrabcmqoqbebogvgedcdfqpuazhdqdvnvmfcmlcxjfqblqlfqnrxxhzdnpygamdvortryapglfykjaopzrvpemgzyshdtwvuqxyacnmzhdpxhijjxfoxbxvpkgcvlxjkgtogswrlofaiupbmjpdgycfzgcgujvlvyfkpuofjyeztrlkrljsfvayommfayvxfdhpvvgyeacyowipssrecuouplmhbhigtxceqlnepqhssvieqmrxtbafcogtzvrrqvbixlloqxmnfneaauyjgvqxmuiugvroadzgorvumftaysemalrsxbsvxjlyyjzktinowggurlziutlgkgwmckjgzjeucwggcivivaccehjwfrnydmtoobqcbhtcxzcpwmbfkcmdmidwjnazbilrrpdfkpvtowevxfsaeqgpgbfkoohiobjyfqsaeguyeufbvubzvgxfumqzjmomzbnmrgztnpdsditaeqiivkzhnumwkypearttqmobzetugmjlqbobuvbcwbosxrihhlcmeqlllldzlvapitrzfdxnxffayqqlakambekvkylapfyzjookmzkwjasqluodcjxkvgovhxamvpoapyyrokdydvnglfvemzxdeanftvonabcvoplycnvtegnpyavgmyflhgpuawylzqrxwusvoqblvhrqqqpvgkxdlhyxzzirrcckvrpwyloxedgqxjjhokinqdtddppezravzrpmitsouyfcqfacbsyclafvaclbjyxaqailfznaqgnkccfvcmmxslynajrhbzowbvrqdrdhwkwgythacighogdqdozqbqduoxxkjkfxcfrabxxfcstrmfvwlskunlysnymmobcxrhantpkmfwkwevoqydbjqlgbvsrhhjmzsamdtrenzvxvqvqijbbuyizhgnkhiiqqrojblibzmcgwkiudhlezibpxzkxosxssnhfkugbtxdvbsjywjpufemagialkqvwvvzntbgnqzptdmlqdtbhzddrkvemszureuwdeqgtujuqxwtutgvtxdstdxjnqcrwjhvqjcfflmemuenadfztfrdmrhqhb\",
+    \"nom_fonction\": \"jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf\",
+    \"description_fonction\": \"huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz\",
     \"enfants\": [
-        \"ut\"
+        \"ab\"
     ],
     \"permissions\": [
-        \"nihil\"
+        \"adipisci\"
     ]
 }"
 </code></pre></div>
@@ -2444,7 +2441,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fonctions/1"
+    "http://localhost:800/api/fonctions/1"
 );
 
 const headers = {
@@ -2453,13 +2450,13 @@ const headers = {
 };
 
 let body = {
-    "nom_fonction": "zqhdyonbbfauqenqkafpvvcfdcicvuobviaasjmrjxuixusctivhvleafdcqqexhcazqwbrnsvgebnusoitzbhprlcdjhkybdvkojqsgmvfvpwoxgqpwsgaciwaqekggqugkskeyzpqxctyvkdimwoxecvjnmn",
-    "description_fonction": "adtjdlogcqkmznhwyhkcvunluxamdsjxogkkgmhzdeqlunrktnajyrnouboaeinomulqjggjkoyglqpbahejthylkctqsbkgajuavwondkkrkrofbbddaywooilfbzhtogxtdkpnvsubkvgddyavwurhcspxxsrqaloovscvfszesyupfsnursyjxzrtypelrdyncpjvmkrewxfevdxymdezgjiydinsjkbdroyjocwbbvqkoflhaxvrycxvztduptssuggkhobsgrzxjzadquxhkjnltduyriphjjcuzyiuoyiptxsbqqohvlqsyzymxqjyihvmfexvvgovpmlhwdeagrvdiganvezcinkqstuhregbalrydgtspjrrgjyhuwgvsrsyahosgfbpxipyoxfvinivmcgmqtxxztxxewsqokqpjgzlennyxtyahjhhympzyuqainewsqljlahdjnwdrbkxpimdycleppyqnjovadsxhcbchggyvyukjxzvehzswkadlakmigxrvutlmfyhviuryjyffrsmstnpahnbjlewjnhybgjgxrwepyeuqndvttzhtqpjiidnzrjqcujdiobtlnenzhoimwvyqkgfcvgfiwdlhdxynmzlowcyvqqzefztihxvutnrjxzwgbmzoalksbyakvtpwgncfauktwwwspoghpsnpugpjypaizcetqipynifgxqesbjkdqrsniqpsjrmqomuplistfoagbasmaxbicxblnfwcfywfxcrsyqghmsumnuchaaacsmemfwfmqoetictsgkitktvjksyktxluekgjhspbevgmgnkdkcfdhkrovirfzdtxexehxqhfafkiiniejzxzfspmfkzyfxobmnxhvnnrfdqyavbfpgtpqngnfaabcwdtyiqogcjnqahsbgrunjaixuvbvojdhdunwrzsdikxvfzssstuyurazmgamvcjiwistxdfnnaovjkvytcnbjuobpzfxsjrkvatwanyenfeziclqpgzkbitqgdxxignojpyxjikboecpjjpzsedkwaheohkscqhoqpwpgmcrmkuazxjvkouiwnmbpxlsvunscmhzlxacuaxnoprexlgakiczdfvrrqptsgbiuypfitoxrgjwpsqcvayaixlpvsluuquageeietavwqstxxnjpcrovkojnagkyfbvergvucitzjjxfvvepohdjuubsuifgbkjhlfvrtratcjkjrpxsirfjvigdanbjkyttxcpxzrwytehlonynyqulwrnfcjxknvbuwfhaedwoovxxaflmvbwcmlgcnsdnwjswtzckjbozgtirvontjzgryvsmavdohwnxvemvmhlofidjomfrwflwtbinpvtqqklegouigqahuzgajjknrhojahjhypfaqscjsoraleeuxorycxwkwcqbikocfsggrnmvsbqwyaajohgglnwdtanbbmntchnrynwufzrlfqivpuwagjchpsdtjyaibonsafqmddpbrkngckfjjoqjdrmhxarhimhkpqxzqeitebrarxjlxquirgnqbltcsdykawkrlgrdtmeqikheqywsktajcquorttlqohypldqcyysmxosepqydotdluhjjtnluqarwzkqrdlrcjtxwymhwdvgpvfrfeihanwzmdyzapvvmmfrcbxikccmflocwhpxsguwlpzfqkqxuukidjnvmwcxbkegdfyvhudgjqnknbxlsfeijizlxcwstfiivrfrrraobfiibadgyoiepmrtkofxrxvflvouqojynqlnrnndpwodzglkjtoounomshumjfcwqemrvmvnrtpjkzadtwbobniqsmjnykpuzsyjyexuplrqnwgjqjyllsjtufpvlpsmfvakaktlwsntfubpqtwheailzzuugxgfmdsfszaxsmbpprosoudyexckuzmfkrhekioepaaniqmedqpsuqumrggupefkyjxarmnsrjbcbiwynzvqwwflbqcnfkoskzphqhpqtqovwywjbsyemeumtmfqsamxwpxxdqgoktpvxeqyxiksdvqhvyclcbgneaekjslggvfbqphyixywgnrcavvfqkovsepgfforsucjnfruicmqjgcmbjhqeejabhqtgireqqbpztjmzhezjxhddbvddlvipowrdhawixxonzrfkydtjqchrwypiazkbnxzzvtmozgftipaaaotwkccinbcbsbetsrnvlsbrieaungsfqhpclljvvnegnrrptdkcktqjmaqitlxpquvhfodhslybooxuddyrllvcuwmbmkuwwpgyattjveyzpzmvbzfipayvovdbznjlvudtaenqdatcvaxfgjxnrnewdhqdshmognpfwomilumsxmegricsgomxkthoeauqfzwcbhctvrakqczsteloprxufewpxvhjtktusrwknkfgyblqxzwicuqdvsutaghcnxgukzogrvaqayttsymnyfusdnweqqkztaonopyogqcogivfzkvhpdiivjfthkpagutqstepfsrnwfiolnywzllyyedrjgirmplfplfeaqalzelgesskaiwgcbrhlzjilwpptpufgmruxldxrffhyseoamrvcushjwhnfgzgjgsbihlwufbsaexysvgthucxygeaizreiepozxohukgwwywascbhvchnxtptkoomcseihqgtekknvepxxnyrrxvfmgbenjnmpokkhlzddguohlasfpzcxnfmljxzdmvvomexohzokrvwnhkryabvaivfubzavbhrteiewnnoitbymodrsdeaoetssrwcrcwfaiohuibvelmxhlhfjmsapbsugvnbtvksbuvpfubradmcjpviwsotombjzwmifkkzsoqtlcprwqoyfwbadnnlnstkvyoptwtkxvjaamtisshthjjziybnknsjwfomzkxkktjddurobwvaufijquvleftqmabpnbbnjnhxcrcletmftwzjylezebpensyzsgzjhovbfcbnrnpbywyxgvwwnhxrutxyidohokxfhiyahmzlkodvnbweclknmlilakmceqwnvldrjncdabyhorqmuveybflzapgicavymsobimcgugvfxfgpurfdtsqlnbihukcznrgbsfszzdeybbbjybwvinbkecyojfidyvjkljpmpvmpxrdxuirkhoghpmeufltgaizmxfxhtyyyztwhbjesuaemocfzjjsekwspshyoqonscdnwxuixfbjvlfnuyqtaucrdedfikruuxrpadjnlqpddixpxckacvkdzqpjktxlcucuqklvjgkpedryknyjjisnlhlqcslvxlugkxidxtpneevlmxvbkekgltdmzinuegvylqrnkfisndmgaxaeqqvalhurkykttimrsovagugfairtgiekctuzezbbkudiqgvrcxqnvmqcoznugzpvkswnqlxdgkjandprmijmqasimyoearyvtwpboniuyxzokcrrwmvsczmrezihdyavhoqdchcqrmmykakvnfxidwinisqnvuckunglddnfhsaotcbwwqdhqkqvrcmwiicvlluyoowmlnfttimpnwpozvnbjqaitwafjzzueddxgajauluxypwvcvknygxkiosfbcyoahhftukaoieraoigvkcsjtmljjljuxzfqkdjqgglkcwqrklmdrafucpsqezikgacitkrgoxykycmxrxgqatjronbjeegobyogrgkfcrchopfnllsszupaljmmhsqjcnvuunclzswkcqucjrabcmqoqbebogvgedcdfqpuazhdqdvnvmfcmlcxjfqblqlfqnrxxhzdnpygamdvortryapglfykjaopzrvpemgzyshdtwvuqxyacnmzhdpxhijjxfoxbxvpkgcvlxjkgtogswrlofaiupbmjpdgycfzgcgujvlvyfkpuofjyeztrlkrljsfvayommfayvxfdhpvvgyeacyowipssrecuouplmhbhigtxceqlnepqhssvieqmrxtbafcogtzvrrqvbixlloqxmnfneaauyjgvqxmuiugvroadzgorvumftaysemalrsxbsvxjlyyjzktinowggurlziutlgkgwmckjgzjeucwggcivivaccehjwfrnydmtoobqcbhtcxzcpwmbfkcmdmidwjnazbilrrpdfkpvtowevxfsaeqgpgbfkoohiobjyfqsaeguyeufbvubzvgxfumqzjmomzbnmrgztnpdsditaeqiivkzhnumwkypearttqmobzetugmjlqbobuvbcwbosxrihhlcmeqlllldzlvapitrzfdxnxffayqqlakambekvkylapfyzjookmzkwjasqluodcjxkvgovhxamvpoapyyrokdydvnglfvemzxdeanftvonabcvoplycnvtegnpyavgmyflhgpuawylzqrxwusvoqblvhrqqqpvgkxdlhyxzzirrcckvrpwyloxedgqxjjhokinqdtddppezravzrpmitsouyfcqfacbsyclafvaclbjyxaqailfznaqgnkccfvcmmxslynajrhbzowbvrqdrdhwkwgythacighogdqdozqbqduoxxkjkfxcfrabxxfcstrmfvwlskunlysnymmobcxrhantpkmfwkwevoqydbjqlgbvsrhhjmzsamdtrenzvxvqvqijbbuyizhgnkhiiqqrojblibzmcgwkiudhlezibpxzkxosxssnhfkugbtxdvbsjywjpufemagialkqvwvvzntbgnqzptdmlqdtbhzddrkvemszureuwdeqgtujuqxwtutgvtxdstdxjnqcrwjhvqjcfflmemuenadfztfrdmrhqhb",
+    "nom_fonction": "jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf",
+    "description_fonction": "huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz",
     "enfants": [
-        "ut"
+        "ab"
     ],
     "permissions": [
-        "nihil"
+        "adipisci"
     ]
 };
 
@@ -2533,7 +2530,7 @@ fetch(url, {
                 <input type="text"
                name="nom_fonction"
                data-endpoint="PUTapi-fonctions--id-"
-               value="zqhdyonbbfauqenqkafpvvcfdcicvuobviaasjmrjxuixusctivhvleafdcqqexhcazqwbrnsvgebnusoitzbhprlcdjhkybdvkojqsgmvfvpwoxgqpwsgaciwaqekggqugkskeyzpqxctyvkdimwoxecvjnmn"
+               value="jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -2543,7 +2540,7 @@ fetch(url, {
                 <input type="text"
                name="description_fonction"
                data-endpoint="PUTapi-fonctions--id-"
-               value="adtjdlogcqkmznhwyhkcvunluxamdsjxogkkgmhzdeqlunrktnajyrnouboaeinomulqjggjkoyglqpbahejthylkctqsbkgajuavwondkkrkrofbbddaywooilfbzhtogxtdkpnvsubkvgddyavwurhcspxxsrqaloovscvfszesyupfsnursyjxzrtypelrdyncpjvmkrewxfevdxymdezgjiydinsjkbdroyjocwbbvqkoflhaxvrycxvztduptssuggkhobsgrzxjzadquxhkjnltduyriphjjcuzyiuoyiptxsbqqohvlqsyzymxqjyihvmfexvvgovpmlhwdeagrvdiganvezcinkqstuhregbalrydgtspjrrgjyhuwgvsrsyahosgfbpxipyoxfvinivmcgmqtxxztxxewsqokqpjgzlennyxtyahjhhympzyuqainewsqljlahdjnwdrbkxpimdycleppyqnjovadsxhcbchggyvyukjxzvehzswkadlakmigxrvutlmfyhviuryjyffrsmstnpahnbjlewjnhybgjgxrwepyeuqndvttzhtqpjiidnzrjqcujdiobtlnenzhoimwvyqkgfcvgfiwdlhdxynmzlowcyvqqzefztihxvutnrjxzwgbmzoalksbyakvtpwgncfauktwwwspoghpsnpugpjypaizcetqipynifgxqesbjkdqrsniqpsjrmqomuplistfoagbasmaxbicxblnfwcfywfxcrsyqghmsumnuchaaacsmemfwfmqoetictsgkitktvjksyktxluekgjhspbevgmgnkdkcfdhkrovirfzdtxexehxqhfafkiiniejzxzfspmfkzyfxobmnxhvnnrfdqyavbfpgtpqngnfaabcwdtyiqogcjnqahsbgrunjaixuvbvojdhdunwrzsdikxvfzssstuyurazmgamvcjiwistxdfnnaovjkvytcnbjuobpzfxsjrkvatwanyenfeziclqpgzkbitqgdxxignojpyxjikboecpjjpzsedkwaheohkscqhoqpwpgmcrmkuazxjvkouiwnmbpxlsvunscmhzlxacuaxnoprexlgakiczdfvrrqptsgbiuypfitoxrgjwpsqcvayaixlpvsluuquageeietavwqstxxnjpcrovkojnagkyfbvergvucitzjjxfvvepohdjuubsuifgbkjhlfvrtratcjkjrpxsirfjvigdanbjkyttxcpxzrwytehlonynyqulwrnfcjxknvbuwfhaedwoovxxaflmvbwcmlgcnsdnwjswtzckjbozgtirvontjzgryvsmavdohwnxvemvmhlofidjomfrwflwtbinpvtqqklegouigqahuzgajjknrhojahjhypfaqscjsoraleeuxorycxwkwcqbikocfsggrnmvsbqwyaajohgglnwdtanbbmntchnrynwufzrlfqivpuwagjchpsdtjyaibonsafqmddpbrkngckfjjoqjdrmhxarhimhkpqxzqeitebrarxjlxquirgnqbltcsdykawkrlgrdtmeqikheqywsktajcquorttlqohypldqcyysmxosepqydotdluhjjtnluqarwzkqrdlrcjtxwymhwdvgpvfrfeihanwzmdyzapvvmmfrcbxikccmflocwhpxsguwlpzfqkqxuukidjnvmwcxbkegdfyvhudgjqnknbxlsfeijizlxcwstfiivrfrrraobfiibadgyoiepmrtkofxrxvflvouqojynqlnrnndpwodzglkjtoounomshumjfcwqemrvmvnrtpjkzadtwbobniqsmjnykpuzsyjyexuplrqnwgjqjyllsjtufpvlpsmfvakaktlwsntfubpqtwheailzzuugxgfmdsfszaxsmbpprosoudyexckuzmfkrhekioepaaniqmedqpsuqumrggupefkyjxarmnsrjbcbiwynzvqwwflbqcnfkoskzphqhpqtqovwywjbsyemeumtmfqsamxwpxxdqgoktpvxeqyxiksdvqhvyclcbgneaekjslggvfbqphyixywgnrcavvfqkovsepgfforsucjnfruicmqjgcmbjhqeejabhqtgireqqbpztjmzhezjxhddbvddlvipowrdhawixxonzrfkydtjqchrwypiazkbnxzzvtmozgftipaaaotwkccinbcbsbetsrnvlsbrieaungsfqhpclljvvnegnrrptdkcktqjmaqitlxpquvhfodhslybooxuddyrllvcuwmbmkuwwpgyattjveyzpzmvbzfipayvovdbznjlvudtaenqdatcvaxfgjxnrnewdhqdshmognpfwomilumsxmegricsgomxkthoeauqfzwcbhctvrakqczsteloprxufewpxvhjtktusrwknkfgyblqxzwicuqdvsutaghcnxgukzogrvaqayttsymnyfusdnweqqkztaonopyogqcogivfzkvhpdiivjfthkpagutqstepfsrnwfiolnywzllyyedrjgirmplfplfeaqalzelgesskaiwgcbrhlzjilwpptpufgmruxldxrffhyseoamrvcushjwhnfgzgjgsbihlwufbsaexysvgthucxygeaizreiepozxohukgwwywascbhvchnxtptkoomcseihqgtekknvepxxnyrrxvfmgbenjnmpokkhlzddguohlasfpzcxnfmljxzdmvvomexohzokrvwnhkryabvaivfubzavbhrteiewnnoitbymodrsdeaoetssrwcrcwfaiohuibvelmxhlhfjmsapbsugvnbtvksbuvpfubradmcjpviwsotombjzwmifkkzsoqtlcprwqoyfwbadnnlnstkvyoptwtkxvjaamtisshthjjziybnknsjwfomzkxkktjddurobwvaufijquvleftqmabpnbbnjnhxcrcletmftwzjylezebpensyzsgzjhovbfcbnrnpbywyxgvwwnhxrutxyidohokxfhiyahmzlkodvnbweclknmlilakmceqwnvldrjncdabyhorqmuveybflzapgicavymsobimcgugvfxfgpurfdtsqlnbihukcznrgbsfszzdeybbbjybwvinbkecyojfidyvjkljpmpvmpxrdxuirkhoghpmeufltgaizmxfxhtyyyztwhbjesuaemocfzjjsekwspshyoqonscdnwxuixfbjvlfnuyqtaucrdedfikruuxrpadjnlqpddixpxckacvkdzqpjktxlcucuqklvjgkpedryknyjjisnlhlqcslvxlugkxidxtpneevlmxvbkekgltdmzinuegvylqrnkfisndmgaxaeqqvalhurkykttimrsovagugfairtgiekctuzezbbkudiqgvrcxqnvmqcoznugzpvkswnqlxdgkjandprmijmqasimyoearyvtwpboniuyxzokcrrwmvsczmrezihdyavhoqdchcqrmmykakvnfxidwinisqnvuckunglddnfhsaotcbwwqdhqkqvrcmwiicvlluyoowmlnfttimpnwpozvnbjqaitwafjzzueddxgajauluxypwvcvknygxkiosfbcyoahhftukaoieraoigvkcsjtmljjljuxzfqkdjqgglkcwqrklmdrafucpsqezikgacitkrgoxykycmxrxgqatjronbjeegobyogrgkfcrchopfnllsszupaljmmhsqjcnvuunclzswkcqucjrabcmqoqbebogvgedcdfqpuazhdqdvnvmfcmlcxjfqblqlfqnrxxhzdnpygamdvortryapglfykjaopzrvpemgzyshdtwvuqxyacnmzhdpxhijjxfoxbxvpkgcvlxjkgtogswrlofaiupbmjpdgycfzgcgujvlvyfkpuofjyeztrlkrljsfvayommfayvxfdhpvvgyeacyowipssrecuouplmhbhigtxceqlnepqhssvieqmrxtbafcogtzvrrqvbixlloqxmnfneaauyjgvqxmuiugvroadzgorvumftaysemalrsxbsvxjlyyjzktinowggurlziutlgkgwmckjgzjeucwggcivivaccehjwfrnydmtoobqcbhtcxzcpwmbfkcmdmidwjnazbilrrpdfkpvtowevxfsaeqgpgbfkoohiobjyfqsaeguyeufbvubzvgxfumqzjmomzbnmrgztnpdsditaeqiivkzhnumwkypearttqmobzetugmjlqbobuvbcwbosxrihhlcmeqlllldzlvapitrzfdxnxffayqqlakambekvkylapfyzjookmzkwjasqluodcjxkvgovhxamvpoapyyrokdydvnglfvemzxdeanftvonabcvoplycnvtegnpyavgmyflhgpuawylzqrxwusvoqblvhrqqqpvgkxdlhyxzzirrcckvrpwyloxedgqxjjhokinqdtddppezravzrpmitsouyfcqfacbsyclafvaclbjyxaqailfznaqgnkccfvcmmxslynajrhbzowbvrqdrdhwkwgythacighogdqdozqbqduoxxkjkfxcfrabxxfcstrmfvwlskunlysnymmobcxrhantpkmfwkwevoqydbjqlgbvsrhhjmzsamdtrenzvxvqvqijbbuyizhgnkhiiqqrojblibzmcgwkiudhlezibpxzkxosxssnhfkugbtxdvbsjywjpufemagialkqvwvvzntbgnqzptdmlqdtbhzddrkvemszureuwdeqgtujuqxwtutgvtxdstdxjnqcrwjhvqjcfflmemuenadfztfrdmrhqhb"
+               value="huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 5000 characters.</p>
@@ -2589,14 +2586,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/fonctions/1" \
+    "http://localhost:800/api/fonctions/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fonctions/1"
+    "http://localhost:800/api/fonctions/1"
 );
 
 const headers = {
@@ -2678,14 +2675,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/permissions-fonction" \
+    --get "http://localhost:800/api/permissions-fonction" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/permissions-fonction"
+    "http://localhost:800/api/permissions-fonction"
 );
 
 const headers = {
@@ -2773,14 +2770,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/permissions-groups" \
+    --get "http://localhost:800/api/permissions-groups" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/permissions-groups"
+    "http://localhost:800/api/permissions-groups"
 );
 
 const headers = {
@@ -2868,14 +2865,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/depot" \
+    --get "http://localhost:800/api/depot" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/depot"
+    "http://localhost:800/api/depot"
 );
 
 const headers = {
@@ -2963,13 +2960,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/depot" \
+    "http://localhost:800/api/depot" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom\": \"epyovgmhkoitdkutfmwrjwfyhornloahotkgemrxuxjqetwrsagzdfylknsfmjzvwfazbsrxqwsyzswxbiphzhjggyxqvuuairqmcxwevdqiqwnibkpkbnggnnpijpsglcrveajnsiawekqwcezsuezhtkcccfeotnnefcrecufcnyqwjuxgcgigyopuppqu\",
-    \"localisation\": \"yogarcxclrdkxzlnlqewbzjrirfdqqheobgaylhpodbyhyowilufeldpotdzcmu\",
-    \"contact\": \"anklhslwtjqntidjzhatnimeqtkmgmyykvsxtychgyzcelbtjkdrohnitzigqpk\",
+    \"nom\": \"dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy\",
+    \"localisation\": \"dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk\",
+    \"contact\": \"kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj\",
     \"point_vente\": true
 }"
 </code></pre></div>
@@ -2977,7 +2974,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/depot"
+    "http://localhost:800/api/depot"
 );
 
 const headers = {
@@ -2986,9 +2983,9 @@ const headers = {
 };
 
 let body = {
-    "nom": "epyovgmhkoitdkutfmwrjwfyhornloahotkgemrxuxjqetwrsagzdfylknsfmjzvwfazbsrxqwsyzswxbiphzhjggyxqvuuairqmcxwevdqiqwnibkpkbnggnnpijpsglcrveajnsiawekqwcezsuezhtkcccfeotnnefcrecufcnyqwjuxgcgigyopuppqu",
-    "localisation": "yogarcxclrdkxzlnlqewbzjrirfdqqheobgaylhpodbyhyowilufeldpotdzcmu",
-    "contact": "anklhslwtjqntidjzhatnimeqtkmgmyykvsxtychgyzcelbtjkdrohnitzigqpk",
+    "nom": "dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy",
+    "localisation": "dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk",
+    "contact": "kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj",
     "point_vente": true
 };
 
@@ -3047,7 +3044,7 @@ fetch(url, {
                 <input type="text"
                name="nom"
                data-endpoint="POSTapi-depot"
-               value="epyovgmhkoitdkutfmwrjwfyhornloahotkgemrxuxjqetwrsagzdfylknsfmjzvwfazbsrxqwsyzswxbiphzhjggyxqvuuairqmcxwevdqiqwnibkpkbnggnnpijpsglcrveajnsiawekqwcezsuezhtkcccfeotnnefcrecufcnyqwjuxgcgigyopuppqu"
+               value="dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -3057,7 +3054,7 @@ fetch(url, {
                 <input type="text"
                name="localisation"
                data-endpoint="POSTapi-depot"
-               value="yogarcxclrdkxzlnlqewbzjrirfdqqheobgaylhpodbyhyowilufeldpotdzcmu"
+               value="dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -3067,7 +3064,7 @@ fetch(url, {
                 <input type="text"
                name="contact"
                data-endpoint="POSTapi-depot"
-               value="anklhslwtjqntidjzhatnimeqtkmgmyykvsxtychgyzcelbtjkdrohnitzigqpk"
+               value="kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj"
                data-component="body" hidden>
     <br>
 <p>Must be at least 10 characters. Must not be greater than 255 characters.</p>
@@ -3108,14 +3105,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/depot/4" \
+    --get "http://localhost:800/api/depot/4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/depot/4"
+    "http://localhost:800/api/depot/4"
 );
 
 const headers = {
@@ -3214,13 +3211,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/depot/4" \
+    "http://localhost:800/api/depot/4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom\": \"wsghexavgpurllherqasivsjqjdomyyc\",
-    \"localisation\": \"bekqaauxbmbjzpdkauydoawcatvopyynhifiafglgsahhfyoalfoaosfegsgxvargiavehgldwoxppclnaqfkqjucsrisrwvleprtibscuxbstgjtismglfhjdivvocwscgejqmwtgvkjagzjzbqrajprggysvosndlrqexcscuhugttawisusqefxsdxrfxuppwckqkwdzbkangnlyskrjngdoqqwgmmtcgurvgpnzncwvwonvirp\",
-    \"contact\": \"fjoclqherwjmqfekouzqwhzuvxlkdmpximptmwgzzuxkihixeqohvdfgrucmjkxjzawtxoayajrajqmjkpyyvaqbuovdyvywfnmzjmsahbxdlehvkomymfuxajcuxakooicehpfezytmbeszczdbs\",
+    \"nom\": \"rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp\",
+    \"localisation\": \"bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb\",
+    \"contact\": \"theg\",
     \"point_vente\": \"1\",
     \"responsables\": [
         null
@@ -3228,14 +3225,14 @@ vary: Origin
     \"travailleurs\": [
         null
     ],
-    \"type\": 3
+    \"type\": 2
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/depot/4"
+    "http://localhost:800/api/depot/4"
 );
 
 const headers = {
@@ -3244,9 +3241,9 @@ const headers = {
 };
 
 let body = {
-    "nom": "wsghexavgpurllherqasivsjqjdomyyc",
-    "localisation": "bekqaauxbmbjzpdkauydoawcatvopyynhifiafglgsahhfyoalfoaosfegsgxvargiavehgldwoxppclnaqfkqjucsrisrwvleprtibscuxbstgjtismglfhjdivvocwscgejqmwtgvkjagzjzbqrajprggysvosndlrqexcscuhugttawisusqefxsdxrfxuppwckqkwdzbkangnlyskrjngdoqqwgmmtcgurvgpnzncwvwonvirp",
-    "contact": "fjoclqherwjmqfekouzqwhzuvxlkdmpximptmwgzzuxkihixeqohvdfgrucmjkxjzawtxoayajrajqmjkpyyvaqbuovdyvywfnmzjmsahbxdlehvkomymfuxajcuxakooicehpfezytmbeszczdbs",
+    "nom": "rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp",
+    "localisation": "bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb",
+    "contact": "theg",
     "point_vente": "1",
     "responsables": [
         null
@@ -3254,7 +3251,7 @@ let body = {
     "travailleurs": [
         null
     ],
-    "type": 3
+    "type": 2
 };
 
 fetch(url, {
@@ -3327,7 +3324,7 @@ fetch(url, {
                 <input type="text"
                name="nom"
                data-endpoint="PUTapi-depot--id-"
-               value="wsghexavgpurllherqasivsjqjdomyyc"
+               value="rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -3337,7 +3334,7 @@ fetch(url, {
                 <input type="text"
                name="localisation"
                data-endpoint="PUTapi-depot--id-"
-               value="bekqaauxbmbjzpdkauydoawcatvopyynhifiafglgsahhfyoalfoaosfegsgxvargiavehgldwoxppclnaqfkqjucsrisrwvleprtibscuxbstgjtismglfhjdivvocwscgejqmwtgvkjagzjzbqrajprggysvosndlrqexcscuhugttawisusqefxsdxrfxuppwckqkwdzbkangnlyskrjngdoqqwgmmtcgurvgpnzncwvwonvirp"
+               value="bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -3347,7 +3344,7 @@ fetch(url, {
                 <input type="text"
                name="contact"
                data-endpoint="PUTapi-depot--id-"
-               value="fjoclqherwjmqfekouzqwhzuvxlkdmpximptmwgzzuxkihixeqohvdfgrucmjkxjzawtxoayajrajqmjkpyyvaqbuovdyvywfnmzjmsahbxdlehvkomymfuxajcuxakooicehpfezytmbeszczdbs"
+               value="theg"
                data-component="body" hidden>
     <br>
 <p>Must be at least 10 characters. Must not be greater than 255 characters.</p>
@@ -3404,7 +3401,7 @@ fetch(url, {
                 <input type="number"
                name="type"
                data-endpoint="PUTapi-depot--id-"
-               value="3"
+               value="2"
                data-component="body" hidden>
     <br>
 <p>Must be at least 0. Must not be greater than 3.</p>
@@ -3424,14 +3421,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/depot/4" \
+    "http://localhost:800/api/depot/4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/depot/4"
+    "http://localhost:800/api/depot/4"
 );
 
 const headers = {
@@ -3513,14 +3510,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/categorie" \
+    --get "http://localhost:800/api/categorie" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/categorie"
+    "http://localhost:800/api/categorie"
 );
 
 const headers = {
@@ -3608,13 +3605,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/categorie" \
+    "http://localhost:800/api/categorie" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"libelle\": \"zodgprr\",
-    \"description\": \"qfhmrrvvggwpyhsmhqmcpzstrfmdsifccrxgedkrzohclixjtxnticgfewfnvckfxygdwmvrrlsimrsythzlevchxuaygustibxfxobmnhegdvyrewiimqczrnvfsutxogurczifempiiagwerproxstpdyytqjywsryktedgkfipgtkftzxllvxxgakjysfonwnoggtrlwdtgjhfqioqufxldhcbpgrfwgxallgdvyyycajjyhnlalctugilpiyxwqshhyfntefbyxwalglnywufufycdroylwvtzrjzsdjzjkztacqhhnjedqlkwzodnobwrgvdapcotugeldzcewzppamlcggntbqubfrefbftcxamhazrrkdaltmlijpjdxfjtktosqrmiyvvzklxtvopfnlvgacnahcxdukscwnxpxdwbnqurhgbayuvtktwoqxbxaecbuuibfizgdjtosscltlirdoorcpbfrhlzxwaawqgfijsfnfhteyzjnzumtkvnduvfwfzvunjmkubnsrxditgtzyyeuqzyjtocyaaoyfinspdyhrigioikgsgvamkcrsochuehptdlaxendbwfjeqyhiefkaxdoruggazmedodzsjvxnziunjarqutydlhngfekxwcxkengbbzoirzppulbftwnbwupolagtwrfjtzefpwynkeyrbsdhilsbvctwetbsmdxsmqpxoupjtrowagwcgnusoepixxjfckvbktvaqoarhthwsqbodhfpkcjoifawvxvcueyngwtksvcinjkscfnewymsbonisvbhgwssuzoxwavglfnciqgyqlbdmerbjggehsfdrykzsiaz\",
-    \"type\": 0,
+    \"libelle\": \"lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu\",
+    \"description\": \"mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty\",
+    \"type\": 1,
     \"sous_categories\": [
         null
     ]
@@ -3624,7 +3621,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/categorie"
+    "http://localhost:800/api/categorie"
 );
 
 const headers = {
@@ -3633,9 +3630,9 @@ const headers = {
 };
 
 let body = {
-    "libelle": "zodgprr",
-    "description": "qfhmrrvvggwpyhsmhqmcpzstrfmdsifccrxgedkrzohclixjtxnticgfewfnvckfxygdwmvrrlsimrsythzlevchxuaygustibxfxobmnhegdvyrewiimqczrnvfsutxogurczifempiiagwerproxstpdyytqjywsryktedgkfipgtkftzxllvxxgakjysfonwnoggtrlwdtgjhfqioqufxldhcbpgrfwgxallgdvyyycajjyhnlalctugilpiyxwqshhyfntefbyxwalglnywufufycdroylwvtzrjzsdjzjkztacqhhnjedqlkwzodnobwrgvdapcotugeldzcewzppamlcggntbqubfrefbftcxamhazrrkdaltmlijpjdxfjtktosqrmiyvvzklxtvopfnlvgacnahcxdukscwnxpxdwbnqurhgbayuvtktwoqxbxaecbuuibfizgdjtosscltlirdoorcpbfrhlzxwaawqgfijsfnfhteyzjnzumtkvnduvfwfzvunjmkubnsrxditgtzyyeuqzyjtocyaaoyfinspdyhrigioikgsgvamkcrsochuehptdlaxendbwfjeqyhiefkaxdoruggazmedodzsjvxnziunjarqutydlhngfekxwcxkengbbzoirzppulbftwnbwupolagtwrfjtzefpwynkeyrbsdhilsbvctwetbsmdxsmqpxoupjtrowagwcgnusoepixxjfckvbktvaqoarhthwsqbodhfpkcjoifawvxvcueyngwtksvcinjkscfnewymsbonisvbhgwssuzoxwavglfnciqgyqlbdmerbjggehsfdrykzsiaz",
-    "type": 0,
+    "libelle": "lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu",
+    "description": "mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty",
+    "type": 1,
     "sous_categories": [
         null
     ]
@@ -3696,7 +3693,7 @@ fetch(url, {
                 <input type="text"
                name="libelle"
                data-endpoint="POSTapi-categorie"
-               value="zodgprr"
+               value="lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -3706,7 +3703,7 @@ fetch(url, {
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-categorie"
-               value="qfhmrrvvggwpyhsmhqmcpzstrfmdsifccrxgedkrzohclixjtxnticgfewfnvckfxygdwmvrrlsimrsythzlevchxuaygustibxfxobmnhegdvyrewiimqczrnvfsutxogurczifempiiagwerproxstpdyytqjywsryktedgkfipgtkftzxllvxxgakjysfonwnoggtrlwdtgjhfqioqufxldhcbpgrfwgxallgdvyyycajjyhnlalctugilpiyxwqshhyfntefbyxwalglnywufufycdroylwvtzrjzsdjzjkztacqhhnjedqlkwzodnobwrgvdapcotugeldzcewzppamlcggntbqubfrefbftcxamhazrrkdaltmlijpjdxfjtktosqrmiyvvzklxtvopfnlvgacnahcxdukscwnxpxdwbnqurhgbayuvtktwoqxbxaecbuuibfizgdjtosscltlirdoorcpbfrhlzxwaawqgfijsfnfhteyzjnzumtkvnduvfwfzvunjmkubnsrxditgtzyyeuqzyjtocyaaoyfinspdyhrigioikgsgvamkcrsochuehptdlaxendbwfjeqyhiefkaxdoruggazmedodzsjvxnziunjarqutydlhngfekxwcxkengbbzoirzppulbftwnbwupolagtwrfjtzefpwynkeyrbsdhilsbvctwetbsmdxsmqpxoupjtrowagwcgnusoepixxjfckvbktvaqoarhthwsqbodhfpkcjoifawvxvcueyngwtksvcinjkscfnewymsbonisvbhgwssuzoxwavglfnciqgyqlbdmerbjggehsfdrykzsiaz"
+               value="mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 1000 characters.</p>
@@ -3716,7 +3713,7 @@ fetch(url, {
                 <input type="number"
                name="type"
                data-endpoint="POSTapi-categorie"
-               value="0"
+               value="1"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1.</p>
@@ -3749,14 +3746,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/categorie/5" \
+    --get "http://localhost:800/api/categorie/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/categorie/5"
+    "http://localhost:800/api/categorie/5"
 );
 
 const headers = {
@@ -3855,13 +3852,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/categorie/5" \
+    "http://localhost:800/api/categorie/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"libelle\": \"qxcpyjbrctbzsgakczefiostsakzuxokowjuanhtewtnanzqrsqszwjdlposdfmymdfnxyfrbzexrxdcuiynfbybjtkdlamxgjccvxciqjlvbhbiuozadvmtzgkqouzkqvvetsaqkddhbltjegnglqsfgjowxymqfqtnlbwtxcrpzaedwuqrqadglpyhkwgcpiypodyhfqegiybjsslstfkhjl\",
-    \"description\": \"czovrnenvxgmqnvkbgzvaeoxqbegpthzilecywfygcdvnjbbfhxkzbkyuchxunzcboablonquqzibtzwddwwkfdekneqmo\",
-    \"type\": 1,
+    \"libelle\": \"kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf\",
+    \"description\": \"ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr\",
+    \"type\": 0,
     \"sous_categories\": [
         null
     ]
@@ -3871,7 +3868,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/categorie/5"
+    "http://localhost:800/api/categorie/5"
 );
 
 const headers = {
@@ -3880,9 +3877,9 @@ const headers = {
 };
 
 let body = {
-    "libelle": "qxcpyjbrctbzsgakczefiostsakzuxokowjuanhtewtnanzqrsqszwjdlposdfmymdfnxyfrbzexrxdcuiynfbybjtkdlamxgjccvxciqjlvbhbiuozadvmtzgkqouzkqvvetsaqkddhbltjegnglqsfgjowxymqfqtnlbwtxcrpzaedwuqrqadglpyhkwgcpiypodyhfqegiybjsslstfkhjl",
-    "description": "czovrnenvxgmqnvkbgzvaeoxqbegpthzilecywfygcdvnjbbfhxkzbkyuchxunzcboablonquqzibtzwddwwkfdekneqmo",
-    "type": 1,
+    "libelle": "kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf",
+    "description": "ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr",
+    "type": 0,
     "sous_categories": [
         null
     ]
@@ -3958,7 +3955,7 @@ fetch(url, {
                 <input type="text"
                name="libelle"
                data-endpoint="PUTapi-categorie--id-"
-               value="qxcpyjbrctbzsgakczefiostsakzuxokowjuanhtewtnanzqrsqszwjdlposdfmymdfnxyfrbzexrxdcuiynfbybjtkdlamxgjccvxciqjlvbhbiuozadvmtzgkqouzkqvvetsaqkddhbltjegnglqsfgjowxymqfqtnlbwtxcrpzaedwuqrqadglpyhkwgcpiypodyhfqegiybjsslstfkhjl"
+               value="kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -3968,7 +3965,7 @@ fetch(url, {
                 <input type="text"
                name="description"
                data-endpoint="PUTapi-categorie--id-"
-               value="czovrnenvxgmqnvkbgzvaeoxqbegpthzilecywfygcdvnjbbfhxkzbkyuchxunzcboablonquqzibtzwddwwkfdekneqmo"
+               value="ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 1000 characters.</p>
@@ -3978,7 +3975,7 @@ fetch(url, {
                 <input type="number"
                name="type"
                data-endpoint="PUTapi-categorie--id-"
-               value="1"
+               value="0"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1.</p>
@@ -4011,14 +4008,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/categorie/5" \
+    "http://localhost:800/api/categorie/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/categorie/5"
+    "http://localhost:800/api/categorie/5"
 );
 
 const headers = {
@@ -4100,14 +4097,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/fournisseur" \
+    --get "http://localhost:800/api/fournisseur" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fournisseur"
+    "http://localhost:800/api/fournisseur"
 );
 
 const headers = {
@@ -4195,27 +4192,27 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/fournisseur" \
+    "http://localhost:800/api/fournisseur" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom\": \"oaxqgqglxcrjfprpazppodxujpivptynifparwljlawhiyjadvawrnaxulxmkvgieozvziapziatlfxxurnflipycquoqbbufnuyvgekdeglwvfgwvfguqlromdagutymwicswoyihpnfmywltoqaydajacjxrlldcdhowvdunaykwmjzheqpwtvgcbwjzjkgqbtczsoo\",
-    \"adresse\": \"sywhwhqdzvuxbbanxkfnwmnywcwgjvuqobkuypswiqkzdtfdsxueew\",
-    \"email\": \"hxovzzvlzcymslepieerbcnnffelnmjzwmbl\",
-    \"contact\": \"pduqlezmkhgdekkgoazbitwxbygap\",
+    \"nom\": \"pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm\",
+    \"adresse\": \"psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois\",
+    \"email\": \"tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy\",
+    \"contact\": \"aykwqymdxwnunxpqxvcmxcbwtnvfls\",
     \"categories\": [
         null
     ],
-    \"nif\": \"1659850598939\",
-    \"cif\": \"H65585197\",
-    \"stat\": \"882s451s122s83941\"
+    \"nif\": \"3948469469168\",
+    \"cif\": \"s0675683B\",
+    \"stat\": \"149s454s898s07830\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fournisseur"
+    "http://localhost:800/api/fournisseur"
 );
 
 const headers = {
@@ -4224,16 +4221,16 @@ const headers = {
 };
 
 let body = {
-    "nom": "oaxqgqglxcrjfprpazppodxujpivptynifparwljlawhiyjadvawrnaxulxmkvgieozvziapziatlfxxurnflipycquoqbbufnuyvgekdeglwvfgwvfguqlromdagutymwicswoyihpnfmywltoqaydajacjxrlldcdhowvdunaykwmjzheqpwtvgcbwjzjkgqbtczsoo",
-    "adresse": "sywhwhqdzvuxbbanxkfnwmnywcwgjvuqobkuypswiqkzdtfdsxueew",
-    "email": "hxovzzvlzcymslepieerbcnnffelnmjzwmbl",
-    "contact": "pduqlezmkhgdekkgoazbitwxbygap",
+    "nom": "pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm",
+    "adresse": "psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois",
+    "email": "tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy",
+    "contact": "aykwqymdxwnunxpqxvcmxcbwtnvfls",
     "categories": [
         null
     ],
-    "nif": "1659850598939",
-    "cif": "H65585197",
-    "stat": "882s451s122s83941"
+    "nif": "3948469469168",
+    "cif": "s0675683B",
+    "stat": "149s454s898s07830"
 };
 
 fetch(url, {
@@ -4291,7 +4288,7 @@ fetch(url, {
                 <input type="text"
                name="nom"
                data-endpoint="POSTapi-fournisseur"
-               value="oaxqgqglxcrjfprpazppodxujpivptynifparwljlawhiyjadvawrnaxulxmkvgieozvziapziatlfxxurnflipycquoqbbufnuyvgekdeglwvfgwvfguqlromdagutymwicswoyihpnfmywltoqaydajacjxrlldcdhowvdunaykwmjzheqpwtvgcbwjzjkgqbtczsoo"
+               value="pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -4301,7 +4298,7 @@ fetch(url, {
                 <input type="text"
                name="adresse"
                data-endpoint="POSTapi-fournisseur"
-               value="sywhwhqdzvuxbbanxkfnwmnywcwgjvuqobkuypswiqkzdtfdsxueew"
+               value="psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -4311,7 +4308,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-fournisseur"
-               value="hxovzzvlzcymslepieerbcnnffelnmjzwmbl"
+               value="tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address. Must not be greater than 255 characters.</p>
@@ -4321,7 +4318,7 @@ fetch(url, {
                 <input type="text"
                name="contact"
                data-endpoint="POSTapi-fournisseur"
-               value="pduqlezmkhgdekkgoazbitwxbygap"
+               value="aykwqymdxwnunxpqxvcmxcbwtnvfls"
                data-component="body" hidden>
     <br>
 <p>Must be at least 10 characters. Must not be greater than 30 characters.</p>
@@ -4344,7 +4341,7 @@ fetch(url, {
                 <input type="text"
                name="nif"
                data-endpoint="POSTapi-fournisseur"
-               value="1659850598939"
+               value="3948469469168"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -4354,7 +4351,7 @@ fetch(url, {
                 <input type="text"
                name="cif"
                data-endpoint="POSTapi-fournisseur"
-               value="H65585197"
+               value="s0675683B"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -4364,7 +4361,7 @@ fetch(url, {
                 <input type="text"
                name="stat"
                data-endpoint="POSTapi-fournisseur"
-               value="882s451s122s83941"
+               value="149s454s898s07830"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -4384,14 +4381,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/fournisseur/1" \
+    --get "http://localhost:800/api/fournisseur/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fournisseur/1"
+    "http://localhost:800/api/fournisseur/1"
 );
 
 const headers = {
@@ -4477,210 +4474,6 @@ vary: Origin
             </p>
                     </form>
 
-            <h2 id="endpoints-PUTapi-fournisseur--id-">Update the specified resource in storage.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-PUTapi-fournisseur--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/fournisseur/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"nom\": \"ugfaaiqrlzrlcgvldfbntnedkzhmtiqzmidccjivkrwtswresxrhwkiuelxmqdqnavvklkmhryobrwszamccteblwctbkgutmnelbidlaficxmzusiucublaioxlbmdakptfugfpezfhhucydviadqtkhmxsrbrresldz\",
-    \"adresse\": \"eljgxnfpyhzjvvdkvdf\",
-    \"email\": \"nuztwhzkixvizllpqfhibadpvlcbcwbvsyvtaitzajpabcnmvbeyhzfeozmguwoftoxhetvxqtsiseyyysoqcxlzsijtcwnapomxaqghgivmfd\",
-    \"contact\": \"f\",
-    \"categories\": [
-        null
-    ],
-    \"nif\": \"3711700923062\",
-    \"cif\": \"c4483402f\",
-    \"stat\": \"896s852s524s23721\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fournisseur/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "nom": "ugfaaiqrlzrlcgvldfbntnedkzhmtiqzmidccjivkrwtswresxrhwkiuelxmqdqnavvklkmhryobrwszamccteblwctbkgutmnelbidlaficxmzusiucublaioxlbmdakptfugfpezfhhucydviadqtkhmxsrbrresldz",
-    "adresse": "eljgxnfpyhzjvvdkvdf",
-    "email": "nuztwhzkixvizllpqfhibadpvlcbcwbvsyvtaitzajpabcnmvbeyhzfeozmguwoftoxhetvxqtsiseyyysoqcxlzsijtcwnapomxaqghgivmfd",
-    "contact": "f",
-    "categories": [
-        null
-    ],
-    "nif": "3711700923062",
-    "cif": "c4483402f",
-    "stat": "896s852s524s23721"
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-fournisseur--id-">
-</span>
-<span id="execution-results-PUTapi-fournisseur--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-fournisseur--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-fournisseur--id-"></code></pre>
-</span>
-<span id="execution-error-PUTapi-fournisseur--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-fournisseur--id-"></code></pre>
-</span>
-<form id="form-PUTapi-fournisseur--id-" data-method="PUT"
-      data-path="api/fournisseur/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-fournisseur--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-fournisseur--id-"
-                    onclick="tryItOut('PUTapi-fournisseur--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-fournisseur--id-"
-                    onclick="cancelTryOut('PUTapi-fournisseur--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-fournisseur--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/fournisseur/{id}</code></b>
-        </p>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/fournisseur/{id}</code></b>
-        </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>The ID of the fournisseur.</p>
-            </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>nom</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="nom"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="ugfaaiqrlzrlcgvldfbntnedkzhmtiqzmidccjivkrwtswresxrhwkiuelxmqdqnavvklkmhryobrwszamccteblwctbkgutmnelbidlaficxmzusiucublaioxlbmdakptfugfpezfhhucydviadqtkhmxsrbrresldz"
-               data-component="body" hidden>
-    <br>
-<p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
-        </p>
-                <p>
-            <b><code>adresse</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="adresse"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="eljgxnfpyhzjvvdkvdf"
-               data-component="body" hidden>
-    <br>
-<p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
-        </p>
-                <p>
-            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="email"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="nuztwhzkixvizllpqfhibadpvlcbcwbvsyvtaitzajpabcnmvbeyhzfeozmguwoftoxhetvxqtsiseyyysoqcxlzsijtcwnapomxaqghgivmfd"
-               data-component="body" hidden>
-    <br>
-<p>Must be a valid email address. Must not be greater than 255 characters.</p>
-        </p>
-                <p>
-            <b><code>contact</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="contact"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="f"
-               data-component="body" hidden>
-    <br>
-<p>Must be at least 10 characters. Must not be greater than 30 characters.</p>
-        </p>
-                <p>
-            <b><code>categories</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="categories[0]"
-               data-endpoint="PUTapi-fournisseur--id-"
-               data-component="body" hidden>
-        <input type="text"
-               name="categories[1]"
-               data-endpoint="PUTapi-fournisseur--id-"
-               data-component="body" hidden>
-    <br>
-
-        </p>
-                <p>
-            <b><code>nif</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="nif"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="3711700923062"
-               data-component="body" hidden>
-    <br>
-<p>The value format is invalid.</p>
-        </p>
-                <p>
-            <b><code>cif</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="cif"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="c4483402f"
-               data-component="body" hidden>
-    <br>
-<p>The value format is invalid.</p>
-        </p>
-                <p>
-            <b><code>stat</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="stat"
-               data-endpoint="PUTapi-fournisseur--id-"
-               value="896s852s524s23721"
-               data-component="body" hidden>
-    <br>
-<p>The value format is invalid.</p>
-        </p>
-        </form>
-
             <h2 id="endpoints-DELETEapi-fournisseur--id-">Remove the specified resource from storage.</h2>
 
 <p>
@@ -4694,14 +4487,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/fournisseur/1" \
+    "http://localhost:800/api/fournisseur/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/fournisseur/1"
+    "http://localhost:800/api/fournisseur/1"
 );
 
 const headers = {
@@ -4783,14 +4576,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/client" \
+    --get "http://localhost:800/api/client" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client"
+    "http://localhost:800/api/client"
 );
 
 const headers = {
@@ -4878,27 +4671,24 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/client" \
+    "http://localhost:800/api/client" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom\": \"kfxeaongvlntdbnuvbrassdauaeghlsdvngcqpabiohwyhridqjahbdeoxzsjnomvyptyjqvgcrijjadqujsisfpopglekh\",
-    \"adresse\": \"pizbzsokqqnrnspckrhauqvotenxpdpczkywgnnfbfohittlrmtnnlcvndwdpjhcmlvrvaicaozkhvtxixvlzfcrytfgvvnuvxamcmodtnipnzflvhbpdqrvcamchlvoltfwfnalnireybzkzjlnou\",
-    \"email\": \"ewfmrvygajfmltrdxpfeojbhfoxobzjgbpnicruaglnmlxwkmwssmspmiyqdbdizxucnnguotbcchfycubnkprfbnoqpofjfqyjnxdmqpfigpjljckxvzyvlgmdsbtiawcizxtajgnbrkjecjlbsqbiksjaytzewhu\",
-    \"contact\": \"ezkdxyxqybechkfjiutf\",
+    \"nom\": \"cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw\",
+    \"adresse\": \"owvbbgutbickrpegicdcixvhaaobmfitz\",
+    \"email\": \"llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson\",
+    \"contact\": \"mcveza\",
     \"categories\": [
         null
-    ],
-    \"nif\": \"2585478825849\",
-    \"cif\": \"S5158414h\",
-    \"stat\": \"512s013s654s71445\"
+    ]
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client"
+    "http://localhost:800/api/client"
 );
 
 const headers = {
@@ -4907,16 +4697,13 @@ const headers = {
 };
 
 let body = {
-    "nom": "kfxeaongvlntdbnuvbrassdauaeghlsdvngcqpabiohwyhridqjahbdeoxzsjnomvyptyjqvgcrijjadqujsisfpopglekh",
-    "adresse": "pizbzsokqqnrnspckrhauqvotenxpdpczkywgnnfbfohittlrmtnnlcvndwdpjhcmlvrvaicaozkhvtxixvlzfcrytfgvvnuvxamcmodtnipnzflvhbpdqrvcamchlvoltfwfnalnireybzkzjlnou",
-    "email": "ewfmrvygajfmltrdxpfeojbhfoxobzjgbpnicruaglnmlxwkmwssmspmiyqdbdizxucnnguotbcchfycubnkprfbnoqpofjfqyjnxdmqpfigpjljckxvzyvlgmdsbtiawcizxtajgnbrkjecjlbsqbiksjaytzewhu",
-    "contact": "ezkdxyxqybechkfjiutf",
+    "nom": "cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw",
+    "adresse": "owvbbgutbickrpegicdcixvhaaobmfitz",
+    "email": "llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson",
+    "contact": "mcveza",
     "categories": [
         null
-    ],
-    "nif": "2585478825849",
-    "cif": "S5158414h",
-    "stat": "512s013s654s71445"
+    ]
 };
 
 fetch(url, {
@@ -4974,7 +4761,7 @@ fetch(url, {
                 <input type="text"
                name="nom"
                data-endpoint="POSTapi-client"
-               value="kfxeaongvlntdbnuvbrassdauaeghlsdvngcqpabiohwyhridqjahbdeoxzsjnomvyptyjqvgcrijjadqujsisfpopglekh"
+               value="cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -4984,7 +4771,7 @@ fetch(url, {
                 <input type="text"
                name="adresse"
                data-endpoint="POSTapi-client"
-               value="pizbzsokqqnrnspckrhauqvotenxpdpczkywgnnfbfohittlrmtnnlcvndwdpjhcmlvrvaicaozkhvtxixvlzfcrytfgvvnuvxamcmodtnipnzflvhbpdqrvcamchlvoltfwfnalnireybzkzjlnou"
+               value="owvbbgutbickrpegicdcixvhaaobmfitz"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -4994,7 +4781,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-client"
-               value="ewfmrvygajfmltrdxpfeojbhfoxobzjgbpnicruaglnmlxwkmwssmspmiyqdbdizxucnnguotbcchfycubnkprfbnoqpofjfqyjnxdmqpfigpjljckxvzyvlgmdsbtiawcizxtajgnbrkjecjlbsqbiksjaytzewhu"
+               value="llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address. Must not be greater than 255 characters.</p>
@@ -5004,7 +4791,7 @@ fetch(url, {
                 <input type="text"
                name="contact"
                data-endpoint="POSTapi-client"
-               value="ezkdxyxqybechkfjiutf"
+               value="mcveza"
                data-component="body" hidden>
     <br>
 <p>Must be at least 10 characters. Must not be greater than 30 characters.</p>
@@ -5027,30 +4814,30 @@ fetch(url, {
                 <input type="text"
                name="nif"
                data-endpoint="POSTapi-client"
-               value="2585478825849"
+               value=""
                data-component="body" hidden>
     <br>
-<p>The value format is invalid.</p>
+
         </p>
                 <p>
             <b><code>cif</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="cif"
                data-endpoint="POSTapi-client"
-               value="S5158414h"
+               value=""
                data-component="body" hidden>
     <br>
-<p>The value format is invalid.</p>
+
         </p>
                 <p>
             <b><code>stat</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="stat"
                data-endpoint="POSTapi-client"
-               value="512s013s654s71445"
+               value=""
                data-component="body" hidden>
     <br>
-<p>The value format is invalid.</p>
+
         </p>
         </form>
 
@@ -5067,14 +4854,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/client/5" \
+    --get "http://localhost:800/api/client/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client/5"
+    "http://localhost:800/api/client/5"
 );
 
 const headers = {
@@ -5173,27 +4960,27 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/client/5" \
+    "http://localhost:800/api/client/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"nom\": \"cfrohsunwxpzdignjzqdoaojczfumanfljjxeynijdotyvmpszbgplfmelotslqbdvioblathlthmcptuetuagooxvuyvjshkjxjpbejgkqnalgxjjxajtbqzpnzozqzugwedzibxycpenpksbktvhdxvuvdnuvmkuzhqlujaovuueyvtdyrcecayffmwqahbhpmvyxkzcswcipilmbzymsahvzqrbnylulmfn\",
-    \"adresse\": \"brggwnxoxwqotjhlarerxxrzyoqiouzkmldvyyiibf\",
-    \"email\": \"wegqtlrsfofjzgzveokouwyvlezfkaalndkwmpxodpkkvkkananhomrkkllnpyeeuhyvfzlqwsuwqpacmrzzuiiwlvuijzzwcqccnsbarwfeblfakhtrwvfdvhicktrzzfgkiznzoxprpgozgkwoyjkhfactejztoj\",
-    \"contact\": \"nywexkwtvqehltjj\",
+    \"nom\": \"fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx\",
+    \"adresse\": \"tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt\",
+    \"email\": \"rxkzraablbtfopvxtsm\",
+    \"contact\": \"n\",
     \"categories\": [
         null
     ],
-    \"nif\": \"2030672219026\",
-    \"cif\": \"I0970419G\",
-    \"stat\": \"565s426s384s74475\"
+    \"nif\": \"0539316524702\",
+    \"cif\": \"R8469451g\",
+    \"stat\": \"121s117s038s36113\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client/5"
+    "http://localhost:800/api/client/5"
 );
 
 const headers = {
@@ -5202,16 +4989,16 @@ const headers = {
 };
 
 let body = {
-    "nom": "cfrohsunwxpzdignjzqdoaojczfumanfljjxeynijdotyvmpszbgplfmelotslqbdvioblathlthmcptuetuagooxvuyvjshkjxjpbejgkqnalgxjjxajtbqzpnzozqzugwedzibxycpenpksbktvhdxvuvdnuvmkuzhqlujaovuueyvtdyrcecayffmwqahbhpmvyxkzcswcipilmbzymsahvzqrbnylulmfn",
-    "adresse": "brggwnxoxwqotjhlarerxxrzyoqiouzkmldvyyiibf",
-    "email": "wegqtlrsfofjzgzveokouwyvlezfkaalndkwmpxodpkkvkkananhomrkkllnpyeeuhyvfzlqwsuwqpacmrzzuiiwlvuijzzwcqccnsbarwfeblfakhtrwvfdvhicktrzzfgkiznzoxprpgozgkwoyjkhfactejztoj",
-    "contact": "nywexkwtvqehltjj",
+    "nom": "fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx",
+    "adresse": "tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt",
+    "email": "rxkzraablbtfopvxtsm",
+    "contact": "n",
     "categories": [
         null
     ],
-    "nif": "2030672219026",
-    "cif": "I0970419G",
-    "stat": "565s426s384s74475"
+    "nif": "0539316524702",
+    "cif": "R8469451g",
+    "stat": "121s117s038s36113"
 };
 
 fetch(url, {
@@ -5284,7 +5071,7 @@ fetch(url, {
                 <input type="text"
                name="nom"
                data-endpoint="PUTapi-client--id-"
-               value="cfrohsunwxpzdignjzqdoaojczfumanfljjxeynijdotyvmpszbgplfmelotslqbdvioblathlthmcptuetuagooxvuyvjshkjxjpbejgkqnalgxjjxajtbqzpnzozqzugwedzibxycpenpksbktvhdxvuvdnuvmkuzhqlujaovuueyvtdyrcecayffmwqahbhpmvyxkzcswcipilmbzymsahvzqrbnylulmfn"
+               value="fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -5294,7 +5081,7 @@ fetch(url, {
                 <input type="text"
                name="adresse"
                data-endpoint="PUTapi-client--id-"
-               value="brggwnxoxwqotjhlarerxxrzyoqiouzkmldvyyiibf"
+               value="tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -5304,7 +5091,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="PUTapi-client--id-"
-               value="wegqtlrsfofjzgzveokouwyvlezfkaalndkwmpxodpkkvkkananhomrkkllnpyeeuhyvfzlqwsuwqpacmrzzuiiwlvuijzzwcqccnsbarwfeblfakhtrwvfdvhicktrzzfgkiznzoxprpgozgkwoyjkhfactejztoj"
+               value="rxkzraablbtfopvxtsm"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address. Must not be greater than 255 characters.</p>
@@ -5314,7 +5101,7 @@ fetch(url, {
                 <input type="text"
                name="contact"
                data-endpoint="PUTapi-client--id-"
-               value="nywexkwtvqehltjj"
+               value="n"
                data-component="body" hidden>
     <br>
 <p>Must be at least 10 characters. Must not be greater than 30 characters.</p>
@@ -5337,7 +5124,7 @@ fetch(url, {
                 <input type="text"
                name="nif"
                data-endpoint="PUTapi-client--id-"
-               value="2030672219026"
+               value="0539316524702"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -5347,7 +5134,7 @@ fetch(url, {
                 <input type="text"
                name="cif"
                data-endpoint="PUTapi-client--id-"
-               value="I0970419G"
+               value="R8469451g"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -5357,7 +5144,7 @@ fetch(url, {
                 <input type="text"
                name="stat"
                data-endpoint="PUTapi-client--id-"
-               value="565s426s384s74475"
+               value="121s117s038s36113"
                data-component="body" hidden>
     <br>
 <p>The value format is invalid.</p>
@@ -5377,14 +5164,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/client/5" \
+    "http://localhost:800/api/client/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client/5"
+    "http://localhost:800/api/client/5"
 );
 
 const headers = {
@@ -5466,14 +5253,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/article" \
+    --get "http://localhost:800/api/article" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/article"
+    "http://localhost:800/api/article"
 );
 
 const headers = {
@@ -5561,16 +5348,16 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/article" \
+    "http://localhost:800/api/article" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"reference\": \"pmjvbcedvwnvrwhhknnzmszvnspbsfbsaobpnafhyzjglbtwnhpiopscymiisvskwbshepyjwiormqyhwudxmbgefnzpgxwtbqloeltrafvqjdve\",
-    \"designation\": \"mwjtglkbqgubvovmxmecpqqceknpwikavcgrjhqtombtxdavpzjbyuldilgimoiiexasahnbiftkmgsihxjigxulhmcfidfzhhhdbuzrqhhsyyeqdcghqamlsntntdhfkkkiovnjpapnvmwqyvcgbveryscvslrowutthezetroahqhbbjwkquyxgpcrzzxsjguc\",
-    \"unite\": \"ovmknyxusknrivbdotqiwkdsyeusumovailqqtowjahbfcvybjkjdmvuoenviryvmbulibkmmqguodvtrrupjtimznrctgeabjegxqzlibixvikuhnqxnrsircrkohbdvvtbdrmramccxxmwtfoovldfoabqhowdsuqytgbmhvjmcbftjxysxtrvjhdhpujfpzjpynyhrvpppscyptot\",
-    \"stock_alert\": 817895768671,
+    \"reference\": \"drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr\",
+    \"designation\": \"dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo\",
+    \"unite\": \"skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl\",
+    \"stock_alert\": 468230064249,
     \"categories\": [
-        \"tempore\"
+        \"quibusdam\"
     ]
 }"
 </code></pre></div>
@@ -5578,7 +5365,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/article"
+    "http://localhost:800/api/article"
 );
 
 const headers = {
@@ -5587,12 +5374,12 @@ const headers = {
 };
 
 let body = {
-    "reference": "pmjvbcedvwnvrwhhknnzmszvnspbsfbsaobpnafhyzjglbtwnhpiopscymiisvskwbshepyjwiormqyhwudxmbgefnzpgxwtbqloeltrafvqjdve",
-    "designation": "mwjtglkbqgubvovmxmecpqqceknpwikavcgrjhqtombtxdavpzjbyuldilgimoiiexasahnbiftkmgsihxjigxulhmcfidfzhhhdbuzrqhhsyyeqdcghqamlsntntdhfkkkiovnjpapnvmwqyvcgbveryscvslrowutthezetroahqhbbjwkquyxgpcrzzxsjguc",
-    "unite": "ovmknyxusknrivbdotqiwkdsyeusumovailqqtowjahbfcvybjkjdmvuoenviryvmbulibkmmqguodvtrrupjtimznrctgeabjegxqzlibixvikuhnqxnrsircrkohbdvvtbdrmramccxxmwtfoovldfoabqhowdsuqytgbmhvjmcbftjxysxtrvjhdhpujfpzjpynyhrvpppscyptot",
-    "stock_alert": 817895768671,
+    "reference": "drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr",
+    "designation": "dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo",
+    "unite": "skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl",
+    "stock_alert": 468230064249,
     "categories": [
-        "tempore"
+        "quibusdam"
     ]
 };
 
@@ -5651,7 +5438,7 @@ fetch(url, {
                 <input type="text"
                name="reference"
                data-endpoint="POSTapi-article"
-               value="pmjvbcedvwnvrwhhknnzmszvnspbsfbsaobpnafhyzjglbtwnhpiopscymiisvskwbshepyjwiormqyhwudxmbgefnzpgxwtbqloeltrafvqjdve"
+               value="drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -5661,7 +5448,7 @@ fetch(url, {
                 <input type="text"
                name="designation"
                data-endpoint="POSTapi-article"
-               value="mwjtglkbqgubvovmxmecpqqceknpwikavcgrjhqtombtxdavpzjbyuldilgimoiiexasahnbiftkmgsihxjigxulhmcfidfzhhhdbuzrqhhsyyeqdcghqamlsntntdhfkkkiovnjpapnvmwqyvcgbveryscvslrowutthezetroahqhbbjwkquyxgpcrzzxsjguc"
+               value="dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -5671,7 +5458,7 @@ fetch(url, {
                 <input type="text"
                name="unite"
                data-endpoint="POSTapi-article"
-               value="ovmknyxusknrivbdotqiwkdsyeusumovailqqtowjahbfcvybjkjdmvuoenviryvmbulibkmmqguodvtrrupjtimznrctgeabjegxqzlibixvikuhnqxnrsircrkohbdvvtbdrmramccxxmwtfoovldfoabqhowdsuqytgbmhvjmcbftjxysxtrvjhdhpujfpzjpynyhrvpppscyptot"
+               value="skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1 characters. Must not be greater than 255 characters.</p>
@@ -5681,7 +5468,7 @@ fetch(url, {
                 <input type="number"
                name="stock_alert"
                data-endpoint="POSTapi-article"
-               value="817895768671"
+               value="468230064249"
                data-component="body" hidden>
     <br>
 <p>Must be at least 0. Must not be greater than 999999999999.</p>
@@ -5714,14 +5501,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/article/5" \
+    --get "http://localhost:800/api/article/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/article/5"
+    "http://localhost:800/api/article/5"
 );
 
 const headers = {
@@ -5820,16 +5607,16 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/article/5" \
+    "http://localhost:800/api/article/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"reference\": \"ohmxpyomousugmjszenxybyilaolansahywsgivfehuaucpefrppjchxlvxfeqepilnbvwoozjfqdietsuqinanplllrguxryghrtlihodxgjoi\",
-    \"designation\": \"rflytrxbelnypgntsqnxyvqxopuqolapvtwskjvvclmwxvalfmkdbmlyucugfxyfwxrwaaftckeluqvsrehvpvlxcsrnzjaldashcilbjqyypphjmokvxauxmvgyophjlwablkdnnkffngdtvuitxkeknigwlcskmvygyszfsphfvjtzyxxptljpxrvieytayznswvjldmhyfwxzerkjfngxlrfyhwigneub\",
-    \"unite\": \"dtyciamqirlhwjepfyzclbeekypwrjeqwzkltcebaiaueuhopsfcw\",
-    \"stock_alert\": 352701412225,
+    \"reference\": \"umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd\",
+    \"designation\": \"vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj\",
+    \"unite\": \"sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs\",
+    \"stock_alert\": 491420543445,
     \"categories\": [
-        \"iusto\"
+        \"quibusdam\"
     ]
 }"
 </code></pre></div>
@@ -5837,7 +5624,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/article/5"
+    "http://localhost:800/api/article/5"
 );
 
 const headers = {
@@ -5846,12 +5633,12 @@ const headers = {
 };
 
 let body = {
-    "reference": "ohmxpyomousugmjszenxybyilaolansahywsgivfehuaucpefrppjchxlvxfeqepilnbvwoozjfqdietsuqinanplllrguxryghrtlihodxgjoi",
-    "designation": "rflytrxbelnypgntsqnxyvqxopuqolapvtwskjvvclmwxvalfmkdbmlyucugfxyfwxrwaaftckeluqvsrehvpvlxcsrnzjaldashcilbjqyypphjmokvxauxmvgyophjlwablkdnnkffngdtvuitxkeknigwlcskmvygyszfsphfvjtzyxxptljpxrvieytayznswvjldmhyfwxzerkjfngxlrfyhwigneub",
-    "unite": "dtyciamqirlhwjepfyzclbeekypwrjeqwzkltcebaiaueuhopsfcw",
-    "stock_alert": 352701412225,
+    "reference": "umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd",
+    "designation": "vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj",
+    "unite": "sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs",
+    "stock_alert": 491420543445,
     "categories": [
-        "iusto"
+        "quibusdam"
     ]
 };
 
@@ -5925,7 +5712,7 @@ fetch(url, {
                 <input type="text"
                name="reference"
                data-endpoint="PUTapi-article--id-"
-               value="ohmxpyomousugmjszenxybyilaolansahywsgivfehuaucpefrppjchxlvxfeqepilnbvwoozjfqdietsuqinanplllrguxryghrtlihodxgjoi"
+               value="umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -5935,7 +5722,7 @@ fetch(url, {
                 <input type="text"
                name="designation"
                data-endpoint="PUTapi-article--id-"
-               value="rflytrxbelnypgntsqnxyvqxopuqolapvtwskjvvclmwxvalfmkdbmlyucugfxyfwxrwaaftckeluqvsrehvpvlxcsrnzjaldashcilbjqyypphjmokvxauxmvgyophjlwablkdnnkffngdtvuitxkeknigwlcskmvygyszfsphfvjtzyxxptljpxrvieytayznswvjldmhyfwxzerkjfngxlrfyhwigneub"
+               value="vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -5945,7 +5732,7 @@ fetch(url, {
                 <input type="text"
                name="unite"
                data-endpoint="PUTapi-article--id-"
-               value="dtyciamqirlhwjepfyzclbeekypwrjeqwzkltcebaiaueuhopsfcw"
+               value="sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1 characters. Must not be greater than 255 characters.</p>
@@ -5955,7 +5742,7 @@ fetch(url, {
                 <input type="number"
                name="stock_alert"
                data-endpoint="PUTapi-article--id-"
-               value="352701412225"
+               value="491420543445"
                data-component="body" hidden>
     <br>
 <p>Must be at least 0. Must not be greater than 999999999999.</p>
@@ -5988,14 +5775,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/article/5" \
+    "http://localhost:800/api/article/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/article/5"
+    "http://localhost:800/api/article/5"
 );
 
 const headers = {
@@ -6077,14 +5864,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/commandes/get-key" \
+    --get "http://localhost:800/api/commandes/get-key" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes/get-key"
+    "http://localhost:800/api/commandes/get-key"
 );
 
 const headers = {
@@ -6172,14 +5959,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/commandes" \
+    --get "http://localhost:800/api/commandes" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes"
+    "http://localhost:800/api/commandes"
 );
 
 const headers = {
@@ -6267,26 +6054,26 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/commandes" \
+    "http://localhost:800/api/commandes" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"numero\": \"jvwdceaieqzfhfivuszdyzfbcaa\",
-    \"type\": \"1\",
-    \"date\": \"2022-07-15 13:49:14\",
-    \"validite\": 323,
+    \"numero\": \"sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx\",
+    \"type\": \"2\",
+    \"date\": \"2022-08-05 13:47:16\",
+    \"validite\": 278,
     \"articles\": [
         {
-            \"id\": \"delectus\",
-            \"pu\": 223611826867,
-            \"tva\": 78,
-            \"quantite\": 616630598,
-            \"montant_ht\": 0,
-            \"montant_ttc\": 7.0394
+            \"id\": \"non\",
+            \"pu\": 219758479032,
+            \"tva\": 22,
+            \"quantite\": 582304606,
+            \"montant_ht\": 31972.161,
+            \"montant_ttc\": 13977.89
         }
     ],
-    \"adresse_livraison\": \"tsuxcvwdjozyrqaoplxtzrqttrecsxrmrihbjokfwqpwgisksvrbjclxrlgtdbejllwkzkwesxnemzdnxorturthsfkwarqjkemcyhpizcmnwptfpbpmgoam\",
-    \"login\": \"repellendus\",
+    \"adresse_livraison\": \"obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe\",
+    \"login\": \"neque\",
     \"password\": \"secret\"
 }"
 </code></pre></div>
@@ -6294,7 +6081,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes"
+    "http://localhost:800/api/commandes"
 );
 
 const headers = {
@@ -6303,22 +6090,22 @@ const headers = {
 };
 
 let body = {
-    "numero": "jvwdceaieqzfhfivuszdyzfbcaa",
-    "type": "1",
-    "date": "2022-07-15 13:49:14",
-    "validite": 323,
+    "numero": "sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx",
+    "type": "2",
+    "date": "2022-08-05 13:47:16",
+    "validite": 278,
     "articles": [
         {
-            "id": "delectus",
-            "pu": 223611826867,
-            "tva": 78,
-            "quantite": 616630598,
-            "montant_ht": 0,
-            "montant_ttc": 7.0394
+            "id": "non",
+            "pu": 219758479032,
+            "tva": 22,
+            "quantite": 582304606,
+            "montant_ht": 31972.161,
+            "montant_ttc": 13977.89
         }
     ],
-    "adresse_livraison": "tsuxcvwdjozyrqaoplxtzrqttrecsxrmrihbjokfwqpwgisksvrbjclxrlgtdbejllwkzkwesxnemzdnxorturthsfkwarqjkemcyhpizcmnwptfpbpmgoam",
-    "login": "repellendus",
+    "adresse_livraison": "obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe",
+    "login": "neque",
     "password": "secret"
 };
 
@@ -6377,7 +6164,7 @@ fetch(url, {
                 <input type="text"
                name="numero"
                data-endpoint="POSTapi-commandes"
-               value="jvwdceaieqzfhfivuszdyzfbcaa"
+               value="sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -6387,7 +6174,7 @@ fetch(url, {
                 <input type="text"
                name="type"
                data-endpoint="POSTapi-commandes"
-               value="1"
+               value="2"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>1</code> or <code>2</code>.</p>
@@ -6397,7 +6184,7 @@ fetch(url, {
                 <input type="text"
                name="date"
                data-endpoint="POSTapi-commandes"
-               value="2022-07-15 13:49:14"
+               value="2022-08-05 13:47:16"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.</p>
@@ -6407,7 +6194,7 @@ fetch(url, {
                 <input type="number"
                name="validite"
                data-endpoint="POSTapi-commandes"
-               value="323"
+               value="278"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 365.</p>
@@ -6444,7 +6231,7 @@ fetch(url, {
                 <input type="text"
                name="articles.0.id"
                data-endpoint="POSTapi-commandes"
-               value="delectus"
+               value="non"
                data-component="body" hidden>
     <br>
 
@@ -6454,7 +6241,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.pu"
                data-endpoint="POSTapi-commandes"
-               value="223611826867"
+               value="219758479032"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 999999999999.99.</p>
@@ -6464,7 +6251,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.tva"
                data-endpoint="POSTapi-commandes"
-               value="78"
+               value="22"
                data-component="body" hidden>
     <br>
 <p>Must be at least 0. Must not be greater than 100.</p>
@@ -6474,7 +6261,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.quantite"
                data-endpoint="POSTapi-commandes"
-               value="616630598"
+               value="582304606"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 999999999.99.</p>
@@ -6484,7 +6271,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.montant_ht"
                data-endpoint="POSTapi-commandes"
-               value="0"
+               value="31972.161"
                data-component="body" hidden>
     <br>
 
@@ -6494,7 +6281,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.montant_ttc"
                data-endpoint="POSTapi-commandes"
-               value="7.0394"
+               value="13977.89"
                data-component="body" hidden>
     <br>
 
@@ -6506,7 +6293,7 @@ fetch(url, {
                 <input type="text"
                name="adresse_livraison"
                data-endpoint="POSTapi-commandes"
-               value="tsuxcvwdjozyrqaoplxtzrqttrecsxrmrihbjokfwqpwgisksvrbjclxrlgtdbejllwkzkwesxnemzdnxorturthsfkwarqjkemcyhpizcmnwptfpbpmgoam"
+               value="obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -6516,7 +6303,7 @@ fetch(url, {
                 <input type="text"
                name="login"
                data-endpoint="POSTapi-commandes"
-               value="repellendus"
+               value="neque"
                data-component="body" hidden>
     <br>
 <p>Username or email adress of the user.      Exemple: testuser@example.com, user123</p>
@@ -6546,14 +6333,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/commandes/23" \
+    --get "http://localhost:800/api/commandes/23" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes/23"
+    "http://localhost:800/api/commandes/23"
 );
 
 const headers = {
@@ -6652,14 +6439,14 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/commandes/23" \
+    "http://localhost:800/api/commandes/23" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes/23"
+    "http://localhost:800/api/commandes/23"
 );
 
 const headers = {
@@ -6741,32 +6528,32 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/commandes/23" \
+    "http://localhost:800/api/commandes/23" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"numero\": \"egfrgdhkrseanlbqanteblvcjrojoqvhyyhglnzwpcyxnyeezpls\",
+    \"numero\": \"ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg\",
     \"type\": \"1\",
-    \"date\": \"2022-07-15 13:49:14\",
-    \"validite\": 75,
+    \"date\": \"2022-08-05 13:47:16\",
+    \"validite\": 353,
     \"articles\": [
         {
-            \"id\": \"explicabo\",
-            \"pu\": 910334361500,
-            \"tva\": 79,
-            \"quantite\": 184312423,
-            \"montant_ht\": 434.2155513,
-            \"montant_ttc\": 227807.478169
+            \"id\": \"est\",
+            \"pu\": 647916922063,
+            \"tva\": 44,
+            \"quantite\": 828230286,
+            \"montant_ht\": 212.8724841,
+            \"montant_ttc\": 2818207.3567
         }
     ],
-    \"adresse_livraison\": \"fpaffezumsvobeyuhxnenhxuzsvjunnsimlnjfswpwsgfvqhivtrnssjylzgwuyxrlitxsfncyinpdpyczazintyljxqtothajtpdibzhrxfnkfmstwmjsywduwlwmem\"
+    \"adresse_livraison\": \"erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/commandes/23"
+    "http://localhost:800/api/commandes/23"
 );
 
 const headers = {
@@ -6775,21 +6562,21 @@ const headers = {
 };
 
 let body = {
-    "numero": "egfrgdhkrseanlbqanteblvcjrojoqvhyyhglnzwpcyxnyeezpls",
+    "numero": "ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg",
     "type": "1",
-    "date": "2022-07-15 13:49:14",
-    "validite": 75,
+    "date": "2022-08-05 13:47:16",
+    "validite": 353,
     "articles": [
         {
-            "id": "explicabo",
-            "pu": 910334361500,
-            "tva": 79,
-            "quantite": 184312423,
-            "montant_ht": 434.2155513,
-            "montant_ttc": 227807.478169
+            "id": "est",
+            "pu": 647916922063,
+            "tva": 44,
+            "quantite": 828230286,
+            "montant_ht": 212.8724841,
+            "montant_ttc": 2818207.3567
         }
     ],
-    "adresse_livraison": "fpaffezumsvobeyuhxnenhxuzsvjunnsimlnjfswpwsgfvqhivtrnssjylzgwuyxrlitxsfncyinpdpyczazintyljxqtothajtpdibzhrxfnkfmstwmjsywduwlwmem"
+    "adresse_livraison": "erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton"
 };
 
 fetch(url, {
@@ -6862,7 +6649,7 @@ fetch(url, {
                 <input type="text"
                name="numero"
                data-endpoint="PUTapi-commandes--id-"
-               value="egfrgdhkrseanlbqanteblvcjrojoqvhyyhglnzwpcyxnyeezpls"
+               value="ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg"
                data-component="body" hidden>
     <br>
 <p>Must be at least 2 characters. Must not be greater than 255 characters.</p>
@@ -6882,7 +6669,7 @@ fetch(url, {
                 <input type="text"
                name="date"
                data-endpoint="PUTapi-commandes--id-"
-               value="2022-07-15 13:49:14"
+               value="2022-08-05 13:47:16"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.</p>
@@ -6892,7 +6679,7 @@ fetch(url, {
                 <input type="number"
                name="validite"
                data-endpoint="PUTapi-commandes--id-"
-               value="75"
+               value="353"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 365.</p>
@@ -6929,7 +6716,7 @@ fetch(url, {
                 <input type="text"
                name="articles.0.id"
                data-endpoint="PUTapi-commandes--id-"
-               value="explicabo"
+               value="est"
                data-component="body" hidden>
     <br>
 
@@ -6939,7 +6726,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.pu"
                data-endpoint="PUTapi-commandes--id-"
-               value="910334361500"
+               value="647916922063"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 999999999999.99.</p>
@@ -6949,7 +6736,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.tva"
                data-endpoint="PUTapi-commandes--id-"
-               value="79"
+               value="44"
                data-component="body" hidden>
     <br>
 <p>Must be at least 0. Must not be greater than 100.</p>
@@ -6959,7 +6746,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.quantite"
                data-endpoint="PUTapi-commandes--id-"
-               value="184312423"
+               value="828230286"
                data-component="body" hidden>
     <br>
 <p>Must be at least 1. Must not be greater than 999999999.99.</p>
@@ -6969,7 +6756,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.montant_ht"
                data-endpoint="PUTapi-commandes--id-"
-               value="434.2155513"
+               value="212.8724841"
                data-component="body" hidden>
     <br>
 
@@ -6979,7 +6766,7 @@ fetch(url, {
                 <input type="number"
                name="articles.0.montant_ttc"
                data-endpoint="PUTapi-commandes--id-"
-               value="227807.478169"
+               value="2818207.3567"
                data-component="body" hidden>
     <br>
 
@@ -6991,7 +6778,7 @@ fetch(url, {
                 <input type="text"
                name="adresse_livraison"
                data-endpoint="PUTapi-commandes--id-"
-               value="fpaffezumsvobeyuhxnenhxuzsvjunnsimlnjfswpwsgfvqhivtrnssjylzgwuyxrlitxsfncyinpdpyczazintyljxqtothajtpdibzhrxfnkfmstwmjsywduwlwmem"
+               value="erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
@@ -7011,14 +6798,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/parametres/generale" \
+    --get "http://localhost:800/api/parametres/generale" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/parametres/generale"
+    "http://localhost:800/api/parametres/generale"
 );
 
 const headers = {
@@ -7106,14 +6893,21 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/parametres/generale" \
+    "http://localhost:800/api/parametres/generale" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"nom\": \"nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc\",
+    \"contact\": \"fhgvtzwyhmdzunicszyyv\",
+    \"email\": \"kailee18@example.com\",
+    \"assujeti\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/parametres/generale"
+    "http://localhost:800/api/parametres/generale"
 );
 
 const headers = {
@@ -7121,9 +6915,17 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "nom": "nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc",
+    "contact": "fhgvtzwyhmdzunicszyyv",
+    "email": "kailee18@example.com",
+    "assujeti": true
+};
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -7169,7 +6971,79 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/parametres/generale</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>nom</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="nom"
+               data-endpoint="POSTapi-parametres-generale"
+               value="nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc"
+               data-component="body" hidden>
+    <br>
+<p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>contact</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="contact"
+               data-endpoint="POSTapi-parametres-generale"
+               value="fhgvtzwyhmdzunicszyyv"
+               data-component="body" hidden>
+    <br>
+<p>Must be at least 10 characters. Must not be greater than 25 characters.</p>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-parametres-generale"
+               value="kailee18@example.com"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid email address.</p>
+        </p>
+                <p>
+            <b><code>assujeti</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-parametres-generale" hidden>
+            <input type="radio" name="assujeti"
+                   value="true"
+                   data-endpoint="POSTapi-parametres-generale"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-parametres-generale" hidden>
+            <input type="radio" name="assujeti"
+                   value="false"
+                   data-endpoint="POSTapi-parametres-generale"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+                <p>
+            <b><code>nif</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="nif"
+               data-endpoint="POSTapi-parametres-generale"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>stat</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="stat"
+               data-endpoint="POSTapi-parametres-generale"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
 
             <h2 id="endpoints-PATCHapi-parametres-generale--parametre_id-">Undocumented function</h2>
 
@@ -7184,14 +7058,21 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost:8000/api/parametres/generale/dignissimos" \
+    "http://localhost:800/api/parametres/generale/dignissimos" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"nom\": \"qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn\",
+    \"contact\": \"rfhrgyzhfipatsyjsfmrvl\",
+    \"email\": \"eldora.balistreri@example.org\",
+    \"assujeti\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/parametres/generale/dignissimos"
+    "http://localhost:800/api/parametres/generale/dignissimos"
 );
 
 const headers = {
@@ -7199,9 +7080,17 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "nom": "qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn",
+    "contact": "rfhrgyzhfipatsyjsfmrvl",
+    "email": "eldora.balistreri@example.org",
+    "assujeti": true
+};
+
 fetch(url, {
     method: "PATCH",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -7258,7 +7147,79 @@ fetch(url, {
     <br>
 <p>The ID of the parametre.</p>
             </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>nom</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="nom"
+               data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+               value="qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn"
+               data-component="body" hidden>
+    <br>
+<p>Must be at least 5 characters. Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>contact</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="contact"
+               data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+               value="rfhrgyzhfipatsyjsfmrvl"
+               data-component="body" hidden>
+    <br>
+<p>Must be at least 10 characters. Must not be greater than 25 characters.</p>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+               value="eldora.balistreri@example.org"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid email address.</p>
+        </p>
+                <p>
+            <b><code>assujeti</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="PATCHapi-parametres-generale--parametre_id-" hidden>
+            <input type="radio" name="assujeti"
+                   value="true"
+                   data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-parametres-generale--parametre_id-" hidden>
+            <input type="radio" name="assujeti"
+                   value="false"
+                   data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+                <p>
+            <b><code>nif</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="nif"
+               data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>stat</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="stat"
+               data-endpoint="PATCHapi-parametres-generale--parametre_id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
 
     
 

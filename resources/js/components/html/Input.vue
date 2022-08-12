@@ -3,14 +3,9 @@
         <slot></slot>
         <span class="text-danger ms-2" v-if="required">(*)</span>
     </label>
+    <textarea v-if="type === 'textarea'" :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @change="handleBlur" class="form-control" :value="modelValue"></textarea>
 
-    <div v-if="type === 'textarea'">
-        <textarea v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @blur="handleBlur" class="form-control" :value="modelValue"></textarea>
-    </div>
-
-    <div v-else>
-        <input v-bind:class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @change="handleBlur" class="form-control" />
-    </div>
+    <input v-else :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @change="handleBlur" class="form-control" />
 
     <div class="text-danger mt-1" v-if="hasErrors">
         {{ error[0] }}

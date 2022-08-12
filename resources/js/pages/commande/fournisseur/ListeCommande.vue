@@ -8,37 +8,36 @@
                 </div>
             </div>
             <div class="card-body">
-                <ListeCommandeComponent v-if="!Commande.loading.value" :appro="true" :entities="Commande.entities.value" />
-                <ListeCommandeLoadingComponent v-else />
+                <ListeCommandeLoadingComponent v-if="loading" />
+                <ListeCommandeComponent v-else :appro="true" :entities="entities" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import { onBeforeMount } from 'vue';
+<script lang="ts">
+import { defineComponent, onBeforeMount } from 'vue';
 import ListeCommandeComponent from '../../../components/commande/ListeCommandeComponent.vue';
 import ListeCommandeLoadingComponent from '../../../components/commande/ListeCommandeLoadingComponent.vue';
 import useCRUD from '../../../services/CRUDServices';
 
-const Commande = useCRUD('/commandes')
+const { loading, all, entities } = useCRUD('/commandes')
 
-export default {
+export default defineComponent({
     components: {
         ListeCommandeComponent,
         ListeCommandeLoadingComponent
     },
 
     setup() {
-
-        onBeforeMount(async () => {
-            await Commande.all({ type: 2, appro: true }) // Recuperer tous les commandes de fournisseurs
+        onBeforeMount(async (): Promise<any> => {
+            await all(2, null, true) // Recuperer tous les commandes de fournisseurs
         })
 
         return {
-            Commande,
+            loading, entities,
         }
     },
 
-}
+})
 </script>

@@ -4,8 +4,8 @@
             <tr>
                 <th class="p-3">Numéro</th>
                 <th class="p-3">Date de création</th>
-                <th v-if="appro === true">Fournisseur</th>
-                <th v-else>Client</th>
+                <th class="p-3" v-if="appro === true">Fournisseur</th>
+                <th class="p-3" v-else>Client</th>
                 <th class="p-3">Adresse de livraison</th>
                 <th class="p-3">Status</th>
                 <th class="text-center p-3">Actions</th>
@@ -17,12 +17,13 @@
                 <td>{{ formatDate(commande.date) }}</td>
                 <td v-if="appro === true">{{ commande.frs.nom }}</td>
                 <td v-else>{{ commande.cl.nom }}</td>
-                <td>{{ commande.adresse_livraison }}</td>
+                <td>{{ commande.adresse_livraison ?? "Non définie" }}</td>
                 <td><Status :value="commande.status" /></td>
 
                 <td class="d-flex justify-content-center">
                     <router-link v-if="true" :to="{ name: `commande.${type}.voir`, params: { id: commande.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link v-if="true" :to="{ name: `commande.${type}.nouveau`, query: { commande: commande.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
                 </td>
             </tr>
@@ -35,21 +36,23 @@
     </table>
 </template>
 
-<script>
+<script lang="ts">
 
 import { formatDate, expiration } from '../../functions/functions';
 import { computed } from 'vue';
-import { Skeletor } from 'vue-skeletor';
 import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../html/DeleteBtn.vue';
+import SimpleAlert from 'vue3-simple-alert';
 import Status from '../html/Status.vue';
 
-const Commande = useCRUD('/commandes')
+const { destroy } = useCRUD('/commandes')
 
 export default {
     components: {
-        Skeletor, DeleteBtn, Status,
+        DeleteBtn,
+        SimpleAlert,
+        Status
     },
 
     props: {
@@ -64,18 +67,11 @@ export default {
         },
     },
 
-    setup(props) {
-
-        /**
-         * Confirmer la suppresion d'un personnel
-         *
-         * @param   {integr}  id  Identifiant du personnel
-         * @return  {void}
-         */
-        const confirmDeletion = (id, index) => {
-            SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
+    setup(props: { entities: any[] | null; appro: boolean; }) {
+        const confirmDeletion = async (id: number, index: number): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                Commande.destroy(id, index)
+                destroy(id, props.entities, index)
             }).catch (error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
@@ -89,7 +85,7 @@ export default {
         })
 
         return {
-            Flash, formatDate, expiration, Commande, confirmDeletion, type,
+            Flash, formatDate, expiration, confirmDeletion, type,
         }
     }
 

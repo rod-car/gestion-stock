@@ -76,10 +76,14 @@ class ModifierCommandeRequest extends FormRequest
     {
         $this->toogleClientFrs();
 
+        $this->merge([
+            'articles' => json_decode($this->articles, true),
+        ]);
+
         if ($this->date !== null) {
-            $date = Carbon::parse($this->date)->setTimezone('EAT');
+            $date = Carbon::parse($this->date);
             $this->merge([
-                'date' => $date->toDateTimeString(),
+                'date' => $date->toDateString(),
             ]);
         }
     }

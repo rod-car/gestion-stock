@@ -9,18 +9,19 @@
             </div>
 
             <div class="card-body">
-                <NouveauArticleComponent />
+                <ArticleFormComponent :nouveau="true" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import NouveauArticleComponent from '../../components/article/NouveauArticleComponent.vue'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import ArticleFormComponent from '../../components/article/ArticleFormComponent.vue'
 
-export default {
+export default defineComponent({
     components: {
-        NouveauArticleComponent,
+        ArticleFormComponent,
     },
-}
+});
 </script>
