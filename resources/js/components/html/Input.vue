@@ -1,5 +1,5 @@
 <template>
-    <label class="form-label">
+    <label v-if="hasSlot" class="form-label">
         <slot></slot>
         <span class="text-danger ms-2" v-if="required">(*)</span>
     </label>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
     inheritAttrs: false,
     props: {
@@ -41,6 +42,11 @@ export default {
             if (value !== "") this.hasErrors = false
             this.$emit('update:modelValue', value)
         },
+    },
+    computed: {
+        hasSlot() {
+            return this.$slots.default !== undefined;
+        }
     },
     watch: {
         error: function () {

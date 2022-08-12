@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="col-xl-12">
-                        <FileInput :multiple="false" @fileChanged="handleChange" :default="devis.file_path !== null ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
+                        <FileInput :multiple="false" @fileChanged="handleChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
                     </div>
                 </div>
             </div>

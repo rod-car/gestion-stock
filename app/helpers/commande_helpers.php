@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Article\Commande;
+use App\Models\Bon\BonReception;
 
 if (!function_exists('reference')) {
     /**
@@ -12,10 +13,11 @@ if (!function_exists('reference')) {
      * @param integer $nombreIncrementation
      * @return string|null
      */
-    function reference(int $type, bool $appro = true, string $prefix = "D", int $nombreIncrementation = 4) : ?string
+    function reference(int $type, ?bool $appro = true, string $prefix = "D", int $nombreIncrementation = 4) : ?string
     {
         if ($type === 1) return numeroDevis($appro, $prefix, $nombreIncrementation);
         elseif ($type === 2) return numeroCommande($appro, $prefix, $nombreIncrementation);
+        elseif ($type === 3) return numeroBonReception($prefix, $nombreIncrementation);
         else return null;
     }
 }
@@ -90,6 +92,39 @@ if (!function_exists('numeroCommande')) {
             $prefix = "{$prefix}C";
         }
 
+        $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
+
+        if ($dernierDevis !== null) {
+            $dernierNumero = $dernierDevis->numero;
+            $parts = explode("-", $dernierNumero);
+
+            $mois = $parts[2];
+            $incrementation = $parts[3];
+
+            if (intval(date('m')) === intval($mois)) {
+                $incrementation = (string) intval($incrementation) + 1;
+                $incrementation = str_pad($incrementation, $nombreIncrementation, "0", STR_PAD_LEFT);
+            } else {
+                $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
+            }
+        }
+
+        return $prefix . "-" . date("Y") . "-" . date("m") . "-" . $incrementation;
+    }
+}
+
+if (!function_exists('numeroBonReception')) {
+    /**
+     * Fonction qui permet de generer un nouveau numéro de bon de reception en fonction du dernier dans la base de données
+     *
+     * @param boolean $appro (Approvisionnement) Si c'est pour un client our fournisseur (True: Fournisseur, False: Client)
+     * @param string $prefix
+     * @param integer $nombreIncrementation
+     * @return string
+     */
+    function numeroBonReception(string $prefix = "BR", int $nombreIncrementation = 4): string
+    {
+        $dernierDevis = BonReception::orderBy('id', 'desc')->first();
         $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
 
         if ($dernierDevis !== null) {

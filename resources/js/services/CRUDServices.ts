@@ -19,7 +19,7 @@ interface CRUD {
     entity: Ref<any>,
     entities: Ref<Array<any>>,
     key: Ref<string | null>,
-    getKey(type: number, appro: boolean): Promise<any>,
+    getKey(type: number, appro?: boolean): Promise<any>,
 }
 
 /**

@@ -150,19 +150,23 @@ class CommandeController extends Controller
     public function getKey(Request $request)
     {
         $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
-        if (intval($request->type) === 1) {
-            return response()->json([
-                "key" => reference(1, $appro, "D"),
-            ]);
-        } elseif (intval($request->type) === 2) {
-            return response()->json([
-                "key" => reference(2, $appro, "BC"),
-            ]);
-        } else {
-            throw new Exception("Type qui n'est pas une type de commande... Type: {$request->type}");
-        }
+        switch (intval($request->type)) {
+            case 1:
+                return response()->json(["key" => reference(1, $appro, "D")]);
+                break;
 
-        return null;
+            case 2:
+                return response()->json(["key" => reference(2, $appro, "BC")]);
+                break;
+
+            case 3:
+                return response()->json(["key" => reference(3, null, "BR")]);
+                break;
+
+            default:
+                throw new Exception("Type qui n'est pas une type de commande... Type: {$request->type}");
+                break;
+        }
     }
 
 
