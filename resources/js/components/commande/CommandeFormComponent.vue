@@ -1,6 +1,3 @@
-import router from 'resources/js/router/router';
-import router from 'resources/js/router/router';
-import router from 'resources/js/router/router';
 <template>
     <form action="" method="post">
         <div class="row mb-5">
