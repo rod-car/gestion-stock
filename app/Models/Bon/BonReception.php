@@ -3,8 +3,10 @@
 namespace App\Models\Bon;
 
 use App\Models\Article\Article;
+use App\Models\Article\Commande;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class BonReception extends Model
@@ -15,6 +17,20 @@ class BonReception extends Model
         "numero", "date", "commande", "status", "adresse_livraison", "livreur", "contact_livreur"
     ];
 
+    protected $with = [
+        'getCommande', 'articles',
+    ];
+
+
+    /**
+     * Recuperer la commande qui a généré le bon de reception
+     *
+     * @return BelongsTo
+     */
+    public function getCommande() : BelongsTo
+    {
+        return $this->belongsTo(Commande::class, 'commande', 'id');
+    }
 
     /**
      * Articles de la bon de reception

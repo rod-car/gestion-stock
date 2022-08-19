@@ -4,42 +4,39 @@
             <tr>
                 <th class="p-3">Numéro</th>
                 <th class="p-3">Date de création</th>
-                <th class="p-3" v-if="appro === true">Fournisseur</th>
-                <th class="p-3" v-else>Client</th>
+                <th class="p-3">Bon de commande</th>
+                <th class="p-3">Fournisseur</th>
                 <th class="p-3">Adresse de livraison</th>
                 <th class="p-3">Status</th>
                 <th class="text-center p-3">Actions</th>
             </tr>
         </thead>
         <tbody v-if="entities.length > 0">
-            <tr v-for="(commande, index) in entities" v-bind:key="commande.id">
-                <td>{{ commande.numero }}</td>
-                <td>{{ formatDate(commande.date) }}</td>
-                <td v-if="appro === true">{{ commande.frs.nom }}</td>
-                <td v-else>{{ commande.cl.nom }}</td>
-                <td>{{ commande.adresse_livraison ?? "Non définie" }}</td>
-                <td><Status :value="commande.status" /></td>
+            <tr v-for="(reception, index) in entities" :key="reception.id">
+                <td>{{ reception.numero }}</td>
+                <td>{{ formatDate(reception.date, false) }}</td>
+                <td>{{ reception.get_commande.numero }}</td>
+                <td>{{ reception.get_commande.frs.nom }}</td>
+                <td>{{ reception.adresse_livraison ?? "Non définie" }}</td>
+                <td><Status :value="reception.status" /></td>
 
                 <td class="d-flex justify-content-center">
-                    <router-link v-if="true" :to="{ name: `commande.${type}.voir`, params: { id: commande.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `commande.${type}.nouveau`, query: { commande: commande.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
+                    <router-link v-if="true" :to="{ name: `bon-reception.voir`, params: { id: reception.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                    <router-link v-if="true" :to="{ name: `bon-reception.modifier`, params: { id: reception.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(reception.id, index)"/>
                 </td>
             </tr>
         </tbody>
         <tbody v-else>
             <tr>
-                <td class="text-center" colspan="9">Aucune commande</td>
+                <td class="text-center" colspan="9">Aucune bon de reception</td>
             </tr>
         </tbody>
     </table>
 </template>
 
 <script lang="ts">
-
 import { formatDate, expiration } from '../../functions/functions';
-import { computed } from 'vue';
 import Flash from '../../functions/Flash';
 import useCRUD from '../../services/CRUDServices';
 import DeleteBtn from '../html/DeleteBtn.vue';
@@ -60,14 +57,9 @@ export default {
             type: Array,
             required: true,
         },
-        appro: {
-            type: Boolean,
-            default: true,
-            required: false,
-        },
     },
 
-    setup(props: { entities: any[] | null; appro: boolean; }) {
+    setup(props: { entities: any[] }) {
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
@@ -79,13 +71,8 @@ export default {
             });
         }
 
-        const type = computed(() => {
-            if (props.appro === true) return "fournisseur"
-            return "client"
-        })
-
         return {
-            Flash, formatDate, expiration, confirmDeletion, type,
+            Flash, formatDate, expiration, confirmDeletion,
         }
     }
 

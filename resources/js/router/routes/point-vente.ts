@@ -17,7 +17,8 @@ import ModifierPointVente  from '../../pages/point-vente/ModifierPointVente.vue'
 import ListePointVente  from '../../pages/point-vente/ListePointVente.vue';
 import VoirPointVente  from '../../pages/point-vente/VoirPointVente.vue';
 import GererResponsable  from '../../pages/point-vente/GererResponsable.vue';
-import GererPersonnel  from '../../pages/point-vente/GererPersonnel.vue';
+import GererPersonnel from '../../pages/point-vente/GererPersonnel.vue';
+import VoirArticles from '../../pages/point-vente/VoirArticles.vue';
 
 const routes = [
     {
@@ -68,6 +69,14 @@ const routes = [
         path: '/point-de-vente/:id/personnelles',
         name: 'point-de-vente.gerer-personnelles',
         component: GererPersonnel,
+        meta: {
+            requiresAuth: true,
+        }
+    },
+    {
+        path: '/point-de-vente/:id/articles',
+        name: 'point-de-vente.articles',
+        component: VoirArticles,
         meta: {
             requiresAuth: true,
         }

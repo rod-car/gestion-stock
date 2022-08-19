@@ -20,12 +20,14 @@ trait WithValidation
             "articles.*.id" => ["required", "exists:articles,id"],
             "articles.*.quantite" => ["required", "numeric", "min:1", "max:999999999.99"],
 
-            "articles.*.montant_ht" => ["required", "numeric"],
-            "articles.*.montant_ttc" => ["required", "numeric"],
+            "articles.*.total" => ["required", "numeric", "min:1", "max:999999999.99"],
+            "articles.*.valide" => ["required", "boolean"],
 
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
             "livreur" => ["nullable", "sometimes", "min:5", "max:255"],
             "contact_livreur" => ["nullable", "sometimes", "min:5", "max:255"],
+
+            "depot" => ["required", "exists:depots,id"],
 
             "commande" => ["nullable", "numeric", "exists:commandes,id"],
         ];

@@ -42,7 +42,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $appends = ["expire", "date_expiration"];
+    protected $appends = ["expire", "date_expiration", "recu"];
 
 
     /**
@@ -98,7 +98,7 @@ class Commande extends Model
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class, 'commande_articles', 'commande', 'article')
-            ->withPivot(['quantite', 'pu', 'tva']);
+            ->withPivot(['quantite', 'pu', 'tva', 'quantite_recu']);
     }
 
 
@@ -132,5 +132,16 @@ class Commande extends Model
     public function devis(): BelongsTo
     {
         return $this->belongsTo(Commande::class, 'devis', 'id');
+    }
+
+    public function getRecuAttribute()
+    {
+        return rand(0, 1);
+    }
+
+
+    public function getArticle(int $id)
+    {
+        return $this->articles()->wherePivot('article', $id)->first();
     }
 }

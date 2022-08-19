@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Api\Bon;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Bon\Reception\NouveauBonReceptionRequest;
-use App\Models\Bon\BonReception;
-use Illuminate\Http\Request;
+use Auth;
 use Response;
+use App\Models\Depot\Depot;
+use Illuminate\Http\Request;
+use App\Models\Article\Commande;
+use App\Models\Bon\BonReception;
+use App\Http\Controllers\Controller;
+use App\Models\Article\DepotArticle;
+use App\Http\Requests\Bon\Reception\NouveauBonReceptionRequest;
 
 class BonReceptionController extends Controller
 {
@@ -17,7 +21,7 @@ class BonReceptionController extends Controller
      */
     public function index()
     {
-        //
+        return BonReception::all();
     }
 
 
@@ -33,10 +37,15 @@ class BonReceptionController extends Controller
         $articles = $data["articles"];
         unset($data["articles"]);
 
-        dd($data);
-
+        $commande = Commande::findOrFail($data['commande']);
         $reception = BonReception::create($data);
+        $depot = Depot::findOrFail($data['depot']);
+
         $this->updateArticles($reception, $articles);
+        $this->updateCommandeArticles($commande, $articles);
+        $this->updateDepotArticles($reception, $depot, $articles);
+
+        return $reception;
     }
 
     /**
@@ -47,7 +56,7 @@ class BonReceptionController extends Controller
      */
     public function show(BonReception $bonReception)
     {
-        //
+        return $bonReception;
     }
 
     /**
@@ -80,6 +89,38 @@ class BonReceptionController extends Controller
         {
             $reception->articles()->attach($article['id'], [
                 "quantite" => abs($article["quantite"])
+            ]);
+        }
+    }
+
+
+    public function updateCommandeArticles(Commande $commande, array $articles)
+    {
+        foreach ($articles as $article) {
+            $tmp = $commande->articles()->wherePivot('article', $article['id'])->first();
+            if ($tmp !== null)
+            {
+                $commande->articles()->updateExistingPivot($article['id'], [
+                    'quantite_recu' => $tmp->pivot->quantite_recu + doubleval($article['quantite']),
+                ]);
+            }
+        }
+    }
+
+    public function updateDepotArticles(BonReception $reception, Depot $depot, array $articles)
+    {
+        foreach ($articles as $article)
+        {
+            DepotArticle::create([
+                "article_id" => $article['id'],
+                "quantite" => $article['quantite'],
+                "responsable" => Auth::user()->id,
+                "bon" => $reception->id,
+                "depot_id" => $depot->id,
+                "provenance_id" => null,
+                "destination_id" => null,
+                "date_transaction" => today()->toDateString(),
+                "type" => 1,
             ]);
         }
     }

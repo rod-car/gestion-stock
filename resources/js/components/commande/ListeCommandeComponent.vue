@@ -14,7 +14,7 @@
         <tbody v-if="entities.length > 0">
             <tr v-for="(commande, index) in entities" v-bind:key="commande.id">
                 <td>{{ commande.numero }}</td>
-                <td>{{ formatDate(commande.date) }}</td>
+                <td>{{ formatDate(commande.date, false) }}</td>
                 <td v-if="appro === true">{{ commande.frs.nom }}</td>
                 <td v-else>{{ commande.cl.nom }}</td>
                 <td>{{ commande.adresse_livraison ?? "Non définie" }}</td>
@@ -23,7 +23,7 @@
                 <td class="d-flex justify-content-center">
                     <router-link v-if="true" :to="{ name: `commande.${type}.voir`, params: { id: commande.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `bon-reception.nouveau`, query: { commande: commande.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
+                    <router-link v-if="!commande.recu" :to="{ name: `bon-reception.nouveau`, query: { commande: commande.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
                 </td>
             </tr>

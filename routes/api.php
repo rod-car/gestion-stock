@@ -58,6 +58,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Recuperer les permissions groupé par fonction
     Route::get('/permissions-groups', [FonctionController::class, 'permissionsGroups']);
 
+    // Permet de recuperer les articles dans un depot en particulier
+    Route::get('/depot/{depot}/articles', [ArticleController::class, 'articles']);
+
     // Route pour la gestion de point de vente
     Route::apiResource('/depot', DepotController::class);
 

@@ -23,6 +23,7 @@ import useCRUD from '../../services/CRUDServices';
 import { defineComponent, onBeforeMount, ref, Ref } from 'vue';
 import BonReceptionFormComponent from '../../components/bon-reception/BonReceptionFormComponent.vue';
 import BonReceptionFormLoadingComponent from '../../components/bon-reception/BonReceptionFormLoadingComponent.vue';
+import Flash from '../../functions/Flash';
 
 const { entity, loading, find } = useCRUD('/commandes');
 
@@ -33,15 +34,17 @@ export default defineComponent({
         onBeforeMount(async (): Promise<any> => {
             const id = router.currentRoute.value.query.commande;
 
-            if (id !== undefined && id !== null) {
-                commandeId.value = parseInt(id.toString());
-            } else {
-                commandeId.value = null;
-            }
+            if (id !== undefined && id !== null) commandeId.value = parseInt(id.toString());
+            else commandeId.value = null;
 
             if (commandeId.value !== null) {
                 // Recuperer la commande en question
                 await find(commandeId.value);
+                if (entity.value.type !== 2) {
+                    Flash('error', 'Erreur', 'Veuillez selectionner une commande');
+                    router.push('/commande/fournisseur/liste');
+                    return;
+                }
             }
         })
 

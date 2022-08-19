@@ -1,16 +1,16 @@
 <template>
     <div class="card mt-3">
         <div class="card-header d-flex justify-content-between align-items-center bg-white pt-3 pb-3">
-            <h5 class="text-muted">Fiche commande fournisseur</h5>
+            <h5 class="text-muted">Bon de reception</h5>
 
             <div class="d-flex justify-content-between">
-                <router-link to="/commande/fournisseur/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouvelle</router-link>
-                <router-link v-if="!loading && entity.id" :to="{ name: 'commande.fournisseur.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
-                <router-link to="/commande/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
+                <router-link to="/bon-reception/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouvelle</router-link>
+                <router-link v-if="!loading && entity.id" :to="{ name: 'bon-reception.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link to="/bon-reception/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">
-            <VoirBonReceptionComponent v-if="!loading" :appro="true" :commande="entity" />
+            <VoirBonReceptionComponent v-if="!loading" :bon-reception="entity" />
             <VoirBonReceptionLoadingComponent v-else />
         </div>
     </div>
@@ -24,7 +24,7 @@ import useCRUD from '../../services/CRUDServices';
 import VoirBonReceptionComponent from '../../components/bon-reception/VoirBonReceptionComponent.vue';
 import VoirBonReceptionLoadingComponent from '../../components/bon-reception/VoirBonReceptionLoadingComponent.vue';
 
-const { loading, find, entity } = useCRUD('/commandes');
+const { loading, find, entity } = useCRUD('/bon-receptions');
 
 export default {
     setup() {

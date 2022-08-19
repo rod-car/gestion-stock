@@ -18,7 +18,7 @@
                         <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
                             :enableTimePicker="false"
                             cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
-                            @update:modelValue="checkDate"></Datepicker>
+                            @update:modelValue="checkDate" />
 
                         <div class="text-danger mt-1" v-if="dateState === false">
                             {{ Reception.errors.value.date[0] }}
@@ -35,12 +35,35 @@
                         <Input v-model="form.contact" :error="Reception.errors.value.contact">Contact du livreur</Input>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <label for="depot" class="form-label">A stocker dans un</label>
+                        <MultiSelect :canClear="false" :multiple="false" v-model="form.type" :options="[{ value: 1, label: 'Point de vente' }, { value: 2, label: 'Entrepot' }]" @change="handleChange" />
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="depot" class="form-label">Entrepot ou point de vente</label>
+                        <MultiSelect
+                            v-if="!Depot.loading.value"
+                            :class="hasError ? 'border-danger' : ''"
+                            :object="nouveau === false ? true : false"
+                            :options="Depot.entities.value"
+                            :searchable="true"
+                            :multiple="false"
+                            v-model="form.depot"
+                            noOptionsText="Aucune donées"
+                            noResultsText="Aucune donées"
+                            label="nom"
+                            valueProp="id"
+                            @close="check"
+                        />
+                        <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
+                        <div class="text-danger mt-1" v-if="hasError">
+                            {{ Reception.errors.value.depot[0] }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <pre>
-            {{ form.articles }}
-        </pre>
 
         <div class="row mb-5">
             <div class="col-xl-12">
@@ -52,23 +75,23 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="w-75">Nom de l'article</th>
+                                    <th class="w-50">Nom de l'article</th>
                                     <th>Quantité</th>
+                                    <th>Total</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="i in nombreArticle" :key="i">
-                                    <td>
-                                        <Input v-model="form.articles[i - 1].designation" disabled />
-                                    </td>
+                                    <td><Input v-model="form.articles[i - 1].designation" disabled /></td>
                                     <td>
                                         <input type="number" @input="checkQuantite(i-1)" v-model="form.articles[i - 1].quantite" class="form-control">
                                         <span class="text-danger" v-if="Reception.errors.value[`articles.${i - 1}.quantite`]">
                                             {{ Reception.errors.value[`articles.${i - 1}.quantite`][0] }}
                                         </span>
                                     </td>
-                                    <td v-if="nombreArticle > 1"><button type="button" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
+                                    <td>{{ form.articles[i - 1].total }}</td>
+                                    <td class="d-flex justify-content-center" v-if="nombreArticle > 1"><button type="button" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
                                     <td class="text-center" v-else><button type="button" class="btn btn-secondary"><i class="fa fa-ban"></i></button></td>
                                 </tr>
                             </tbody>
@@ -90,16 +113,18 @@
 
 <script lang="ts">
 import Input from '../html/Input.vue';
-import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices';
-import Datepicker from '@vuepic/vue-datepicker';
-import MultiSelect from '@vueform/multiselect';
-import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
+import router from '../../router/router';
 import Config from '../../config/config';
-import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
+import SaveBtn from '../html/SaveBtn.vue';
+import Flash from '../../functions/Flash';
+import MultiSelect from '@vueform/multiselect';
+import Datepicker from '@vuepic/vue-datepicker';
+import useCRUD from '../../services/CRUDServices';
+import { computed, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 
-const Reception = useCRUD('/bon-receptions'); // Contient tous les fonctions CRUD pour le Reception
+const Reception = useCRUD('/bon-receptions'); // Contient tous les fonctions CRUD pour le Bon de Reception
+const Depot = useCRUD('/depot'); // Contient tous les fonctions CRUD pour le Bon de Reception
 const { getKey, key } = useCRUD('/commandes');
 
 type Form = {
@@ -110,7 +135,9 @@ type Form = {
     articles: Array<any>,
     commande: number, // Numero de la commande qui a generer le bon de reception
     livreur: string|null,
-    contact: string|null,
+    contact: string | null,
+    type: number,
+    depot: number|null,
 }
 
 export default defineComponent({
@@ -155,21 +182,37 @@ export default defineComponent({
             commande: props.commande.id,
             livreur: null,
             contact: null,
+            type: 1,
+            depot: null,
         } as Form);
 
         const valide: Ref<boolean> = ref(true);
-
         const nombreArticle = ref(1);
-        const originalArticles: Ref<Array<any>> = ref(props.commande.articles);
+
+        const handleChange = (value: number|null) => {
+            if (value !== null) {
+                if (value === 1) Depot.all(1);
+                else if (value === 2) Depot.all(0);
+                else throw new Error("Qui n'est pas un point de vente et ne pas un entrepot")
+            }
+        }
+
+        const check = (e: { modelValue: null; }) => {
+            if (e.modelValue !== null) Depot.errors.value.categories = null
+        }
+
+        const hasError = computed((): boolean => {
+            if (Depot.errors.value.categories && Depot.errors.value.categories.length > 0) return true
+            return false
+        })
 
         const save = async () => {
             if (props.nouveau === true) {
                 await Reception.create(form.value)
-                /*if (Reception.success.value !== null) {
+                if (Reception.success.value !== null) {
                     router.replace({ query: {} })
-                    resetForm()
-                    setReceptionKey()
-                }*/
+                    router.push(`/bon-reception/voir/${Reception.entity.value.id}`)
+                }
             } else if (props.commande) {
                 await Reception.update(props.commande.id, form.value)
             }
@@ -184,11 +227,16 @@ export default defineComponent({
 
         const generateArticleArrayFromArticles = (articles: any[]) => {
             articles.forEach((article: null | undefined) => addItem(article))
+            if (form.value.articles.length === 0) {
+                Flash('error', "Message d'erreur", "Tous les articles de cette commande a déja été récu")
+                nombreArticle.value = 0;
+                router.push('/commande/fournisseur/liste');
+                return;
+            }
         }
 
         const removeItem = (index: number) => {
             form.value.articles.splice(index, 1);
-            originalArticles.value.splice(index, 1);
             nombreArticle.value--
         }
 
@@ -198,12 +246,15 @@ export default defineComponent({
                 return
             }
 
-            form.value.articles.push({
-                id: article.id,
-                quantite: article.pivot.quantite,
-                designation: article.designation,
-                valide: true,
-            })
+            if (article.pivot.quantite_recu < article.pivot.quantite) {
+                form.value.articles.push({
+                    id: article.id,
+                    quantite: article.pivot.quantite - article.pivot.quantite_recu,
+                    designation: article.designation,
+                    total: article.pivot.quantite - article.pivot.quantite_recu,
+                    valide: true,
+                })
+            }
         }
 
         /**
@@ -225,7 +276,7 @@ export default defineComponent({
             valide.value = true;
 
             const quantite: number = form.value.articles[index].quantite;
-            const max: number = originalArticles.value[index].pivot.quantite;
+            const max: number = form.value.articles[index].total;
 
             if (quantite > max) {
                 Flash('error', "Message d'erreur", "La quantité ne doit pas depasser la quantté totale: " + max.toString());
@@ -242,10 +293,6 @@ export default defineComponent({
             })
         }
 
-        onMounted(() => {
-            if (props.nouveau === true) setReceptionKey();
-        })
-
         onBeforeMount(() => {
             nombreArticle.value = props.commande.articles.length
             form.value.date = props.commande.date
@@ -253,11 +300,14 @@ export default defineComponent({
             form.value.commande = props.commande.id
 
             generateArticleArrayFromArticles(props.commande.articles)
+            Depot.all(1)
+            if (props.nouveau === true) setReceptionKey();
         })
 
         return {
             Reception, Flash, form, nombreArticle, setReceptionKey, getKey, key, checkQuantite,
             dateState, addItem, removeItem, generateArticleArrayFromArticles, checkDate, save, valide,
+            Depot, check, hasError, handleChange,
         }
     },
 

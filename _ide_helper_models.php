@@ -84,6 +84,41 @@ namespace App\Models\Article{
 	class Commande extends \Eloquent {}
 }
 
+namespace App\Models\Article{
+/**
+ * App\Models\Article\DepotArticle
+ *
+ * @property int $id
+ * @property int $article_id Id de l'artile a stocker
+ * @property string $quantite Quantité de l'article dans la bon de reception
+ * @property int $responsable Id du responsable qui a fait entrer le stock
+ * @property int $bon Bon de livraison ou bon de reception qui contient l'article
+ * @property int $depot_id Identifiant du point de vente ou entrepot pour stocker l'article
+ * @property int|null $provenance_id Identifiant du point de vente ou entrepot où provient l'article. Uniquement utilisé dans le cadre d'un transfert. null si l'article provient d'un fournisseur
+ * @property int|null $destination_id Identifiant du point de vente ou entrepot où on doit deplacer l'article. Uniquement utilisé dans le cadre d'un transfert.
+ * @property string $date_transaction
+ * @property int $type Type de transaction. Entrée en stock ou sortie de stock. 1: Entree, 0: Sortie
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereArticleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereBon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereDateTransaction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereDepotId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereDestinationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereProvenanceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereQuantite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereResponsable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle whereUpdatedAt($value)
+ */
+	class DepotArticle extends \Eloquent {}
+}
+
 namespace App\Models\Bon{
 /**
  * App\Models\Bon\BonReception
@@ -98,6 +133,8 @@ namespace App\Models\Bon{
  * @property string|null $contact_livreur Contact du livreur
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article\Article[] $articles
+ * @property-read int|null $articles_count
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception query()

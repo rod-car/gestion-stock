@@ -36,22 +36,16 @@
                 <div class="me-2 shadow shadow-sm w-100 p-3">
                     <div class="mb-3 d-flex justify-content-between align-items-center">
                         <h5 class="text-muted">Les articles</h5>
-                        <a href="" class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Test button</a>
+                        <router-link :to="{ name: getName + '.articles', params: { id: depot.id }}" class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Voir tout</router-link>
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-action">
-                            <Skeletor width="100%" style="border-radius: 3px" height="30" />
-                        </li>
-                        <li class="list-group-item list-group-item-action">
-                            <Skeletor width="100%" style="border-radius: 3px" height="30" />
-                        </li>
-                        <li class="list-group-item list-group-item-action">
-                            <Skeletor width="100%" style="border-radius: 3px" height="30" />
-                        </li>
-                        <li class="list-group-item list-group-item-action">
-                            <Skeletor width="100%" style="border-radius: 3px" height="30" />
-                        </li>
-                    </ul>
+                    <Table
+                        name="article"
+                        :data="articles"
+                        :columns="columns"
+                        :actions="false"
+                        :loading="loading"
+                        :casts="casts"
+                    />
                 </div>
                 <div class="ms-2 shadow shadow-sm w-100 p-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -80,8 +74,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, Ref, ref } from "vue";
+import axiosClient from "../../axios";
+import { computed, defineComponent, onBeforeMount, ref } from "vue";
 import { Skeletor } from "vue-skeletor";
+import Table from "../html/Table.vue";
 
 export default defineComponent({
     props: {
@@ -97,19 +93,36 @@ export default defineComponent({
     },
 
     setup(props) {
+        const articles = ref([])
+        const loading = ref(false);
+        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité', 'fullArticle.pivot.pu': 'PU' }
+        const casts = [];
+
+        casts['fullArticle.pivot.pu'] = 'money';
+
         const getName = computed((): string => {
             if (props.entrepot === true) return "entrepot";
             return "point-de-vente";
         });
 
+        onBeforeMount(async () => {
+            const limit: number = 5;
+
+            loading.value = true;
+            let response = await axiosClient.get(`/depot/${props.depot.id}/articles?limit=${limit}`)
+            articles.value = response.data;
+            loading.value = false
+        });
+
         return {
-            getName,
+            getName, articles, loading, columns, casts,
         };
 
     },
 
     components: {
         Skeletor,
+        Table
     }
 });
 

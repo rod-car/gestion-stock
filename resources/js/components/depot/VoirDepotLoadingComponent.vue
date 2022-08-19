@@ -30,9 +30,13 @@
                         <Skeletor width="20%" style="border-radius: 3px" height="30" />
                     </div>
                     <ul class="list-group">
-                        <li v-for="i in 4" :key="i" class="list-group-item list-group-item-action">
-                            <Skeletor width="100%" style="border-radius: 3px" height="30" />
-                        </li>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr v-for="i in 5">
+                                    <td v-for="j in 5"><Skeletor width="100%" style="border-radius: 3px" height="30" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </ul>
                 </div>
                 <div class="ms-2 shadow shadow-sm w-100 p-3">

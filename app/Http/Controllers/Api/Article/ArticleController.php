@@ -8,6 +8,11 @@ use App\Models\Categorie\Categorie;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
+use App\Models\Article\DepotArticle;
+use App\Models\Depot\Depot;
+use DB;
+use Illuminate\Database\Eloquent\Collection;
+use Response;
 
 class ArticleController extends Controller
 {
@@ -117,5 +122,35 @@ class ArticleController extends Controller
         $article->categories()->detach();
         $article->delete();
         return response()->json(["success" => "Supprimé avec succès"]);
+    }
+
+
+    /**
+     * Permet de recuperer tous les articles dans un dépot
+     * Avec un calcul de stock d'entrée moins stock de sortie (Entree - Sortie)
+     *
+     * @param Request $request
+     * @param Depot $depot
+     * @return Response
+     */
+    public function articles(Request $request, Depot $depot)
+    {
+        $limit = intval($request->limit);
+        // $depotArticle = DepotArticle::where('depot_id', $depot->id);
+
+        $depotArticle = DepotArticle::query()
+            ->select("article_id")
+            ->selectRaw("ANY_VALUE(bon) as bon")
+            ->selectRaw("ANY_VALUE(articles.reference) as reference")
+            ->selectRaw("ANY_VALUE(articles.designation) as designation")
+            ->selectRaw("ANY_VALUE(articles.unite) as unite")
+            ->selectRaw("SUM(CASE WHEN type = 1 THEN quantite END) as entree")
+            ->selectRaw("SUM(CASE WHEN type = 0 THEN quantite END) as sortie")
+            ->join('articles', 'depot_articles.article_id', '=', 'articles.id')
+            ->where('depot_articles.depot_id', $depot->id)
+            ->groupBy('article_id');
+
+        if ($limit === 0) return $depotArticle->get();
+        return $depotArticle->take($limit)->get();
     }
 }
