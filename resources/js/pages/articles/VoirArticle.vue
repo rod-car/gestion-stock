@@ -2,7 +2,6 @@
     <div class="card mt-3">
         <div class="card-header d-flex justify-content-between align-items-center bg-white pt-3 pb-3">
             <h5 class="text-muted">Fiche article</h5>
-
             <div class="d-flex justify-content-between">
                 <router-link to="/article/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
                 <router-link v-if="!loading && entity.id" :to="{ name: 'article.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>

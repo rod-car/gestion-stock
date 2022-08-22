@@ -90,7 +90,7 @@
                                             {{ Reception.errors.value[`articles.${i - 1}.quantite`][0] }}
                                         </span>
                                     </td>
-                                    <td>{{ form.articles[i - 1].total }}</td>
+                                    <td class="align-middle">{{ form.articles[i - 1].total }}</td>
                                     <td class="d-flex justify-content-center" v-if="nombreArticle > 1"><button type="button" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
                                     <td class="text-center" v-else><button type="button" class="btn btn-secondary"><i class="fa fa-ban"></i></button></td>
                                 </tr>

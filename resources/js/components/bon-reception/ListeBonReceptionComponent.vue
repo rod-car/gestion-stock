@@ -13,17 +13,17 @@
         </thead>
         <tbody v-if="entities.length > 0">
             <tr v-for="(reception, index) in entities" :key="reception.id">
-                <td>{{ reception.numero }}</td>
-                <td>{{ formatDate(reception.date, false) }}</td>
-                <td>{{ reception.get_commande.numero }}</td>
-                <td>{{ reception.get_commande.frs.nom }}</td>
-                <td>{{ reception.adresse_livraison ?? "Non définie" }}</td>
-                <td><Status :value="reception.status" /></td>
+                <td class="align-middle">{{ reception.numero }}</td>
+                <td class="align-middle">{{ formatDate(reception.date, false) }}</td>
+                <td class="align-middle">{{ reception.get_commande.numero }}</td>
+                <td class="align-middle">{{ reception.get_commande.frs.nom }}</td>
+                <td class="align-middle">{{ reception.adresse_livraison ?? "Non définie" }}</td>
+                <td class="align-middle"><Status :value="reception.status" /></td>
 
                 <td class="d-flex justify-content-center">
-                    <router-link v-if="true" :to="{ name: `bon-reception.voir`, params: { id: reception.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `bon-reception.modifier`, params: { id: reception.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(reception.id, index)"/>
+                    <router-link title="Voir ce bon de reception" v-if="true" :to="{ name: `bon-reception.voir`, params: { id: reception.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                    <router-link title="Modifier ce bon de reception" v-if="true" :to="{ name: `bon-reception.modifier`, params: { id: reception.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <DeleteBtn title="Supprimer ce bon de reception" v-if="true" type="danger" @click.prevent="confirmDeletion(reception.id, index)"/>
                 </td>
             </tr>
         </tbody>
@@ -33,6 +33,8 @@
             </tr>
         </tbody>
     </table>
+
+    <input type="tel" name="" input-mask="000 00 000 00" id="">
 </template>
 
 <script lang="ts">

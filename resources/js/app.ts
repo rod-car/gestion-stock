@@ -50,6 +50,9 @@ const app = createApp({
     .use(VueSidebarMenu)
     .use(Message)
 
+app.directive('input-mask', {
+
+})
 app.config.globalProperties.$SimpleAlert = VueSimpleAlert
 app.mount('#app');
 

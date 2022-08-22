@@ -15,9 +15,10 @@
                     name="article"
                     :data="articles"
                     :columns="columns"
-                    :actions="true"
                     :loading="loading"
                     :casts="casts"
+                    :showable="true"
+                    @onShow="handleShow"
                     id="article_id"
                 />
             </div>
@@ -39,11 +40,16 @@ export default defineComponent({
     setup() {
         const loading = ref(false);
         const articles = ref([]);
-        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité', 'fullArticle.pivot.pu': 'PU' };
+        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité en stock', 'fullArticle.pivot.pu': 'PU' };
         const casts = [];
         const id = parseInt(router.currentRoute.value.params.id.toString());
 
         casts['fullArticle.pivot.pu'] = 'money';
+
+        const handleShow = (id: number) => {
+            alert('Here I am');
+            console.log(id);
+        }
 
         onBeforeMount(async (): Promise<any> => {
             loading.value = true;
@@ -55,7 +61,7 @@ export default defineComponent({
         })
 
         return {
-            articles, loading, columns, casts, id,
+            articles, loading, columns, casts, id, handleShow,
         }
     },
 
