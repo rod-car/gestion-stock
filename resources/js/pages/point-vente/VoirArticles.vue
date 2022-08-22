@@ -15,11 +15,10 @@
                     name="article"
                     :data="articles"
                     :columns="columns"
-                    :actions="false"
+                    :actions="true"
                     :loading="loading"
                     :casts="casts"
-                    :searchable="true"
-                    :ordered="true"
+                    id="article_id"
                 />
             </div>
         </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use App\Models\Article\Commande;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
 
@@ -20,18 +21,37 @@ class CommandeController extends Controller
      */
     public function index(Request $request)
     {
-        $type = intval($request->type);
+        $type = intval($request->type); // Detecter si c'est un dévis ou une commande
         $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
 
-        $commande = Commande::where('type', $type);
+        $commandes = Commande::where('type', $type);
 
         if ($appro) {
-            $commande = $commande->where('fournisseur', '<>', null);
+            $commandes = $commandes->where('fournisseur', '<>', null);
         } else {
-            $commande = $commande->where('client', '<>', null);
+            $commandes = $commandes->where('client', '<>', null);
         }
 
-        return response()->json($commande->get());
+        if ($type === 2) $this->updateCommandeStatus($commandes->get()); // Si c'est une commande
+        return response()->json($commandes->get());
+    }
+
+
+    /**
+     * Permet de mettre a jour le status d'une ommande si tous les articles sont déja livré
+     *
+     * @param Collection $commandes
+     * @return void
+     */
+    public function updateCommandeStatus(Collection $commandes)
+    {
+        $commandes = $commandes->where('status', 1);
+        foreach ($commandes as $commande) {
+            if ($commande->recu === true and $commande->status === 1) {
+                $commande->status = 3;
+                $commande->save();
+            }
+        }
     }
 
     /**

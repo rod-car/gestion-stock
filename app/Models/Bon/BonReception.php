@@ -13,10 +13,22 @@ class BonReception extends Model
 {
     use HasFactory;
 
+
+    /**
+     * Colonnes de la table pour l'assignement de masse
+     *
+     * @var array
+     */
     protected $fillable = [
         "numero", "date", "commande", "status", "adresse_livraison", "livreur", "contact_livreur"
     ];
 
+
+    /**
+     * Relations a charger dès l'execution de la requête
+     *
+     * @var array
+     */
     protected $with = [
         'getCommande', 'articles',
     ];

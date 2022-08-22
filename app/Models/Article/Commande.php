@@ -15,6 +15,11 @@ class Commande extends Model
 {
     use HasFactory;
 
+    /**
+     * Colonnes de la base de données pour l'assignement de masse
+     *
+     * @var array
+     */
     protected $fillable = [
         "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "validite" // Uniquement pour les dévis
     ];
@@ -62,9 +67,7 @@ class Commande extends Model
      */
     public function getDateExpirationAttribute(): ?string
     {
-        if ($this->type === 2) { // Si c'est une commande, pas de date d'expiration
-            return null;
-        }
+        if ($this->type === 2) return null; // Si c'est une commande, pas de date d'expiration
 
         if ($this->validite === null) return null;
 
@@ -134,9 +137,26 @@ class Commande extends Model
         return $this->belongsTo(Commande::class, 'devis', 'id');
     }
 
-    public function getRecuAttribute()
+    /**
+     * Permet de savoir si tous les articles d'une commande est récu (Livré par le fournisseur)
+     *
+     * @return boolean
+     */
+    public function getRecuAttribute(): bool
     {
-        return rand(0, 1);
+        if ($this->type === 1) return false; // Si c'est un devis, pas de reception
+
+        $recu = true;
+
+        foreach ($this->articles as $article)
+        {
+            if (doubleval($article->pivot->quantite) === doubleval($article->pivot->quantite_recu))
+                $recu = boolval($recu AND true);
+            else
+                $recu = boolval($recu AND false);
+        }
+
+        return $recu;
     }
 
 

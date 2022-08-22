@@ -28,9 +28,9 @@
             <tr v-for="(row, index) in d">
                 <td v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">{{ display(row, col) }}</td>
                 <td v-if="actions === true" class="d-flex justify-content-center">
-                    <router-link v-if="true" :to="{ name: `${name}.voir`, params: { id: row.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `${name}.modifier`, params: { id: row.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" @click.prevent="$emit('onDeleteItem', { id: row.id, index: index })" />
+                    <router-link v-if="true" :to="{ name: `${name}.voir`, params: { id: row[id] }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                    <router-link v-if="true" :to="{ name: `${name}.modifier`, params: { id: row[id] }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <DeleteBtn v-if="true" type="danger" @click.prevent="$emit('onDeleteItem', { id: row[id], index: index })" />
                 </td>
             </tr>
         </tbody>
@@ -83,12 +83,16 @@ export default defineComponent({
             required: false,
             default: false,
         },
-
         casts: {
             type: Object,
             required: false,
             default: [],
-        }
+        },
+        id: {
+            type: String,
+            required: false,
+            default: 'id'
+        },
     },
 
     setup(props) {

@@ -139,7 +139,7 @@ class ArticleController extends Controller
         // $depotArticle = DepotArticle::where('depot_id', $depot->id);
 
         $depotArticle = DepotArticle::query()
-            ->select("article_id")
+            ->selectRaw("article_id")
             ->selectRaw("ANY_VALUE(bon) as bon")
             ->selectRaw("ANY_VALUE(articles.reference) as reference")
             ->selectRaw("ANY_VALUE(articles.designation) as designation")
