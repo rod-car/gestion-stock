@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\Depot;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Depot\ModifierDepotRequest;
-use App\Http\Requests\Depot\NouveauDepotRequest;
 use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
+use App\Models\Article\Article;
+use App\Http\Controllers\Controller;
+use App\Models\Depot\DepotPrixArticle;
+use App\Http\Requests\Depot\NouveauDepotRequest;
+use App\Http\Requests\Depot\ModifierDepotRequest;
 
 class DepotController extends Controller
 {
@@ -18,7 +20,6 @@ class DepotController extends Controller
     public function index(Request $request)
     {
         $point_vente = boolval($request->type);
-
         return Depot::where('point_vente', $point_vente)->get();
     }
 
@@ -156,5 +157,43 @@ class DepotController extends Controller
 
         unset($data['travailleurs']);
         return $data;
+    }
+
+    public function checkPU(array $articles): bool
+    {
+        $pus = [];
+        foreach ($articles as $article)
+        {
+            $pus[] = doubleval($article['pu']);
+        }
+        if (count(array_unique($pus)) === 1 AND count($articles) > 1) return false;
+        return true;
+    }
+
+    public function gererPrixArticle(Depot $depot, Article $article, Request $request)
+    {
+        $data = $request->validate([
+            "articles" => ["required", "array"],
+            "articles.*.reference" => ['required', 'exists:articles,reference'],
+            "articles.*.designation" => ['required', 'exists:articles,designation'],
+            "articles.*.quantite" => ['nullable', 'numeric', 'min:1', 'max:999999999999'],
+            "articles.*.pu" => ['required', 'numeric', 'min:1', 'max:999999999999'],
+        ]);
+
+        if ($this->checkPU($data['articles']) === false) return response(['message' =>'Les prix sont identiques'], 422);
+
+        foreach ($data['articles'] as $a)
+        {
+            DepotPrixArticle::create([
+                'article' => $article->id,
+                'depot' => $depot->id,
+                'quantite' => $a['quantite'] === null ? null : doubleval($a['quantite']),
+                'pu' => doubleval($a['pu']),
+            ]);
+        }
+
+        return response()->json([
+            'success' => 'Success'
+        ]);
     }
 }

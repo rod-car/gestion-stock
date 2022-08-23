@@ -1,5 +1,5 @@
 /**
- * Listé ici tous les routes qui conerne la gestion de article
+ * Listé ici tous les routes qui conerne la gestion des articles
  * Cette liste de routes est ensuite concatené par la route global (router.js dans le dossier router)
  * Tous les routes present dans ce fichier sont privée, L'utilisateur doit être connecté
  *
@@ -85,7 +85,7 @@ const routes = [
             requiresAuth: true,
             // gate: 'non definie',
         }
-    }
+    },
 ]
 
 export default routes.map(route => {

@@ -4,6 +4,8 @@ namespace App\Models\Article;
 
 use App\Models\Article\Article;
 use App\Models\Bon\BonReception;
+use App\Models\Depot\Depot;
+use App\Models\Depot\DepotPrixArticle;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +28,7 @@ class DepotArticle extends Model
      * @var array
      */
     protected $appends = [
-        'fullArticle'
+        'fullArticle', 'detailsPrix'
     ];
 
 
@@ -60,6 +62,16 @@ class DepotArticle extends Model
         return $this->belongsTo(Article::class, 'article_id', 'id');
     }
 
+    /**
+     * Recuperer le depot concerné concerné
+     *
+     * @return BelongsTo
+     */
+    public function depot(): BelongsTo
+    {
+        return $this->belongsTo(Depot::class, 'depot_id', 'id');
+    }
+
 
     /**
      * Recuperer tous les détails de l'article concerné
@@ -71,5 +83,12 @@ class DepotArticle extends Model
         $commande = $this->getBon->getCommande;
         $article = $commande->getArticle($this->article_id);
         return $article;
+    }
+
+
+    public function getDetailsPrixAttribute()
+    {
+        $allPrix = DepotPrixArticle::whereArticle($this->article->id)->whereDepot($this->depot->id)->get(["quantite", "pu"]);
+        return $allPrix;
     }
 }

@@ -22,9 +22,9 @@ namespace App\Models\Article{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $stock_alert Quantité en stock restant pour alerter l'utilisateur pour un appro
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Categorie\Categorie[] $categories
+ * @property-read \Illuminate\Database\Eloquent\Collection|Categorie[] $categories
  * @property-read int|null $categories_count
- * @property-read mixed $sc
+ * @property-read array $sc
  * @method static \Database\Factories\Article\ArticleFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
@@ -37,6 +37,7 @@ namespace App\Models\Article{
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereStockAlert($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUnite($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Article extends \Eloquent {}
 }
@@ -58,12 +59,13 @@ namespace App\Models\Article{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $adresse_livraison Adresse de livraison des marchandises dans lecas d'une commande
  * @property string|null $file_path
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|Article[] $articles
  * @property-read int|null $articles_count
- * @property-read \App\Models\Client\Client|null $cl
- * @property-read \App\Models\Fournisseur\Fournisseur|null $frs
+ * @property-read Client|null $cl
+ * @property-read Fournisseur|null $frs
  * @property-read string $date_expiration
  * @property-read bool $expire
+ * @property-read bool $recu
  * @method static \Illuminate\Database\Eloquent\Builder|Commande newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commande newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Commande query()
@@ -80,6 +82,7 @@ namespace App\Models\Article{
  * @method static \Illuminate\Database\Eloquent\Builder|Commande whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Commande whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Commande whereValidite($value)
+ * @mixin \Eloquent
  */
 	class Commande extends \Eloquent {}
 }
@@ -100,6 +103,10 @@ namespace App\Models\Article{
  * @property int $type Type de transaction. Entrée en stock ou sortie de stock. 1: Entree, 0: Sortie
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Article\Article $article
+ * @property-read \App\Models\Depot\Depot $depot
+ * @property-read mixed $details_prix
+ * @property-read \App\Models\Article\Article $full_article
  * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DepotArticle query()
@@ -133,7 +140,7 @@ namespace App\Models\Bon{
  * @property string|null $contact_livreur Contact du livreur
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|Article[] $articles
  * @property-read int|null $articles_count
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception newQuery()
@@ -148,6 +155,7 @@ namespace App\Models\Bon{
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception whereNumero($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BonReception whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class BonReception extends \Eloquent {}
 }
@@ -159,6 +167,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CategorieArticle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CategorieArticle newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CategorieArticle query()
+ * @mixin \Eloquent
  */
 	class CategorieArticle extends \Eloquent {}
 }
@@ -186,6 +195,7 @@ namespace App\Models\Categorie{
  * @method static \Illuminate\Database\Eloquent\Builder|Categorie whereLibelle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Categorie whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Categorie whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Categorie extends \Eloquent {}
 }
@@ -204,7 +214,7 @@ namespace App\Models\Client{
  * @property string|null $stat
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Categorie\Categorie[] $categories
+ * @property-read \Illuminate\Database\Eloquent\Collection|Categorie[] $categories
  * @property-read int|null $categories_count
  * @method static \Illuminate\Database\Eloquent\Builder|Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Client newQuery()
@@ -219,6 +229,7 @@ namespace App\Models\Client{
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereNom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereStat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Client extends \Eloquent {}
 }
@@ -234,9 +245,11 @@ namespace App\Models\Depot{
  * @property int $point_vente Permet de savoir si un depot est un entrepôt ou un point de vente
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $responsables
+ * @property-read \Illuminate\Database\Eloquent\Collection|Article[] $articles
+ * @property-read int|null $articles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|User[] $responsables
  * @property-read int|null $responsables_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $travailleurs
+ * @property-read \Illuminate\Database\Eloquent\Collection|User[] $travailleurs
  * @property-read int|null $travailleurs_count
  * @method static \Illuminate\Database\Eloquent\Builder|Depot newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Depot newQuery()
@@ -248,8 +261,35 @@ namespace App\Models\Depot{
  * @method static \Illuminate\Database\Eloquent\Builder|Depot whereNom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Depot wherePointVente($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Depot whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Depot extends \Eloquent {}
+}
+
+namespace App\Models\Depot{
+/**
+ * App\Models\Depot\DepotPrixArticle
+ *
+ * @property int $id
+ * @property int $article
+ * @property int $depot
+ * @property string|null $quantite Null si tous les autres articles sont concerné par le prix
+ * @property string $pu
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereArticle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereDepot($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle wherePu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereQuantite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DepotPrixArticle whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	class DepotPrixArticle extends \Eloquent {}
 }
 
 namespace App\Models\Depot{
@@ -269,6 +309,7 @@ namespace App\Models\Depot{
  * @method static \Illuminate\Database\Eloquent\Builder|Travailler whereEstResponsable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Travailler wherePersonnel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Travailler whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Travailler extends \Eloquent {}
 }
@@ -287,7 +328,7 @@ namespace App\Models\Fournisseur{
  * @property string|null $stat
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Categorie\Categorie[] $categories
+ * @property-read \Illuminate\Database\Eloquent\Collection|Categorie[] $categories
  * @property-read int|null $categories_count
  * @method static \Illuminate\Database\Eloquent\Builder|Fournisseur newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Fournisseur newQuery()
@@ -302,6 +343,7 @@ namespace App\Models\Fournisseur{
  * @method static \Illuminate\Database\Eloquent\Builder|Fournisseur whereNom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fournisseur whereStat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fournisseur whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Fournisseur extends \Eloquent {}
 }
@@ -319,6 +361,7 @@ namespace App\Models\Parametres{
  * @method static \Illuminate\Database\Eloquent\Builder|Parametre whereDevise($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Parametre whereGenerale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Parametre whereId($value)
+ * @mixin \Eloquent
  */
 	class Parametre extends \Eloquent {}
 }
@@ -332,13 +375,13 @@ namespace App\Models\Personnel{
  * @property string|null $description_fonction
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|Fonction[] $enfants
+ * @property-read Collection|Fonction[] $enfants
  * @property-read int|null $enfants_count
- * @property-read \Illuminate\Database\Eloquent\Collection $fonctions_inclus_ids
- * @property-read \Illuminate\Database\Eloquent\Collection $permission_ids
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role\Role[] $permissions
+ * @property-read Collection $fonctions_inclus_ids
+ * @property-read Collection $permission_ids
+ * @property-read Collection|Role[] $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $personnelles
+ * @property-read Collection|User[] $personnelles
  * @property-read int|null $personnelles_count
  * @method static \Illuminate\Database\Eloquent\Builder|Fonction newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Fonction newQuery()
@@ -348,6 +391,7 @@ namespace App\Models\Personnel{
  * @method static \Illuminate\Database\Eloquent\Builder|Fonction whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonction whereNomFonction($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fonction whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Fonction extends \Eloquent {}
 }
@@ -363,6 +407,7 @@ namespace App\Models\Personnel{
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionInclusion query()
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionInclusion whereFonctionEnfant($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionInclusion whereFonctionParent($value)
+ * @mixin \Eloquent
  */
 	class FonctionInclusion extends \Eloquent {}
 }
@@ -378,6 +423,7 @@ namespace App\Models\Personnel{
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionRole query()
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionRole whereFonction($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FonctionRole whereRole($value)
+ * @mixin \Eloquent
  */
 	class FonctionRole extends \Eloquent {}
 }
@@ -395,6 +441,7 @@ namespace App\Models\Personnel{
  * @method static \Illuminate\Database\Eloquent\Builder|PersonnelFonction whereDateAssociation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonnelFonction whereFonction($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonnelFonction wherePersonnel($value)
+ * @mixin \Eloquent
  */
 	class PersonnelFonction extends \Eloquent {}
 }
@@ -417,6 +464,7 @@ namespace App\Models\Role{
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereNomRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Role extends \Eloquent {}
 }
@@ -432,6 +480,7 @@ namespace App\Models\Role{
  * @method static \Illuminate\Database\Eloquent\Builder|UserRole query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserRole whereRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserRole whereUserId($value)
+ * @mixin \Eloquent
  */
 	class UserRole extends \Eloquent {}
 }
@@ -453,12 +502,12 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Personnel\Fonction[] $fonctions
+ * @property-read \Illuminate\Database\Eloquent\Collection|Fonction[] $fonctions
  * @property-read int|null $fonctions_count
  * @property-read \App\Models\Collection $nom_complet
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|Role[] $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
@@ -479,6 +528,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

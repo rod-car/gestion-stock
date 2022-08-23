@@ -8,7 +8,7 @@
     <table class="table table-striped w-100">
         <thead>
             <tr>
-                <th @click="changeOrder(col)" class="table-header" v-for="col in alias" :class="col === 'PU' ? 'text-end' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
+                <th @click="changeOrder(col)" vbind:class="ordered ? 'table-header' : ''" v-for="col in alias" :class="col === 'PU' ? 'text-end' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
                     {{ col }}
                 </th>
                 <th v-if="actions || showable" class="text-center">Actions</th>
@@ -26,14 +26,23 @@
         </tbody>
         <tbody v-else-if="d.length > 0">
             <tr v-for="(row, index) in d">
-                <td class="align-middle" v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">{{ display(row, col) }}</td>
+                <td class="align-middle" v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">
+                    <ul class="list" v-if="display(row, col).length > 1 && typeof display(row, col) === 'object'">
+                        <li v-for="(data, index) in display(row, col)" :key="index">
+                            <b>{{ data.quantite === null ? "Quantité restant" : data.quantite + ' (Quantité)' }}</b> : {{ format(data.pu) }}
+                        </li>
+                    </ul>
+                    <span v-else>
+                        {{ display(row, col).length === 0 ? "Non définie" : display(row, col) }}
+                    </span>
+                </td>
                 <td v-if="actions === true" class="d-flex justify-content-center align-middle">
                     <router-link v-if="true" :to="{ name: `${name}.voir`, params: { id: row[id] }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: `${name}.modifier`, params: { id: row[id] }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                     <DeleteBtn v-if="true" type="danger" @click.prevent="$emit('onDeleteItem', { id: row[id], index: index })" />
                 </td>
-                <td class="align-middle text-center" v-else>
-                    <button v-if="showable" @click.prevent="$emit('onShow', { id: row[id] })" class="btn btn-danger btn-sm me-2 text-white">
+                <td class="align-middle text-center" v-else-if="showable">
+                    <button @click.prevent="$emit('onShow', { id: row[id] })" class="btn btn-danger btn-sm me-2 text-white">
                         <i class="fa fa-cog"></i>
                     </button>
                 </td>
@@ -154,7 +163,7 @@ export default defineComponent({
          *
          * @return  {string}           [return description]
          */
-        const display = (row: { [x: string]: any; }, col: string): string => {
+        const display = (row: { [x: string]: any; }, col: string): string|Array<any> => {
             if (row[col] === null) return '-';
 
             else if (row[col] !== undefined)
@@ -195,6 +204,7 @@ export default defineComponent({
                 if (props.casts[col] !== undefined) {
                     return castingValue(props.casts[col], data)
                 }
+
                 return data;
             }
         }
@@ -222,6 +232,7 @@ export default defineComponent({
             alias,
             query,
             filter,
+            format,
             display,
             castingValue,
             changeOrder,

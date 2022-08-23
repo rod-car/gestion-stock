@@ -45,6 +45,7 @@
         "jquery": "^3.6.0",
         "jquery-ui": "^1.13.1",
         "laravel-vue-pagination": "^3.0.0",
+        "maska": "^1.5.0",
         "popper.js": "^1.16.1",
         "vue-m-message": "^4.0.1",
         "vue-multiselect": "^2.1.6",

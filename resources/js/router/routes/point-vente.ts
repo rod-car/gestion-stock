@@ -19,6 +19,7 @@ import VoirPointVente  from '../../pages/point-vente/VoirPointVente.vue';
 import GererResponsable  from '../../pages/point-vente/GererResponsable.vue';
 import GererPersonnel from '../../pages/point-vente/GererPersonnel.vue';
 import VoirArticles from '../../pages/point-vente/VoirArticles.vue';
+import GererPrix from '../../pages/point-vente/GererPrix.vue';
 
 const routes = [
     {
@@ -77,6 +78,14 @@ const routes = [
         path: '/point-de-vente/:id/articles',
         name: 'point-de-vente.articles',
         component: VoirArticles,
+        meta: {
+            requiresAuth: true,
+        }
+    },
+    {
+        path: '/point-de-vente/:depot_id/gerer-prix/:article_id',
+        name: 'point-de-vente.gerer-prix',
+        component: GererPrix,
         meta: {
             requiresAuth: true,
         }

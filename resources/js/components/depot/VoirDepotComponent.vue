@@ -95,7 +95,7 @@ export default defineComponent({
     setup(props) {
         const articles = ref([])
         const loading = ref(false);
-        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité', 'fullArticle.pivot.pu': 'PU' }
+        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité', detailsPrix: "PU" }
         const casts = [];
 
         casts['fullArticle.pivot.pu'] = 'money';

@@ -40,15 +40,14 @@ export default defineComponent({
     setup() {
         const loading = ref(false);
         const articles = ref([]);
-        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité en stock', 'fullArticle.pivot.pu': 'PU' };
+        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité en stock', detailsPrix: 'Prix unitaire' };
         const casts = [];
         const id = parseInt(router.currentRoute.value.params.id.toString());
 
         casts['fullArticle.pivot.pu'] = 'money';
 
-        const handleShow = (id: number) => {
-            alert('Here I am');
-            console.log(id);
+        const handleShow = (e: { id: number }) => {
+            router.push(`/point-de-vente/${id}/gerer-prix/${e.id}`);
         }
 
         onBeforeMount(async (): Promise<any> => {

@@ -2,13 +2,13 @@
     <table class="table table-striped">
         <thead class="bg-secondary text-white">
             <tr>
-                <th class="p-3">Numéro</th>
-                <th class="p-3">Date de création</th>
-                <th class="p-3">Bon de commande</th>
-                <th class="p-3">Fournisseur</th>
-                <th class="p-3">Adresse de livraison</th>
-                <th class="p-3">Status</th>
-                <th class="text-center p-3">Actions</th>
+                <th>Numéro</th>
+                <th>Date de création</th>
+                <th>Bon de commande</th>
+                <th>Fournisseur</th>
+                <th>Adresse de livraison</th>
+                <th>Status</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody v-if="entities.length > 0">
@@ -34,7 +34,7 @@
         </tbody>
     </table>
 
-    <input type="tel" name="" input-mask="000 00 000 00" id="">
+    <!--input type="tel" class="form-control" @maska="phone = $event.target.dataset.maskRawValue" v-maska="'### ## ### ## - ### ## ### ##'" id=""-->
 </template>
 
 <script lang="ts">
@@ -62,6 +62,7 @@ export default {
     },
 
     setup(props: { entities: any[] }) {
+
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
@@ -74,7 +75,7 @@ export default {
         }
 
         return {
-            Flash, formatDate, expiration, confirmDeletion,
+            formatDate, expiration, confirmDeletion,
         }
     }
 

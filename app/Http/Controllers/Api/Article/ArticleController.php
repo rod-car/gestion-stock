@@ -136,10 +136,11 @@ class ArticleController extends Controller
     public function articles(Request $request, Depot $depot)
     {
         $limit = intval($request->limit);
-        // $depotArticle = DepotArticle::where('depot_id', $depot->id);
+        $articleId = intval($request->article_id);
 
         $depotArticle = DepotArticle::query()
             ->selectRaw("article_id")
+            ->selectRaw("ANY_VALUE(depot_id) as depot_id")
             ->selectRaw("ANY_VALUE(bon) as bon")
             ->selectRaw("ANY_VALUE(articles.reference) as reference")
             ->selectRaw("ANY_VALUE(articles.designation) as designation")
@@ -149,6 +150,8 @@ class ArticleController extends Controller
             ->join('articles', 'depot_articles.article_id', '=', 'articles.id')
             ->where('depot_articles.depot_id', $depot->id)
             ->groupBy('article_id');
+
+        if ($articleId > 0) return $depotArticle->where('article_id', $articleId)->first(); // Si on ne veut qu'un seul article en particulier
 
         if ($limit === 0) return $depotArticle->get();
         return $depotArticle->take($limit)->get();
