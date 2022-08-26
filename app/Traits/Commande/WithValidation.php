@@ -39,6 +39,7 @@ trait WithValidation
             "articles.*.pu" => ["required", "numeric", "min:1", "max:" . Config::get("comptable.montant_max")],
             "articles.*.tva" => ["required", "numeric", "min:0", "max:100"],
             "articles.*.quantite" => ["required", "numeric", "min:1", "max:999999999.99"],
+            "articles.*.object" => ["nullable", "array"],
 
             "articles.*.montant_ht" => ["required", "numeric"],
             "articles.*.montant_ttc" => ["required", "numeric"],

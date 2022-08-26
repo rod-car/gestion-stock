@@ -1,3 +1,5 @@
+ENTREE EN STOCK
+
 On veut mettre pour chaque reference d'article dans un depot en particulier (Entrepot ou Point de vente):
     -   Un prix global
     -   Un prix particulier (en précisant la quntité concerné)
@@ -32,4 +34,6 @@ SOLUTION N° 1:
         -   Mise a jour de la quantité dans la table si le prix de l'article selectionné est un prix particulier.
 
 
-SOLUTION N° 2:
+
+SORTIE DE STOCK
+

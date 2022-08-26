@@ -8,7 +8,7 @@
     <table class="table table-striped w-100">
         <thead>
             <tr>
-                <th @click="changeOrder(col)" vbind:class="ordered ? 'table-header' : ''" v-for="col in alias" :class="col === 'PU' ? 'text-end' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
+                <th @click="changeOrder(col)" vbind:class="ordered ? 'table-header' : ''" v-for="col in alias" :class="col === 'PU' ? 'text-start' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
                     {{ col }}
                 </th>
                 <th v-if="actions || showable" class="text-center">Actions</th>
@@ -27,7 +27,7 @@
         <tbody v-else-if="d.length > 0">
             <tr v-for="(row, index) in d">
                 <td class="align-middle" v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">
-                    <ul class="list" v-if="display(row, col).length > 1 && typeof display(row, col) === 'object'">
+                    <ul class="list" v-if="display(row, col).length >= 1 && typeof display(row, col) === 'object'">
                         <li v-for="(data, index) in display(row, col)" :key="index">
                             <b>{{ data.quantite === null ? "Quantité restant" : data.quantite + ' (Quantité)' }}</b> : {{ format(data.pu) }}
                         </li>
@@ -50,7 +50,7 @@
         </tbody>
         <tbody v-else>
             <tr>
-                <td :colspan="cols.length" class="text-center">No data</td>
+                <td :colspan="cols.length + (actions ||showable ? 1 : 0)" class="text-center">No data</td>
             </tr>
         </tbody>
     </table>
@@ -144,11 +144,9 @@ export default defineComponent({
             }
         }
 
-        watch(
-            () => props.loading, (value) => {
-                if (value === false) d.value = props.data
-            }
-        );
+        watch(() => props.loading, (value) => {
+            if (value === false) d.value = props.data
+        });
 
 
         const changeOrder = (col: string) => {
@@ -164,7 +162,7 @@ export default defineComponent({
          * @return  {string}           [return description]
          */
         const display = (row: { [x: string]: any; }, col: string): string|Array<any> => {
-            if (row[col] === null) return '-';
+            if (row[col] === null) return 'Undefined value';
 
             else if (row[col] !== undefined)
             {
@@ -193,6 +191,8 @@ export default defineComponent({
                 columns.forEach((column: string) => {
                     if (operator === 'minus') {
                         data = parseFloat(data)
+                        if (isNaN(data)) { data = null }
+
                         if (row[column.trim()] !== null) data -= parseFloat(row[column.trim()])
                     } else {
                         data = data[column.trim()]

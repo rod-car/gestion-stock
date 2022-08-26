@@ -18,7 +18,7 @@ class CreateDepotArticlesTable extends Migration
             $table->foreignId('article_id')->comment("Id de l'artile a stocker")->references('id')->on('articles');
             $table->decimal('quantite', 10, 2, true)->comment("Quantité de l'article dans la bon de reception")->nullable(false);
             $table->foreignId('responsable')->comment("Id du responsable qui a fait entrer le stock")->references('id')->on('users');
-            $table->foreignId('bon')->comment("Bon de livraison ou bon de reception qui contient l'article")->references('id')->on('bon_receptions');
+            $table->foreignId('bon')->nullable()->comment("Bon de livraison ou bon de reception qui contient l'article")->references('id')->on('bon_receptions');
             $table->foreignId('depot_id')->comment('Identifiant du point de vente ou entrepot pour stocker l\'article')->references('id')->on('depots');
             $table->foreignId('provenance_id')->nullable(true)->comment("Identifiant du point de vente ou entrepot où provient l'article. Uniquement utilisé dans le cadre d'un transfert. null si l'article provient d'un fournisseur")->references('id')->on('depots');
             $table->foreignId('destination_id')->nullable(true)->comment("Identifiant du point de vente ou entrepot où on doit deplacer l'article. Uniquement utilisé dans le cadre d'un transfert.")->references('id')->on('depots');

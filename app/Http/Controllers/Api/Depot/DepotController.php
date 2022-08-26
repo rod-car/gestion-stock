@@ -6,6 +6,8 @@ use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
 use App\Models\Article\Article;
 use App\Http\Controllers\Controller;
+use App\Models\Article\DepotArticle;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Depot\DepotPrixArticle;
 use App\Http\Requests\Depot\NouveauDepotRequest;
 use App\Http\Requests\Depot\ModifierDepotRequest;
@@ -190,6 +192,20 @@ class DepotController extends Controller
                 'quantite' => $a['quantite'] === null ? null : doubleval($a['quantite']),
                 'pu' => doubleval($a['pu']),
             ]);
+
+            if ($a['quantite'] === null) {
+                DepotArticle::create([
+                    "article_id" => $article->id,
+                    "quantite" => 0,
+                    "responsable" => Auth::user()->id,
+                    "bon" => null,
+                    "depot_id" => $depot->id,
+                    "provenance_id" => null,
+                    "destination_id" => null,
+                    "date_transaction" => today()->toDateString(),
+                    "type" => 1,
+                ]);
+            }
         }
 
         return response()->json([

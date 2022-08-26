@@ -10,50 +10,69 @@
     <div class="text-danger mt-1" v-if="hasErrors">
         {{ error[0] }}
     </div>
-
 </template>
 
-<script>
+<script lang="ts">
+import { computed, ref, Ref, watch, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
     inheritAttrs: false,
     props: {
         modelValue: {
             type: String,
             required: true,
         },
-        type: String,
-        placeholder: String,
-        error: Object,
+        type: {
+            type: String,
+            required: false,
+            default: 'text'
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        error: {
+            type: Array,
+            required: false,
+            default: [],
+        },
         required: {
             type: Boolean,
             required: false,
         },
-        filter: String,
-    },
-    data() {
-        return {
-            hasErrors: false,
-        }
-    },
-    methods: {
-        handleBlur (e) {
-            let value = e.target.value
-            if (value !== "") this.hasErrors = false
-            this.$emit('update:modelValue', value)
+        filter: {
+            type: String,
+            required: false,
         },
     },
-    computed: {
-        hasSlot() {
-            return this.$slots.default !== undefined;
+
+    emits: ['update:modelValue'],
+
+    setup(props, { emit, slots }) {
+        const hasErrors: Ref<boolean> = ref(false);
+
+        const handleBlur = (e: Event) => {
+            let value = (e.target as HTMLInputElement).value
+            if (value !== "") hasErrors.value = false
+            emit('update:modelValue', value)
+        }
+
+        const hasSlot = computed(() => {
+            return slots.default !== undefined;
+        })
+
+        watch(
+            () => props.error, (value) => {
+                if (value && value.length > 0) {
+                    hasErrors.value = true;
+                }
+            }
+        );
+
+        return {
+            hasErrors, handleBlur, hasSlot,
         }
     },
-    watch: {
-        error: function () {
-            if (this.error && this.error.length > 0) {
-                this.hasErrors = true;
-            }
-        }
-    }
-}
+})
 </script>

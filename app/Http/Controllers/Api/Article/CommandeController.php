@@ -11,14 +11,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
+use App\Models\Depot\DepotPrixArticle;
 
 class CommandeController extends Controller
 {
     /**
-     * Display a listing of the orders or quotations.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the orders or quotations.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index(Request $request)
     {
         $type = intval($request->type); // Detecter si c'est un dévis ou une commande
@@ -38,11 +39,11 @@ class CommandeController extends Controller
 
 
     /**
-     * Permet de mettre a jour le status d'une ommande si tous les articles sont déja livré
-     *
-     * @param Collection $commandes
-     * @return void
-     */
+    * Permet de mettre a jour le status d'une ommande si tous les articles sont déja livré
+    *
+    * @param Collection $commandes
+    * @return void
+    */
     public function updateCommandeStatus(Collection $commandes)
     {
         $commandes = $commandes->where('status', 1);
@@ -55,11 +56,11 @@ class CommandeController extends Controller
     }
 
     /**
-     * Store a newly created order or quotation in storage.
-     *
-     * @param  App\Http\Requests\Commande\NouveauCommandeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created order or quotation in storage.
+    *
+    * @param  App\Http\Requests\Commande\NouveauCommandeRequest  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(NouveauCommandeRequest $request)
     {
         $data = $request->validated();
@@ -68,6 +69,14 @@ class CommandeController extends Controller
         else $file = null;
 
         $articles = $data['articles'];
+
+        if (!$this->checkArticleQuantite($articles)) {
+            return response()->json([
+                "errors" => ["quantite" => ["Quantité n'est pas valide"]],
+                "message" => "Les quantités d'articles ne sont pas valide"
+            ], 422);
+        }
+
         $commande = Commande::create($data);
 
         if ($file !== null) $this->updateFile($commande, $file);
@@ -77,28 +86,28 @@ class CommandeController extends Controller
     }
 
     /**
-     * Display the specified order or quotation.
-     *
-     * @param  \App\Models\Article\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified order or quotation.
+    *
+    * @param  \App\Models\Article\Commande  $commande
+    * @return \Illuminate\Http\Response
+    */
     public function show(Commande $commande)
     {
         return $commande;
     }
 
     /**
-     * Update the specified order or quotation in storage.
-     *
-     * @param  App\Http\Requests\Commande\ModifierCommandeRequest  $request
-     * @param  \App\Models\Article\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified order or quotation in storage.
+    *
+    * @param  App\Http\Requests\Commande\ModifierCommandeRequest  $request
+    * @param  \App\Models\Article\Commande  $commande
+    * @return \Illuminate\Http\Response
+    */
     public function update(ModifierCommandeRequest $request, Commande $commande)
     {
         $data = $request->validated();
         $articles = $data['articles'];
-        $file = $data['file'];
+        $file = key_exists('file', $data) ? $data['file'] : null;
         $commande->update($data);
 
         if ($file !== null) $this->updateFile($commande, $file);
@@ -108,11 +117,11 @@ class CommandeController extends Controller
     }
 
     /**
-     * Remove the specified order or quotation from storage.
-     *
-     * @param  \App\Models\Article\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified order or quotation from storage.
+    *
+    * @param  \App\Models\Article\Commande  $commande
+    * @return \Illuminate\Http\Response
+    */
     public function destroy(Commande $commande)
     {
         $commande->articles()->detach();
@@ -125,12 +134,12 @@ class CommandeController extends Controller
 
 
     /**
-     * Mettre a jour les articles associé a un commande
-     *
-     * @param Commande $commande La commande en question
-     * @param array $articles Les articles concerné
-     * @return bool
-     */
+    * Mettre a jour les articles associé a un commande
+    *
+    * @param Commande $commande La commande en question
+    * @param array $articles Les articles concerné
+    * @return bool
+    */
     public function updateArticle(Commande $commande, array $articles): bool
     {
         $articlesActuel = $commande->articles->pluck('id')->toArray();
@@ -142,31 +151,52 @@ class CommandeController extends Controller
         }
 
         foreach ($articles as $article) {
+            $data = [
+                'pu' => $article['pu'],
+                'quantite' => $article['quantite'],
+                'tva' => $article['tva'],
+            ];
+
+            if (key_exists('object', $article) AND $article['object'] !== null) {
+                $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
+                if ($depotPrixArticle->quantite !== null) {
+                    $depotPrixArticle->quantite = $depotPrixArticle->quantite - $article['quantite'];
+                    $depotPrixArticle->save();
+                }
+            }
+
             if ($commande->articles->contains($article["id"])) {
-                $commande->articles()->updateExistingPivot($article["id"], [
-                    'pu' => $article['pu'],
-                    'quantite' => $article['quantite'],
-                    'tva' => $article['tva'],
-                ]);
+                $commande->articles()->updateExistingPivot($article["id"], $data);
             } else {
-                $commande->articles()->attach($article['id'], [
-                    'pu' => $article['pu'],
-                    'quantite' => $article['quantite'],
-                    'tva' => $article['tva'],
-                ]);
+                $commande->articles()->attach($article['id'], $data);
             }
         }
 
         return true;
     }
 
+    public function checkArticleQuantite(array $articles): bool
+    {
+        $errors = [];
+
+        foreach ($articles as $article) {
+            if (key_exists('object', $article) AND $article['object'] !== null) {
+                if (floatval($article['quantite']) > floatval($article['object']['quantite'])) {
+                    $errors[] = false;
+                }
+            }
+        }
+
+        if (count($errors) > 0) return false;
+        return true;
+    }
 
     /**
-     * Recuperer le dernier dernier devis
-     *
-     * @param Request $request
-     * @return Response
-     */
+    * Recuperer le dernier dernier devis
+    *
+    * @param Request $request
+    * @return Response
+    */
     public function getKey(Request $request)
     {
         $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
@@ -188,7 +218,6 @@ class CommandeController extends Controller
                 break;
         }
     }
-
 
     public function updateFile(Commande $commande, UploadedFile $file)
     {

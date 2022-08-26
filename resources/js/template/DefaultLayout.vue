@@ -13,6 +13,7 @@
             width="290px"
             :showOneChild="true"
             theme='grey-theme'
+            @item-click="onItemClick"
         />
 
         <div class="main-content" id="view" :class="[{'collapsed' : collapsed}]">
@@ -265,6 +266,12 @@ export default defineComponent({
     },
 
     methods: {
+        onItemClick (event, item) {
+            if (item.logout === true) {
+                this.logOut();
+            }
+        },
+
         /**
          * Permet de deconnecter un utilisateur
          *
@@ -605,6 +612,20 @@ export default defineComponent({
                             icon: 'fa fa-info-circle',
                         },
                     ]
+                },
+                {
+                    header: "Mon compte",
+                    hiddenOnCollapse: true,
+                },
+                {
+                    href: '/point-de-vente/liste',
+                    title: 'Paramètres',
+                    icon: 'fa fa-cog',
+                },
+                {
+                    title: 'Déconnexion',
+                    logout: true,
+                    icon: 'fa fa-sign-out',
                 },
             ];
         }

@@ -17,7 +17,7 @@ class CreateDepotPrixArticlesTable extends Migration
             $table->id();
             $table->foreignId('article')->references('id')->on('articles');
             $table->foreignId('depot')->references('id')->on('depots');
-            $table->decimal('quantite', 10)->nullable(true)->default(null)->comment('Null si tous les autres articles sont concerné par le prix');
+            $table->decimal('quantite', 10)->unsigned()->nullable(true)->default(null)->comment('Null si tous les autres articles sont concerné par le prix');
             $table->decimal('pu', 10);
             $table->timestamps();
         });

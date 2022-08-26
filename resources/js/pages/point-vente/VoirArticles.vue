@@ -40,7 +40,7 @@ export default defineComponent({
     setup() {
         const loading = ref(false);
         const articles = ref([]);
-        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree - sortie': 'Quantité en stock', detailsPrix: 'Prix unitaire' };
+        const columns = { reference: 'Réference', designation: 'Désignation', unite: 'Unité', 'entree-sortie': 'Quantité en stock', detailsPrix: 'Prix unitaire' };
         const casts = [];
         const id = parseInt(router.currentRoute.value.params.id.toString());
 

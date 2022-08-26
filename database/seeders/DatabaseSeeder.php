@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        User::factory(1)->create();
         $users = User::all();
 
         foreach (config('constants.categories.articles') as $categorie) {

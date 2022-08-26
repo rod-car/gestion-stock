@@ -61,7 +61,6 @@ import { defineComponent, onBeforeMount, Ref, ref } from 'vue';
 import axiosClient from '../../axios';
 import Flash from '../../functions/Flash';
 import SaveBtn from '../../components/html/SaveBtn.vue';
-import { AxiosError } from 'axios';
 
 type Article = {
     reference: string,
@@ -90,7 +89,7 @@ export default defineComponent({
                 reference: article.value.reference,
                 designation: article.value.designation,
                 quantite: quantite,
-                pu: article.value.fullArticle.pivot.pu
+                pu: article.value.fullArticle === null ? 0 : article.value.fullArticle.pivot.pu
             });
             checkQuantite(fieldNumber.value - 1);
         };
@@ -133,10 +132,11 @@ export default defineComponent({
             let response = await axiosClient.get(`/depot/${depotId}/articles/?article_id=${articleId}`);
             article.value = response.data;
             loading.value = false;
+
             // Recuperer la reference de l'article ainsi que la quantité
             if (article.value !== null) {
                 addItem();
-                QUANTITE_MAX.value = parseFloat(article.value.entree) - parseFloat(article.value.sortie ?? 0);
+                QUANTITE_MAX.value = parseFloat(article.value.entree ?? 0) - parseFloat(article.value.sortie ?? 0);
             }
         });
         return {

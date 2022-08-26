@@ -6,6 +6,7 @@ use App\Models\Article\Article;
 use App\Models\Bon\BonReception;
 use App\Models\Depot\Depot;
 use App\Models\Depot\DepotPrixArticle;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -78,17 +79,25 @@ class DepotArticle extends Model
      *
      * @return Article
      */
-    public function getFullArticleAttribute(): Article
+    public function getFullArticleAttribute(): ?Article
     {
+        if ($this->getBon()->count() === 0) {
+            return null;
+        }
+
         $commande = $this->getBon->getCommande;
         $article = $commande->getArticle($this->article_id);
         return $article;
     }
 
 
-    public function getDetailsPrixAttribute()
+    public function getDetailsPrixAttribute(): ?Collection
     {
-        $allPrix = DepotPrixArticle::whereArticle($this->article->id)->whereDepot($this->depot->id)->get(["quantite", "pu"]);
-        return $allPrix;
+        if ($this->article()->count() === 0) return null;
+
+        $allPrix = DepotPrixArticle::whereArticle($this->article->id);
+        if ($this->depot()->count() > 0) $allPrix->whereDepot($this->depot->id);
+
+        return $allPrix->get(["id", "quantite", "pu"]);
     }
 }
