@@ -1,6 +1,3 @@
-import router from 'resources/js/router/router';
-import router from 'resources/js/router/router';
-import router from 'resources/js/router/router';
 <template>
     <form action="" method="post">
         <div class="row mb-5">
@@ -8,7 +5,7 @@ import router from 'resources/js/router/router';
                 <h6 class="text-uppercase text-primary mb-4">Information de la commande</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Commande.loading.value === false" v-model="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
+                        <Input v-if="Commande.loading.value === false" :modelValue="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 
@@ -86,7 +83,7 @@ import router from 'resources/js/router/router';
                 <div class="d-flex justify-content-between mb-4">
                     <h6 class="text-uppercase text-primary">Information de l'article</h6>
                     <button v-if="creationArticle" @click="creerArticle" type="button" class="btn btn-danger"><i class="fa fa-close me-2"></i>Fermer</button>
-                    <button v-else @click="creerArticle" type="button" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
+                    <button v-else-if="appro" @click="creerArticle" type="button" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -407,9 +404,9 @@ export default defineComponent({
         /**
          * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
          *
-         * @return  {void}
+         * @return  {Promise}
          */
-        const setCommandeKey = async () => {
+        const setCommandeKey = async (): Promise<any> => {
             await Commande.getKey(2, form.value.appro)
             form.value.numero = Commande.key.value
         }
@@ -444,7 +441,7 @@ export default defineComponent({
                 form.value.appro = props.appro
 
                 generateArticleArrayFromArticles(props.commande.articles)
-            } else if (props.devis.id !== undefined) {
+            } else if (props.devis !== null && props.devis.id !== undefined) {
                 nombreArticle.value = props.devis.articles.length
                 form.value.date = props.devis.date
                 form.value.adresse_livraison = props.devis.adresse_livraison

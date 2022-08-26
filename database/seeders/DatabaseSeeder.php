@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Article\Article;
-use App\Models\Article\Categorie;
-use App\Models\Personnel\Fonction;
-use App\Models\Role\Role;
+use App\Models\Categorie\Categorie;
+use App\Models\Fournisseur\Fournisseur;
 use App\Models\User;
+use App\Models\Role\Role;
 use Illuminate\Database\Seeder;
+use App\Models\Personnel\Fonction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,14 +19,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
-        /*Categorie::factory(10)->create();
-        Article::factory(200)->create();
-        Role::factory(20)->create();
-
-        $categories = Categorie::all(); */
-
+        User::factory(1)->create();
         $users = User::all();
+
+        foreach (config('constants.categories.articles') as $categorie) {
+            Categorie::create($categorie);
+        }
+
+        foreach (config('constants.articles') as $article) {
+            $article = Article::create($article);
+            $article->categories()->attach(1);
+        }
+
+        foreach (config('constants.fournisseurs') as $fournisseur) {
+            Fournisseur::create($fournisseur);
+        }
 
         foreach (config('constants.fonctions') as $name => $description) {
             $fonction = Fonction::create([
@@ -54,17 +62,5 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             $user->fonctions()->attach(rand(1, 3));
         }
-
-        /*User::all()->each(function ($user) use ($roles) {
-            $user->roles()->attach(
-                $roles->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        });*/
-
-        /*Article::all()->each(function ($article) use ($categories) {
-            $article->categories()->attach(
-                $categories->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        });*/
     }
 }

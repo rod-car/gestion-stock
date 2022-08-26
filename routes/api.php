@@ -5,14 +5,15 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Role\RoleController;
 use App\Http\Controllers\Api\Depot\DepotController;
 use App\Http\Controllers\Api\User\AbilityController;
+use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Article\CommandeController;
+use App\Http\Controllers\Api\Bon\BonReceptionController;
 use App\Http\Controllers\Api\Client\CategorieController;
-use App\Http\Controllers\Api\Client\ClientController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
 use App\Http\Controllers\Api\Parametres\ParametreGeneraleController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 
 // Authentification fourni par laravel Breeze
 Route::post('/auth/login', [AuthenticatedSessionController::class, 'store']);
@@ -58,8 +58,20 @@ Route::middleware('auth:sanctum')->group(function () {
     // Recuperer les permissions groupé par fonction
     Route::get('/permissions-groups', [FonctionController::class, 'permissionsGroups']);
 
+
+    // ----------------------------------------------------------- Gestion de dépot (Entrepot / Point de vente) ----------------------------------------------------------------------
+
+    // Permet de recuperer les articles dans un depot en particulier
+    Route::get('/depot/{depot}/articles', [ArticleController::class, 'articles']);
+
+    // Permet de recuperer les articles dans un depot en particulier
+    Route::post('/depot/{depot}/gerer-prix/{article}', [DepotController::class, 'gererPrixArticle']);
+
     // Route pour la gestion de point de vente
     Route::apiResource('/depot', DepotController::class);
+
+    // ----------------------------------------------------------- Fin gestion de dépot ----------------------------------------------------------------------
+
 
     // Gerer tous les catégories (Articles, Client, Fournisseur)
     Route::apiResource('/categorie', CategorieController::class);
@@ -78,6 +90,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD des commande et devis
     Route::apiResource('/commandes', CommandeController::class);
+
+    // Ressource qui gere les CRUD des bos de reception
+    Route::apiResource('/bon-receptions', BonReceptionController::class);
 
     // Gestion des paramètres
     Route::get('/parametres/generale', [ParametreGeneraleController::class, 'index']);

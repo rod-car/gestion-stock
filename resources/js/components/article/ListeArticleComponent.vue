@@ -3,6 +3,7 @@
         name="article"
         :data="articles"
         :columns="{ reference: 'Réference', designation: 'Désignation', unite: 'Unité', stock_alert: 'Stock d\'alerte' }"
+        :actions="true"
         @onDeleteItem="deleteItem"
     />
 

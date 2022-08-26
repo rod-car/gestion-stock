@@ -11,7 +11,7 @@ class Categorie extends Model
     use HasFactory;
 
     protected $fillable = [
-        "id", "libelle", "description", "type", "parent",
+        "libelle", "description", "type", "parent",
     ];
 
 

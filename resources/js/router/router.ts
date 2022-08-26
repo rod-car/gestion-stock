@@ -20,6 +20,7 @@ import articles from './routes/articles/articles';
 import devis from './routes/devis/devis';
 import commande from './routes/commande/commande';
 import parametres from './routes/parametres/parametres';
+import bonreception from './routes/commande/reception';
 
 const routes: Array<any> = [
     {
@@ -44,6 +45,7 @@ const routes: Array<any> = [
     .concat(articles)
     .concat(devis)
     .concat(commande)
+    .concat(bonreception)
     .concat(parametres)
 
 const router = createRouter({
@@ -75,7 +77,6 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
-
 
 /**
  * Mettre l'utilisateur connecté dans le store

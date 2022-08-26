@@ -3,6 +3,7 @@
 namespace App\Models\Depot;
 
 use App\Models\User;
+use App\Models\Article\Article;
 use App\Models\Depot\Travailler;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,7 +24,7 @@ class Depot extends Model
     ];
 
 
-    protected $with = ["responsables", "travailleurs"];
+    protected $with = ["responsables", "travailleurs", "articles"];
 
 
     /**
@@ -49,5 +50,17 @@ class Depot extends Model
         return $this->belongsToMany(User::class, 'travailler', 'depot', 'personnel')
             ->wherePivot('est_responsable', true)
             ->withPivot(['est_responsable']);
+    }
+
+
+    /**
+     * Listes des articles dans le depot
+     *
+     * @return BelongsToMany
+     */
+    public function articles(): BelongsToMany
+    {
+        return $this->belongsToMany(Article::class, 'depot_articles', 'depot_id', 'article_id')
+            ->withPivot(['quantite', 'responsable', 'bon', 'date_transaction', 'type']);
     }
 }

@@ -1,5 +1,6 @@
 import NotFound from '../../pages/errors/NotFound.vue';
 import Forbidden from '../../pages/errors/Forbidden.vue';
+import InternalServerError from '../../pages/errors/InternalServerError.vue';
 
 const routes = [
     {
@@ -15,6 +16,15 @@ const routes = [
         path: '/403',
         name: 'Forbidden',
         component: Forbidden,
+        meta: {
+            requiresAuth: false,
+            gate: null,
+        }
+    },
+    {
+        path: '/500',
+        name: 'Internal Server Error',
+        component: InternalServerError,
         meta: {
             requiresAuth: false,
             gate: null,

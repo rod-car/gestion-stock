@@ -30,7 +30,7 @@ class ModifierArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->validationRules($this->id);
+        return $this->validationRules($this->article->id);
     }
 
     public function messages()

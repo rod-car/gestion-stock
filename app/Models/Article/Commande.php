@@ -15,6 +15,11 @@ class Commande extends Model
 {
     use HasFactory;
 
+    /**
+     * Colonnes de la base de données pour l'assignement de masse
+     *
+     * @var array
+     */
     protected $fillable = [
         "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "validite" // Uniquement pour les dévis
     ];
@@ -42,7 +47,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $appends = ["expire", "date_expiration"];
+    protected $appends = ["expire", "date_expiration", "recu"];
 
 
     /**
@@ -62,9 +67,7 @@ class Commande extends Model
      */
     public function getDateExpirationAttribute(): ?string
     {
-        if ($this->type === 2) { // Si c'est une commande, pas de date d'expiration
-            return null;
-        }
+        if ($this->type === 2) return null; // Si c'est une commande, pas de date d'expiration
 
         if ($this->validite === null) return null;
 
@@ -98,7 +101,7 @@ class Commande extends Model
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class, 'commande_articles', 'commande', 'article')
-            ->withPivot(['quantite', 'pu', 'tva']);
+            ->withPivot(['quantite', 'pu', 'tva', 'quantite_recu']);
     }
 
 
@@ -132,5 +135,33 @@ class Commande extends Model
     public function devis(): BelongsTo
     {
         return $this->belongsTo(Commande::class, 'devis', 'id');
+    }
+
+    /**
+     * Permet de savoir si tous les articles d'une commande est récu (Livré par le fournisseur)
+     *
+     * @return boolean
+     */
+    public function getRecuAttribute(): bool
+    {
+        if ($this->type === 1) return false; // Si c'est un devis, pas de reception
+
+        $recu = true;
+
+        foreach ($this->articles as $article)
+        {
+            if (doubleval($article->pivot->quantite) === doubleval($article->pivot->quantite_recu))
+                $recu = boolval($recu AND true);
+            else
+                $recu = boolval($recu AND false);
+        }
+
+        return $recu;
+    }
+
+
+    public function getArticle(int $id)
+    {
+        return $this->articles()->wherePivot('article', $id)->first();
     }
 }

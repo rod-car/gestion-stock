@@ -22,4 +22,46 @@ return [
         'Vendeur' => 'Responsable de vente',
         'Directeur' => 'Responsable de tout',
     ],
+    'fournisseurs' => [
+        [
+            "nom" => "RAKOTO Beloha",
+            "adresse" => "Mangarano",
+            "email" => "rakoto@gmail.com",
+            "contact" => "032 54 123 43",
+        ],
+        [
+            "nom" => "JEAN Paul",
+            "adresse" => "Bazar be",
+            "email" => "paul@gmail.com",
+            "contact" => "032 54 123 44",
+        ],
+    ],
+    'categories' => [
+        "articles" => [
+            [
+                "libelle" => 'Matériel informatique',
+                "description" => 'Tous ce qui est matériel informatique',
+                "type" => 3,
+            ],
+            [
+                "libelle" => 'Divers',
+                "description" => 'Tous les autres artiles',
+                "type" => 3,
+            ],
+        ],
+    ],
+    'articles' => [
+        [
+            'reference' => 'ART-0001',
+            'designation' => 'Ordinateur',
+            'unite' => 'Nombre',
+            'description' => 'Ordinateur portable de marque ACER',
+        ],
+        [
+            'reference' => 'ART-0002',
+            'designation' => 'Souris',
+            'unite' => 'Nombre',
+            'description' => 'Souris de marque DELL',
+        ],
+    ],
 ];

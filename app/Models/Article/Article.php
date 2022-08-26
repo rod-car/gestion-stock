@@ -12,21 +12,21 @@ class Article extends Model
     use HasFactory;
 
     /**
-     * The primary key for the model.
+     * Clé primaire du model
      *
      * @var string
      */
     protected $primaryKey = 'id';
 
     /**
-     * The "type" of the primary key ID.
+     * Type de clé primaire
      *
      * @var string
      */
     protected $keyType = 'int';
 
     /**
-     * Indicates if the IDs are auto-incrementing.
+     * Determiner si la clé primaire est en AUTO_INCREMENT
      *
      * @var bool
      */
@@ -41,15 +41,37 @@ class Article extends Model
     protected $with = ['categories'];
 
 
+    /**
+     * Le colonnes de la base de données pour l'assignement de masse
+     *
+     * @var array
+     */
     protected $fillable = [
         'reference', 'designation', 'stock_alert', 'unite', 'description',
     ];
 
+    /**
+     * Attribut contenant les sous categories de l'article
+     *
+     * @var array
+     */
     public array $sc = [];
 
+
+    /**
+     * Ajout de l'attribut a la volée
+     *
+     * @var array
+     */
     protected $appends = ["sc"];
 
-    public function getScAttribute()
+
+    /**
+     * Recuperer les sous catégories de l'article
+     *
+     * @return array
+     */
+    public function getScAttribute(): array
     {
         return $this->sc;
     }

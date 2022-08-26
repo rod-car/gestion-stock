@@ -65,4 +65,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Donnée de test
 
-Il suffit de lancer la migration avec php artisan migrate --seed
+Il suffit de lancer la migration
+```
+php artisan migrate:fresh --seed
+```

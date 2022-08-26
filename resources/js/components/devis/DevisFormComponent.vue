@@ -20,7 +20,7 @@
                         </label>
 
                         <MultiSelect v-if="!Fournisseur.loading.value" v-bind:class="hasError ? 'border-danger' : ''" label="nom" valueProp="id"
-                            v-model="form.fournisseur" :options="Fournisseur.entities.value" :closeOnSelect="false"
+                            v-model="form.fournisseur" :options="Fournisseur.entities.value" :closeOnSelect="true"
                             :clearOnSelect="false" :searchable="true" noOptionsText="Aucun fournisseur"
                             noResultsText="Aucun fournisseur" @close="check" />
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
@@ -45,7 +45,7 @@
                         </label>
 
                         <MultiSelect v-if="!Client.loading.value" v-bind:class="hasError ? 'border-danger' : ''" label="nom" valueProp="id"
-                            v-model="form.client" :options="Client.entities.value" :closeOnSelect="false"
+                            v-model="form.client" :options="Client.entities.value" :closeOnSelect="true"
                             :clearOnSelect="false" :searchable="true" noOptionsText="Aucun client"
                             noResultsText="Aucun client" @close="check" />
 
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="col-xl-12">
-                        <FileInput :multiple="false" @fileChanged="handleChange" :default="devis.file_path !== null ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
+                        <FileInput :multiple="false" @fileChanged="handleChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 <div class="d-flex justify-content-between mb-4">
                     <h6 class="text-uppercase text-primary">Information de l'article</h6>
                     <button v-if="creationArticle" @click="creerArticle" type="button" class="btn btn-danger"><i class="fa fa-close me-2"></i>Fermer</button>
-                    <button v-else @click="creerArticle" type="button" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
+                    <button v-else-if="appro === true" @click="creerArticle" type="button" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -113,11 +113,39 @@
                             <tbody>
                                 <tr v-for="i in nombreArticle" :key="i">
                                     <td>
-                                        <MultiSelect label="designation" valueProp="id" v-model="form.articles[i - 1].id"
-                                            :options="Article.entities.value" :closeOnSelect="false"
-                                            :clearOnSelect="false" :searchable="true" noOptionsText="Aucun article"
-                                            noResultsText="Aucun article" @close="checkArticle" />
-                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.id`]">
+                                        <MultiSelect v-if="appro === true"
+                                            label="designation"
+                                            valueProp="id"
+                                            v-model="form.articles[i - 1].id"
+                                            :options="Article.entities.value"
+                                            :closeOnSelect="true"
+                                            :clearOnSelect="false"
+                                            :searchable="true"
+                                            noOptionsText="Aucun article"
+                                            noResultsText="Aucun article"
+                                            @close="checkArticle" />
+
+                                        <MultiSelect
+                                            v-else
+                                            v-model="form.articles[i - 1].object"
+                                            placeholder="Rechercher un article"
+                                            noResultsText="Aucun article trouvé"
+                                            noOptionsText="Aucun article trouvé"
+                                            :closeOnSelect="true"
+                                            :filter-results="true"
+                                            :multiple="false"
+                                            :min-chars="1"
+                                            :resolve-on-load="false"
+                                            :delay="500"
+                                            :searchable="true"
+                                            :object="true"
+                                            :options="async function (query: string) {
+                                                return await fetchArticles(query)
+                                            }"
+                                            @select="handleSelect(i-1)"
+                                        />
+
+                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.id`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.id`][0] }}
                                         </span>
                                     </td>
@@ -175,11 +203,11 @@ import MultiSelect from '@vueform/multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import useCRUD from '../../services/CRUDServices';
 import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
-
 import { montantHT, montantTTC } from '../../functions/functions';
 import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
+import axiosClient from '../../axios';
 
 const Article = useCRUD('/article')
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
@@ -237,6 +265,8 @@ export default defineComponent({
     },
 
     setup(props) {
+        const test = ref(null);
+
         const form = ref({
             numero: null,
             type: 1,
@@ -253,6 +283,17 @@ export default defineComponent({
         const creationArticle = ref(false);
         const creationFrs = ref(false);
         const creationClient = ref(false);
+
+        const fetchArticles = async (query: string): Promise<any> => {
+            return await Article.findBy('designation', query)
+        }
+
+        const handleSelect = (index: number) => {
+            const object = form.value.articles[index].object
+            form.value.articles[index].id = object.id
+            form.value.articles[index].pu = object.pu
+            calculerMontant(index)
+        }
 
         const articleCree = async (): Promise<any> => {
             await Article.all()
@@ -387,6 +428,7 @@ export default defineComponent({
                     tva: 20.00,
                     montant_ht: null,
                     montant_ttc: null,
+                    object: null,
                 })
             } else {
                 form.value.articles.push({
@@ -396,6 +438,7 @@ export default defineComponent({
                     tva: article === null ? 20 : article.pivot.tva,
                     montant_ht: article === null ? null : montantHT(article),
                     montant_ttc: article === null ? null : montantTTC(article),
+                    object: null,
                 })
             }
 
@@ -479,7 +522,7 @@ export default defineComponent({
             Devis, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
             form, nombreArticle, checkArticle, setDevisKey, hasError, dateState, calculerMontant, addItem, removeItem,
             generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
-            handleChange,
+            handleChange, test, fetchArticles, handleSelect,
         }
     },
 

@@ -49,9 +49,9 @@ export default defineComponent({
     },
 
     components: {
-    CommandeFormComponent,
-    CommandeFormLoadingComponent
-},
+        CommandeFormComponent,
+        CommandeFormLoadingComponent
+    },
 });
 
 </script>

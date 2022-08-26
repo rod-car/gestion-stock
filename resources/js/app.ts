@@ -20,6 +20,8 @@ import 'vue-m-message/dist/style.css'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
+import Maska from 'maska';
+
 const options = {
     color: "#58BFD9",
     failedColor: "#874b4b",
@@ -50,6 +52,7 @@ const app = createApp({
     .use(VueSidebarMenu)
     .use(Message)
 
+app.use(Maska);
 app.config.globalProperties.$SimpleAlert = VueSimpleAlert
 app.mount('#app');
 

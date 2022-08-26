@@ -1,0 +1,39 @@
+ENTREE EN STOCK
+
+On veut mettre pour chaque reference d'article dans un depot en particulier (Entrepot ou Point de vente):
+    -   Un prix global
+    -   Un prix particulier (en précisant la quntité concerné)
+
+SOLUTION N° 1:
+
+    Principe:
+        -   Création d'une table (depot_article_prix)
+        -   Avec les colones:
+            *   Identifiant du dépot
+            *   Identifiant de l'article
+            *   Prix unitaire (Global ou particulier)
+            *   Quantité concerné (null|0: Tous les articles - Le prix global, Supérieur à 0: Seulement les quantité spécifié)
+
+    Details:
+        Pour un article qui a un prix global et particulier, il y aura deux ou n enregistrements: Une pour le prix global (quantite = null|0),
+        et la deuxième pour le prix particulier avec la quantité souhaité.
+
+    Avantages:
+        -   Simple a mettre en place
+        -   Facilement comprehensible
+        -   Pas besoin de mettre a jour la table pour des nouvelles entrée en stock (S'il n y a pas de prix particulier)
+
+    Incovénients:
+        -   Redondances des données
+        -   Complexité des requêtes
+        -   Complexité au niveau de récuperation des donées
+
+    Recuperation des articles au niveau de vente:
+        -   Afficher les articles avec differentes prix (Meme reference avec differentes prix).
+        -   L'utilisateur choisi l'article qui lui convient avec le prix souhaité.
+        -   Mise a jour de la quantité dans la table si le prix de l'article selectionné est un prix particulier.
+
+
+
+SORTIE DE STOCK
+

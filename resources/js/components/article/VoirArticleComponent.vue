@@ -1,9 +1,9 @@
+
 <template>
     <div class="row">
         <div class="col-xl-4 d-flex justify-content-start align-items-center flex-column">
             <ProfileAvatar class="avatar" bgColor="#CCC" textColor="#000" size="l" :username="article.designation"></ProfileAvatar>
             <h1 class="text-muted text-center mb-3">{{ article.designation }}</h1>
-
             <div class="text-center">
                 <div v-for="categorie in article.categories" :key="categorie.id">
                     <span class="badge bg-primary me-2">{{ categorie.libelle }}</span>
@@ -61,4 +61,3 @@ export default defineComponent({
 
 });
 </script>
-

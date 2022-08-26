@@ -3,10 +3,11 @@ import axiosClient from '../axios';
 import Router from '../router/router';
 import Flash from '../functions/Flash';
 import { AxiosResponse } from 'axios';
-import { tSExternalModuleReference } from '@babel/types';
+
 interface CRUD {
     create(data: Object, headers?: Object): Promise<any>,
     find(id: number): Promise<any>,
+    findBy(field: string, value: string|number): Promise<any>
     update(id: number, data: object, updateType?: number | null): Promise<any>,
     all(type?: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
     destroy(id: number, data: Array<any>|null, index: number): Promise<any>,
@@ -19,7 +20,7 @@ interface CRUD {
     entity: Ref<any>,
     entities: Ref<Array<any>>,
     key: Ref<string | null>,
-    getKey(type: number, appro: boolean): Promise<any>,
+    getKey(type: number, appro?: boolean): Promise<any>,
 }
 
 /**
@@ -168,8 +169,22 @@ export default function useCRUD(url: string): CRUD {
     const all = async (type?: number | null, except?: string | null, appro?: boolean | null): Promise<any> => {
         loading.value = true
 
+        let query: string = '';
+
+        if (type !== null && type !== undefined) query += `?type=${type}`
+        if (except !== null && except !== undefined) {
+            let operator = '?';
+            if (query !== '') operator = '&'
+            query += `${operator}except=${except}`
+        }
+        if (appro !== null && appro !== undefined) {
+            let operator = '?';
+            if (query !== '') operator = '&'
+            query += `${operator}appro=${appro}`
+        }
+
         try {
-            let response = await axiosClient.get(`${url}?type=${type}&except=${except}&appro=${appro}`)
+            let response = await axiosClient.get(`${url}${query}`)
             entities.value = response.data
 
         } catch (error: any) {
@@ -272,9 +287,20 @@ export default function useCRUD(url: string): CRUD {
         loading.value = false
     }
 
+    const findBy = async (field: string, value: string|number): Promise<any> => {
+        try {
+            let response = await axiosClient.get(`${url}?${field}=${value}`)
+            return response.data
+        } catch (error: any) {
+            if (error.response.status === 404) return Router.push("/404");
+            if (error.response.status === 500) return Router.push("/500");
+            Router.push("/500");
+        }
+    }
+
     return {
         entity, entities, errors, success, loading, creating, updating, deleting, key,
-        getKey, create, find, all, destroy, update,
+        getKey, create, find, all, destroy, update, findBy,
     }
 
 }

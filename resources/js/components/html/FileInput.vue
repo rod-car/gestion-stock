@@ -28,12 +28,14 @@ export default defineComponent({
         },
     },
 
+    emits: ['fileChanged'],
+
     setup(props, { emit }) {
         const paths: Ref<Array<any>> = ref([]);
 
         const handleFileChange = (e: Event) => {
             if (e.target) {
-                const input = <HTMLInputElement>e.target
+                const input = e.target as HTMLInputElement
                 const reader = new FileReader();
 
                 if (input.files)

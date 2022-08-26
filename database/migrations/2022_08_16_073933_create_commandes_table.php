@@ -17,7 +17,7 @@ class CreateCommandesTable extends Migration
             $table->bigIncrements('id');
             $table->string('numero')->unique('numero_commande');
             $table->unsignedSmallInteger('type')->comment('Type de commande: 1 - Dévis, 2 - Commande proprement dit');
-            $table->date('date')->useCurrent();
+            $table->date('date');
             $table->integer('validite')->nullable()->comment('Validité du dévis en nombre de jour');
             $table->unsignedBigInteger('fournisseur')->nullable()->index('commandes_fournisseur_foreign');
             $table->unsignedBigInteger('client')->nullable()->index('commandes_client_foreign');
@@ -25,6 +25,7 @@ class CreateCommandesTable extends Migration
             $table->integer('status')->default(1)->comment('Status du dévis: 1 - Valide');
             $table->timestamps();
             $table->string('adresse_livraison')->nullable()->comment('Adresse de livraison des marchandises dans lecas d\'une commande');
+            $table->string('file_path')->nullable();
         });
     }
 

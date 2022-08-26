@@ -16,9 +16,10 @@ class CreateCommandeArticlesTable extends Migration
         Schema::create('commande_articles', function (Blueprint $table) {
             $table->unsignedBigInteger('article');
             $table->unsignedBigInteger('commande')->index('commande_articles_commande_foreign');
-            $table->integer('quantite');
+            $table->decimal('quantite', 10);
             $table->decimal('pu', 12);
             $table->decimal('tva')->default(20);
+            $table->decimal('quantite_recu', 10)->default(0);
 
             $table->primary(['article', 'commande']);
         });
