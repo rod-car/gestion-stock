@@ -190,12 +190,12 @@ class ArticleController extends Controller
     public function getDepotArticles(?Depot $depot = null)
     {
         $depotArticle = DepotArticle::query()
-            ->selectRaw("ANY_VALUE(articles.reference) as reference")
-            ->selectRaw("ANY_VALUE(articles.designation) as designation")
-            ->selectRaw("ANY_VALUE(articles.unite) as unite")
-            ->selectRaw("ANY_VALUE(articles.id) as article_id")
-            ->selectRaw("ANY_VALUE(depot_articles.depot_id) as depot_id")
-            ->selectRaw("ANY_VALUE(depot_articles.bon) as bon")
+            ->selectRaw("MIN(articles.reference) as reference")
+            ->selectRaw("MIN(articles.designation) as designation")
+            ->selectRaw("MIN(articles.unite) as unite")
+            ->selectRaw("MIN(articles.id) as article_id")
+            ->selectRaw("MIN(depot_articles.depot_id) as depot_id")
+            ->selectRaw("MIN(depot_articles.bon) as bon")
             ->selectRaw("SUM(CASE WHEN depot_articles.type = 1 THEN quantite END) as entree")
             ->selectRaw("SUM(CASE WHEN depot_articles.type = 0 THEN quantite END) as sortie")
             ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
