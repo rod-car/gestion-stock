@@ -30,7 +30,9 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = [
+        'status', 'int'
+    ];
 
 
     /**
