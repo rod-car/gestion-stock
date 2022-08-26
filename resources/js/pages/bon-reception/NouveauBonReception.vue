@@ -40,7 +40,7 @@ export default defineComponent({
             if (commandeId.value !== null) {
                 // Recuperer la commande en question
                 await find(commandeId.value);
-                if (entity.value.type !== 2) {
+                if (parseInt(entity.value.type) !== 2) {
                     Flash('error', 'Erreur', 'Veuillez selectionner une commande');
                     router.push('/commande/fournisseur/liste');
                     return;
