@@ -2,14 +2,15 @@
     <form action="" method="post">
         <div class="row">
             <div class="col-xl-6 mb-3">
-                <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+                <BaseInput v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</BaseInput>
             </div>
             <div class="col-xl-6 mb-3">
-                <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+                <BaseInput v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</BaseInput>
             </div>
             <div class="col-xl-12 mb-3">
-                <Input v-model="form.contact" :error="errors.contact">Contact</Input>
+                <BaseInput v-model="form.contact" :error="errors.contact">Contact</BaseInput>
             </div>
+
             <div class="d-flex justify-content-end">
                 <SaveBtn @click.prevent="save()" :loading="creating || updating">Enregistrer</SaveBtn>
             </div>
@@ -18,15 +19,15 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent, onBeforeMount, ref, Ref } from "vue";
 import Input from "../../components/html/Input.vue";
+import BaseInput from "../../components/html/BaseInput.vue";
 import SaveBtn from "../../components/html/SaveBtn.vue";
 import useCRUD from "../../services/CRUDServices";
 
 const { create, update, creating, updating, errors, success } = useCRUD("/depot");
 
-interface Form {
+type Form = {
     nom: string | null,
     localisation: string | null,
     contact: string | null,
@@ -53,7 +54,7 @@ export default defineComponent({
     },
 
     components: {
-        Input, SaveBtn,
+        Input, SaveBtn, BaseInput,
     },
 
     setup(props) {

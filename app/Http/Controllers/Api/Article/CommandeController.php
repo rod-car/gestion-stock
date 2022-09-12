@@ -8,10 +8,10 @@ use Illuminate\Http\Response;
 use App\Models\Article\Commande;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use App\Models\Depot\DepotPrixArticle;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
-use App\Models\Depot\DepotPrixArticle;
 
 class CommandeController extends Controller
 {
@@ -175,13 +175,26 @@ class CommandeController extends Controller
         return true;
     }
 
+
+    /**
+     * Verifier si la quantité des articles demandés est suffisant en stock
+     *
+     * @param array $articles Tableau des articles
+     * @return boolean
+     */
     public function checkArticleQuantite(array $articles): bool
     {
         $errors = [];
 
-        foreach ($articles as $article) {
-            if (key_exists('object', $article) AND $article['object'] !== null) {
-                if (floatval($article['quantite']) > floatval($article['object']['quantite'])) {
+        foreach ($articles as $article)
+        {
+            if (key_exists('object', $article) AND $article['object'] !== null)
+            {
+                $quantite = floatval($article['quantite']);
+                $totalQuantite = floatval($article['object']['quantite']); // Donne 0 si la quantite est tous les quantité restant
+
+                if ($totalQuantite !== 0.0 AND $quantite > $totalQuantite)
+                {
                     $errors[] = false;
                 }
             }
@@ -219,6 +232,14 @@ class CommandeController extends Controller
         }
     }
 
+
+    /**
+     * Mettre a jour la pièce jointe associé a la commande
+     *
+     * @param Commande $commande La commande
+     * @param UploadedFile $file La pièce jointe
+     * @return void
+     */
     public function updateFile(Commande $commande, UploadedFile $file)
     {
         $path = $file->storeAs('devis', $commande->numero . '.' . $file->clientExtension(), "public");

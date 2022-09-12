@@ -1,0 +1,74 @@
+<template>
+    <label v-if="hasSlot" class="form-label">
+        <slot></slot>
+        <span class="text-danger ms-2" v-if="required">(*)</span>
+    </label>
+    <textarea v-if="type === 'textarea'" :class="hasErrors === true ? 'border-danger' : ''" :placeholder="placeholder" @input="updateValue" class="form-control" :value="modelValue"></textarea>
+
+    <input v-else :class="hasErrors === true ? 'border-danger' : ''" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @input="updateValue" class="form-control" />
+
+    <div class="text-danger mt-1" v-if="hasErrors">
+        {{ error[0] }}
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, Ref, ref, computed, watch } from 'vue'
+
+export default  defineComponent({
+    props: {
+        modelValue: String,
+        type: {
+            type: String,
+            required: false,
+            default: 'text'
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        error: {
+            type: Array,
+            required: false,
+            default: [],
+        },
+        required: {
+            type: Boolean,
+            required: false,
+        },
+        filter: {
+            type: String,
+            required: false,
+        },
+    },
+
+    emits: ['update:modelValue'],
+
+    setup(props, { emit, slots }) {
+        const hasErrors: Ref<boolean> = ref(false);
+
+        const updateValue = (e: Event) => {
+            let value = (e.target as HTMLInputElement).value
+            if (value !== "") hasErrors.value = false
+            emit('update:modelValue', value)
+        }
+
+        const hasSlot = computed(() => {
+            return slots.default !== undefined;
+        })
+
+        watch(
+            () => props.error, (value) => {
+                if (value && value.length > 0) {
+                    hasErrors.value = true;
+                }
+            }
+        );
+
+        return {
+            hasErrors, updateValue, hasSlot,
+        }
+    },
+})
+</script>

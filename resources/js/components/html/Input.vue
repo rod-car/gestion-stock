@@ -53,9 +53,13 @@ export default defineComponent({
         const hasErrors: Ref<boolean> = ref(false);
 
         const handleBlur = (e: Event) => {
-            let value = (e.target as HTMLInputElement).value
-            if (value !== "") hasErrors.value = false
-            emit('update:modelValue', value)
+            if (e.target instanceof HTMLInputElement) {
+                let value = e.target.value
+                if (value !== "") hasErrors.value = false
+                emit('update:modelValue', value)
+            }
+            throw new Error("Event is not an input element event");
+
         }
 
         const hasSlot = computed(() => {

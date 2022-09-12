@@ -9,6 +9,7 @@ use App\Models\Article\Article;
 use App\Models\Categorie\Categorie;
 use App\Http\Controllers\Controller;
 use App\Models\Article\DepotArticle;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
 
@@ -26,41 +27,54 @@ class ArticleController extends Controller
         if ($queries !== [])
         {
             $article = $this->getDepotArticles();
-            $result = [];
 
             foreach ($queries as $key => $value)
             {
                 $article->where($key, 'LIKE', "%$value%");
             }
 
-            foreach ($article->get() as $a)
-            {
-                if ($a->detailsPrix !== null)
-                {
-                    foreach ($a->detailsPrix as $p)
-                    {
-                        $quantite = $p->quantite ?? "Quantité restant";
-
-                        if ($quantite !== "0.00")
-                        {
-                            $result[] = [
-                                'id' => $a->article_id,
-                                'value' => $p->id,
-                                'reference' => $a->reference,
-                                'designation' => $a->designation,
-                                'quantite' => $p->quantite,
-                                'pu' => $p->pu,
-                                'label' => $a->reference . " - " . $a->designation . " - " . $p->pu . " ($quantite)",
-                            ];
-                        }
-                    }
-                }
-            }
-
-            return $result;
+            return $this->getResults($article->get());
         }
 
         return Article::all();
+    }
+
+
+    /**
+     * Generer le resultat de recherche a afficher dans les vues
+     *
+     * @param Collection $articles Collection de depot articles
+     * @return array Tableau de résultat
+     */
+    public function getResults(Collection $articles): array
+    {
+        $result = [];
+
+        foreach ($articles as $a)
+        {
+            if ($a->detailsPrix !== null)
+            {
+                foreach ($a->detailsPrix as $p)
+                {
+                    $quantite = $p->quantite ?? "Quantité restant";
+
+                    if ($quantite !== "0.00")
+                    {
+                        $result[] = [
+                            'id' => $a->article_id,
+                            'value' => $p->id,
+                            'reference' => $a->reference,
+                            'designation' => $a->designation,
+                            'quantite' => $p->quantite,
+                            'pu' => $p->pu,
+                            'label' => $a->reference . " - " . $a->designation . " - " . $p->pu . " ($quantite)",
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
