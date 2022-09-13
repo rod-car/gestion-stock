@@ -3,9 +3,9 @@
         <slot></slot>
         <span class="text-danger ms-2" v-if="required">(*)</span>
     </label>
-    <textarea v-if="type === 'textarea'" :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @change="handleBlur" class="form-control" :value="modelValue"></textarea>
+    <textarea v-if="type === 'textarea'" :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :placeholder="placeholder" @input="updateValue" class="form-control" :value="modelValue"></textarea>
 
-    <input v-else :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @change="handleBlur" class="form-control" />
+    <input v-else :class="hasErrors === true ? 'border-danger' : ''" v-bind="$attrs" :type="type === undefined ? 'text' : type" :placeholder="placeholder" :value="modelValue" @input="updateValue" class="form-control" />
 
     <div class="text-danger mt-1" v-if="hasErrors">
         {{ error[0] }}
@@ -52,14 +52,10 @@ export default defineComponent({
     setup(props, { emit, slots }) {
         const hasErrors: Ref<boolean> = ref(false);
 
-        const handleBlur = (e: Event) => {
-            if (e.target instanceof HTMLInputElement) {
-                let value = e.target.value
-                if (value !== "") hasErrors.value = false
-                emit('update:modelValue', value)
-            }
-            throw new Error("Event is not an input element event");
-
+        const updateValue = (e: Event) => {
+            let value = (e.target as HTMLInputElement).value
+            if (value !== "") hasErrors.value = false
+            emit('update:modelValue', value)
         }
 
         const hasSlot = computed(() => {
@@ -75,7 +71,7 @@ export default defineComponent({
         );
 
         return {
-            hasErrors, handleBlur, hasSlot,
+            hasErrors, updateValue, hasSlot,
         }
     },
 })

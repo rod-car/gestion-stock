@@ -85,14 +85,21 @@ Route::middleware('auth:sanctum')->group(function () {
     // Ressource qui gere les CRUD de l'article
     Route::apiResource('/article', ArticleController::class);
 
+    // ----------------------------------------------------------- Gestion de commande ----------------------------------------------------------------------
+
     // Recupere le nouveau numéro du dévis ou commande et l'afficher au client
     Route::get('/commandes/get-key', [CommandeController::class, 'getKey']);
 
     // Ressource qui gere les CRUD des commande et devis
     Route::apiResource('/commandes', CommandeController::class);
 
-    // Ressource qui gere les CRUD des bos de reception
+    // Ressource qui gere les CRUD des bons de reception
     Route::apiResource('/bon-receptions', BonReceptionController::class);
+
+    // Ressource qui gere les CRUD des bons de livraisons
+    Route::apiResource('/bon-livraisons', BonReceptionController::class);
+
+    // ----------------------------------------------------------- Fin gestion de commande ----------------------------------------------------------------------
 
     // Gestion des paramètres
     Route::get('/parametres/generale', [ParametreGeneraleController::class, 'index']);

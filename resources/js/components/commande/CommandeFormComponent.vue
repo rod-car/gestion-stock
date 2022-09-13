@@ -5,7 +5,7 @@
                 <h6 class="text-uppercase text-primary mb-4">Information de la commande</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Commande.loading.value === false" :modelValue="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
+                        <Input v-if="Commande.loading.value === false" v-model="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 

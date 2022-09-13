@@ -36,8 +36,23 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'login' => ['required', 'string'],
+            'email' => ['required', 'string'],
             'password' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'email.required' => "Email ou nom d'utilisateur obligatoire",
+            'email.string' => "Email ou nom d'utilisateur non valide",
+            'password.required' => "Mot de passe obligatoire",
+            'password.string' => "Mot de passe non valide",
         ];
     }
 
@@ -51,15 +66,15 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $user = User::where('email', $this->login)
-            ->orWhere('username', $this->login)
+        $user = User::where('email', $this->email)
+            ->orWhere('username', $this->email)
             ->first();
 
         if (!$user || Crypt::decrypt($user->password) !== $this->password) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'login' => __('auth.failed'),
+                'login' => "Adresse email / Nom d'utilisateur ou mot de passe incorrecte",
             ]);
         }
 

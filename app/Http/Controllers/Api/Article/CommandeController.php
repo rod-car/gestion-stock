@@ -226,6 +226,10 @@ class CommandeController extends Controller
                 return response()->json(["key" => reference(3, null, "BR")]);
                 break;
 
+            case 4:
+                return response()->json(["key" => reference(4, null, "BL")]);
+                break;
+
             default:
                 throw new Exception("Type qui n'est pas une type de commande... Type: {$request->type}");
                 break;

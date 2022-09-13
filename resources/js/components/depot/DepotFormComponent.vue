@@ -2,13 +2,13 @@
     <form action="" method="post">
         <div class="row">
             <div class="col-xl-6 mb-3">
-                <BaseInput v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</BaseInput>
+                <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
             </div>
             <div class="col-xl-6 mb-3">
-                <BaseInput v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</BaseInput>
+                <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
             </div>
             <div class="col-xl-12 mb-3">
-                <BaseInput v-model="form.contact" :error="errors.contact">Contact</BaseInput>
+                <Input v-model="form.contact" :error="errors.contact">Contact</Input>
             </div>
 
             <div class="d-flex justify-content-end">
@@ -21,16 +21,15 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, ref, Ref } from "vue";
 import Input from "../../components/html/Input.vue";
-import BaseInput from "../../components/html/BaseInput.vue";
 import SaveBtn from "../../components/html/SaveBtn.vue";
 import useCRUD from "../../services/CRUDServices";
 
 const { create, update, creating, updating, errors, success } = useCRUD("/depot");
 
 type Form = {
-    nom: string | null,
-    localisation: string | null,
-    contact: string | null,
+    nom: string,
+    localisation: string,
+    contact: string,
     point_vente: boolean,
 }
 
@@ -54,15 +53,15 @@ export default defineComponent({
     },
 
     components: {
-        Input, SaveBtn, BaseInput,
+        Input, SaveBtn,
     },
 
     setup(props) {
 
         const form: Ref<Form> = ref({
-            nom: null,
-            localisation: null,
-            contact: null,
+            nom: '',
+            localisation: '',
+            contact: '',
             point_vente: props.pointVente,
         });
 
@@ -77,9 +76,9 @@ export default defineComponent({
 
         const resetForm = (): void => {
             form.value = {
-                nom: null,
-                localisation: null,
-                contact: null,
+                nom: '',
+                localisation: '',
+                contact: '',
                 point_vente: true,
             }
         }

@@ -19,7 +19,7 @@ import ModifierDevisClient from '../../../pages/devis/client/ModifierDevis.vue';
 import VoirDevisClient from '../../../pages/devis/client/VoirDevis.vue';
 import ListeDevisClient from '../../../pages/devis/client/ListeDevis.vue';
 
-const devisFournisseurs = [
+const devisFournisseurs: any = [
     {
         path: '/devis/fournisseur/nouveau',
         name: 'devis.fournisseur.nouveau',
@@ -59,7 +59,7 @@ const devisFournisseurs = [
 ]
 
 
-const devisClient = [
+const devisClient: any = [
     {
         path: '/devis/client/nouveau',
         name: 'devis.client.nouveau',
@@ -100,6 +100,6 @@ const devisClient = [
 
 const routes = devisFournisseurs.concat(devisClient)
 
-export default routes.map(route => {
+export default routes.map((route: any) => {
     return { ...route }
 });

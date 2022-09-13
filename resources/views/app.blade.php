@@ -30,23 +30,10 @@
 
 <body>
     <div id="app">
-        @auth
-            <default-layout></default-layout>
-        @endauth
-        @guest
-            <login></login>
-        @endguest
+        <default-layout></default-layout>
     </div>
 
-    @guest
-        <script>
-                localStorage.removeItem('auth_token');
-                window.history.pushState(null, null, '/login')
-        </script>
-    @endguest
-
     <script src="{{ asset('js/app.js') }}"></script>
-
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <!-- bootstrap 4 js -->
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>

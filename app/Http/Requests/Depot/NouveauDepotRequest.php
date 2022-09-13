@@ -37,6 +37,7 @@ class NouveauDepotRequest extends FormRequest
     {
         return [
             "nom.required" => "Le nom est obligatoire",
+            "localisation.required" => "La localisation est réquis",
         ];
     }
 
