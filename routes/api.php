@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Article\CommandeController;
+use App\Http\Controllers\Api\Bon\BonLivraisonController;
 use App\Http\Controllers\Api\Bon\BonReceptionController;
 use App\Http\Controllers\Api\Client\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -97,7 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/bon-receptions', BonReceptionController::class);
 
     // Ressource qui gere les CRUD des bons de livraisons
-    Route::apiResource('/bon-livraisons', BonReceptionController::class);
+    Route::apiResource('/bon-livraisons', BonLivraisonController::class);
 
     // ----------------------------------------------------------- Fin gestion de commande ----------------------------------------------------------------------
 

@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Article\Commande;
+use App\Models\Bon\Bon;
 use App\Models\Bon\BonLivraison;
-use App\Models\Bon\BonReception;
 
 if (!function_exists('reference')) {
     /**
@@ -125,7 +125,7 @@ if (!function_exists('numeroBonReception')) {
      */
     function numeroBonReception(string $prefix = "BR", int $nombreIncrementation = 4): string
     {
-        $dernierDevis = BonReception::orderBy('id', 'desc')->first();
+        $dernierDevis = Bon::whereType(1)->orderBy('id', 'desc')->first();
         $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
 
         if ($dernierDevis !== null) {
@@ -158,7 +158,7 @@ if (!function_exists('numeroBonLivraison')) {
      */
     function numeroBonLivraison(string $prefix = "BL", int $nombreIncrementation = 4): string
     {
-        $dernierDevis = BonLivraison::orderBy('id', 'desc')->first();
+        $dernierDevis = Bon::whereType(2)->orderBy('id', 'desc')->first();
         $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
 
         if ($dernierDevis !== null) {

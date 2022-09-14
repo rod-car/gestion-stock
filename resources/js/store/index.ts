@@ -31,7 +31,17 @@ const store = createStore({
                 .then(res => {
                     commit('setUser', res.data);
                 })
-                .catch( err => console.error("Erreur d'ajout des user", err));
+                .catch(err => {
+                    // Si l'utilisateur n'est pas connecté
+                    if (err.response.status === 401) {
+                        store.state.user.token = null
+                        store.state.user.data = { id: null, role: null, nom_personnel: null, prenoms_personnel: null }
+                        localStorage.removeItem('auth_token')
+                    } else {
+                        console.error(`Erreur ajax: ${err.response.data.message}`);
+                    }
+
+                });
         },
     },
     mutations: {

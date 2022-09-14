@@ -110,6 +110,7 @@ type Form = {
     commande: number, // Numero de la commande qui a generer le bon de livraison
     livreur: string|null,
     contact: string | null,
+    type: number, // Pour determiner que c'est un bon de livraison
 }
 
 export default defineComponent({
@@ -146,7 +147,7 @@ export default defineComponent({
     },
 
     setup(props) {
-        const form = ref({
+        const form: Ref<Form> = ref({
             numero: null,
             date: null,
             adresse_livraison: null,
@@ -154,7 +155,8 @@ export default defineComponent({
             commande: props.commande.id,
             livreur: null,
             contact: null,
-        } as Form);
+            type: 2,
+        });
 
         const valide: Ref<boolean> = ref(true);
         const nombreArticle = ref(1);

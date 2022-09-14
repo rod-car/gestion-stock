@@ -161,6 +161,12 @@ class DepotController extends Controller
         return $data;
     }
 
+    /**
+     * Permet de verifier le prix unitaire de l'article
+     *
+     * @param array $articles
+     * @return boolean
+     */
     public function checkPU(array $articles): bool
     {
         $pus = [];
@@ -172,6 +178,15 @@ class DepotController extends Controller
         return true;
     }
 
+
+    /**
+     * Permet de gerer le prix dans un depot
+     *
+     * @param Depot $depot Depot en question
+     * @param Article $article L'article en question
+     * @param Request $request
+     * @return void
+     */
     public function gererPrixArticle(Depot $depot, Article $article, Request $request)
     {
         $data = $request->validate([
@@ -181,6 +196,8 @@ class DepotController extends Controller
             "articles.*.quantite" => ['nullable', 'numeric', 'min:1', 'max:999999999999'],
             "articles.*.pu" => ['required', 'numeric', 'min:1', 'max:999999999999'],
         ]);
+
+        // $exists = DepotArticle::whereDepotId($depot->id)->whereArticleId($article->id)->first() !== null;
 
         if ($this->checkPU($data['articles']) === false) return response(['message' =>'Les prix sont identiques'], 422);
 
