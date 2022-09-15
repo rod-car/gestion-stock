@@ -1,5 +1,9 @@
 <template>
     <form action="" method="post" @submit.prevent="save" enctype="multipart/form-data">
+        <pre>
+            {{ form.depot }}
+        </pre>
+
         <div class="row mb-5">
             <div class="col-xl-12">
                 <h6 class="text-uppercase text-primary mb-4">Information du dévis</h6>
@@ -77,6 +81,38 @@
                     <div class="col-xl-6 mb-3">
                         <Input type="number" v-model="form.validite" :error="Devis.errors.value.validite" required>Validité du dévis (en Jour)</Input>
                     </div>
+
+                    <!-- Mentionner ici le point de vente ou entrepot qui fait la vente. Uniquement pour la vente -->
+
+                    <div v-if="form.appro === false" class="col-xl-12 mb-3">
+                        <label for="depot" class="form-label">Point de vente ou Depôt</label>
+
+                        <MultiSelect
+                            v-model="form.depot"
+                            placeholder="Rechercher un depot"
+                            noResultsText="Aucun depot trouvé"
+                            noOptionsText="Aucun depot trouvé"
+                            label="nom"
+                            valueProp="id"
+                            :closeOnSelect="true"
+                            :filter-results="true"
+                            :multiple="false"
+                            :min-chars="1"
+                            :resolve-on-load="false"
+                            :delay="500"
+                            :searchable="true"
+                            :object="false"
+                            :options="async function (query: string) {
+                                return await fetchDepots(query)
+                            }"
+                        />
+
+                        <div class="text-danger mt-1" v-if="hasError">
+                            {{ Devis.errors.value.depot[0] }}
+                        </div>
+                    </div>
+
+                    <!-- ------------------------------------------- -->
 
                     <div class="col-xl-12">
                         <FileInput :multiple="false" @fileChanged="handleChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
@@ -213,6 +249,7 @@ const Article = useCRUD('/article')
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Devis
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
+const Depot = useCRUD('/depot'); // Recuperer le service de CRUD de depots
 
 type Form = {
     numero: string|null,
@@ -223,7 +260,8 @@ type Form = {
     client: number|null,
     appro: boolean,
     articles: Array<any>,
-    file?: FileList|null,
+    file?: FileList | null,
+    depot?: any,
 }
 
 export default defineComponent({
@@ -254,7 +292,7 @@ export default defineComponent({
         numberAuto: {
             type: Boolean,
             required: false,
-            defaulr: true,
+            default: true,
         },
 
         hasAttachment: {
@@ -286,6 +324,10 @@ export default defineComponent({
 
         const fetchArticles = async (query: string): Promise<any> => {
             return await Article.findBy('designation', query)
+        }
+
+        const fetchDepots = async (query: string): Promise<any> => {
+            return await Depot.findBy('nom', query)
         }
 
         const handleSelect = (index: number) => {
@@ -522,7 +564,7 @@ export default defineComponent({
             Devis, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
             form, nombreArticle, checkArticle, setDevisKey, hasError, dateState, calculerMontant, addItem, removeItem,
             generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
-            handleChange, test, fetchArticles, handleSelect,
+            handleChange, test, fetchArticles, handleSelect, fetchDepots,
         }
     },
 

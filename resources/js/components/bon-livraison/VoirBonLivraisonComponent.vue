@@ -7,20 +7,20 @@
             <h6>Telephone: +261 34 123 45</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-center justify-content-end">
-            <h4>BON DE RECEPTION</h4>
+            <h4>BON DE LIVRAISON</h4>
         </div>
     </div>
 
     <div class="row mb-5">
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
-            <h6>Fournisseur: {{ bonReception.get_commande.frs.nom }}</h6>
-            <h6>{{ bonReception.get_commande.frs.adresse }}</h6>
-            <h6>Téléphone: {{ bonReception.get_commande.frs.contact }}</h6>
+            <h6>Fournisseur: {{ bonLivraison.get_commande.cl.nom }}</h6>
+            <h6>{{ bonLivraison.get_commande.cl.adresse }}</h6>
+            <h6>Téléphone: {{ bonLivraison.get_commande.cl.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(bonReception.date, false, long = false) }}</h6>
-            <h6>Référence: {{ bonReception.numero }}</h6>
-            <h6>Adresse de livraison: {{ bonReception.adresse_livraison }}</h6>
+            <h6>Date: {{ formatDate(bonLivraison.date, false, long = false) }}</h6>
+            <h6>Référence: {{ bonLivraison.numero }}</h6>
+            <h6>Adresse de livraison: {{ bonLivraison.adresse_livraison }}</h6>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="article in bonReception.articles" :key="article.id">
+                    <tr v-for="article in bonLivraison.articles" :key="article.id">
                         <td>{{ article.designation }}</td>
                         <td>{{ article.pivot.quantite }}</td>
                     </tr>
@@ -51,7 +51,7 @@ import { formatDate, format } from '../../functions/functions';
 
 export default {
     props: {
-        bonReception: {
+        bonLivraison: {
             type: Object,
             required: true,
         },

@@ -272,7 +272,6 @@ export default defineComponent({
             form.value.commande = props.commande.id
 
             generateArticleArrayFromArticles(props.commande.articles)
-            Depot.all(1)
             if (props.nouveau === true) setLivraisonKey();
         })
 

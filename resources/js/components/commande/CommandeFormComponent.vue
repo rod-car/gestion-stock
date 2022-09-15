@@ -74,6 +74,39 @@
                     <div class="col-xl-6">
                         <Input v-model="form.adresse_livraison" :error="Commande.errors.value.adresse_livraison" required>Adresse de livraison</Input>
                     </div>
+
+                    <!-- Mentionner ici le point de vente ou entrepot qui fait la vente. Uniquement pour la vente -->
+
+                    <div v-if="form.appro === false" class="col-xl-12 mb-3">
+                        <label for="depot" class="form-label">Point de vente ou Depôt</label>
+
+                        <MultiSelect
+                            v-model="form.depot"
+                            placeholder="Rechercher un depot"
+                            noResultsText="Aucun depot trouvé"
+                            noOptionsText="Aucun depot trouvé"
+                            label="nom"
+                            valueProp="id"
+                            :closeOnSelect="true"
+                            :filter-results="true"
+                            :multiple="false"
+                            :min-chars="1"
+                            :resolve-on-load="devis.id && devis.id !== null"
+                            :delay="500"
+                            :searchable="true"
+                            :object="false"
+                            :disabled="devis.id && devis.id !== null"
+                            :options="async function (query: string) {
+                                return await fetchDepots(query)
+                            }"
+                        />
+
+                        <div class="text-danger mt-1" v-if="hasError">
+                            {{ Commande.errors.value.depot[0] }}
+                        </div>
+                    </div>
+
+                    <!-- ------------------------------------------- -->
                 </div>
             </div>
         </div>
@@ -145,6 +178,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
@@ -178,6 +212,7 @@ const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
 const Article = useCRUD('/article')
+const Depot = useCRUD('/depot')
 
 type Form = {
     numero: string|null,
@@ -190,6 +225,7 @@ type Form = {
     appro: boolean,
     articles: Array<any>,
     devis?: number,
+    depot?: number,
 }
 
 export default defineComponent({
@@ -249,6 +285,13 @@ export default defineComponent({
         const creationArticle = ref(false);
         const creationFrs = ref(false);
         const creationClient = ref(false);
+
+        const fetchDepots = async (query: string|null): Promise<any> => {
+            if (query === null) {
+                query = ""
+            }
+            return await Depot.findBy('nom', query)
+        }
 
         const articleCree = async (): Promise<any> => {
             await Article.all()
@@ -450,6 +493,7 @@ export default defineComponent({
                 form.value.type = 2
                 form.value.appro = props.appro
                 form.value.devis = props.devis.id
+                form.value.depot = props.devis.depot
 
                 generateArticleArrayFromArticles(props.devis.articles)
             } else {
@@ -461,7 +505,7 @@ export default defineComponent({
         return {
             Commande, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
             form, nombreArticle, checkArticle, setCommandeKey, hasError, dateState, calculerMontant, addItem, removeItem,
-            generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
+            generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient, fetchDepots,
         }
     },
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Article;
 
-use Response;
 use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
 use App\Models\Article\Article;
 use App\Models\Categorie\Categorie;
 use App\Http\Controllers\Controller;
 use App\Models\Article\DepotArticle;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
         if ($queries !== [])
         {
-            $article = $this->getDepotArticles();
+            $article = $this->getDepotArticles(null, 'depot_articles.depot_id');
 
             foreach ($queries as $key => $value)
             {
@@ -201,7 +201,14 @@ class ArticleController extends Controller
         return $depotArticle->take($limit)->get();
     }
 
-    public function getDepotArticles(?Depot $depot = null)
+
+    /**
+     * Recupere tous les articles d'un dépot ou tous les dépots articles
+     *
+     * @param Depot|null $depot Le depot concerné
+     * @return Builder
+     */
+    public function getDepotArticles(?Depot $depot = null, ?string $by = null)
     {
         $depotArticle = DepotArticle::query()
             ->selectRaw("ANY_VALUE(articles.reference) as reference")
@@ -215,6 +222,9 @@ class ArticleController extends Controller
             ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
 
         if ($depot !== null) $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);
-        return $depotArticle->groupBy(['articles.id']);
+        $depotArticle->groupBy(['articles.id']);
+        if ($by !== null) $depotArticle->groupBy($by);
+
+        return $depotArticle;
     }
 }

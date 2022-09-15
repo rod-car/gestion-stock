@@ -47,6 +47,8 @@ trait WithValidation
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
 
             "devis" => ["nullable", "numeric", "exists:commandes,id"],
+
+            "depot" => ["nullable", "exists:depots,id"],
         ];
     }
 

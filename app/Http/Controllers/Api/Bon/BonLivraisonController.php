@@ -32,18 +32,18 @@ class BonLivraisonController extends Controller
     public function store(NouveauBonLivraisonRequest $request)
     {
         $data = $request->validated();
+        $data["type"] = 2; // Pour indiquer que c'est un bon de livraison client
         $articles = $data["articles"];
         unset($data["articles"]);
 
         $commande = Commande::findOrFail($data['commande']);
-        $reception = Bon::create($data);
-        $depot = Depot::findOrFail($data['depot']);
+        $livraison = Bon::create($data);
 
-        $this->updateArticles($reception, $articles);
+        $this->updateArticles($livraison, $articles);
         $this->updateCommandeArticles($commande, $articles);
-        $this->updateDepotArticles($reception, $depot, $articles);
+        $this->updateDepotArticles($livraison, $commande->getDepot, $articles);
 
-        return $reception;
+        return $livraison;
     }
 
     /**
@@ -82,16 +82,16 @@ class BonLivraisonController extends Controller
     }
 
     /**
-     * Permet de mettre a jour les articles d'un bon de reception
+     * Permet de mettre a jour les articles d'un bon de livraison
      *
-     * @param Bon $reception Bon de reception
+     * @param Bon $livraison Bon de livraison
      * @param array $articles Tableau contenant les articles
      * @return void
      */
-    public function updateArticles(Bon $reception, array $articles)
+    public function updateArticles(Bon $livraison, array $articles)
     {
         foreach ($articles as $article) {
-            $reception->articles()->attach($article['id'], [
+            $livraison->articles()->attach($article['id'], [
                 "quantite" => abs($article["quantite"])
             ]);
         }
@@ -120,24 +120,24 @@ class BonLivraisonController extends Controller
     /**
      * Permet de mettre a jour les articles dans un depot
      *
-     * @param Bon $reception La bon de reception
+     * @param Bon $livraison La bon de livraison
      * @param Depot $depot Le depot
      * @param array $articles Tableau des articles
      * @return void
      */
-    public function updateDepotArticles(Bon $reception, Depot $depot, array $articles)
+    public function updateDepotArticles(Bon $livraison, Depot $depot, array $articles)
     {
         foreach ($articles as $article) {
             DepotArticle::create([
                 "article_id" => $article['id'],
                 "quantite" => $article['quantite'],
                 "responsable" => Auth::user()->id,
-                "bon" => $reception->id,
+                "bon" => $livraison->id,
                 "depot_id" => $depot->id,
                 "provenance_id" => null,
                 "destination_id" => null,
                 "date_transaction" => today()->toDateString(),
-                "type" => 1,
+                "type" => 0,
             ]);
         }
     }

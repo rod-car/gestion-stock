@@ -109,8 +109,13 @@ export default defineComponent({
             const limit: number = 5;
 
             loading.value = true;
-            let response = await axiosClient.get(`/depot/${props.depot.id}/articles?limit=${limit}`)
-            articles.value = response.data;
+            try {
+                let response = await axiosClient.get(`/depot/${props.depot.id}/articles?limit=${limit}`)
+                articles.value = response.data;
+            } catch (err) {
+                console.log(err)
+            }
+
             loading.value = false
         });
 
