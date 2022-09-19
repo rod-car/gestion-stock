@@ -16,7 +16,7 @@ use App\Http\Requests\Article\ModifierArticleRequest;
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Recuperer la liste des articles
      *
      * @return \Illuminate\Http\Response
      */
@@ -78,7 +78,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrer un nouveau article
      *
      * @param  \App\Http\Requests\Article\NouveauArticleRequest  $request
      * @return \Illuminate\Http\Response
@@ -99,7 +99,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Voir un article spécifique
      *
      * @param  \App\Models\Article\Article  $article
      * @return \Illuminate\Http\Response
@@ -134,11 +134,11 @@ class ArticleController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Mettre a jour un article
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Http\Requests\Article\ModifierArticleRequest  $article
-     * @return \Illuminate\Http\Response
+     * @param  ModifierArticleRequest $request
+     * @param  Article $article
+     * @return Response
      */
     public function update(ModifierArticleRequest $request, Article $article)
     {
@@ -163,7 +163,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer un article de la base de données
      *
      * @param  \App\Models\Article\Article  $article
      * @return \Illuminate\Http\Response

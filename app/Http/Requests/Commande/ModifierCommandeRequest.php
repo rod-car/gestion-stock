@@ -76,9 +76,11 @@ class ModifierCommandeRequest extends FormRequest
     {
         $this->toogleClientFrs();
 
-        // $this->merge([
-        //     'articles' => json_decode($this->articles, true),
-        // ]);
+        if (is_string($this->articles)) {
+            $this->merge([
+                'articles' => json_decode($this->articles, true),
+            ]);
+        }
 
         if ($this->date !== null) {
             $date = Carbon::parse($this->date);

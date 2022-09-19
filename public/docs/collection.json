@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost:800"
+            "value": "http:\/\/localhost:8000"
         }
     ],
     "info": {
         "name": "Gest-stock",
-        "_postman_id": "a24f077e-00df-4188-95b5-53217de0131a",
+        "_postman_id": "78772a7c-b791-48f9-b186-2817dca430e6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,7 +20,7 @@
             "description": "",
             "item": [
                 {
-                    "name": "Log in the user.",
+                    "name": "Permet de connecer l'utilisateur",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"login\":\"quas\",\"password\":\"secret\"}"
+                            "raw": "{\"email\":\"explicabo\",\"password\":\"secret\"}"
                         },
                         "description": "",
                         "auth": {
@@ -175,7 +175,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_personnel\":\"s\",\"prenoms_personnel\":\"qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah\",\"contact_personnel\":\"non\",\"email\":\"qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia\",\"adresse_personnel\":\"voluptatum\",\"cin_personnel\":\"049166688068\",\"username\":\"wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz\",\"password\":\"secret\",\"password_confirmation\":\"sxrdrozvexzcozmu\",\"roles\":[null],\"permissions\":[\"et\"],\"fonctions\":[\"eveniet\"],\"login\":\"similique\"}"
+                            "raw": "{\"nom_personnel\":\"whjwkkiiglcyupolcnivosqmfjumdnocpctsuhrnzinhguzetfoxtntvrncumxrhvxakwxbtgcntmakgdqtcozauksmetbsljmryswwuemfusqprptzesqqyb\",\"prenoms_personnel\":\"qznyixbvctcizrzllyyuwetdffrptnyiekovzisahuxhftecvsvorqgokzgnwyoybtnzmuinraraadeprdjkdpjsnpdhtvxtebixnyipzfkewwszfgqvlwrxcpfelioyushtlmbbcgvzbprcprwumwxti\",\"contact_personnel\":\"eaque\",\"email\":\"lgndhgowdgojkhsmrsvsfvqewaarvzdbhsxvaokbwwuuyiioebqktiikqlvsubjytdamwhjc\",\"adresse_personnel\":\"exercitationem\",\"cin_personnel\":\"181586638286\",\"username\":\"pqkiodgvdkjmwauxgymlhkmvlgddpnztfkjnxippplmcacykexryqtxlozknanzahakcsaqeefumtnryfjsrpenilstkjblyhkqyfgcpfcqhyzjaxtazowolunujt\",\"password\":\"secret\",\"password_confirmation\":\"jhckpmcqvtxsrfepbyjjpnaxfjyfmyqappvwnegfljmtrznpxnuyubeacmzifulxlayazuxfyncyvbtn\",\"roles\":[null],\"permissions\":[\"ut\"],\"fonctions\":[\"sed\"],\"login\":\"velit\"}"
                         },
                         "description": "",
                         "auth": {
@@ -270,7 +270,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_personnel\":\"pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz\",\"prenoms_personnel\":\"pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh\",\"contact_personnel\":\"qui\",\"email\":\"rccjiddwgnonqffj\",\"adresse_personnel\":\"atque\",\"cin_personnel\":\"522392864780\",\"username\":\"xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd\",\"password\":\"dtgsqdkaabytlhxcmkx\",\"password_confirmation\":\"mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle\",\"permissions\":[\"hic\"],\"roles\":[null],\"fonctions\":[\"error\"]}"
+                            "raw": "{\"nom_personnel\":\"myqrdozhgbrjjikazgwmnzfuqjlntmgqqvspyneugjnmrxdbobxahwnsavrxvxrqyqexyxmftjmqnplnkcuekfzxugnkysdnzpckem\",\"prenoms_personnel\":\"vsugrfdnekvymhlzlzyadgvefxahwiqagjgqumtwamynojdyhsgszpqkmphqeqthkdtsnmtjuvspvnlmraowcbfguyfirfciuteyjrxlgsagdbielissrtehlmwlfrployzgzpwjhqhbkjtofycmlxrrfguinsjantzazccutwdzndrgscgiwflpcdgicdhl\",\"contact_personnel\":\"nihil\",\"email\":\"nzsqozrytytsbtjnpcqdgrlievddsa\",\"adresse_personnel\":\"sit\",\"cin_personnel\":\"113336187920\",\"username\":\"fmuyoxblhjixjxsikfqbqkqgbcawexuijhmchlymqztypuholyckrboabgwhcjptvamatwklvzbphlwgkausptmvcwumzggjrmd\",\"password\":\"wuaxgjydojiqxxbykdsocorqoqpxrwfhhyxrmilxjbligscscvctdxalslmyufiiskwlyqhzqfistfwibbbgredblpdkeraineedhtaqf\",\"password_confirmation\":\"exikkwxwiqgrvzlqvpowskpou\",\"permissions\":[\"minima\"],\"roles\":[null],\"fonctions\":[\"rerum\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -316,7 +316,7 @@
                     "response": []
                 },
                 {
-                    "name": "Destroy an authenticated session.",
+                    "name": "Deconnecter l'utilisateur et supprimer la session",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -509,7 +509,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_role\":\"hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw\"}"
+                            "raw": "{\"nom_role\":\"vrzmoaxjpstgvyziofdcqpaubwbtsflejtaocuplrxydfpgwqcjcigrkxksyqlltdrsperawoakzduxyuwxcrgdqdgjsaqkfjrdxihmleljwwenevadhdkbytaroxydztduzr\"}"
                         },
                         "description": "",
                         "auth": {
@@ -716,7 +716,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_fonction\":\"frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi\",\"description_fonction\":\"pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm\",\"enfants\":[\"maiores\"],\"permissions\":[\"dolor\"]}"
+                            "raw": "{\"nom_fonction\":\"lncwpsxnlrgpbzshqm\",\"description_fonction\":\"ruelcycrpzfftvhkgdwcodqyjjyhnrihocyxwojskdwqqlcrlggqmhhtzkqeyrjfxsqwbooxfruyenljpnfpnhhduovkvewmarnvmskabkghjpbgdmrzbypiyzbezrsvqlplukkpcpvxankouhlqitqqmemuvygjgxgdzrfsoicmzjlsuongybthvzlkccchllpnvcdnlcbfdlwjejorlcasfkyolgjezwgrmphvkmnrwjqeeigymulmrvuevhmwzmglshpodvfiwkwfulmkmccjyiulomrlbjxzaqrgndraa\",\"enfants\":[\"dolorem\"],\"permissions\":[\"aut\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -811,7 +811,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom_fonction\":\"jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf\",\"description_fonction\":\"huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz\",\"enfants\":[\"ab\"],\"permissions\":[\"adipisci\"]}"
+                            "raw": "{\"nom_fonction\":\"ibyccyvflkcawpmcivuelioeqxbnitwjhwcpruozjnfinilyssqcetjeeggbukwekaaonyawvcasewwwmzyufytjclshgsmfxxxilqxdudcxessjyszxcmrpkolhcuvfgqyukcetybkgjnphtsnpxkqkiulbyondnqkbkvvltzlgbmytvickmzvsgtoky\",\"description_fonction\":\"embgbwtmqeldzayhspofuwhfwvlqynmoneiznbttsyfjcdpbazbfaaudyebrfuanxahvhrxwzynlqcnhbgynhgrukgwxhnmzmuexhxtkhvjumabpqlnqppdmuctlwspplbridrhljdjkmesqistkatnvdlkbbtreatejrmcac\",\"enfants\":[\"voluptas\"],\"permissions\":[\"totam\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -1022,7 +1022,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy\",\"localisation\":\"dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk\",\"contact\":\"kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj\",\"point_vente\":true}"
+                            "raw": "{\"nom\":\"pehdtjdrvjptvfnuvzkuygqghvwkqgazsslnizkdxyslwkbzzifdgugwwosfkhzntpnxuoymvquxodcwjqorviyacb\",\"localisation\":\"bnamilanfdlnoxthnbjtipniwolzohdtxehfumfqjgnzbwgcbydnxuyjcgoaohtpqfxphpxovdxbbqtdsnfilbnnaikhrbtdcqjdsltyywpbhztfngvuagycptmdbfnhwykcffoxqlnbknxruuihgbaievpdaabhithgmdwmsv\",\"contact\":\"qzmavapsvocnxbawcunpvbeyblim\",\"point_vente\":false}"
                         },
                         "description": "",
                         "auth": {
@@ -1032,7 +1032,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "Voir un d\u00e9pot sp\u00e9cifique",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1043,7 +1043,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "1",
                                     "description": "The ID of the depot."
                                 }
                             ]
@@ -1088,7 +1088,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Supprimer un d\u00e9pot",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1099,46 +1099,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
-                                    "description": "The ID of the depot."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"nom\":\"rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp\",\"localisation\":\"bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb\",\"contact\":\"theg\",\"point_vente\":\"1\",\"responsables\":[null],\"travailleurs\":[null],\"type\":2}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Remove the specified resource from storage.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/depot\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/depot\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "4",
+                                    "value": "1",
                                     "description": "The ID of the depot."
                                 }
                             ]
@@ -1232,7 +1193,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"libelle\":\"lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu\",\"description\":\"mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty\",\"type\":1,\"sous_categories\":[null]}"
+                            "raw": "{\"libelle\":\"vmfioxhwsotvajtaigusedoaekfbbpcsbggkwhmurvofgfwpwdmlwznreejchcjbpgesrcdxiyzliawzgkkfnbiatmmritypublgyubagxvdiabqnjmuwisbwgirmkiaxtqbxakssstorwjaqwiobzrhokbastxgaxttvobl\",\"description\":\"uverpxafgrtofvzqmovpuisuvoraagfpzrwnrvzlnkzhhimvhmsmxzgxzkfdgmmdtoqlpzaletzomsryobdndealgbgsmmtntscpoperjygblzxzqqpsellaekbexhmzloularkvmrhmejiwvnyrkaykyoxtnjotuhmmyfegjxgfhxtobjfbcenzwihwngjrzawdwvkznuifiiwhfkzjbeazdxlmxcnjvraoucfbviwxrhktlcepkiekqhedpfydcuiwursnjrjdcyhcdljvaeclpdlvnzeeldryggtmzznmplptcrexhygxzqndrpbvazlrhjotgfvlnuybjxvyszlroisksuzfqydaeqybecoidtupxuvfsnpyzbbfctlfcnglrgdzsbyzrfjseipdpvmopweicavzkiooyymlqktkufszxyjvhdjzamrzdtdiizqhaiydmtocmlbkysreyildbgqxtgagvvxxjafgmqyogauneasiqauclddibqtotoeecxxillalqschlpixmvqphcbfkzrkafjmbyfqfvuvpvfhacidbcnqawulomtllvvsmtoeqltlmyhregfrhqrdwjzxkxceepnevlcvmbmudcfdrqoctsgyiozuqsalcslwgazuvyjquatvqiwqcskwhqtevrypdbvgvlxpkderyvhlyeolrpj\",\"type\":0,\"sous_categories\":[null]}"
                         },
                         "description": "",
                         "auth": {
@@ -1253,7 +1214,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the categorie."
                                 }
                             ]
@@ -1309,7 +1270,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the categorie."
                                 }
                             ]
@@ -1327,7 +1288,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"libelle\":\"kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf\",\"description\":\"ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr\",\"type\":0,\"sous_categories\":[null]}"
+                            "raw": "{\"libelle\":\"ygtbjimzhufghnpbzahbnbvyzitbitpischskkplfbojeembrzpvxlrgzigfhxypttmwjhpwqxmxicfprrienvkcbikujmqulwxlbygdfvqmcqsknobfrmyktxzvcbjhuscmojjlmnmtzwjsidsjoqwyofjmqjqoqttkcnejtqqdwahuzaz\",\"description\":\"zpqjczwbkofmgbrdgqrdoxqotyrwuwxjpsfukockwyclunzioqllndqhrbadjdgcxhysbkbpzbueytkffaxdhsqvwxasneqvxoyytyuldshdgdetkemhiidhqwupxkqlosvwsemgtddwkjdtcelvptjwiwvyjubjzvpecmbkqnadzhlielbodeyixogtitcotfqcmuijiwhwuyxnkntbqqyjblcfrpbgtjzzhamuuvzckwhhorcsazpofmforantkbxrleovcqzcxjkdtmslhawkjvdcacobmfalzzclezlsikiuhztzcwmcvkocltltzmeenmtcwohofuparnkemjtwnopfatqghbdjhkbtlvfjhgbrwubtyclyfkwcztcpkymbnaxzpulvheedyiiqqpwrwoejlxzfetihngisutzliuoobpevzvcuvysopjhgxjfupplqiblavjwjjkzashowzlmhvzskyxfevhwlkkutqdaeisypewnakvzwobzmgssbloglgjwcdmconjhwkwtilxeuxbutmkkiholeqtlrwskccuyxcxrhspefyrhtugjeysedxbkycjscdtldhzfkmynmbklupmkknfqdwkarypblxdarfzsbmgcxhhrkixuohoxxzrrugkokiuobiyjdolvfzvzhrcjogjwrqhsixnyqygegejavirfnsryxmrmhfizblgfdroaqekhcqkapgsbciuabsmfpekmavmwygbcgdywypqdutwgmhxafbcgxcpzmlrspmhqcjzeqbxxbonakmrpqtlzhjbhojkudjaau\",\"type\":1,\"sous_categories\":[null]}"
                         },
                         "description": "",
                         "auth": {
@@ -1348,7 +1309,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the categorie."
                                 }
                             ]
@@ -1442,7 +1403,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm\",\"adresse\":\"psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois\",\"email\":\"tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy\",\"contact\":\"aykwqymdxwnunxpqxvcmxcbwtnvfls\",\"categories\":[null],\"nif\":\"3948469469168\",\"cif\":\"s0675683B\",\"stat\":\"149s454s898s07830\"}"
+                            "raw": "{\"nom\":\"fuyuqdbtgjhggqyxqjfcvihytjjybcvsxvzcnofcjdbmemesnvgtzhkodukqjnqsikeizxhjvzrfeearukznqqlwspodgvvmvmigmlnuxdiuuyejhapgarwcwnyymkjtkqvnpxnidioulofi\",\"adresse\":\"khnagmqukphqljknsobgmyowdovoyifttlseehuatfdaextoxausaghvdxiyjepuqwfkbfxnkjlgefnmmizwsnweakgclm\",\"email\":\"bfbuqlnwkhdvqbhhamyhqxchsmrdqxbddfuueqnecacmzvlbyzgnlcxcfoubautvjrusjtgeniudwqkpqwnrezywvsrqmqppqrbwqpbdtemmxntqniklucnvfltqccyfsafxymvhdhkbbjsdfonqokc\",\"contact\":\"bbjbosgkugljo\",\"categories\":[null],\"nif\":\"3975045930014\",\"cif\":\"d5441147c\",\"stat\":\"507s982s959s05936\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1613,7 +1574,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw\",\"adresse\":\"owvbbgutbickrpegicdcixvhaaobmfitz\",\"email\":\"llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson\",\"contact\":\"mcveza\",\"categories\":[null]}"
+                            "raw": "{\"nom\":\"nmtovuqmfparkkbybkwjiehmouunayfdzqiiyyqpchsfxnbhfbsyvjcxloumndcwnqwdipdafvuliplbtspsjffwetsppyhmteyuhwzdjecreqereyrfamxtgrqfdynoermyrbxxfnzsgnnxspqqqz\",\"adresse\":\"dhxwcbmouuiywstpximelwncqqswzktcwruaydktthsfhfqisoebafc\",\"email\":\"ibgvzisiieypqmcpfuwojrazaegctpoatpqxaspwyrmsnxdfqqrzogtgcgjcjhacdylajqmxorotzsjwixymakalx\",\"contact\":\"tycejdiyoamynagbl\",\"categories\":[null]}"
                         },
                         "description": "",
                         "auth": {
@@ -1634,7 +1595,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1690,7 +1651,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1708,7 +1669,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx\",\"adresse\":\"tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt\",\"email\":\"rxkzraablbtfopvxtsm\",\"contact\":\"n\",\"categories\":[null],\"nif\":\"0539316524702\",\"cif\":\"R8469451g\",\"stat\":\"121s117s038s36113\"}"
+                            "raw": "{\"nom\":\"pxncblrixhkumjyrjvmrgvhritrpommsmpq\",\"adresse\":\"ubpgjccjzsttcisfdgelqpecjhfaovcryzfrfalxpmwauivfmekwkedbyccplfvqmooawygzvpqbesh\",\"email\":\"amxkzkvzhssemipxirsprhijgdhpodoqhjsalouyertzyrlxsxcacacarstdqiplyyxrornjurlmxncycitzbmslaulupggbgfxtfcntdnlseauxoezxrboksqsnlijifvvocnjgwnngcoyesfekjsheqkmhgnstdfcfmbqpz\",\"contact\":\"o\",\"categories\":[null],\"nif\":\"2251275578038\",\"cif\":\"t6490998E\",\"stat\":\"783s394s401s84191\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1729,7 +1690,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1754,7 +1715,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Recuperer la liste des articles",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1802,7 +1763,7 @@
                     ]
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Enregistrer un nouveau article",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1823,7 +1784,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reference\":\"drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr\",\"designation\":\"dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo\",\"unite\":\"skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl\",\"stock_alert\":468230064249,\"categories\":[\"quibusdam\"]}"
+                            "raw": "{\"reference\":\"anyzmmvvogjdetrjtnujltntxpxkxyxnnlbaehlcqtxjjxcvvbyiwtqvvvaaeuwgxqefgxngzixvrggyyeadzltfbilhbzzxgpknpdrhzewjphaeihjtognkqguopjldnvlosldtxfdgxdcegpzdqydorepjdmfwnwdanjkrebbdowbgpknycslpvhsakwaokbeobvmnyrnirzymexknhzfdkywdoupegrxzwkuqalpbw\",\"designation\":\"hyjvtvljapwcndpcxxgrsjdhyxwxqfvmtppgkzmgicvfyzjlaevpfasud\",\"unite\":\"ummqdrzmbqfkoazdezauqxhcppyjbbmeeliqbqdvqbipmnbqgccyvqovpgs\",\"stock_alert\":964380893809,\"categories\":[\"dolorem\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -1833,7 +1794,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "Voir un article sp\u00e9cifique",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1844,7 +1805,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -1889,7 +1850,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Supprimer un article de la base de donn\u00e9es",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1900,46 +1861,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
-                                    "description": "The ID of the article."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"reference\":\"umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd\",\"designation\":\"vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj\",\"unite\":\"sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs\",\"stock_alert\":491420543445,\"categories\":[\"quibusdam\"]}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Remove the specified resource from storage.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/article\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/article\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "5",
+                                    "value": "1",
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -2072,7 +1994,7 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "multipart\/form-data"
                             },
                             {
                                 "key": "Accept",
@@ -2080,8 +2002,104 @@
                             }
                         ],
                         "body": {
-                            "mode": "raw",
-                            "raw": "{\"numero\":\"sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx\",\"type\":\"2\",\"date\":\"2022-08-05 13:47:16\",\"validite\":278,\"articles\":[{\"id\":\"non\",\"pu\":219758479032,\"tva\":22,\"quantite\":582304606,\"montant_ht\":31972.161,\"montant_ttc\":13977.89}],\"adresse_livraison\":\"obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe\",\"login\":\"neque\",\"password\":\"secret\"}"
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "numero",
+                                    "value": "agwepmnshhpnuztsklrltmixhwwfruzdtemfmcngyiotmjuayycgbgilxxdxwbuxornzaafqdlgcabbmehfexczddadpvyvasrrchawevqbwzyhsjrdznlmmwchrjbrqmoucnvemdmvtahfumrimntgkbpykzyzhpoalouczvwomlifjdpmmjtegdyuvhqfnergmbol",
+                                    "type": "text",
+                                    "description": "Must be at least 2 characters. Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "2",
+                                    "type": "text",
+                                    "description": "Must be one of <code>1<\/code> or <code>2<\/code>."
+                                },
+                                {
+                                    "key": "date",
+                                    "value": "2022-09-16",
+                                    "type": "text",
+                                    "description": "Must be a valid date. Must be a valid date in the format <code>Y-m-d<\/code>."
+                                },
+                                {
+                                    "key": "validite",
+                                    "value": 70,
+                                    "type": "text",
+                                    "description": "Must be at least 1. Must not be greater than 365."
+                                },
+                                {
+                                    "key": "articles[0][id]",
+                                    "value": "perferendis",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][pu]",
+                                    "value": 757948541124,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][tva]",
+                                    "value": 23,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][quantite]",
+                                    "value": 420044368,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][object][0]",
+                                    "value": "quam",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][montant_ht]",
+                                    "value": 165145.795,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][montant_ttc]",
+                                    "value": 115241240.44,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "adresse_livraison",
+                                    "value": "njtiwigtxtrxmslzuqqebmeeznhdjxclgtbcvsksrmjwrwcuhnmxqwcyjtwonqtzvsporbjwrlmdkaezaeiuzuzfczjlqzkkubzrp",
+                                    "type": "text",
+                                    "description": "Must be at least 5 characters. Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "devis",
+                                    "value": 584.24323186,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "login",
+                                    "value": "expedita",
+                                    "type": "text",
+                                    "description": "Username or email adress of the user.      Exemple: testuser@example.com, user123"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "secret",
+                                    "type": "text",
+                                    "description": "The password of the  user."
+                                },
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
                         },
                         "description": "",
                         "auth": {
@@ -2102,7 +2120,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "23",
+                                    "value": "1",
                                     "description": "The ID of the commande."
                                 }
                             ]
@@ -2158,7 +2176,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "23",
+                                    "value": "1",
                                     "description": "The ID of the commande."
                                 }
                             ]
@@ -2194,16 +2212,16 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "23",
+                                    "value": "1",
                                     "description": "The ID of the commande."
                                 }
                             ]
                         },
-                        "method": "PUT",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "multipart\/form-data"
                             },
                             {
                                 "key": "Accept",
@@ -2211,8 +2229,97 @@
                             }
                         ],
                         "body": {
-                            "mode": "raw",
-                            "raw": "{\"numero\":\"ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg\",\"type\":\"1\",\"date\":\"2022-08-05 13:47:16\",\"validite\":353,\"articles\":[{\"id\":\"est\",\"pu\":647916922063,\"tva\":44,\"quantite\":828230286,\"montant_ht\":212.8724841,\"montant_ttc\":2818207.3567}],\"adresse_livraison\":\"erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton\"}"
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "numero",
+                                    "value": "uwljoxghbkbjetysmfucpctomu",
+                                    "type": "text",
+                                    "description": "Must be at least 2 characters. Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "2",
+                                    "type": "text",
+                                    "description": "Must be one of <code>1<\/code> or <code>2<\/code>."
+                                },
+                                {
+                                    "key": "date",
+                                    "value": "2022-09-16",
+                                    "type": "text",
+                                    "description": "Must be a valid date. Must be a valid date in the format <code>Y-m-d<\/code>."
+                                },
+                                {
+                                    "key": "validite",
+                                    "value": 354,
+                                    "type": "text",
+                                    "description": "Must be at least 1. Must not be greater than 365."
+                                },
+                                {
+                                    "key": "articles[0][id]",
+                                    "value": "voluptatem",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][pu]",
+                                    "value": 184625060554,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][tva]",
+                                    "value": 10,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][quantite]",
+                                    "value": 799009660,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][object][0]",
+                                    "value": "voluptatum",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][montant_ht]",
+                                    "value": 35.3718094,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "articles[0][montant_ttc]",
+                                    "value": 180569.22635388,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "adresse_livraison",
+                                    "value": "gbvxtfuonzrujdmlzsdioogjqjwekzuneqxyzotjlzjxpjq",
+                                    "type": "text",
+                                    "description": "Must be at least 5 characters. Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "devis",
+                                    "value": 1180092.035722,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "_method",
+                                    "value": "PUT",
+                                    "type": "text"
+                                }
+                            ]
                         },
                         "description": "",
                         "auth": {
@@ -2291,7 +2398,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc\",\"contact\":\"fhgvtzwyhmdzunicszyyv\",\"email\":\"kailee18@example.com\",\"assujeti\":true}"
+                            "raw": "{\"nom\":\"qqxcpmioerjpplzowiyqjbcyzapqdqrlxvanxcreknymmlkphjfdtqeyl\",\"contact\":\"qnjsfpcousdvrhorxcrmklrqy\",\"email\":\"horace29@example.net\",\"assujeti\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -2312,7 +2419,7 @@
                                 {
                                     "id": "parametre_id",
                                     "key": "parametre_id",
-                                    "value": "dignissimos",
+                                    "value": "2",
                                     "description": "The ID of the parametre."
                                 }
                             ]
@@ -2330,7 +2437,645 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"nom\":\"qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn\",\"contact\":\"rfhrgyzhfipatsyjsfmrvl\",\"email\":\"eldora.balistreri@example.org\",\"assujeti\":true}"
+                            "raw": "{\"nom\":\"xzbgrkchmzvysvkxrgiucmtqhwnpumurpwdzwknogtucfffekocthxlkzgvwljzsfwqhnegfttkyzhscvmacpskebpdyizujryjrytsgfggwcxetzhrnoncryvmtovgibgqikovvfcjgecdbibqaihywybvxqdagndlpxgwdcrtfplqhftiiruuemtndsts\",\"contact\":\"ohdnsfummvyaudw\",\"email\":\"nadia08@example.org\",\"assujeti\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Creer un nouveau ressource dans la base de donn\u00e9es",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-receptions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-receptions"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numero\":\"cnnnbtaiygloslnakbrvmhtklpgbwcegrjogwhqelymomkuaee\",\"date\":\"2022-09-16\",\"articles\":[{\"id\":\"alias\",\"quantite\":3634040,\"total\":399765002,\"valide\":false}],\"adresse_livraison\":\"ugqeqvikupscbraqtbpfhtqplwxhlxefmziswfhuyvkujaaqjsj\",\"livreur\":\"iegojkbvebrvawvugscekgkpuqnchdlzudtjcbhvemmcomiqsrv\",\"contact_livreur\":\"dqultvdlcydhlmphniroaqhgghlmdhqfchuisqhsplnuorisrlwtitkiiqhsvcinbwyxpalgzslfpikdkaubbxa\",\"depot\":\"magni\",\"commande\":98180.8491326}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-receptions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-receptions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon reception."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-receptions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-receptions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon reception."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numero\":\"jmauqjqulcxqiynecdtcuegbfpjpzsxoqovqifvzbtoejlp\",\"date\":\"2022-09-16\",\"articles\":[{\"id\":\"cupiditate\",\"quantite\":31867706,\"total\":322791541,\"valide\":false}],\"adresse_livraison\":\"xkvzrghzctaupwetivcvgecodgmyzkdckegworkibfhkabcupkwwnohrieezwbnmsqabbpufzdwmoefnzslpruvfblmazqjtkolzrcuxsrlnak\",\"livreur\":\"utoupanpgzuucthorllcdznnzloosjderpwzubkcckwjiksgmnffoibpfmqjzdlpqinohczlvzwnwuevciocxnvrzmcehoeuunxzhpygnxfxpulmuzsbnogtyoxzeiddbcekwkxpdcddhawrwbmheufrxkvqiybdlzrpiueghgwdesvqnpbhorwytpvludifqkxasstdxqlvvhringbpamltjxpelwalb\",\"contact_livreur\":\"msdeyzsv\",\"depot\":\"sit\",\"commande\":13.23432}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-receptions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-receptions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon reception."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-livraisons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-livraisons"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-livraisons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-livraisons"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numero\":\"lijarytkfmhxdulymufooybmzxqvctsfdfwqfxewcvfkolfxfwbdvrfvusigyfrwuvyyndrtbupsvqhinwqhvdbacmmzpkykvmehyfghgoeetmlqzghspcmwedpmybxfynvteodyavmfycmtjsxqpnfnaexalphsvdaygxqcubtbrjbpjpbwndxzvjosaxplwndvkuzskfblmmeupqkanaryvcrfxzbaajuiqhclbrgetnjfe\",\"date\":\"2022-09-16\",\"articles\":[{\"id\":\"necessitatibus\",\"quantite\":113535027,\"total\":491491010,\"valide\":false}],\"adresse_livraison\":\"feueuneijzpezfqjihrfakarfbfrpgeyyapgevkiufacpqyeuusmfeehkalmmurgqhyxonxrgkzgicsobakhehellffsehhdgjzksjisufyjpslkpmgndwqorqvjccntqzuxqxofjcbowrfzuzhbamglrsjtkzykwddlpdyeuckchrznzgvruhfogfdddhnxuxykwxlyndgbuh\",\"livreur\":\"awxzbpawafiudtbfbntuspthxejnsbtxucuszjprxnvsgbggetipawytqqkijdwczvyhubykzmsscjgowytysvetxlabjwoeelkplhritpbpafkcbajhlbnaanhfqkpkeuffnuppruulztazbhjknphbudncwxumjmcvbjnpegtjnkvgdppuccvuwgquxicodjedcrrcuwacdydxwlqvtpdfllcsfblqaguoddnrwpkxxqbjhjxklu\",\"contact_livreur\":\"rrzdxfqqsezervtwmycvpwznnqpakhvabsqxnjaozamxebztruttjcxkzemoivlzxkioinqcguhvacxkwiaicncshkzkrehxmzwcyfcfwdlkwe\",\"commande\":35.3435016}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-livraisons\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-livraisons\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon livraison."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-livraisons\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-livraisons\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon livraison."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numero\":\"dkh\",\"date\":\"2022-09-16\",\"articles\":[{\"id\":\"voluptates\",\"quantite\":450987928,\"total\":271598333,\"valide\":true}],\"adresse_livraison\":\"krrkkshctjdrjvhclcccdetfidnglshzfyzzyksfjmilguiuxibfiolamaerttbvrikzclwjdssoogjojwtwbrlgc\",\"livreur\":\"jqemfhwaqpqtdbyxksxlextmroktgeidiaxfxe\",\"contact_livreur\":\"eutytutlodedpqqbtkpbgwvaepodaamctxhmigdrmm\",\"depot\":\"architecto\",\"commande\":23.365}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-livraisons\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-livraisons\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the bon livraison."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bon-receptions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bon-receptions"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Permet de recuperer tous les articles dans un d\u00e9pot\nAvec un calcul de stock d'entr\u00e9e moins stock de sortie (Entree - Sortie)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/depot\/:depot_id\/articles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/depot\/:depot_id\/articles",
+                            "variable": [
+                                {
+                                    "id": "depot_id",
+                                    "key": "depot_id",
+                                    "value": "1",
+                                    "description": "The ID of the depot."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Permet de gerer le prix dans un depot",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/depot\/:depot_id\/gerer-prix\/:article_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/depot\/:depot_id\/gerer-prix\/:article_id",
+                            "variable": [
+                                {
+                                    "id": "depot_id",
+                                    "key": "depot_id",
+                                    "value": "1",
+                                    "description": "The ID of the depot."
+                                },
+                                {
+                                    "id": "article_id",
+                                    "key": "article_id",
+                                    "value": "1",
+                                    "description": "The ID of the article."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"articles\":[{\"reference\":\"delectus\",\"designation\":\"temporibus\",\"quantite\":407141578398,\"pu\":922525363583}]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Mettre a jour un article",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/article\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/article\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the article."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"reference\":\"dtiaftkcgalrrratmuqnnseqxbynurbaobqcemtbdibdybfxenzredtqsmcdmpoqzltrbwtmmmuflefpcnlysyqizdeymjakjddzbivlhiylzrqtprdcsdjnxkwsjhifvqbamszciqujfpskevomubhuicjjsghswovntgmhpeejddxwwqesfndocqqrysfxcddprixeayrtvqpqmgrhdejxhzhvwqlfgtq\",\"designation\":\"xponbxvzzcfitvuyplmmqffaccxcpkjeytgrzretnoispadvpqmtuumxaxdzlxlwqwsnnykvyqqmhsxfgnqujjesamqnkkzwsftjgijonebvpwgogmcsjjhrcrdiubropxzshxtpuqkr\",\"unite\":\"qavsbuotksqjoghkwztlshpjyhmgybxktluyjfwbqyw\",\"stock_alert\":893080308152,\"categories\":[\"qui\"]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Mettre a jour un depot",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/depot\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/depot\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the depot."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"nom\":\"smpfbjtxpvjixyyiryhfvnezidmrdfcoeuossbteymgolhstnmjjnutktueidfvmwndwtufrijtowcyyocnvcqwanhqovdnonbktytovdxznwtvkkebxjbelutrhwwtkhdcitgkvjqscgnmuvgglfrzlloyiduuroprhpqvtlpewjhztsccynpbrmlstyxtffivpnn\",\"localisation\":\"fzewiectazqbjswtgws\",\"contact\":\"ltkwzsprdmjvxdrsirgfmferzvbijobchyvwticqihcpglreslqzupy\",\"point_vente\":\"true\",\"responsables\":[null],\"travailleurs\":[null],\"type\":0}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/fournisseur\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/fournisseur\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the fournisseur."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"nom\":\"bdekhskfnwegzogxokrbxpopbvabacykqxjghgeyxxnsmbijayjkqniphpwthuvcybrovicpduwqgeofvycktjteydyjhrymmoqtyfsuzjtqcdadtvffjaqccxerldgvsuicvkhpwpgfewekrnmjjlvpvbwqyqpsnqklzswiafvkmrbpgiksmtxukkzhdablnyjqwcdakrkzlqoeaoxzcfe\",\"adresse\":\"drmwdxsvjzolxryozvlpqzawcsqwyzzbiri\",\"email\":\"aeseaezsdjqlgfsbaryybymduxsekqqbl\",\"contact\":\"nfcoccvt\",\"categories\":[null],\"nif\":\"2610414307664\",\"cif\":\"t85768772\",\"stat\":\"330s368s310s89024\"}"
                         },
                         "description": "",
                         "auth": {

@@ -75,7 +75,7 @@
 
         <div class="row">
             <div class="col-xl-12 d-flex justify-content-end">
-                <SaveBtn @click.prevent="save" :loading="Article.creating.value">Enregistrer</SaveBtn>
+                <SaveBtn @click.prevent="save" :loading="Article.creating.value || Article.updating.value">Enregistrer</SaveBtn>
             </div>
         </div>
     </form>

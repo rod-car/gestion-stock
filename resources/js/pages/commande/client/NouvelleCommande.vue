@@ -18,10 +18,10 @@
 
 <script lang="ts">
 import router from '../../../router/router';
+import useCRUD from '../../../services/CRUDServices';
 import { defineComponent, onBeforeMount, ref, Ref } from 'vue';
 import CommandeFormComponent from '../../../components/commande/CommandeFormComponent.vue';
 import CommandeFormLoadingComponent from '../../../components/commande/CommandeFormLoadingComponent.vue';
-import useCRUD from '../../../services/CRUDServices';
 
 const { find, entity, loading } = useCRUD('/commandes')
 
@@ -45,6 +45,8 @@ export default defineComponent({
             if (devisId.value !== null) {
                 // Recuperer le devis en question
                 await find(devisId.value);
+            } else {
+                entity.value = null
             }
         })
 

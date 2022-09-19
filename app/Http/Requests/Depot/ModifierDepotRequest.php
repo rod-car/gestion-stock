@@ -27,8 +27,12 @@ class ModifierDepotRequest extends FormRequest
      */
     public function rules()
     {
+        $id = null;
+        if (is_object($this->depot)) $id = $this->depot->id;
+        else $id = $this->depot;
+
         return [
-            "nom" => ["required", "unique:depots,nom,{$this->depot->id},id", "min:2", "max:255"],
+            "nom" => ["required", "unique:depots,nom,{$id},id", "min:2", "max:255"],
             "localisation" => ["required", "sometimes", "min:5", "max:255"],
             "contact" => ["nullable", "sometimes", "min:10", "max:255"],
             "point_vente" => ["required", "boolean", "in:true,false,1,0"],

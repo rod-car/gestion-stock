@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
     use ApiResponser;
 
     /**
-     * Display the login view.
+     * Afficher la vue de connexion
      *
      * @return \Illuminate\View\View
      */
@@ -24,7 +23,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Log in the user.
+     * Permet de connecer l'utilisateur
      *
      * @response {
      *  "token": "eyJ0eXA...",
@@ -36,7 +35,7 @@ class AuthenticatedSessionController extends Controller
      * }
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JSonResponse
      */
     public function store(LoginRequest $request)
     {
@@ -49,12 +48,10 @@ class AuthenticatedSessionController extends Controller
             'user' => auth()->user(),
             'success' => "Connecté avec success",
         ]);
-
-        //return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
-     * Destroy an authenticated session.
+     * Deconnecter l'utilisateur et supprimer la session
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse

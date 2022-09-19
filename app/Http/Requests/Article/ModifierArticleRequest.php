@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Article;
 
-use App\Traits\Article\WithValidation;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
+use App\Traits\Article\WithValidation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -30,7 +29,11 @@ class ModifierArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->validationRules($this->article->id);
+        $id = null;
+        if (is_object($this->article)) $id = $this->article->id;
+        else $id = $this->article;
+
+        return $this->validationRules($id);
     }
 
     public function messages()

@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost:800'
+    url: 'http://localhost:8000'
 paths:
   /api/auth/login:
     post:
-      summary: 'Log in the user.'
+      summary: 'Permet de connecer l''utilisateur'
       description: ''
       parameters:
         -
@@ -43,16 +43,16 @@ paths:
             schema:
               type: object
               properties:
-                login:
+                email:
                   type: string
-                  description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: quas
+                  description: 'Nom d''utilisateur ou adresse email.      Exemple: user@example.com, user123'
+                  example: explicabo
                 password:
                   type: string
-                  description: 'The password of the  user.'
+                  description: 'Mot de passe.'
                   example: secret
               required:
-                - login
+                - email
                 - password
       security: []
   /api/connected-user:
@@ -156,31 +156,31 @@ paths:
                 nom_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: s
+                  example: whjwkkiiglcyupolcnivosqmfjumdnocpctsuhrnzinhguzetfoxtntvrncumxrhvxakwxbtgcntmakgdqtcozauksmetbsljmryswwuemfusqprptzesqqyb
                 prenoms_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah
+                  example: qznyixbvctcizrzllyyuwetdffrptnyiekovzisahuxhftecvsvorqgokzgnwyoybtnzmuinraraadeprdjkdpjsnpdhtvxtebixnyipzfkewwszfgqvlwrxcpfelioyushtlmbbcgvzbprcprwumwxti
                 contact_personnel:
                   type: string
                   description: ''
-                  example: non
+                  example: eaque
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia
+                  example: lgndhgowdgojkhsmrsvsfvqewaarvzdbhsxvaokbwwuuyiioebqktiikqlvsubjytdamwhjc
                 adresse_personnel:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: exercitationem
                 cin_personnel:
                   type: string
                   description: 'Must be 12 digits.'
-                  example: '049166688068'
+                  example: '181586638286'
                 username:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz
+                  example: pqkiodgvdkjmwauxgymlhkmvlgddpnztfkjnxippplmcacykexryqtxlozknanzahakcsaqeefumtnryfjsrpenilstkjblyhkqyfgcpfcqhyzjaxtazowolunujt
                 password:
                   type: string
                   description: 'The password of the  user.'
@@ -188,7 +188,7 @@ paths:
                 password_confirmation:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: sxrdrozvexzcozmu
+                  example: jhckpmcqvtxsrfepbyjjpnaxfjyfmyqappvwnegfljmtrznpxnuyubeacmzifulxlayazuxfyncyvbtn
                 roles:
                   type: array
                   description: ''
@@ -200,20 +200,20 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - et
+                    - ut
                   items:
                     type: string
                 fonctions:
                   type: array
                   description: ''
                   example:
-                    - eveniet
+                    - sed
                   items:
                     type: string
                 login:
                   type: string
                   description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: similique
+                  example: velit
               required:
                 - nom_personnel
                 - contact_personnel
@@ -288,44 +288,44 @@ paths:
                 nom_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz
+                  example: myqrdozhgbrjjikazgwmnzfuqjlntmgqqvspyneugjnmrxdbobxahwnsavrxvxrqyqexyxmftjmqnplnkcuekfzxugnkysdnzpckem
                 prenoms_personnel:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh
+                  example: vsugrfdnekvymhlzlzyadgvefxahwiqagjgqumtwamynojdyhsgszpqkmphqeqthkdtsnmtjuvspvnlmraowcbfguyfirfciuteyjrxlgsagdbielissrtehlmwlfrployzgzpwjhqhbkjtofycmlxrrfguinsjantzazccutwdzndrgscgiwflpcdgicdhl
                 contact_personnel:
                   type: string
                   description: ''
-                  example: qui
+                  example: nihil
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: rccjiddwgnonqffj
+                  example: nzsqozrytytsbtjnpcqdgrlievddsa
                 adresse_personnel:
                   type: string
                   description: ''
-                  example: atque
+                  example: sit
                 cin_personnel:
                   type: string
                   description: 'Must be 12 digits.'
-                  example: '522392864780'
+                  example: '113336187920'
                 username:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd
+                  example: fmuyoxblhjixjxsikfqbqkqgbcawexuijhmchlymqztypuholyckrboabgwhcjptvamatwklvzbphlwgkausptmvcwumzggjrmd
                 password:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: dtgsqdkaabytlhxcmkx
+                  example: wuaxgjydojiqxxbykdsocorqoqpxrwfhhyxrmilxjbligscscvctdxalslmyufiiskwlyqhzqfistfwibbbgredblpdkeraineedhtaqf
                 password_confirmation:
                   type: string
                   description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
-                  example: mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle
+                  example: exikkwxwiqgrvzlqvpowskpou
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - hic
+                    - minima
                   items:
                     type: string
                 roles:
@@ -339,7 +339,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - error
+                    - rerum
                   items:
                     type: string
               required:
@@ -381,7 +381,7 @@ paths:
           type: integer
   /api/auth/logout:
     post:
-      summary: 'Destroy an authenticated session.'
+      summary: 'Deconnecter l''utilisateur et supprimer la session'
       description: ''
       parameters:
         -
@@ -538,7 +538,7 @@ paths:
                 nom_role:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw
+                  example: vrzmoaxjpstgvyziofdcqpaubwbtsflejtaocuplrxydfpgwqcjcigrkxksyqlltdrsperawoakzduxyuwxcrgdqdgjsaqkfjrdxihmleljwwenevadhdkbytaroxydztduzr
               required:
                 - nom_role
       security: []
@@ -696,23 +696,23 @@ paths:
                 nom_fonction:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi
+                  example: lncwpsxnlrgpbzshqm
                 description_fonction:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
-                  example: pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm
+                  example: ruelcycrpzfftvhkgdwcodqyjjyhnrihocyxwojskdwqqlcrlggqmhhtzkqeyrjfxsqwbooxfruyenljpnfpnhhduovkvewmarnvmskabkghjpbgdmrzbypiyzbezrsvqlplukkpcpvxankouhlqitqqmemuvygjgxgdzrfsoicmzjlsuongybthvzlkccchllpnvcdnlcbfdlwjejorlcasfkyolgjezwgrmphvkmnrwjqeeigymulmrvuevhmwzmglshpodvfiwkwfulmkmccjyiulomrlbjxzaqrgndraa
                 enfants:
                   type: array
                   description: ''
                   example:
-                    - maiores
+                    - dolorem
                   items:
                     type: string
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - dolor
+                    - aut
                   items:
                     type: string
               required:
@@ -784,23 +784,23 @@ paths:
                 nom_fonction:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf
+                  example: ibyccyvflkcawpmcivuelioeqxbnitwjhwcpruozjnfinilyssqcetjeeggbukwekaaonyawvcasewwwmzyufytjclshgsmfxxxilqxdudcxessjyszxcmrpkolhcuvfgqyukcetybkgjnphtsnpxkqkiulbyondnqkbkvvltzlgbmytvickmzvsgtoky
                 description_fonction:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
-                  example: huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz
+                  example: embgbwtmqeldzayhspofuwhfwvlqynmoneiznbttsyfjcdpbazbfaaudyebrfuanxahvhrxwzynlqcnhbgynhgrukgwxhnmzmuexhxtkhvjumabpqlnqppdmuctlwspplbridrhljdjkmesqistkatnvdlkbbtreatejrmcac
                 enfants:
                   type: array
                   description: ''
                   example:
-                    - ab
+                    - voluptas
                   items:
                     type: string
                 permissions:
                   type: array
                   description: ''
                   example:
-                    - adipisci
+                    - totam
                   items:
                     type: string
               required:
@@ -973,19 +973,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy
+                  example: pehdtjdrvjptvfnuvzkuygqghvwkqgazsslnizkdxyslwkbzzifdgugwwosfkhzntpnxuoymvquxodcwjqorviyacb
                 localisation:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk
+                  example: bnamilanfdlnoxthnbjtipniwolzohdtxehfumfqjgnzbwgcbydnxuyjcgoaohtpqfxphpxovdxbbqtdsnfilbnnaikhrbtdcqjdsltyywpbhztfngvuagycptmdbfnhwykcffoxqlnbknxruuihgbaievpdaabhithgmdwmsv
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
-                  example: kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj
+                  example: qzmavapsvocnxbawcunpvbeyblim
                 point_vente:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - nom
                 - localisation
@@ -993,7 +993,7 @@ paths:
       security: []
   '/api/depot/{id}':
     get:
-      summary: 'Display the specified resource.'
+      summary: 'Voir un dépot spécifique'
       description: ''
       parameters:
         -
@@ -1026,8 +1026,30 @@ paths:
       tags:
         - Endpoints
       security: []
+    delete:
+      summary: 'Supprimer un dépot'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
     put:
-      summary: 'Update the specified resource in storage.'
+      summary: 'Mettre a jour un depot'
       description: ''
       parameters:
         -
@@ -1057,19 +1079,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp
+                  example: smpfbjtxpvjixyyiryhfvnezidmrdfcoeuossbteymgolhstnmjjnutktueidfvmwndwtufrijtowcyyocnvcqwanhqovdnonbktytovdxznwtvkkebxjbelutrhwwtkhdcitgkvjqscgnmuvgglfrzlloyiduuroprhpqvtlpewjhztsccynpbrmlstyxtffivpnn
                 localisation:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb
+                  example: fzewiectazqbjswtgws
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
-                  example: theg
+                  example: ltkwzsprdmjvxdrsirgfmferzvbijobchyvwticqihcpglreslqzupy
                 point_vente:
                   type: boolean
                   description: 'Must be one of <code>true</code>, <code>false</code>, <code>1</code>, or <code>0</code>.'
-                  example: '1'
+                  example: 'true'
                 responsables:
                   type: array
                   description: ''
@@ -1087,41 +1109,19 @@ paths:
                 type:
                   type: number
                   description: 'Must be at least 0. Must not be greater than 3.'
-                  example: 2
+                  example: 0
               required:
                 - nom
                 - localisation
                 - point_vente
                 - type
       security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the depot.'
-        example: 4
+        example: 1
         required: true
         schema:
           type: integer
@@ -1191,15 +1191,15 @@ paths:
                 libelle:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu
+                  example: vmfioxhwsotvajtaigusedoaekfbbpcsbggkwhmurvofgfwpwdmlwznreejchcjbpgesrcdxiyzliawzgkkfnbiatmmritypublgyubagxvdiabqnjmuwisbwgirmkiaxtqbxakssstorwjaqwiobzrhokbastxgaxttvobl
                 description:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
-                  example: mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty
+                  example: uverpxafgrtofvzqmovpuisuvoraagfpzrwnrvzlnkzhhimvhmsmxzgxzkfdgmmdtoqlpzaletzomsryobdndealgbgsmmtntscpoperjygblzxzqqpsellaekbexhmzloularkvmrhmejiwvnyrkaykyoxtnjotuhmmyfegjxgfhxtobjfbcenzwihwngjrzawdwvkznuifiiwhfkzjbeazdxlmxcnjvraoucfbviwxrhktlcepkiekqhedpfydcuiwursnjrjdcyhcdljvaeclpdlvnzeeldryggtmzznmplptcrexhygxzqndrpbvazlrhjotgfvlnuybjxvyszlroisksuzfqydaeqybecoidtupxuvfsnpyzbbfctlfcnglrgdzsbyzrfjseipdpvmopweicavzkiooyymlqktkufszxyjvhdjzamrzdtdiizqhaiydmtocmlbkysreyildbgqxtgagvvxxjafgmqyogauneasiqauclddibqtotoeecxxillalqschlpixmvqphcbfkzrkafjmbyfqfvuvpvfhacidbcnqawulomtllvvsmtoeqltlmyhregfrhqrdwjzxkxceepnevlcvmbmudcfdrqoctsgyiozuqsalcslwgazuvyjquatvqiwqcskwhqtevrypdbvgvlxpkderyvhlyeolrpj
                 type:
                   type: number
                   description: 'Must be at least 1.'
-                  example: 1
+                  example: 0
                 sous_categories:
                   type: array
                   description: ''
@@ -1277,15 +1277,15 @@ paths:
                 libelle:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf
+                  example: ygtbjimzhufghnpbzahbnbvyzitbitpischskkplfbojeembrzpvxlrgzigfhxypttmwjhpwqxmxicfprrienvkcbikujmqulwxlbygdfvqmcqsknobfrmyktxzvcbjhuscmojjlmnmtzwjsidsjoqwyofjmqjqoqttkcnejtqqdwahuzaz
                 description:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
-                  example: ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr
+                  example: zpqjczwbkofmgbrdgqrdoxqotyrwuwxjpsfukockwyclunzioqllndqhrbadjdgcxhysbkbpzbueytkffaxdhsqvwxasneqvxoyytyuldshdgdetkemhiidhqwupxkqlosvwsemgtddwkjdtcelvptjwiwvyjubjzvpecmbkqnadzhlielbodeyixogtitcotfqcmuijiwhwuyxnkntbqqyjblcfrpbgtjzzhamuuvzckwhhorcsazpofmforantkbxrleovcqzcxjkdtmslhawkjvdcacobmfalzzclezlsikiuhztzcwmcvkocltltzmeenmtcwohofuparnkemjtwnopfatqghbdjhkbtlvfjhgbrwubtyclyfkwcztcpkymbnaxzpulvheedyiiqqpwrwoejlxzfetihngisutzliuoobpevzvcuvysopjhgxjfupplqiblavjwjjkzashowzlmhvzskyxfevhwlkkutqdaeisypewnakvzwobzmgssbloglgjwcdmconjhwkwtilxeuxbutmkkiholeqtlrwskccuyxcxrhspefyrhtugjeysedxbkycjscdtldhzfkmynmbklupmkknfqdwkarypblxdarfzsbmgcxhhrkixuohoxxzrrugkokiuobiyjdolvfzvzhrcjogjwrqhsixnyqygegejavirfnsryxmrmhfizblgfdroaqekhcqkapgsbciuabsmfpekmavmwygbcgdywypqdutwgmhxafbcgxcpzmlrspmhqcjzeqbxxbonakmrpqtlzhjbhojkudjaau
                 type:
                   type: number
                   description: 'Must be at least 1.'
-                  example: 0
+                  example: 1
                 sous_categories:
                   type: array
                   description: ''
@@ -1324,7 +1324,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the categorie.'
-        example: 5
+        example: 1
         required: true
         schema:
           type: integer
@@ -1394,19 +1394,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm
+                  example: fuyuqdbtgjhggqyxqjfcvihytjjybcvsxvzcnofcjdbmemesnvgtzhkodukqjnqsikeizxhjvzrfeearukznqqlwspodgvvmvmigmlnuxdiuuyejhapgarwcwnyymkjtkqvnpxnidioulofi
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois
+                  example: khnagmqukphqljknsobgmyowdovoyifttlseehuatfdaextoxausaghvdxiyjepuqwfkbfxnkjlgefnmmizwsnweakgclm
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy
+                  example: bfbuqlnwkhdvqbhhamyhqxchsmrdqxbddfuueqnecacmzvlbyzgnlcxcfoubautvjrusjtgeniudwqkpqwnrezywvsrqmqppqrbwqpbdtemmxntqniklucnvfltqccyfsafxymvhdhkbbjsdfonqokc
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: aykwqymdxwnunxpqxvcmxcbwtnvfls
+                  example: bbjbosgkugljo
                 categories:
                   type: array
                   description: ''
@@ -1417,15 +1417,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '3948469469168'
+                  example: '3975045930014'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: s0675683B
+                  example: d5441147c
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 149s454s898s07830
+                  example: 507s982s959s05936
               required:
                 - nom
                 - adresse
@@ -1487,6 +1487,74 @@ paths:
       responses: {  }
       tags:
         - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: bdekhskfnwegzogxokrbxpopbvabacykqxjghgeyxxnsmbijayjkqniphpwthuvcybrovicpduwqgeofvycktjteydyjhrymmoqtyfsuzjtqcdadtvffjaqccxerldgvsuicvkhpwpgfewekrnmjjlvpvbwqyqpsnqklzswiafvkmrbpgiksmtxukkzhdablnyjqwcdakrkzlqoeaoxzcfe
+                adresse:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: drmwdxsvjzolxryozvlpqzawcsqwyzzbiri
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: aeseaezsdjqlgfsbaryybymduxsekqqbl
+                contact:
+                  type: string
+                  description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
+                  example: nfcoccvt
+                categories:
+                  type: array
+                  description: ''
+                  example:
+                    - null
+                  items:
+                    type: string
+                nif:
+                  type: string
+                  description: 'The value format is invalid.'
+                  example: '2610414307664'
+                cif:
+                  type: string
+                  description: 'The value format is invalid.'
+                  example: t85768772
+                stat:
+                  type: string
+                  description: 'The value format is invalid.'
+                  example: 330s368s310s89024
+              required:
+                - nom
+                - adresse
+                - contact
       security: []
     parameters:
       -
@@ -1563,19 +1631,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw
+                  example: nmtovuqmfparkkbybkwjiehmouunayfdzqiiyyqpchsfxnbhfbsyvjcxloumndcwnqwdipdafvuliplbtspsjffwetsppyhmteyuhwzdjecreqereyrfamxtgrqfdynoermyrbxxfnzsgnnxspqqqz
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: owvbbgutbickrpegicdcixvhaaobmfitz
+                  example: dhxwcbmouuiywstpximelwncqqswzktcwruaydktthsfhfqisoebafc
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson
+                  example: ibgvzisiieypqmcpfuwojrazaegctpoatpqxaspwyrmsnxdfqqrzogtgcgjcjhacdylajqmxorotzsjwixymakalx
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: mcveza
+                  example: tycejdiyoamynagbl
                 categories:
                   type: array
                   description: ''
@@ -1666,19 +1734,19 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx
+                  example: pxncblrixhkumjyrjvmrgvhritrpommsmpq
                 adresse:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt
+                  example: ubpgjccjzsttcisfdgelqpecjhfaovcryzfrfalxpmwauivfmekwkedbyccplfvqmooawygzvpqbesh
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: rxkzraablbtfopvxtsm
+                  example: amxkzkvzhssemipxirsprhijgdhpodoqhjsalouyertzyrlxsxcacacarstdqiplyyxrornjurlmxncycitzbmslaulupggbgfxtfcntdnlseauxoezxrboksqsnlijifvvocnjgwnngcoyesfekjsheqkmhgnstdfcfmbqpz
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
-                  example: 'n'
+                  example: o
                 categories:
                   type: array
                   description: ''
@@ -1689,15 +1757,15 @@ paths:
                 nif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: '0539316524702'
+                  example: '2251275578038'
                 cif:
                   type: string
                   description: 'The value format is invalid.'
-                  example: R8469451g
+                  example: t6490998E
                 stat:
                   type: string
                   description: 'The value format is invalid.'
-                  example: 121s117s038s36113
+                  example: 783s394s401s84191
               required:
                 - nom
                 - adresse
@@ -1730,13 +1798,13 @@ paths:
         in: path
         name: id
         description: 'The ID of the client.'
-        example: 5
+        example: 1
         required: true
         schema:
           type: integer
   /api/article:
     get:
-      summary: 'Display a listing of the resource.'
+      summary: 'Recuperer la liste des articles'
       description: ''
       parameters:
         -
@@ -1770,7 +1838,7 @@ paths:
         - Endpoints
       security: []
     post:
-      summary: 'Store a newly created resource in storage.'
+      summary: 'Enregistrer un nouveau article'
       description: ''
       parameters:
         -
@@ -1800,24 +1868,24 @@ paths:
                 reference:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr
+                  example: anyzmmvvogjdetrjtnujltntxpxkxyxnnlbaehlcqtxjjxcvvbyiwtqvvvaaeuwgxqefgxngzixvrggyyeadzltfbilhbzzxgpknpdrhzewjphaeihjtognkqguopjldnvlosldtxfdgxdcegpzdqydorepjdmfwnwdanjkrebbdowbgpknycslpvhsakwaokbeobvmnyrnirzymexknhzfdkywdoupegrxzwkuqalpbw
                 designation:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo
+                  example: hyjvtvljapwcndpcxxgrsjdhyxwxqfvmtppgkzmgicvfyzjlaevpfasud
                 unite:
                   type: string
                   description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
-                  example: skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl
+                  example: ummqdrzmbqfkoazdezauqxhcppyjbbmeeliqbqdvqbipmnbqgccyvqovpgs
                 stock_alert:
                   type: number
                   description: 'Must be at least 0. Must not be greater than 999999999999.'
-                  example: 468230064249
+                  example: 964380893809
                 categories:
                   type: array
                   description: ''
                   example:
-                    - quibusdam
+                    - dolorem
                   items:
                     type: string
               required:
@@ -1828,7 +1896,7 @@ paths:
       security: []
   '/api/article/{id}':
     get:
-      summary: 'Display the specified resource.'
+      summary: 'Voir un article spécifique'
       description: ''
       parameters:
         -
@@ -1861,8 +1929,30 @@ paths:
       tags:
         - Endpoints
       security: []
+    delete:
+      summary: 'Supprimer un article de la base de données'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
     put:
-      summary: 'Update the specified resource in storage.'
+      summary: 'Mettre a jour un article'
       description: ''
       parameters:
         -
@@ -1892,24 +1982,24 @@ paths:
                 reference:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd
+                  example: dtiaftkcgalrrratmuqnnseqxbynurbaobqcemtbdibdybfxenzredtqsmcdmpoqzltrbwtmmmuflefpcnlysyqizdeymjakjddzbivlhiylzrqtprdcsdjnxkwsjhifvqbamszciqujfpskevomubhuicjjsghswovntgmhpeejddxwwqesfndocqqrysfxcddprixeayrtvqpqmgrhdejxhzhvwqlfgtq
                 designation:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj
+                  example: xponbxvzzcfitvuyplmmqffaccxcpkjeytgrzretnoispadvpqmtuumxaxdzlxlwqwsnnykvyqqmhsxfgnqujjesamqnkkzwsftjgijonebvpwgogmcsjjhrcrdiubropxzshxtpuqkr
                 unite:
                   type: string
                   description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
-                  example: sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs
+                  example: qavsbuotksqjoghkwztlshpjyhmgybxktluyjfwbqyw
                 stock_alert:
                   type: number
                   description: 'Must be at least 0. Must not be greater than 999999999999.'
-                  example: 491420543445
+                  example: 893080308152
                 categories:
                   type: array
                   description: ''
                   example:
-                    - quibusdam
+                    - qui
                   items:
                     type: string
               required:
@@ -1918,34 +2008,12 @@ paths:
                 - unite
                 - categories
       security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the article.'
-        example: 5
+        example: 1
         required: true
         schema:
           type: integer
@@ -2027,7 +2095,7 @@ paths:
           in: header
           name: Content-Type
           description: ''
-          example: application/json
+          example: multipart/form-data
           schema:
             type: string
         -
@@ -2043,26 +2111,26 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
                 numero:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx
+                  example: agwepmnshhpnuztsklrltmixhwwfruzdtemfmcngyiotmjuayycgbgilxxdxwbuxornzaafqdlgcabbmehfexczddadpvyvasrrchawevqbwzyhsjrdznlmmwchrjbrqmoucnvemdmvtahfumrimntgkbpykzyzhpoalouczvwomlifjdpmmjtegdyuvhqfnergmbol
                 type:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
                   example: '2'
                 date:
                   type: string
-                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2022-08-05 13:47:16'
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
                 validite:
                   type: number
                   description: 'Must be at least 1. Must not be greater than 365.'
-                  example: 278
+                  example: 70
                 fournisseur:
                   type: string
                   description: 'This field is required when <code>client</code> is <code>null</code>.'
@@ -2071,6 +2139,10 @@ paths:
                   type: string
                   description: 'This field is required when <code>fournisseur</code> is <code>null</code>.'
                   example: null
+                file:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. Must not be greater than 10000 kilobytes.'
                 articles:
                   type: array
                   description: ''
@@ -2082,27 +2154,34 @@ paths:
                       id:
                         type: string
                         description: ''
-                        example: non
+                        example: perferendis
                       pu:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
-                        example: 219758479032
+                        example: 757948541124
                       tva:
                         type: number
                         description: 'Must be at least 0. Must not be greater than 100.'
-                        example: 22
+                        example: 23
                       quantite:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999.99.'
-                        example: 582304606
+                        example: 420044368
+                      object:
+                        type: array
+                        description: ''
+                        example:
+                          - quam
+                        items:
+                          type: string
                       montant_ht:
                         type: number
                         description: ''
-                        example: 31972.161
+                        example: 165145.795
                       montant_ttc:
                         type: number
                         description: ''
-                        example: 13977.89
+                        example: 115241240.44
                     required:
                       - id
                       - pu
@@ -2113,11 +2192,19 @@ paths:
                 adresse_livraison:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe
+                  example: njtiwigtxtrxmslzuqqebmeeznhdjxclgtbcvsksrmjwrwcuhnmxqwcyjtwonqtzvsporbjwrlmdkaezaeiuzuzfczjlqzkkubzrp
+                devis:
+                  type: number
+                  description: ''
+                  example: 584.24323186
+                depot:
+                  type: string
+                  description: ''
+                  example: null
                 login:
                   type: string
                   description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
-                  example: neque
+                  example: expedita
                 password:
                   type: string
                   description: 'The password of the  user.'
@@ -2194,7 +2281,7 @@ paths:
           in: header
           name: Content-Type
           description: ''
-          example: application/json
+          example: multipart/form-data
           schema:
             type: string
         -
@@ -2210,26 +2297,26 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
                 numero:
                   type: string
                   description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-                  example: ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg
+                  example: uwljoxghbkbjetysmfucpctomu
                 type:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '1'
+                  example: '2'
                 date:
                   type: string
-                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2022-08-05 13:47:16'
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
                 validite:
                   type: number
                   description: 'Must be at least 1. Must not be greater than 365.'
-                  example: 353
+                  example: 354
                 fournisseur:
                   type: string
                   description: 'This field is required when <code>client</code> is <code>null</code>.'
@@ -2238,6 +2325,10 @@ paths:
                   type: string
                   description: 'This field is required when <code>fournisseur</code> is <code>null</code>.'
                   example: null
+                file:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. Must not be greater than 10000 kilobytes.'
                 articles:
                   type: array
                   description: ''
@@ -2249,27 +2340,34 @@ paths:
                       id:
                         type: string
                         description: ''
-                        example: est
+                        example: voluptatem
                       pu:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
-                        example: 647916922063
+                        example: 184625060554
                       tva:
                         type: number
                         description: 'Must be at least 0. Must not be greater than 100.'
-                        example: 44
+                        example: 10
                       quantite:
                         type: number
                         description: 'Must be at least 1. Must not be greater than 999999999.99.'
-                        example: 828230286
+                        example: 799009660
+                      object:
+                        type: array
+                        description: ''
+                        example:
+                          - voluptatum
+                        items:
+                          type: string
                       montant_ht:
                         type: number
                         description: ''
-                        example: 212.8724841
+                        example: 35.3718094
                       montant_ttc:
                         type: number
                         description: ''
-                        example: 2818207.3567
+                        example: 180569.22635388
                     required:
                       - id
                       - pu
@@ -2280,7 +2378,15 @@ paths:
                 adresse_livraison:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton
+                  example: gbvxtfuonzrujdmlzsdioogjqjwekzuneqxyzotjlzjxpjq
+                devis:
+                  type: number
+                  description: ''
+                  example: 1180092.035722
+                depot:
+                  type: string
+                  description: ''
+                  example: null
               required:
                 - numero
                 - type
@@ -2291,7 +2397,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the commande.'
-        example: 23
+        example: 1
         required: true
         schema:
           type: integer
@@ -2361,15 +2467,15 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc
+                  example: qqxcpmioerjpplzowiyqjbcyzapqdqrlxvanxcreknymmlkphjfdtqeyl
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 25 characters.'
-                  example: fhgvtzwyhmdzunicszyyv
+                  example: qnjsfpcousdvrhorxcrmklrqy
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: kailee18@example.com
+                  example: horace29@example.net
                 assujeti:
                   type: boolean
                   description: ''
@@ -2420,15 +2526,15 @@ paths:
                 nom:
                   type: string
                   description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-                  example: qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn
+                  example: xzbgrkchmzvysvkxrgiucmtqhwnpumurpwdzwknogtucfffekocthxlkzgvwljzsfwqhnegfttkyzhscvmacpskebpdyizujryjrytsgfggwcxetzhrnoncryvmtovgibgqikovvfcjgecdbibqaihywybvxqdagndlpxgwdcrtfplqhftiiruuemtndsts
                 contact:
                   type: string
                   description: 'Must be at least 10 characters. Must not be greater than 25 characters.'
-                  example: rfhrgyzhfipatsyjsfmrvl
+                  example: ohdnsfummvyaudw
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: eldora.balistreri@example.org
+                  example: nadia08@example.org
                 assujeti:
                   type: boolean
                   description: ''
@@ -2452,10 +2558,686 @@ paths:
         in: path
         name: parametre_id
         description: 'The ID of the parametre.'
-        example: dignissimos
+        example: 2
         required: true
         schema:
-          type: string
+          type: integer
+  /api/bon-receptions:
+    post:
+      summary: 'Creer un nouveau ressource dans la base de données'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: cnnnbtaiygloslnakbrvmhtklpgbwcegrjogwhqelymomkuaee
+                date:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
+                articles:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: alias
+                      quantite:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 3634040
+                      total:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 399765002
+                      valide:
+                        type: boolean
+                        description: ''
+                        example: false
+                    required:
+                      - id
+                      - quantite
+                      - total
+                      - valide
+                adresse_livraison:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: ugqeqvikupscbraqtbpfhtqplwxhlxefmziswfhuyvkujaaqjsj
+                livreur:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: iegojkbvebrvawvugscekgkpuqnchdlzudtjcbhvemmcomiqsrv
+                contact_livreur:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: dqultvdlcydhlmphniroaqhgghlmdhqfchuisqhsplnuorisrlwtitkiiqhsvcinbwyxpalgzslfpikdkaubbxa
+                depot:
+                  type: string
+                  description: ''
+                  example: magni
+                commande:
+                  type: number
+                  description: ''
+                  example: 98180.8491326
+              required:
+                - numero
+                - date
+                - depot
+      security: []
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/bon-receptions/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: jmauqjqulcxqiynecdtcuegbfpjpzsxoqovqifvzbtoejlp
+                date:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
+                articles:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: cupiditate
+                      quantite:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 31867706
+                      total:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 322791541
+                      valide:
+                        type: boolean
+                        description: ''
+                        example: false
+                    required:
+                      - id
+                      - quantite
+                      - total
+                      - valide
+                adresse_livraison:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: xkvzrghzctaupwetivcvgecodgmyzkdckegworkibfhkabcupkwwnohrieezwbnmsqabbpufzdwmoefnzslpruvfblmazqjtkolzrcuxsrlnak
+                livreur:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: utoupanpgzuucthorllcdznnzloosjderpwzubkcckwjiksgmnffoibpfmqjzdlpqinohczlvzwnwuevciocxnvrzmcehoeuunxzhpygnxfxpulmuzsbnogtyoxzeiddbcekwkxpdcddhawrwbmheufrxkvqiybdlzrpiueghgwdesvqnpbhorwytpvludifqkxasstdxqlvvhringbpamltjxpelwalb
+                contact_livreur:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: msdeyzsv
+                depot:
+                  type: string
+                  description: ''
+                  example: sit
+                commande:
+                  type: number
+                  description: ''
+                  example: 13.23432
+              required:
+                - numero
+                - date
+                - depot
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the bon reception.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/bon-livraisons:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: lijarytkfmhxdulymufooybmzxqvctsfdfwqfxewcvfkolfxfwbdvrfvusigyfrwuvyyndrtbupsvqhinwqhvdbacmmzpkykvmehyfghgoeetmlqzghspcmwedpmybxfynvteodyavmfycmtjsxqpnfnaexalphsvdaygxqcubtbrjbpjpbwndxzvjosaxplwndvkuzskfblmmeupqkanaryvcrfxzbaajuiqhclbrgetnjfe
+                date:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
+                articles:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: necessitatibus
+                      quantite:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 113535027
+                      total:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 491491010
+                      valide:
+                        type: boolean
+                        description: ''
+                        example: false
+                    required:
+                      - id
+                      - quantite
+                      - total
+                      - valide
+                adresse_livraison:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: feueuneijzpezfqjihrfakarfbfrpgeyyapgevkiufacpqyeuusmfeehkalmmurgqhyxonxrgkzgicsobakhehellffsehhdgjzksjisufyjpslkpmgndwqorqvjccntqzuxqxofjcbowrfzuzhbamglrsjtkzykwddlpdyeuckchrznzgvruhfogfdddhnxuxykwxlyndgbuh
+                livreur:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: awxzbpawafiudtbfbntuspthxejnsbtxucuszjprxnvsgbggetipawytqqkijdwczvyhubykzmsscjgowytysvetxlabjwoeelkplhritpbpafkcbajhlbnaanhfqkpkeuffnuppruulztazbhjknphbudncwxumjmcvbjnpegtjnkvgdppuccvuwgquxicodjedcrrcuwacdydxwlqvtpdfllcsfblqaguoddnrwpkxxqbjhjxklu
+                contact_livreur:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: rrzdxfqqsezervtwmycvpwznnqpakhvabsqxnjaozamxebztruttjcxkzemoivlzxkioinqcguhvacxkwiaicncshkzkrehxmzwcyfcfwdlkwe
+                commande:
+                  type: number
+                  description: ''
+                  example: 35.3435016
+              required:
+                - numero
+                - date
+      security: []
+  '/api/bon-livraisons/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: dkh
+                date:
+                  type: string
+                  description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '2022-09-16'
+                articles:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ''
+                        example: voluptates
+                      quantite:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 450987928
+                      total:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+                        example: 271598333
+                      valide:
+                        type: boolean
+                        description: ''
+                        example: true
+                    required:
+                      - id
+                      - quantite
+                      - total
+                      - valide
+                adresse_livraison:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: krrkkshctjdrjvhclcccdetfidnglshzfyzzyksfjmilguiuxibfiolamaerttbvrikzclwjdssoogjojwtwbrlgc
+                livreur:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+                  example: jqemfhwaqpqtdbyxksxlextmroktgeidiaxfxe
+                contact_livreur:
+                  type: string
+                  description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+                  example: eutytutlodedpqqbtkpbgwvaepodaamctxhmigdrmm
+                depot:
+                  type: string
+                  description: ''
+                  example: architecto
+                commande:
+                  type: number
+                  description: ''
+                  example: 23.365
+              required:
+                - numero
+                - date
+                - depot
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the bon livraison.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/depot/{depot_id}/articles':
+    get:
+      summary: "Permet de recuperer tous les articles dans un dépot\nAvec un calcul de stock d'entrée moins stock de sortie (Entree - Sortie)"
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: depot_id
+        description: 'The ID of the depot.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/depot/{depot_id}/gerer-prix/{article_id}':
+    post:
+      summary: 'Permet de gerer le prix dans un depot'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                articles:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      reference:
+                        type: string
+                        description: ''
+                        example: delectus
+                      designation:
+                        type: string
+                        description: ''
+                        example: temporibus
+                      quantite:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999999.'
+                        example: 407141578398
+                      pu:
+                        type: number
+                        description: 'Must be at least 1. Must not be greater than 999999999999.'
+                        example: 922525363583
+                    required:
+                      - reference
+                      - designation
+                      - pu
+      security: []
+    parameters:
+      -
+        in: path
+        name: depot_id
+        description: 'The ID of the depot.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: article_id
+        description: 'The ID of the article.'
+        example: 1
+        required: true
+        schema:
+          type: integer
 tags:
   -
     name: Endpoints
