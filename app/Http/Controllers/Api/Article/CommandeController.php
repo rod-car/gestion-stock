@@ -158,7 +158,10 @@ class CommandeController extends Controller
             ];
 
             // Mettre a jour la quantité restant de l'article qui est d'un prix spécifique spécifique quan on fait une commande
-            if (key_exists('object', $article) AND $article['object'] !== null AND intval($commande->type) === 2) {
+            if (key_exists('object', $article) AND $article['object'] !== null AND intval($commande->type) === 2)
+            {
+                $data['reference_id'] = $article['object']['value'];
+
                 $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
                 if ($depotPrixArticle->quantite !== null) {
                     $nouveauQuantite = 0;
@@ -166,7 +169,7 @@ class CommandeController extends Controller
                     $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire ce prix demandé
 
                     if ($update) {
-                        $commandeArticle = $commande->articles()->wherePivot('article', $article["id"])->first();
+                        $commandeArticle = $commande->getArticle($article['id']);
 
                         $quantiteDeduire = doubleval($article["quantite"]); // Nouvelle quantité a mettre a jour
                         $quantiteCommande = doubleval($commandeArticle->pivot->quantite - $commandeArticle->pivot->quantite_recu); // Quantité total non livré de la commande

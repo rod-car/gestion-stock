@@ -102,7 +102,7 @@ class Commande extends Model
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class, 'commande_articles', 'commande', 'article')
-            ->withPivot(['quantite', 'pu', 'tva', 'quantite_recu']);
+            ->withPivot(['quantite', 'pu', 'tva', 'quantite_recu', 'reference_id']);
     }
 
 
@@ -161,7 +161,7 @@ class Commande extends Model
     }
 
 
-    public function getArticle(int $id)
+    public function getArticle(int $id) : Article
     {
         return $this->articles()->wherePivot('article', $id)->first();
     }
