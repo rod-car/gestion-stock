@@ -118,4 +118,9 @@ class NewUserRequest extends FormRequest
         }
         return back()->withErrors($validator)->withInput();
     }
+
+    public function bodyParameters()
+    {
+        return [];
+    }
 }

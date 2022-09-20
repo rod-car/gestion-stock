@@ -5,7 +5,7 @@
                 <h6 class="text-uppercase text-primary mb-4">Information de la commande</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Commande.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Commande.loading.value === false" :modelValue="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
+                        <Input v-if="Commande.loading.value === false" v-model="form.numero" :error="Commande.errors.value.numero" disabled>Numéro du dévis</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 
@@ -74,11 +74,44 @@
                     <div class="col-xl-6">
                         <Input v-model="form.adresse_livraison" :error="Commande.errors.value.adresse_livraison" required>Adresse de livraison</Input>
                     </div>
+
+                    <!-- Mentionner ici le point de vente ou entrepot qui fait la vente. Uniquement pour la vente -->
+
+                    <div v-if="form.appro === false" class="col-xl-12 mb-3">
+                        <label for="depot" class="form-label">Point de vente ou Depôt</label>
+
+                        <MultiSelect
+                            v-model="form.depot"
+                            placeholder="Rechercher un depot"
+                            noResultsText="Aucun depot trouvé"
+                            noOptionsText="Aucun depot trouvé"
+                            label="nom"
+                            valueProp="id"
+                            :closeOnSelect="true"
+                            :filter-results="true"
+                            :multiple="false"
+                            :min-chars="1"
+                            :resolve-on-load="resolveOnLoad"
+                            :delay="500"
+                            :searchable="true"
+                            :object="false"
+                            :disabled="(devis && devis.id !== null) || (commande && commande.devis !== null)"
+                            :options="async function (query: string) {
+                                return await fetchDepots(query)
+                            }"
+                        />
+
+                        <div class="text-danger mt-1" v-if="hasError">
+                            {{ Commande.errors.value.depot[0] }}
+                        </div>
+                    </div>
+
+                    <!-- ------------------------------------------- -->
                 </div>
             </div>
         </div>
 
-        <div class="row mb-5">
+        <div v-if="appro || form.depot" class="row mb-5">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-between mb-4">
                     <h6 class="text-uppercase text-primary">Information de l'article</h6>
@@ -107,9 +140,30 @@
                                 <tr v-for="i in nombreArticle" :key="i">
                                     <td>
                                         <MultiSelect label="designation" valueProp="id" v-model="form.articles[i - 1].id"
+                                            v-if="appro === true"
                                             :options="Article.entities.value" :closeOnSelect="false"
                                             :clearOnSelect="false" :searchable="true" noOptionsText="Aucun article"
                                             noResultsText="Aucun article" @close="checkArticle" />
+
+                                        <MultiSelect
+                                            v-else
+                                            v-model="form.articles[i - 1].object"
+                                            placeholder="Rechercher un article"
+                                            noResultsText="Aucun article trouvé"
+                                            noOptionsText="Aucun article trouvé"
+                                            :closeOnSelect="true"
+                                            :filter-results="true"
+                                            :multiple="false"
+                                            :min-chars="1"
+                                            :resolve-on-load="resolveOnLoad"
+                                            :delay="500"
+                                            :searchable="true"
+                                            :object="true"
+                                            :options="async function (query: string) {
+                                                return await fetchArticles(query)
+                                            }"
+                                            @select="handleSelect(i-1)"
+                                        />
                                         <span class="text-danger" v-if="Commande.errors.value[`articles.${i - 1}.id`]">
                                             {{ Commande.errors.value[`articles.${i - 1}.id`][0] }}
                                         </span>
@@ -145,6 +199,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
@@ -157,27 +212,26 @@
 </template>
 
 <script lang="ts">
-
 import Input from '../html/Input.vue';
-import SaveBtn from '../html/SaveBtn.vue';
-import useCRUD from '../../services/CRUDServices';
-import Datepicker from '@vuepic/vue-datepicker';
-import MultiSelect from '@vueform/multiselect';
-import Flash from '../../functions/Flash';
 import { Skeletor } from 'vue-skeletor';
-import Config from '../../config/config';
-import { computed, onMounted, onBeforeMount, ref, defineComponent } from 'vue';
 import router from '../../router/router';
-import ArticleFormComponent from '../article/ArticleFormComponent.vue';
-import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
-import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
-
+import Config from '../../config/config';
+import SaveBtn from '../html/SaveBtn.vue';
+import Flash from '../../functions/Flash';
+import MultiSelect from '@vueform/multiselect';
+import Datepicker from '@vuepic/vue-datepicker';
+import useCRUD from '../../services/CRUDServices';
 import { montantHT, montantTTC } from '../../functions/functions';
+import ArticleFormComponent from '../article/ArticleFormComponent.vue';
+import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
+import { computed, onMounted, onBeforeMount, ref, defineComponent } from 'vue';
+import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
-const Article = useCRUD('/article')
+const Article = useCRUD('/article') // Recuperer le service de CRUD d'article
+const Depot = useCRUD('/depot') // Recuperer le service de CRUD de depot
 
 type Form = {
     numero: string|null,
@@ -190,6 +244,7 @@ type Form = {
     appro: boolean,
     articles: Array<any>,
     devis?: number,
+    depot?: number,
 }
 
 export default defineComponent({
@@ -214,6 +269,7 @@ export default defineComponent({
         commande: {
             type: Object,
             required: false,
+            default: null,
         },
 
         /**
@@ -249,6 +305,38 @@ export default defineComponent({
         const creationArticle = ref(false);
         const creationFrs = ref(false);
         const creationClient = ref(false);
+
+        /**
+         * Permet de faire un recherche d'articles en fonction de query
+         *
+         * @param   {string|null}   query  Query de recherche
+         *
+         * @return  {Promise}
+         */
+        const fetchArticles = async (query: string|null): Promise<any> => {
+            if (query === null) query = ""
+            return await Article.findBy('designation', query)
+        }
+
+        /**
+         * Permet de detecter l'evenement de selection d'un article parmi la liste
+         * Permet aussi de calculer le montant
+         *
+         * @param   {number}   index  Index de l'article
+         *
+         * @return  {void}
+         */
+        const handleSelect = (index: number): void => {
+            const object = form.value.articles[index].object
+            form.value.articles[index].id = object.id
+            form.value.articles[index].pu = object.pu
+            calculerMontant(index)
+        }
+
+        const fetchDepots = async (query: string|null): Promise<any> => {
+            if (query === null) query = ""
+            return await Depot.findBy('nom', query)
+        }
 
         const articleCree = async (): Promise<any> => {
             await Article.all()
@@ -372,6 +460,17 @@ export default defineComponent({
                     tva: article === null ? 20 : article.pivot.tva,
                     montant_ht: article === null ? null : montantHT(article),
                     montant_ttc: article === null ? null : montantTTC(article),
+                    ...(props.appro === false ? {
+                        object: {
+                            id: article.id,
+                            value: 3,
+                            reference: article.reference,
+                            designation: article.designation,
+                            quantite: article.pivot.quantite,
+                            pu: article.pivot.pu,
+                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu} (${article.pivot.quantite ?? 'Quantité restant'})`
+                        }
+                    } : {}),
                 })
             }
 
@@ -422,14 +521,23 @@ export default defineComponent({
             return null
         })
 
+
+        /**
+         * Permet de savoiir si on veut recharger les données pendant le chargement
+         */
+        const loaded = ref(false)
+
         onMounted(() => {
-            Article.all();
+            if (props.appro === true) Article.all();
             Fournisseur.all();
             Client.all();
             if (props.nouveau === true) setCommandeKey();
+
+            loaded.value = false
         })
 
         onBeforeMount(() => {
+            // Si c'est un modification de commande
             if (props.nouveau === false && props.commande) {
                 nombreArticle.value = props.commande.articles.length
                 form.value.numero = props.commande.numero
@@ -439,9 +547,13 @@ export default defineComponent({
                 form.value.client = props.commande.client
                 form.value.type = 2
                 form.value.appro = props.appro
+                form.value.depot = props.commande.depot ?? null
 
                 generateArticleArrayFromArticles(props.commande.articles)
-            } else if (props.devis !== null && props.devis.id !== undefined) {
+            }
+
+            // Si création d'une commande a partir d'un dévis
+            else if (props.devis !== null && props.devis.id !== undefined) {
                 nombreArticle.value = props.devis.articles.length
                 form.value.date = props.devis.date
                 form.value.adresse_livraison = props.devis.adresse_livraison
@@ -450,21 +562,36 @@ export default defineComponent({
                 form.value.type = 2
                 form.value.appro = props.appro
                 form.value.devis = props.devis.id
+                form.value.depot = props.devis.depot
 
                 generateArticleArrayFromArticles(props.devis.articles)
-            } else {
+            }
+
+            // Création d'une commande a partir de rien
+            else {
                 form.value.appro = props.appro;
                 generateArticleArray(nombreArticle.value);
             }
+
+            loaded.value = true
+        })
+
+
+        /**
+         * Permet de determiner si on doit charger le select durant le chargement
+         *
+         * @return  {boolean}
+         */
+        const resolveOnLoad = computed((): boolean => {
+            return (loaded.value === true && ((props.devis && props.devis.id !== null) || (props.commande && props.commande.id !== null)))
         })
 
         return {
-            Commande, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
-            form, nombreArticle, checkArticle, setCommandeKey, hasError, dateState, calculerMontant, addItem, removeItem,
-            generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
+            Commande, Fournisseur, Client, Article, creationFrs, hasError, dateState, creationClient, form, nombreArticle, creationArticle, resolveOnLoad,
+            Flash, creerArticle, articleCree, frsCree, creerFrs, checkArticle, setCommandeKey, calculerMontant, addItem, removeItem, generateArticleArray,
+            generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, fetchDepots, fetchArticles, handleSelect,
         }
     },
-
 })
 
 </script>

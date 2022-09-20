@@ -5,6 +5,7 @@ namespace App\Models\Article;
 use Carbon\Carbon;
 use App\Models\Client\Client;
 use App\Models\Article\Article;
+use App\Models\Depot\Depot;
 use App\Models\Fournisseur\Fournisseur;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +22,7 @@ class Commande extends Model
      * @var array
      */
     protected $fillable = [
-        "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "validite" // Uniquement pour les dévis
+        "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "depot", "validite" // Uniquement pour les dévis
     ];
 
 
@@ -163,5 +164,17 @@ class Commande extends Model
     public function getArticle(int $id)
     {
         return $this->articles()->wherePivot('article', $id)->first();
+    }
+
+
+    /**
+     * Permet de recuperer le depot qui a genere la commande
+     * Uniquement pour les ventes de marchandises
+     *
+     * @return BelongsTo
+     */
+    public function getDepot(): BelongsTo
+    {
+        return $this->belongsTo(Depot::class, 'depot', 'id');
     }
 }

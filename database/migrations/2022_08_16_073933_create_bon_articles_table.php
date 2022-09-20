@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBonReceptionArticlesTable extends Migration
+class CreateBonArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBonReceptionArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bon_reception_articles', function (Blueprint $table) {
+        Schema::create('bon_articles', function (Blueprint $table) {
             $table->unsignedBigInteger('article')->index('i_fk_article');
-            $table->unsignedBigInteger('bon_reception')->index('i_fk_bon_reception');
+            $table->unsignedBigInteger('bon')->index('i_fk_bon');
             $table->unsignedInteger('quantite');
 
-            $table->primary(['article', 'bon_reception']);
+            $table->primary(['article', 'bon']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreateBonReceptionArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bon_reception_articles');
+        Schema::dropIfExists('bon_articles');
     }
 }

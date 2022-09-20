@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToBonReceptionsTable extends Migration
+class AddForeignKeysToBonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddForeignKeysToBonReceptionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bon_receptions', function (Blueprint $table) {
+        Schema::table('bons', function (Blueprint $table) {
             $table->foreign(['commande'])->references(['id'])->on('commandes');
         });
     }
@@ -25,8 +25,8 @@ class AddForeignKeysToBonReceptionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bon_receptions', function (Blueprint $table) {
-            $table->dropForeign('bon_receptions_commande_foreign');
+        Schema::table('bons', function (Blueprint $table) {
+            $table->dropForeign('bons_commande_foreign');
         });
     }
 }

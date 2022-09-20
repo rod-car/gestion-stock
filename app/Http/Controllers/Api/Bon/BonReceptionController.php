@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api\Bon;
 
 use Auth;
 use Response;
+use App\Models\Bon\Bon;
 use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
 use App\Models\Article\Commande;
-use App\Models\Bon\BonReception;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bon\Reception\ModifierBonReceptionRequest;
 use App\Models\Article\DepotArticle;
 use App\Http\Requests\Bon\Reception\NouveauBonReceptionRequest;
 
@@ -21,7 +22,7 @@ class BonReceptionController extends Controller
      */
     public function index()
     {
-        return BonReception::all();
+        return Bon::whereType(1)->get();
     }
 
 
@@ -38,7 +39,7 @@ class BonReceptionController extends Controller
         unset($data["articles"]);
 
         $commande = Commande::findOrFail($data['commande']);
-        $reception = BonReception::create($data);
+        $reception = Bon::create($data);
         $depot = Depot::findOrFail($data['depot']);
 
         $this->updateArticles($reception, $articles);
@@ -51,10 +52,10 @@ class BonReceptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bon\BonReception  $bonReception
+     * @param  \App\Models\Bon\Bon  $bonReception
      * @return \Illuminate\Http\Response
      */
-    public function show(BonReception $bonReception)
+    public function show(Bon $bonReception)
     {
         return $bonReception;
     }
@@ -62,28 +63,36 @@ class BonReceptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bon\BonReception  $bonReception
+     * @param  \App\Http\Requests\Bon\Reception\ModifierBonReceptionRequest  $request
+     * @param  \App\Models\Bon\Bon  $bonReception
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BonReception $bonReception)
+    public function update(ModifierBonReceptionRequest $request, Bon $bonReception)
     {
-        //
+        $bonReception->update($request->validated());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bon\BonReception  $bonReception
+     * @param  \App\Models\Bon\Bon  $bonReception
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BonReception $bonReception)
+    public function destroy(Bon $bonReception)
     {
-        //
+        $bonReception->articles()->detach();
+        $bonReception->delete();
     }
 
 
-    public function updateArticles(BonReception $reception, array $articles)
+    /**
+     * Permet de mettre a jour les articles d'un bon de reception
+     *
+     * @param Bon $reception Bon de reception
+     * @param array $articles Tableau contenant les articles
+     * @return void
+     */
+    public function updateArticles(Bon $reception, array $articles)
     {
         foreach ($articles as $article)
         {
@@ -94,6 +103,13 @@ class BonReceptionController extends Controller
     }
 
 
+    /**
+     * Permet de mettre a jour les articles associé a la commande
+     *
+     * @param Commande $commande La commande
+     * @param array $articles Tableau contenat les articles
+     * @return void
+     */
     public function updateCommandeArticles(Commande $commande, array $articles)
     {
         foreach ($articles as $article) {
@@ -107,7 +123,15 @@ class BonReceptionController extends Controller
         }
     }
 
-    public function updateDepotArticles(BonReception $reception, Depot $depot, array $articles)
+    /**
+     * Permet de mettre a jour les articles dans un depot
+     *
+     * @param Bon $reception La bon de reception
+     * @param Depot $depot Le depot
+     * @param array $articles Tableau des articles
+     * @return void
+     */
+    public function updateDepotArticles(Bon $reception, Depot $depot, array $articles)
     {
         foreach ($articles as $article)
         {

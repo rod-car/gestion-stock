@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBonReceptionsTable extends Migration
+class CreateBonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateBonReceptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bon_receptions', function (Blueprint $table) {
+        Schema::create('bons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('numero')->unique('numero_commande');
+            $table->unsignedInteger('type')->nullable(false)->default(1)->comment("Permet de savoir si c'est un bon de reception ou un bon de livraison. 1: Bon de reception, 2: Bon de livraison");
+            $table->string('numero')->unique('numero_bon');
             $table->date('date');
             $table->unsignedBigInteger('commande')->nullable()->index('fk_commande');
-            $table->integer('status')->default(1)->comment('Status de bon de reception');
+            $table->integer('status')->default(1)->comment('Status de bon');
             $table->string('adresse_livraison')->nullable()->comment('Adresse de livraison des marchandises');
             $table->string('livreur')->nullable()->comment('Nom du livreur de la marchandise');
             $table->string('contact_livreur')->nullable()->comment('Contact du livreur');
@@ -33,6 +34,6 @@ class CreateBonReceptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bon_receptions');
+        Schema::dropIfExists('bons');
     }
 }

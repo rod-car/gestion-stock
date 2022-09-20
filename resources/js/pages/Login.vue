@@ -1,5 +1,5 @@
 <template>
-    <div class="login-area login-s2">
+    <div class="login-area login-s2 m-0">
         <div class="container">
             <div class="login-box ptb--100">
                 <form method="POST" class="shadow-lg" action="">
@@ -15,19 +15,23 @@
                             Exception: {{ errorMessage }}
                         </div>
 
+                        <div v-if="errors.login && !loading" class="alert alert-danger mt-3">
+                            {{ errors.login[0] }}
+                        </div>
+
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <label for="exampleInputEmail1">Adresse email ou nom d'utilisateur</label>
-                            <input type="email" name="login" id="exampleInputEmail1" v-model="form.login">
+                            <label for="email">Adresse email ou nom d'utilisateur</label>
+                            <input type="email" name="email" id="email" v-model="form.email" @input="input('email')">
                             <i class="ti-email"></i>
-                            <div class="text-danger" v-if="errors.login">
-                                {{ errors.login[0] }}
+                            <div class="text-danger" v-if="errors.email">
+                                {{ errors.email[0] }}
                             </div>
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" id="exampleInputPassword1" name="password" v-model="form.password">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="password" v-model="form.password" @input="input('password')">
                             <i class="ti-lock"></i>
                             <div class="text-danger" v-if="errors.password">
                                 {{ errors.password[0] }}
@@ -60,31 +64,31 @@
 </template>
 
 <script lang="ts">
-
 import store from '../store';
 import axios from 'axios'
-import { computed, onBeforeMount, Ref, ref } from 'vue';
+import { computed, onMounted, Ref, ref } from 'vue';
+import router from '../router/router';
 
 interface Form {
-    login: String,
+    email: String,
     password: String,
     remember: Boolean | any,
 };
 
 interface Errors {
-    login: Array<string> | null,
+    email: Array<string> | null,
     password: Array<string> | null,
 };
 
 export default {
     setup () {
         const form = ref({
-            login: '',
+            email: '',
             password: '',
             remember: false
         } as Form);
 
-        const errors = ref({ login: null, password: null } as Errors);
+        const errors = ref({ email: null, password: null } as Errors);
         const errorMessage: Ref<string | null> = ref(null);
         const loading: Ref<Boolean> = ref(false);
         const indicator: Ref<String> = ref("Chargement...");
@@ -93,7 +97,7 @@ export default {
             return loading.value === true ? indicator.value : '';
         });
 
-        const login = async () => {
+        const login = async (): Promise<any> => {
             try {
                 loading.value = true
 
@@ -104,7 +108,7 @@ export default {
                 localStorage.setItem('auth_token', response.data.token)
 
                 indicator.value = "Connecté. Redirection en cours..."
-                window.location.href = "/dashboard"
+                router.push('dashboard')
             } catch(err: any) {
                 if (err.response && err.response.data.errors) errors.value = err.response.data.errors
                 else errorMessage.value = err.response.data.message
@@ -112,11 +116,29 @@ export default {
             }
         }
 
+        onMounted(() => {
+            const inputs = document.querySelectorAll('.form-gp input') as NodeListOf<HTMLInputElement>
+            inputs.forEach((input) => {
+                input.addEventListener('focus', () => {
+                    input.parentElement?.classList.add('focused')
+                });
+
+                input.addEventListener('focusout', () => {
+                    if (input.value.length === 0) {
+                        input.parentElement?.classList.remove('focused');
+                    }
+                });
+            })
+        })
+
+        const input = (key: string) => {
+            if (errors.value[key] && errors.value[key].length > 0) errors.value[key] = null
+        }
+
         return {
-            form, loading, loadingIndicator, login, errors, errorMessage,
+            form, loading, loadingIndicator, login, errors, errorMessage, input,
         };
     }
 };
-
 
 </script>

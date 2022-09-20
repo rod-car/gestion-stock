@@ -14,11 +14,12 @@
             :showOneChild="true"
             theme='grey-theme'
             @item-click="onItemClick"
+            v-if="isConnected"
         />
 
-        <div class="main-content" id="view" :class="[{'collapsed' : collapsed}]">
+        <div class="main-content" id="view" :class="[{'collapsed' : collapsed, 'no-width': !isConnected}]">
             <!-- header area start -->
-            <div class="header-area">
+            <div v-if="isConnected" class="header-area mb-5">
                 <div class="row align-items-center">
                     <!-- nav and search button -->
                     <div class="col-md-6 col-sm-8 clearfix">
@@ -74,7 +75,6 @@
                             </li>
                             <li class="dropdown">
                                 <i class="ti ti-user" data-toggle="dropdown"></i>
-
                                 <div class="dropdown-menu bell-notify-box notify-box">
                                     <span class="notify-title">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <a href="#">Mon compte</a></span>
                                     <div class="nofity-list">
@@ -100,20 +100,20 @@
                 </div>
             </div>
 
-            <router-view class="mt-5 ps-2 pe-2" v-slot="{ Component }">
+            <router-view class="ps-2 pe-2" v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
                     <component :is="Component"></component>
                 </transition>
             </router-view>
         </div>
 
-        <footer>
+        <footer v-if="isConnected">
             <div class="footer-area">
                 <p>© Copyright 2018. All right reserved.</p>
             </div>
         </footer>
 
-        <div class="offset-area">
+        <div v-if="isConnected" class="offset-area">
             <div class="offset-close"><i class="ti-close"></i></div>
             <ul class="nav offset-menu-tab">
                 <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
@@ -239,18 +239,20 @@ export default defineComponent({
     created() {
         this.$Progress.start();
         this.$router.beforeEach((to, from, next) => {
-            axiosClient.get('abilities').then(response => {
-                this.$ability.update([
-                    { subject: 'all', action: response.data }
-                ])
+            if (this.isConnected) {
+                axiosClient.get('abilities').then(response => {
+                    this.$ability.update([
+                        { subject: 'all', action: response.data }
+                    ])
 
-                if (to.meta.gate !== undefined && to.meta.gate !== null && this.$can(to.meta.gate) === false) {
-                    // Si pas de privilège necessaire
-                    this.$router.push('/403')
-                }
-            }).catch(err => {
-                console.error("Erreur ajax : ", err.response.data.message)
-            })
+                    if (to.meta.gate !== undefined && to.meta.gate !== null && this.$can(to.meta.gate) === false) {
+                        // Si pas de privilège necessaire
+                        this.$router.push('/403')
+                    }
+                }).catch(err => {
+                    console.error("Erreur ajax : ", err.response.data.message)
+                })
+            }
 
             if (to.meta.progress !== undefined) {
                 let meta = to.meta.progress;
@@ -281,7 +283,6 @@ export default defineComponent({
             await axiosClient.post('/auth/logout')
             this.resetUser()
             this.$router.push('/login')
-            window.location.href = '/login'
         },
 
 
@@ -647,14 +648,19 @@ export default defineComponent({
     padding-left: 80px;
 }
 
+#view.no-width {
+    padding: 0!important;
+    margin: 0!important;
+}
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
 .fade-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 
 </style>

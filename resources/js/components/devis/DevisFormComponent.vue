@@ -78,14 +78,46 @@
                         <Input type="number" v-model="form.validite" :error="Devis.errors.value.validite" required>Validité du dévis (en Jour)</Input>
                     </div>
 
+                    <!-- Mentionner ici le point de vente ou entrepot qui fait la vente. Uniquement pour la vente -->
+
+                    <div v-if="form.appro === false" class="col-xl-12 mb-3">
+                        <label for="depot" class="form-label">Point de vente ou Depôt</label>
+
+                        <MultiSelect
+                            v-model="form.depot"
+                            placeholder="Rechercher un depot"
+                            noResultsText="Aucun depot trouvé"
+                            noOptionsText="Aucun depot trouvé"
+                            label="nom"
+                            valueProp="id"
+                            :closeOnSelect="true"
+                            :filter-results="true"
+                            :multiple="false"
+                            :min-chars="1"
+                            :resolve-on-load="resolveOnLoad"
+                            :delay="500"
+                            :searchable="true"
+                            :object="false"
+                            :options="async function (query: string) {
+                                return await fetchDepots(query)
+                            }"
+                        />
+
+                        <div class="text-danger mt-1" v-if="hasError">
+                            {{ Devis.errors.value.depot[0] }}
+                        </div>
+                    </div>
+
+                    <!-- ------------------------------------------- -->
+
                     <div class="col-xl-12">
-                        <FileInput :multiple="false" @fileChanged="handleChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
+                        <FileInput :multiple="false" @fileChanged="handleFileChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-5">
+        <div v-if="appro || form.depot" class="row mb-5">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-between mb-4">
                     <h6 class="text-uppercase text-primary">Information de l'article</h6>
@@ -135,7 +167,7 @@
                                             :filter-results="true"
                                             :multiple="false"
                                             :min-chars="1"
-                                            :resolve-on-load="false"
+                                            :resolve-on-load="resolveOnLoad"
                                             :delay="500"
                                             :searchable="true"
                                             :object="true"
@@ -184,8 +216,8 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
-                    <SaveBtn v-if="nouveau" :loading="Devis.creating.value">Enregistrer</SaveBtn>
-                    <SaveBtn v-else :loading="Devis.updating.value">Mettre a jour</SaveBtn>
+                    <SaveBtn v-if="nouveau" :loading="Devis.creating.value" :disabled="!appro && !form.depot">Enregistrer</SaveBtn>
+                    <SaveBtn v-else :loading="Devis.updating.value" :disabled="!appro && !form.depot">Mettre a jour</SaveBtn>
                 </div>
             </div>
         </div>
@@ -202,15 +234,15 @@ import FileInput from '../html/FileInput.vue';
 import MultiSelect from '@vueform/multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import useCRUD from '../../services/CRUDServices';
-import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 import { montantHT, montantTTC } from '../../functions/functions';
 import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
+import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
-import axiosClient from '../../axios';
 
-const Article = useCRUD('/article')
+const Depot = useCRUD('/depot'); // Recuperer le service de CRUD de depots
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
+const Article = useCRUD('/article') // Recuperer le service de CRUD de l'article
 const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Devis
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 
@@ -223,7 +255,8 @@ type Form = {
     client: number|null,
     appro: boolean,
     articles: Array<any>,
-    file?: FileList|null,
+    file?: FileList | null,
+    depot?: any,
 }
 
 export default defineComponent({
@@ -254,7 +287,7 @@ export default defineComponent({
         numberAuto: {
             type: Boolean,
             required: false,
-            defaulr: true,
+            default: true,
         },
 
         hasAttachment: {
@@ -265,8 +298,6 @@ export default defineComponent({
     },
 
     setup(props) {
-        const test = ref(null);
-
         const form = ref({
             numero: null,
             type: 1,
@@ -284,45 +315,117 @@ export default defineComponent({
         const creationFrs = ref(false);
         const creationClient = ref(false);
 
-        const fetchArticles = async (query: string): Promise<any> => {
+        /**
+         * Permet de faire un recherche d'articles en fonction de query
+         *
+         * @param   {string|null}   query  Query de recherche
+         *
+         * @return  {Promise}
+         */
+        const fetchArticles = async (query: string|null): Promise<any> => {
+            if (query === null) query = ""
             return await Article.findBy('designation', query)
         }
 
-        const handleSelect = (index: number) => {
+
+        /**
+         * Permet de faire un recherche de depots en fonction de query
+         *
+         * @param   {string|null}   query  Query de recherche
+         *
+         * @return  {Promise}
+         */
+        const fetchDepots = async (query: string|null): Promise<any> => {
+            if (query === null) query = "";
+            return await Depot.findBy('nom', query)
+        }
+
+
+        /**
+         * Permet de detecter l'evenement de selection d'un article parmi la liste
+         * Permet aussi de calculer le montant
+         *
+         * @param   {number}   index  Index de l'article
+         *
+         * @return  {void}
+         */
+        const handleSelect = (index: number): void => {
             const object = form.value.articles[index].object
             form.value.articles[index].id = object.id
             form.value.articles[index].pu = object.pu
             calculerMontant(index)
         }
 
+
+        /**
+         * Permet de detecter qu'un article est crée a la volée
+         *
+         * @return  {Promise<any>}
+         */
         const articleCree = async (): Promise<any> => {
             await Article.all()
             creationArticle.value = false;
         }
 
+
+        /**
+         * Permet de switcher la creation a la volée d'un article
+         *
+         * @return  {void}
+         */
         const creerArticle = (): void => {
             creationArticle.value = !creationArticle.value;
         }
 
+
+        /**
+         * Permet de detecter qu'un client est crée a la volée
+         *
+         * @return  {Promise<any>}
+         */
         const frsCree = async (): Promise<any> => {
             await Fournisseur.all()
             creationFrs.value = false;
         }
 
+
+        /**
+         * Permet de switcher la creation a la vollée d'un fournisseur
+         *
+         * @return  {void}
+         */
         const creerFrs = (): void => {
             creationFrs.value = !creationFrs.value;
         }
 
+
+        /**
+         * Permet de detecter qu'un client est crée a la volée
+         *
+         * @return  {Promise<any>}
+         */
         const clientCree = async (): Promise<any> => {
             await Client.all()
             creationClient.value = false;
         }
 
+
+        /**
+         * Permet de switcher la creation a la vollée d'un client
+         *
+         * @return  {void}
+         */
         const creerClient = (): void => {
             creationClient.value = !creationClient.value;
         }
 
-        const save = async () => {
+
+        /**
+         * Permet d'enregistrer le devis
+         *
+         * @return  {Promise}
+         */
+        const save = async (): Promise<any> => {
             let data = form.value
             const formData = new FormData()
 
@@ -355,7 +458,13 @@ export default defineComponent({
             Devis.success.value = null
         }
 
-        const resetForm = () => {
+
+        /**
+         * Permet de reinitialiser tous les champs
+         *
+         * @return  {void}
+         */
+        const resetForm = (): void => {
             form.value = {
                 numero: null,
                 type: 1,
@@ -372,11 +481,28 @@ export default defineComponent({
             generateArticleArray(nombreArticle.value)
         }
 
-        const check = (e: { modelValue: null; }) => {
+
+        /**
+         * Verifier si le champ de fournisseur est valide.
+         * Si valide, supprimer les erreurs associé
+         *
+         * @param   {Object}  e
+         *
+         * @return  {void}
+         */
+        const check = (e: { modelValue: null; }): void => {
             if (e.modelValue !== null) Devis.errors.value.fournisseur = null
         }
 
-        const checkArticle = (e: { modelValue: string; }) => {
+
+        /**
+         * Permet de verifier si un article a ajouter peut vraiment être ajouté au tableau d'articles
+         *
+         * @param   {Object}  e  [e description]
+         *
+         * @return  {void}
+         */
+        const checkArticle = (e: { modelValue: string; }): void => {
             if (form.value.articles.length > 1 && e.modelValue !== null) {
                 let find = form.value.articles.filter(article => parseInt(article.id) === parseInt(e.modelValue))
                 if (find.length > 1) {
@@ -394,26 +520,67 @@ export default defineComponent({
             }
         }
 
-        const checkDate = (date: Date) => {
+
+        /**
+         * Mettre a jour la date et supprime les erreurs
+         *
+         * @param   {Date}  date  La date a valider
+         *
+         * @return  {void}
+         */
+        const checkDate = (date: Date): void => {
             form.value.date = date.toLocaleDateString()
             Devis.errors.value.date = null
         }
 
+
+        /**
+         * Généré un tableau d'articles a partir des articles existant
+         *
+         * @param   {any[]}  articles  Les articles existantes
+         *
+         * @return  {void}
+         */
         const generateArticleArrayFromArticles = (articles: any[]): void => {
             articles.forEach((article: any) => addItem(false, article))
         }
 
+
+        /**
+         * Generer un tableau d'articles (Squelette d'articles)
+         *
+         * @param   {number}  nombreArticle  Nombre d'article a généré
+         *
+         * @return  {void}
+         */
         const generateArticleArray = (nombreArticle: number): void => {
             for (let i = 0; i < nombreArticle; i++) {
                 addItem(false)
             }
         }
 
+
+        /**
+         * Permet de retirer un article dans le tableau des articles
+         *
+         * @param   {number}  index  Index de l'article dans le tableau
+         *
+         * @return  {void}
+         */
         const removeItem = (index: number): void => {
             form.value.articles.splice(index, 1)
             nombreArticle.value--
         }
 
+
+        /**
+         * Permet d'ajouter un article dans le tableau d'articles
+         *
+         * @param   {boolean}  increment  Si on doit incrementer le nombre d'article
+         * @param   {any}      article    Objet contenant l'article a ajouter dans la tableau d'articles
+         *
+         * @return  {void}
+         */
         const addItem = (increment: boolean = true, article: any = null): void => {
             if (nombreArticle.value > Config.devis.MAX_ARTICLE) {
                 Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.devis.MAX_ARTICLE}`)
@@ -438,7 +605,17 @@ export default defineComponent({
                     tva: article === null ? 20 : article.pivot.tva,
                     montant_ht: article === null ? null : montantHT(article),
                     montant_ttc: article === null ? null : montantTTC(article),
-                    object: null,
+                    ...(props.appro === false ? {
+                            object: {
+                            id: article.id,
+                            value: article.id,
+                            reference: article.reference,
+                            designation: article.designation,
+                            quantite: article.pivot.quantite,
+                            pu: article.pivot.pu,
+                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu} (Quantité restant)`
+                        },
+                    } : {})
                 })
             }
 
@@ -478,24 +655,54 @@ export default defineComponent({
             form.value.numero = Devis.key.value
         }
 
-        const hasError = computed(() => {
+
+        /**
+         * Permet de savoir si le champ client ou fournisseur contient des erreurs
+         *
+         * @return  {boolean}
+         */
+        const hasError = computed((): boolean => {
             if (Devis.errors.value.fournisseur && Devis.errors.value.fournisseur.length > 0 && form.value.appro === true) return true
             if (Devis.errors.value.client && Devis.errors.value.client.length > 0 && form.value.appro === false) return true
             return false
         })
 
-        const dateState: Ref<false|null> = computed(() => {
+
+        /**
+         * Changer l'etat de la la datepicker en cas d'erreur
+         *
+         * @return  {Boolean|null}
+         */
+        const dateState: Ref<boolean|null> = computed((): boolean|null => {
             if (Devis.errors.value.date && Devis.errors.value.date.length > 0) return false
             return null
         })
 
+
+        /**
+         * Permet de savoiir si on veut recharger les données pendant le chargement
+         */
+        const loaded = ref(false)
+
+
+        /**
+         * Quant le composant est monté
+         *
+         * @return  {Promise}
+         */
         onMounted(async (): Promise<any> => {
             Article.all();
             Fournisseur.all();
             Client.all();
             if (props.nouveau === true) setDevisKey();
+
+            // loaded.value = false // Rendre le depot non resolvable on load
         })
 
+
+        /**
+         * Executé aant que le composant soit monté
+         */
         onBeforeMount(() => {
             if (props.nouveau === false && props.devis) {
                 nombreArticle.value = props.devis.articles.length
@@ -506,23 +713,42 @@ export default defineComponent({
                 form.value.client = props.devis.client
                 form.value.type = 1
                 form.value.appro = props.appro
+                form.value.depot = props.devis.depot
 
                 generateArticleArrayFromArticles(props.devis.articles)
             } else {
                 form.value.appro = props.appro;
                 generateArticleArray(nombreArticle.value);
             }
+
+            loaded.value = true // Rendre le depot resolvable on load
         })
 
-        const handleChange = (files: FileList): void => {
+
+        /**
+         * Permet de gerer l'upload de fichier
+         *
+         * @param   {FileList}  files  Les fichiers selectionné
+         * @return  {void}
+         */
+        const handleFileChange = (files: FileList): void => {
             form.value.file = files;
         }
 
+
+        /**
+         * Permet de determiner si on doit charger le select durant le chargement
+         *
+         * @return  {boolean}
+         */
+        const resolveOnLoad = computed((): boolean => {
+            return (loaded.value === true && props.nouveau === false)
+        })
+
         return {
-            Devis, Fournisseur, Client, Article, Flash, creerArticle, creationArticle, articleCree, creationFrs, frsCree, creerFrs,
-            form, nombreArticle, checkArticle, setDevisKey, hasError, dateState, calculerMontant, addItem, removeItem,
-            generateArticleArray, generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, creationClient,
-            handleChange, test, fetchArticles, handleSelect,
+            Devis, Fournisseur, Client, Article, creationArticle, creationFrs, form, nombreArticle, creationClient, resolveOnLoad, hasError, dateState,
+            Flash, creerArticle, articleCree, frsCree, creerFrs, checkArticle, setDevisKey, calculerMontant, addItem, removeItem, generateArticleArray,
+            generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, handleFileChange, fetchArticles, handleSelect, fetchDepots,
         }
     },
 

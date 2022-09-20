@@ -22,8 +22,15 @@
 
                 <td class="d-flex justify-content-center">
                     <router-link title="Voir ce bon de commande" v-if="true" :to="{ name: `commande.${type}.voir`, params: { id: commande.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link title="Modifier ce bon de commande" v-if="true" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <router-link title="Créer un bon de reception a partir de ce bon de commande" v-if="!commande.recu" :to="{ name: `bon-reception.nouveau`, query: { commande: commande.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
+                    <router-link title="Modifier ce bon de commande" v-if="commande.status !== 3" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link
+                        :to="{ name: `${appro === true ? 'bon-reception' : 'bon-livraison'}.nouveau`, query: { commande: commande.id }}"
+                        :title="appro === true ? 'Créer un bon de reception a partir de ce bon de commande' : 'Créer un bon de livraison a partir de ce bon de commande'"
+                        v-if="!commande.recu"
+                        class="btn btn-warning btn-sm me-2 text-white"
+                    >
+                        <i class="fa fa-arrow-right"></i>
+                    </router-link>
                     <DeleteBtn title="Supprimer ce bon de commande" v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
                 </td>
             </tr>

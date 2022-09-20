@@ -21,8 +21,15 @@ import devis from './routes/devis/devis';
 import commande from './routes/commande/commande';
 import parametres from './routes/parametres/parametres';
 import bonreception from './routes/commande/reception';
+import bonlivraison from './routes/commande/livraison';
 
 const routes: Array<any> = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Dashboard,
+        meta: { requiresAuth: true },
+    },
     {
         path: '/login',
         name: 'login',
@@ -33,7 +40,7 @@ const routes: Array<any> = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
-        meta: { requiresAuth: false }
+        meta: { requiresAuth: true }
     },
 ]
     .concat(privateRoutes)
@@ -46,6 +53,7 @@ const routes: Array<any> = [
     .concat(devis)
     .concat(commande)
     .concat(bonreception)
+    .concat(bonlivraison)
     .concat(parametres)
 
 const router = createRouter({
@@ -64,7 +72,7 @@ const router = createRouter({
  * @return  {void}
  */
 router.beforeEach((to, from, next) => {
-    if (store.state.user.data.id === null && to.path !== "/login") {
+    if (store.state.user.data.id === null && store.state.user.token !== null && to.path !== "/login") {
         getUser()
     }
 
@@ -81,9 +89,9 @@ router.beforeEach((to, from, next) => {
 /**
  * Mettre l'utilisateur connecté dans le store
  *
- * @return  {void}
+ * @return  {Promise}
  */
-const getUser = async () => {
+const getUser = async (): Promise<any> => {
     await store.dispatch('getUser');
 }
 

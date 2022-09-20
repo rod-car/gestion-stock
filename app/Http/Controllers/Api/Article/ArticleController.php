@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Api\Article;
 
-use Response;
 use App\Models\Depot\Depot;
 use Illuminate\Http\Request;
 use App\Models\Article\Article;
 use App\Models\Categorie\Categorie;
 use App\Http\Controllers\Controller;
 use App\Models\Article\DepotArticle;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
 
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Recuperer la liste des articles
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,46 +26,59 @@ class ArticleController extends Controller
 
         if ($queries !== [])
         {
-            $article = $this->getDepotArticles();
-            $result = [];
+            $article = $this->getDepotArticles(null, 'depot_articles.depot_id');
 
             foreach ($queries as $key => $value)
             {
                 $article->where($key, 'LIKE', "%$value%");
             }
 
-            foreach ($article->get() as $a)
-            {
-                if ($a->detailsPrix !== null)
-                {
-                    foreach ($a->detailsPrix as $p)
-                    {
-                        $quantite = $p->quantite ?? "Quantité restant";
-
-                        if ($quantite !== "0.00")
-                        {
-                            $result[] = [
-                                'id' => $a->article_id,
-                                'value' => $p->id,
-                                'reference' => $a->reference,
-                                'designation' => $a->designation,
-                                'quantite' => $p->quantite,
-                                'pu' => $p->pu,
-                                'label' => $a->reference . " - " . $a->designation . " - " . $p->pu . " ($quantite)",
-                            ];
-                        }
-                    }
-                }
-            }
-
-            return $result;
+            return $this->getResults($article->get());
         }
 
         return Article::all();
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Generer le resultat de recherche a afficher dans les vues
+     *
+     * @param Collection $articles Collection de depot articles
+     * @return array Tableau de résultat
+     */
+    public function getResults(Collection $articles): array
+    {
+        $result = [];
+
+        foreach ($articles as $a)
+        {
+            if ($a->detailsPrix !== null)
+            {
+                foreach ($a->detailsPrix as $p)
+                {
+                    $quantite = $p->quantite ?? "Quantité restant";
+
+                    if ($quantite !== "0.00")
+                    {
+                        $result[] = [
+                            'id' => $a->article_id,
+                            'value' => $p->id,
+                            'reference' => $a->reference,
+                            'designation' => $a->designation,
+                            'quantite' => $p->quantite,
+                            'pu' => $p->pu,
+                            'label' => $a->reference . " - " . $a->designation . " - " . $p->pu . " ($quantite)",
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Enregistrer un nouveau article
      *
      * @param  \App\Http\Requests\Article\NouveauArticleRequest  $request
      * @return \Illuminate\Http\Response
@@ -85,7 +99,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Voir un article spécifique
      *
      * @param  \App\Models\Article\Article  $article
      * @return \Illuminate\Http\Response
@@ -120,11 +134,11 @@ class ArticleController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Mettre a jour un article
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Http\Requests\Article\ModifierArticleRequest  $article
-     * @return \Illuminate\Http\Response
+     * @param  ModifierArticleRequest $request
+     * @param  Article $article
+     * @return Response
      */
     public function update(ModifierArticleRequest $request, Article $article)
     {
@@ -149,7 +163,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer un article de la base de données
      *
      * @param  \App\Models\Article\Article  $article
      * @return \Illuminate\Http\Response
@@ -187,7 +201,14 @@ class ArticleController extends Controller
         return $depotArticle->take($limit)->get();
     }
 
-    public function getDepotArticles(?Depot $depot = null)
+
+    /**
+     * Recupere tous les articles d'un dépot ou tous les dépots articles
+     *
+     * @param Depot|null $depot Le depot concerné
+     * @return Builder
+     */
+    public function getDepotArticles(?Depot $depot = null, ?string $by = null)
     {
         $depotArticle = DepotArticle::query()
             ->selectRaw("ANY_VALUE(articles.reference) as reference")
@@ -201,6 +222,9 @@ class ArticleController extends Controller
             ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
 
         if ($depot !== null) $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);
-        return $depotArticle->groupBy(['articles.id']);
+        $depotArticle->groupBy(['articles.id']);
+        if ($by !== null) $depotArticle->groupBy($by);
+
+        return $depotArticle;
     }
 }

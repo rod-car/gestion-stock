@@ -43,16 +43,16 @@
     </div>
 </template>
 
-<script>
-import { onBeforeMount, ref } from '@vue/runtime-core'
+<script lang="ts">
+import { defineComponent, onBeforeMount, ref } from 'vue'
 import Input from '../../components/html/Input.vue'
 import SaveBtn from '../../components/html/SaveBtn.vue'
-import useCRUD from '../../services/CRUDServices.ts'
+import useCRUD from '../../services/CRUDServices'
 import { Skeletor } from 'vue-skeletor'
 
 const { entity, create, errors, creating, loading, updating, find, update } = useCRUD("/parametres/generale");
 
-export default {
+export default  defineComponent({
     components: {
         Input,
         SaveBtn,
@@ -92,6 +92,6 @@ export default {
             form, errors, creating, create, save, entity, find, loading, updating, update,
         }
     }
-}
+})
 
 </script>

@@ -2,12 +2,12 @@
 
 namespace App\Models\Article;
 
-use App\Models\Article\Article;
-use App\Models\Bon\BonReception;
+use App\Models\Bon\Bon;
 use App\Models\Depot\Depot;
+use App\Models\Article\Article;
 use App\Models\Depot\DepotPrixArticle;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -49,7 +49,7 @@ class DepotArticle extends Model
      */
     public function getBon(): BelongsTo
     {
-        return $this->belongsTo(BonReception::class, 'bon', 'id');
+        return $this->belongsTo(Bon::class, 'bon', 'id');
     }
 
 

@@ -15,7 +15,7 @@
         <tbody v-if="entities.length > 0">
             <tr v-for="(devis, index) in entities" v-bind:key="devis.id">
                 <td class="align-middle">{{ devis.numero }}</td>
-                <td class="align-middle">{{ formatDate(devis.date) }}</td>
+                <td class="align-middle">{{ formatDate(devis.date, false) }}</td>
                 <td class="align-middle">{{ devis.validite ?? "Non définie" }}</td>
                 <td class="align-middle">{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite), false) }}</td>
                 <td class="align-middle" v-if="appro === true">{{ devis.frs.nom }}</td>

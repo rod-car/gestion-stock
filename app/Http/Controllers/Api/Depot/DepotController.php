@@ -21,9 +21,24 @@ class DepotController extends Controller
      */
     public function index(Request $request)
     {
+        $queries = $request->query(); // Si on fait un recherche des dépots
+
+        if (count($queries) > 0 AND !key_exists('type', $queries))
+        {
+            $depots = new Depot();
+
+            foreach ($queries as $key => $value)
+            {
+                $depots = $depots->where($key, 'LIKE', "%$value%");
+            }
+
+            return $depots->get();
+        }
+
         $point_vente = boolval($request->type);
         return Depot::where('point_vente', $point_vente)->get();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,8 +53,9 @@ class DepotController extends Controller
         return $depot;
     }
 
+
     /**
-     * Display the specified resource.
+     * Voir un dépot spécifique
      *
      * @param  \App\Models\Depot\Depot  $depot
      * @return \Illuminate\Http\Response
@@ -49,8 +65,9 @@ class DepotController extends Controller
         return $depot;
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * Mettre a jour un depot
      *
      * @param  \Illuminate\Http\Depot\ModifierDepotRequest  $request
      * @param  \App\Models\Depot\Depot  $depot
@@ -61,20 +78,24 @@ class DepotController extends Controller
         $data = $request->validated();
         $updateType = $data["type"];
 
+        // Si c'est une mise a jour complet (Personnel, responsable, depot lui-même)
         if ($updateType === 0) {
             $data = $this->updatePersonnelle($depot, $data);
             $data = $this->updateResponsable($depot, $data);
             $depot->update($data);
         }
 
+        // Si c'est une mise a jour des responsables seulement
         if ($updateType === 1) {
             $data = $this->updateResponsable($depot, $data);
         }
 
+        // Si c'est une mise a jour des personnelles seulement
         if ($updateType === 2) {
             $data = $this->updatePersonnelle($depot, $data);
         }
 
+        // Si c'est une mise a jour du depot lui-même
         if ($updateType === 3) {
             $depot->update($data);
         }
@@ -83,7 +104,7 @@ class DepotController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer un dépot
      *
      * @param  \App\Models\Depot\Depot  $depot
      * @return \Illuminate\Http\Response
@@ -161,6 +182,13 @@ class DepotController extends Controller
         return $data;
     }
 
+
+    /**
+     * Permet de verifier le prix unitaire de l'article
+     *
+     * @param array $articles
+     * @return boolean
+     */
     public function checkPU(array $articles): bool
     {
         $pus = [];
@@ -172,6 +200,15 @@ class DepotController extends Controller
         return true;
     }
 
+
+    /**
+     * Permet de gerer le prix dans un depot
+     *
+     * @param Depot $depot Depot en question
+     * @param Article $article L'article en question
+     * @param Request $request
+     * @return void
+     */
     public function gererPrixArticle(Depot $depot, Article $article, Request $request)
     {
         $data = $request->validate([
@@ -181,6 +218,8 @@ class DepotController extends Controller
             "articles.*.quantite" => ['nullable', 'numeric', 'min:1', 'max:999999999999'],
             "articles.*.pu" => ['required', 'numeric', 'min:1', 'max:999999999999'],
         ]);
+
+        // $exists = DepotArticle::whereDepotId($depot->id)->whereArticleId($article->id)->first() !== null;
 
         if ($this->checkPU($data['articles']) === false) return response(['message' =>'Les prix sont identiques'], 422);
 

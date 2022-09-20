@@ -6,7 +6,7 @@ endpoints:
       - POST
     uri: api/auth/login
     metadata:
-      title: 'Log in the user.'
+      title: 'Permet de connecer l''utilisateur'
       description: ''
       authenticated: false
       custom: []
@@ -16,16 +16,16 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      login:
-        name: login
-        description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
+      email:
+        name: email
+        description: 'Nom d''utilisateur ou adresse email.      Exemple: user@example.com, user123'
         required: true
-        example: quas
+        example: explicabo
         type: string
         custom: []
       password:
         name: password
-        description: 'The password of the  user.'
+        description: 'Mot de passe.'
         required: true
         example: secret
         type: string
@@ -114,49 +114,49 @@ endpoints:
         name: nom_personnel
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: s
+        example: whjwkkiiglcyupolcnivosqmfjumdnocpctsuhrnzinhguzetfoxtntvrncumxrhvxakwxbtgcntmakgdqtcozauksmetbsljmryswwuemfusqprptzesqqyb
         type: string
         custom: []
       prenoms_personnel:
         name: prenoms_personnel
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: false
-        example: qnnzdpbyghruopijntdssjdnturzwbfmsidctymxvwahmuqaratobjrehrhmlfnmoyqumupwtdpafwbiofpqpbustaffchndbqtjufbvkbfkcsrnfizukvbgtpszlwoeooyghpoccheekawucvvndmyzalpqjqmbolkecjeuzkpeeijhgoxtbuah
+        example: qznyixbvctcizrzllyyuwetdffrptnyiekovzisahuxhftecvsvorqgokzgnwyoybtnzmuinraraadeprdjkdpjsnpdhtvxtebixnyipzfkewwszfgqvlwrxcpfelioyushtlmbbcgvzbprcprwumwxti
         type: string
         custom: []
       contact_personnel:
         name: contact_personnel
         description: ''
         required: true
-        example: non
+        example: eaque
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: qzfsubsasgtvfmtwikndjrhzxwtgsecocqsrlekhmmjmubia
+        example: lgndhgowdgojkhsmrsvsfvqewaarvzdbhsxvaokbwwuuyiioebqktiikqlvsubjytdamwhjc
         type: string
         custom: []
       adresse_personnel:
         name: adresse_personnel
         description: ''
         required: true
-        example: voluptatum
+        example: exercitationem
         type: string
         custom: []
       cin_personnel:
         name: cin_personnel
         description: 'Must be 12 digits.'
         required: false
-        example: '049166688068'
+        example: '181586638286'
         type: string
         custom: []
       username:
         name: username
         description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
         required: false
-        example: wzsdppssbqkrebtjsrantdlahffklfxigqnhhiextntuhwwqkvcuqksejnsmzoearllsttfrxcfwablxgaaefmscqksrnfhhqcbihfrtskxqulihdrfipywjicspswowegymmjleoewncggzxepyraqwkscddirwdobmwodfkryrjuyiklaygrmciouwxiffxrxeshkovstuoyrazlxwjhynxjjz
+        example: pqkiodgvdkjmwauxgymlhkmvlgddpnztfkjnxippplmcacykexryqtxlozknanzahakcsaqeefumtnryfjsrpenilstkjblyhkqyfgcpfcqhyzjaxtazowolunujt
         type: string
         custom: []
       password:
@@ -170,7 +170,7 @@ endpoints:
         name: password_confirmation
         description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
         required: false
-        example: sxrdrozvexzcozmu
+        example: jhckpmcqvtxsrfepbyjjpnaxfjyfmyqappvwnegfljmtrznpxnuyubeacmzifulxlayazuxfyncyvbtn
         type: string
         custom: []
       roles:
@@ -186,7 +186,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - et
+          - ut
         type: 'string[]'
         custom: []
       fonctions:
@@ -194,14 +194,14 @@ endpoints:
         description: ''
         required: true
         example:
-          - eveniet
+          - sed
         type: 'string[]'
         custom: []
       login:
         name: login
         description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
         required: true
-        example: similique
+        example: velit
         type: string
         custom: []
     responses: []
@@ -265,63 +265,63 @@ endpoints:
         name: nom_personnel
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: pvxyshwkkbgkmfcybolesjxkykqeztoaczaudnfaczsqkudzvoifmnxthaigwogogpiqlqjoarpgtkmnxrlrjxfyuqrsamtwglbqqpctecjssmfovpyolfsiculmzybhmsdqkeqpchptiikoaxvbsjilokflsuiqclnvmwutlhpogogpqhjzkiqasroaopjmyzsz
+        example: myqrdozhgbrjjikazgwmnzfuqjlntmgqqvspyneugjnmrxdbobxahwnsavrxvxrqyqexyxmftjmqnplnkcuekfzxugnkysdnzpckem
         type: string
         custom: []
       prenoms_personnel:
         name: prenoms_personnel
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: false
-        example: pjuaaqwqkqpderfutdxjpclpyjkrizcyalyfywxgdcbbiurkxelkvfttjjqkywvsrgylzzupsxtgjqptiwngwfuaiubgfoazvzssdhtcdiqivppyiqyfwzhuxyhpxxajtpoiasshhzgckpkelisvnwnjfauscmvxucjedaufgpqcdzqnrbykfxarachoybczxwxjhfygdqjaevpejdixgqbzoujoscczrxznylh
+        example: vsugrfdnekvymhlzlzyadgvefxahwiqagjgqumtwamynojdyhsgszpqkmphqeqthkdtsnmtjuvspvnlmraowcbfguyfirfciuteyjrxlgsagdbielissrtehlmwlfrployzgzpwjhqhbkjtofycmlxrrfguinsjantzazccutwdzndrgscgiwflpcdgicdhl
         type: string
         custom: []
       contact_personnel:
         name: contact_personnel
         description: ''
         required: true
-        example: qui
+        example: nihil
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: rccjiddwgnonqffj
+        example: nzsqozrytytsbtjnpcqdgrlievddsa
         type: string
         custom: []
       adresse_personnel:
         name: adresse_personnel
         description: ''
         required: true
-        example: atque
+        example: sit
         type: string
         custom: []
       cin_personnel:
         name: cin_personnel
         description: 'Must be 12 digits.'
         required: false
-        example: '522392864780'
+        example: '113336187920'
         type: string
         custom: []
       username:
         name: username
         description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 5 characters. Must not be greater than 255 characters.'
         required: false
-        example: xjsuyxgipdvgnwcjbfshdeyjjpgiurkiyjfpbrhnmwwnvattvcltetkdfizezmsluxqehmzmopsfcpqtdyusxkglcxrfivfjgjazegsuwdksiqeasymslmgavodacvshnsstfzeoyqlmcukamsovwyhsdvmjffsajtopd
+        example: fmuyoxblhjixjxsikfqbqkqgbcawexuijhmchlymqztypuholyckrboabgwhcjptvamatwklvzbphlwgkausptmvcwumzggjrmd
         type: string
         custom: []
       password:
         name: password
         description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
         required: false
-        example: dtgsqdkaabytlhxcmkx
+        example: wuaxgjydojiqxxbykdsocorqoqpxrwfhhyxrmilxjbligscscvctdxalslmyufiiskwlyqhzqfistfwibbbgredblpdkeraineedhtaqf
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: 'This field is required when <code>hasAccount</code> is <code>true</code>. Must be at least 8 characters. Must not be greater than 255 characters.'
         required: false
-        example: mpntfeojhaywbbtpoymvfzthyrptloxeecqjwqgwlqpkodkfavbblxefwvwizhfpqeiveuuhpowzzle
+        example: exikkwxwiqgrvzlqvpowskpou
         type: string
         custom: []
       permissions:
@@ -329,7 +329,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - hic
+          - minima
         type: 'string[]'
         custom: []
       roles:
@@ -345,7 +345,7 @@ endpoints:
         description: ''
         required: true
         example:
-          - error
+          - rerum
         type: 'string[]'
         custom: []
     responses: []
@@ -379,7 +379,7 @@ endpoints:
       - POST
     uri: api/auth/logout
     metadata:
-      title: 'Destroy an authenticated session.'
+      title: 'Deconnecter l''utilisateur et supprimer la session'
       description: ''
       authenticated: false
       custom: []
@@ -485,7 +485,7 @@ endpoints:
         name: nom_role
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: hsbnzvonnodloifxgljaslzwdjabsbjbhplzzgzenwqqxbksdvtzgozilkirwcnijnnzlsfpmljilrsmtfmuqbtsgoxgvugbudalskraqtrabhfixlukotwildhhczttlfinoegixwqstzwlrsefpojatwchenwkhxaoebzjrwoxoqappurckndjndudjhlgttprncnucvcubgtyumowxfojqnfbtanohlvtphuszlbhgrqrsnoomnfpzw
+        example: vrzmoaxjpstgvyziofdcqpaubwbtsflejtaocuplrxydfpgwqcjcigrkxksyqlltdrsperawoakzduxyuwxcrgdqdgjsaqkfjrdxihmleljwwenevadhdkbytaroxydztduzr
         type: string
         custom: []
     responses: []
@@ -615,14 +615,14 @@ endpoints:
         name: nom_fonction
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: frlygfonafhlrjrazfoqagbzwvjaaapuhefcvurqqypvlnxmxpmhfrgygpayi
+        example: lncwpsxnlrgpbzshqm
         type: string
         custom: []
       description_fonction:
         name: description_fonction
         description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
         required: false
-        example: pvxkygsfycdzhevtbuprazafvtawlqxnyoixanaszmanhgzgevtlvptlbuldhthrzmqtdbfaluhfgjpqywotswsddhaknrnhcsqxmllrwxlvvtstzplmbizqtqocrqjkegoqvaatciorzoshtdcsdouuhjfawwjxnlfyygzzalkgvcwbzxlestjycqrjdyrnrjpsxwetawzlhrjgkitzhwcxeotibzhtitbvrzltgmcaidllkvzpcouqfxsbtsjbhbncwckhonyvljeiuppmhdqtirrcixyipejhckzprkhhuvcrm
+        example: ruelcycrpzfftvhkgdwcodqyjjyhnrihocyxwojskdwqqlcrlggqmhhtzkqeyrjfxsqwbooxfruyenljpnfpnhhduovkvewmarnvmskabkghjpbgdmrzbypiyzbezrsvqlplukkpcpvxankouhlqitqqmemuvygjgxgdzrfsoicmzjlsuongybthvzlkccchllpnvcdnlcbfdlwjejorlcasfkyolgjezwgrmphvkmnrwjqeeigymulmrvuevhmwzmglshpodvfiwkwfulmkmccjyiulomrlbjxzaqrgndraa
         type: string
         custom: []
       enfants:
@@ -630,7 +630,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - maiores
+          - dolorem
         type: 'string[]'
         custom: []
       permissions:
@@ -638,7 +638,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - dolor
+          - aut
         type: 'string[]'
         custom: []
     responses: []
@@ -702,14 +702,14 @@ endpoints:
         name: nom_fonction
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: jahprmztwptqllrgshqigoscuktqpivdsvupzutumdyjnubisljrqflloucvhfuybccrsxhunctukwthwoevnqxlimcyzdrrkipvocmvf
+        example: ibyccyvflkcawpmcivuelioeqxbnitwjhwcpruozjnfinilyssqcetjeeggbukwekaaonyawvcasewwwmzyufytjclshgsmfxxxilqxdudcxessjyszxcmrpkolhcuvfgqyukcetybkgjnphtsnpxkqkiulbyondnqkbkvvltzlgbmytvickmzvsgtoky
         type: string
         custom: []
       description_fonction:
         name: description_fonction
         description: 'Must be at least 5 characters. Must not be greater than 5000 characters.'
         required: false
-        example: huvwyxtkdmuntuqsrppznhooejrabnuwqszakyuszapyrotyztawdenlunnibzsdydnlhdjofbpnzfuzamcfhqdsvifwpemmtlkomlhmodisxdzirjwzgomrvwieveysinyidkehhhtwqvrvjpbbhfmaqsxummsnvzimpvchgczchubvgnwvvjelquujgxiogqtlrjunvfcsakamihfujrmjvifbhzoyreeixjcsmdgbeqbtgwgtxyvtrczxttdbzvpuezonhioywngygbveovcddiocdjofztpmkynzbbiuuvzvtillqitdzxzktqircndwdbdnwiussbwkxmtgjsdcgauebohnhezwwjsathlpspsrhkpxgywjxwsbqvkkmasjcpergqzyqpkmthpgvwqsyyfbevaezgotvawjdypcmgosmzxrtthmzbdejbhpqfrnhdqikubzmquiocfpflojvivamndmeebzkjrrscwhadxtvdnjqozbuzjunyyayaplcsmcdbbbupzfdyczzpiwjjgobgtdelemmeyjoxlljzzmkrncvdgkqulrpnhbxwuyrmwzqrryuyyvsljarqjgnaoywhvhfnjzjeifkrejbgftgxhwjeqnshqpxxksjiztxnukyuzswafqpcjrykdmtgjuapjnuifcodifdrzuqcwyzecnblemqdtdfmsuqhbdpdpgyzgwtscjsjcwhyunhuicsgmtgidetzfdqjdivrvjcxinfscojpohyidagtgqgmlxnqahomwraajnqwrowtwbndgvwthrbnatlvgthvacpqeryqsrecllnibyoxpfxntbackzlnayffqlekpdmpqbuyqljbmkoycpbykrlovvhrsqkstkdssbbkvedynmpcwbdeotcoiheqkbnfyagknftbxxyozplxfdwnzdqpdpxckiapzwzkflabxezyoooovworpaehteiwxlofacceofvaqvvifpeydmfekzsegemisccuknwyxnggiemrvodgllfnssawhqzpurqywtshcovghccvjxhzpbcmnxntrlhupkuyxhbkdlonkrtlwaunyqerzaylmhopvdteruliylytnptdzlgfjwmflltyfktjcglfbngmoecyasmhzntqwkwyizppoaiomiqbvbmoowabvcngwsputgunnwsvvssvzmgnxwcelftiltdbwkeithpjrjmjcbopywbyyeqtagwaifvzxmugpwdpxgeejuygyikmwvponccwesgpmxzylyaeimbirtbjmfefrogcruairwveifvpractonljntptpdrowvedylybdsbxtpngjwbzkvfqmlbfzozeuigpukrhthtjwlcmmgqaagqekfoggobdpdmnwmpmzlatliinxpcestcgwhayayfzrfhbmjgrtbhsenitshimofotdejtsuhdibcgpiftyphpvfoifsyqheychmnaetcatapcadgdksdarisxzzwedkzvynofubxnenxosndipgkfcgxqwqaoiehhcpcszwbbzfpkqqrjovgywtcorwtaaddzwklzgxcgjjllkedemjiwfprhbnrnpjazqyodfeqgbjcchctcjahgpmnemoplijgpqqmbgabqzxenuxssumjywmalmpuzsmrqckoedznhujdkmflbxowuyfalpsuxjmkkpaejqtglkjlpxhbzdzgosgrjmanxgoecrpaatjwzjxdziertwxuasczjtqljmwfpaqhbgdflekrahnkbitiubsgwulreygznnmsswxozdpzyewgtstrdnpxytbvcgaagynazhgtjsdddpvkzlqrhmybfxgkntnyfrhyzefhfmxcdgntmjhxmdxpzeqwxtgkiibusiupgokmbiolucnfqflsfuonhxflnjxbgqbopdghlwhrirogpktygnwynkqakvwiqygphytbmybvctxctirzafdofraqglyozevmtaecqixgsbpnwxucjuqepewdkqiwxneivqzjejbtxbqqeecoevjqajmpbrahnxztgjrntmsalmjcnfjcxztknhobutirthcbxgbazwdterlauywhuhnydoqapdqsoxamymziuuxxrwmtehhbkklmglycwuyxalnnpkjtrgiodsdhomkocworczgkaecvikozjuhqgsctmewhswsgllbeenaqefevcpcjwehshkwpaohiyxeqolewjvsjlgdbvreracehmpqemxnxizqzcccfufwyutopdbcfzrkrmjhxtikweqrnslnhvpzlnjypwjekojvxvpnanfmtmertntwwtjvmxgnektnvieizbaiulpskyfjimflimymymxnaurvxlxtkldppairbldewcjjfjmuwdeqwawtizrnjvtpqecznmrxvowogjwwyilgntaolxduneoerogkpyzjamzrvueflegvmleofdqkymozdnpkpshiydvsvxrnyumpeygkxoqgmtziqxhcjzhcpyywifmljuwlbdhesuucldzqqawsfyqgbslqzwaavdxrrmmcirlvprepqyvfxqureapqccqpjgmzccvrcrcdymychceduxlbyotfwlyxyuxqgkkpheowimnlyqxavwfmrfezgyhztvzdymuffuazrpvljrlcqgbscpcotpfipyshizvzpyqkcrrrymqlixlhdruasttbvdyqlmecckxbbpnkawohvgtndwcefinjaftavfutmdvdvpmsdalckxmbejmtaqljmeibkfmxhrcshczjrsftzchpyrlynktmuqwjlfmabvdmnqqawnkyaupeqhxqphqqhftvalaybdwyuczqddssagvscbwdebrgvchafhmuvvrshlpmrekablucugjpwuijduxrxjwjflzynxrohklbzzmusfihdekmvpytlyiggbtyqgmprwoxwuahtdlxtyvikjksndjwyvnqoxldgedednooyibpaizdqlfhchznlqfokswxxbsacdenolzgjlikfdlrofcivldatwpagxcbxqveamtetktbybapzcemjzxgdtztasiessvrvkfqazyewuzyprntpyiombxgwkpvltlqwubrtcxkmcacjycsavppmudyumebcxkgqyfixzgrovfobzubjcucruhwkprtqjnfdwjtrufzslzehcozfxlccsmsknapnerswpdpksnrctkmpznkloseszgstukncvndoyeyuusvplecwvvqzsihypcqyhdnbfeibftxwxuczbbwssooqoddxxsqvonixjpyjlacmlyrxbzahrrkpbpozjtltkkevdkmkeptknxtjgdfgktuybyujxgtzcirfmfdqojknykxxgklkpuhmxrohbnvqrfgpbpcfuqrxonzzmelpngkoktdjpamrkjkcickjerpuyhauameodefyxxhycinywfllhvtpxotnfzeyapwkmhtsuufarezjsycbzqtcapfcbnxuycafthcvwhvvyfdvwkohpyjgmwiawyfnfuiomsfuvhddqgpypuwyjscyzppdqhjtmuvvarnuvolufhbvqcyegsjzdvqzdtmqxgzjbdjfbgzxgpdyjoosmjwdnhcbfbnqmnmfshxmmyszsxylorgozjvmktqcbqbuedsiswtpvhyfqnhkjygjttyrmnaaubvpkintdxtxnogjrdbzmgsuadpyxhezedghvybzinhzomhqoenhzeuyzjonehybhgkismditxklcwjxeowkwlprfwnzymufgqseehpjrjorjwtkavnyerwxnygfmkaobgvwodzhucuvxhepuaharprzkgvuqjymicufuvotalmqzxslolgbvthuayamgtiugpbmpocguqmeunekfpgleclffzohcapjqcjnnnajyzvwgkqtwiikfiigntbordegxaupmdkrsrxxvnywxvlccvebmzavkwidgyeaskjzcwxurmtkfpqoioxgfquhlvkhkqtyiudcucsgshvtipazorqdfdwabwuzzamwaadjdggbbhphtktkjvilvhlhxcdytgufwllhfcfbgfjgvunwqqnjkiuatdfttkxbrxbfnjfermjqkqdrmafzaazdtdoplfqfzjdizlmamnasljklwpsmqrfeclaiogoqybrvogzqynhjkatbpljcwuumhdufdyxxvpwghbsupcgpfcvkhornhpakhzfobfqmjwtixgraosytfoymfjsddztqoqhvyktitwtbhnsrchtwjxdadalzlxkjlgzazdfvqmundmpzrfaiyrqdyslutulhlzmeyrqpmldlflufjvypdasdnjeslghrinsmfdrkjxqsobzlhhozurprsjfjlscxjyshgmiwtmqklkuknhjrlhycfhzoyzdfeoluqoddcmplxrecgjagemoygipcchjzexfnflereckussfstgmtkpaqqcwccmadktvzasplrsnkqabwzpkeyvozyhdfgdxgzziuolbtzhwknihfimwdsruxoukymicjkxrtucgzvtrihwizlgxxwgokmziamruzvpzjrcupyjhndcnvgtrkyoeoaqfznxqgchmrjkcxpznsscpjwtzrojhuidjydybgchwxrmrkkrseijwjksslgdkpfwlmxpqhjngudbdabzwkungfzjrpvogkhowgiwpghsivilsqmytbkrxjmqsizkhqvfxxxpfpvkxtzzemcuvgrzaydmqihjgbreshmhuyckxfnekldptypehhxpyqedgwxogsffssmokokyhmsayfcbzqnplrqsoxoxociegekmnrjrndbjhkkndjkkxjrhkyjmqytsbxivjxjhkewwlderqwtjqkpqzjtjypgfovwlolsmezvtunrvlsjrflaxipfjiosdvrtgz
+        example: embgbwtmqeldzayhspofuwhfwvlqynmoneiznbttsyfjcdpbazbfaaudyebrfuanxahvhrxwzynlqcnhbgynhgrukgwxhnmzmuexhxtkhvjumabpqlnqppdmuctlwspplbridrhljdjkmesqistkatnvdlkbbtreatejrmcac
         type: string
         custom: []
       enfants:
@@ -717,7 +717,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - ab
+          - voluptas
         type: 'string[]'
         custom: []
       permissions:
@@ -725,7 +725,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - adipisci
+          - totam
         type: 'string[]'
         custom: []
     responses: []
@@ -848,28 +848,28 @@ endpoints:
         name: nom
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: dvlmyvpzpbfpekrdzfkgjzbusjjqxfcgaihckdasmtiywfghhidfgrgmvndmxlejjfasyhnrzyjkwwbnaicywumvgwyxwrkzespaptasqirtbfqfyxvxoxxjgramjmqdrkavxiqczlfizrzinjnevbernsemsvwrjbsgfondlaukvqfvhkubkcghkslppaicitgmlmldpntgnonrrogbunoyvrplefhuvkgeidsssbevy
+        example: pehdtjdrvjptvfnuvzkuygqghvwkqgazsslnizkdxyslwkbzzifdgugwwosfkhzntpnxuoymvquxodcwjqorviyacb
         type: string
         custom: []
       localisation:
         name: localisation
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: dqrdscuexndrdguuygaawzfhaivyrubcabfjgghxtdiuvwrqwnojutkkkoetarcqmbczkggycwbzebfznkstzvmuucdhoctpmk
+        example: bnamilanfdlnoxthnbjtipniwolzohdtxehfumfqjgnzbwgcbydnxuyjcgoaohtpqfxphpxovdxbbqtdsnfilbnnaikhrbtdcqjdsltyywpbhztfngvuagycptmdbfnhwykcffoxqlnbknxruuihgbaievpdaabhithgmdwmsv
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
         required: false
-        example: kexbrqzqvnrlbtxixaeqstntpuidbcgmrerhywickfgujmyggtmodeihylmwkmvpfxbynuxqqnedigpcsqfcckdlibymtnsoopzgiixhaqxkqfmigdeofenklqvfhnemgmukepvpfwrhsxfjxooxzbljhsceusrbetfpyakzejqbalvgriohjngqbwhwhqoyjlhiudhdtaqfrzpwrzclmhrvypmklbhykohzibzksvrjukqsqadilynqfhjuj
+        example: qzmavapsvocnxbawcunpvbeyblim
         type: string
         custom: []
       point_vente:
         name: point_vente
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
     responses: []
@@ -879,7 +879,7 @@ endpoints:
       - GET
     uri: 'api/depot/{id}'
     metadata:
-      title: 'Display the specified resource.'
+      title: 'Voir un dépot spécifique'
       description: ''
       authenticated: false
       custom: []
@@ -891,7 +891,7 @@ endpoints:
         name: id
         description: 'The ID of the depot.'
         required: true
-        example: 4
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -908,86 +908,10 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/depot/{id}'
-    metadata:
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the depot.'
-        required: true
-        example: 4
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      nom:
-        name: nom
-        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-        required: true
-        example: rgdqixcgnfqgkwbtjhsiisudccucagadibghcbevqbpotaskiqsxdypnkysdsdycegjljfixhcpnvwncavtywjlhdxoeakmjbygguepp
-        type: string
-        custom: []
-      localisation:
-        name: localisation
-        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-        required: true
-        example: bebzadwiskbpkdvfhohzhstjlagfliubdsogfxjnrkxrtzlasugtjtfgb
-        type: string
-        custom: []
-      contact:
-        name: contact
-        description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
-        required: false
-        example: theg
-        type: string
-        custom: []
-      point_vente:
-        name: point_vente
-        description: 'Must be one of <code>true</code>, <code>false</code>, <code>1</code>, or <code>0</code>.'
-        required: true
-        example: '1'
-        type: boolean
-        custom: []
-      responsables:
-        name: responsables
-        description: ''
-        required: false
-        example:
-          - null
-        type: 'string[]'
-        custom: []
-      travailleurs:
-        name: travailleurs
-        description: ''
-        required: false
-        example:
-          - null
-        type: 'string[]'
-        custom: []
-      type:
-        name: type
-        description: 'Must be at least 0. Must not be greater than 3.'
-        required: true
-        example: 2
-        type: number
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
       - DELETE
     uri: 'api/depot/{id}'
     metadata:
-      title: 'Remove the specified resource from storage.'
+      title: 'Supprimer un dépot'
       description: ''
       authenticated: false
       custom: []
@@ -999,7 +923,7 @@ endpoints:
         name: id
         description: 'The ID of the depot.'
         required: true
-        example: 4
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1050,100 +974,14 @@ endpoints:
         name: libelle
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: lwkdvjnrrpaitlsnedmesojkvcrirlrkvcampfflnzxgtmbakxqckbecgayoduyktcepptshayyqdznxolvcrbrbwsbprddikgfwqqaaazesgspzunvktbvwdrhluwyakqfu
+        example: vmfioxhwsotvajtaigusedoaekfbbpcsbggkwhmurvofgfwpwdmlwznreejchcjbpgesrcdxiyzliawzgkkfnbiatmmritypublgyubagxvdiabqnjmuwisbwgirmkiaxtqbxakssstorwjaqwiobzrhokbastxgaxttvobl
         type: string
         custom: []
       description:
         name: description
         description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
         required: false
-        example: mlwjknpzmsrqvnnibusebvizyorbidxsaopzyytledrqcadpraiikyloimhonhxlqghfschrauigueqynkqmovzxiqspgoauktpkfhfjcglteiqabfmtmdtavjlwotufmozikrhroerdmotoubgexffkuhwubdabaegxvpvdchjpjepnwlvgadtndzyyatezeaafnylspgjaopqkhyaktnckqpnlxykbirmdpbalkaqhrzcqghbqsztlpaveapnhbsrivvzyfgkmuhomrzmjrfyxlzfbphpbsfkbbqvgtirieykeceeryxrinhvlemksvvkeubukfmxaotdwacrwbupngcmbuwdelgsdccxfbrzdszwichkorlaawrhzbpwtpeubumyzinsjowdvxywcrcayqikfqqggiufzkrfziczlfoamhkhjmfvfjkqqmunykecxdhlgehhpthvxlloqvkoavodrhouty
-        type: string
-        custom: []
-      type:
-        name: type
-        description: 'Must be at least 1.'
-        required: true
-        example: 1
-        type: number
-        custom: []
-      sous_categories:
-        name: sous_categories
-        description: ''
-        required: false
-        example:
-          - null
-        type: 'string[]'
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/categorie/{id}'
-    metadata:
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the categorie.'
-        required: true
-        example: 5
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-    responseFields: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/categorie/{id}'
-    metadata:
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the categorie.'
-        required: true
-        example: 5
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      libelle:
-        name: libelle
-        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
-        required: true
-        example: kluvlhwytkugybgsglwjvvmczrbpzbutwsqmodhjstrqfefjvibalzwkgbqtzduefnljgfdecpmrcdghfnucvkerjdmhzkfkvionagggbvvpklsoqqselsesahpioafmqcbfqhexoucocusoutdkusqnvmgeahmorfjkwtefofbshefxmyzwdflvf
-        type: string
-        custom: []
-      description:
-        name: description
-        description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
-        required: false
-        example: ewupblbijldmknnyvrbtcfrqlhazlryefanwcejfugqcojawrmxyipavqdymrfuwqaqgierxzpxqvktskjjfpamrmrzjldlwnyckpxncftchvimfmeudufohsuuccomixadwcrlucrfsosftxruxosvldicnkoyclgzrhccrmkjkpvvnnzulmmluvacjwmktxkobwolkhoqyxpxbnucuwblekbpvupwowvelguexfkwaigaefecysppfqlsblesbdzutxokmzjarnnopqawcartloyvvaadxkmbiauttteeudpivnwbtlggedpxeyywgatdesjudjryftqxowaawfzsnelcywaxoghhbeovtwckgbkrpgqwgraopfacqaslzdvpzyzeziqopdmjpjtuqbpuijbkdwxjkeqwexhxgnaeevggldpwnhitnratbuszqrgailpmgsbqkcwzqgdhtavlzqahvahpwayjzfamtzvxniaweiiscvfcijvbbcpzucnkrclieuxhwylxemadkkzrehneglebxvmgcyfpbrafpgoohfghmbhjyajehwfneozafvurcyutufkizuagjokuswoggdjavsjulmoeavtulmkyzqycxspeigyirywznetmnteyaxdibjyoqkplsdrlcdosylopldfqcsbiyqbzndlviepmwitvsyglbyavqiudrknaozojiofkzwfzyfpdfdvifbijusrxluiwgnvnamkzhdnvvepfgyitrqgzkvhkpvrjbkdnxbbiivvipvbedtnxdygdlpvbvodmdzqobngdkvkaehovgffkixzxnawkqmuywijywdrsnbhefduhagvbedzesfhxgwymyr
+        example: uverpxafgrtofvzqmovpuisuvoraagfpzrwnrvzlnkzhhimvhmsmxzgxzkfdgmmdtoqlpzaletzomsryobdndealgbgsmmtntscpoperjygblzxzqqpsellaekbexhmzloularkvmrhmejiwvnyrkaykyoxtnjotuhmmyfegjxgfhxtobjfbcenzwihwngjrzawdwvkznuifiiwhfkzjbeazdxlmxcnjvraoucfbviwxrhktlcepkiekqhedpfydcuiwursnjrjdcyhcdljvaeclpdlvnzeeldryggtmzznmplptcrexhygxzqndrpbvazlrhjotgfvlnuybjxvyszlroisksuzfqydaeqybecoidtupxuvfsnpyzbbfctlfcnglrgdzsbyzrfjseipdpvmopweicavzkiooyymlqktkufszxyjvhdjzamrzdtdiizqhaiydmtocmlbkysreyildbgqxtgagvvxxjafgmqyogauneasiqauclddibqtotoeecxxillalqschlpixmvqphcbfkzrkafjmbyfqfvuvpvfhacidbcnqawulomtllvvsmtoeqltlmyhregfrhqrdwjzxkxceepnevlcvmbmudcfdrqoctsgyiozuqsalcslwgazuvyjquatvqiwqcskwhqtevrypdbvgvlxpkderyvhlyeolrpj
         type: string
         custom: []
       type:
@@ -1165,6 +1003,92 @@ endpoints:
     responseFields: []
   -
     httpMethods:
+      - GET
+    uri: 'api/categorie/{id}'
+    metadata:
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the categorie.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/categorie/{id}'
+    metadata:
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the categorie.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      libelle:
+        name: libelle
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: true
+        example: ygtbjimzhufghnpbzahbnbvyzitbitpischskkplfbojeembrzpvxlrgzigfhxypttmwjhpwqxmxicfprrienvkcbikujmqulwxlbygdfvqmcqsknobfrmyktxzvcbjhuscmojjlmnmtzwjsidsjoqwyofjmqjqoqttkcnejtqqdwahuzaz
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Must be at least 5 characters. Must not be greater than 1000 characters.'
+        required: false
+        example: zpqjczwbkofmgbrdgqrdoxqotyrwuwxjpsfukockwyclunzioqllndqhrbadjdgcxhysbkbpzbueytkffaxdhsqvwxasneqvxoyytyuldshdgdetkemhiidhqwupxkqlosvwsemgtddwkjdtcelvptjwiwvyjubjzvpecmbkqnadzhlielbodeyixogtitcotfqcmuijiwhwuyxnkntbqqyjblcfrpbgtjzzhamuuvzckwhhorcsazpofmforantkbxrleovcqzcxjkdtmslhawkjvdcacobmfalzzclezlsikiuhztzcwmcvkocltltzmeenmtcwohofuparnkemjtwnopfatqghbdjhkbtlvfjhgbrwubtyclyfkwcztcpkymbnaxzpulvheedyiiqqpwrwoejlxzfetihngisutzliuoobpevzvcuvysopjhgxjfupplqiblavjwjjkzashowzlmhvzskyxfevhwlkkutqdaeisypewnakvzwobzmgssbloglgjwcdmconjhwkwtilxeuxbutmkkiholeqtlrwskccuyxcxrhspefyrhtugjeysedxbkycjscdtldhzfkmynmbklupmkknfqdwkarypblxdarfzsbmgcxhhrkixuohoxxzrrugkokiuobiyjdolvfzvzhrcjogjwrqhsixnyqygegejavirfnsryxmrmhfizblgfdroaqekhcqkapgsbciuabsmfpekmavmwygbcgdywypqdutwgmhxafbcgxcpzmlrspmhqcjzeqbxxbonakmrpqtlzhjbhojkudjaau
+        type: string
+        custom: []
+      type:
+        name: type
+        description: 'Must be at least 1.'
+        required: true
+        example: 1
+        type: number
+        custom: []
+      sous_categories:
+        name: sous_categories
+        description: ''
+        required: false
+        example:
+          - null
+        type: 'string[]'
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/categorie/{id}'
     metadata:
@@ -1180,7 +1104,7 @@ endpoints:
         name: id
         description: 'The ID of the categorie.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1231,28 +1155,28 @@ endpoints:
         name: nom
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: pzqimwfeakiqxrhguyzqmjrewegbppiuthytoueufunljvsjztvgoturzchnlrtwbdegfcxyoxzpabglktrgiqnbwbdadwhxkfwktrpusignkncdgpetevnfvbovboqriqqgwgcvddudmbukaybeqbisvdflcqeprdxqfqcgsqvhrcgeiujgwvavdxgxqdylhrsywauvlpm
+        example: fuyuqdbtgjhggqyxqjfcvihytjjybcvsxvzcnofcjdbmemesnvgtzhkodukqjnqsikeizxhjvzrfeearukznqqlwspodgvvmvmigmlnuxdiuuyejhapgarwcwnyymkjtkqvnpxnidioulofi
         type: string
         custom: []
       adresse:
         name: adresse
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: psxuvrquwwxjngopbralxwbkwlxruzoktddxvabaivvavliuxhqahdenmxruouhzrtjwsvjzywtfgaclxyzsrtclkewodydiazdzigctjixxdxaiujyjrbgkwnpmgithkavleioanvkoiqwztyfeufzpdbtrvehcafmjusoqwtjfdfcnxqnoplois
+        example: khnagmqukphqljknsobgmyowdovoyifttlseehuatfdaextoxausaghvdxiyjepuqwfkbfxnkjlgefnmmizwsnweakgclm
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: tupwpcqbnaiabmyfjxejghzsonblqrsbnhelxbigaiyknrgzrslijhaxtzvciunlebfwtoqsbcglddlssgznsqyliylmnnoiuikpjkkwvrbwjiqetorxyvxdbipy
+        example: bfbuqlnwkhdvqbhhamyhqxchsmrdqxbddfuueqnecacmzvlbyzgnlcxcfoubautvjrusjtgeniudwqkpqwnrezywvsrqmqppqrbwqpbdtemmxntqniklucnvfltqccyfsafxymvhdhkbbjsdfonqokc
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
         required: true
-        example: aykwqymdxwnunxpqxvcmxcbwtnvfls
+        example: bbjbosgkugljo
         type: string
         custom: []
       categories:
@@ -1267,21 +1191,21 @@ endpoints:
         name: nif
         description: 'The value format is invalid.'
         required: false
-        example: '3948469469168'
+        example: '3975045930014'
         type: string
         custom: []
       cif:
         name: cif
         description: 'The value format is invalid.'
         required: false
-        example: s0675683B
+        example: d5441147c
         type: string
         custom: []
       stat:
         name: stat
         description: 'The value format is invalid.'
         required: false
-        example: 149s454s898s07830
+        example: 507s982s959s05936
         type: string
         custom: []
     responses: []
@@ -1386,28 +1310,28 @@ endpoints:
         name: nom
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: cvjfzjqfyhbckdpurbyopusxzurdtgbjtgygujw
+        example: nmtovuqmfparkkbybkwjiehmouunayfdzqiiyyqpchsfxnbhfbsyvjcxloumndcwnqwdipdafvuliplbtspsjffwetsppyhmteyuhwzdjecreqereyrfamxtgrqfdynoermyrbxxfnzsgnnxspqqqz
         type: string
         custom: []
       adresse:
         name: adresse
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: owvbbgutbickrpegicdcixvhaaobmfitz
+        example: dhxwcbmouuiywstpximelwncqqswzktcwruaydktthsfhfqisoebafc
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: llhgktvmhncajzsyzzlexrryipztoxavjxurruwxkidplbmbwhlrhzbcgtrfpsfhyxson
+        example: ibgvzisiieypqmcpfuwojrazaegctpoatpqxaspwyrmsnxdfqqrzogtgcgjcjhacdylajqmxorotzsjwixymakalx
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
         required: true
-        example: mcveza
+        example: tycejdiyoamynagbl
         type: string
         custom: []
       categories:
@@ -1458,7 +1382,7 @@ endpoints:
         name: id
         description: 'The ID of the client.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1491,7 +1415,7 @@ endpoints:
         name: id
         description: 'The ID of the client.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1500,28 +1424,28 @@ endpoints:
         name: nom
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: fnqobkgrmvzbuoefuxfvmheettmuljjirubtftygsynryxnbwezsbzhwulhueeajaqqofojothupxfftibgnybsnenguguwachboolwrgoohztvuhogzoyqrdeucsvpxchkqpskfbqbjffvvzeuzbecldrckudttsdulidqthdxwwvuhfnspiyepcnubmeypgdyuiftpuvonqrhbzynvbwmvx
+        example: pxncblrixhkumjyrjvmrgvhritrpommsmpq
         type: string
         custom: []
       adresse:
         name: adresse
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: tkyyicfzmljfgndrwpohjzdiywjgneflffyeatpckvjybykgvpjkvnsiuxjhjbymlqlruwdvwhodcjoxedhfwafbsjkwfgniyhwxcxrirehinqafyjebaxhoqevzkyxbizyuxttbgwnacvlndwcwenouoxwasedymzacuovhyotfremlobbiasfvjxvxecldfixppfkumdrhjrimgtvvvyubqypcefevt
+        example: ubpgjccjzsttcisfdgelqpecjhfaovcryzfrfalxpmwauivfmekwkedbyccplfvqmooawygzvpqbesh
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: rxkzraablbtfopvxtsm
+        example: amxkzkvzhssemipxirsprhijgdhpodoqhjsalouyertzyrlxsxcacacarstdqiplyyxrornjurlmxncycitzbmslaulupggbgfxtfcntdnlseauxoezxrboksqsnlijifvvocnjgwnngcoyesfekjsheqkmhgnstdfcfmbqpz
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
         required: true
-        example: 'n'
+        example: o
         type: string
         custom: []
       categories:
@@ -1536,21 +1460,21 @@ endpoints:
         name: nif
         description: 'The value format is invalid.'
         required: false
-        example: '0539316524702'
+        example: '2251275578038'
         type: string
         custom: []
       cif:
         name: cif
         description: 'The value format is invalid.'
         required: false
-        example: R8469451g
+        example: t6490998E
         type: string
         custom: []
       stat:
         name: stat
         description: 'The value format is invalid.'
         required: false
-        example: 121s117s038s36113
+        example: 783s394s401s84191
         type: string
         custom: []
     responses: []
@@ -1572,7 +1496,7 @@ endpoints:
         name: id
         description: 'The ID of the client.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1584,7 +1508,7 @@ endpoints:
       - GET
     uri: api/article
     metadata:
-      title: 'Display a listing of the resource.'
+      title: 'Recuperer la liste des articles'
       description: ''
       authenticated: false
       custom: []
@@ -1609,7 +1533,7 @@ endpoints:
       - POST
     uri: api/article
     metadata:
-      title: 'Store a newly created resource in storage.'
+      title: 'Enregistrer un nouveau article'
       description: ''
       authenticated: false
       custom: []
@@ -1623,28 +1547,28 @@ endpoints:
         name: reference
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: drczyywrhxjrwzojmrolazawzzzjidyknjjrhqjsqlwihhovagohngrdtkimxsyxrpluqloeipmszqinqtzyxaogawioevhgsuhklhfmrfzecwlvnizfqpsuaomfzzyr
+        example: anyzmmvvogjdetrjtnujltntxpxkxyxnnlbaehlcqtxjjxcvvbyiwtqvvvaaeuwgxqefgxngzixvrggyyeadzltfbilhbzzxgpknpdrhzewjphaeihjtognkqguopjldnvlosldtxfdgxdcegpzdqydorepjdmfwnwdanjkrebbdowbgpknycslpvhsakwaokbeobvmnyrnirzymexknhzfdkywdoupegrxzwkuqalpbw
         type: string
         custom: []
       designation:
         name: designation
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: dblpkzyxxykqhscrhzrmqmrjdtjrdlaflhsvxpmpviyubzkywqhdhuhigohyabcfbuqbatxqkqzwgvoijbuwufuwgtblsstammtktdpkzwmfedczsyzdpmmyziuwqwiadgassgmtyulbezqbnzxwfhmfkgaryjftjsfo
+        example: hyjvtvljapwcndpcxxgrsjdhyxwxqfvmtppgkzmgicvfyzjlaevpfasud
         type: string
         custom: []
       unite:
         name: unite
         description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
         required: true
-        example: skiddhmsqgmvcxcxvblduwrxfxzkqkhvmkddkvckl
+        example: ummqdrzmbqfkoazdezauqxhcppyjbbmeeliqbqdvqbipmnbqgccyvqovpgs
         type: string
         custom: []
       stock_alert:
         name: stock_alert
         description: 'Must be at least 0. Must not be greater than 999999999999.'
         required: false
-        example: 468230064249
+        example: 964380893809
         type: number
         custom: []
       categories:
@@ -1652,7 +1576,7 @@ endpoints:
         description: ''
         required: true
         example:
-          - quibusdam
+          - dolorem
         type: 'string[]'
         custom: []
     responses: []
@@ -1662,7 +1586,7 @@ endpoints:
       - GET
     uri: 'api/article/{id}'
     metadata:
-      title: 'Display the specified resource.'
+      title: 'Voir un article spécifique'
       description: ''
       authenticated: false
       custom: []
@@ -1674,7 +1598,7 @@ endpoints:
         name: id
         description: 'The ID of the article.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1691,71 +1615,10 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/article/{id}'
-    metadata:
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the article.'
-        required: true
-        example: 5
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      reference:
-        name: reference
-        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-        required: true
-        example: umsaxbbnjxfawvlumlrsgsfsnvhqbjlonheqqvgzrzvaxeybrdfttpyrnrokhzreccswnfompsyweqwqmakycwahnyacbacaqhumgsnqtchckkckfngrjwwgsuezhfvpoaphbfqjzpymkumtnmwd
-        type: string
-        custom: []
-      designation:
-        name: designation
-        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
-        required: true
-        example: vrwpanksfypekwjgphrdnlagjrlrribychscvojhiclsoyyvbkyalpfcvxllehurjkbsmytxwnhffaoshkosgbxpgwqxxbyioinmxojfnfxlllkvnbscupjzyomraofgvwtrmlvynjwmsgmdplbkteywidavdszfvnqlrvbtlflpjhelkzzqmpqljnewlvvfjksdvjhsjpuvplybbymtkqdwjmgj
-        type: string
-        custom: []
-      unite:
-        name: unite
-        description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
-        required: true
-        example: sgcnzoeolglnavhuxnbbejedldhlrshnchqagtleqkstoirzztgmdhxyuqspwkuryrbgkhzjydnuauglbfihnvvxhnpfcdclblxtrqckdaknwthtdueawyrrseeovrhyhqs
-        type: string
-        custom: []
-      stock_alert:
-        name: stock_alert
-        description: 'Must be at least 0. Must not be greater than 999999999999.'
-        required: false
-        example: 491420543445
-        type: number
-        custom: []
-      categories:
-        name: categories
-        description: ''
-        required: true
-        example:
-          - quibusdam
-        type: 'string[]'
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
       - DELETE
     uri: 'api/article/{id}'
     metadata:
-      title: 'Remove the specified resource from storage.'
+      title: 'Supprimer un article de la base de données'
       description: ''
       authenticated: false
       custom: []
@@ -1767,7 +1630,7 @@ endpoints:
         name: id
         description: 'The ID of the article.'
         required: true
-        example: 5
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -1834,7 +1697,7 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
     queryParameters: []
@@ -1843,7 +1706,7 @@ endpoints:
         name: numero
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: sjmchxwctomwjycfywtewiuoqzecopvepicgweukapjxifwezxybjxhsuuhseqiznhrlpmkinnrhtvgtzuafjuwxdhnjxcgsifrapcvmzixdhwwoodcilmmxcgzhsofpiiozkprdmicszjwfqsakyoaknwmdegiiimpotcakftexzmzwjlhmwjzntgpx
+        example: agwepmnshhpnuztsklrltmixhwwfruzdtemfmcngyiotmjuayycgbgilxxdxwbuxornzaafqdlgcabbmehfexczddadpvyvasrrchawevqbwzyhsjrdznlmmwchrjbrqmoucnvemdmvtahfumrimntgkbpykzyzhpoalouczvwomlifjdpmmjtegdyuvhqfnergmbol
         type: string
         custom: []
       type:
@@ -1855,16 +1718,16 @@ endpoints:
         custom: []
       date:
         name: date
-        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
         required: true
-        example: '2022-08-05 13:47:16'
+        example: '2022-09-16'
         type: string
         custom: []
       validite:
         name: validite
         description: 'Must be at least 1. Must not be greater than 365.'
         required: false
-        example: 278
+        example: 70
         type: number
         custom: []
       fournisseur:
@@ -1881,6 +1744,13 @@ endpoints:
         example: null
         type: string
         custom: []
+      file:
+        name: file
+        description: 'Must be a file. Must not be greater than 10000 kilobytes.'
+        required: false
+        example: null
+        type: file
+        custom: []
       articles:
         name: articles
         description: ''
@@ -1893,56 +1763,78 @@ endpoints:
         name: adresse_livraison
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: false
-        example: obzicdcdmlhciciffytlwqqcxzofqifjgtfthqstakbzwdyafsxlxureqpmpoeonyzdjrstfusbvhgfwmolmojydwquovbtfyzzkgmgruzctdxgssapvofzyckvqzvnireewfybpgopygixfyrqgmquozynmlkplgmarzegtypwcumbaxjzfuebudjbxe
+        example: njtiwigtxtrxmslzuqqebmeeznhdjxclgtbcvsksrmjwrwcuhnmxqwcyjtwonqtzvsporbjwrlmdkaezaeiuzuzfczjlqzkkubzrp
+        type: string
+        custom: []
+      devis:
+        name: devis
+        description: ''
+        required: false
+        example: 584.24323186
+        type: number
+        custom: []
+      depot:
+        name: depot
+        description: ''
+        required: false
+        example: null
         type: string
         custom: []
       'articles[].id':
         name: 'articles[].id'
         description: ''
         required: true
-        example: non
+        example: perferendis
         type: string
         custom: []
       'articles[].pu':
         name: 'articles[].pu'
         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
         required: true
-        example: 219758479032
+        example: 757948541124
         type: number
         custom: []
       'articles[].tva':
         name: 'articles[].tva'
         description: 'Must be at least 0. Must not be greater than 100.'
         required: true
-        example: 22
+        example: 23
         type: number
         custom: []
       'articles[].quantite':
         name: 'articles[].quantite'
         description: 'Must be at least 1. Must not be greater than 999999999.99.'
         required: true
-        example: 582304606
+        example: 420044368
         type: number
+        custom: []
+      'articles[].object':
+        name: 'articles[].object'
+        description: ''
+        required: false
+        example:
+          - quam
+        type: 'string[]'
         custom: []
       'articles[].montant_ht':
         name: 'articles[].montant_ht'
         description: ''
         required: true
-        example: 31972.161
+        example: 165145.795
         type: number
         custom: []
       'articles[].montant_ttc':
         name: 'articles[].montant_ttc'
         description: ''
         required: true
-        example: 13977.89
+        example: 115241240.44
         type: number
         custom: []
       login:
         name: login
         description: 'Username or email adress of the user.      Exemple: testuser@example.com, user123'
         required: true
-        example: neque
+        example: expedita
         type: string
         custom: []
       password:
@@ -1971,7 +1863,7 @@ endpoints:
         name: id
         description: 'The ID of the commande.'
         required: true
-        example: 23
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -2003,7 +1895,7 @@ endpoints:
         name: id
         description: 'The ID of the commande.'
         required: true
-        example: 23
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -2021,14 +1913,14 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       id:
         name: id
         description: 'The ID of the commande.'
         required: true
-        example: 23
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -2037,28 +1929,28 @@ endpoints:
         name: numero
         description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: ausmetlsjvdvhpkqtamlmxbytkyzjmdcmghpffquctlywkppccmxukkacvqzyojswfcnajzmtxddvbjgtiqafsdqtebndhoitfrxismrrwqkellydbnbyccnuzmubvdrluwzpnqlebkaihrwscqtsbvljkfcvaklbtrscfjiydlzvgqtwdzlpoizvehqehjvaacetysjrjzfiifxtgrhqkxnsjtejjblxolxhkztqybkwrbiplyeykuhvg
+        example: uwljoxghbkbjetysmfucpctomu
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>1</code> or <code>2</code>.'
         required: true
-        example: '1'
+        example: '2'
         type: string
         custom: []
       date:
         name: date
-        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
         required: true
-        example: '2022-08-05 13:47:16'
+        example: '2022-09-16'
         type: string
         custom: []
       validite:
         name: validite
         description: 'Must be at least 1. Must not be greater than 365.'
         required: false
-        example: 353
+        example: 354
         type: number
         custom: []
       fournisseur:
@@ -2075,6 +1967,13 @@ endpoints:
         example: null
         type: string
         custom: []
+      file:
+        name: file
+        description: 'Must be a file. Must not be greater than 10000 kilobytes.'
+        required: false
+        example: null
+        type: file
+        custom: []
       articles:
         name: articles
         description: ''
@@ -2087,49 +1986,71 @@ endpoints:
         name: adresse_livraison
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: false
-        example: erbarmqpgaudwcsxovixgdnukfcenkdvjfowghlbmnopwowxdfvktmwmkrqnsgukozsriton
+        example: gbvxtfuonzrujdmlzsdioogjqjwekzuneqxyzotjlzjxpjq
+        type: string
+        custom: []
+      devis:
+        name: devis
+        description: ''
+        required: false
+        example: 1180092.035722
+        type: number
+        custom: []
+      depot:
+        name: depot
+        description: ''
+        required: false
+        example: null
         type: string
         custom: []
       'articles[].id':
         name: 'articles[].id'
         description: ''
         required: true
-        example: est
+        example: voluptatem
         type: string
         custom: []
       'articles[].pu':
         name: 'articles[].pu'
         description: 'Must be at least 1. Must not be greater than 999999999999.99.'
         required: true
-        example: 647916922063
+        example: 184625060554
         type: number
         custom: []
       'articles[].tva':
         name: 'articles[].tva'
         description: 'Must be at least 0. Must not be greater than 100.'
         required: true
-        example: 44
+        example: 10
         type: number
         custom: []
       'articles[].quantite':
         name: 'articles[].quantite'
         description: 'Must be at least 1. Must not be greater than 999999999.99.'
         required: true
-        example: 828230286
+        example: 799009660
         type: number
+        custom: []
+      'articles[].object':
+        name: 'articles[].object'
+        description: ''
+        required: false
+        example:
+          - voluptatum
+        type: 'string[]'
         custom: []
       'articles[].montant_ht':
         name: 'articles[].montant_ht'
         description: ''
         required: true
-        example: 212.8724841
+        example: 35.3718094
         type: number
         custom: []
       'articles[].montant_ttc':
         name: 'articles[].montant_ttc'
         description: ''
         required: true
-        example: 2818207.3567
+        example: 180569.22635388
         type: number
         custom: []
     responses: []
@@ -2178,21 +2099,21 @@ endpoints:
         name: nom
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: nudxljbjtbosycpzkhpkcvhnvhkrvelysdoctuxwqcppgwgduxmmyzbgiupxngpdaucksjskipjeezrkvlrwbksejcaklqirrkacjnpnhundzzgjuopziceskoaafzuovfyfjuhqpkdhbivc
+        example: qqxcpmioerjpplzowiyqjbcyzapqdqrlxvanxcreknymmlkphjfdtqeyl
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 25 characters.'
         required: true
-        example: fhgvtzwyhmdzunicszyyv
+        example: qnjsfpcousdvrhorxcrmklrqy
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: kailee18@example.com
+        example: horace29@example.net
         type: string
         custom: []
       assujeti:
@@ -2235,8 +2156,8 @@ endpoints:
         name: parametre_id
         description: 'The ID of the parametre.'
         required: true
-        example: dignissimos
-        type: string
+        example: 2
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters:
@@ -2244,21 +2165,21 @@ endpoints:
         name: nom
         description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
         required: true
-        example: qktvctkjnlzkifshndfxmicsxbqnpfxjgwjcfibggtycnwttqwxcfxrodsrojsvqobxyldpkpkunshtnsmbspbafxkikaonqaptlsjrkpmhzlyzjaqqjbn
+        example: xzbgrkchmzvysvkxrgiucmtqhwnpumurpwdzwknogtucfffekocthxlkzgvwljzsfwqhnegfttkyzhscvmacpskebpdyizujryjrytsgfggwcxetzhrnoncryvmtovgibgqikovvfcjgecdbibqaihywybvxqdagndlpxgwdcrtfplqhftiiruuemtndsts
         type: string
         custom: []
       contact:
         name: contact
         description: 'Must be at least 10 characters. Must not be greater than 25 characters.'
         required: true
-        example: rfhrgyzhfipatsyjsfmrvl
+        example: ohdnsfummvyaudw
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: eldora.balistreri@example.org
+        example: nadia08@example.org
         type: string
         custom: []
       assujeti:
@@ -2280,6 +2201,905 @@ endpoints:
         description: ''
         required: false
         example: null
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/bon-receptions
+    metadata:
+      title: 'Creer un nouveau ressource dans la base de données'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      numero:
+        name: numero
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: cnnnbtaiygloslnakbrvmhtklpgbwcegrjogwhqelymomkuaee
+        type: string
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+        required: true
+        example: '2022-09-16'
+        type: string
+        custom: []
+      articles:
+        name: articles
+        description: ''
+        required: false
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      adresse_livraison:
+        name: adresse_livraison
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: ugqeqvikupscbraqtbpfhtqplwxhlxefmziswfhuyvkujaaqjsj
+        type: string
+        custom: []
+      livreur:
+        name: livreur
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: false
+        example: iegojkbvebrvawvugscekgkpuqnchdlzudtjcbhvemmcomiqsrv
+        type: string
+        custom: []
+      contact_livreur:
+        name: contact_livreur
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: dqultvdlcydhlmphniroaqhgghlmdhqfchuisqhsplnuorisrlwtitkiiqhsvcinbwyxpalgzslfpikdkaubbxa
+        type: string
+        custom: []
+      depot:
+        name: depot
+        description: ''
+        required: true
+        example: magni
+        type: string
+        custom: []
+      commande:
+        name: commande
+        description: ''
+        required: false
+        example: 98180.8491326
+        type: number
+        custom: []
+      'articles[].id':
+        name: 'articles[].id'
+        description: ''
+        required: true
+        example: alias
+        type: string
+        custom: []
+      'articles[].quantite':
+        name: 'articles[].quantite'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 3634040
+        type: number
+        custom: []
+      'articles[].total':
+        name: 'articles[].total'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 399765002
+        type: number
+        custom: []
+      'articles[].valide':
+        name: 'articles[].valide'
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/bon-receptions/{id}'
+    metadata:
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon reception.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/bon-receptions/{id}'
+    metadata:
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon reception.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      numero:
+        name: numero
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: jmauqjqulcxqiynecdtcuegbfpjpzsxoqovqifvzbtoejlp
+        type: string
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+        required: true
+        example: '2022-09-16'
+        type: string
+        custom: []
+      articles:
+        name: articles
+        description: ''
+        required: false
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      adresse_livraison:
+        name: adresse_livraison
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: xkvzrghzctaupwetivcvgecodgmyzkdckegworkibfhkabcupkwwnohrieezwbnmsqabbpufzdwmoefnzslpruvfblmazqjtkolzrcuxsrlnak
+        type: string
+        custom: []
+      livreur:
+        name: livreur
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: false
+        example: utoupanpgzuucthorllcdznnzloosjderpwzubkcckwjiksgmnffoibpfmqjzdlpqinohczlvzwnwuevciocxnvrzmcehoeuunxzhpygnxfxpulmuzsbnogtyoxzeiddbcekwkxpdcddhawrwbmheufrxkvqiybdlzrpiueghgwdesvqnpbhorwytpvludifqkxasstdxqlvvhringbpamltjxpelwalb
+        type: string
+        custom: []
+      contact_livreur:
+        name: contact_livreur
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: msdeyzsv
+        type: string
+        custom: []
+      depot:
+        name: depot
+        description: ''
+        required: true
+        example: sit
+        type: string
+        custom: []
+      commande:
+        name: commande
+        description: ''
+        required: false
+        example: 13.23432
+        type: number
+        custom: []
+      'articles[].id':
+        name: 'articles[].id'
+        description: ''
+        required: true
+        example: cupiditate
+        type: string
+        custom: []
+      'articles[].quantite':
+        name: 'articles[].quantite'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 31867706
+        type: number
+        custom: []
+      'articles[].total':
+        name: 'articles[].total'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 322791541
+        type: number
+        custom: []
+      'articles[].valide':
+        name: 'articles[].valide'
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/bon-receptions/{id}'
+    metadata:
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon reception.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/bon-livraisons
+    metadata:
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/bon-livraisons
+    metadata:
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      numero:
+        name: numero
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: lijarytkfmhxdulymufooybmzxqvctsfdfwqfxewcvfkolfxfwbdvrfvusigyfrwuvyyndrtbupsvqhinwqhvdbacmmzpkykvmehyfghgoeetmlqzghspcmwedpmybxfynvteodyavmfycmtjsxqpnfnaexalphsvdaygxqcubtbrjbpjpbwndxzvjosaxplwndvkuzskfblmmeupqkanaryvcrfxzbaajuiqhclbrgetnjfe
+        type: string
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+        required: true
+        example: '2022-09-16'
+        type: string
+        custom: []
+      articles:
+        name: articles
+        description: ''
+        required: false
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      adresse_livraison:
+        name: adresse_livraison
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: feueuneijzpezfqjihrfakarfbfrpgeyyapgevkiufacpqyeuusmfeehkalmmurgqhyxonxrgkzgicsobakhehellffsehhdgjzksjisufyjpslkpmgndwqorqvjccntqzuxqxofjcbowrfzuzhbamglrsjtkzykwddlpdyeuckchrznzgvruhfogfdddhnxuxykwxlyndgbuh
+        type: string
+        custom: []
+      livreur:
+        name: livreur
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: false
+        example: awxzbpawafiudtbfbntuspthxejnsbtxucuszjprxnvsgbggetipawytqqkijdwczvyhubykzmsscjgowytysvetxlabjwoeelkplhritpbpafkcbajhlbnaanhfqkpkeuffnuppruulztazbhjknphbudncwxumjmcvbjnpegtjnkvgdppuccvuwgquxicodjedcrrcuwacdydxwlqvtpdfllcsfblqaguoddnrwpkxxqbjhjxklu
+        type: string
+        custom: []
+      contact_livreur:
+        name: contact_livreur
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: rrzdxfqqsezervtwmycvpwznnqpakhvabsqxnjaozamxebztruttjcxkzemoivlzxkioinqcguhvacxkwiaicncshkzkrehxmzwcyfcfwdlkwe
+        type: string
+        custom: []
+      commande:
+        name: commande
+        description: ''
+        required: false
+        example: 35.3435016
+        type: number
+        custom: []
+      'articles[].id':
+        name: 'articles[].id'
+        description: ''
+        required: true
+        example: necessitatibus
+        type: string
+        custom: []
+      'articles[].quantite':
+        name: 'articles[].quantite'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 113535027
+        type: number
+        custom: []
+      'articles[].total':
+        name: 'articles[].total'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 491491010
+        type: number
+        custom: []
+      'articles[].valide':
+        name: 'articles[].valide'
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/bon-livraisons/{id}'
+    metadata:
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon livraison.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/bon-livraisons/{id}'
+    metadata:
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon livraison.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      numero:
+        name: numero
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: dkh
+        type: string
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>.'
+        required: true
+        example: '2022-09-16'
+        type: string
+        custom: []
+      articles:
+        name: articles
+        description: ''
+        required: false
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      adresse_livraison:
+        name: adresse_livraison
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: krrkkshctjdrjvhclcccdetfidnglshzfyzzyksfjmilguiuxibfiolamaerttbvrikzclwjdssoogjojwtwbrlgc
+        type: string
+        custom: []
+      livreur:
+        name: livreur
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: false
+        example: jqemfhwaqpqtdbyxksxlextmroktgeidiaxfxe
+        type: string
+        custom: []
+      contact_livreur:
+        name: contact_livreur
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: false
+        example: eutytutlodedpqqbtkpbgwvaepodaamctxhmigdrmm
+        type: string
+        custom: []
+      depot:
+        name: depot
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        custom: []
+      commande:
+        name: commande
+        description: ''
+        required: false
+        example: 23.365
+        type: number
+        custom: []
+      'articles[].id':
+        name: 'articles[].id'
+        description: ''
+        required: true
+        example: voluptates
+        type: string
+        custom: []
+      'articles[].quantite':
+        name: 'articles[].quantite'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 450987928
+        type: number
+        custom: []
+      'articles[].total':
+        name: 'articles[].total'
+        description: 'Must be at least 1. Must not be greater than 999999999.99.'
+        required: true
+        example: 271598333
+        type: number
+        custom: []
+      'articles[].valide':
+        name: 'articles[].valide'
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/bon-livraisons/{id}'
+    metadata:
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the bon livraison.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/bon-receptions
+    metadata:
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/depot/{depot_id}/articles'
+    metadata:
+      title: |-
+        Permet de recuperer tous les articles dans un dépot
+        Avec un calcul de stock d'entrée moins stock de sortie (Entree - Sortie)
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      depot_id:
+        name: depot_id
+        description: 'The ID of the depot.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/depot/{depot_id}/gerer-prix/{article_id}'
+    metadata:
+      title: 'Permet de gerer le prix dans un depot'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      depot_id:
+        name: depot_id
+        description: 'The ID of the depot.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      article_id:
+        name: article_id
+        description: 'The ID of the article.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      articles:
+        name: articles
+        description: ''
+        required: false
+        example:
+          - []
+        type: 'object[]'
+        custom: []
+      'articles[].reference':
+        name: 'articles[].reference'
+        description: ''
+        required: true
+        example: delectus
+        type: string
+        custom: []
+      'articles[].designation':
+        name: 'articles[].designation'
+        description: ''
+        required: true
+        example: temporibus
+        type: string
+        custom: []
+      'articles[].quantite':
+        name: 'articles[].quantite'
+        description: 'Must be at least 1. Must not be greater than 999999999999.'
+        required: false
+        example: 407141578398
+        type: number
+        custom: []
+      'articles[].pu':
+        name: 'articles[].pu'
+        description: 'Must be at least 1. Must not be greater than 999999999999.'
+        required: true
+        example: 922525363583
+        type: number
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/article/{id}'
+    metadata:
+      title: 'Mettre a jour un article'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the article.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      reference:
+        name: reference
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: dtiaftkcgalrrratmuqnnseqxbynurbaobqcemtbdibdybfxenzredtqsmcdmpoqzltrbwtmmmuflefpcnlysyqizdeymjakjddzbivlhiylzrqtprdcsdjnxkwsjhifvqbamszciqujfpskevomubhuicjjsghswovntgmhpeejddxwwqesfndocqqrysfxcddprixeayrtvqpqmgrhdejxhzhvwqlfgtq
+        type: string
+        custom: []
+      designation:
+        name: designation
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: xponbxvzzcfitvuyplmmqffaccxcpkjeytgrzretnoispadvpqmtuumxaxdzlxlwqwsnnykvyqqmhsxfgnqujjesamqnkkzwsftjgijonebvpwgogmcsjjhrcrdiubropxzshxtpuqkr
+        type: string
+        custom: []
+      unite:
+        name: unite
+        description: 'Must be at least 1 characters. Must not be greater than 255 characters.'
+        required: true
+        example: qavsbuotksqjoghkwztlshpjyhmgybxktluyjfwbqyw
+        type: string
+        custom: []
+      stock_alert:
+        name: stock_alert
+        description: 'Must be at least 0. Must not be greater than 999999999999.'
+        required: false
+        example: 893080308152
+        type: number
+        custom: []
+      categories:
+        name: categories
+        description: ''
+        required: true
+        example:
+          - qui
+        type: 'string[]'
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/depot/{id}'
+    metadata:
+      title: 'Mettre a jour un depot'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the depot.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      nom:
+        name: nom
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: smpfbjtxpvjixyyiryhfvnezidmrdfcoeuossbteymgolhstnmjjnutktueidfvmwndwtufrijtowcyyocnvcqwanhqovdnonbktytovdxznwtvkkebxjbelutrhwwtkhdcitgkvjqscgnmuvgglfrzlloyiduuroprhpqvtlpewjhztsccynpbrmlstyxtffivpnn
+        type: string
+        custom: []
+      localisation:
+        name: localisation
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: true
+        example: fzewiectazqbjswtgws
+        type: string
+        custom: []
+      contact:
+        name: contact
+        description: 'Must be at least 10 characters. Must not be greater than 255 characters.'
+        required: false
+        example: ltkwzsprdmjvxdrsirgfmferzvbijobchyvwticqihcpglreslqzupy
+        type: string
+        custom: []
+      point_vente:
+        name: point_vente
+        description: 'Must be one of <code>true</code>, <code>false</code>, <code>1</code>, or <code>0</code>.'
+        required: true
+        example: 'true'
+        type: boolean
+        custom: []
+      responsables:
+        name: responsables
+        description: ''
+        required: false
+        example:
+          - null
+        type: 'string[]'
+        custom: []
+      travailleurs:
+        name: travailleurs
+        description: ''
+        required: false
+        example:
+          - null
+        type: 'string[]'
+        custom: []
+      type:
+        name: type
+        description: 'Must be at least 0. Must not be greater than 3.'
+        required: true
+        example: 0
+        type: number
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/fournisseur/{id}'
+    metadata:
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the fournisseur.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      nom:
+        name: nom
+        description: 'Must be at least 2 characters. Must not be greater than 255 characters.'
+        required: true
+        example: bdekhskfnwegzogxokrbxpopbvabacykqxjghgeyxxnsmbijayjkqniphpwthuvcybrovicpduwqgeofvycktjteydyjhrymmoqtyfsuzjtqcdadtvffjaqccxerldgvsuicvkhpwpgfewekrnmjjlvpvbwqyqpsnqklzswiafvkmrbpgiksmtxukkzhdablnyjqwcdakrkzlqoeaoxzcfe
+        type: string
+        custom: []
+      adresse:
+        name: adresse
+        description: 'Must be at least 5 characters. Must not be greater than 255 characters.'
+        required: true
+        example: drmwdxsvjzolxryozvlpqzawcsqwyzzbiri
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: false
+        example: aeseaezsdjqlgfsbaryybymduxsekqqbl
+        type: string
+        custom: []
+      contact:
+        name: contact
+        description: 'Must be at least 10 characters. Must not be greater than 30 characters.'
+        required: true
+        example: nfcoccvt
+        type: string
+        custom: []
+      categories:
+        name: categories
+        description: ''
+        required: false
+        example:
+          - null
+        type: 'string[]'
+        custom: []
+      nif:
+        name: nif
+        description: 'The value format is invalid.'
+        required: false
+        example: '2610414307664'
+        type: string
+        custom: []
+      cif:
+        name: cif
+        description: 'The value format is invalid.'
+        required: false
+        example: t85768772
+        type: string
+        custom: []
+      stat:
+        name: stat
+        description: 'The value format is invalid.'
+        required: false
+        example: 330s368s310s89024
         type: string
         custom: []
     responses: []

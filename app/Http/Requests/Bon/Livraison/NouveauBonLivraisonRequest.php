@@ -4,8 +4,8 @@ namespace App\Http\Requests\Bon\Livraison;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
-use App\Traits\Bon\Reception\WithValidation;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Traits\Bon\Livraison\WithValidation;
 use Illuminate\Contracts\Validation\Validator;
 
 class NouveauBonLivraisonRequest extends FormRequest

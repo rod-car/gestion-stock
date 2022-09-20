@@ -24,7 +24,7 @@ trait WithValidation
             "articles.*.valide" => ["required", "boolean"],
 
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
-            "livreur" => ["nullable", "sometimes", "min:5", "max:255"],
+            "livreur" => ["nullable", "sometimes", "min:2", "max:255"],
             "contact_livreur" => ["nullable", "sometimes", "min:5", "max:255"],
 
             "depot" => ["required", "exists:depots,id"],

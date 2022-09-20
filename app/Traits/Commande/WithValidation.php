@@ -38,7 +38,7 @@ trait WithValidation
             "articles.*.id" => ["required", "exists:articles,id"],
             "articles.*.pu" => ["required", "numeric", "min:1", "max:" . Config::get("comptable.montant_max")],
             "articles.*.tva" => ["required", "numeric", "min:0", "max:100"],
-            "articles.*.quantite" => ["required", "numeric", "min:1", "max:999999999.99"],
+            "articles.*.quantite" => ["required", "numeric", "min:0.01", "max:999999999.99"],
             "articles.*.object" => ["nullable", "array"],
 
             "articles.*.montant_ht" => ["required", "numeric"],
@@ -47,6 +47,8 @@ trait WithValidation
             "adresse_livraison" => ["nullable", "sometimes", "min:5", "max:255"],
 
             "devis" => ["nullable", "numeric", "exists:commandes,id"],
+
+            "depot" => ["nullable", "exists:depots,id"],
         ];
     }
 

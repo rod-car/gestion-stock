@@ -10,6 +10,7 @@
             <div class="col-xl-12 mb-3">
                 <Input v-model="form.contact" :error="errors.contact">Contact</Input>
             </div>
+
             <div class="d-flex justify-content-end">
                 <SaveBtn @click.prevent="save()" :loading="creating || updating">Enregistrer</SaveBtn>
             </div>
@@ -18,7 +19,6 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent, onBeforeMount, ref, Ref } from "vue";
 import Input from "../../components/html/Input.vue";
 import SaveBtn from "../../components/html/SaveBtn.vue";
@@ -26,10 +26,10 @@ import useCRUD from "../../services/CRUDServices";
 
 const { create, update, creating, updating, errors, success } = useCRUD("/depot");
 
-interface Form {
-    nom: string | null,
-    localisation: string | null,
-    contact: string | null,
+type Form = {
+    nom: string,
+    localisation: string,
+    contact: string,
     point_vente: boolean,
 }
 
@@ -59,9 +59,9 @@ export default defineComponent({
     setup(props) {
 
         const form: Ref<Form> = ref({
-            nom: null,
-            localisation: null,
-            contact: null,
+            nom: '',
+            localisation: '',
+            contact: '',
             point_vente: props.pointVente,
         });
 
@@ -76,9 +76,9 @@ export default defineComponent({
 
         const resetForm = (): void => {
             form.value = {
-                nom: null,
-                localisation: null,
-                contact: null,
+                nom: '',
+                localisation: '',
+                contact: '',
                 point_vente: true,
             }
         }

@@ -6,7 +6,7 @@ import { AxiosResponse } from 'axios';
 
 interface CRUD {
     create(data: Object, headers?: Object): Promise<any>,
-    find(id: number): Promise<any>,
+    find(id: number|null): Promise<any>,
     findBy(field: string, value: string|number): Promise<any>
     update(id: number, data: object, updateType?: number | null): Promise<any>,
     all(type?: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
@@ -149,8 +149,8 @@ export default function useCRUD(url: string): CRUD {
             if (response !== null) entity.value = response.data
         } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
-            if (error.response.status === 500) return Router.push("/500");
-            Router.push("/500");
+            // if (error.response.status === 500) // return Router.push("/500");
+            // Router.push("/500");
         }
 
         loading.value = false
@@ -189,8 +189,8 @@ export default function useCRUD(url: string): CRUD {
 
         } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
-            if (error.response.status === 500) return Router.push("/500");
-            Router.push("/500");
+            // if (error.response.status === 500) return Router.push("/500");
+            // Router.push("/500");
         }
 
         loading.value = false
@@ -281,8 +281,8 @@ export default function useCRUD(url: string): CRUD {
             key.value = response.data.key
         } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
-            if (error.response.status === 500) return Router.push("/500");
-            Router.push("/500");
+            // if (error.response.status === 500) return Router.push("/500");
+            // Router.push("/500");
         }
         loading.value = false
     }
@@ -293,8 +293,8 @@ export default function useCRUD(url: string): CRUD {
             return response.data
         } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");
-            if (error.response.status === 500) return Router.push("/500");
-            Router.push("/500");
+            // if (error.response.status === 500) return Router.push("/500");
+            // Router.push("/500");
         }
     }
 

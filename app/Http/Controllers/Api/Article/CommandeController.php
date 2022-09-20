@@ -8,10 +8,10 @@ use Illuminate\Http\Response;
 use App\Models\Article\Commande;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use App\Models\Depot\DepotPrixArticle;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
-use App\Models\Depot\DepotPrixArticle;
 
 class CommandeController extends Controller
 {
@@ -97,12 +97,12 @@ class CommandeController extends Controller
     }
 
     /**
-    * Update the specified order or quotation in storage.
-    *
-    * @param  App\Http\Requests\Commande\ModifierCommandeRequest  $request
-    * @param  \App\Models\Article\Commande  $commande
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified order or quotation in storage.
+     *
+     * @param  ModifierCommandeRequest  $request
+     * @param  \App\Models\Article\Commande  $commande
+     * @return \Illuminate\Http\Response
+     */
     public function update(ModifierCommandeRequest $request, Commande $commande)
     {
         $data = $request->validated();
@@ -111,7 +111,7 @@ class CommandeController extends Controller
         $commande->update($data);
 
         if ($file !== null) $this->updateFile($commande, $file);
-        $this->updateArticle($commande, $articles);
+        $this->updateArticle($commande, $articles, true);
 
         return $data;
     }
@@ -140,7 +140,7 @@ class CommandeController extends Controller
     * @param array $articles Les articles concerné
     * @return bool
     */
-    public function updateArticle(Commande $commande, array $articles): bool
+    public function updateArticle(Commande $commande, array $articles, bool $update = false): bool
     {
         $articlesActuel = $commande->articles->pluck('id')->toArray();
 
@@ -157,10 +157,36 @@ class CommandeController extends Controller
                 'tva' => $article['tva'],
             ];
 
-            if (key_exists('object', $article) AND $article['object'] !== null) {
+            // Mettre a jour la quantité restant de l'article qui est d'un prix spécifique spécifique quan on fait une commande
+            if (key_exists('object', $article) AND $article['object'] !== null AND intval($commande->type) === 2) {
                 $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
                 if ($depotPrixArticle->quantite !== null) {
-                    $depotPrixArticle->quantite = $depotPrixArticle->quantite - $article['quantite'];
+                    $nouveauQuantite = 0;
+
+                    $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire ce prix demandé
+
+                    if ($update) {
+                        $commandeArticle = $commande->articles()->wherePivot('article', $article["id"])->first();
+
+                        $quantiteDeduire = doubleval($article["quantite"]); // Nouvelle quantité a mettre a jour
+                        $quantiteCommande = doubleval($commandeArticle->pivot->quantite - $commandeArticle->pivot->quantite_recu); // Quantité total non livré de la commande
+
+                        if ($quantiteDeduire > $quantiteCommande) {
+                            // Si la nouvelle quantité est supérieur a celle qui es déja renseigné avant
+                            $diffQuantite = $quantiteDeduire - $quantiteCommande;
+                            $nouveauQuantite = $quantiteRestant - $diffQuantite;
+                        } elseif ($quantiteDeduire < $quantiteCommande) {
+                            // Si la novelle quantité est inferieur a celle qui est déja renseigné avant
+                            $diffQuantite = $quantiteCommande - $quantiteDeduire;
+                            $nouveauQuantite = $quantiteRestant + $diffQuantite;
+                        } else {
+                            $nouveauQuantite = $quantiteRestant;
+                        }
+                    } else {
+                        $nouveauQuantite = $quantiteRestant - $article['quantite'];
+                    }
+
+                    $depotPrixArticle->quantite = $nouveauQuantite;
                     $depotPrixArticle->save();
                 }
             }
@@ -175,13 +201,26 @@ class CommandeController extends Controller
         return true;
     }
 
+
+    /**
+     * Verifier si la quantité des articles demandés est suffisant en stock
+     *
+     * @param array $articles Tableau des articles
+     * @return boolean
+     */
     public function checkArticleQuantite(array $articles): bool
     {
         $errors = [];
 
-        foreach ($articles as $article) {
-            if (key_exists('object', $article) AND $article['object'] !== null) {
-                if (floatval($article['quantite']) > floatval($article['object']['quantite'])) {
+        foreach ($articles as $article)
+        {
+            if (key_exists('object', $article) AND $article['object'] !== null)
+            {
+                $quantite = floatval($article['quantite']);
+                $totalQuantite = floatval($article['object']['quantite']); // Donne 0 si la quantite est tous les quantité restant
+
+                if ($totalQuantite !== 0.0 AND $quantite > $totalQuantite)
+                {
                     $errors[] = false;
                 }
             }
@@ -213,12 +252,24 @@ class CommandeController extends Controller
                 return response()->json(["key" => reference(3, null, "BR")]);
                 break;
 
+            case 4:
+                return response()->json(["key" => reference(4, null, "BL")]);
+                break;
+
             default:
                 throw new Exception("Type qui n'est pas une type de commande... Type: {$request->type}");
                 break;
         }
     }
 
+
+    /**
+     * Mettre a jour la pièce jointe associé a la commande
+     *
+     * @param Commande $commande La commande
+     * @param UploadedFile $file La pièce jointe
+     * @return void
+     */
     public function updateFile(Commande $commande, UploadedFile $file)
     {
         $path = $file->storeAs('devis', $commande->numero . '.' . $file->clientExtension(), "public");
