@@ -84,7 +84,7 @@
                             v-model="form.depot"
                             placeholder="Rechercher un depot"
                             noResultsText="Aucun depot trouvé"
-                            noOptionsText="Aucun depot trouvé"
+                            noOptionsText="Rechercher un dépot"
                             label="nom"
                             valueProp="id"
                             :closeOnSelect="true"
@@ -124,6 +124,10 @@
                             <ArticleFormComponent @article-cree="articleCree" :nouveau="true" />
                         </div>
 
+                        <div v-if="Commande.errors.value.quantite" class="alert alert-danger">
+                            {{ Commande.errors.value.quantite[0] }}
+                        </div>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -150,7 +154,7 @@
                                             v-model="form.articles[i - 1].object"
                                             placeholder="Rechercher un article"
                                             noResultsText="Aucun article trouvé"
-                                            noOptionsText="Aucun article trouvé"
+                                            noOptionsText="Rechercher un article"
                                             :closeOnSelect="true"
                                             :filter-results="true"
                                             :multiple="false"

@@ -167,7 +167,7 @@ class CommandeController extends Controller
                 {
                     $nouveauQuantite = 0;
 
-                    $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire ce prix demandé
+                    $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire demandé
 
                     if ($update)
                     {
@@ -204,13 +204,9 @@ class CommandeController extends Controller
             }
 
             if ($commande->articles->contains($article["id"]))
-            {
                 $commande->articles()->updateExistingPivot($article["id"], $data);
-            }
             else
-            {
                 $commande->articles()->attach($article['id'], $data);
-            }
         }
 
         return true;

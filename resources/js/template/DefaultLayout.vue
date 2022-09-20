@@ -328,7 +328,13 @@ export default defineComponent({
             return store.getters.user
         },
 
-        menu() {
+
+        /**
+         * Sidebar
+         *
+         * @return  {Array}
+         */
+        menu(): Array<any> {
             return [
                 {
                     header: true,
@@ -560,6 +566,25 @@ export default defineComponent({
                         },
                     ]
                 },
+                {
+                    title: 'Bon de livraison',
+                    icon: 'fa fa-file',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/bon-reception/liste',
+                            title: 'Fournisseur',
+                            icon: 'fa fa-arrow-right',
+                            // hidden: !this.$can('view_commande'),
+                        },
+                        {
+                            href: '/bon-livraison/liste',
+                            title: 'Client',
+                            icon: 'fa fa-arrow-left',
+                            // hidden: !this.$can('view_commande'),
+                        },
+                    ]
+                },
                 // ---------------------------------------------------------------------------------------
                 {
                     header: "Personnel",
@@ -635,7 +660,7 @@ export default defineComponent({
 </script>
 
 
-<style>
+<style scoped>
 
 #view {
     padding-left: 300px;
