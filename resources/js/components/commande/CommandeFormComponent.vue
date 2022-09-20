@@ -463,12 +463,12 @@ export default defineComponent({
                     ...(props.appro === false ? {
                         object: {
                             id: article.id,
-                            value: 3,
+                            value: article.pivot.reference_id,
                             reference: article.reference,
                             designation: article.designation,
                             quantite: article.pivot.quantite,
                             pu: article.pivot.pu,
-                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu} (${article.pivot.quantite ?? 'Quantité restant'})`
+                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu}`
                         }
                     } : {}),
                 })
