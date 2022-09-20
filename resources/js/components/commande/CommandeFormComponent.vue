@@ -468,7 +468,7 @@ export default defineComponent({
                             designation: article.designation,
                             quantite: article.pivot.quantite,
                             pu: article.pivot.pu,
-                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu} (${article.pivot.quantite ?? 'Quantité restant'})`
+                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu}`
                         }
                     } : {}),
                 })

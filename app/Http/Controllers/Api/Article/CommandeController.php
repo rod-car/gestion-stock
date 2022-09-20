@@ -163,29 +163,38 @@ class CommandeController extends Controller
                 $data['reference_id'] = $article['object']['value'];
 
                 $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
-                if ($depotPrixArticle->quantite !== null) {
+                if ($depotPrixArticle->quantite !== null)
+                {
                     $nouveauQuantite = 0;
 
                     $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire ce prix demandé
 
-                    if ($update) {
+                    if ($update)
+                    {
                         $commandeArticle = $commande->getArticle($article['id']);
 
                         $quantiteDeduire = doubleval($article["quantite"]); // Nouvelle quantité a mettre a jour
                         $quantiteCommande = doubleval($commandeArticle->pivot->quantite - $commandeArticle->pivot->quantite_recu); // Quantité total non livré de la commande
 
-                        if ($quantiteDeduire > $quantiteCommande) {
+                        if ($quantiteDeduire > $quantiteCommande)
+                        {
                             // Si la nouvelle quantité est supérieur a celle qui es déja renseigné avant
                             $diffQuantite = $quantiteDeduire - $quantiteCommande;
                             $nouveauQuantite = $quantiteRestant - $diffQuantite;
-                        } elseif ($quantiteDeduire < $quantiteCommande) {
+                        }
+                        elseif ($quantiteDeduire < $quantiteCommande)
+                        {
                             // Si la novelle quantité est inferieur a celle qui est déja renseigné avant
                             $diffQuantite = $quantiteCommande - $quantiteDeduire;
                             $nouveauQuantite = $quantiteRestant + $diffQuantite;
-                        } else {
+                        }
+                        else
+                        {
                             $nouveauQuantite = $quantiteRestant;
                         }
-                    } else {
+                    }
+                    else
+                    {
                         $nouveauQuantite = $quantiteRestant - $article['quantite'];
                     }
 
@@ -194,9 +203,12 @@ class CommandeController extends Controller
                 }
             }
 
-            if ($commande->articles->contains($article["id"])) {
+            if ($commande->articles->contains($article["id"]))
+            {
                 $commande->articles()->updateExistingPivot($article["id"], $data);
-            } else {
+            }
+            else
+            {
                 $commande->articles()->attach($article['id'], $data);
             }
         }
