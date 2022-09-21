@@ -32,7 +32,7 @@
                     </div>
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
-                        <ul class="notification-area pull-right">
+                        <ul class="notification-area pull-right d-flex align-items-center">
                             <li id="full-view"><i class="ti-fullscreen"></i></li>
                             <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
                             <li class="dropdown">
@@ -74,26 +74,8 @@
                                 <i class="ti-settings"></i>
                             </li>
                             <li class="dropdown">
-                                <i class="ti ti-user" data-toggle="dropdown"></i>
-                                <div class="dropdown-menu bell-notify-box notify-box">
-                                    <span class="notify-title">{{ user === null ? "Loading" : user.nom_personnel + ' ' + user.prenoms_personnel }} <a href="#">Mon compte</a></span>
-                                    <div class="nofity-list">
-                                        <a href="#" @click="logOut()" class="notify-item">
-                                            <div class="notify-thumb"><i class="fa fa-cog btn-primary"></i></div>
-                                            <div class="notify-text">
-                                                <p>Paramètres</p>
-                                                <span>Paramètres du compte</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" @click="logOut()" class="notify-item">
-                                            <div class="notify-thumb"><i class="fa fa-sign-out btn-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>Se deconnecter</p>
-                                                <span>Quitter l'app</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                <i class="ti ti-user me-2" data-toggle="dropdown"></i>
+                                <span class="text-uppercase text-muted">{{ user === null ? "Chargement..." : user.nom_personnel + ' ' + user.prenoms_personnel }}</span>
                             </li>
                         </ul>
                     </div>
