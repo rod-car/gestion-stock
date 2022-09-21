@@ -91,12 +91,24 @@ export default {
         const errors = ref({ email: null, password: null } as Errors);
         const errorMessage: Ref<string | null> = ref(null);
         const loading: Ref<Boolean> = ref(false);
-        const indicator: Ref<String> = ref("Chargement...");
+        const indicator: Ref<string> = ref("Chargement...");
 
-        const loadingIndicator = computed(() => {
+
+        /**
+         * Permet d'afficher un indicateur de chargement pendant la connexion
+         *
+         * @return  {string}  L'indicateur
+         */
+        const loadingIndicator = computed((): string => {
             return loading.value === true ? indicator.value : '';
         });
 
+
+        /**
+         * Permet d'authentifier l'utilisateur
+         *
+         * @return  {Promise}
+         */
         const login = async (): Promise<any> => {
             try {
                 loading.value = true
@@ -117,6 +129,8 @@ export default {
         }
 
         onMounted(() => {
+            // Associer les evenements pour la necessité de fonctionnement de l'input
+
             const inputs = document.querySelectorAll('.form-gp input') as NodeListOf<HTMLInputElement>
             inputs.forEach((input) => {
                 input.addEventListener('focus', () => {
@@ -131,7 +145,15 @@ export default {
             })
         })
 
-        const input = (key: string) => {
+
+        /**
+         * Fonction a executer quand l'un de champ change de valeur
+         *
+         * @param   {string}  key  Nom de l'input
+         *
+         * @return  {void}
+         */
+        const input = (key: string): void => {
             if (errors.value[key] && errors.value[key].length > 0) errors.value[key] = null
         }
 

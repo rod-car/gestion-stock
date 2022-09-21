@@ -1,6 +1,26 @@
 import axiosClient from '../axios';
 import { createStore } from "vuex";
 
+type Entreprise = {
+    id?: number|null,
+    generale: {
+        nom: string,
+        nif?: string | null,
+        email: string | null,
+        contact?: string | null,
+        assujeti: boolean
+    },
+    devise?: null
+}
+
+const val: Entreprise = {
+    generale: {
+        nom: 'Anonyme entreprise',
+        email: 'anonyme@gmail.com',
+        assujeti: true,
+    }
+}
+
 const store = createStore({
     state: {
         user: {
@@ -11,11 +31,18 @@ const store = createStore({
                 prenoms_personnel: null,
             },
             token: localStorage.getItem('auth_token')
-        }
+        },
+        infoEntreprise: val
     },
     getters: {
         user (state) {
             return state.user.data
+        },
+        infoEntreprise(state) {
+            return state.infoEntreprise
+        },
+        isAssujeti(state) {
+            return state.infoEntreprise.generale.assujeti
         }
     },
     actions: {
@@ -43,6 +70,21 @@ const store = createStore({
 
                 });
         },
+        getEntrepriseInformations({ commit }) {
+            axiosClient.get('parametres/generale')
+                .then(res => {
+                    commit('setInfoEntreprise', res.data);
+                })
+                .catch(err => {
+                    // Si l'utilisateur n'est pas connecté
+                    if (err.response.status === 401) {
+                        throw new Error("Utilisateur non connecté");
+                    } else {
+                        throw new Error("Une autre erreur : " + err);
+                    }
+
+                });
+        },
     },
     mutations: {
         setRole: (state, role) => {
@@ -50,6 +92,9 @@ const store = createStore({
         },
         setUser: (state, user) => {
             state.user.data = user
+        },
+        setInfoEntreprise: (state, info) => {
+            state.infoEntreprise = info
         }
     }
 });

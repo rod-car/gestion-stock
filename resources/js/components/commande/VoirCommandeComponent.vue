@@ -1,10 +1,10 @@
 <template>
     <div class="row mb-5">
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
-            <h5 class="mb-3">Mon entreprise</h5>
+            <h5 class="mb-3">{{ infoEntreprise.generale.nom }}</h5>
             <h6>Tanambao 5</h6>
             <h6>Toamasina I</h6>
-            <h6>Telephone: +261 34 123 45</h6>
+            <h6>Telephone: {{ infoEntreprise.generale.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-center justify-content-end">
             <h4>COMMANDE</h4>
@@ -23,7 +23,7 @@
             <h6>Téléphone: {{ commande.frs.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(commande.date, false, long = false) }}</h6>
+            <h6>Date: {{ formatDate(commande.date, false, false) }}</h6>
             <h6>Référence: {{ commande.numero }}</h6>
             <h6>Adresse de livraison: {{ commande.adresse_livraison }}</h6>
         </div>
@@ -38,8 +38,8 @@
                         <th>Quantité</th>
                         <th>Unité</th>
                         <th class="text-end">Prix unitaire HT</th>
-                        <th>% TVA</th>
-                        <th class="text-end">Total TVA</th>
+                        <th v-if="assujeti">% TVA</th>
+                        <th v-if="assujeti" class="text-end">Total TVA</th>
                         <th class="text-end">Total TTC</th>
                     </tr>
                 </thead>
@@ -48,26 +48,26 @@
                         <td>{{ article.designation }}</td>
                         <td>{{ article.pivot.quantite }}</td>
                         <td>{{ article.unite }}</td>
-                        <td class="text-end">{{ format(article.pivot.pu) }} Ar</td>
-                        <td>{{ article.pivot.tva }} %</td>
-                        <td class="text-end">{{ format(montantTVA(article)) }}</td>
+                        <td class="text-end">{{ format(article.pivot.pu) }}</td>
+                        <td v-if="assujeti">{{ article.pivot.tva }} %</td>
+                        <td v-if="assujeti" class="text-end">{{ format(montantTVA(article)) }}</td>
                         <td class="text-end">{{ format(montantTTC(article)) }}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr class="border-0">
-                        <td colspan="7">&nbsp;</td>
+                        <td :colspan="assujeti ? 7 : 5">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="text-end">TOTAL HT</td>
+                        <td :colspan="assujeti ? 6 : 4" class="text-end">TOTAL HT</td>
                         <td class="text-end">{{ format(totalHT(commande.articles)) }}</td>
                     </tr>
-                    <tr>
+                    <tr v-if="assujeti">
                         <td colspan="6" class="text-end">TOTAL TVA</td>
                         <td class="text-end">{{ format(totalTVA(commande.articles)) }}</td>
                     </tr>
                     <tr class="text-warning">
-                        <td colspan="6" class="text-end">TOTAL TTC</td>
+                        <td :colspan="assujeti ? 6 : 4" class="text-end">TOTAL TTC</td>
                         <td class="text-end">{{ format(totalTTC(commande.articles)) }}</td>
                     </tr>
                 </tfoot>
@@ -77,11 +77,13 @@
 
 </template>
 
-<script>
+<script lang="ts">
 
-import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions.ts';
+import store from '../../store';
+import { defineComponent, computed } from 'vue';
+import { formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC } from '../../functions/functions';
 
-export default {
+export default defineComponent({
     props: {
         commande: {
             type: Object,
@@ -95,10 +97,16 @@ export default {
     },
 
     setup() {
+        const infoEntreprise = store.state.infoEntreprise
+
+        const assujeti = computed((): boolean => {
+            return infoEntreprise.generale.assujeti
+        })
+
         return {
-            formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC,
+            formatDate, totalHT, totalTVA, totalTTC, format, montantTVA, montantTTC, infoEntreprise, assujeti,
         }
     },
 
-}
+})
 </script>

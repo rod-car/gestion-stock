@@ -49,6 +49,7 @@ import Input from '../../components/html/Input.vue'
 import SaveBtn from '../../components/html/SaveBtn.vue'
 import useCRUD from '../../services/CRUDServices'
 import { Skeletor } from 'vue-skeletor'
+import store from '../../store'
 
 const { entity, create, errors, creating, loading, updating, find, update } = useCRUD("/parametres/generale");
 
@@ -71,6 +72,9 @@ export default  defineComponent({
         const save = async () => {
             if (entity.value === "") await create(form.value);
             else await update(entity.value.id, form.value);
+
+            // Re mettre a jour le store qui contient les informations de l'entreprise
+            store.dispatch('getEntrepriseInformations')
         }
 
         onBeforeMount(async () => {
@@ -89,7 +93,7 @@ export default  defineComponent({
         })
 
         return {
-            form, errors, creating, create, save, entity, find, loading, updating, update,
+            form, errors, creating, entity, loading, updating, find, create, save, update,
         }
     }
 })

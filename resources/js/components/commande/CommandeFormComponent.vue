@@ -134,7 +134,7 @@
                                     <th class="w-25">Nom de l'article</th>
                                     <th>Quantité</th>
                                     <th>Prix unitaire</th>
-                                    <th>TVA</th>
+                                    <th v-if="assujeti">TVA</th>
                                     <th>Montant HT</th>
                                     <th>Montant TTC</th>
                                     <th>Actions</th>
@@ -184,7 +184,7 @@
                                             {{ Commande.errors.value[`articles.${i - 1}.pu`][0] }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td v-if="assujeti">
                                         <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
                                         <span class="text-danger" v-if="Commande.errors.value[`articles.${i - 1}.tva`]">
                                             {{ Commande.errors.value[`articles.${i - 1}.tva`][0] }}
@@ -230,6 +230,7 @@ import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 import { computed, onMounted, onBeforeMount, ref, defineComponent } from 'vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
+import store from '../../store';
 
 const Commande = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le Commande
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
@@ -370,6 +371,8 @@ export default defineComponent({
         }
 
         const save = async () => {
+            if (!assujeti.value) setArticlesTva(0)
+
             if (props.nouveau === true) {
                 await Commande.create(form.value)
                 if (Commande.success.value !== null) {
@@ -383,6 +386,12 @@ export default defineComponent({
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Commande.success.value = null
+        }
+
+        const setArticlesTva = (tva: number): void => {
+            form.value.articles.map(article => {
+                article.tva = tva
+            })
         }
 
         const resetForm = () => {
@@ -458,12 +467,12 @@ export default defineComponent({
                 })
             } else {
                 form.value.articles.push({
-                    id: article === null ? null : article.id,
-                    quantite: article === null ? 1 : article.pivot.quantite,
-                    pu: article === null ? null : article.pivot.pu,
-                    tva: article === null ? 20 : article.pivot.tva,
-                    montant_ht: article === null ? null : montantHT(article),
-                    montant_ttc: article === null ? null : montantTTC(article),
+                    id: article.id,
+                    quantite: article.pivot.quantite,
+                    pu: article.pivot.pu,
+                    tva: article.pivot.tva,
+                    montant_ht: montantHT(article),
+                    montant_ttc: montantTTC(article),
                     ...(props.appro === false ? {
                         object: {
                             id: article.id,
@@ -590,8 +599,12 @@ export default defineComponent({
             return (loaded.value === true && ((props.devis && props.devis.id !== null) || (props.commande && props.commande.id !== null)))
         })
 
+        const assujeti = computed((): boolean => {
+            return store.getters.isAssujeti
+        })
+
         return {
-            Commande, Fournisseur, Client, Article, creationFrs, hasError, dateState, creationClient, form, nombreArticle, creationArticle, resolveOnLoad,
+            Commande, Fournisseur, Client, Article, creationFrs, hasError, dateState, creationClient, form, nombreArticle, creationArticle, resolveOnLoad, assujeti,
             Flash, creerArticle, articleCree, frsCree, creerFrs, checkArticle, setCommandeKey, calculerMontant, addItem, removeItem, generateArticleArray,
             generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, fetchDepots, fetchArticles, handleSelect,
         }

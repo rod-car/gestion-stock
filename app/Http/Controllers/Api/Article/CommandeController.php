@@ -157,49 +157,52 @@ class CommandeController extends Controller
                 'tva' => $article['tva'],
             ];
 
-            // Mettre a jour la quantité restant de l'article qui est d'un prix spécifique spécifique quan on fait une commande
-            if (key_exists('object', $article) AND $article['object'] !== null AND intval($commande->type) === 2)
+            // Mettre a jour la quantité restant de l'article qui est d'un prix spécifique spécifique quand on fait une commande
+            if (key_exists('object', $article) AND $article['object'] !== null)
             {
                 $data['reference_id'] = $article['object']['value'];
 
-                $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
-                if ($depotPrixArticle->quantite !== null)
+                if (intval($commande->type) === 2)
                 {
-                    $nouveauQuantite = 0;
-
-                    $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire demandé
-
-                    if ($update)
+                    $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
+                    if ($depotPrixArticle->quantite !== null)
                     {
-                        $commandeArticle = $commande->getArticle($article['id']);
+                        $nouveauQuantite = 0;
 
-                        $quantiteDeduire = doubleval($article["quantite"]); // Nouvelle quantité a mettre a jour
-                        $quantiteCommande = doubleval($commandeArticle->pivot->quantite - $commandeArticle->pivot->quantite_recu); // Quantité total non livré de la commande
+                        $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire demandé
 
-                        if ($quantiteDeduire > $quantiteCommande)
+                        if ($update)
                         {
-                            // Si la nouvelle quantité est supérieur a celle qui es déja renseigné avant
-                            $diffQuantite = $quantiteDeduire - $quantiteCommande;
-                            $nouveauQuantite = $quantiteRestant - $diffQuantite;
-                        }
-                        elseif ($quantiteDeduire < $quantiteCommande)
-                        {
-                            // Si la novelle quantité est inferieur a celle qui est déja renseigné avant
-                            $diffQuantite = $quantiteCommande - $quantiteDeduire;
-                            $nouveauQuantite = $quantiteRestant + $diffQuantite;
+                            $commandeArticle = $commande->getArticle($article['id']);
+
+                            $quantiteDeduire = doubleval($article["quantite"]); // Nouvelle quantité a mettre a jour
+                            $quantiteCommande = doubleval($commandeArticle->pivot->quantite - $commandeArticle->pivot->quantite_recu); // Quantité total non livré de la commande
+
+                            if ($quantiteDeduire > $quantiteCommande)
+                            {
+                                // Si la nouvelle quantité est supérieur a celle qui es déja renseigné avant
+                                $diffQuantite = $quantiteDeduire - $quantiteCommande;
+                                $nouveauQuantite = $quantiteRestant - $diffQuantite;
+                            }
+                            elseif ($quantiteDeduire < $quantiteCommande)
+                            {
+                                // Si la novelle quantité est inferieur a celle qui est déja renseigné avant
+                                $diffQuantite = $quantiteCommande - $quantiteDeduire;
+                                $nouveauQuantite = $quantiteRestant + $diffQuantite;
+                            }
+                            else
+                            {
+                                $nouveauQuantite = $quantiteRestant;
+                            }
                         }
                         else
                         {
-                            $nouveauQuantite = $quantiteRestant;
+                            $nouveauQuantite = $quantiteRestant - $article['quantite'];
                         }
-                    }
-                    else
-                    {
-                        $nouveauQuantite = $quantiteRestant - $article['quantite'];
-                    }
 
-                    $depotPrixArticle->quantite = $nouveauQuantite;
-                    $depotPrixArticle->save();
+                        $depotPrixArticle->quantite = $nouveauQuantite;
+                        $depotPrixArticle->save();
+                    }
                 }
             }
 

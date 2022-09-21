@@ -78,6 +78,7 @@ import axiosClient from "../../axios";
 import { computed, defineComponent, onBeforeMount, ref } from "vue";
 import { Skeletor } from "vue-skeletor";
 import Table from "../html/Table.vue";
+import store from "../../store";
 
 export default defineComponent({
     props: {
@@ -122,7 +123,6 @@ export default defineComponent({
         return {
             getName, articles, loading, columns, casts,
         };
-
     },
 
     components: {
