@@ -27,6 +27,10 @@
                     <div class="col-xl-6">
                         <Input v-model="form.adresse_livraison" :error="Reception.errors.value.adresse_livraison" required>Adresse de livraison</Input>
                     </div>
+                </div>
+
+                <div class="row mt-3">
+                    <h6 class="text-uppercase text-primary mb-4">Information livraison</h6>
 
                     <div class="col-xl-6 mb-3">
                         <Input v-model="form.livreur" :error="Reception.errors.value.livreur">Livreur</Input>
@@ -34,8 +38,30 @@
                     <div class="col-xl-6 mb-3">
                         <Input v-model="form.contact" :error="Reception.errors.value.contact">Contact du livreur</Input>
                     </div>
-                </div>
-                <div class="row">
+
+                    <!-- Information de moyen de livraison et ses couts -->
+
+                    <div class="col-xl-6 mb-3">
+                        <label class="form-label">Mode de livraison <span class="text-danger ms-2">(*)</span></label>
+                        <MultiSelect :options="[
+                            { label: 'Le fournisseur qui livre', value: 1 },
+                            { label: 'Le client qui le recupère chez fournisseur', value: 2 },
+                        ]"></MultiSelect>
+                    </div>
+                    <div class="col-xl-3 mb-3">
+                        <label class="form-label">A la charge du</label>
+                        <MultiSelect :options="[
+                            { label: 'Aucun', value: 0 },
+                            { label: 'Client', value: 1 },
+                            { label: 'Fournisseur', value: 2 }
+                        ]"></MultiSelect>
+                    </div>
+                    <div class="col-xl-3 mb-3">
+                        <Input v-model="form.contact" :error="Reception.errors.value.contact">Coût</Input>
+                    </div>
+
+                    <!-- Fin mode de livraison -->
+
                     <div class="col-xl-6">
                         <label for="depot" class="form-label">A stocker dans un</label>
                         <MultiSelect :canClear="false" :multiple="false" v-model="form.type" :options="[{ value: 1, label: 'Point de vente' }, { value: 2, label: 'Entrepot' }]" @change="handleChange" />

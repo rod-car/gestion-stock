@@ -163,11 +163,12 @@
                                             :delay="500"
                                             :searchable="true"
                                             :object="true"
-                                            :options="async function (query: string) {
+                                            :options="async (query: string) => {
                                                 return await fetchArticles(query)
                                             }"
                                             @select="handleSelect(i-1)"
                                         />
+
                                         <span class="text-danger" v-if="Commande.errors.value[`articles.${i - 1}.id`]">
                                             {{ Commande.errors.value[`articles.${i - 1}.id`][0] }}
                                         </span>
@@ -371,7 +372,7 @@ export default defineComponent({
         }
 
         const save = async () => {
-            if (!assujeti.value && props.appo === false) setArticlesTva(0)
+            if (!assujeti.value && props.appro === false) setArticlesTva(0)
 
             if (props.nouveau === true) {
                 await Commande.create(form.value)
