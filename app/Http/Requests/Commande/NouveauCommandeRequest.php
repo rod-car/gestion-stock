@@ -66,6 +66,11 @@ class NouveauCommandeRequest extends FormRequest
     }
 
 
+    /**
+     * Avant de valider la formulaire
+     *
+     * @return void
+     */
     public function prepareForValidation()
     {
         if ($this->numero === null /*OR $this->type !== 1*/) {

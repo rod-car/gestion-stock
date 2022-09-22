@@ -20,7 +20,8 @@ export default defineComponent({
     props: {
         modelValue: {
             type: String,
-            required: true,
+            required: false,
+            default: null,
         },
         type: {
             type: String,

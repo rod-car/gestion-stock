@@ -76,6 +76,10 @@ router.beforeEach((to, from, next) => {
         getUser()
     }
 
+    if (!store.state.infoEntreprise.id && to.path !== "/login") {
+        getEntrepriseInformations();
+    }
+
     if (to.meta.requiresAuth && !store.state.user.token) {
         next({ name: 'login' });
     } else {
@@ -86,6 +90,7 @@ router.beforeEach((to, from, next) => {
     }
 });
 
+
 /**
  * Mettre l'utilisateur connecté dans le store
  *
@@ -93,6 +98,11 @@ router.beforeEach((to, from, next) => {
  */
 const getUser = async (): Promise<any> => {
     await store.dispatch('getUser');
+}
+
+
+const getEntrepriseInformations = async (): Promise<any> => {
+    await store.dispatch('getEntrepriseInformations')
 }
 
 export default router;

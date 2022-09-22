@@ -109,7 +109,7 @@
 
         <footer v-if="isConnected">
             <div class="footer-area">
-                <p>© Copyright 2018. All right reserved.</p>
+                <p>© {{ infoEntreprise.generale.nom }} - {{ infoEntreprise.generale.assujeti ? "Assujeti a la TVA" : "Non assujeti a la TVA" }} - {{ new Date().getFullYear().toString() }}.</p>
             </div>
         </footer>
 
@@ -201,7 +201,7 @@
 import axiosClient from '../axios';
 import store from '../store';
 import useAbility from '../services/AbilityServices';
-import { defineComponent, Ref, ref } from 'vue';
+import { computed, defineComponent, Ref, ref } from 'vue';
 
 interface User {
     id: number | null,
@@ -224,11 +224,15 @@ const logoImg = {
 export default defineComponent({
     setup() {
         const collapsed: Ref<boolean> = ref(false);
+        const infoEntreprise = computed(() => {
+            return store.state.infoEntreprise
+        })
 
         return {
             permissions,
             getPermissions,
             collapsed,
+            infoEntreprise,
         }
     },
 
@@ -628,7 +632,6 @@ export default defineComponent({
                     hidden: !this.$can('manage_settings'),
                     child: [
                         {
-                            href: '/point-de-vente/liste',
                             title: 'Dévise',
                             icon: 'fa fa-money',
                         },
@@ -642,11 +645,6 @@ export default defineComponent({
                 {
                     header: "Mon compte",
                     hiddenOnCollapse: true,
-                },
-                {
-                    href: '/point-de-vente/liste',
-                    title: 'Paramètres',
-                    icon: 'fa fa-cog',
                 },
                 {
                     title: 'Déconnexion',

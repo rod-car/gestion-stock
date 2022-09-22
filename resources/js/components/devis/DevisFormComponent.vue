@@ -136,7 +136,7 @@
                                     <th class="w-25">Nom de l'article</th>
                                     <th>Quantité</th>
                                     <th>Prix unitaire</th>
-                                    <th>TVA</th>
+                                    <th v-if="assujeti || appro === true">TVA</th>
                                     <th>Montant HT</th>
                                     <th>Montant TTC</th>
                                     <th>Actions</th>
@@ -193,7 +193,7 @@
                                             {{ Devis.errors.value[`articles.${i - 1}.pu`][0] }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td v-if="assujeti || appro === true">
                                         <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.tva`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.tva`][0] }}
@@ -239,6 +239,7 @@ import ArticleFormComponent from '../article/ArticleFormComponent.vue';
 import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
+import store from '../../store';
 
 const Depot = useCRUD('/depot'); // Recuperer le service de CRUD de depots
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
@@ -439,6 +440,8 @@ export default defineComponent({
                 formData.append('file', '');
             }
 
+            if (!assujeti.value && props.appro === false) setArticlesTva(0)
+
             if (form.value.articles) {
                 formData.append('articles', JSON.stringify(form.value.articles))
             }
@@ -456,6 +459,13 @@ export default defineComponent({
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Devis.success.value = null
+        }
+
+
+        const setArticlesTva = (tva: number): void => {
+            form.value.articles.map(article => {
+                article.tva = tva
+            })
         }
 
 
@@ -592,19 +602,19 @@ export default defineComponent({
                     id: null,
                     quantite: 1,
                     pu: null,
-                    tva: 20.00,
+                    tva: 20,
                     montant_ht: null,
                     montant_ttc: null,
                     object: null,
                 })
             } else {
                 form.value.articles.push({
-                    id: article === null ? null : article.id,
-                    quantite: article === null ? 1 : article.pivot.quantite,
-                    pu: article === null ? null : article.pivot.pu,
-                    tva: article === null ? 20 : article.pivot.tva,
-                    montant_ht: article === null ? null : montantHT(article),
-                    montant_ttc: article === null ? null : montantTTC(article),
+                    id: article.id,
+                    quantite: article.pivot.quantite,
+                    pu: article.pivot.pu,
+                    tva: article.pivot.tva,
+                    montant_ht: montantHT(article),
+                    montant_ttc: montantTTC(article),
                     ...(props.appro === false ? {
                             object: {
                             id: article.id,
@@ -613,7 +623,7 @@ export default defineComponent({
                             designation: article.designation,
                             quantite: article.pivot.quantite,
                             pu: article.pivot.pu,
-                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu} (Quantité restant)`
+                            label: `${article.reference} - ${article.designation} - ${article.pivot.pu}`
                         },
                     } : {})
                 })
@@ -629,13 +639,15 @@ export default defineComponent({
          * @param {Number}  index   Index de la ligne darticle
          */
         const calculerMontant = (index: number) => {
-            const pu = form.value.articles[index].pu
-            const quantite = form.value.articles[index].quantite
-            const tva = form.value.articles[index].tva
+            let pu = form.value.articles[index].pu
+            let quantite = form.value.articles[index].quantite
+            let tva = form.value.articles[index].tva
 
             if (pu < 0) form.value.articles[index].pu = Math.abs(pu)
             if (quantite < 0) form.value.articles[index].quantite = Math.abs(quantite)
             if (tva < 0) form.value.articles[index].tva = Math.abs(tva)
+
+            if (assujeti.value === false) tva = 0;
 
             let montant_ht = Math.round((Math.abs(quantite) * Math.abs(pu)) * 100) / 100
             let montant_ttc = Math.round((montant_ht + (montant_ht * Math.abs(tva) / 100)) * 100) / 100
@@ -696,7 +708,7 @@ export default defineComponent({
             Client.all();
             if (props.nouveau === true) setDevisKey();
 
-            // loaded.value = false // Rendre le depot non resolvable on load
+            loaded.value = false // Rendre le depot non resolvable on load
         })
 
 
@@ -736,6 +748,11 @@ export default defineComponent({
         }
 
 
+        const assujeti = computed((): boolean => {
+            return store.getters.isAssujeti;
+        })
+
+
         /**
          * Permet de determiner si on doit charger le select durant le chargement
          *
@@ -746,7 +763,7 @@ export default defineComponent({
         })
 
         return {
-            Devis, Fournisseur, Client, Article, creationArticle, creationFrs, form, nombreArticle, creationClient, resolveOnLoad, hasError, dateState,
+            Devis, Fournisseur, Client, Article, creationArticle, creationFrs, form, nombreArticle, creationClient, resolveOnLoad, hasError, dateState, store, assujeti,
             Flash, creerArticle, articleCree, frsCree, creerFrs, checkArticle, setDevisKey, calculerMontant, addItem, removeItem, generateArticleArray,
             generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, handleFileChange, fetchArticles, handleSelect, fetchDepots,
         }

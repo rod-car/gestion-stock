@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="card-body">
-            <VoirDevisComponent v-if="!loading" :devis="entity" />
+            <VoirDevisComponent v-if="!loading" :devis="entity" :appro="true" />
             <VoirDevisLoadingComponent v-else />
         </div>
     </div>
