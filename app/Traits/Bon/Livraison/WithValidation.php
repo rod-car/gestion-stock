@@ -28,6 +28,10 @@ trait WithValidation
             "contact_livreur" => ["nullable", "sometimes", "min:5", "max:255"],
 
             "commande" => ["nullable", "numeric", "exists:commandes,id"],
+
+            "mode_livraison" => ["required", "numeric", "in:1,2"],
+            "a_la_charge_de" => ["required", "numeric", "in:0,1,2"],
+            "cout" => ["required", "numeric", "min:0", "max: 9999999999.99"]
         ];
     }
 
@@ -59,6 +63,19 @@ trait WithValidation
             "articles.*.quantite.numeric" => "La quantité unitaire doit être un nombre",
             "articles.*.quantite.min" => "La quantité unitaire doit être au moins :min unité",
             "articles.*.quantite.max" => "La quantité unitaire ne doit pas depasser :max unité",
+
+            "mode_livraison.required" => "La mode de livraison est obligatoire",
+            "mode_livraison.numeric" => "La mode de livraison doit être parmi la liste",
+            "mode_livraison.in" => "La mode de livraison doit être parmi la liste",
+
+            "a_la_charge_de.required" => "Ce qui charge de la livraison est obligatoire",
+            "a_la_charge_de.numeric" => "Ce qui charge de la livraison doit être parmi la liste",
+            "a_la_charge_de.in" => "Ce qui charge de la livraison doit être parmi la liste",
+
+            "cout.required" => "Le coût de la livraison est obligatoire",
+            "cout.numeric" => "Le coût de la livraison doit être numéric",
+            "cout.min" => "Le coût de la livraison doit être au moins :min",
+            "cout.max" => "Le coût de la livraison ne doit pas depasser :max",
         ];
     }
 

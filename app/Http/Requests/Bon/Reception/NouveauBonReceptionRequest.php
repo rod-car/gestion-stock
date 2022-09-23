@@ -77,5 +77,12 @@ class NouveauBonReceptionRequest extends FormRequest
                 'date' => $date->toDateString(),
             ]);
         }
+
+        if (intval($this->a_la_charge_de) !== 0 and doubleval($this->cout) === doubleval(0))
+        {
+            $this->merge([
+                "cout" => null
+            ]);
+        }
     }
 }

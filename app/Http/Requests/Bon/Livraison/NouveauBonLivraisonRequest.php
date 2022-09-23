@@ -77,5 +77,12 @@ class NouveauBonLivraisonRequest extends FormRequest
                 'date' => $date->toDateString(),
             ]);
         }
+
+        if (intval($this->a_la_charge_de) !== 0 AND doubleval($this->cout) === doubleval(0))
+        {
+            $this->merge([
+                "cout" => null
+            ]);
+        }
     }
 }
