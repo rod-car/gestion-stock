@@ -19,7 +19,8 @@ class Bon extends Model
      * @var array
      */
     protected $fillable = [
-        "numero", "date", "commande", "type", "status", "adresse_livraison", "livreur", "contact_livreur"
+        "numero", "date", "commande", "type", "status", "adresse_livraison", "livreur", "contact_livreur",
+        "mode_livraison", "a_la_charge_de", "cout",
     ];
 
 

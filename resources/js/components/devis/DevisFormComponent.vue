@@ -136,7 +136,7 @@
                                     <th class="w-25">Nom de l'article</th>
                                     <th>Quantité</th>
                                     <th>Prix unitaire</th>
-                                    <th v-if="assujeti">TVA</th>
+                                    <th v-if="assujeti || appro === true">TVA</th>
                                     <th>Montant HT</th>
                                     <th>Montant TTC</th>
                                     <th>Actions</th>
@@ -193,7 +193,7 @@
                                             {{ Devis.errors.value[`articles.${i - 1}.pu`][0] }}
                                         </span>
                                     </td>
-                                    <td v-if="assujeti">
+                                    <td v-if="assujeti || appro === true">
                                         <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.tva`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.tva`][0] }}
@@ -440,7 +440,7 @@ export default defineComponent({
                 formData.append('file', '');
             }
 
-            if (!assujeti.value) setArticlesTva(0)
+            if (!assujeti.value && props.appro === false) setArticlesTva(0)
 
             if (form.value.articles) {
                 formData.append('articles', JSON.stringify(form.value.articles))

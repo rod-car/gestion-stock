@@ -38,8 +38,8 @@
                         <th>Quantité</th>
                         <th>Unité</th>
                         <th class="text-end">Prix unitaire HT</th>
-                        <th v-if="assujeti">% TVA</th>
-                        <th v-if="assujeti" class="text-end">Total TVA</th>
+                        <th v-if="(assujeti || appro === true)">% TVA</th>
+                        <th v-if="(assujeti || appro === true)" class="text-end">Total TVA</th>
                         <th class="text-end">Total TTC</th>
                     </tr>
                 </thead>
@@ -49,25 +49,25 @@
                         <td>{{ article.pivot.quantite }}</td>
                         <td>{{ article.unite }}</td>
                         <td class="text-end">{{ format(article.pivot.pu) }} Ar</td>
-                        <td v-if="assujeti">{{ article.pivot.tva }} %</td>
-                        <td v-if="assujeti" class="text-end">{{ format(montantTVA(article)) }}</td>
+                        <td v-if="(assujeti || appro === true)">{{ article.pivot.tva }} %</td>
+                        <td v-if="(assujeti || appro === true)" class="text-end">{{ format(montantTVA(article)) }}</td>
                         <td class="text-end">{{ format(montantTTC(article)) }}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr class="border-0">
-                        <td :colspan="assujeti ? 7 : 5">&nbsp;</td>
+                        <td :colspan="(assujeti || appro === true) ? 7 : 5">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td :colspan="assujeti ? 6 : 4" class="text-end">TOTAL HT</td>
+                        <td :colspan="(assujeti || appro === true) ? 6 : 4" class="text-end">TOTAL HT</td>
                         <td class="text-end">{{ format(totalHT(devis.articles)) }}</td>
                     </tr>
-                    <tr v-if="assujeti">
+                    <tr v-if="(assujeti || appro === true)">
                         <td colspan="6" class="text-end">TOTAL TVA</td>
                         <td class="text-end">{{ format(totalTVA(devis.articles)) }}</td>
                     </tr>
                     <tr class="text-warning">
-                        <td :colspan="assujeti ? 6 : 4" class="text-end">TOTAL TTC</td>
+                        <td :colspan="(assujeti || appro === true) ? 6 : 4" class="text-end">TOTAL TTC</td>
                         <td class="text-end">{{ format(totalTTC(devis.articles)) }}</td>
                     </tr>
                 </tfoot>

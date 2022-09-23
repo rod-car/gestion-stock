@@ -19,9 +19,8 @@ export default defineComponent({
     inheritAttrs: false,
     props: {
         modelValue: {
-            type: String,
-            required: false,
-            default: null,
+            type: null,
+            required: true,
         },
         type: {
             type: String,
