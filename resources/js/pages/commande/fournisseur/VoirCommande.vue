@@ -4,6 +4,13 @@
             <h5 class="text-muted">Fiche commande fournisseur</h5>
 
             <div class="d-flex justify-content-between">
+                <router-link
+                    :to="{ name: 'bon-reception.nouveau', query: { commande: entity.id }}"
+                    title='Créer un bon de reception a partir de ce bon de commande'
+                    v-if="!entity.recu" class="btn btn-success me-2">
+                    <i class="fa fa-arrow-right me-2"></i>
+                    Convertir en bon de reception
+                </router-link>
                 <router-link to="/commande/fournisseur/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouvelle</router-link>
                 <router-link v-if="!loading && entity.id" :to="{ name: 'commande.fournisseur.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
                 <router-link to="/commande/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>

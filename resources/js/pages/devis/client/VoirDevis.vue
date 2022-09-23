@@ -4,6 +4,12 @@
             <h5 class="text-muted">Fiche devis client</h5>
 
             <div class="d-flex justify-content-between">
+                <router-link title="Créer un bon de commande pour ce devis"
+                    v-if="entity.status === 1"
+                    :to="{ name: `commande.client.nouveau`, query: { devis: entity.id }}"
+                    class="btn btn-success me-2"><i class="fa fa-arrow-right me-2"></i>
+                    Convertir en bon de commande
+                </router-link>
                 <router-link to="/devis/client/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
                 <router-link v-if="!loading" :to="{ name: 'devis.client.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
                 <router-link to="/devis/client/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
