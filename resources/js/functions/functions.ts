@@ -155,6 +155,37 @@ const format = (number: number, format: string = "fr-FR", options = { decimal: 2
     return locale.format(number).replace("MGA", "Ar");
 }
 
+/**
+ * Permet de savoir le mode de livraison de la marchandises
+ *
+ * @param   {number}  index  Index qui correspond au mode de livraison dans le tableau ci-dessous
+ * @return  {string}         La mode de livraison correspondant
+ */
+const modeLivraison = (index: number): string => {
+    const modes = {
+        1: 'Le fournisseur qui livre',
+        2: 'Le client qui le recupère chez fournisseur'
+    }
+    return modes[index];
+}
+
+
+/**
+ * Permet de recuperer textuellement la personne en charges de la mode de livraison
+ *
+ * @param   {number}  index  Index qui correspond au personnes dans la table
+ * @return  {string}         Personne responsable sous forme de texte
+ */
+const chargeLivraison = (index: number): string => {
+    const chargeurs = {
+        0: 'Aucun',
+        1: 'Fournisseur',
+        2: 'Client'
+    }
+
+    return chargeurs[index]
+}
+
 export {
     last,
     expiration,
@@ -168,4 +199,6 @@ export {
     totalTVA,
     totalTTC,
     format,
+    modeLivraison,
+    chargeLivraison,
 };

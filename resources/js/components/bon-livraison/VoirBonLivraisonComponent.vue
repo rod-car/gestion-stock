@@ -24,6 +24,14 @@
         </div>
     </div>
 
+    <div class="row mb-5">
+        <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
+            <h6>Mode de livraison: {{ modeLivraison(bonLivraison.mode_livraison) }}</h6>
+            <h6>A la charge du: {{ chargeLivraison(bonLivraison.a_la_charge_de) }}</h6>
+            <h6>Coût: {{ format(parseFloat(bonLivraison.cout)) }}</h6>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xl-12">
             <table class="table table-bordered table-striped">
@@ -47,7 +55,7 @@
 
 <script lang="ts">
 
-import { formatDate, format } from '../../functions/functions';
+import { formatDate, format, modeLivraison, chargeLivraison } from '../../functions/functions';
 
 export default {
     props: {
@@ -59,7 +67,7 @@ export default {
 
     setup() {
         return {
-            formatDate, format,
+            formatDate, format, modeLivraison, chargeLivraison,
         }
     },
 

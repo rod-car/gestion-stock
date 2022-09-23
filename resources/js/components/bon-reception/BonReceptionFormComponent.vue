@@ -27,6 +27,10 @@
                     <div class="col-xl-6">
                         <Input v-model="form.adresse_livraison" :error="Reception.errors.value.adresse_livraison" required>Adresse de livraison</Input>
                     </div>
+                </div>
+
+                <div class="row mt-3">
+                    <h6 class="text-uppercase text-primary mb-4">Information livraison</h6>
 
                     <div class="col-xl-6 mb-3">
                         <Input v-model="form.livreur" :error="Reception.errors.value.livreur">Livreur</Input>
@@ -34,8 +38,32 @@
                     <div class="col-xl-6 mb-3">
                         <Input v-model="form.contact" :error="Reception.errors.value.contact">Contact du livreur</Input>
                     </div>
-                </div>
-                <div class="row">
+
+                    <!-- Information de moyen de livraison et ses couts -->
+
+                    <div class="col-xl-6 mb-3">
+                        <label class="form-label">Mode de livraison <span class="text-danger ms-2">(*)</span></label>
+                        <MultiSelect v-model="form.mode_livraison" noResultsText="Aucun résultat" searchable :options="[
+                            { label: 'Le fournisseur qui livre', value: 1 },
+                            { label: 'Le client qui le recupère chez fournisseur', value: 2 }
+                        ]"></MultiSelect>
+                    </div>
+                    <div class="mb-3" :class="form.a_la_charge_de === 0 ? 'col-xl-6' : 'col-xl-3'">
+                        <label class="form-label">A la charge du</label>
+                        <MultiSelect v-model="form.a_la_charge_de" noResultsText="Aucun résultat" searchable :options="[
+                            { label: 'Aucun', value: 0 },
+                            { label: 'Client', value: 1 },
+                            { label: 'Fournisseur', value: 2 }
+                        ]"></MultiSelect>
+                    </div>
+
+                    <!-- N'apparait que si il ya personne qui se charge du coût de moyen de transport -->
+                    <div v-if="form.a_la_charge_de > 0" class="col-xl-3 mb-3">
+                        <Input v-model="form.cout" :error="Reception.errors.value.cout">Coût <span class="ms-2 text-danger">(*)</span></Input>
+                    </div>
+
+                    <!-- Fin mode de livraison -->
+
                     <div class="col-xl-6">
                         <label for="depot" class="form-label">A stocker dans un</label>
                         <MultiSelect :canClear="false" :multiple="false" v-model="form.type" :options="[{ value: 1, label: 'Point de vente' }, { value: 2, label: 'Entrepot' }]" @change="handleChange" />
@@ -137,7 +165,10 @@ type Form = {
     livreur: string|null,
     contact: string | null,
     type: number,
-    depot: number|null,
+    depot: number | null,
+    mode_livraison: number,
+    a_la_charge_de: number,
+    cout: number|null
 }
 
 export default defineComponent({
@@ -184,6 +215,9 @@ export default defineComponent({
             contact: null,
             type: 1,
             depot: null,
+            mode_livraison: 1,
+            a_la_charge_de: 0,
+            cout: 0.0
         } as Form);
 
         const valide: Ref<boolean> = ref(true);
