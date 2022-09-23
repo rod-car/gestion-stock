@@ -1,5 +1,6 @@
 <?php
 
+use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//require __DIR__.'/auth.php';
+// app/Http/routes.php | app/routes/web.php
+
+/*Route::get('/', function (Fpdf $fpdf) {
+    $datas = ["First page", "Second page"];
+    $fpdf->SetFont('Courier', 'B', 18);
+
+    foreach ($datas as $data)
+    {
+        $fpdf->AddPage();
+        $fpdf->Cell(0, 0, $data);
+    }
+
+    $fpdf->Output();
+    exit;
+});*/
 
 Route::view('/{any}', 'app')->where('any', ".*");
-
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');*/
-
