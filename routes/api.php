@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Article\CommandeController;
 use App\Http\Controllers\Api\Bon\BonLivraisonController;
 use App\Http\Controllers\Api\Bon\BonReceptionController;
 use App\Http\Controllers\Api\Client\CategorieController;
+use App\Http\Controllers\Api\Facturation\FacturationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
 use App\Http\Controllers\Api\Parametres\ParametreGeneraleController;
@@ -99,6 +100,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD des bons de livraisons
     Route::apiResource('/bon-livraisons', BonLivraisonController::class);
+
+    // Recupere le nouveau numéro du dévis ou commande et l'afficher au client
+    Route::get('/factures/get-key', [FacturationController::class, 'getKey']);
+
+    // Ressource qui gere les CRUD des facture
+    Route::apiResource('/factures', FacturationController::class);
+
 
     // ----------------------------------------------------------- Fin gestion de commande ----------------------------------------------------------------------
 

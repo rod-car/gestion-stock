@@ -46,7 +46,6 @@ class RoleController extends Controller
                 'errors' => $validator->errors(),
                 'message' => "Les champs ne sont pas bien remplis"
             ], 422);
-            dd(false);
         }
 
         return Role::create($request->all());

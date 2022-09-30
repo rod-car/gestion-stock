@@ -22,6 +22,7 @@ import commande from './routes/commande/commande';
 import parametres from './routes/parametres/parametres';
 import bonreception from './routes/commande/reception';
 import bonlivraison from './routes/commande/livraison';
+import facturation from './routes/commande/facturation';
 
 const routes: Array<any> = [
     {
@@ -54,6 +55,7 @@ const routes: Array<any> = [
     .concat(commande)
     .concat(bonreception)
     .concat(bonlivraison)
+    .concat(facturation)
     .concat(parametres)
 
 const router = createRouter({

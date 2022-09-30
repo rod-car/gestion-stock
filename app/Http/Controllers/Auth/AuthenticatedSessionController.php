@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
 
@@ -62,7 +63,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->invalidate();
 
-        auth()->user()->tokens()->delete();
+        /** @var User */
+        $user = auth()->user();
+
+        $user->tokens()->delete();
 
         $request->session()->regenerateToken();
 

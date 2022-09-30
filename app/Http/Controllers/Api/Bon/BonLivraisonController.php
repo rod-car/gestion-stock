@@ -10,6 +10,7 @@ use App\Models\Article\DepotArticle;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Bon\Livraison\NouveauBonLivraisonRequest;
 use App\Http\Requests\Bon\Livraison\ModifierBonLivraisonRequest;
+use App\Http\Resources\Bon\BonLivraisonResource;
 
 class BonLivraisonController extends Controller
 {

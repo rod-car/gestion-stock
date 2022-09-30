@@ -31,6 +31,10 @@
                     >
                         <i class="fa fa-arrow-right"></i>
                     </router-link>
+                    <router-link :to="{ name: 'facture.nouvelle', query: { commande: commande.id }}"
+                        title="Créer une facture pour ce bon de commande" v-if="true" class="btn btn-info btn-sm me-2 text-white">
+                        <i class="fa fa-file"></i>
+                    </router-link>
                     <DeleteBtn title="Supprimer ce bon de commande" v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
                 </td>
             </tr>

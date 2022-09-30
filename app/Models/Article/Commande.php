@@ -48,7 +48,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $appends = ["expire", "date_expiration", "recu"];
+    protected $appends = ["expire", "date_expiration", "recu", "tva"];
 
 
     /**
@@ -176,5 +176,11 @@ class Commande extends Model
     public function getDepot(): BelongsTo
     {
         return $this->belongsTo(Depot::class, 'depot', 'id');
+    }
+
+
+    public function getTvaAttribute(): float
+    {
+        return doubleval($this->articles()->sum('tva'));
     }
 }
