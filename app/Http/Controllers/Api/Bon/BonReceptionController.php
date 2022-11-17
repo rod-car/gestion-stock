@@ -38,7 +38,9 @@ class BonReceptionController extends Controller
         $articles = $data["articles"];
         unset($data["articles"]);
 
+        //dd($articles);
         $commande = Commande::findOrFail($data['commande']);
+
         $reception = Bon::create($data);
         $depot = Depot::findOrFail($data['depot']);
 

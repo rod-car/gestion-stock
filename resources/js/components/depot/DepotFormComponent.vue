@@ -84,7 +84,7 @@ export default defineComponent({
         }
 
         onBeforeMount(() => {
-            if (props.nouveau === false && props.depot !== {}) {
+            if (props.nouveau === false && Object.keys(props.depot).length > 0 ) {
                 form.value = {
                     nom: props.depot.nom,
                     localisation: props.depot.localisation,

@@ -220,8 +220,11 @@ export default defineComponent({
             cout: 0.0
         } as Form);
 
+
         const valide: Ref<boolean> = ref(true);
         const nombreArticle = ref(1);
+
+
 
         const handleChange = (value: number|null) => {
             if (value !== null) {
@@ -236,13 +239,15 @@ export default defineComponent({
         }
 
         const hasError = computed((): boolean => {
-            if (Depot.errors.value.categories && Depot.errors.value.categories.length > 0) return true
+            if ((Depot.errors.value.categories && Depot.errors.value.categories.length > 0) || (Reception.errors.value.depot && Reception.errors.value.depot.length > 0)) return true
             return false
         })
 
         const save = async () => {
+
             if (props.nouveau === true) {
                 await Reception.create(form.value)
+
                 if (Reception.success.value !== null) {
                     router.replace({ query: {} })
                     router.push(`/bon-reception/voir/${Reception.entity.value.id}`)
@@ -260,7 +265,9 @@ export default defineComponent({
         }
 
         const generateArticleArrayFromArticles = (articles: any[]) => {
+
             articles.forEach((article: null | undefined) => addItem(article))
+
             if (form.value.articles.length === 0) {
                 Flash('error', "Message d'erreur", "Tous les articles de cette commande a déja été récu")
                 nombreArticle.value = 0;
@@ -280,7 +287,7 @@ export default defineComponent({
                 return
             }
 
-            if (article.pivot.quantite_recu < article.pivot.quantite) {
+            if (parseFloat(article.pivot.quantite_recu) < parseFloat(article.pivot.quantite)) {
                 form.value.articles.push({
                     id: article.id,
                     quantite: article.pivot.quantite - article.pivot.quantite_recu,
@@ -288,6 +295,7 @@ export default defineComponent({
                     total: article.pivot.quantite - article.pivot.quantite_recu,
                     valide: true,
                 })
+
             }
         }
 
@@ -328,12 +336,13 @@ export default defineComponent({
         }
 
         onBeforeMount(() => {
-            nombreArticle.value = props.commande.articles.length
             form.value.date = props.commande.date
             form.value.adresse_livraison = props.commande.adresse_livraison
             form.value.commande = props.commande.id
 
             generateArticleArrayFromArticles(props.commande.articles)
+
+            nombreArticle.value = form.value.articles.length
             Depot.all(1)
             if (props.nouveau === true) setReceptionKey();
         })
