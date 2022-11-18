@@ -161,7 +161,7 @@ class Commande extends Model
     }
 
 
-    public function getArticle(int $id) : Article
+    public function getArticle(int $id)
     {
         return $this->articles()->wherePivot('article', $id)->first();
     }

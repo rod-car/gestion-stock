@@ -211,19 +211,20 @@ class ArticleController extends Controller
     public function getDepotArticles(?Depot $depot = null, ?string $by = null)
     {
         $depotArticle = DepotArticle::query()
-            ->selectRaw("ANY_VALUE(articles.reference) as reference")
-            ->selectRaw("ANY_VALUE(articles.designation) as designation")
-            ->selectRaw("ANY_VALUE(articles.unite) as unite")
-            ->selectRaw("ANY_VALUE(articles.id) as article_id")
-            ->selectRaw("ANY_VALUE(depot_articles.depot_id) as depot_id")
-            ->selectRaw("ANY_VALUE(depot_articles.bon) as bon")
+            ->selectRaw("articles.id as article_id")
+            ->selectRaw("(select art.reference from articles as art where art.id = articles.id LIMIT 1) as reference")
+            ->selectRaw("(select art.designation from articles as art where art.id = articles.id LIMIT 1) as designation")
+            ->selectRaw("(select art.unite from articles as art where art.id = articles.id LIMIT 1) as unite")
+            ->selectRaw("(select dep.depot_id from depot_articles as dep where dep.article_id = articles.id LIMIT 1) as depot_id")
+            ->selectRaw("(select dep.bon from depot_articles as dep where dep.article_id = articles.id LIMIT 1) as bon")
             ->selectRaw("SUM(CASE WHEN depot_articles.type = 1 THEN quantite END) as entree")
             ->selectRaw("SUM(CASE WHEN depot_articles.type = 0 THEN quantite END) as sortie")
             ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
 
-        if ($depot !== null) $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);
-        $depotArticle->groupBy(['articles.id']);
-        if ($by !== null) $depotArticle->groupBy($by);
+
+            if ($depot !== null) $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);
+            $depotArticle->groupBy(['articles.id']);
+            if ($by !== null) $depotArticle->groupBy($by);
 
         return $depotArticle;
     }
