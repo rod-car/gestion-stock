@@ -28,7 +28,7 @@
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
             <h6>Mode de livraison: {{ modeLivraison(bonReception.mode_livraison) }}</h6>
             <h6>A la charge du: {{ chargeLivraison(bonReception.a_la_charge_de) }}</h6>
-            <h6>Coût: {{ format(parseFloat(bonReception.cout)) }}</h6>
+            <h6>Coût: {{ format(parseFloat(bonReception.cout === null ? 0 : bonReception.cout)) }}</h6>
         </div>
     </div>
 
