@@ -11,13 +11,14 @@
                         <router-link v-if="$can('add_entrepot')" to="/entrepot/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
                         <router-link v-if="$can('view_entrepot')" to="/entrepot/liste" class="btn btn-primary me-2" ><i class="fa fa-list me-2"></i>Liste</router-link>
                     </div>
+
                 </div>
             </div>
 
-            <div class="card-body">
-                <VoirDepotLoadingComponent v-if="loading" />
-                <VoirDepotComponent v-else :depot="entity" :entrepot="true" />
-            </div>
+                <div class="card-body">
+                    <VoirDepotLoadingComponent v-if="loading" />
+                    <VoirDepotComponent v-else :depot="entity" :entrepot="true" />
+                </div>
         </div>
     </div>
 </template>

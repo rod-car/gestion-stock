@@ -1,6 +1,7 @@
 <template>
     <form action="" method="post">
         <div class="row">
+
             <div class="col-xl-6 mb-3">
                 <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
             </div>
@@ -57,7 +58,6 @@ export default defineComponent({
     },
 
     setup(props) {
-
         const form: Ref<Form> = ref({
             nom: '',
             localisation: '',

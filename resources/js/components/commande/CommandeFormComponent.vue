@@ -22,6 +22,7 @@
                             v-model="form.fournisseur" :options="Fournisseur.entities.value" :closeOnSelect="false"
                             :clearOnSelect="false" :searchable="true" noOptionsText="Aucun fournisseur"
                             noResultsText="Aucun fournisseur" @close="check" />
+                            
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
 
                         <div class="text-danger mt-1" v-if="hasError">
