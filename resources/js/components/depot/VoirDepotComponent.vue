@@ -36,7 +36,8 @@
                 <div class="me-2 shadow shadow-sm w-100 p-3">
                     <div class="mb-3 d-flex justify-content-between align-items-center">
                         <h5 class="text-muted">Les articles</h5>
-                        <router-link :to="{ name: getName + '.articles', params: { id: depot.id }}" class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Voir tout</router-link>
+                        <router-link :to="{ name:  'point-de-vente.articles', params: { id: depot.id }}" class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Voir tout</router-link>
+
                     </div>
                     <Table
                         name="article"
@@ -118,6 +119,7 @@ export default defineComponent({
             }
 
             loading.value = false
+
         });
 
         return {

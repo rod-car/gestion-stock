@@ -1,22 +1,20 @@
 <template>
     <form action="" method="post">
         <div class="row">
-            <!--
 
-                <div class="col-xl-6 mb-3">
-                    <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
-                </div>
-                <div class="col-xl-6 mb-3">
-                    <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
-                </div>
-                <div class="col-xl-12 mb-3">
-                    <Input v-model="form.contact" :error="errors.contact">Contact</Input>
-                </div>
+            <div class="col-xl-6 mb-3">
+                <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+            </div>
+            <div class="col-xl-6 mb-3">
+                <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+            </div>
+            <div class="col-xl-12 mb-3">
+                <Input v-model="form.contact" :error="errors.contact">Contact</Input>
+            </div>
 
-                <div class="d-flex justify-content-end">
-                    <SaveBtn @click.prevent="save()" :loading="creating || updating">Enregistrer</SaveBtn>
-                </div>
-            -->
+            <div class="d-flex justify-content-end">
+                <SaveBtn @click.prevent="save()" :loading="creating || updating">Enregistrer</SaveBtn>
+            </div>
         </div>
     </form>
 </template>
