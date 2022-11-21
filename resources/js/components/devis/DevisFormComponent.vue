@@ -67,7 +67,7 @@
                         <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
                             :enableTimePicker="false"
                             cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
-                            @update:modelValue="checkDate" />
+                            @update:modelValue="checkDate" utc  />
 
                         <div class="text-danger mt-1" v-if="dateState === false">
                             {{ Devis.errors.value.date[0] }}
@@ -250,7 +250,7 @@ const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de 
 type Form = {
     numero: string|null,
     type: number,
-    date: string|null,
+    date: Date|null,
     validite: number,
     fournisseur: number|null,
     client: number|null,
@@ -434,6 +434,7 @@ export default defineComponent({
                 if (key !== 'file' && key !== 'articles') formData.append(key, data[key] ?? '')
             })
 
+
             if (form.value.file && form.value.file.length > 0) {
                 formData.append('file', form.value.file[0])
             } else {
@@ -539,7 +540,7 @@ export default defineComponent({
          * @return  {void}
          */
         const checkDate = (date: Date): void => {
-            form.value.date = date.toLocaleDateString()
+            //form.value.date = date.toLocaleDateString()
             Devis.errors.value.date = null
         }
 

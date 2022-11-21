@@ -89,6 +89,7 @@ class NouveauCommandeRequest extends FormRequest
 
         $this->toogleClientFrs();
 
+
         if ($this->date !== null) {
             $date = Carbon::parse($this->date)->setTimezone('EAT');
             $this->merge([
