@@ -22,6 +22,7 @@ import NouveauCategorie from '../../../pages/articles/categorie/NouveauCategorie
 import ListeCategorie from '../../../pages/articles/categorie/ListeCategorie.vue';
 import ModifierCategorie from '../../../pages/articles/categorie/ModifierCategorie.vue';
 
+
 const routes = [
     {
         path: '/article/nouveau',
@@ -86,6 +87,8 @@ const routes = [
             // gate: 'non definie',
         }
     },
+
+
 ]
 
 export default routes.map(route => {

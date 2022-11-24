@@ -22,6 +22,7 @@ import commande from './routes/commande/commande';
 import parametres from './routes/parametres/parametres';
 import bonreception from './routes/commande/reception';
 import bonlivraison from './routes/commande/livraison';
+import transfert from './routes/transfert/transfert';
 
 const routes: Array<any> = [
     {
@@ -55,6 +56,7 @@ const routes: Array<any> = [
     .concat(bonreception)
     .concat(bonlivraison)
     .concat(parametres)
+    .concat(transfert)
 
 const router = createRouter({
     history: createWebHistory(),

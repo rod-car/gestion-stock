@@ -486,7 +486,7 @@ export default defineComponent({
                         },
                         {
                             href: '/article/liste',
-                            title: 'Liste des article',
+                            title: 'Liste des articles',
                             icon: 'fa fa-list',
                             // hidden: !this.$can('view_user'),
                         },
@@ -568,6 +568,26 @@ export default defineComponent({
                             title: 'Client',
                             icon: 'fa fa-arrow-left',
                             // hidden: !this.$can('view_commande'),
+                        },
+                    ]
+                },
+                {
+                    title: "Transfert d'article",
+                    icon: 'fa fa-exchange',
+                    hidden: false,
+                    child: [
+                        {
+                            href: '/transfert-article/nouveau',
+                            title: 'Nouveau transfert',
+                            icon: 'fa fa-plus',
+                            class: 'fw-regular',
+                            // hidden: !this.$can('add_user'),
+                        },
+                        {
+                            href: '/transfert-article/liste',
+                            title: "Liste des transferts d'article",
+                            icon: 'fa fa-list',
+                            // hidden: !this.$can('view_user'),
                         },
                     ]
                 },

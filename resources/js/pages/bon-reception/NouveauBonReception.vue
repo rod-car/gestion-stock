@@ -37,6 +37,8 @@ export default defineComponent({
             if (id !== undefined && id !== null) commandeId.value = parseInt(id.toString());
             else commandeId.value = null;
 
+
+
             if (commandeId.value !== null) {
                 // Recuperer la commande en question
                 await find(commandeId.value);

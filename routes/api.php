@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Article\CommandeController;
+use App\Http\Controllers\Api\Article\TransfertController;
 use App\Http\Controllers\Api\Bon\BonLivraisonController;
 use App\Http\Controllers\Api\Bon\BonReceptionController;
 use App\Http\Controllers\Api\Client\CategorieController;
@@ -106,5 +107,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/parametres/generale', [ParametreGeneraleController::class, 'index']);
     Route::post('/parametres/generale', [ParametreGeneraleController::class, 'store']);
     Route::patch('/parametres/generale/{parametre}', [ParametreGeneraleController::class, 'update']);
+
+    // Transfert des stock
+    Route::apiResource('/transfert-article', TransfertController::class);
 
 });

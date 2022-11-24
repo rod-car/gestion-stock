@@ -128,6 +128,83 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mb-5">
+            <div class="col-xl-12">
+                <div class="d-flex justify-content-between mb-4">
+                    <h6 class="text-uppercase text-primary">Information de l'article</h6>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="w-25">Nom de l'article</th>
+                                    <th>Quantité</th>
+                                    <th>Prix unitaire</th>
+                                    <th v-if="assujeti || appro === true">TVA</th>
+                                    <th>Montant HT</th>
+                                    <th>Montant TTC</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="i in nombreArticle" :key="i">
+                                    <td>
+                                        <MultiSelect v-if="appro === true" label="designation" valueProp="id" v-model="form.articles[i - 1].id"
+                                            :options="Article.entities.value" :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
+                                            noOptionsText="Aucun article" noResultsText="Aucun article" @close="checkArticle" />
+
+                                        <MultiSelect v-else v-model="form.articles[i - 1].object" placeholder="Rechercher un article"
+                                            noResultsText="Aucun article trouvé" noOptionsText="Aucun article trouvé" :closeOnSelect="true"
+                                            :filter-results="true" :multiple="false" :min-chars="1" :resolve-on-load="resolveOnLoad"
+                                            :delay="500" :searchable="true" :object="true" :options="async function (query: string) {
+                                                                        return await fetchArticles(query)
+                                                                    }" @select="handleSelect(i-1)" />
+
+                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.id`]">
+                                            {{ Devis.errors.value[`articles.${i - 1}.id`][0] }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].quantite"
+                                            class="form-control">
+                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.quantite`]">
+                                            {{ Devis.errors.value[`articles.${i - 1}.quantite`][0] }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].pu" name="pu" id="pu"
+                                            class="form-control">
+                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.pu`]">
+                                            {{ Devis.errors.value[`articles.${i - 1}.pu`][0] }}
+                                        </span>
+                                    </td>
+                                    <td v-if="assujeti || appro === true">
+                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].tva" name="tva"
+                                            id="tva" class="form-control">
+                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.tva`]">
+                                            {{ Devis.errors.value[`articles.${i - 1}.tva`][0] }}
+                                        </span>
+                                    </td>
+                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ht" name="montant_ht"
+                                            id="montant_ht" class="form-control"></td>
+                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ttc" name="montant_ttc"
+                                            id="montant_ttc" class="form-control"></td>
+                                    <td>
+                                        <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i
+                                                class="fa fa-minus"></i></button>
+                                        <button type="button" v-else @click.prevent="addItem()" class="btn btn-success"><i
+                                                class="fa fa-plus"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">

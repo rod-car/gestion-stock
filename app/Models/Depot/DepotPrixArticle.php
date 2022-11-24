@@ -12,4 +12,6 @@ class DepotPrixArticle extends Model
     protected $fillable = [
         'article', 'depot', 'quantite', 'pu',
     ];
+
+
 }

@@ -96,5 +96,7 @@ class NouveauCommandeRequest extends FormRequest
                 'date' => $date->toDateString(),
             ]);
         }
+
+
     }
 }

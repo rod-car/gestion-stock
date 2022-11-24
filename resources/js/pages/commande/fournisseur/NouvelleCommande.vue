@@ -28,6 +28,7 @@ const { entity, loading, find } = useCRUD('/commandes');
 
 export default defineComponent({
     setup() {
+
         const devisId: Ref<number | null> = ref(null);
 
         onBeforeMount(async (): Promise<any> => {
@@ -38,7 +39,6 @@ export default defineComponent({
             } else {
                 devisId.value = null;
             }
-
             if (devisId.value !== null) {
                 // Recuperer le devis en question
                 await find(devisId.value);

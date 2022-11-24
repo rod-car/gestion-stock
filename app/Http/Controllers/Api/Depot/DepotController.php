@@ -35,8 +35,10 @@ class DepotController extends Controller
             return $depots->get();
         }
 
-        $point_vente = boolval($request->type);
-        return Depot::where('point_vente', $point_vente)->get();
+
+        return Depot::when($request->type != 3, function($q) use ($request){
+            return $q->where('point_vente', boolval($request->type));
+        })->get();
     }
 
 
