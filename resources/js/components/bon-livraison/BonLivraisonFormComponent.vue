@@ -243,6 +243,13 @@ export default defineComponent({
             }
         }
 
+        const generateArticleArray = (nombreArticle: number) => {
+            for (let i = 0; i < nombreArticle; i++) {
+                addItem(false)
+            }
+        }
+
+
         const removeItem = (index: number) => {
             form.value.articles.splice(index, 1);
             nombreArticle.value--
@@ -302,19 +309,28 @@ export default defineComponent({
         }
 
         onBeforeMount(() => {
-            nombreArticle.value = props.commande.articles.length
-            form.value.date = props.commande.date
-            form.value.adresse_livraison = props.commande.adresse_livraison
-            form.value.commande = props.commande.id
+            // si creation de bon à partir de commande
+            if (props.commande !== null && props.commande.id !== undefined) {
+                nombreArticle.value = props.commande.articles.length
+                form.value.date = props.commande.date
+                form.value.adresse_livraison = props.commande.adresse_livraison
+                form.value.commande = props.commande.id
 
-            generateArticleArrayFromArticles(props.commande.articles)
+                generateArticleArrayFromArticles(props.commande.articles)
+            }
+
+            // Création d'une commande a partir de rien
+            else {
+                //form.value.appro = props.appro;
+                generateArticleArray(nombreArticle.value);
+            }
             if (props.nouveau === true) setLivraisonKey();
         })
 
         return {
             Livraison, Flash, form, nombreArticle, setLivraisonKey, getKey, key, checkQuantite,
-            dateState, addItem, removeItem, generateArticleArrayFromArticles, checkDate, save, valide,
-            Depot, check, hasError, handleChange, articles
+            dateState, addItem, removeItem, checkDate, save, valide,
+            Depot, check, hasError, handleChange,
         }
     },
 
