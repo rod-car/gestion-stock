@@ -5,6 +5,7 @@ namespace App\Models\Depot;
 use App\Models\User;
 use App\Models\Article\Article;
 use App\Models\Depot\Travailler;
+use App\Models\Article\DepotArticle;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -63,4 +64,15 @@ class Depot extends Model
         return $this->belongsToMany(Article::class, 'depot_articles', 'depot_id', 'article_id')
             ->withPivot(['quantite', 'responsable', 'bon', 'date_transaction', 'type']);
     }
+
+    /**
+     * Stock d'article du depot selon par article
+     */
+
+     public function articleStock($article_id){
+        $stockArticle = DepotArticle::getDepotArticles($this->depot_id)
+                                        ->get()
+                                        ->where('article_id', $article_id)->first();
+        return floatVal($stockArticle->entree) - floatVal($stockArticle->sortie);
+     }
 }

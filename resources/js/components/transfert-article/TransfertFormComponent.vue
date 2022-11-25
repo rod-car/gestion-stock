@@ -67,7 +67,7 @@
                                 <MultiSelect v-if="appro === true" label="designation" valueProp="id"
                                     v-model="form.articles[i - 1].id" :options="Article.entities.value"
                                     :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
-                                    noOptionsText="Aucun article" noResultsText="Aucun article" @close="" />
+                                    noOptionsText="Aucun article" noResultsText="Aucun article" @close="checkArticle" />
 
                                 <MultiSelect v-else v-model="form.articles[i - 1].object"
                                     placeholder="Rechercher un article" noResultsText="Aucun article trouvé"
@@ -338,6 +338,25 @@ export default defineComponent({
             generateArticleArray(nombreArticle.value)
         }
 
+        const checkArticle = (e: { modelValue: string; }) => {
+            if (form.value.articles.length > 1 && e.modelValue !== null) {
+                let find = form.value.articles.filter((article: any) => parseInt(article.id) === parseInt(e.modelValue))
+                if (find.length > 1) {
+                    let i = 0
+                    form.value.articles.map((article: any) => {
+                        if (parseInt(article.id) === parseInt(e.modelValue)) {
+                            if (i === 1) {
+                                Flash('danger', "Information", "Cette article existe déja dans votre liste")
+                                article.id = null
+                            }
+                            i++
+                        }
+                    })
+                }
+            }
+        }
+
+
 
         /**
          * Permet d'enregistrer le devis
@@ -375,7 +394,7 @@ export default defineComponent({
 
         return {
             Transfert, form, appro: props.appro, check, checkDate, fetchArticles, removeItem, resolveOnLoad,
-            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save
+            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save, checkArticle
 
         }
     }

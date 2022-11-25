@@ -2,6 +2,7 @@
 
 namespace App\Traits\Transfert;
 
+use App\Rules\StockArticle;
 
 trait WithValidation{
 
@@ -12,7 +13,7 @@ trait WithValidation{
             'depotDestiny' => 'required|exists:depots,id',
             'articles' => 'required|array|min:1',
             "articles.*.id" => ["required", "exists:articles,id"],
-            "articles.*.quantite" => ["required", "numeric", "min:1"],
+            "articles.*.quantite" => ["required", "numeric", "min:1", new StockArticle($this->depotOrigin, $this->articles)],
         ];
     }
 
@@ -28,7 +29,7 @@ trait WithValidation{
             "date.required" => "La date est obligatoire",
             "date.date" => "La doite doit bien être une date",
             "date.date_format" => "Le format de la date est invalide",
-           
+
             "articles.required" => "Les articles du transfert est obligatoire",
             "articles.array" => "Les articles du transfert doit être un tableau",
 

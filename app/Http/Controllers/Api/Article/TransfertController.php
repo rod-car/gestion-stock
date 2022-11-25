@@ -14,7 +14,6 @@ class TransfertController extends Controller
 
     public function store(NouveauTransfertRequest $request) {
         dd($request->articles[0]['id'], $request->depotOrigin ,DepotArticle::getDepotArticles(Depot::findOrFail($request->depotOrigin))->get()->where('article_id', $request->articles[0]['id'])->first());
-        //dd(Depot::findOrFail($request->depotOrigin)->articles()->where("articles.id", $request->articles[0]['id'])->get());
-        //dd( Article::findOrFail($request->articles[0]['id']));
+
     }
 }

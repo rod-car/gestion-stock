@@ -314,7 +314,7 @@ export default defineComponent({
         return {
             Livraison, Flash, form, nombreArticle, setLivraisonKey, getKey, key, checkQuantite,
             dateState, addItem, removeItem, generateArticleArrayFromArticles, checkDate, save, valide,
-            Depot, check, hasError, handleChange,
+            Depot, check, hasError, handleChange, articles
         }
     },
 
