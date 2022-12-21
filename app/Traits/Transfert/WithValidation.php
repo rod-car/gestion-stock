@@ -13,7 +13,8 @@ trait WithValidation{
             'depotDestiny' => 'required|exists:depots,id',
             'articles' => 'required|array|min:1',
             "articles.*.id" => ["required", "exists:articles,id"],
-            "articles.*.quantite" => ["required", "numeric", "min:1", new StockArticle($this->depotOrigin, $this->articles)],
+            "articles.*.quantite" => ["required", "array", "min:1"],
+            "articles.*.quantite.*" => ["sometimes", "numeric", new StockArticle($this->depotOrigin, $this->articles)],
         ];
     }
 
@@ -38,9 +39,9 @@ trait WithValidation{
 
 
             "articles.*.quantite.required" => "La quantité unitaire est obligatoire",
-            "articles.*.quantite.numeric" => "La quantité unitaire doit être un nombre",
-            "articles.*.quantite.min" => "La quantité unitaire doit être au moins :min unité",
-            "articles.*.quantite.max" => "La quantité unitaire ne doit pas depasser :max unité",
+            "articles.*.quantite.x.numeric" => "La quantité unitaire doit être un nombre",
+            "articles.*.quantite.x.min" => "La quantité unitaire doit être au moins :min unité",
+            "articles.*.quantite" => "La quantité unitaire ne doit pas depasser :max unité",
         ];
     }
 }

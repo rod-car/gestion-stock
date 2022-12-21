@@ -325,7 +325,7 @@ export default defineComponent({
          */
         const fetchArticles = async (query: string|null): Promise<any> => {
             if (query === null) query = ""
-            return await Article.findBy('designation', query)
+            return await Article.findBy('designation', query, 'depot', form.value.depot)
         }
 
 
@@ -644,17 +644,17 @@ export default defineComponent({
             let quantite = form.value.articles[index].quantite
             let tva = form.value.articles[index].tva
 
-            
+
             if (pu < 0) form.value.articles[index].pu = Math.abs(pu)
             if (quantite < 0) form.value.articles[index].quantite = Math.abs(quantite)
             if (tva < 0) form.value.articles[index].tva = Math.abs(tva)
 
-            
+
             if (assujeti.value === false) tva = 0;
-            
+
             let montant_ht = Math.round((Math.abs(quantite) * Math.abs(pu)) * 100) / 100
             let montant_ttc = Math.round((montant_ht + (montant_ht * Math.abs(tva) / 100)) * 100) / 100
-            
+
             form.value.articles[index].montant_ht = montant_ht
             form.value.articles[index].montant_ttc = montant_ttc
 

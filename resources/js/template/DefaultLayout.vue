@@ -33,7 +33,7 @@
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right d-flex align-items-center">
-                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <!-- <li id="full-view"><i class="ti-fullscreen"></i></li>
                             <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
                             <li class="dropdown">
                                 <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
@@ -69,9 +69,9 @@
                                         </a>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="settings-btn">
-                                <i class="ti-settings"></i>
+                            </li> -->
+                            <li >
+                                <i class="fa fa-sign-out" @click="logOut"></i>
                             </li>
                             <li class="dropdown">
                                 <i class="ti ti-user me-2" data-toggle="dropdown"></i>
@@ -293,6 +293,8 @@ export default defineComponent({
             store.state.user.data = { id: null, role: null, nom_personnel: null, prenoms_personnel: null }
             localStorage.removeItem('auth_token')
         },
+
+
     },
 
     computed: {

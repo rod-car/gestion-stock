@@ -78,6 +78,7 @@ class BonLivraisonController extends Controller
     public function destroy(Bon $bonLivraison)
     {
         $bonLivraison->articles()->detach();
+        DepotArticle::whereBon($bonLivraison->id)->delete();
         $bonLivraison->delete();
     }
 

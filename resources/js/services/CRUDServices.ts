@@ -7,9 +7,9 @@ import { AxiosResponse } from 'axios';
 interface CRUD {
     create(data: Object, headers?: Object): Promise<any>,
     find(id: number|null): Promise<any>,
-    findBy(field: string, value: string|number): Promise<any>
+    findBy(field: string, value: string|number, field2?: string|null, value2?: number|null): Promise<any>
     update(id: number, data: object, updateType?: number | null): Promise<any>,
-    all(type?: number | null, except?: string | null, appro?: boolean | null): Promise<any>,
+    all(type?: number | null, except?: string | null, appro?: boolean | null, other?: string | null): Promise<any>,
     destroy(id: number, data: Array<any>|null, index: number): Promise<any>,
     creating: Ref<boolean>,
     loading: Ref<boolean>,
@@ -166,7 +166,7 @@ export default function useCRUD(url: string): CRUD {
      *
      * @return  {Promise}            [return description]
      */
-    const all = async (type?: number | null, except?: string | null, appro?: boolean | null): Promise<any> => {
+    const all = async (type?: number | null, except?: string | null, appro?: boolean | null, other?: string | null): Promise<any> => {
         loading.value = true
 
         let query: string = '';
@@ -184,7 +184,7 @@ export default function useCRUD(url: string): CRUD {
         }
 
         try {
-            let response = await axiosClient.get(`${url}${query}`)
+            let response = await axiosClient.get(`${url}${query}${(other == null || other == undefined) ? '' : '/' + other}`)
             entities.value = response.data
 
         } catch (error: any) {
@@ -287,9 +287,11 @@ export default function useCRUD(url: string): CRUD {
         loading.value = false
     }
 
-    const findBy = async (field: string, value: string|number): Promise<any> => {
+    const findBy = async (field: string, value: string|number, field2?: string|null, value2?: number|null): Promise<any> => {
         try {
-            let response = await axiosClient.get(`${url}?${field}=${value}`)
+            let full_url = `${url}?${field}=${value}`
+            if (field2 && value2) full_url += `&${field2}=${value2}`
+            let response = await axiosClient.get(full_url)
             return response.data
         } catch (error: any) {
             if (error.response.status === 404) return Router.push("/404");

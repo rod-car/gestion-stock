@@ -14,4 +14,6 @@ class DepotPrixArticle extends Model
     ];
 
 
+
+
 }

@@ -83,6 +83,7 @@ class BonReceptionController extends Controller
     public function destroy(Bon $bonReception)
     {
         $bonReception->articles()->detach();
+        DepotArticle::whereBon($bonReception->id)->delete();
         $bonReception->delete();
     }
 

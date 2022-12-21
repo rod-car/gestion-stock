@@ -87,6 +87,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Ressource qui gere les CRUD de l'article
     Route::apiResource('/article', ArticleController::class);
 
+    // Ressource qui gere les CRUD de l'article
+    Route::get('/article/avec-prix-vente/{depot?}', [ArticleController::class, 'articlePrixVente']);
+
     // ----------------------------------------------------------- Gestion de commande ----------------------------------------------------------------------
 
     // Recupere le nouveau numéro du dévis ou commande et l'afficher au client
@@ -97,6 +100,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD des bons de reception
     Route::apiResource('/bon-receptions', BonReceptionController::class);
+
 
     // Ressource qui gere les CRUD des bons de livraisons
     Route::apiResource('/bon-livraisons', BonLivraisonController::class);
@@ -110,5 +114,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Transfert des stock
     Route::apiResource('/transfert-article', TransfertController::class);
+
 
 });

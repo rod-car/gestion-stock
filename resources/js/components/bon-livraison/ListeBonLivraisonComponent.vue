@@ -22,7 +22,7 @@
 
                 <td class="d-flex justify-content-center">
                     <router-link title="Voir ce bon de livraison" v-if="true" :to="{ name: `bon-livraison.voir`, params: { id: livraison.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link title="Modifier ce bon de livraison" v-if="true" :to="{ name: `bon-livraison.modifier`, params: { id: livraison.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <!-- <router-link title="Modifier ce bon de livraison" v-if="true" :to="{ name: `bon-livraison.modifier`, params: { id: livraison.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link> -->
                     <DeleteBtn title="Supprimer ce bon de livraison" v-if="true" type="danger" @click.prevent="confirmDeletion(livraison.id, index)"/>
                 </td>
             </tr>

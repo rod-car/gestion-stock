@@ -227,14 +227,16 @@ class DepotController extends Controller
 
         foreach ($data['articles'] as $a)
         {
-            DepotPrixArticle::create([
-                'article' => $article->id,
-                'depot' => $depot->id,
-                'quantite' => $a['quantite'] === null ? null : doubleval($a['quantite']),
-                'pu' => doubleval($a['pu']),
-            ]);
+
+            $nouveauPrix = DepotPrixArticle::create([
+                                'article' => $article->id,
+                                'depot' => $depot->id,
+                                'quantite' => $a['quantite'] === null ? null : doubleval($a['quantite']),
+                                'pu' => doubleval($a['pu']),
+                            ]);
 
             if ($a['quantite'] === null) {
+
                 DepotArticle::create([
                     "article_id" => $article->id,
                     "quantite" => 0,
@@ -246,6 +248,12 @@ class DepotController extends Controller
                     "date_transaction" => today()->toDateString(),
                     "type" => 1,
                 ]);
+
+                DepotPrixArticle::where("id", "!=", $nouveauPrix->id)
+                                ->whereArticle($article->id)
+                                ->whereDepot($depot->id)
+                                ->whereQuantite(null)
+                                ->delete();
             }
         }
 

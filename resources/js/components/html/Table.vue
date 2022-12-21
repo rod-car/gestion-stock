@@ -4,56 +4,63 @@
             <input v-model="query" @input="filter" type="text" class="form-control w-25" placeholder="Search">
         </form>
     </div>
+    <div class="">
 
-    <table class="table table-striped w-100">
-        <thead>
-            <tr>
-                <th @click="changeOrder(col)" vbind:class="ordered ? 'table-header' : ''" v-for="col in alias" :class="col === 'PU' ? 'text-start' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
-                    {{ col }}
-                </th>
-                <th v-if="actions || showable" class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody v-if="loading">
-            <tr v-for="i in 5" :key="i">
-                <td v-for="j in cols.length" :key="j">
-                    <Skeletor height="30" width="100%" style="border-radius: 3px" />
-                </td>
-                <td v-if="actions || showable">
-                    <Skeletor height="30" width="100%" style="border-radius: 3px" />
-                </td>
-            </tr>
-        </tbody>
-        <tbody v-else-if="d.length > 0">
-            <tr v-for="(row, index) in d">
-                <td class="align-middle" v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">
-                    <ul class="list" v-if="display(row, col).length >= 1 && typeof display(row, col) === 'object'">
-                        <li v-for="(data, index) in display(row, col)" :key="index">
-                            <b>{{ data.quantite === null ? "Quantité restant" : data.quantite + ' (Quantité)' }}</b> : {{ format(data.pu) }}
-                        </li>
-                    </ul>
-                    <span v-else>
-                        {{ display(row, col).length === 0 ? "Non définie" : display(row, col) }}
-                    </span>
-                </td>
-                <td v-if="actions === true" class="d-flex justify-content-center align-middle">
-                    <router-link v-if="true" :to="{ name: `${name}.voir`, params: { id: row[id] }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="true" :to="{ name: `${name}.modifier`, params: { id: row[id] }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" @click.prevent="$emit('onDeleteItem', { id: row[id], index: index })" />
-                </td>
-                <td class="align-middle text-center" v-else-if="showable">
-                    <button @click.prevent="$emit('onShow', { id: row[id] })" class="btn btn-danger btn-sm me-2 text-white">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-        <tbody v-else>
-            <tr>
-                <td :colspan="cols.length + (actions ||showable ? 1 : 0)" class="text-center">No data</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped w-100 ">
+            <thead>
+                <tr>
+                    <th @click="changeOrder(col)" vbind:class="ordered ? 'table-header' : ''" v-for="col in alias" :class="col === 'PU' ? 'text-start' : ''"><i v-if="ordered" class="fa fa-arrow-up me-2"></i>
+                        {{ col }}
+                    </th>
+                    <th v-if="actions || showable" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody v-if="loading">
+                <tr v-for="i in 5" :key="i">
+                    <td v-for="j in cols.length" :key="j">
+                        <Skeletor height="30" width="100%" style="border-radius: 3px" />
+                    </td>
+                    <td v-if="actions || showable">
+                        <Skeletor height="30" width="100%" style="border-radius: 3px" />
+                    </td>
+                </tr>
+            </tbody>
+            <tbody v-else-if="d.length > 0">
+                <tr v-for="(row, index) in d">
+                    <td class="align-middle" v-for="col in cols" :class="casts[col] === 'money' ? 'text-end' : ''">
+                        <ul class="list" v-if="display(row, col).length > 0 && typeof display(row, col) === 'object'">
+                            <li v-for="(data, index) in display(row, col)" :key="index">
+                                <b>{{ data.quantite === null ? "Quantité restant" : data.quantite + ' (Quantité)' }}</b> : {{ format(data.pu) }}
+                            </li>
+                        </ul>
+                        <!-- <span v-if="col == 'fullArticle' && display(row, 'fullArticle') != undefined && display(row, 'fullArticle')['pivot'] != undefined && display(row, 'fullArticle')['pivot'].pu != undefined && display(row, 'fullArticle')['pivot'].pu != null">
+                            <b>Quantité restant : {{ format(display(row, 'fullArticle')['pivot'].pu) }}</b>
+                        </span> -->
+                        <span v-else>
+                            {{ display(row, col).length === 0 ? "Non définie" :  display(row, col) }}
+                        </span>
+                    </td>
+                    <td v-if="actions === true" class="d-flex justify-content-center align-middle">
+                        <router-link v-if="true" :to="{ name: `${name}.voir`, params: { id: row[id] }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                        <router-link v-if="true" :to="{ name: `${name}.modifier`, params: { id: row[id] }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                        <DeleteBtn v-if="true" type="danger" @click.prevent="$emit('onDeleteItem', { id: row[id], index: index })" />
+                    </td>
+                    <td class="align-middle text-center" v-else-if="showable">
+                        <button @click.prevent="$emit('onShow', { id: row[id] })" class="btn btn-danger btn-sm me-2 text-white">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody v-else>
+                <tr>
+                    <td :colspan="cols.length + (actions ||showable ? 1 : 0)" class="text-center">No data</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
 </template>
 
 <script lang="ts">
@@ -122,6 +129,9 @@ export default defineComponent({
             required: false,
             default: 'id'
         },
+    },
+    updated() {
+        console.log("data", this.d)
     },
 
     emits: ["onShow", "onDeleteItem"], // <--- add this line

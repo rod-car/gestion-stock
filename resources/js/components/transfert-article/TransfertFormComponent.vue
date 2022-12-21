@@ -24,7 +24,7 @@
                 <MultiSelect v-if="!DepotOrigin.loading.value" :class="Transfert.errors.value.depotOrigin != undefined ? 'border-danger' : ''"
                     :object="false" :options="DepotOrigin.entities.value" :searchable="true" :multiple="false"
                     v-model="form.depotOrigin" noOptionsText="Aucune donées" noResultsText="Aucune donées" label="nom" valueProp="id"
-                    @close="check" />
+                    @select="check" @close="check" />
                 <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                 <div class="text-danger mt-1" v-if="Transfert.errors.value.depotOrigin != undefined">
                     {{ Transfert.errors.value.depotOrigin[0] }}
@@ -44,7 +44,7 @@
         </div>
     </div>
 </div>
-<div class="row mb-5">
+<div class="row mb-5" v-if="form.depotOrigin">
     <div class="col-xl-12">
         <div class="d-flex justify-content-between mb-4">
             <h6 class="text-uppercase text-primary">Information de l'article</h6>
@@ -64,18 +64,21 @@
                     <tbody>
                         <tr v-for="i in nombreArticle" :key="i">
                             <td>
-                                <MultiSelect v-if="appro === true" label="designation" valueProp="id"
-                                    v-model="form.articles[i - 1].id" :options="Article.entities.value"
-                                    :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
-                                    noOptionsText="Aucun article" noResultsText="Aucun article" @close="checkArticle" />
 
-                                <MultiSelect v-else v-model="form.articles[i - 1].object"
+                                <MultiSelect v-if="appro === true" label="designation" valueProp="id"
+                                    v-model="form.articles[i - 1].id"
+                                    :options="articleOptions"
+                                    :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
+                                    noOptionsText="Aucun article" noResultsText="Aucun article" @select="checkArticle($event, i)"
+                                    />
+
+                                <!-- <MultiSelect v-model="form.articles[i - 1].object"
                                     placeholder="Rechercher un article" noResultsText="Aucun article trouvé"
                                     noOptionsText="Aucun article trouvé" :closeOnSelect="true" :filter-results="true"
                                     :multiple="false" :min-chars="1" :resolve-on-load="resolveOnLoad" :delay="500"
                                     :searchable="true" :object="true" :options="async function (query: string) {
                                         return await fetchArticles(query)
-                                    }"  />
+                                    }"  /> -->
 
                                 <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.id`]">
                                     {{ Transfert.errors.value[`articles.${i - 1}.id`][0] }}
@@ -83,10 +86,21 @@
                             </td>
                             <td>
                                 <input type="number"
-                                    v-model="form.articles[i - 1].quantite" class="form-control">
-                                <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.quantite`]">
-                                    {{ Transfert.errors.value[`articles.${i - 1}.quantite`][0] }}
+                                v-model="form.articles[i - 1].quantite[0]" class="form-control">
+                                <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.quantite.0`]">
+                                    {{ Transfert.errors.value[`articles.${i - 1}.quantite.0`][0] }}
                                 </span>
+                                <div v-for="(parPrix , index) in form.articles[i - 1].prix" :key="index" class="row mt-1">
+                                    <div class="col-sm-4">
+                                        <label for="">Pour {{parPrix.pu}} Ar</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" v-model="form.articles[i - 1].quantite[parseInt(parPrix.id)]" >
+                                        <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`]">
+                                            {{ Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`][0] }}
+                                        </span>
+                                    </div>
+                                </div>
                             </td>
 
                             <td >
@@ -114,7 +128,7 @@
                 :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Enregistrer
             </SaveBtn>
             <SaveBtn v-else :loading="Transfert.updating.value"
-                :disabled="!appro && !form.depotOrigin && !form.depotDestiny">Mettre a jour</SaveBtn>
+                :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Mettre a jour</SaveBtn>
         </div>
     </div>
 </div>
@@ -129,7 +143,7 @@ import Flash from '../../functions/Flash';
 import MultiSelect from '@vueform/multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import useCRUD from '../../services/CRUDServices';
-import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
+import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref, watch } from 'vue';
 
 const Transfert = useCRUD('/transfert-article'); // Contient tous les fonctions CRUD pour les transferts
 const Depot = useCRUD('/depot'); // Contient tous les fonctions CRUD pour le depôt
@@ -168,6 +182,7 @@ export default defineComponent({
         },
 
     },
+
     components: {
         Input, SaveBtn, Datepicker, MultiSelect, Skeletor,
     },
@@ -229,21 +244,22 @@ export default defineComponent({
         * @return  {void}
         */
         const addItem = (increment: boolean = true, article: any = null): void => {
-            if (nombreArticle.value > Config.devis.MAX_ARTICLE) {
-                Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.devis.MAX_ARTICLE}`)
-                return
-            }
-
+            // if (nombreArticle.value > Config.devis.MAX_ARTICLE) {
+            //     Flash('error', "Message d'erreur", `Nombre d'article maximum atteint. Limite ${Config.devis.MAX_ARTICLE}`)
+            //     return
+            // }
             if (article === null) {
                 form.value.articles.push({
                     id: null,
-                    quantite: 1,
+                    quantite: [1],
                     object: null,
                 })
             } else {
                 form.value.articles.push({
                     id: article.id,
-                    quantite: article.pivot.quantite,
+                    quantite: [
+                        article.pivot.quantite
+                    ]  ,
 
                     ...(props.appro === false ? {
                         object: {
@@ -265,16 +281,42 @@ export default defineComponent({
 
 
         const check = (e: { modelValue: null; }) => {
-            if (e.modelValue !== null) Depot.errors.value.categories = null
+
+            //Recupere les articles ainsi que les prix selon chaque article du depôt
+            if(typeof e == 'number') Article.all(null, null, null, 'avec-prix-vente/' + e);
+
+
+            if (e.modelValue !== null){
+                Depot.errors.value.categories = null
+            }
         }
 
         const checkDate = () => {
             Transfert.errors.value.date = null
         }
 
+        const generateArticleArrayFromArticles = (articles: any[]) => {
+            articles.forEach((article: null | undefined) => addItem(false, article))
+        }
+
         const dateState = computed(() => {
             if (Transfert.errors.value.date && Transfert.errors.value.date.length > 0) return false
             return null
+        })
+
+        // faire en sorte que les articles déja selectionné ne soient plus affichées comme option possible
+        let articleOptions = computed(() => {
+            return Article.entities.value.
+                        filter((el, i) => {
+                            let res = true
+
+                             form.value.articles.forEach((ar) => {
+                                 if (el.article.id == ar.id) res = false
+                             })
+
+                            return res
+                        }).
+                        map((el, i) => el.article)
         })
 
         /**
@@ -283,7 +325,7 @@ export default defineComponent({
         * @return  {boolean}
         */
         const resolveOnLoad = computed((): boolean => {
-            return (loaded.value === true )
+            return (loaded.value === true && props.nouveau === false)
         })
 
         /**
@@ -299,13 +341,39 @@ export default defineComponent({
             }
         }
 
+
         onBeforeMount(() => {
             DepotOrigin.all(3)
             DepotDestiny.all(3)
 
-            form.value.appro = props.appro;
-            generateArticleArray(nombreArticle.value);
+            if (props.nouveau === false && props.transfert) {
+                let article = props.transfert.articles.filter((el) => el.pivot.type == 0)
+
+                nombreArticle.value = article.length
+                form.value.numero = props.transfert.numero
+                form.value.date = props.transfert.date
+                form.value.appro = props.appro
+
+                // Recupere l'indentifiant des depots origine et destination
+                if (props.transfert.articles.length > 0) {
+
+                    for (let index = 0; index < 2; index++) {
+                        if (props.transfert.articles[index].pivot.type == 0) form.value.depotOrigin =  props.transfert.articles[index].pivot.depot_id
+                        else form.value.depotDestiny = props.transfert.articles[index].pivot.depot_id
+                    }
+                }
+
+                generateArticleArrayFromArticles(article)
+
+            } else {
+                form.value.appro = props.appro;
+                generateArticleArray(nombreArticle.value);
+            }
+            loaded.value = true // Rendre le depot resolvable on load
+
         })
+
+
 
         /**
          * Quant le composant est monté
@@ -313,8 +381,7 @@ export default defineComponent({
          * @return  {Promise}
          */
         onMounted(async (): Promise<any> => {
-            Article.all();
-
+            Article.all(null, null, null, 'avec-prix-vente/' + form.value.depotOrigin);
             loaded.value = false // Rendre le depot non resolvable on load
         })
 
@@ -338,7 +405,17 @@ export default defineComponent({
             generateArticleArray(nombreArticle.value)
         }
 
-        const checkArticle = (e: { modelValue: string; }) => {
+        const checkArticle = (e: { modelValue: string; }, index ) => {
+
+            if (typeof e == 'number') {
+
+                let prixArticleSelect =  Article.entities.value.filter((el, i ) => el.article.id == e)
+                                        .map((el, i) => el.prix)
+
+                // attaché les prix existant à l'input
+                form.value.articles[index - 1].prix = prixArticleSelect[0]
+
+            }
             if (form.value.articles.length > 1 && e.modelValue !== null) {
                 let find = form.value.articles.filter((article: any) => parseInt(article.id) === parseInt(e.modelValue))
                 if (find.length > 1) {
@@ -377,7 +454,6 @@ export default defineComponent({
 
             if (props.nouveau === true) {
                 await Transfert.create(formData)
-                console.log(Transfert.errors.value)
 
                 if (Transfert.success.value !== null) {
                     resetForm()
@@ -385,16 +461,18 @@ export default defineComponent({
                 }
 
             } else if (props.transfert) {
-                //await Transfert.update(props.devis.id, formData)
+                await Transfert.update(props.transfert.id, formData)
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Transfert.success.value = null
         }
 
+
+
         return {
             Transfert, form, appro: props.appro, check, checkDate, fetchArticles, removeItem, resolveOnLoad,
-            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save, checkArticle
+            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save, checkArticle, articleOptions
 
         }
     }

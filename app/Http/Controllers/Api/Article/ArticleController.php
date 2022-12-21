@@ -24,16 +24,24 @@ class ArticleController extends Controller
     {
         $queries = $request->query();
 
+
         if ($queries !== [])
         {
             $article = $this->getDepotArticles(null, 'depot_articles.depot_id');
-
+            $exclued_articles = [];
             foreach ($queries as $key => $value)
             {
-                $article->where($key, 'LIKE', "%$value%");
+                if($key != 'depot'){
+                    $article->where($key, 'LIKE', "%$value%");
+                }else{
+                   foreach ($article->get() as $key => $val) {
+                        $art = Article::find($val->article_id);
+                        if($art->depotPrixArticle(Depot::find($value))->get()->isEmpty()) $exclued_articles[] = $val->article_id;
+                   }
+                }
             }
 
-            return $this->getResults($article->get());
+            return $this->getResults($article->whereNotIn('article_id', $exclued_articles)->get());
         }
 
         return Article::all();
@@ -191,6 +199,7 @@ class ArticleController extends Controller
 
         $depotArticle = $this->getDepotArticles($depot);
 
+
         if ($articleId > 0) {
             $depotArticle = $depotArticle->get();
             $depotArticle = $depotArticle->where('article_id', $articleId)->first(); // Si on ne veut qu'un seul article en particulier
@@ -198,6 +207,7 @@ class ArticleController extends Controller
         }
 
         if ($limit === 0) return $depotArticle->get();
+
         return $depotArticle->take($limit)->get();
     }
 
@@ -230,4 +240,23 @@ class ArticleController extends Controller
 
         return DepotArticle::getDepotArticles($depot, $by );
     }
+
+    /**
+     * Recupere la liste des aritcle dans un depôt avec les prix de vent s'il en existe
+     */
+
+     public function articlePrixVente(Depot $depot = null){
+
+        $articles = DepotArticle::where("depot_id", $depot->id)->groupBy('article_id')->get("article_id");
+
+         $res =  $articles->map(function ($el, $key) use ($depot) {
+                    $article = Article::find($el->article_id);
+                    return [
+                        "article" => $article,
+                        "prix" => $article->depotPrixArticle($depot)->get(),
+                    ];
+                });
+
+        return $res;
+     }
 }

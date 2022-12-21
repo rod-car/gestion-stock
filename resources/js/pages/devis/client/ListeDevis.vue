@@ -10,6 +10,7 @@
             <div class="card-body">
                 <ListeDevisComponent v-if="!loading" :entities="entities" :appro="false" />
                 <ListeDevisLoadingComponent v-else />
+
             </div>
         </div>
     </div>

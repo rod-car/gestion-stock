@@ -9,6 +9,7 @@ use App\Models\Article\DepotArticle;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Depot extends Model
 {
@@ -74,5 +75,9 @@ class Depot extends Model
                                         ->get()
                                         ->where('article_id', $article_id)->first();
         return floatVal($stockArticle->entree) - floatVal($stockArticle->sortie);
+     }
+
+     public function DepotPrixArticle(): HasMany{
+        return $this->hasMany(DepotPrixArticle::class,'depot', 'id');
      }
 }

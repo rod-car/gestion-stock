@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Article\Commande;
 use App\Models\Bon\Bon;
+use App\Models\Article\Commande;
 use App\Models\Bon\BonLivraison;
+use App\Models\Article\Transfert;
 
 if (!function_exists('reference')) {
     /**
@@ -163,6 +164,38 @@ if (!function_exists('numeroBonLivraison')) {
 
         if ($dernierDevis !== null) {
             $dernierNumero = $dernierDevis->numero;
+            $parts = explode("-", $dernierNumero);
+
+            $mois = $parts[2];
+            $incrementation = $parts[3];
+
+            if (intval(date('m')) === intval($mois)) {
+                $incrementation = (string) intval($incrementation) + 1;
+                $incrementation = str_pad($incrementation, $nombreIncrementation, "0", STR_PAD_LEFT);
+            } else {
+                $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
+            }
+        }
+
+        return $prefix . "-" . date("Y") . "-" . date("m") . "-" . $incrementation;
+    }
+}
+
+if (!function_exists('numeroTransfert')) {
+    /**
+     * Fonction qui permet de generer un nouveau numéro de bon de livraison en fonction du dernier dans la base de données
+     *
+     * @param string $prefix
+     * @param integer $nombreIncrementation
+     * @return string
+     */
+    function numeroTransfert(string $prefix = "TR", int $nombreIncrementation = 4): string
+    {
+        $dernierTransfert = Transfert::orderBy('id', 'desc')->first();
+        $incrementation = str_pad("1", $nombreIncrementation, "0", STR_PAD_LEFT);
+
+        if ($dernierTransfert !== null) {
+            $dernierNumero = $dernierTransfert->numero;
             $parts = explode("-", $dernierNumero);
 
             $mois = $parts[2];

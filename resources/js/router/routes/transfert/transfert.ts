@@ -15,14 +15,32 @@
 
 
 import NouveauTransfert from '../../../pages/transfert-article/NouveauTransfert.vue';
-
-
+import ListeTransfert from '../../../pages/transfert-article/ListeTransfert.vue'
+import ModifierTransfert from  '../../../pages/transfert-article/ModifierTransfert.vue'
 
 const routes = [
     {
         path: '/transfert-article/nouveau',
         name: 'transfert.nouveau',
         component: NouveauTransfert,
+        meta: {
+            requiresAuth: true,
+            // gate: 'non definie',
+        }
+    },
+    {
+        path: '/transfert-article/liste',
+        name: 'transfert.liste',
+        component: ListeTransfert,
+        meta: {
+            requiresAuth: true,
+            // gate: 'non definie',
+        }
+    },
+    {
+        path: '/transfert-article/modifier/:id',
+        name: 'transfert.modifier',
+        component: ModifierTransfert,
         meta: {
             requiresAuth: true,
             // gate: 'non definie',

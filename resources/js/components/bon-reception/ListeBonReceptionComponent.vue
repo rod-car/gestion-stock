@@ -22,7 +22,7 @@
 
                 <td class="d-flex justify-content-center">
                     <router-link title="Voir ce bon de reception" v-if="true" :to="{ name: `bon-reception.voir`, params: { id: reception.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link title="Modifier ce bon de reception" v-if="true" :to="{ name: `bon-reception.modifier`, params: { id: reception.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <!-- <router-link title="Modifier ce bon de reception" v-if="true" :to="{ name: `bon-reception.modifier`, params: { id: reception.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link> -->
                     <DeleteBtn title="Supprimer ce bon de reception" v-if="true" type="danger" @click.prevent="confirmDeletion(reception.id, index)"/>
                 </td>
             </tr>
@@ -45,7 +45,9 @@ import DeleteBtn from '../html/DeleteBtn.vue';
 import SimpleAlert from 'vue3-simple-alert';
 import Status from '../html/Status.vue';
 
-const { destroy } = useCRUD('/commandes')
+
+const { destroy } = useCRUD('/bon-receptions')
+
 
 export default {
     components: {

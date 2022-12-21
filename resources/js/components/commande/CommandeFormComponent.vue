@@ -22,7 +22,7 @@
                             v-model="form.fournisseur" :options="Fournisseur.entities.value" :closeOnSelect="false"
                             :clearOnSelect="false" :searchable="true" noOptionsText="Aucun fournisseur"
                             noResultsText="Aucun fournisseur" @close="check" />
-                            
+
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
 
                         <div class="text-danger mt-1" v-if="hasError">
@@ -153,7 +153,7 @@
                                         <MultiSelect
                                             v-else
                                             v-model="form.articles[i - 1].object"
-                                            placeholder="Rechercher un article"
+                                            placeholder="Rechercher un article "
                                             noResultsText="Aucun article trouvé"
                                             noOptionsText="Rechercher un article"
                                             :closeOnSelect="true"
@@ -322,7 +322,7 @@ export default defineComponent({
          */
         const fetchArticles = async (query: string|null): Promise<any> => {
             if (query === null) query = ""
-            return await Article.findBy('designation', query)
+            return await Article.findBy('designation', query, 'depot', form.value.depot)
         }
 
         /**
@@ -438,7 +438,16 @@ export default defineComponent({
         }
 
         const generateArticleArrayFromArticles = (articles: any[]) => {
-            articles.forEach((article: null | undefined) => addItem(false, article))
+            articles.forEach((article: null | undefined, index) => {
+                addItem(false, article)
+
+                if (props.commande != null && props.commande.prix_vent[index] != undefined && props.commande.prix_vent[index].id != undefined) {
+                    form.value.articles[index].object.value = props.commande.prix_vent[index].id
+                }
+                if (props.devis != null && props.devis.prix_vent[index] != undefined && props.devis.prix_vent[index].id != undefined) {
+                    form.value.articles[index].object.value = props.devis.prix_vent[index].id
+                }
+            } )
         }
 
         const generateArticleArray = (nombreArticle: number) => {
@@ -546,7 +555,8 @@ export default defineComponent({
         const loaded = ref(false)
 
         onMounted(() => {
-            if (props.appro === true) Article.all();
+            //if (props.appro === true) Article.all();
+            Article.all();
             Fournisseur.all();
             Client.all();
             if (props.nouveau === true) setCommandeKey();

@@ -4,7 +4,7 @@
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-info">Liste de bon de livraison</h5>
-                    <router-link to="/bon-livraison/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Nouveau bon de livraison</router-link>
+                    <!-- <router-link to="/bon-livraison/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Nouveau bon de livraison</router-link> -->
                 </div>
             </div>
             <div class="card-body">

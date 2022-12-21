@@ -48,7 +48,7 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $appends = ["expire", "date_expiration", "recu"];
+    protected $appends = ["expire", "date_expiration", "recu", "prix_vent"];
 
 
     /**
@@ -177,4 +177,27 @@ class Commande extends Model
     {
         return $this->belongsTo(Depot::class, 'depot', 'id');
     }
+
+
+    public function getPrixVentAttribute(){
+
+        $res = collect();
+
+        if($this->depot){
+
+            foreach ($this->articles as $key => $article) {
+                # code...
+                $depot = Depot::whereId($this->depot)->first();
+                 $price = $article->depotPrixArticle($depot, false);
+
+                 if($this->reference_id === null) $price->where('depot_prix_articles.quantite', null);
+                 else $price->where('depot_prix_articles.id', $this->reference_id);
+
+                 $res->push($price->first());
+            }
+        }
+        return $res;
+    }
+
+
 }

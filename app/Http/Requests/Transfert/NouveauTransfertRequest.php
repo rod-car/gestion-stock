@@ -38,6 +38,13 @@ class NouveauTransfertRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        if ($this->numero === null) {
+            $numeroTransfert = numeroTransfert();
+            $this->merge([
+                'numero' => $numeroTransfert,
+            ]);
+        }
+
         if ($this->date !== null) {
             $date = Carbon::parse($this->date)->setTimezone('EAT');
             $this->merge([
@@ -47,12 +54,24 @@ class NouveauTransfertRequest extends FormRequest
 
 
         if (is_string($this->articles)) {
+            $articles = json_decode($this->articles, true);
+
+            foreach ($articles as $key => $article) {
+                foreach ($article['quantite'] as $key_quantite => $quantite) {
+                    $articles[$key]['quantite'][$key_quantite] = floatval($quantite);
+                    # code...
+                }
+            }
+
+
             $this->merge([
-                'articles' => json_decode($this->articles, true),
+                'articles' => $articles,
             ]);
+
         }
+
     }
-    
+
     public function messages(){
         return $this->ValidationMessages();
     }

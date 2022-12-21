@@ -12,6 +12,8 @@ use App\Models\Depot\DepotPrixArticle;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Commande\NouveauCommandeRequest;
 use App\Http\Requests\Commande\ModifierCommandeRequest;
+use App\Models\Article\DepotArticle;
+use App\Models\Depot\Depot;
 
 class CommandeController extends Controller
 {
@@ -65,7 +67,6 @@ class CommandeController extends Controller
     {
         $data = $request->validated();
 
-
         if (key_exists('file', $data)) $file = $data['file'];
         else $file = null;
 
@@ -77,6 +78,7 @@ class CommandeController extends Controller
                 "message" => "Les quantités d'articles ne sont pas valide"
             ], 422);
         }
+
 
         $commande = Commande::create($data);
 
@@ -94,6 +96,7 @@ class CommandeController extends Controller
     */
     public function show(Commande $commande)
     {
+
         return $commande;
     }
 
@@ -161,13 +164,13 @@ class CommandeController extends Controller
             // Mettre a jour la quantité restant de l'article qui est d'un prix spécifique spécifique quand on fait une commande
             if (key_exists('object', $article) AND $article['object'] !== null)
             {
-                $data['reference_id'] = $article['object']['value'];
 
                 if (intval($commande->type) === 2)
                 {
                     $depotPrixArticle = DepotPrixArticle::findOrFail($article['object']['value']);
                     if ($depotPrixArticle->quantite !== null)
                     {
+                        $data['reference_id'] = $article['object']['value'];
                         $nouveauQuantite = 0;
 
                         $quantiteRestant = doubleval($depotPrixArticle->quantite); // Quantite au prix unitaire demandé
