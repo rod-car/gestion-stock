@@ -3,9 +3,10 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 v-if="!loading" class="text-info">Modifier le dévis N° {{ entity.numero }}</h5>
+                    <h5 v-if="!loading" class="text-info">Modifier le devis N° {{ entity.numero }}</h5>
                     <Skeletor v-else height="35" width="40%" style="border-radius: 3px" />
-                    <router-link to="/devis/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste des deviss</router-link>
+                    <router-link to="/devis/fournisseur/liste" class="btn btn-primary"><i
+                            class="fa fa-list me-2"></i>Liste des devis</router-link>
                 </div>
             </div>
 

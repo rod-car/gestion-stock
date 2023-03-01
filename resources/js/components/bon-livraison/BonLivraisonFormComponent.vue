@@ -4,8 +4,10 @@
             <div class="col-xl-12">
                 <h6 class="text-uppercase text-primary mb-4">Information de la bon de livraison</h6>
                 <div class="row mb-5">
-                    <div class="col-xl-6 mb-3" :class="Livraison.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Livraison.loading.value === false" v-model="form.numero" :error="Livraison.errors.value.numero" disabled>Numéro de bon de livraison</Input>
+                    <div class="col-xl-6 mb-3"
+                        :class="Livraison.loading.value === true ? 'd-flex align-items-end' : ''">
+                        <Input v-if="Livraison.loading.value === false" v-model="form.numero"
+                            :error="Livraison.errors.value.numero" disabled>Numéro de bon de livraison</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 
@@ -15,10 +17,8 @@
 
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
-                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
-                            :enableTimePicker="false"
-                            cancelText="Annuler" placeholder="Selectionner la date"
-                            arrowNavigation
+                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" :enableTimePicker="false"
+                            cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
                             @update:modelValue="checkDate" />
 
                         <div class="text-danger mt-1" v-if="dateState === false">
@@ -27,7 +27,8 @@
                     </div>
 
                     <div class="col-xl-6">
-                        <Input v-model="form.adresse_livraison" :error="Livraison.errors.value.adresse_livraison" required>Adresse de livraison</Input>
+                        <Input v-model="form.adresse_livraison" :error="Livraison.errors.value.adresse_livraison"
+                            required>Adresse de livraison</Input>
                     </div>
                 </div>
 
@@ -61,7 +62,8 @@
 
                     <!-- N'apparait que si il ya personne qui se charge du coût de moyen de transport -->
                     <div v-if="form.a_la_charge_de > 0" class="col-xl-3 mb-3">
-                        <Input v-model="form.cout" :error="Livraison.errors.value.cout">Coût <span class="ms-2 text-danger">(*)</span></Input>
+                        <Input v-model="form.cout" :error="Livraison.errors.value.cout">Coût <span
+                            class="ms-2 text-danger">(*)</span></Input>
                     </div>
 
                     <!-- Fin mode de livraison -->
@@ -89,14 +91,19 @@
                                 <tr v-for="i in nombreArticle" :key="i">
                                     <td><Input v-model="form.articles[i - 1].designation" disabled /></td>
                                     <td>
-                                        <input type="number" @input="checkQuantite(i-1)" v-model="form.articles[i - 1].quantite" class="form-control">
-                                        <span class="text-danger" v-if="Livraison.errors.value[`articles.${i - 1}.quantite`]">
+                                        <input type="number" @input="checkQuantite(i - 1)"
+                                            v-model="form.articles[i - 1].quantite" class="form-control">
+                                        <span class="text-danger"
+                                            v-if="Livraison.errors.value[`articles.${i - 1}.quantite`]">
                                             {{ Livraison.errors.value[`articles.${i - 1}.quantite`][0] }}
                                         </span>
                                     </td>
                                     <td class="align-middle">{{ form.articles[i - 1].total }}</td>
-                                    <td class="d-flex justify-content-center" v-if="nombreArticle > 1"><button type="button" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i class="fa fa-minus"></i></button></td>
-                                    <td class="text-center" v-else><button type="button" class="btn btn-secondary"><i class="fa fa-ban"></i></button></td>
+                                    <td class="d-flex justify-content-center" v-if="nombreArticle > 1"><button
+                                            type="button" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i
+                                                class="fa fa-minus"></i></button></td>
+                                    <td class="text-center" v-else><button type="button" class="btn btn-secondary"><i
+                                                class="fa fa-ban"></i></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -107,8 +114,11 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
-                    <SaveBtn v-if="nouveau" @click.prevent="save" :loading="Livraison.creating.value" :disabled="!valide">Enregistrer</SaveBtn>
-                    <SaveBtn v-else @click.prevent="save" :loading="Livraison.updating.value" :disabled="!valide">Mettre a jour</SaveBtn>
+                    <SaveBtn v-if="nouveau" @click.prevent="confirmSave" :loading="Livraison.creating.value"
+                        :disabled="!valide">Enregistrer</SaveBtn>
+                    <SaveBtn v-else @click.prevent="confirmSave" :loading="Livraison.updating.value"
+                        :disabled="!valide">Mettre
+                        a jour</SaveBtn>
                 </div>
             </div>
         </div>
@@ -126,19 +136,22 @@ import MultiSelect from '@vueform/multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import useCRUD from '../../services/CRUDServices';
 import { computed, onBeforeMount, ref, defineComponent, Ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router'
+import SimpleAlert from 'vue3-simple-alert';
+
 
 const Livraison = useCRUD('/bon-livraisons'); // Contient tous les fonctions CRUD pour le Bon de Livraison
 const Depot = useCRUD('/depot'); // Contient tous les fonctions CRUD pour le Bon de Livraison
 const { getKey, key } = useCRUD('/commandes');
 
 type Form = {
-    numero: string|null,
-    date: Date|null,
-    adresse_livraison: string|null
+    numero: string | null,
+    date: Date | null,
+    adresse_livraison: string | null
     validite?: number,
     articles: Array<any>,
     commande: number, // Numero de la commande qui a generer le bon de livraison
-    livreur: string|null,
+    livreur: string | null,
     contact: string | null,
     type: number, // Pour determiner que c'est un bon de livraison
     mode_livraison: number,
@@ -180,6 +193,9 @@ export default defineComponent({
     },
 
     setup(props) {
+
+        const router = useRouter()
+
         const form: Ref<Form> = ref({
             numero: null,
             date: null,
@@ -197,10 +213,10 @@ export default defineComponent({
         const valide: Ref<boolean> = ref(true);
         const nombreArticle = ref(1);
 
-        const handleChange = (value: number|null) => {
+        const handleChange = (value: number | null) => {
             if (value !== null) {
-                if (value === 1) Depot.all(1);
-                else if (value === 2) Depot.all(0);
+                if (value == 1) Depot.all(1);
+                else if (value == 2) Depot.all(0);
                 else throw new Error("Qui n'est pas un point de vente et ne pas un entrepot")
             }
         }
@@ -214,6 +230,16 @@ export default defineComponent({
             return false
         })
 
+        const confirmSave = async (): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous enregister cette livraison ?", "Enregistrement", "question").then(() => {
+                save()
+            }).catch((error: undefined) => {
+                if (error !== undefined) {
+                    Flash('error', "Message d'erreur", "Impossible d'enregister cette livraison")
+                }
+            });
+        }
+
         const save = async () => {
             if (props.nouveau === true) {
                 await Livraison.create(form.value)
@@ -224,6 +250,10 @@ export default defineComponent({
             } else if (props.commande) {
                 await Livraison.update(props.commande.id, form.value)
             }
+
+            if (Livraison.entity.value.id != undefined) router.push({
+                name: 'bon-livraison.client.voir', params: { id: Livraison.entity.value.id }
+            })
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Livraison.success.value = null
@@ -273,7 +303,7 @@ export default defineComponent({
         }
 
         /**
-         * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
+         * Recuperer la nouvelle numéro du devis et le mettre dans la formulaire
          *
          * @return  {Promise}
          */
@@ -330,7 +360,7 @@ export default defineComponent({
         return {
             Livraison, Flash, form, nombreArticle, setLivraisonKey, getKey, key, checkQuantite,
             dateState, addItem, removeItem, checkDate, save, valide,
-            Depot, check, hasError, handleChange,
+            Depot, check, hasError, handleChange, confirmSave
         }
     },
 

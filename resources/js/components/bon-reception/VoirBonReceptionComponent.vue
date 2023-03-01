@@ -2,8 +2,7 @@
     <div class="row mb-5">
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
             <h5 class="mb-3">{{ infoEntreprise.generale.nom }}</h5>
-            <h6>Tanambao 5</h6>
-            <h6>Toamasina I</h6>
+
             <h6>Telephone: {{ infoEntreprise.generale.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-center justify-content-end">
@@ -18,7 +17,7 @@
             <h6>Téléphone: {{ bonReception.get_commande.frs.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(bonReception.date, false, long = false) }}</h6>
+            <h6>Date: {{ bonReception.date }}</h6>
             <h6>Référence: {{ bonReception.numero }}</h6>
             <h6>Adresse de livraison: {{ bonReception.adresse_livraison }}</h6>
         </div>

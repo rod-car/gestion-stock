@@ -32,11 +32,11 @@ class DepotController extends Controller
                 $depots = $depots->where($key, 'LIKE', "%$value%");
             }
 
-            return $depots->get();
+            return $depots->where("disabled", false)->get();
         }
 
 
-        return Depot::when($request->type != 3, function($q) use ($request){
+        return Depot::where("disabled", false)->when($request->type != 3, function($q) use ($request){
             return $q->where('point_vente', boolval($request->type));
         })->get();
     }
@@ -113,9 +113,27 @@ class DepotController extends Controller
      */
     public function destroy(Depot $depot)
     {
-        $depot->responsables()->detach();
-        $depot->travailleurs()->detach();
-        $depot->delete();
+
+        if($depot->articles->isEmpty()){
+
+            $depot->responsables()->detach();
+            $depot->travailleurs()->detach();
+            $depot->delete();
+        }else{
+
+            $is_empty = true;
+
+            foreach ($depot->articles as $key => $article) {
+                if(doubleval($depot->articleStock($article->id)) > 0) $is_empty = false;
+            }
+
+            if(!$is_empty) return response(["error" => "Le point de vent n'est pas vide"], 500);
+            else {
+                $depot->disabled = true;
+                $depot->update();
+            };
+        }
+
         return response()->json(['success' => 'Supprimé avec succes']);
     }
 

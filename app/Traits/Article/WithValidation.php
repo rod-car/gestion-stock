@@ -19,9 +19,11 @@ trait WithValidation
             "designation" => ["required", "unique:articles,designation,$exceptId,id", "sometimes", "min:2", "max:255"],
             "unite" => ["required", "sometimes", "min:1", "max:255"],
             "stock_alert" => ["nullable", "numeric", "min:0", "max:999999999999"],
-
+            "description" => ["sometimes"],
             "categories" => ["required"],
             "categories.*" => ["required", Rule::exists("categories", "id")->where("type", 3)],
+            "sous_categories" => ["sometimes"],
+            "sous_categories.*" => ["sometimes", Rule::exists("categories", "id")->where("type", 3)],
         ];
     }
 

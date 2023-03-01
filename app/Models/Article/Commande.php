@@ -22,7 +22,7 @@ class Commande extends Model
      * @var array
      */
     protected $fillable = [
-        "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "depot", "validite" // Uniquement pour les dévis
+        "numero", "type", "date", "fournisseur", "client", "devis", "adresse_livraison", "depot", "validite" // Uniquement pour les devis
     ];
 
 
@@ -31,7 +31,9 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = [
+        'date'  => 'date:d-m-Y',
+    ];
 
 
     /**
@@ -62,7 +64,7 @@ class Commande extends Model
 
     /**
      * Recuperer la date d'expiration
-     * Utile seulement pour les dévis
+     * Utile seulement pour les devis
      *
      * @return string
      */
@@ -84,7 +86,7 @@ class Commande extends Model
 
 
     /**
-     * Recupere l'attribut pour savoir si un dévis est expiré ou non
+     * Recupere l'attribut pour savoir si un devis est expiré ou non
      *
      * @return boolean
      */

@@ -9,10 +9,11 @@ use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\User\FonctionController;
 use App\Http\Controllers\Api\Article\ArticleController;
 use App\Http\Controllers\Api\Article\CommandeController;
-use App\Http\Controllers\Api\Article\TransfertController;
 use App\Http\Controllers\Api\Bon\BonLivraisonController;
 use App\Http\Controllers\Api\Bon\BonReceptionController;
 use App\Http\Controllers\Api\Client\CategorieController;
+use App\Http\Controllers\Api\Article\TransfertController;
+use App\Http\Controllers\Api\Etiquette\EtiquetteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Fournisseur\FournisseurController;
 use App\Http\Controllers\Api\Parametres\ParametreGeneraleController;
@@ -77,6 +78,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Gerer tous les catégories (Articles, Client, Fournisseur)
     Route::apiResource('/categorie', CategorieController::class);
+    Route::get('/sous-categorie', [CategorieController::class, 'sousCategorieList']);
+
+    // Gerer tous les étiquettes
+    Route::apiResource('/etiquette', EtiquetteController::class);
 
     // Gerer tous les CRUD fournisseurs
     Route::apiResource('/fournisseur', FournisseurController::class);
@@ -86,17 +91,19 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Ressource qui gere les CRUD de l'article
     Route::apiResource('/article', ArticleController::class);
+    Route::get('/article/voir-par-depot/{article}', [ArticleController::class, "voirParDepot"]);
 
     // Ressource qui gere les CRUD de l'article
     Route::get('/article/avec-prix-vente/{depot?}', [ArticleController::class, 'articlePrixVente']);
 
     // ----------------------------------------------------------- Gestion de commande ----------------------------------------------------------------------
 
-    // Recupere le nouveau numéro du dévis ou commande et l'afficher au client
+    // Recupere le nouveau numéro du devis ou commande et l'afficher au client
     Route::get('/commandes/get-key', [CommandeController::class, 'getKey']);
 
     // Ressource qui gere les CRUD des commande et devis
     Route::apiResource('/commandes', CommandeController::class);
+    Route::get('/commandes/from-old/{type}/{appro}/{search?}', [CommandeController::class, 'fromOld']);
 
     // Ressource qui gere les CRUD des bons de reception
     Route::apiResource('/bon-receptions', BonReceptionController::class);

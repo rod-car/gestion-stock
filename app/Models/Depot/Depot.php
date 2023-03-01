@@ -22,7 +22,7 @@ class Depot extends Model
      * @var array
      */
     protected $fillable = [
-        "nom", "localisation", "contact", "point_vente",
+        "nom", "localisation", "contact", "point_vente", "disabled"
     ];
 
 
@@ -67,17 +67,31 @@ class Depot extends Model
     }
 
     /**
-     * Stock d'article du depot selon par article
+     * Stock d'article du depot selon  article
      */
 
      public function articleStock($article_id){
-        $stockArticle = DepotArticle::getDepotArticles($this->depot_id)
+        $stockArticle = DepotArticle::getDepotArticles($this)
                                         ->get()
                                         ->where('article_id', $article_id)->first();
-        return floatVal($stockArticle->entree) - floatVal($stockArticle->sortie);
+
+        $entree = isset($stockArticle->entree) && $stockArticle->entree != null ? floatVal($stockArticle->entree) : 0;
+        $sortie = isset($stockArticle->sortie) && $stockArticle->sortie != null ? floatVal($stockArticle->sortie) : 0;
+
+        return floatVal($entree) - floatVal($sortie);
      }
 
      public function DepotPrixArticle(): HasMany{
         return $this->hasMany(DepotPrixArticle::class,'depot', 'id');
+     }
+
+     public static function mapStockArticleParDepot( $article){
+
+        return self::all()->map(function ($depot) use ($article) {
+            return [
+                "depot" => $depot,
+                "stock" => $depot->articleStock($article->id)
+            ];
+        });
      }
 }

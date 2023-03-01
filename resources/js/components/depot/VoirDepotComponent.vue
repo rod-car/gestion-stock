@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-xl-12 d-flex justify-content-between p-0">
             <div class="shadow shadow-sm p-3 w-100 me-3">
-                <h3 class="">{{ depot.nom }}</h3><hr>
+                <h3 class="">{{ depot.nom }}</h3>
+                <hr>
                 <h6 class="fst-italic mb-3">Adresse: {{ depot.localisation }}</h6>
                 <h6 class="fst-italic text-primary">Contact: {{ depot.contact }}</h6>
             </div>
@@ -10,13 +11,17 @@
             <div class="shadow shadow-sm p-3 w-100 ms-3">
                 <div class="d-flex justify-content-between mb-3">
                     <h5 class="text-muted">Responsables</h5>
-                    <router-link v-if="depot.id" :to="{ name: getName + '.gerer-responsables', params: { id: depot.id }}" class="btn btn-info text-white">
+                    <router-link v-if="depot.id"
+                        :to="{ name: getName + '.gerer-responsables', params: { id: depot.id } }"
+                        class="btn btn-info text-white">
                         <i class="fa fa-pencil me-2"></i>Mettre a jour
                     </router-link>
                 </div>
                 <div>
-                    <ul v-if="depot.responsables && depot.responsables.length > 0" class="list-group list-group-numbered">
-                        <li v-for="responsable in depot.responsables" :key="responsable.id" class="list-group-item list-group-item-action">
+                    <ul v-if="depot.responsables && depot.responsables.length > 0"
+                        class="list-group list-group-numbered">
+                        <li v-for="responsable in depot.responsables" :key="responsable.id"
+                            class="list-group-item list-group-item-action">
                             <span class="fw-bold text-uppercase" v-text="responsable.nom_personnel"></span>&nbsp;
                             <span v-text="responsable.prenoms_personnel"></span>&nbsp;
                         </li>
@@ -36,29 +41,29 @@
                 <div class="me-2 shadow shadow-sm w-100 p-3">
                     <div class="mb-3 d-flex justify-content-between align-items-center">
                         <h5 class="text-muted">Les articles</h5>
-                        <router-link :to="{ name:  'point-de-vente.articles', params: { id: depot.id }}" class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Voir tout</router-link>
+                        <router-link :to="{ name: 'point-de-vente.articles', params: { id: depot.id } }"
+                            class="btn btn-info btn-sm text-white"><i class="fa fa-eye me-2"></i>Voir tout</router-link>
 
                     </div>
-                    <Table
-                        name="article"
-                        :data="articles"
-                        :columns="columns"
-                        :actions="false"
-                        :loading="loading"
-                        :casts="casts"
-                    />
+                    <Table name="article" :data="articles" :columns="columns" :actions="false" :loading="loading"
+                        :casts="casts" />
                 </div>
                 <div class="ms-2 shadow shadow-sm w-100 p-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="text-muted">Tous personnelles</h5>
-                        <router-link class="btn btn-info btn-sm text-white" v-if="depot.id" :to="{ name: getName + '.gerer-personnelles', params: { id: depot.id }}"><i class="fa fa-pencil me-2"></i>Mettre a jour</router-link>
+                        <h5 class="text-muted">Ressource Humaine</h5>
+                        <router-link class="btn btn-info btn-sm text-white" v-if="depot.id"
+                            :to="{ name: getName + '.gerer-personnelles', params: { id: depot.id } }"><i
+                                class="fa fa-pencil me-2"></i>Mettre a jour</router-link>
                     </div>
                     <div>
-                        <ul v-if="depot.travailleurs && depot.travailleurs.length > 0" class="list-group list-group-numbered">
-                            <li v-for="personnel in depot.travailleurs" :key="personnel.id" class="list-group-item list-group-item-action">
+                        <ul v-if="depot.travailleurs && depot.travailleurs.length > 0"
+                            class="list-group list-group-numbered">
+                            <li v-for="personnel in depot.travailleurs" :key="personnel.id"
+                                class="list-group-item list-group-item-action">
                                 <span class="fw-bold text-uppercase" v-text="personnel.nom_personnel"></span>&nbsp;
                                 <span v-text="personnel.prenoms_personnel"></span>&nbsp;&nbsp;
-                                <span class="badge bg-danger" v-text="personnel.pivot.est_responsable ? 'Responsable': ''"></span>
+                                <span class="badge bg-danger"
+                                    v-text="personnel.pivot.est_responsable ? 'Responsable' : ''"></span>
                             </li>
                         </ul>
 

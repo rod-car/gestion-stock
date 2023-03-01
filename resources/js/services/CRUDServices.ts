@@ -10,7 +10,7 @@ interface CRUD {
     findBy(field: string, value: string|number, field2?: string|null, value2?: number|null): Promise<any>
     update(id: number, data: object, updateType?: number | null): Promise<any>,
     all(type?: number | null, except?: string | null, appro?: boolean | null, other?: string | null): Promise<any>,
-    destroy(id: number, data: Array<any>|null, index: number): Promise<any>,
+    destroy(id: number, data: Array<any>|null, index: number, errorMessage? : string): Promise<any>,
     creating: Ref<boolean>,
     loading: Ref<boolean>,
     updating: Ref<boolean>,
@@ -205,7 +205,7 @@ export default function useCRUD(url: string): CRUD {
      *
      * @return  {Promise}
      */
-    const destroy = async (id: number, data: Array<any>|null = null, index: number = 0): Promise<any> => {
+    const destroy = async (id: number, data: Array<any>|null = null, index: number = 0, errorMessage: string = ""): Promise<any> => {
         deleting.value = true
         try {
             let response = await axiosClient.delete(`${url}/${id}`)
@@ -220,7 +220,7 @@ export default function useCRUD(url: string): CRUD {
             }
         } catch (error: any) {
             errors.value = error.response.data.errors;
-            Flash('error', "Message d'erreur", `Impossible de supprimer: ${error.message}`)
+            Flash('error', "Message d'erreur", errorMessage == "" ? `Impossible de supprimer: ${error.message}` : errorMessage)
         }
         deleting.value = false
     }

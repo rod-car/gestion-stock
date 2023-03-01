@@ -5,7 +5,8 @@ import useCRUD from 'resources/js/services/CRUDServices';
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-info">Nouveau bon de livraison</h5>
-                    <router-link to="/bon-livraison/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste de bon de réception</router-link>
+                    <router-link to="/bon-livraison/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste
+                        de bon de réception</router-link>
                 </div>
             </div>
 
@@ -40,7 +41,7 @@ export default defineComponent({
             if (commandeId.value !== null) {
                 // Recuperer la commande en question
                 await find(commandeId.value);
-                if (entity.value.type !== 2) {
+                if (entity.value.type != 2) {
                     Flash('error', 'Erreur', 'Veuillez selectionner une commande');
                     router.push('/commande/fournisseur/liste');
                     return;

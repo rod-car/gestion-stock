@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('designation')->nullable();
             $table->string('unite')->default('Nombre');
             $table->longText('description')->nullable();
+            $table->boolean('disabled')->nullable()->default(false);
             $table->timestamps();
             $table->decimal('stock_alert', 12)->unsigned()->nullable()->comment('Quantité en stock restant pour alerter l\'utilisateur pour un appro');
         });

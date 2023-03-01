@@ -6,18 +6,10 @@
             <div class="loader"></div>
         </div>
 
-        <sidebar-menu
-            class="sidebar"
-            @update:collapsed="onCollapse"
-            :menu="menu"
-            width="290px"
-            :showOneChild="true"
-            theme='grey-theme'
-            @item-click="onItemClick"
-            v-if="isConnected"
-        />
+        <sidebar-menu class="sidebar" @update:collapsed="onCollapse" :menu="menu" width="290px" :showOneChild="true"
+            theme='grey-theme' @item-click="onItemClick" v-if="isConnected" />
 
-        <div class="main-content" id="view" :class="[{'collapsed' : collapsed, 'no-width': !isConnected}]">
+        <div class="main-content" id="view" :class="[{ 'collapsed': collapsed, 'no-width': !isConnected }]">
             <!-- header area start -->
             <div v-if="isConnected" class="header-area mb-5">
                 <div class="row align-items-center">
@@ -70,12 +62,13 @@
                                     </div>
                                 </div>
                             </li> -->
-                            <li >
+                            <li>
                                 <i class="fa fa-sign-out" @click="logOut"></i>
                             </li>
                             <li class="dropdown">
                                 <i class="ti ti-user me-2" data-toggle="dropdown"></i>
-                                <span class="text-uppercase text-muted">{{ user === null ? "Chargement..." : user.nom_personnel + ' ' + user.prenoms_personnel }}</span>
+                                <span class="text-uppercase text-muted">{{ user === null ? "Chargement..." :
+                                    user.nom_personnel + ' ' + user.prenoms_personnel }}</span>
                             </li>
                         </ul>
                     </div>
@@ -91,7 +84,10 @@
 
         <footer v-if="isConnected">
             <div class="footer-area">
-                <p>© {{ infoEntreprise.generale.nom }} - {{ infoEntreprise.generale.assujeti ? "Assujeti a la TVA" : "Non assujeti a la TVA" }} - {{ new Date().getFullYear().toString() }}.</p>
+                <p>© {{ infoEntreprise.generale.nom }} - {{
+                    infoEntreprise.generale.assujeti ? "Assujeti a la TVA" :
+                    "Non assujeti a la TVA"
+                }} - {{ new Date().getFullYear().toString() }}.</p>
             </div>
         </footer>
 
@@ -192,7 +188,7 @@ interface User {
     prenoms_personnel: string | null
 }
 
-const { permissions, getPermissions }  = useAbility()
+const { permissions, getPermissions } = useAbility()
 
 const logoImg = {
     setup() {
@@ -254,7 +250,7 @@ export default defineComponent({
     },
 
     methods: {
-        onItemClick (event, item) {
+        onItemClick(event, item) {
             if (item.logout === true) {
                 this.logOut();
             }
@@ -481,7 +477,7 @@ export default defineComponent({
                     child: [
                         {
                             href: '/article/nouveau',
-                            title: 'Nouveau article',
+                            title: 'Nouvel article',
                             icon: 'fa fa-plus',
                             class: 'fw-regular',
                             // hidden: !this.$can('add_user'),
@@ -513,10 +509,11 @@ export default defineComponent({
                             ],
                             // hidden: !this.$can('manage_roles_and_functions'),
                         },
+
                     ]
                 },
                 {
-                    title: 'Dévis',
+                    title: 'Devis',
                     icon: 'fa fa-file',
                     hidden: false,
                     child: [
@@ -636,13 +633,18 @@ export default defineComponent({
                     hidden: !this.$can('manage_settings'),
                     child: [
                         {
-                            title: 'Dévise',
+                            title: 'Devise',
                             icon: 'fa fa-money',
                         },
                         {
                             href: '/parametres/entreprise',
                             title: 'Infos de l\'entreprise',
                             icon: 'fa fa-info-circle',
+                        },
+                        {
+                            href: '/parametres/etiquette/liste',
+                            title: 'La liste des étiquettes',
+                            icon: 'fa fa-tag',
                         },
                     ]
                 },
@@ -663,7 +665,6 @@ export default defineComponent({
 
 
 <style scoped>
-
 #view {
     padding-left: 300px;
     transition: all;
@@ -676,8 +677,8 @@ export default defineComponent({
 }
 
 #view.no-width {
-    padding: 0!important;
-    margin: 0!important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .fade-enter-active,
@@ -689,5 +690,4 @@ export default defineComponent({
 .fade-leave-active {
     opacity: 0;
 }
-
 </style>

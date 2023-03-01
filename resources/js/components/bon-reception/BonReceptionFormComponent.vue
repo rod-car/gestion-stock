@@ -77,8 +77,8 @@
                         <label for="depot" class="form-label">Entrepot ou point de vente</label>
                         <MultiSelect v-if="!Depot.loading.value" :class="hasError ? 'border-danger' : ''"
                             :object="nouveau === false ? true : false" :options="Depot.entities.value"
-                            :searchable="true" :multiple="false" v-model="form.depot" noOptionsText="Aucune donées"
-                            noResultsText="Aucune donées" label="nom" valueProp="id" @close="check" />
+                            :searchable="true" :multiple="false" v-model="form.depot" noOptionsText="Aucune données"
+                            noResultsText="Aucune données" label="nom" valueProp="id" @close="check" />
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                         <div class="text-danger mt-1" v-if="hasError">
                             {{ Reception.errors.value.depot[0] }}
@@ -131,9 +131,10 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
-                    <SaveBtn v-if="nouveau" @click.prevent="save" :loading="Reception.creating.value"
+                    <SaveBtn v-if="nouveau" @click.prevent="confirmSave" :loading="Reception.creating.value"
                         :disabled="!valide">Enregistrer</SaveBtn>
-                    <SaveBtn v-else @click.prevent="save" :loading="Reception.updating.value" :disabled="!valide">Mettre
+                    <SaveBtn v-else @click.prevent="confirmSave" :loading="Reception.updating.value"
+                        :disabled="!valide">Mettre
                         a jour</SaveBtn>
                 </div>
             </div>
@@ -152,6 +153,8 @@ import MultiSelect from '@vueform/multiselect';
 import Datepicker from '@vuepic/vue-datepicker';
 import useCRUD from '../../services/CRUDServices';
 import { computed, onBeforeMount, ref, defineComponent, Ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router'
+import SimpleAlert from 'vue3-simple-alert';
 
 const Reception = useCRUD('/bon-receptions'); // Contient tous les fonctions CRUD pour le Bon de Reception
 const Depot = useCRUD('/depot'); // Contient tous les fonctions CRUD pour le Bon de Reception
@@ -207,6 +210,9 @@ export default defineComponent({
     },
 
     setup(props) {
+
+        const router = useRouter()
+
         const form = ref({
             numero: null,
             date: null,
@@ -245,6 +251,16 @@ export default defineComponent({
             return false
         })
 
+        const confirmSave = async (): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous enregister cette livraison ?", "Enregistrement", "question").then(() => {
+                save()
+            }).catch((error: undefined) => {
+                if (error !== undefined) {
+                    Flash('error', "Message d'erreur", "Impossible d'enregister cette livraison")
+                }
+            });
+        }
+
         const save = async () => {
 
             if (props.nouveau === true) {
@@ -257,6 +273,11 @@ export default defineComponent({
             } else if (props.commande) {
                 await Reception.update(props.commande.id, form.value)
             }
+
+            if (Reception.entity.value.id != undefined) router.push({
+                name: 'bon-reception.client.voir', params: { id: Reception.entity.value.id }
+            })
+
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Reception.success.value = null
@@ -302,7 +323,7 @@ export default defineComponent({
         }
 
         /**
-         * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
+         * Recuperer la nouvelle numéro du devis et le mettre dans la formulaire
          *
          * @return  {Promise}
          */
@@ -352,7 +373,7 @@ export default defineComponent({
         return {
             Reception, Flash, form, nombreArticle, setReceptionKey, getKey, key, checkQuantite,
             dateState, addItem, removeItem, generateArticleArrayFromArticles, checkDate, save, valide,
-            Depot, check, hasError, handleChange,
+            Depot, check, hasError, handleChange, confirmSave
         }
     },
 

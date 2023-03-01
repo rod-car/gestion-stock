@@ -3,33 +3,43 @@
         <thead class="bg-secondary text-white">
             <tr>
                 <th class="p-3">Numéro</th>
-                <th class="p-3">Date du dévis</th>
+                <th class="p-3">Date du devis</th>
                 <th class="p-3">Validité (Jour)</th>
-                <th class="p-3">Expiré le</th>
                 <th v-if="appro === true" class="p-3">Fournisseur</th>
                 <th v-else class="p-3">Client</th>
-                <th class="p-3">Status</th>
+                <th class="p-3">Statut</th>
                 <th class="text-center p-3">Actions</th>
             </tr>
         </thead>
         <tbody v-if="entities.length > 0">
             <tr v-for="(devis, index) in entities" v-bind:key="devis.id">
                 <td class="align-middle">{{ devis.numero }}</td>
-                <td class="align-middle">{{ formatDate(devis.date, false) }}</td>
+                <td class="align-middle">{{ devis.date }}</td>
                 <td class="align-middle">{{ devis.validite ?? "Non définie" }}</td>
-                <td class="align-middle">{{ devis.validite === null ? 'Non définie' : formatDate(expiration(devis.date, devis.validite), false) }}</td>
+
                 <td class="align-middle" v-if="appro === true">{{ devis.frs.nom }}</td>
                 <td class="align-middle" v-else>{{ devis.cl.nom }}</td>
-                <td class="align-middle"><Status :value="devis.status" /></td>
+                <td class="align-middle">
+                    <Status :value="parseInt(devis.status)" />
+                </td>
 
                 <td class="align-middle">
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <div class="d-flex justify-content-center">
-                                <router-link title="Voir ce devis" v-if="true" :to="{ name: `devis.${type}.voir`, params: { id: devis.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                                <router-link title="Modifier ce devis" v-if="true" :to="{ name: `devis.${type}.modifier`, params: { id: devis.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                                <router-link title="Créer un bon de commande pour ce devis" v-if="devis.status === 1" :to="{ name: `commande.${type}.nouveau`, query: { devis: devis.id }}" class="btn btn-warning btn-sm me-2 text-white"><i class="fa fa-arrow-right"></i></router-link>
-                                <DeleteBtn title="Supprimer ce devis" v-if="true" type="danger" @click.prevent="confirmDeletion(devis.id, index)"/>
+                                <router-link title="Voir ce devis" v-if="true"
+                                    :to="{ name: `devis.${type}.voir`, params: { id: devis.id } }"
+                                    class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                                <router-link title="Modifier ce devis" v-if="true"
+                                    :to="{ name: `devis.${type}.modifier`, params: { id: devis.id } }"
+                                    class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                                <router-link title="Créer un bon de commande pour ce devis"
+                                    v-if="parseInt(devis.status) === 1"
+                                    :to="{ name: `commande.${type}.nouveau`, query: { devis: devis.id } }"
+                                    class="btn btn-warning btn-sm me-2 text-white"><i
+                                        class="fa fa-arrow-right"></i></router-link>
+                                <DeleteBtn title="Supprimer ce devis" v-if="true" type="danger"
+                                    @click.prevent="confirmDeletion(devis.id, index)" />
 
                             </div>
                         </div>
@@ -59,7 +69,7 @@ const { destroy } = useCRUD('/commandes');
 
 export default defineComponent({
     components: {
-    DeleteBtn,
+        DeleteBtn,
         SimpleAlert,
         Status
     },
@@ -83,9 +93,9 @@ export default defineComponent({
 
     setup(props) {
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
-            await SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Question", "question").then(() => {
+            await SimpleAlert.confirm("Voulez-vous supprimer ce devis ?", "Suppression", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, props.entities,index)
+                destroy(id, props.entities, index)
             }).catch((error: undefined) => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")

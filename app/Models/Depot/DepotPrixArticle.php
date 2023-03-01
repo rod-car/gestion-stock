@@ -13,7 +13,8 @@ class DepotPrixArticle extends Model
         'article', 'depot', 'quantite', 'pu',
     ];
 
-
-
+    public static function depotArticlePrixSum($depot_id, $article_id){
+        return self::where("depot", $depot_id)->where("article", $article_id)->sum("quantite");
+    }
 
 }

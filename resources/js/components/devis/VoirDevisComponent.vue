@@ -2,8 +2,6 @@
     <div class="row mb-5">
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
             <h5 class="mb-3">{{ infoEntreprise.generale.nom }}</h5>
-            <h6>Tanambao 5</h6>
-            <h6>Toamasina I</h6>
             <h6>Telephone: {{ infoEntreprise.generale.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-center justify-content-end">
@@ -23,7 +21,7 @@
             <h6>Téléphone: {{ devis.frs.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(devis.date, false, false) }}</h6>
+            <h6>Date: {{ devis.date }}</h6>
             <h6>Référence: {{ devis.numero }}</h6>
             <h6>Date de validité: {{ devis.validite }} jours</h6>
         </div>
@@ -48,7 +46,7 @@
                         <td>{{ article.designation }}</td>
                         <td>{{ article.pivot.quantite }}</td>
                         <td>{{ article.unite }}</td>
-                        <td class="text-end">{{ format(article.pivot.pu) }} Ar</td>
+                        <td class="text-end">{{ format(article.pivot.pu) }}</td>
                         <td v-if="(assujeti || appro === true)">{{ article.pivot.tva }} %</td>
                         <td v-if="(assujeti || appro === true)" class="text-end">{{ format(montantTVA(article)) }}</td>
                         <td class="text-end">{{ format(montantTTC(article)) }}</td>
@@ -78,7 +76,8 @@
     <div v-if="piece !== null" class="row">
         <div class="col-xl-12">
             <h5 class="text-primary mb-3">Pièce jointe</h5>
-            <iframe width="100%" height="800px" title="Pièce jointe" :src="piece + '#view=fitH'" frameborder="0"></iframe>
+            <iframe width="100%" height="800px" title="Pièce jointe" :src="piece + '#view=fitH'"
+                frameborder="0"></iframe>
         </div>
     </div>
 </template>

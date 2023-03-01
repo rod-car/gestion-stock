@@ -4,7 +4,7 @@
  * Tous les routes present dans ce fichier sont privée, L'utilisateur doit être connecté
  *
  * Liste des routes:
- *  -   Creer un nouveau article
+ *  -   Creer un nouvel article
  *  -   Liste de tous les articles
  *  -   Voir une article en particuluer
  *  -   Modifier un article
@@ -21,7 +21,6 @@ import ListeArticle from '../../../pages/articles/ListeArticle.vue';
 import NouveauCategorie from '../../../pages/articles/categorie/NouveauCategorie.vue';
 import ListeCategorie from '../../../pages/articles/categorie/ListeCategorie.vue';
 import ModifierCategorie from '../../../pages/articles/categorie/ModifierCategorie.vue';
-
 
 const routes = [
     {
@@ -87,6 +86,7 @@ const routes = [
             // gate: 'non definie',
         }
     },
+
 
 
 ]

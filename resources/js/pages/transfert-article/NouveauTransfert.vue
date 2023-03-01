@@ -22,7 +22,7 @@ import TransfertForm from '../../components/transfert-article/TransfertFormCompo
 
 
 export default defineComponent({
-    components: {TransfertForm}
+    components: { TransfertForm }
 });
 
 </script>

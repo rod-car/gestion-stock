@@ -5,7 +5,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-info">La liste des transferts</h5>
                     <router-link to="/transfert-article/nouveau" class="btn btn-primary"><i
-                            class="fa fa-list me-2"></i>Liste des transerts</router-link>
+                            class="fa fa-list me-2"></i>Nouveau transfert</router-link>
                 </div>
             </div>
 
@@ -27,11 +27,11 @@ export default defineComponent({
         TransfertListComponent
     },
     setup() {
-       const route = useRoute()
+        const route = useRoute()
 
         onMounted(() => {
-        const id = route.params.id
-        console.log(id)
+            const id = route.params.id
+            console.log(id)
         })
     }
 });

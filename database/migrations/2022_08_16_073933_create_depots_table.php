@@ -19,6 +19,7 @@ class CreateDepotsTable extends Migration
             $table->string('contact')->nullable()->comment('Contact du responsable');
             $table->string('localisation');
             $table->boolean('point_vente')->default(true)->comment('Permet de savoir si un depot est un entrepôt ou un point de vente');
+            $table->boolean('disabled')->nullable()->default(false);
             $table->timestamps();
         });
     }

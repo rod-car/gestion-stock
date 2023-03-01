@@ -7,31 +7,36 @@
                 <th class="p-3" v-if="appro === true">Fournisseur</th>
                 <th class="p-3" v-else>Client</th>
                 <th class="p-3">Adresse de livraison</th>
-                <th class="p-3">Status</th>
+                <th class="p-3">Statut</th>
                 <th class="text-center p-3">Actions</th>
             </tr>
         </thead>
         <tbody v-if="entities.length > 0">
             <tr v-for="(commande, index) in entities" v-bind:key="commande.id">
                 <td class="align-middle">{{ commande.numero }}</td>
-                <td class="align-middle">{{ formatDate(commande.date, false) }}</td>
+                <td class="align-middle">{{ commande.date }}</td>
                 <td class="align-middle" v-if="appro === true">{{ commande.frs.nom }}</td>
                 <td class="align-middle" v-else>{{ commande.cl.nom }}</td>
                 <td class="align-middle">{{ commande.adresse_livraison ?? "Non définie" }}</td>
-                <td class="align-middle"><Status :value="commande.status" /></td>
+                <td class="align-middle">
+                    <Status :value="parseInt(commande.status)" />
+                </td>
 
                 <td class="d-flex justify-content-center">
-                    <router-link title="Voir ce bon de commande" v-if="true" :to="{ name: `commande.${type}.voir`, params: { id: commande.id }}" class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
-                    <router-link title="Modifier ce bon de commande" v-if="commande.status !== 3" :to="{ name: `commande.${type}.modifier`, params: { id: commande.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link title="Voir ce bon de commande" v-if="true"
+                        :to="{ name: `commande.${type}.voir`, params: { id: commande.id } }"
+                        class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
+                    <router-link title="Modifier ce bon de commande" v-if="parseInt(commande.status) !== 3"
+                        :to="{ name: `commande.${type}.modifier`, params: { id: commande.id } }"
+                        class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                     <router-link
-                        :to="{ name: `${appro === true ? 'bon-reception' : 'bon-livraison'}.nouveau`, query: { commande: commande.id }}"
+                        :to="{ name: `${appro === true ? 'bon-reception' : 'bon-livraison'}.nouveau`, query: { commande: commande.id } }"
                         :title="appro === true ? 'Créer un bon de reception a partir de ce bon de commande' : 'Créer un bon de livraison a partir de ce bon de commande'"
-                        v-if="!commande.recu"
-                        class="btn btn-warning btn-sm me-2 text-white"
-                    >
+                        v-if="!commande.recu" class="btn btn-warning btn-sm me-2 text-white">
                         <i class="fa fa-arrow-right"></i>
                     </router-link>
-                    <DeleteBtn title="Supprimer ce bon de commande" v-if="true" type="danger" @click.prevent="confirmDeletion(commande.id, index)"/>
+                    <DeleteBtn title="Supprimer ce bon de commande" v-if="true" type="danger"
+                        @click.prevent="confirmDeletion(commande.id, index)" />
                 </td>
             </tr>
         </tbody>
@@ -76,10 +81,10 @@ export default {
 
     setup(props: { entities: any[] | null; appro: boolean; }) {
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
-            await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Question", "question").then(() => {
+            await SimpleAlert.confirm("Voulez-vous supprimer la commande ?", "Suppression", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
                 destroy(id, props.entities, index)
-            }).catch (error => {
+            }).catch(error => {
                 if (error !== undefined) {
                     Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
                 }

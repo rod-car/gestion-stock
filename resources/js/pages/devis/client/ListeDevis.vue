@@ -3,8 +3,9 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Liste des devis client</h5>
-                    <router-link to="/devis/client/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer un nouveau dévis client</router-link>
+                    <h5 class="text-info">Liste des points de ventes</h5>
+                    <router-link to="/devis/client/nouveau" class="btn btn-primary"><i
+                            class="fa fa-plus me-2"></i>Nouveau devis</router-link>
                 </div>
             </div>
             <div class="card-body">

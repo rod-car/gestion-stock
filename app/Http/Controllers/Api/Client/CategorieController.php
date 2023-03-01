@@ -20,8 +20,20 @@ class CategorieController extends Controller
     {
         $type = intval($request->type);
         $except = intval($request->except); // Identifiant de la catégrie a exclure pour mettre dans sous catégorie
+        $onlyParent = boolval($request->appro);
 
         $categories = Categorie::where('type', $type)->get();
+
+        if($onlyParent){
+
+            $categories = $categories->filter(function($categorie){
+                return $categorie->parentCategories->isEmpty();
+            });
+
+            $categories = collect($categories->values());
+
+        }
+
 
         if ($except > 0) {
             $parents = Categorie::findOrFail($except)->parentCategories->pluck('id');
@@ -106,5 +118,26 @@ class CategorieController extends Controller
 
     public function enregistrerCategorieClient()
     {
+    }
+
+    public function sousCategorieList(Request $request){
+        $parents_id = $request->except ? json_decode($request->except) : [];
+
+        if($parents_id && count($parents_id) > 0){
+
+            $parents = Categorie::whereIn("id", $parents_id)->get();
+
+            $souscategories = collect();
+
+            foreach($parents as $parent){
+                if($parent->sousCategories->isNotEmpty()) $souscategories->push($parent->sousCategories);
+            }
+
+
+            return isset($souscategories->unique()[0]) ? $souscategories->unique()[0] : [];
+        }
+
+        return [];
+
     }
 }

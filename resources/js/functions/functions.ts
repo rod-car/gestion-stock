@@ -43,9 +43,9 @@ const formatDate = (date: string | Date, withTime: boolean = true, long: boolean
 
 
 /**
- * Permet de calculer la date d'expiration d'un dévis en fonction de la date de début et la validité
+ * Permet de calculer la date d'expiration d'un devis en fonction de la date de début et la validité
  *
- * @param   {String|Date}  dateDebut    La date du dévis
+ * @param   {String|Date}  dateDebut    La date du devis
  * @param   {Number}  delais     Nombre de jours de validité
  *
  * @return  {Date}             La date d'expiration
@@ -152,7 +152,7 @@ const totalTTC = (articles: Array<any>): number => {
  */
 const format = (number: number, format: string = "fr-FR", options = { decimal: 2, currency: "MGA", style: "currency" }): string => {
     const locale = Intl.NumberFormat(format, options)
-    return locale.format(number).replace("MGA", "Ar");
+    return locale.format(number).replace("MGA", "Ar").replace('Ar', 'EUR');
 }
 
 /**

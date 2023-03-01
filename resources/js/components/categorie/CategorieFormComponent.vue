@@ -7,15 +7,11 @@
 
             <div v-if="type === 3" class="col-xl-12 mb-3">
                 <label for="sous_categories" class="form-label">Sous catégories</label>
-                <Multiselect
-                    :class="hasError ? 'border-danger' : ''"
-                    label="libelle" valueProp="id" :multiple="true" v-model="form.sous_categories"
-                    :options="entities" mode="tags" :closeOnSelect="false" :clearOnSelect="false"
-                    :searchable="true" placeholder="Selectionner les sous catégories"
-                    :object="nouveau === false ? true : false"
-                    noOptionsText="Aucune catégorie"
-                    noResultsText="Aucune catégorie"
-                />
+                <Multiselect :class="hasError ? 'border-danger' : ''" label="libelle" valueProp="id" :multiple="true"
+                    v-model="form.sous_categories" :options="entities" mode="tags" :closeOnSelect="false"
+                    :clearOnSelect="false" :searchable="true" placeholder="Selectionner les sous catégories"
+                    :object="nouveau === false ? true : false" noOptionsText="Aucune catégorie"
+                    noResultsText="Aucune catégorie" />
                 <div class="text-danger mt-1" v-if="hasError">
                     {{ errors.sous_categories[0] }}
                 </div>
@@ -23,7 +19,8 @@
 
 
             <div class="col-xl-12 mb-3">
-                <Input type="textarea" v-model="form.description" :error="errors.description">Description de la catégorie</Input>
+                <Input type="textarea" v-model="form.description" :error="errors.description">Description de la
+                catégorie</Input>
             </div>
             <div class="d-flex justify-content-end">
                 <SaveBtn @click.prevent="save" :loading="creating || updating">Enregistrer</SaveBtn>
@@ -46,7 +43,7 @@ interface Form {
     libelle: string | null,
     description: string | null,
     type: number,
-    sous_categories?: Array<any>|null
+    sous_categories?: Array<any> | null
 }
 
 export default defineComponent({
@@ -106,6 +103,7 @@ export default defineComponent({
 
         onMounted(async (): Promise<any> => {
             if (props.type === 3 && props.nouveau === false) await all(3, props.categorie.id);
+            await all(3);
         })
 
         return {

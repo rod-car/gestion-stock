@@ -2,33 +2,58 @@
 <template>
     <div class="row">
         <div class="col-xl-4 d-flex justify-content-start align-items-center flex-column">
-            <ProfileAvatar class="avatar" bgColor="#CCC" textColor="#000" size="l" :username="article.designation"></ProfileAvatar>
+            <ProfileAvatar class="avatar" bgColor="#CCC" textColor="#000" size="l" :username="article.designation">
+            </ProfileAvatar>
             <h1 class="text-muted text-center mb-3">{{ article.designation }}</h1>
             <div class="text-center">
-                <div v-for="categorie in article.categories" :key="categorie.id">
+                <div v-for="categorie in article.categories_reel" :key="categorie.id">
                     <span class="badge bg-primary me-2">{{ categorie.libelle }}</span>
-                    <span class="badge bg-danger me-Z">
-                        {{ article.sc[categorie.id].length === 0 ? "" : last(article.sc[categorie.id]) }}
-                    </span>
+                    <!-- <span class="badge bg-danger me-Z">
+                                            {{ article.sc[categorie.id].length === 0 ? "" : last(article.sc[categorie.id]) }}
+                                        </span> -->
+                </div>
+                <div v-for="sous_categorie in article.sous_categories" :key="sous_categorie.id">
+                    <span class="badge bg-danger me-2">{{ sous_categorie.libelle }}</span>
+                    <!-- <span class="badge bg-danger me-Z">
+                                                {{ article.sc[categorie.id].length === 0 ? "" : last(article.sc[categorie.id]) }}
+                                            </span> -->
                 </div>
             </div>
         </div>
         <div class="col-xl-8">
             <table class="table w-100">
                 <tr>
-                    <td><h5 class="text-muted mb-3">Référence</h5></td>
-                    <td><h5 class="text-muted">:</h5></td>
-                    <td><h5 class="text-muted">{{ article.reference }}</h5></td>
+                    <td>
+                        <h5 class="text-muted mb-3">Référence</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">:</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">{{ article.reference }}</h5>
+                    </td>
                 </tr>
                 <tr>
-                    <td><h5 class="text-muted mb-3">Unité</h5></td>
-                    <td><h5 class="text-muted">:</h5></td>
-                    <td><h5 class="text-muted">{{ article.unite }}</h5></td>
+                    <td>
+                        <h5 class="text-muted mb-3">Unité</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">:</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">{{ article.unite }}</h5>
+                    </td>
                 </tr>
                 <tr>
-                    <td><h5 class="text-muted mb-3">Stock d'alerte</h5></td>
-                    <td><h5 class="text-muted">:</h5></td>
-                    <td><h5 class="text-muted">{{ article.stock_alert ?? "Non définie" }}</h5></td>
+                    <td>
+                        <h5 class="text-muted mb-3">Stock d'alerte</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">:</h5>
+                    </td>
+                    <td>
+                        <h5 class="text-muted">{{ article.stock_alert ?? "Non définie" }}</h5>
+                    </td>
                 </tr>
             </table>
         </div>

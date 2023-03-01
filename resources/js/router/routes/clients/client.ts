@@ -12,10 +12,10 @@
  *  -   Modifier un catégorie des clients
  */
 
-import VoirClient from '../../../pages/Client/VoirClient.vue';
-import ListeClient from '../../../pages/Client/ListeClient.vue';
-import NouveauClient from '../../../pages/Client/NouveauClient.vue';
-import ModifierClient from '../../../pages/Client/ModifierClient.vue';
+import VoirClient from '../../../pages/client/VoirClient.vue';
+import ListeClient from '../../../pages/client/ListeClient.vue';
+import NouveauClient from '../../../pages/client/NouveauClient.vue';
+import ModifierClient from '../../../pages/client/ModifierClient.vue';
 import ListeCategorie from '../../../pages/client/categorie/ListeCategorie.vue';
 import NouveauCategorie from '../../../pages/client/categorie/NouveauCategorie.vue';
 import ModifierCategorie from '../../../pages/client/categorie/ModifierCategorie.vue';

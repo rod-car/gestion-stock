@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\Article\NouveauArticleRequest;
 use App\Http\Requests\Article\ModifierArticleRequest;
+use App\Models\Depot\DepotPrixArticle;
 
 class ArticleController extends Controller
 {
@@ -24,29 +25,36 @@ class ArticleController extends Controller
     {
         $queries = $request->query();
 
-
-        if ($queries !== [])
-        {
-            $article = $this->getDepotArticles(null, 'depot_articles.depot_id');
+        if ($queries !== []) {
+            $article = $this->getDepotArticles(isset($queries["depot"]) ? Depot::find($queries["depot"]) : null, 'depot_articles.depot_id', false);
             $exclued_articles = [];
-            foreach ($queries as $key => $value)
-            {
-                if($key != 'depot'){
+            foreach ($queries as $key => $value) {
+                if ($key != 'depot') {
                     $article->where($key, 'LIKE', "%$value%");
-                }else{
-                   foreach ($article->get() as $key => $val) {
+                } else {
+                    foreach ($article->get() as $key => $val) {
                         $art = Article::find($val->article_id);
-                        if($art->depotPrixArticle(Depot::find($value))->get()->isEmpty()) $exclued_articles[] = $val->article_id;
-                   }
+                        if (
+                            $art
+                                ->depotPrixArticle(Depot::find($value), null)
+                                ->get()
+                                ->isEmpty()
+
+                        ) {
+                            $exclued_articles[] = $val->article_id;
+                        }
+                    }
                 }
             }
+            // dd($article->get()[0]["article"]);
 
-            return $this->getResults($article->whereNotIn('article_id', $exclued_articles)->get());
+            return $this->getResults(
+                $article->whereNotIn('article_id', $exclued_articles)->get()
+            );
         }
 
-        return Article::all();
+        return Article::query()->where("disabled", 0)->mapAll();
     }
-
 
     /**
      * Generer le resultat de recherche a afficher dans les vues
@@ -58,16 +66,12 @@ class ArticleController extends Controller
     {
         $result = [];
 
-        foreach ($articles as $a)
-        {
-            if ($a->detailsPrix !== null)
-            {
-                foreach ($a->detailsPrix as $p)
-                {
-                    $quantite = $p->quantite ?? "Quantité restant";
+        foreach ($articles as $a) {
+            if ($a->detailsPrix !== null) {
+                foreach ($a->detailsPrix as $p) {
+                    $quantite = $p->quantite ?? 'Quantité restant';
 
-                    if ($quantite !== "0.00")
-                    {
+                    if ($quantite !== '0.00') {
                         $result[] = [
                             'id' => $a->article_id,
                             'value' => $p->id,
@@ -75,7 +79,13 @@ class ArticleController extends Controller
                             'designation' => $a->designation,
                             'quantite' => $p->quantite,
                             'pu' => $p->pu,
-                            'label' => $a->reference . " - " . $a->designation . " - " . $p->pu . " ($quantite)",
+                            'label' =>
+                                $a->reference .
+                                ' - ' .
+                                $a->designation .
+                                ' - ' .
+                                $p->pu .
+                                " ($quantite)",
                         ];
                     }
                 }
@@ -86,7 +96,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Enregistrer un nouveau article
+     * Enregistrer un nouvel article
      *
      * @param  \App\Http\Requests\Article\NouveauArticleRequest  $request
      * @return \Illuminate\Http\Response
@@ -94,8 +104,12 @@ class ArticleController extends Controller
     public function store(NouveauArticleRequest $request)
     {
         $data = $request->validated();
-        $categories = $data["categories"];
-        unset($data["categories"]);
+
+        $categories = $data['categories'];
+        foreach ($data['sous_categories'] as $key => $value) $categories[] = $value;
+
+        unset($data['categories']);
+        unset($data['sous_categories']);
 
         $article = Article::create($data);
 
@@ -115,13 +129,41 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $sousCategories = [];
+        $sousCategoriesId = [];
+
         foreach ($article->categories as $categorie) {
-            $sousCategories[$categorie->id] = $this->getSubCategories($categorie);
+            $sousCategories += $this->getSubCategories(
+                $categorie
+            );
+            $sousCategoriesId += $this->getSubCategories(
+                $categorie , true
+            );
+            $article->sc[$categorie->id] = $sousCategories;
         }
-        $article->sc = $sousCategories;
+
+
+        // exclure les sous-categorie de la liste des categorie
+        $categories = collect();
+        $SousCategorie = collect();
+        foreach ($article->categories as $key => $cat) {
+            # code...
+            $exist = false;
+            foreach ($sousCategoriesId as $key_s => $sous) {
+                # code...
+                if($cat->id == $sous->id){
+                    $exist = true;
+                    $SousCategorie->push($cat);
+                    $sousCategories[] = $cat->libelle;
+                }
+            }
+
+            if(!$exist) $categories->push($cat);
+        }
+        $article["categories_reel"] = $categories;
+        $article->sous_categories = $SousCategorie;
+
         return $article;
     }
-
 
     /**
      * Recuperer tous les sous catégories de la catégorie
@@ -129,17 +171,16 @@ class ArticleController extends Controller
      * @param Categorie $categorie
      * @return array
      */
-    public function getSubCategories(Categorie $categorie): array
+    public function getSubCategories(Categorie $categorie, $get = false): array
     {
         $return = [];
 
         foreach ($categorie->sousCategories as $sc) {
-            $return[] = $sc->libelle;
+            $return[] = $get ? $sc : $sc->libelle;
             $return = array_merge($return, $this->getSubCategories($sc));
         }
         return $return;
     }
-
 
     /**
      * Mettre a jour un article
@@ -151,23 +192,26 @@ class ArticleController extends Controller
     public function update(ModifierArticleRequest $request, Article $article)
     {
         $data = $request->validated();
-        $categories = $data["categories"];
 
-        unset($data["categories"]);
+        $categories = $data['categories'] ;
+        foreach ($data['sous_categories'] as $key => $value) $categories[] = $value;
+
+        unset($data['categories']);
+        unset($data['sous_categories']);
 
         $article->update($data);
 
         $categoriesActuel = $article->categories->pluck('id');
 
         foreach ($categoriesActuel as $id) {
-            if (!in_array($id, $categories)) $article->categories()->detach($id);
+            $article->categories()->detach($id);
         }
 
         foreach ($categories as $id) {
-            if (!$article->categories->contains($id)) $article->categories()->attach($id);
+            $article->categories()->attach($id);
         }
 
-        return response()->json(["success" => "Modifié avec succès"]);
+        return response()->json(['success' => 'Modifié avec succès']);
     }
 
     /**
@@ -178,11 +222,21 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article->categories()->detach();
-        $article->delete();
-        return response()->json(["success" => "Supprimé avec succès"]);
-    }
+        // verifier  d'abord si il n'y est pas utiliser par d'autre table
+        $bons = $article->bons;
+        $commande = $article->commandes;
+        $price = DepotPrixArticle::where("article", $article->id)->get();
+        $stock = DepotArticle::where("article_id", $article->id)->get();
 
+        if($bons->isEmpty() && $commande->isEmpty() && $price->isEmpty() && $stock->isEmpty()){
+            $article->categories()->detach();
+            $article->delete();
+        }else{
+            $article->disabled = true;
+            $article->update();
+        }
+        return response()->json(['success' => 'Supprimé avec succès']);
+    }
 
     /**
      * Permet de recuperer tous les articles dans un dépot
@@ -198,19 +252,37 @@ class ArticleController extends Controller
         $articleId = intval($request->article_id);
 
         $depotArticle = $this->getDepotArticles($depot);
-
-
         if ($articleId > 0) {
             $depotArticle = $depotArticle->get();
-            $depotArticle = $depotArticle->where('article_id', $articleId)->first(); // Si on ne veut qu'un seul article en particulier
+            $depotArticle = $depotArticle
+                ->where('article_id', $articleId)
+                ->first(); // Si on ne veut qu'un seul article en particulier
             return $depotArticle;
         }
+        if ($limit === 0) {
 
-        if ($limit === 0) return $depotArticle->get();
+            return $this->availableStock($depotArticle->get()->toArray());
+        }
 
-        return $depotArticle->take($limit)->get();
+        return $this->availableStock($depotArticle->take($limit)->get()->toArray());
+
     }
 
+    public function availableStock($articles){
+        $res  = [];
+        $articles = array_filter($articles, function ($art) {
+            $entree = $art["entree"] != null ? floatval($art["entree"]) : 0;
+            $sortie = $art["sortie"] != null ? floatval($art["sortie"]) : 0;
+
+            return ($entree - $sortie) > 0;
+        });
+
+        foreach($articles as $article){
+            $res[] = $article;
+        }
+
+        return $res;
+    }
 
     /**
      * Recupere tous les articles d'un dépot ou tous les dépots articles
@@ -218,7 +290,7 @@ class ArticleController extends Controller
      * @param Depot|null $depot Le depot concerné
      * @return Builder
      */
-    public function getDepotArticles(?Depot $depot = null, ?string $by = null)
+    public function getDepotArticles(?Depot $depot = null, ?string $by = null, $disabled = null)
     {
         // $depotArticle = DepotArticle::query()
         //     ->selectRaw("articles.id as article_id")
@@ -231,32 +303,41 @@ class ArticleController extends Controller
         //     ->selectRaw("SUM(CASE WHEN depot_articles.type = 0 THEN quantite END) as sortie")
         //     ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
 
-
         //     if ($depot !== null) $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);
         //     $depotArticle->groupBy(['articles.id']);
         //     if ($by !== null) $depotArticle->groupBy($by);
 
         // return $depotArticle;
 
-        return DepotArticle::getDepotArticles($depot, $by );
+        return DepotArticle::getDepotArticles($depot, $by, $disabled);
     }
 
     /**
      * Recupere la liste des aritcle dans un depôt avec les prix de vent s'il en existe
      */
 
-     public function articlePrixVente(Depot $depot = null){
+    public function articlePrixVente(Depot $depot = null)
+    {
+        $articles = DepotArticle::where('depot_id', $depot->id)
+            ->groupBy('article_id')
+            ->get('article_id');
 
-        $articles = DepotArticle::where("depot_id", $depot->id)->groupBy('article_id')->get("article_id");
-
-         $res =  $articles->map(function ($el, $key) use ($depot) {
-                    $article = Article::find($el->article_id);
-                    return [
-                        "article" => $article,
-                        "prix" => $article->depotPrixArticle($depot)->get(),
-                    ];
-                });
+        $res = $articles->map(function ($el, $key) use ($depot) {
+            $article = Article::find($el->article_id);
+            return [
+                'article' => $article,
+                'prix' => $article->depotPrixArticle($depot)->get(),
+            ];
+        });
 
         return $res;
+    }
+
+    /**
+     *  Recuperer la liste des dépôts avec le stock de l'article voulue respectivement
+     */
+
+     public function voirParDepot(Article $article){
+        return Depot::mapStockArticleParDepot($article);
      }
 }

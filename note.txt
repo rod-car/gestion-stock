@@ -26,7 +26,7 @@ SOLUTION N° 1:
     Incovénients:
         -   Redondances des données
         -   Complexité des requêtes
-        -   Complexité au niveau de récuperation des donées
+        -   Complexité au niveau de récuperation des données
 
     Recuperation des articles au niveau de vente:
         -   Afficher les articles avec differentes prix (Meme reference avec differentes prix).

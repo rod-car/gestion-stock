@@ -4,9 +4,15 @@
             <h5 class="text-muted">Fiche devis fournisseur</h5>
 
             <div class="d-flex justify-content-between">
-                <router-link to="/devis/fournisseur/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouveau</router-link>
-                <router-link v-if="!loading" :to="{ name: 'devis.fournisseur.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
-                <router-link to="/devis/fournisseur/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
+                <router-link title="Créer un bon de commande pour ce devis" v-if="parseInt(entity.status) === 1"
+                    :to="{ name: `commande.fournisseur.nouveau`, query: { devis: entity.id } }"
+                    class="btn btn-success btn-sm me-2 ">Passer une commande</router-link>
+                <router-link to="/devis/fournisseur/nouveau" class="btn btn-secondary me-2"><i
+                        class="fa fa-plus me-2"></i>Nouveau devis</router-link>
+                <router-link v-if="!loading" :to="{ name: 'devis.fournisseur.modifier', params: { id: entity.id } }"
+                    class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link to="/devis/fournisseur/liste" class="btn btn-primary"><i
+                        class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">
@@ -33,7 +39,7 @@ export default {
     },
 
     setup() {
-        onBeforeMount(async(): Promise<any> => {
+        onBeforeMount(async (): Promise<any> => {
             const id = parseInt(router.currentRoute.value.params.id.toString())
             await find(id)
         })

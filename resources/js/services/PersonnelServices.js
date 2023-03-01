@@ -120,7 +120,7 @@ export default function usePersonnelles() {
     /**
      * Permet de mettre a jour un personnel
      *
-     * @param   {array}  data  Nouvelle donées
+     * @param   {array}  data  Nouvelle données
      *
      * @return  {void}
      */

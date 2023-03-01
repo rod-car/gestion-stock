@@ -46,8 +46,8 @@ trait WithValidation
     protected function ValidationMessages(): array
     {
         return [
-            "numero.required" => "La réference du dévis est réquis",
-            "numero.unique" => "Cette dévis existe déja",
+            "numero.required" => "La réference du devis est réquis",
+            "numero.unique" => "Cette devis existe déja",
             "numero.min" => "La reference doit être au moins :min caractère",
             "numero.max" => "La reference ne doit pas depasser :max caractère",
 
@@ -55,8 +55,8 @@ trait WithValidation
             "date.date" => "La doite doit bien être une date",
             "date.date_format" => "Le format de la date est invalide",
 
-            "articles.required" => "Les articles du dévis est obligatoire",
-            "articles.array" => "Les articles du dévis doit être un tableau",
+            "articles.required" => "Les articles du devis est obligatoire",
+            "articles.array" => "Les articles du devis doit être un tableau",
 
             "articles.*.id.required" => "Veillez selectionner l'article",
             "articles.*.id.exists" => "Veillez selectionner l'article parmi la liste",

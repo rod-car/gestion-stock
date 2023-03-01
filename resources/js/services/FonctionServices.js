@@ -94,7 +94,7 @@ export default function useFonctions() {
     /**
      * Permet de mettre a jour une fonction
      *
-     * @param   {array}  data  Nouvelle donées
+     * @param   {array}  data  Nouvelle données
      *
      * @return  {void}
      */

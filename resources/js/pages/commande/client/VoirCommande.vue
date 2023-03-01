@@ -4,9 +4,19 @@
             <h5 class="text-muted">Fiche commande client</h5>
 
             <div class="d-flex justify-content-between">
-                <router-link to="/commande/client/nouveau" class="btn btn-secondary me-2"><i class="fa fa-plus me-2"></i>Nouvelle</router-link>
-                <router-link v-if="!loading && entity.id" :to="{ name: 'commande.client.modifier', params: { id: entity.id }}" class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
-                <router-link to="/commande/client/liste" class="btn btn-primary"><i class="fa fa-list me-2"></i>Liste</router-link>
+                <router-link
+                    :to="{ name: `${false ? 'bon-reception' : 'bon-livraison'}.nouveau`, query: { commande: entity.id } }"
+                    :title="false ? 'Créer un bon de reception a partir de ce bon de commande' : 'Créer un bon de livraison a partir de ce bon de commande'"
+                    v-if="!entity.recu" class="btn btn-success btn-sm me-2 text-white">
+                    Livrer les articles
+                </router-link>
+                <router-link to="/commande/client/nouveau" class="btn btn-secondary me-2"><i
+                        class="fa fa-plus me-2"></i>Nouvelle</router-link>
+                <router-link v-if="!loading && entity.id"
+                    :to="{ name: 'commande.client.modifier', params: { id: entity.id } }"
+                    class="btn btn-warning me-2"><i class="fa fa-pencil me-2"></i>Modifier</router-link>
+                <router-link to="/commande/client/liste" class="btn btn-primary"><i
+                        class="fa fa-list me-2"></i>Liste</router-link>
             </div>
         </div>
         <div class="card-body">

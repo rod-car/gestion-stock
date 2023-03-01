@@ -14,7 +14,7 @@ class AddDepotColumnsToCommandesTable extends Migration
     public function up()
     {
         Schema::table('commandes', function (Blueprint $table) {
-            $table->foreignId('depot')->nullable(true)->default(null)->comment("Le depot qui a fait la commande ou devis. Uniquement renseigné dans le cas d'un dévis ou commande client")->references('id')->on('depots');
+            $table->foreignId('depot')->nullable(true)->default(null)->comment("Le depot qui a fait la commande ou devis. Uniquement renseigné dans le cas d'un devis ou commande client")->references('id')->on('depots');
         });
     }
 

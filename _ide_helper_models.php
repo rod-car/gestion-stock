@@ -47,13 +47,13 @@ namespace App\Models\Article{
  *
  * @property int $id
  * @property string $numero
- * @property int $type Type de commande: 1 - Dévis, 2 - Commande proprement dit
+ * @property int $type Type de commande: 1 - devis, 2 - Commande proprement dit
  * @property string $date
- * @property int|null $validite Validité du dévis en nombre de jour
+ * @property int|null $validite Validité du devis en nombre de jour
  * @property int|null $fournisseur
  * @property int|null $client
  * @property Commande|null $devis Devis dans laquelle provient ce commande. N'est utile que pour les commandes
- * @property int $status Status du dévis: 1 - Valide
+ * @property int $status Status du devis: 1 - Valide
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $adresse_livraison Adresse de livraison des marchandises dans lecas d'une commande

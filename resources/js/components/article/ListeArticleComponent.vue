@@ -1,11 +1,7 @@
 <template>
-    <Table
-        name="article"
-        :data="articles"
-        :columns="{ reference: 'Réference', designation: 'Désignation', unite: 'Unité', stock_alert: 'Stock d\'alerte' }"
-        :actions="true"
-        @onDeleteItem="deleteItem"
-    />
+    <Table name="article" :data="articles"
+        :columns="{ reference: 'Réference', designation: 'Désignation', unite: 'Unité', quantity: 'Quantité' }"
+        :actions="true" @onDeleteItem="deleteItem" />
 
     <!--table class="table table-striped table-hover">
         <thead class="bg-secondary text-white">
@@ -71,7 +67,7 @@ export default defineComponent({
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
             const result = await VueSimpleAlert.fire({
                 title: 'Supprimer cet article?',
-                text: "Cette action ne peut pas être annulé",
+                text: "Cette action ne peut pas être annulée",
                 type: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

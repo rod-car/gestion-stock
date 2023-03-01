@@ -3,10 +3,14 @@
         <div class="row">
 
             <div class="col-xl-6 mb-3">
-                <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+                <Input v-model="form.nom" :error="errors.nom" :required="true">Nom {{
+                    form.point_vente === true ? "du point de vente" : "de l'entrepot"
+                }}</Input>
             </div>
             <div class="col-xl-6 mb-3">
-                <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{ form.point_vente === true ? "du point de vente" : "de l'entrepot" }}</Input>
+                <Input v-model="form.localisation" :error="errors.localisation" :required="true">Localisation {{
+                    form.point_vente === true ? "du point de vente" : "de l'entrepot"
+                }}</Input>
             </div>
             <div class="col-xl-12 mb-3">
                 <Input v-model="form.contact" :error="errors.contact">Contact</Input>
@@ -84,7 +88,7 @@ export default defineComponent({
         }
 
         onBeforeMount(() => {
-            if (props.nouveau === false && Object.keys(props.depot).length > 0 ) {
+            if (props.nouveau === false && Object.keys(props.depot).length > 0) {
                 form.value = {
                     nom: props.depot.nom,
                     localisation: props.depot.localisation,

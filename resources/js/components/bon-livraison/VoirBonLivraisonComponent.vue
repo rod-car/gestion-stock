@@ -1,10 +1,9 @@
 <template>
     <div class="row mb-5">
         <div class="col-xl-6 d-flex align-items-start flex-column justify-content-center">
-            <h5 class="mb-3">Mon entreprise</h5>
-            <h6>Tanambao 5</h6>
-            <h6>Toamasina I</h6>
-            <h6>Telephone: +261 34 123 45</h6>
+            <h5 class="mb-3">{{ infoEntreprise.generale.nom }}</h5>
+
+            <h6>Telephone: {{ infoEntreprise.generale.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-center justify-content-end">
             <h4>BON DE LIVRAISON</h4>
@@ -18,7 +17,7 @@
             <h6>Téléphone: {{ bonLivraison.get_commande.cl.contact }}</h6>
         </div>
         <div class="col-xl-6 d-flex align-items-end flex-column justify-content-center">
-            <h6>Date: {{ formatDate(bonLivraison.date, false, long = false) }}</h6>
+            <h6>Date: {{ bonLivraison.date }}</h6>
             <h6>Référence: {{ bonLivraison.numero }}</h6>
             <h6>Adresse de livraison: {{ bonLivraison.adresse_livraison }}</h6>
         </div>
@@ -54,6 +53,7 @@
 </template>
 
 <script lang="ts">
+import store from '../../store';
 
 import { formatDate, format, modeLivraison, chargeLivraison } from '../../functions/functions';
 
@@ -66,8 +66,10 @@ export default {
     },
 
     setup() {
+        const infoEntreprise = store.state.infoEntreprise
+
         return {
-            formatDate, format, modeLivraison, chargeLivraison,
+            formatDate, format, modeLivraison, chargeLivraison, infoEntreprise
         }
     },
 

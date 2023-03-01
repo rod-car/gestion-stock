@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Transfert;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\StockArticle;
 use App\Traits\Transfert\WithValidation;
+use Illuminate\Foundation\Http\FormRequest;
 
 
 class NouveauTransfertRequest extends FormRequest
@@ -28,7 +29,9 @@ class NouveauTransfertRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->validationRules();
+        return $this->validationRules() + [
+            "articles.*.quantite.*" => ["sometimes", "numeric", new StockArticle($this->depotOrigin, $this->articles)],
+        ];
     }
 
     /**
@@ -38,37 +41,7 @@ class NouveauTransfertRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if ($this->numero === null) {
-            $numeroTransfert = numeroTransfert();
-            $this->merge([
-                'numero' => $numeroTransfert,
-            ]);
-        }
-
-        if ($this->date !== null) {
-            $date = Carbon::parse($this->date)->setTimezone('EAT');
-            $this->merge([
-                'date' => $date->toDateString(),
-            ]);
-        }
-
-
-        if (is_string($this->articles)) {
-            $articles = json_decode($this->articles, true);
-
-            foreach ($articles as $key => $article) {
-                foreach ($article['quantite'] as $key_quantite => $quantite) {
-                    $articles[$key]['quantite'][$key_quantite] = floatval($quantite);
-                    # code...
-                }
-            }
-
-
-            $this->merge([
-                'articles' => $articles,
-            ]);
-
-        }
+        $this->beforeValidation();
 
     }
 

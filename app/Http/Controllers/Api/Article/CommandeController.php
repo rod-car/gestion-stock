@@ -15,6 +15,8 @@ use App\Http\Requests\Commande\ModifierCommandeRequest;
 use App\Models\Article\DepotArticle;
 use App\Models\Depot\Depot;
 
+use function PHPUnit\Framework\isEmpty;
+
 class CommandeController extends Controller
 {
     /**
@@ -24,8 +26,8 @@ class CommandeController extends Controller
     */
     public function index(Request $request)
     {
-        $type = intval($request->type); // Detecter si c'est un dévis ou une commande
-        $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
+        $type = intval($request->type); // Detecter si c'est un devis ou une commande
+        $appro = $request->boolean('appro'); // Determine si un devis est un approvisionnement ou non (Si non: Vente)
 
         $commandes = Commande::where('type', $type);
 
@@ -256,7 +258,7 @@ class CommandeController extends Controller
     */
     public function getKey(Request $request)
     {
-        $appro = $request->boolean('appro'); // Determine si un dévis est un approvisionnement ou non (Si non: Vente)
+        $appro = $request->boolean('appro'); // Determine si un devis est un approvisionnement ou non (Si non: Vente)
         switch (intval($request->type)) {
             case 1:
                 return response()->json(["key" => reference(1, $appro, "D")]);
@@ -298,5 +300,25 @@ class CommandeController extends Controller
             $commande->update();
         }
         return true;
+    }
+
+    public function fromOld($type = 1, $appro = 1, $search = ""){
+        $res = collect();
+
+        if(trim($search) != "") {
+            $res = Commande::where("type", $type)->where("numero", "like", "%" . $search . "%");
+
+            $res->when($appro == 1, function($query) {
+                return $query->where("fournisseur", "!=", null);
+            });
+
+            $res->when($appro == 0, function ($query) {
+                return $query->where("client", "!=", null);
+            });
+
+            $res = $res->get();
+        }
+
+        return $res ;
     }
 }

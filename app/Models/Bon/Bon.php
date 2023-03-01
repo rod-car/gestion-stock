@@ -25,6 +25,16 @@ class Bon extends Model
 
 
     /**
+     * Caster la valeur provenant de la base de données
+     *
+     * @var array
+     */
+    protected $casts = [
+        'date'  => 'date:d-m-Y',
+    ];
+
+
+    /**
      * Relations a charger dès l'execution de la requête
      *
      * @var array

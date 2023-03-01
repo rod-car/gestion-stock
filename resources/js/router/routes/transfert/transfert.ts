@@ -4,7 +4,7 @@
  * Tous les routes present dans ce fichier sont privée, L'utilisateur doit être connecté
  *
  * Liste des routes:
- *  -   Creer un nouveau article
+ *  -   Creer un nouvel article
  *  -   Liste de tous les articles
  *  -   Voir une article en particuluer
  *  -   Modifier un article

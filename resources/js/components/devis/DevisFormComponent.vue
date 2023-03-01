@@ -1,11 +1,15 @@
 <template>
-    <form action="" method="post" @submit.prevent="save" enctype="multipart/form-data">
+    <SearchFromOldDevisComponent :appro="appro ? 1 : 0" v-if="nouveau" @articles="(id) => genereateArticleFromOld(id)">
+    </SearchFromOldDevisComponent>
+
+    <form action="" method="post" @submit.prevent="confirmSave" enctype="multipart/form-data">
         <div class="row mb-5">
             <div class="col-xl-12">
-                <h6 class="text-uppercase text-primary mb-4">Information du dévis</h6>
+                <h6 class="text-uppercase text-primary mb-4">Information du devis</h6>
                 <div class="row">
                     <div class="col-xl-6 mb-3" :class="Devis.loading.value === true ? 'd-flex align-items-end' : ''">
-                        <Input v-if="Devis.loading.value === false" v-model="form.numero" :error="Devis.errors.value.numero" :disabled="numberAuto">Numéro du dévis</Input>
+                        <Input v-if="Devis.loading.value === false" v-model="form.numero"
+                            :error="Devis.errors.value.numero" :disabled="numberAuto">Numéro du devis</Input>
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
                     </div>
 
@@ -19,10 +23,10 @@
                             <a v-else href="#" @click.prevent="creerFrs" class="text-primary">Créer nouveau</a>)
                         </label>
 
-                        <MultiSelect v-if="!Fournisseur.loading.value" v-bind:class="hasError ? 'border-danger' : ''" label="nom" valueProp="id"
-                            v-model="form.fournisseur" :options="Fournisseur.entities.value" :closeOnSelect="true"
-                            :clearOnSelect="false" :searchable="true" noOptionsText="Aucun fournisseur"
-                            noResultsText="Aucun fournisseur" @close="check" />
+                        <MultiSelect v-if="!Fournisseur.loading.value" v-bind:class="hasError ? 'border-danger' : ''"
+                            label="nom" valueProp="id" v-model="form.fournisseur" :options="Fournisseur.entities.value"
+                            :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
+                            noOptionsText="Aucun fournisseur" noResultsText="Aucun fournisseur" @close="check" />
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
 
                         <div class="text-danger mt-1" v-if="hasError">
@@ -40,13 +44,14 @@
                     <div v-if="form.appro === false" class="col-xl-6 mb-3">
                         <label for="client" class="form-label">
                             Client <span class="text-danger">(*)</span>
-                            (<a v-if="creationClient" href="#" @click.prevent="creerClient" class="text-danger">Fermer</a>
+                            (<a v-if="creationClient" href="#" @click.prevent="creerClient"
+                                class="text-danger">Fermer</a>
                             <a v-else href="#" @click.prevent="creerClient" class="text-primary">Créer nouveau</a>)
                         </label>
 
-                        <MultiSelect v-if="!Client.loading.value" v-bind:class="hasError ? 'border-danger' : ''" label="nom" valueProp="id"
-                            v-model="form.client" :options="Client.entities.value" :closeOnSelect="true"
-                            :clearOnSelect="false" :searchable="true" noOptionsText="Aucun client"
+                        <MultiSelect v-if="!Client.loading.value" v-bind:class="hasError ? 'border-danger' : ''"
+                            label="nom" valueProp="id" v-model="form.client" :options="Client.entities.value"
+                            :closeOnSelect="true" :clearOnSelect="false" :searchable="true" noOptionsText="Aucun client"
                             noResultsText="Aucun client" @close="check" />
 
                         <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
@@ -64,10 +69,9 @@
 
                     <div class="col-xl-6 mb-3">
                         <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
-                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider"
-                            :enableTimePicker="false"
+                        <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" :enableTimePicker="false"
                             cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
-                            @update:modelValue="checkDate" utc  />
+                            @update:modelValue="checkDate" utc />
 
                         <div class="text-danger mt-1" v-if="dateState === false">
                             {{ Devis.errors.value.date[0] }}
@@ -75,7 +79,8 @@
                     </div>
 
                     <div class="col-xl-6 mb-3">
-                        <Input type="number" v-model="form.validite" :error="Devis.errors.value.validite" required>Validité du dévis (en Jour)</Input>
+                        <Input type="number" v-model="form.validite" :error="Devis.errors.value.validite"
+                            required>Validité du devis (en Jour)</Input>
                     </div>
 
                     <!-- Mentionner ici le point de vente ou entrepot qui fait la vente. Uniquement pour la vente -->
@@ -83,25 +88,10 @@
                     <div v-if="form.appro === false" class="col-xl-12 mb-3">
                         <label for="depot" class="form-label">Point de vente ou Depôt</label>
 
-                        <MultiSelect
-                            v-model="form.depot"
-                            placeholder="Rechercher un depot"
-                            noResultsText="Aucun depot trouvé"
-                            noOptionsText="Aucun depot trouvé"
-                            label="nom"
-                            valueProp="id"
-                            :closeOnSelect="true"
-                            :filter-results="true"
-                            :multiple="false"
-                            :min-chars="1"
-                            :resolve-on-load="resolveOnLoad"
-                            :delay="500"
-                            :searchable="true"
-                            :object="false"
-                            :options="async function (query: string) {
-                                return await fetchDepots(query)
-                            }"
-                        />
+                        <MultiSelect v-model="form.depot" placeholder="Selectionnez" noResultsText="Aucun depot trouvé"
+                            noOptionsText="Aucun depot trouvé" label="nom" valueProp="id" :closeOnSelect="true"
+                            :filter-results="true" :multiple="false" :min-chars="1" :resolve-on-load="resolveOnLoad"
+                            :delay="500" :searchable="false" :object="false" :options="Depot.entities.value" />
 
                         <div class="text-danger mt-1" v-if="hasError">
                             {{ Devis.errors.value.depot[0] }}
@@ -111,7 +101,9 @@
                     <!-- ------------------------------------------- -->
 
                     <div class="col-xl-12">
-                        <FileInput :multiple="false" @fileChanged="handleFileChange" :default="(devis.file_path !== null && devis.file_path !== undefined)  ? 'http://localhost:8000/storage/' + devis.file_path : undefined">Pièce jointe si necessaire</FileInput>
+                        <FileInput :multiple="false" @fileChanged="handleFileChange"
+                            :default="(devis.file_path !== null && devis.file_path !== undefined) ? 'http://localhost:8000/storage/' + devis.file_path : undefined">
+                            Pièce jointe si necessaire</FileInput>
                     </div>
                 </div>
             </div>
@@ -121,8 +113,10 @@
             <div class="col-xl-12">
                 <div class="d-flex justify-content-between mb-4">
                     <h6 class="text-uppercase text-primary">Information de l'article</h6>
-                    <button v-if="creationArticle" @click="creerArticle" type="button" class="btn btn-danger"><i class="fa fa-close me-2"></i>Fermer</button>
-                    <button v-else-if="appro === true" @click="creerArticle" type="button" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle</button>
+                    <button v-if="creationArticle" @click="creerArticle" type="button" class="btn btn-danger"><i
+                            class="fa fa-close me-2"></i>Fermer</button>
+                    <button v-else-if="appro === true" @click="creerArticle" type="button" class="btn btn-primary"><i
+                            class="fa fa-plus me-2"></i>Créer un article</button>
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
@@ -135,7 +129,7 @@
                                 <tr>
                                     <th class="w-25">Nom de l'article</th>
                                     <th>Quantité</th>
-                                    <th>Prix unitaire</th>
+                                    <th>Prix unitaire HT</th>
                                     <th v-if="assujeti || appro === true">TVA</th>
                                     <th>Montant HT</th>
                                     <th>Montant TTC</th>
@@ -145,65 +139,56 @@
                             <tbody>
                                 <tr v-for="i in nombreArticle" :key="i">
                                     <td>
-                                        <MultiSelect v-if="appro === true"
-                                            label="designation"
-                                            valueProp="id"
-                                            v-model="form.articles[i - 1].id"
-                                            :options="Article.entities.value"
-                                            :closeOnSelect="true"
-                                            :clearOnSelect="false"
-                                            :searchable="true"
-                                            noOptionsText="Aucun article"
-                                            noResultsText="Aucun article"
+                                        <MultiSelect v-if="appro === true" label="designation" valueProp="id"
+                                            v-model="form.articles[i - 1].id" :options="Article.entities.value"
+                                            :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
+                                            noOptionsText="Aucun article" noResultsText="Aucun article"
                                             @close="checkArticle" />
 
-                                        <MultiSelect
-                                            v-else
-                                            v-model="form.articles[i - 1].object"
-                                            placeholder="Rechercher un article"
-                                            noResultsText="Aucun article trouvé"
-                                            noOptionsText="Aucun article trouvé"
-                                            :closeOnSelect="true"
-                                            :filter-results="true"
-                                            :multiple="false"
-                                            :min-chars="1"
-                                            :resolve-on-load="resolveOnLoad"
-                                            :delay="500"
-                                            :searchable="true"
-                                            :object="true"
-                                            :options="async function (query: string) {
+                                        <MultiSelect v-else v-model="form.articles[i - 1].object"
+                                            placeholder="Rechercher un article" noResultsText="Aucun article trouvé"
+                                            noOptionsText="Aucun article trouvé" :closeOnSelect="true"
+                                            :filter-results="true" :multiple="false" :min-chars="1"
+                                            :resolve-on-load="resolveOnLoad" :delay="500" :searchable="true"
+                                            :object="true" :options="async function (query: string) {
                                                 return await fetchArticles(query)
-                                            }"
-                                            @select="handleSelect(i-1)"
-                                        />
+                                            }" @select="handleSelect(i - 1)" />
 
-                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.id`]">
+                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.id`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.id`][0] }}
                                         </span>
                                     </td>
                                     <td>
-                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].quantite" class="form-control">
-                                        <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.quantite`]">
+                                        <input type="number" @input="calculerMontant(i - 1)"
+                                            v-model="form.articles[i - 1].quantite" class="form-control">
+                                        <span class="text-danger"
+                                            v-if="Devis.errors.value[`articles.${i - 1}.quantite`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.quantite`][0] }}
                                         </span>
                                     </td>
                                     <td>
-                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].pu" name="pu" id="pu" class="form-control">
+                                        <input type="number" @input="calculerMontant(i - 1)"
+                                            v-model="form.articles[i - 1].pu" name="pu" id="pu" class="form-control">
                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.pu`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.pu`][0] }}
                                         </span>
                                     </td>
                                     <td v-if="assujeti || appro === true">
-                                        <input type="number" @input="calculerMontant(i - 1)" v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
+                                        <input type="number" @input="calculerMontant(i - 1)"
+                                            v-model="form.articles[i - 1].tva" name="tva" id="tva" class="form-control">
                                         <span class="text-danger" v-if="Devis.errors.value[`articles.${i - 1}.tva`]">
                                             {{ Devis.errors.value[`articles.${i - 1}.tva`][0] }}
                                         </span>
                                     </td>
-                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ht" name="montant_ht" id="montant_ht" class="form-control"></td>
-                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ttc" name="montant_ttc" id="montant_ttc" class="form-control"></td>
+                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ht"
+                                            name="montant_ht" id="montant_ht" class="form-control"></td>
+                                    <td><input type="number" disabled v-model="form.articles[i - 1].montant_ttc"
+                                            name="montant_ttc" id="montant_ttc" class="form-control"></td>
                                     <td>
-                                        <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)" class="btn btn-danger"><i class="fa fa-minus"></i></button>
-                                        <button type="button" v-else @click.prevent="addItem()" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                        <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)"
+                                            class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                                        <button type="button" v-else @click.prevent="addItem()"
+                                            class="btn btn-success"><i class="fa fa-plus"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -216,8 +201,10 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="d-flex justify-content-end">
-                    <SaveBtn v-if="nouveau" :loading="Devis.creating.value" :disabled="!appro && !form.depot">Enregistrer</SaveBtn>
-                    <SaveBtn v-else :loading="Devis.updating.value" :disabled="!appro && !form.depot">Mettre a jour</SaveBtn>
+                    <SaveBtn v-if="nouveau" :loading="Devis.creating.value" :disabled="!appro && !form.depot">
+                        Enregistrer</SaveBtn>
+                    <SaveBtn v-else :loading="Devis.updating.value" :disabled="!appro && !form.depot">Mettre a jour
+                    </SaveBtn>
                 </div>
             </div>
         </div>
@@ -240,6 +227,11 @@ import NouveauClientFormComponent from '../client/ClientFormComponent.vue';
 import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref } from 'vue';
 import NouveauFournisseurComponent from '../fournisseur/FournisseurFormComponent.vue';
 import store from '../../store';
+import { useRouter, useRoute } from 'vue-router'
+import SimpleAlert from 'vue3-simple-alert';
+import SearchFromOldDevisComponent from "./SearchFromOldDevisComponent.vue"
+const { find, entity, loading } = useCRUD('/commandes')
+
 
 const Depot = useCRUD('/depot'); // Recuperer le service de CRUD de depots
 const Client = useCRUD('/client'); // Recuperer le service de CRUD de client
@@ -248,12 +240,12 @@ const Devis = useCRUD('/commandes'); // Contient tous les fonctions CRUD pour le
 const Fournisseur = useCRUD('/fournisseur'); // Recuperer le service de CRUD de fournisseur
 
 type Form = {
-    numero: string|null,
+    numero: string | null,
     type: number,
-    date: Date|null,
+    date: Date | null,
     validite: number,
-    fournisseur: number|null,
-    client: number|null,
+    fournisseur: number | null,
+    client: number | null,
     appro: boolean,
     articles: Array<any>,
     file?: FileList | null,
@@ -263,7 +255,7 @@ type Form = {
 export default defineComponent({
     name: "DevisFormComponent",
     components: {
-        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent, FileInput,
+        Input, SaveBtn, Datepicker, MultiSelect, Skeletor, ArticleFormComponent, NouveauFournisseurComponent, NouveauClientFormComponent, FileInput, SearchFromOldDevisComponent
     },
 
     props: {
@@ -299,6 +291,8 @@ export default defineComponent({
     },
 
     setup(props) {
+        const router = useRouter()
+
         const form = ref({
             numero: null,
             type: 1,
@@ -323,7 +317,7 @@ export default defineComponent({
          *
          * @return  {Promise}
          */
-        const fetchArticles = async (query: string|null): Promise<any> => {
+        const fetchArticles = async (query: string | null): Promise<any> => {
             if (query === null) query = ""
             return await Article.findBy('designation', query, 'depot', form.value.depot)
         }
@@ -336,7 +330,8 @@ export default defineComponent({
          *
          * @return  {Promise}
          */
-        const fetchDepots = async (query: string|null): Promise<any> => {
+        const fetchDepots = async (query: string | null): Promise<any> => {
+
             if (query === null) query = "";
             return await Depot.findBy('nom', query)
         }
@@ -420,6 +415,15 @@ export default defineComponent({
             creationClient.value = !creationClient.value;
         }
 
+        const confirmSave = async (): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous enregister ce devis ?", "Enregistrement", "question").then(() => {
+                save()
+            }).catch((error: undefined) => {
+                if (error !== undefined) {
+                    Flash('error', "Message d'erreur", "Impossible d'enregister ce devis")
+                }
+            });
+        }
 
         /**
          * Permet d'enregistrer le devis
@@ -457,7 +461,7 @@ export default defineComponent({
             } else if (props.devis) {
                 await Devis.update(props.devis.id, formData)
             }
-
+            if (Devis.entity.value.id != undefined) router.push({ name: props.appro ? 'devis.fournisseur.voir' : 'devis.client.voir', params: { id: Devis.entity.value.id } })
             window.scrollTo({ top: 0, behavior: 'smooth' })
             Devis.success.value = null
         }
@@ -553,9 +557,50 @@ export default defineComponent({
          * @return  {void}
          */
         const generateArticleArrayFromArticles = (articles: any[]): void => {
-            articles.forEach((article: any) => addItem(false, article))
+            articles.forEach((article: any) => {
+                addItem(false, article)
+            })
         }
 
+        /**
+         * Fonction pour generer un tableau d'article à partir des articles en provenance d'un ancien devis
+         *
+         *
+         */
+
+        const genereateArticleFromOld = async (id) => {
+            await find(id)
+
+            entity.value.id = undefined
+
+            if (props.appro == false) {
+                form.value.depot = entity.value.depot
+            }
+            nombreArticle.value = 0
+            form.value.articles = []
+            addItem()
+            entity.value.articles.forEach((article, index) => {
+                if (index < (entity.value.articles.length - 1)) addItem()
+                form.value.articles[index].id = article.id
+                form.value.articles[index].quantite = article.pivot.quantite
+                form.value.articles[index].pu = article.pivot.pu
+                form.value.articles[index].tva = article.pivot.tva
+
+                if (props.appro == false) form.value.articles[index].object = {
+                    id: article.id,
+                    value: article.id,
+                    reference: article.reference,
+                    designation: article.designation,
+                    quantite: article.pivot.quantite,
+                    pu: article.pivot.pu,
+                    label: `${article.reference} - ${article.designation} - ${article.pivot.pu}`
+                }
+
+                calculerMontant(index)
+
+            })
+
+        }
 
         /**
          * Generer un tableau d'articles (Squelette d'articles)
@@ -609,6 +654,8 @@ export default defineComponent({
                     object: null,
                 })
             } else {
+
+
                 form.value.articles.push({
                     id: article.id,
                     quantite: article.pivot.quantite,
@@ -617,7 +664,7 @@ export default defineComponent({
                     montant_ht: montantHT(article),
                     montant_ttc: montantTTC(article),
                     ...(props.appro === false ? {
-                            object: {
+                        object: {
                             id: article.id,
                             value: article.id,
                             reference: article.reference,
@@ -628,6 +675,8 @@ export default defineComponent({
                         },
                     } : {})
                 })
+
+                console.log(form.value.articles, "io izy vita")
             }
 
             if (increment === true) nombreArticle.value++
@@ -650,7 +699,7 @@ export default defineComponent({
             if (tva < 0) form.value.articles[index].tva = Math.abs(tva)
 
 
-            if (assujeti.value === false) tva = 0;
+            if (assujeti.value === false && props.appro === false) tva = 0;
 
             let montant_ht = Math.round((Math.abs(quantite) * Math.abs(pu)) * 100) / 100
             let montant_ttc = Math.round((montant_ht + (montant_ht * Math.abs(tva) / 100)) * 100) / 100
@@ -662,7 +711,7 @@ export default defineComponent({
 
 
         /**
-         * Recuperer la nouvelle numéro du dévis et le mettre dans la formulaire
+         * Recuperer la nouvelle numéro du devis et le mettre dans la formulaire
          *
          * @return  {Promise}
          */
@@ -689,7 +738,7 @@ export default defineComponent({
          *
          * @return  {Boolean|null}
          */
-        const dateState: Ref<boolean|null> = computed((): boolean|null => {
+        const dateState: Ref<boolean | null> = computed((): boolean | null => {
             if (Devis.errors.value.date && Devis.errors.value.date.length > 0) return false
             return null
         })
@@ -710,6 +759,7 @@ export default defineComponent({
             Article.all();
             Fournisseur.all();
             Client.all();
+            Depot.all(3)
             if (props.nouveau === true) setDevisKey();
 
             loaded.value = false // Rendre le depot non resolvable on load
@@ -767,9 +817,10 @@ export default defineComponent({
         })
 
         return {
-            Devis, Fournisseur, Client, Article, creationArticle, creationFrs, form, nombreArticle, creationClient, resolveOnLoad, hasError, dateState, store, assujeti,
+            nouveau: props.nouveau,
+            Devis, Fournisseur, Client, Article, creationArticle, creationFrs, form, nombreArticle, creationClient, resolveOnLoad, hasError, dateState, store, assujeti, Depot,
             Flash, creerArticle, articleCree, frsCree, creerFrs, checkArticle, setDevisKey, calculerMontant, addItem, removeItem, generateArticleArray,
-            generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, handleFileChange, fetchArticles, handleSelect, fetchDepots,
+            generateArticleArrayFromArticles, checkDate, check, save, clientCree, creerClient, handleFileChange, fetchArticles, handleSelect, fetchDepots, confirmSave, genereateArticleFromOld
         }
     },
 

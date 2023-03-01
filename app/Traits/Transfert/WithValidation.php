@@ -2,7 +2,7 @@
 
 namespace App\Traits\Transfert;
 
-use App\Rules\StockArticle;
+use Carbon\Carbon;
 
 trait WithValidation{
 
@@ -14,7 +14,6 @@ trait WithValidation{
             'articles' => 'required|array|min:1',
             "articles.*.id" => ["required", "exists:articles,id"],
             "articles.*.quantite" => ["required", "array", "min:1"],
-            "articles.*.quantite.*" => ["sometimes", "numeric", new StockArticle($this->depotOrigin, $this->articles)],
         ];
     }
 
@@ -43,5 +42,39 @@ trait WithValidation{
             "articles.*.quantite.x.min" => "La quantité unitaire doit être au moins :min unité",
             "articles.*.quantite" => "La quantité unitaire ne doit pas depasser :max unité",
         ];
+    }
+
+    protected function beforeValidation(){
+        if ($this->numero === null) {
+            $numeroTransfert = numeroTransfert();
+            $this->merge([
+                'numero' => $numeroTransfert,
+            ]);
+        }
+
+
+        if ($this->date !== null) {
+            $date = Carbon::parse($this->date)->setTimezone('EAT');
+            $this->merge([
+                'date' => $date->toDateString(),
+            ]);
+        }
+
+
+        if (is_string($this->articles)) {
+            $articles = json_decode($this->articles, true);
+
+            foreach ($articles as $key => $article) {
+                foreach ($article['quantite'] as $key_quantite => $quantite) {
+                    $articles[$key]['quantite'][$key_quantite] = floatval($quantite);
+                    # code...
+                }
+            }
+
+
+            $this->merge([
+                'articles' => $articles,
+            ]);
+        }
     }
 }

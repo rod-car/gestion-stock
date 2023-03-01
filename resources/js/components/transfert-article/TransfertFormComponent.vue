@@ -1,78 +1,81 @@
 <template>
-<div class="row mb-5">
-    <div class="col-xl-12">
-        <h6 class="text-uppercase text-primary mb-4">Information du transfert d'article</h6>
-        <div class="row">
-            <div class="col-xl-6 mb-3" :class="Transfert.loading.value === true ? 'd-flex align-items-end' : ''">
-                <Input v-if="Transfert.loading.value === false" v-model="form.numero" :error="Transfert.errors.value.numero"
-                    disabled>Numéro de bon de reception</Input>
-                <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
-            </div>
-            <div class="col-xl-6 mb-3">
-                <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
-                <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" :enableTimePicker="false" cancelText="Annuler"
-                    placeholder="Selectionner la date" arrowNavigation @update:modelValue="checkDate" utc />
+    <div class="row mb-5">
+        <div class="col-xl-12">
+            <h6 class="text-uppercase text-primary mb-4">Information du transfert d'article</h6>
+            <div class="row">
+                <div class="col-xl-6 mb-3" :class="Transfert.loading.value === true ? 'd-flex align-items-end' : ''">
+                    <Input v-if="Transfert.loading.value === false" v-model="form.numero"
+                        :error="Transfert.errors.value.numero" disabled>Numéro de bon de reception</Input>
+                    <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
+                </div>
+                <div class="col-xl-6 mb-3">
+                    <label for="date" class="form-label">Date <span class="text-danger">(*)</span></label>
+                    <Datepicker locale="fr-MG" v-model="form.date" selectText="Valider" :enableTimePicker="false"
+                        cancelText="Annuler" placeholder="Selectionner la date" arrowNavigation
+                        @update:modelValue="checkDate" utc />
 
-                <div class="text-danger mt-1" v-if="dateState === false">
-                    {{ Transfert.errors.value.date[0] }}
+                    <div class="text-danger mt-1" v-if="dateState === false">
+                        {{ Transfert.errors.value.date[0] }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <label for="depotOrigin" class="form-label">Entrepot ou point de vente d'origine</label>
-                <MultiSelect v-if="!DepotOrigin.loading.value" :class="Transfert.errors.value.depotOrigin != undefined ? 'border-danger' : ''"
-                    :object="false" :options="DepotOrigin.entities.value" :searchable="true" :multiple="false"
-                    v-model="form.depotOrigin" noOptionsText="Aucune donées" noResultsText="Aucune donées" label="nom" valueProp="id"
-                    @select="check" @close="check" />
-                <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
-                <div class="text-danger mt-1" v-if="Transfert.errors.value.depotOrigin != undefined">
-                    {{ Transfert.errors.value.depotOrigin[0] }}
-                </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <label for="depotOrigin" class="form-label">Entrepot ou point de vente d'origine</label>
+                    <MultiSelect v-if="!DepotOrigin.loading.value"
+                        :class="Transfert.errors.value.depotOrigin != undefined ? 'border-danger' : ''" :object="false"
+                        :options="DepotOrigin.entities.value" :searchable="true" :multiple="false"
+                        v-model="form.depotOrigin" noOptionsText="Aucune données" noResultsText="Aucune données"
+                        label="nom" valueProp="id" @select="check" @close="check" />
+                    <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
+                    <div class="text-danger mt-1" v-if="Transfert.errors.value.depotOrigin != undefined">
+                        {{ Transfert.errors.value.depotOrigin[0] }}
+                    </div>
 
-            </div>
-            <div class="col-xl-6">
-                <label for="depotDestiny" class="form-label">Entrepot ou point de vente de destination</label>
-                <MultiSelect v-if="!DepotDestiny.loading.value" :class="Transfert.errors.value.depotDestiny != undefined ? 'border-danger' : ''" :object="false"
-                    :options="DepotDestiny.entities.value" :searchable="true" :multiple="false" v-model="form.depotDestiny"
-                    noOptionsText="Aucune donées" noResultsText="Aucune donées" label="nom" valueProp="id" @close="check" />
-                <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
-                <div class="text-danger mt-1" v-if="Transfert.errors.value.depotDestiny != undefined">
-                    {{ Transfert.errors.value.depotDestiny[0] }}
+                </div>
+                <div class="col-xl-6">
+                    <label for="depotDestiny" class="form-label">Entrepot ou point de vente de destination</label>
+                    <MultiSelect v-if="!DepotDestiny.loading.value"
+                        :class="Transfert.errors.value.depotDestiny != undefined ? 'border-danger' : ''" :object="false"
+                        :options="DepotDestiny.entities.value" :searchable="true" :multiple="false"
+                        v-model="form.depotDestiny" noOptionsText="Aucune données" noResultsText="Aucune données"
+                        label="nom" valueProp="id" @close="check" />
+                    <Skeletor v-else height="40" width="100%" style="border-radius: 3px" />
+                    <div class="text-danger mt-1" v-if="Transfert.errors.value.depotDestiny != undefined">
+                        {{ Transfert.errors.value.depotDestiny[0] }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row mb-5" v-if="form.depotOrigin">
-    <div class="col-xl-12">
-        <div class="d-flex justify-content-between mb-4">
-            <h6 class="text-uppercase text-primary">Information de l'article</h6>
+    <div class="row mb-5" v-if="form.depotOrigin">
+        <div class="col-xl-12">
+            <div class="d-flex justify-content-between mb-4">
+                <h6 class="text-uppercase text-primary">Information de l'article</h6>
 
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
 
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th class="w-50">Nom de l'article</th>
-                            <th>Quantité</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="i in nombreArticle" :key="i">
-                            <td>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="w-50">Nom de l'article</th>
+                                <th>Quantité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="i in nombreArticle" :key="i">
+                                <td>
 
-                                <MultiSelect v-if="appro === true" label="designation" valueProp="id"
-                                    v-model="form.articles[i - 1].id"
-                                    :options="articleOptions"
-                                    :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
-                                    noOptionsText="Aucun article" noResultsText="Aucun article" @select="checkArticle($event, i)"
-                                    />
+                                    <MultiSelect v-if="appro === true" label="designation" valueProp="id"
+                                        v-model="form.articles[i - 1].id" :options="articleOptions"
+                                        :closeOnSelect="true" :clearOnSelect="false" :searchable="true"
+                                        noOptionsText="Aucun article" noResultsText="Aucun article"
+                                        @open="selectOpenned" @select="checkArticle($event, i)" />
 
-                                <!-- <MultiSelect v-model="form.articles[i - 1].object"
+                                    <!-- <MultiSelect v-model="form.articles[i - 1].object"
                                     placeholder="Rechercher un article" noResultsText="Aucun article trouvé"
                                     noOptionsText="Aucun article trouvé" :closeOnSelect="true" :filter-results="true"
                                     :multiple="false" :min-chars="1" :resolve-on-load="resolveOnLoad" :delay="500"
@@ -80,58 +83,65 @@
                                         return await fetchArticles(query)
                                     }"  /> -->
 
-                                <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.id`]">
-                                    {{ Transfert.errors.value[`articles.${i - 1}.id`][0] }}
-                                </span>
-                            </td>
-                            <td>
-                                <input type="number"
-                                v-model="form.articles[i - 1].quantite[0]" class="form-control">
-                                <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.quantite.0`]">
-                                    {{ Transfert.errors.value[`articles.${i - 1}.quantite.0`][0] }}
-                                </span>
-                                <div v-for="(parPrix , index) in form.articles[i - 1].prix" :key="index" class="row mt-1">
-                                    <div class="col-sm-4">
-                                        <label for="">Pour {{parPrix.pu}} Ar</label>
+                                    <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.id`]">
+                                        {{ Transfert.errors.value[`articles.${i - 1}.id`][0] }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <input type="number" v-model="form.articles[i - 1].quantite[0]"
+                                        class="form-control">
+                                    <span class="text-danger"
+                                        v-if="Transfert.errors.value[`articles.${i - 1}.quantite.0`]">
+                                        {{ Transfert.errors.value[`articles.${i - 1}.quantite.0`][0] }}
+                                    </span>
+                                    <div v-for="(parPrix, index) in form.articles[i - 1].prix" :key="index"
+                                        class="row mt-1">
+                                        <div class="col-sm-4">
+                                            <label for="">Pour {{ parPrix.pu }} Ar</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control"
+                                                v-model="form.articles[i - 1].quantite[parseInt(parPrix.id)]">
+                                            <span class="text-danger"
+                                                v-if="Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`]">
+                                                {{
+                                                    Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`][0]
+                                                }}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <input type="number" class="form-control" v-model="form.articles[i - 1].quantite[parseInt(parPrix.id)]" >
-                                        <span class="text-danger" v-if="Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`]">
-                                            {{ Transfert.errors.value[`articles.${i - 1}.quantite.${parPrix.id}`][0] }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
+                                </td>
 
-                            <td >
-                                <div class="row">
-                                    <div class="col-sm-12 text-center">
-                                        <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)"
-                                            class="btn btn-danger"><i class="fa fa-minus"></i></button>
-                                        <button type="button" v-else @click.prevent="addItem()" class="btn btn-success"><i
-                                                class="fa fa-plus"></i>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button type="button" v-if="i > 1" @click.prevent="removeItem(i - 1)"
+                                                class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                                            <button type="button" v-else @click.prevent="addItem()"
+                                                class="btn btn-success"><i class="fa fa-plus"></i>
                                             </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row mt-4">
-    <div class="col-xl-12">
-        <div class="d-flex justify-content-end">
-            <SaveBtn v-if="nouveau" :loading="Transfert.creating.value"
-                :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Enregistrer
-            </SaveBtn>
-            <SaveBtn v-else :loading="Transfert.updating.value"
-                :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Mettre a jour</SaveBtn>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <div class="d-flex justify-content-end">
+                <SaveBtn v-if="nouveau" :loading="Transfert.creating.value"
+                    :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Enregistrer
+                </SaveBtn>
+                <SaveBtn v-else :loading="Transfert.updating.value"
+                    :disabled="!appro && !form.depotOrigin && !form.depotDestiny" @click.prevent="save">Mettre a jour
+                </SaveBtn>
+            </div>
         </div>
     </div>
-</div>
 </template>
 <script lang="ts">
 import Input from '../html/Input.vue';
@@ -259,7 +269,7 @@ export default defineComponent({
                     id: article.id,
                     quantite: [
                         article.pivot.quantite
-                    ]  ,
+                    ],
 
                     ...(props.appro === false ? {
                         object: {
@@ -283,10 +293,10 @@ export default defineComponent({
         const check = (e: { modelValue: null; }) => {
 
             //Recupere les articles ainsi que les prix selon chaque article du depôt
-            if(typeof e == 'number') Article.all(null, null, null, 'avec-prix-vente/' + e);
 
+            if (typeof e == 'number') Article.all(null, null, null, 'avec-prix-vente/' + e);
 
-            if (e.modelValue !== null){
+            if (e.modelValue !== null) {
                 Depot.errors.value.categories = null
             }
         }
@@ -304,20 +314,28 @@ export default defineComponent({
             return null
         })
 
-        // faire en sorte que les articles déja selectionné ne soient plus affichées comme option possible
+        //faire en sorte que les articles déja selectionné ne soient plus affichées comme option
+        let excludeOptions = ref([{ id: null }])
         let articleOptions = computed(() => {
             return Article.entities.value.
-                        filter((el, i) => {
-                            let res = true
+                filter((el, i) => {
+                    let res = true
 
-                             form.value.articles.forEach((ar) => {
-                                 if (el.article.id == ar.id) res = false
-                             })
+                    excludeOptions.value.forEach((ar) => {
+                        if (el.article.id == ar.id) res = false
+                    })
 
-                            return res
-                        }).
-                        map((el, i) => el.article)
+                    return res
+                }).
+                map((el, i) => el.article)
         })
+
+
+
+        let selectOpenned = () => {
+            excludeOptions.value = form.value.articles
+            console.log("supprimer les valeurs déjà selectionnés")
+        }
 
         /**
         * Permet de determiner si on doit charger le select durant le chargement
@@ -343,9 +361,9 @@ export default defineComponent({
 
 
         onBeforeMount(() => {
+
             DepotOrigin.all(3)
             DepotDestiny.all(3)
-
             if (props.nouveau === false && props.transfert) {
                 let article = props.transfert.articles.filter((el) => el.pivot.type == 0)
 
@@ -358,10 +376,11 @@ export default defineComponent({
                 if (props.transfert.articles.length > 0) {
 
                     for (let index = 0; index < 2; index++) {
-                        if (props.transfert.articles[index].pivot.type == 0) form.value.depotOrigin =  props.transfert.articles[index].pivot.depot_id
+                        if (props.transfert.articles[index].pivot.type == 0) form.value.depotOrigin = props.transfert.articles[index].pivot.depot_id
                         else form.value.depotDestiny = props.transfert.articles[index].pivot.depot_id
                     }
                 }
+
 
                 generateArticleArrayFromArticles(article)
 
@@ -381,7 +400,8 @@ export default defineComponent({
          * @return  {Promise}
          */
         onMounted(async (): Promise<any> => {
-            Article.all(null, null, null, 'avec-prix-vente/' + form.value.depotOrigin);
+
+            if (form.value.depotOrigin != undefined && form.value.depotOrigin != null) Article.all(null, null, null, 'avec-prix-vente/' + form.value.depotOrigin);
             loaded.value = false // Rendre le depot non resolvable on load
         })
 
@@ -405,12 +425,12 @@ export default defineComponent({
             generateArticleArray(nombreArticle.value)
         }
 
-        const checkArticle = (e: { modelValue: string; }, index ) => {
+        const checkArticle = (e: { modelValue: string; }, index) => {
 
             if (typeof e == 'number') {
 
-                let prixArticleSelect =  Article.entities.value.filter((el, i ) => el.article.id == e)
-                                        .map((el, i) => el.prix)
+                let prixArticleSelect = Article.entities.value.filter((el, i) => el.article.id == e)
+                    .map((el, i) => el.prix)
 
                 // attaché les prix existant à l'input
                 form.value.articles[index - 1].prix = prixArticleSelect[0]
@@ -472,7 +492,7 @@ export default defineComponent({
 
         return {
             Transfert, form, appro: props.appro, check, checkDate, fetchArticles, removeItem, resolveOnLoad,
-            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save, checkArticle, articleOptions
+            DepotOrigin, DepotDestiny, nombreArticle, dateState, addItem, Article, save, checkArticle, articleOptions, selectOpenned, excludeOptions
 
         }
     }

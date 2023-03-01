@@ -3,8 +3,9 @@
         <div class="card me-3">
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="text-info">Liste d'entrepôt</h5>
-                    <router-link to="/entrepot/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Ajouter un nouveau</router-link>
+                    <h5 class="text-info">Liste des entrepôts</h5>
+                    <router-link to="/entrepot/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Nouveau
+                        entrepôt</router-link>
                 </div>
             </div>
             <div class="card-body">

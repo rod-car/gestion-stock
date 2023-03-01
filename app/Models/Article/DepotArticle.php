@@ -134,7 +134,7 @@ class DepotArticle extends Model
      * @param Depot|null $depot Le depot concerné
      * @return Builder
      */
-    public static function getDepotArticles(?Depot $depot = null, ?string $by = null)
+    public static function getDepotArticles(?Depot $depot = null, ?string $by = null, $disabled = null)
     {
         $depotArticle = self::query()
             ->selectRaw("articles.id as article_id")
@@ -148,6 +148,11 @@ class DepotArticle extends Model
             ->rightJoin('articles', 'articles.id', '=', 'depot_articles.article_id');
 
         $groupby = ['articles.id', 'depot_articles.depot_id'];
+
+        if($disabled !== null){
+
+            $depotArticle = $depotArticle->where("articles.disabled", $disabled);
+        }
 
         if ($depot !== null) {
             $depotArticle = $depotArticle->where('depot_id', $depot->id)->orWhere('depot_id', null);

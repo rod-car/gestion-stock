@@ -4,7 +4,8 @@
             <div class="card-header bg-white p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-info">Liste de commande fournisseur</h5>
-                    <router-link to="/commande/fournisseur/nouveau" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Créer une nouvelle commande</router-link>
+                    <router-link to="/commande/fournisseur/nouveau" class="btn btn-primary"><i
+                            class="fa fa-plus me-2"></i>Nouvelle commande</router-link>
                 </div>
             </div>
             <div class="card-body">

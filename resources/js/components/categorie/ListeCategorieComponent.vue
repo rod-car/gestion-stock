@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Libelle</th>
+                <th>Libellé</th>
                 <th>Description</th>
                 <th v-if="type === 3">Sous catégories</th>
                 <th class="text-center">Actions</th>
@@ -16,17 +16,19 @@
                 <td>{{ categorie.description }}</td>
                 <td v-if="type === 3">
                     <span v-if="categorie.sous_categories <= 0">Aucune sous-catégories</span>
-                    <span class="badge bg-success me-2" v-else v-for="sous_categorie in categorie.sous_categories" :key="sous_categorie.id">{{ sous_categorie.libelle }}</span>
+                    <span class="badge bg-success me-2" v-else v-for="sous_categorie in categorie.sous_categories"
+                        :key="sous_categorie.id">{{ sous_categorie.libelle }}</span>
                 </td>
                 <td class="d-flex justify-content-center">
-                    <router-link v-if="true" :to="{ name: `${prefix}.categorie.modifier`, params: { id: categorie.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(categorie.id, index)"/>
+                    <router-link v-if="true" :to="{ name: `${prefix}.categorie.modifier`, params: { id: categorie.id } }"
+                        class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(categorie.id, index)" />
                 </td>
             </tr>
         </tbody>
         <tbody v-else>
             <tr>
-                <td class="text-center" colspan="6">Aucun cateégorie pour le moment</td>
+                <td class="text-center" colspan="6">Aucun catégorie pour le moment</td>
             </tr>
         </tbody>
     </table>
@@ -66,12 +68,12 @@ export default defineComponent({
         })
 
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
-            await SimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
+            await SimpleAlert.confirm("Voulez-vous supprimer ce categorie ?", "Question", "question").then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
                 destroy(id, props.categories, index)
-            }).catch (error => {
+            }).catch(error => {
                 if (error !== undefined) {
-                    Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
+                    Flash('error', "Message d'erreur", "Impossible de supprimer ce categorie")
                 }
             });
         }

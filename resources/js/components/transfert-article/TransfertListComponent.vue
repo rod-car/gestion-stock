@@ -18,7 +18,7 @@
                         class="btn btn-info btn-sm me-2 text-white"><i class="fa fa-eye"></i></router-link>
                     <router-link v-if="true" :to="{ name: 'transfert.modifier', params: { id: transfert.id } }"
                         class="btn btn-primary btn-sm me-2"><i class="fa fa-edit"></i></router-link>
-                    <DeleteBtn v-if="true" type="danger" />
+                    <DeleteBtn v-if="true" type="danger" @click.prevent="confirmDeletion(transfert.id, index)" />
                 </td>
             </tr>
         </tbody>
@@ -31,10 +31,19 @@
 </template>
 <script lang="ts">
 import axiosClient from '../../axios';
+import DeleteBtn from '../html/DeleteBtn.vue'
+import SimpleAlert from 'vue3-simple-alert';
+import useCRUD from '../../services/CRUDServices';
+
+import Flash from '../../functions/Flash';
+const { destroy } = useCRUD('/transfert-article');
+
 import { computed, onMounted, onBeforeMount, ref, defineComponent, Ref, watch } from 'vue';
 
 export default {
-
+    components: {
+        DeleteBtn
+    },
     setup() {
         // -------- State ---------
         let TransfertList = ref([])
@@ -45,8 +54,19 @@ export default {
             axiosClient.get("/transfert-article").then(({ data }) => {
                 TransfertList.value = data
                 console.log(TransfertList)
-             })
+            })
         )
+
+        const confirmDeletion = async (id: number, index: number): Promise<any> => {
+            await SimpleAlert.confirm("Voulez-vous supprimer ce transfert ?", "Question", "question").then(() => {
+                Flash('loading', "Chargement", "Suppression en cours", 1, false)
+                //destroy(id, props.entities, index)
+            }).catch((error: undefined) => {
+                if (error !== undefined) {
+                    Flash('error', "Message d'erreur", "Impossible de supprimer ce transfert")
+                }
+            });
+        }
 
         // ------- methodes --------
 
@@ -54,7 +74,7 @@ export default {
             getList()
         })
 
-        return {TransfertList}
+        return { TransfertList, confirmDeletion }
 
     }
 }

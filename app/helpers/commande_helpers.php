@@ -7,7 +7,7 @@ use App\Models\Article\Transfert;
 
 if (!function_exists('reference')) {
     /**
-     * Generer la reference d'une commande ou dévis
+     * Generer la reference d'une commande ou devis
      *
      * @param integer $type
      * @param boolean $appro
@@ -27,7 +27,7 @@ if (!function_exists('reference')) {
 
 if (!function_exists('numeroDevis')) {
     /**
-     * Fonction qui permet de generer un nouveau numéro de dévis en fonction du dernier devis enregistré
+     * Fonction qui permet de generer un nouveau numéro de devis en fonction du dernier devis enregistré
      *
      * @param boolean $appro
      * @param string $prefix

@@ -9,7 +9,7 @@ trait WithValidation
 {
     /**
      * Type de commande possible
-     * 1: Dévis
+     * 1: devis
      * 2: Commande proprement dite
      *
      * @var array
@@ -61,8 +61,8 @@ trait WithValidation
     protected function ValidationMessages(): array
     {
         return [
-            "numero.required" => "La réference du dévis est réquis",
-            "numero.unique" => "Cette dévis existe déja",
+            "numero.required" => "La réference du devis est réquis",
+            "numero.unique" => "Cette devis existe déja",
             "numero.min" => "La reference doit être au moins :min caractère",
             "numero.max" => "La reference ne doit pas depasser :max caractère",
 
@@ -81,8 +81,8 @@ trait WithValidation
             "client.required" => "Le client est réquis",
             "client.exists" => "Veuillez selectionner le client dans la liste",
 
-            "articles.required" => "Les articles du dévis est obligatoire",
-            "articles.array" => "Les articles du dévis doit être un tableau",
+            "articles.required" => "Les articles du devis est obligatoire",
+            "articles.array" => "Les articles du devis doit être un tableau",
 
             "articles.*.id.required" => "Veillez selectionner l'article",
             "articles.*.id.exists" => "Veillez selectionner l'article parmi la liste",

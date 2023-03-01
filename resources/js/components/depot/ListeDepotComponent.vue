@@ -17,13 +17,16 @@
                 <td>{{ depot.localisation }}</td>
                 <td>{{ depot.contact }}</td>
                 <td>
-                    <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables" :key="responsable.id">{{ responsable.nomComplet }}</span>
+                    <span class="badge bg-danger text-white fs-6 me-2" v-for="responsable in depot.responsables"
+                        :key="responsable.id">{{ responsable.nomComplet }}</span>
                 </td>
                 <td class="d-flex justify-content-center">
-                    <router-link :to="{ name: `${getName}.voir`, params: { id: depot.id }}" class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
-                    <router-link v-if="$can(editAccess)" :to="{ name: `${getName}.modifier`, params: { id: depot.id }}" class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
+                    <router-link :to="{ name: `${getName}.voir`, params: { id: depot.id } }"
+                        class="btn btn-primary btn-sm me-2"><i class="fa fa-eye"></i></router-link>
+                    <router-link v-if="$can(editAccess)" :to="{ name: `${getName}.modifier`, params: { id: depot.id } }"
+                        class="btn btn-info btn-sm me-2"><i class="fa fa-edit"></i></router-link>
                     <form v-if="$can(deleteAccess)" action="" method="post">
-                        <DeleteBtn type="danger" @click.prevent="confirmDeletion(depot.id, index)"/>
+                        <DeleteBtn type="danger" @click.prevent="confirmDeletion(depot.id, index)" />
                     </form>
                 </td>
             </tr>
@@ -76,12 +79,15 @@ export default defineComponent({
         })
 
         const confirmDeletion = async (id: number, index: number): Promise<any> => {
-            await VueSimpleAlert.confirm("Voulez-vous supprimer ce point de vente ?", "Question", "question").then(() => {
+            let name = props.entrepot ? 'cet entrepôt' : 'ce point de vente'
+            let errorMessage = "Désolé, il est impossible de supprimer un PDV contenant des articles. Veuillez trasnférer le stock vers un autre PDV avant de pouvoir supprimer."
+
+            await VueSimpleAlert.confirm("", "Souhaitez-vous supprimer " + name + " ?", "warning", { cancelButtonText: 'Annuler', }).then(() => {
                 Flash('loading', "Chargement", "Suppression en cours", 1, false)
-                destroy(id, props.depots, index)
+                destroy(id, props.depots, index, errorMessage)
             }).catch((error: undefined) => {
                 if (error !== undefined) {
-                    Flash('error', "Message d'erreur", "Impossible de supprimer ce point de vente")
+                    Flash('error', "Message d'erreur", errorMessage)
                 }
             });
         }
