@@ -5,10 +5,7 @@ Application de gestion de stock multi point de vente et multi entrepot. Developp
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
+- [Utilisation](#utilisation)
 
 ## Installation
 
@@ -22,7 +19,7 @@ Ci-dessous la liste des pre-requis:
 - PHP > 7.2 < 8.2
 - NodeJs > 12
 
-### Installation Steps
+### Installation
 
 1. Cloner le depot:
 
@@ -53,3 +50,7 @@ Ci-dessous la liste des pre-requis:
 
    ```bash
    yarn run dev
+
+## Utilisation
+   ```bash
+   php artisan serve
